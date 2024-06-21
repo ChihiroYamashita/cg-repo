@@ -104,8 +104,8 @@ public:
     qreal currentMousePositionX() const;  // マウス位置を取得するメソッド
     qreal getPlayheadPositionX() const;//クラス外にPlayheadPositionX()を教える
 
-    int startpixel=10;//タイムラインの開始位置
-    int pixelsPerFrame;
+    static const int startpixel = 10;//タイムラインの開始位置
+    int pixelsPerFrame;//30フレームごとのピクセル数
 
     /*==========線形補間に関する実装===========*/
     //線形補間した値を適応するメソッド

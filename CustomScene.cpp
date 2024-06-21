@@ -14,6 +14,7 @@
 
 CustomScene::CustomScene(MainWindow *mainWindow,QObject *parent) : QGraphicsScene(parent), playhead(nullptr), m_mainWindow(mainWindow)
 {
+ this->installEventFilter(this);
 }
 
 void  CustomScene::setupScene(int width, int height)
@@ -24,7 +25,7 @@ void  CustomScene::setupScene(int width, int height)
     pixelsPerFrame=width/10;// 例えば10秒のタイムラインを表示すると仮定
 
 
-    int keyframenumber = (playheadPositionX - startpixel) / (pixelsPerFrame / 30);
+    int keyframenumber = calculateFrameNumberFromPlayhead();
         qDebug() << "playheadPositionX:" << playheadPositionX << "startpixel:" << startpixel<< "pixelsPerFrame:" << pixelsPerFrame;
 
 
@@ -113,7 +114,11 @@ addLine(0, playheadTextRect.height(), width, playheadTextRect.height(), linePen)
 
 /*---------------フレームの縦線を表示--------------*/
 // 縦線を引く
+//ｘは縦線を引くx座標
 for (int x = startpixel, j=0; x < width; x += pixelsPerFrame,j +=30) {
+
+
+    //qDebug() << "xposFrameintimeline" << x;
     addLine(x, playheadTextRect.height(), x, height);
     // 数値を表示するテキストアイテムを作成
     QGraphicsTextItem* textItem = new QGraphicsTextItem(QString::number(j));
@@ -385,8 +390,15 @@ int CustomScene::calculateFrameNumberFromPlayhead() const {
 //qDebug() << "calculateFrameNumberFromPlayhead() playheadPositionX:" << playheadPositionX << "startpixel:" << startpixel<< "pixelsPerFrame:" << pixelsPerFrame;
 //qDebug() << "mainwindow前で計算されたフレームナンバー:" << static_cast<int>((playheadPositionX - startpixel) / (pixelsPerFrame / 30));
 //return static_cast<int>((playheadPositionX - startpixel) / (pixelsPerFrame / 30));
-return (playheadPositionX - startpixel) / (pixelsPerFrame / 30);
-qDebug() <<"calculateFrameNumberFromPlayhead(pixelsPerFrame:" << pixelsPerFrame;
+//qDebug() <<"calculateFrameNumberFromPlayheadstartpixel" <<startpixel;
+
+//qDebug() <<"calculateFrameNumberFromPlayheadplayheadPositionX" <<playheadPositionX;
+// pixelsPerFrame / 30 を小数点演算にするためにキャストを使用
+float frameInterval = static_cast<float>(pixelsPerFrame) / 30.0f;
+
+// フレームナンバーを計算して返す
+return static_cast<int>((playheadPositionX - startpixel) / frameInterval);
+
 
 }
 
@@ -427,7 +439,6 @@ for (QGraphicsPolygonItem* keyframeItem : keyframeItems) { //リスト keyframeI
 }
 
 
-
 // マウス位置とplayheadの距離を計算
 qreal distance = qAbs(mouseX - playheadX);
 
@@ -457,7 +468,13 @@ if (playheadBeingDragged) {
 
     // playheadTextの位置と内容を更新
     int newFrameNumber = static_cast<int>(m_currentMouseX ); // 新しいフレーム数を計算
+    // playheadのX位置を更新
+    playheadPositionX = m_currentMouseX;
     int frameNumber = calculateFrameNumberFromPlayhead();
+    qDebug() << "1.mouseMoveEventplayheadBeingDragged=" <<pixelsPerFrame;
+
+    //frameNumber=(playheadPositionX - startpixel) ;
+    //float a = static_cast<float>(pixelsPerFrame) / 30.0f;
     playheadText->setPlainText(QString::number(frameNumber)); // テキスト内容を更新
 
 
@@ -471,10 +488,9 @@ if (playheadBeingDragged) {
     backgroundItem->setPos(m_currentMouseX - textRect.width() / 2, playheadText->pos().y());
 
     playheadText->setPos(QPointF(m_currentMouseX - playheadText->boundingRect().width() / 2, playheadText->pos().y())); // テキスト位置を更新
-    // playheadのX位置を更新
-    playheadPositionX = m_currentMouseX;
 
-    //qDebug() << "playheadBeingDragged=" <<  m_currentMouseX;
+
+    qDebug() << "playheadBeingDragged=" <<  m_currentMouseX;
 
     // カメラの更新
     updateCameraForFrame(frameNumber);
@@ -491,6 +507,7 @@ playheadBeingDragged = false;
 bool CustomScene::eventFilter(QObject *watched, QEvent *event) {
 if (event->type() == QEvent::Wheel) {
     QGraphicsSceneWheelEvent *wheelEvent = static_cast<QGraphicsSceneWheelEvent *>(event);
+    qDebug() << "Wheel event detected in eventFilter";
     this->wheelEvent(wheelEvent);
     return true;
 }
@@ -498,14 +515,16 @@ return QGraphicsScene::eventFilter(watched, event);
 }
 
 
-
 void CustomScene::wheelEvent(QGraphicsSceneWheelEvent *event) {
+
 int delta = event->delta(); // ホイールの回転量を取得
 
 qreal moveAmount = delta / 120.0 * 10;  // 移動量を調整
 
 // playheadのX座標を計算し直す
 qreal newPlayheadPositionX = playheadPositionX + moveAmount;
+
+//qDebug() << "xposplayheadBeingDragged =" << newPlayheadPositionX ;
 
 // playheadの新しい位置がシーンの幅内に収まるように制限
 newPlayheadPositionX = qMax(static_cast<qreal>(startpixel), qMin(newPlayheadPositionX, this->sceneRect().width()));
@@ -515,7 +534,7 @@ playhead->setLine(newPlayheadPositionX, playhead->line().y1(), newPlayheadPositi
 
 // playheadTextの位置と内容を更新
 int newFrameNumber = static_cast<int>(newPlayheadPositionX); // 新しいフレーム数を計算
-int frameNumber = static_cast<int>((newFrameNumber - startpixel) / (this->width() / 300));
+int frameNumber =calculateFrameNumberFromPlayhead();
 playheadText->setPlainText(QString::number(frameNumber)); // テキスト内容を更新
 
 // テキストバウンディングボックス(playheadTextの後ろ)を更新
