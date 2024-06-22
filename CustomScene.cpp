@@ -533,7 +533,9 @@ newPlayheadPositionX = qMax(static_cast<qreal>(startpixel), qMin(newPlayheadPosi
 playhead->setLine(newPlayheadPositionX, playhead->line().y1(), newPlayheadPositionX, playhead->line().y2());
 
 // playheadTextの位置と内容を更新
-int newFrameNumber = static_cast<int>(newPlayheadPositionX); // 新しいフレーム数を計算
+int newFrameNumber = static_cast<int>(newPlayheadPositionX);
+playheadPositionX=newFrameNumber;
+// 新しいフレーム数を計算
 int frameNumber =calculateFrameNumberFromPlayhead();
 playheadText->setPlainText(QString::number(frameNumber)); // テキスト内容を更新
 
