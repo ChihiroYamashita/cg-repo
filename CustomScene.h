@@ -10,23 +10,12 @@
 #include <QPair>
 #include <Eigen/Geometry> // Eigenライブラリを使用
 #include <QQuaternion>
-
-
+#include "Interpolator.h"
+#include "CameraKeyframe.h"
 
 class MainWindow; // 前方宣言
 
-// キーフレーム構造体の定義
-struct CameraKeyframe {
-    int frameNumber;
-    QVector3D eyePoint;
-    QVector3D lookAtPoint;
-    QVector3D upVector;
-    QVector3D xVector;
-    QVector3D yVector;
-    QVector3D zVector;
-    float fov;
-    double zoom;
-};
+
 
 class CustomScene : public QGraphicsScene
 {
@@ -60,40 +49,10 @@ private:
 
     //mainwindowからスロットをもらうためのポインタ
      MainWindow *m_mainWindow; // メインウィンドウのポインタ
+     Interpolator interpolator; // Interpolator クラスのインスタンスを追加
      //キーフレームアイコンのリスト
 
-     int sceneWidth; // シーンの幅を保存するメンバ変数
-     // プライベート関数
-     QQuaternion slerp(const QQuaternion& q1, const QQuaternion& q2, float t) const; // 追加
 
-     // デュアルクォータニオンの定義と補間
-     struct DualQuaternion {
-         QQuaternion real;
-         QQuaternion dual;
-
-         DualQuaternion() : real(), dual() {}
-         DualQuaternion(const QQuaternion& r, const QQuaternion& d) : real(r), dual(d) {}
-
-         static DualQuaternion fromTranslationRotation(const QVector3D& translation, const QQuaternion& rotation) {
-             DualQuaternion dq;
-             dq.real = rotation;
-             QQuaternion t(0, translation);
-             dq.dual = 0.5f * (t * rotation);
-             return dq;
-         }
-
-         static DualQuaternion slerp(const DualQuaternion& dq1, const DualQuaternion& dq2, float t) {
-             QQuaternion real = QQuaternion::slerp(dq1.real, dq2.real, t);
-             QQuaternion dual = QQuaternion::slerp(dq1.dual, dq2.dual, t);
-             return DualQuaternion(real, dual);
-         }
-
-         void toTranslationRotation(QVector3D& translation, QQuaternion& rotation) const {
-             rotation = real;
-             QQuaternion t = 2.0f * dual * real.conjugate();
-             translation = t.vector();
-         }
-     };
 
 
 public:

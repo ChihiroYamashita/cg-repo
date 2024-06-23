@@ -265,20 +265,6 @@ return q1.slerp(q1, q2, t);
 }
 
 
-CameraKeyframe CustomScene::interpolateKeyframe(const CameraKeyframe& kf1, const CameraKeyframe& kf2, float t) const {
-CameraKeyframe result;
-
-result.eyePoint = kf1.eyePoint * (1 - t) + kf2.eyePoint * t;
-result.lookAtPoint = kf1.lookAtPoint * (1 - t) + kf2.lookAtPoint * t;
-//result.upVector = kf1.upVector * (1 - t) + kf2.upVector * t;
-//result.xVector = kf1.xVector * (1 - t) + kf2.xVector * t;
-//result.yVector = kf1.yVector * (1 - t) + kf2.yVector * t;
-//result.zVector = kf1.zVector * (1 - t) + kf2.zVector * t;
-//result.fov = kf1.fov * (1 - t) + kf2.fov * t;
-//result.zoom = kf1.zoom * (1 - t) + kf2.zoom * t;
-
-return result;
-}
 
 void CustomScene::updateCameraForFrame(int frameNumber) {
 if (keyframes.size() < 2) return; // キーフレームが2つ以上ない場合は補間しない
@@ -304,7 +290,8 @@ if (!found) return; // 対応するキーフレームが見つからない場合
 float t = static_cast<float>(frameNumber - kf1.frameNumber) / (kf2.frameNumber - kf1.frameNumber);
 
 // 補間されたキーフレームを取得
-CameraKeyframe interpolatedKeyframe = interpolateKeyframe(kf1, kf2, t);
+CameraKeyframe interpolatedKeyframe = interpolator.interpolateKeyframe(kf1, kf2, t);
+
 
 // メインウィンドウの関数を呼び出してカメラの状態を更新
 m_mainWindow->updateCamera(interpolatedKeyframe.eyePoint, interpolatedKeyframe.lookAtPoint, interpolatedKeyframe.upVector, interpolatedKeyframe.fov, interpolatedKeyframe.zoom);

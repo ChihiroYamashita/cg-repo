@@ -20,15 +20,19 @@ SOURCES += \
     CustomScene.cpp \
     camera.cpp \
     drawObject.cpp \
+    interpolator.cpp \
     main.cpp \
     mainwindow.cpp \
     myopenglwidget.cpp \
     myopenglwidget_camera.cpp
 
 HEADERS += \
+    CameraKeyframe.h \
     CustomScene.h \
+    DualQuaternion.h \
     camera.h \
     drawObject.h \
+    interpolator.h \
     mainwindow.h \
     myopenglwidget.h \
     myopenglwidget_camera.h
