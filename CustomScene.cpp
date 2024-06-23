@@ -220,9 +220,9 @@ addItem(keyframeItem);
 // キーフレームアイコンをリストに追加
 keyframeItems.append(keyframeItem);
 
-int newFrameNumber = static_cast<int>(m_currentMouseX ); // 新しいフレーム数を計算
 
-frameNumber = static_cast<int>((newFrameNumber - startpixel) / (pixelsPerFrame / 30));
+
+frameNumber =calculateFrameNumberFromPlayhead();
 
 
 

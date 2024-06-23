@@ -12,6 +12,7 @@
 #include <QQuaternion>
 #include "Interpolator.h"
 #include "CameraKeyframe.h"
+#include "KeyframeManager.h"
 
 class MainWindow; // 前方宣言
 
@@ -40,6 +41,8 @@ private:
      QGraphicsPolygonItem* keyframeItem;//キーフレームアイコン
      QList<QGraphicsPolygonItem*> keyframeItems; // キーフレームアイコンのリスト
      QList<QPair<QGraphicsPolygonItem*, QGraphicsLineItem*>> keyframeLines; // キーフレームと線をペアで管理するリスト
+
+     KeyframeManager keyframeManager;// KeyframeManager クラスのインスタンスを追加
 
 
 

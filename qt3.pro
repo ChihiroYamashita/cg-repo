@@ -21,6 +21,7 @@ SOURCES += \
     camera.cpp \
     drawObject.cpp \
     interpolator.cpp \
+    keyframemanager.cpp \
     main.cpp \
     mainwindow.cpp \
     myopenglwidget.cpp \
@@ -33,6 +34,7 @@ HEADERS += \
     camera.h \
     drawObject.h \
     interpolator.h \
+    keyframemanager.h \
     mainwindow.h \
     myopenglwidget.h \
     myopenglwidget_camera.h
