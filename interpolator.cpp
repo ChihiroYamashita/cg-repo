@@ -63,6 +63,7 @@ CameraKeyframe Interpolator::interpolateKeyframe(const CameraKeyframe& kf1, cons
 
     /*ドゥアルクォータニオン
  * Q=q_1(回転クォータニオン)​+ϵq_2(平行移動クォータニオン）
+ * 平行移動部分は線形補間で、回転部分はSLERP（球面線形補間）で補間することで、実質的にデュアルクォータニオンとしての機能を果たすことができる。今回はそのようなソースコードになっている。
  *
  * <q_1(回転クォータニオン)を求める>
      * 回転クォータニオン 𝑞は、回転軸 𝑎 と回転角度 𝜃を使って次のように定義され：
@@ -78,13 +79,17 @@ CameraKeyframe Interpolator::interpolateKeyframe(const CameraKeyframe& kf1, cons
         * eyepoint1 と eyepoint2 が含まれる平面は、lookAtPoint を通る平面（輪切り）。この平面上で eyepoint が lookAtPoint の周りを回転することになります。
         * 視線ベクトルをlookAtVector= yePoint -lookAtPointと定義すると、
         * 視線ベクトル２つの外積を取ることで回転軸を計算できる。
+        *
+ * <q_1(回転クォータニオン)を補間する>
+    * 球面線形補間を使用　詳しくはslerp(const QQuaternion& q1, const QQuaternion& q2, float t)参照
+    *
 
- *
+ *<q_2(平行移動クォータニオン）を補間する>
+    *線形補間を用いて行う
 ​
 */
 
-    //q_2(平行移動クォータニオン）の線形補間
-    QVector3D lookAtPoint = (1.0f - t) * kf1.lookAtPoint + t * kf2.lookAtPoint;
+
 
     //<q_1(回転クォータニオン)を求める>
     // 視線ベクトルの計算
@@ -105,25 +110,22 @@ CameraKeyframe Interpolator::interpolateKeyframe(const CameraKeyframe& kf1, cons
     QQuaternion quaternion= QQuaternion::fromAxisAndAngle(rotationAxis, qRadiansToDegrees(angle));
 
 
-    // 回転クォータニオンを用いた補間
+    // 回転クォータニオンを用いた球面線形補間（SLERP）補間
     QQuaternion quaternion1 = rotationVectorToQuaternion(lookAtVector1);
     QQuaternion quaternion2 = rotationVectorToQuaternion(lookAtVector2);
     QQuaternion interpolatedQuaternion = QQuaternion::slerp(quaternion1, quaternion2, t);
 
-    // ドゥアルクォータニオンを使用して補間
-    /*
-    DualQuaternion dq1 = DualQuaternion::fromTranslationRotation(kf1.eyePoint, QQuaternion::fromDirection(kf1.lookAtPoint - kf1.eyePoint, kf1.upVector));
-    DualQuaternion dq2 = DualQuaternion::fromTranslationRotation(kf2.eyePoint, QQuaternion::fromDirection(kf2.lookAtPoint - kf2.eyePoint, kf2.upVector));
-    DualQuaternion dqInterpolated = (dq1 * (1 - t) + dq2 * t).normalized();
-
-    result.eyePoint = dqInterpolated.getTranslation();
-    result.lookAtPoint = result.eyePoint + dqInterpolated.getRotation() * QVector3D(0, 0, -1);  // 例として前方向を設定
-    result.upVector = dqInterpolated.getRotation() * QVector3D(0, 1, 0);*/  // 例として上方向を設定
+    //interpolatedQuaternionでt時間の回転クォータニオンが生成された。後はこれをベクトルにかけて回転させてあげる。
 
 
-    // 平行移動の補間
+    // q_2(平行移動クォータニオン）を補間する
     QVector3D interpolatedEyePoint = kf1.eyePoint * (1 - t) + kf2.eyePoint * t;
     QVector3D interpolatedLookAtPoint = kf1.lookAtPoint * (1 - t) + kf2.lookAtPoint * t;
+
+    // デュアルクォータニオンの計算
+    QQuaternion dqReal = interpolatedQuaternion;
+    QQuaternion dqDual = QQuaternion(0, interpolatedEyePoint) * interpolatedQuaternion * 0.5;
+
 
     // 補間結果を反映
     result.eyePoint = interpolatedEyePoint;
