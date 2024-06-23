@@ -11,8 +11,18 @@ QQuaternion Interpolator::slerp(const QQuaternion& q1, const QQuaternion& q2, fl
     return q1.slerp(q1, q2, t);
 }
 
+// interpolateKeyframe関数　ここですべての補完に関する実装を行う　tで何秒ごとの補完なのかを向こうで読み込むだけ
+
 CameraKeyframe Interpolator::interpolateKeyframe(const CameraKeyframe& kf1, const CameraKeyframe& kf2, float t) const {
     CameraKeyframe result;
+
+    // lookAtPoint の補間＝平行移動の線形補間
+    QVector3D lookAtPoint = (1.0f - t) * kf1.lookAtPoint + t * kf2.lookAtPoint;
+
+/*ドゥアルクォータニオン
+ * Q=q_1(回転クォータニオン)​+ϵq_2(平行移動クォータニオン）
+​
+*/
     // ドゥアルクォータニオンを使用して補間
     /*
     DualQuaternion dq1 = DualQuaternion::fromTranslationRotation(kf1.eyePoint, QQuaternion::fromDirection(kf1.lookAtPoint - kf1.eyePoint, kf1.upVector));
