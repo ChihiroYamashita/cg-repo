@@ -2,27 +2,114 @@
 
 #include "Interpolator.h"
 #include "DualQuaternion.h"
+#include "qmath.h"
 
 Interpolator::Interpolator()
 {
 }
 
 QQuaternion Interpolator::slerp(const QQuaternion& q1, const QQuaternion& q2, float t) const {
-    return q1.slerp(q1, q2, t);
+
+    /*球面線形補間
+ *2つのクォータニオン（𝑞1と𝑞2）の間を球面上の大円を辿る形で補間
+ *数学的背景
+    *<１>クォータニオンの内積を計算:
+    *  cos(θ)=q1⋅q2
+    *
+    *<2>補間角度 𝜃を計算:
+    *
+    *θ=arccos(cos(θ))
+    *
+    *<3>補間係数を計算:
+    *         sin((1−t)θ)            sin(tθ)
+    *  q(t)=  ------------ q 1 +  ------------ q 2
+    *           sin(θ)                sin(θ)
+    *
+ *
+*/
+    //<１>クォータニオンの内積を計算:
+    float dotProduct = QVector3D::dotProduct(q1.vector(), q2.vector());
+    //<2>補間角度 𝜃を計算:
+    float theta = qAcos(dotProduct);
+
+    if (qFuzzyIsNull(theta)) {
+        // If the angle is very small, linear interpolation is sufficient
+        return q1 * (1.0f - t) + q2 * t;
+    }
+
+    //<3>補間係数を計算:
+    float sinTheta = qSin(theta);
+    float a = qSin((1.0f - t) * theta) / sinTheta;
+    float b = qSin(t * theta) / sinTheta;
+
+    return (q1 * a) + (q2 * b);
+
+    //通常は以下の式で容易に実装できるreturn q1.slerp(q1, q2, t);
 }
+
+// 回転ベクトルから回転クォータニオンを生成する関数
+QQuaternion Interpolator::rotationVectorToQuaternion(const QVector3D &vector) const {
+    float angle = vector.length();
+    QVector3D axis = vector.normalized();
+    return QQuaternion::fromAxisAndAngle(axis, qRadiansToDegrees(angle));
+}
+
+
 
 // interpolateKeyframe関数　ここですべての補完に関する実装を行う　tで何秒ごとの補完なのかを向こうで読み込むだけ
 
 CameraKeyframe Interpolator::interpolateKeyframe(const CameraKeyframe& kf1, const CameraKeyframe& kf2, float t) const {
     CameraKeyframe result;
 
-    // lookAtPoint の補間＝平行移動の線形補間
-    QVector3D lookAtPoint = (1.0f - t) * kf1.lookAtPoint + t * kf2.lookAtPoint;
-
-/*ドゥアルクォータニオン
+    /*ドゥアルクォータニオン
  * Q=q_1(回転クォータニオン)​+ϵq_2(平行移動クォータニオン）
+ *
+ * <q_1(回転クォータニオン)を求める>
+     * 回転クォータニオン 𝑞は、回転軸 𝑎 と回転角度 𝜃を使って次のように定義され：
+     *
+     * 𝑞=cos(𝜃/2)+𝑢sin(𝜃/2)
+     * ここで、𝑢=𝑎⋅𝑖+𝑎⋅𝑗+𝑎⋅𝑘
+     *
+     * つまり、回転軸 𝑎 と回転角度 𝜃が求まればよい
+     *
+     * 1.回転角度𝜃をもとめる
+     * 2.回転軸を求める
+        * 回転軸と回転角度の計算
+        * eyepoint1 と eyepoint2 が含まれる平面は、lookAtPoint を通る平面（輪切り）。この平面上で eyepoint が lookAtPoint の周りを回転することになります。
+        * 視線ベクトルをlookAtVector= yePoint -lookAtPointと定義すると、
+        * 視線ベクトル２つの外積を取ることで回転軸を計算できる。
+
+ *
 ​
 */
+
+    //q_2(平行移動クォータニオン）の線形補間
+    QVector3D lookAtPoint = (1.0f - t) * kf1.lookAtPoint + t * kf2.lookAtPoint;
+
+    //<q_1(回転クォータニオン)を求める>
+    // 視線ベクトルの計算
+    QVector3D lookAtVector1 = kf1.eyePoint - kf1.lookAtPoint;
+    QVector3D lookAtVector2 = kf2.eyePoint - kf2.lookAtPoint;
+
+    lookAtVector1=lookAtVector1.normalized();
+    lookAtVector2=lookAtVector2.normalized();
+
+    // 回転軸の計算
+    QVector3D rotationAxis = QVector3D::crossProduct(lookAtVector1, lookAtVector2).normalized();
+
+    // 回転角度の計算
+    float dotProduct = QVector3D::dotProduct(lookAtVector1.normalized(), lookAtVector2.normalized());
+    float angle = qAcos(dotProduct);
+
+
+    QQuaternion quaternion= QQuaternion::fromAxisAndAngle(rotationAxis, qRadiansToDegrees(angle));
+
+
+    // 回転クォータニオンを用いた補間
+    QQuaternion quaternion1 = rotationVectorToQuaternion(lookAtVector1);
+    QQuaternion quaternion2 = rotationVectorToQuaternion(lookAtVector2);
+    QQuaternion interpolatedQuaternion = QQuaternion::slerp(quaternion1, quaternion2, t);
+
     // ドゥアルクォータニオンを使用して補間
     /*
     DualQuaternion dq1 = DualQuaternion::fromTranslationRotation(kf1.eyePoint, QQuaternion::fromDirection(kf1.lookAtPoint - kf1.eyePoint, kf1.upVector));
@@ -34,8 +121,41 @@ CameraKeyframe Interpolator::interpolateKeyframe(const CameraKeyframe& kf1, cons
     result.upVector = dqInterpolated.getRotation() * QVector3D(0, 1, 0);*/  // 例として上方向を設定
 
 
-    result.eyePoint = kf1.eyePoint * (1 - t) + kf2.eyePoint * t;
-    result.lookAtPoint = kf1.lookAtPoint * (1 - t) + kf2.lookAtPoint * t;
-    // 他のパラメータも同様に補間する場合はここに追加
+    // 平行移動の補間
+    QVector3D interpolatedEyePoint = kf1.eyePoint * (1 - t) + kf2.eyePoint * t;
+    QVector3D interpolatedLookAtPoint = kf1.lookAtPoint * (1 - t) + kf2.lookAtPoint * t;
+
+    // 補間結果を反映
+    result.eyePoint = interpolatedEyePoint;
+    result.lookAtPoint = interpolatedLookAtPoint;
+
+    // upVector, xVector, yVector, zVector の補間
+    QVector3D upVector1 = kf1.upVector.normalized();
+    QVector3D upVector2 = kf2.upVector.normalized();
+    QVector3D interpolatedUpVector = rotateVector(upVector1, interpolatedQuaternion.vector(), interpolatedQuaternion.scalar());
+
+    QVector3D xVector1 = kf1.xVector.normalized();
+    QVector3D xVector2 = kf2.xVector.normalized();
+    QVector3D interpolatedXVector = rotateVector(xVector1, interpolatedQuaternion.vector(), interpolatedQuaternion.scalar());
+
+    QVector3D yVector1 = kf1.yVector.normalized();
+    QVector3D yVector2 = kf2.yVector.normalized();
+    QVector3D interpolatedYVector = rotateVector(yVector1, interpolatedQuaternion.vector(), interpolatedQuaternion.scalar());
+
+    QVector3D zVector1 = kf1.zVector.normalized();
+    QVector3D zVector2 = kf2.zVector.normalized();
+    QVector3D interpolatedZVector = rotateVector(zVector1, interpolatedQuaternion.vector(), interpolatedQuaternion.scalar());
+
+    result.upVector = interpolatedUpVector;
+    result.xVector = interpolatedXVector;
+    result.yVector = interpolatedYVector;
+    result.zVector = interpolatedZVector;
+
+    // fov と zoom の補間
+    result.fov = kf1.fov * (1 - t) + kf2.fov * t;
+    result.zoom = kf1.zoom * (1 - t) + kf2.zoom * t;
+
+
     return result;
 }
+
