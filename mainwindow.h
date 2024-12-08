@@ -1,3 +1,11 @@
+/**
+ * @file mainwindow.h
+ * @brief メインウィンドウクラス
+ *
+ * @details
+ * MainWindowクラスは、アプリケーションのメインウィンドウを管理します。
+ * カメラのキーフレーム操作やタイムラインの更新、GUIイベントの処理をサポートします。
+ */
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -13,7 +21,14 @@ namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 /**--------QT_BEGIN_NAMESPACE と QT_END_NAMESPACE マクロを使用して、Qt の名前空間の中に Ui::MainWindow クラスを定義--------*/
 
-
+/**
+ *
+ * @brief アプリケーションのメインウィンドウクラス
+ *
+ * @details
+ * MainWindowクラスは、アプリケーションのメインウィンドウを管理します。
+ * カメラのキーフレーム操作やタイムラインの更新、GUIイベントの処理をサポートします。
+ */
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -25,7 +40,11 @@ public:
     //線形補間でカメラワークを更新する
     void updateCamera(const QVector3D& eyePoint, const QVector3D& lookAtPoint, const QVector3D& upVector, float fov, double zoom);
 private slots:
-
+    /**
+ * @brief 視野角を変更するスロット。
+ *
+ * スライダーの値を使用してカメラの視野角を更新します。
+ */
     void on_fovSlider_valueChanged(int value);
     void on_OrthoButton_clicked();// 平行投影モードのボタンがONになったときの処理を記述する関数（スロット）（ボタンの色が変わる）
     void on_cameraButtondefalt_clicked();

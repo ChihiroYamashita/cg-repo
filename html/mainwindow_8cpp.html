@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Qt_project: mainwindow.cpp ファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Qt_project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#define-members">マクロ定義</a>  </div>
+  <div class="headertitle"><div class="title">mainwindow.cpp ファイル</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="mainwindow_8h_source.html">mainwindow.h</a>&quot;</code><br />
+<code>#include &quot;ui_mainwindow.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="myopenglwidget_8h_source.html">myopenglwidget.h</a>&quot;</code><br />
+<code>#include &lt;QOpenGLWidget&gt;</code><br />
+<code>#include &lt;QResizeEvent&gt;</code><br />
+<code>#include &lt;QApplication&gt;</code><br />
+<code>#include &lt;QSurfaceFormat&gt;</code><br />
+<code>#include &lt;QMatrix4x4&gt;</code><br />
+<code>#include &lt;Eigen/Dense&gt;</code><br />
+<code>#include &lt;QMouseEvent&gt;</code><br />
+<code>#include &lt;QWheelEvent&gt;</code><br />
+<code>#include &lt;QPushButton&gt;</code><br />
+<code>#include &lt;QtSvg/QSvgRenderer&gt;</code><br />
+<code>#include &lt;QGraphicsLineItem&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="camera_8h_source.html">Camera.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_custom_scene_8h_source.html">CustomScene.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="myopenglwidget__camera_8h_source.html">myopenglwidget_camera.h</a>&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> mainwindow.cpp の依存先関係図:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="mainwindow_8cpp__incl.png" border="0" usemap="#amainwindow_8cpp" alt=""/></div>
+<map name="amainwindow_8cpp" id="amainwindow_8cpp">
+<area shape="rect" title=" " alt="" coords="1423,5,1540,32"/>
+<area shape="rect" href="mainwindow_8h.html" title="メインウィンドウクラス" alt="" coords="562,80,665,107"/>
+<area shape="poly" title=" " alt="" coords="1422,25,1107,44,897,60,684,83,680,83,680,78,684,77,896,55,1106,38,1422,20"/>
+<area shape="rect" href="_custom_scene_8h.html" title=" " alt="" coords="740,155,855,181"/>
+<area shape="poly" title=" " alt="" coords="1423,28,1260,47,1162,63,1065,83,945,116,845,151,843,146,944,111,1063,77,1161,58,1260,42,1422,23"/>
+<area shape="rect" title=" " alt="" coords="5,229,139,256"/>
+<area shape="poly" title=" " alt="" coords="1422,26,1218,43,1090,60,963,83,844,113,729,157,704,171,678,184,602,204,536,215,476,221,420,223,303,222,235,225,154,232,154,226,234,220,303,217,420,217,476,216,535,210,600,198,676,179,702,167,727,152,842,108,962,77,1090,54,1217,38,1422,20"/>
+<area shape="rect" title=" " alt="" coords="1076,80,1196,107"/>
+<area shape="poly" title=" " alt="" coords="1423,35,1212,79,1211,74,1422,30"/>
+<area shape="rect" href="myopenglwidget_8h.html" title=" " alt="" coords="1372,155,1498,181"/>
+<area shape="poly" title=" " alt="" coords="1463,34,1439,54,1420,81,1416,95,1416,111,1424,140,1419,141,1411,111,1411,95,1415,79,1435,51,1459,30"/>
+<area shape="rect" href="camera_8h.html" title=" " alt="" coords="1278,229,1354,256"/>
+<area shape="poly" title=" " alt="" coords="1450,35,1415,54,1382,82,1360,114,1343,150,1324,215,1319,214,1338,148,1355,112,1378,78,1412,50,1447,30"/>
+<area shape="rect" title=" " alt="" coords="1225,304,1322,331"/>
+<area shape="poly" title=" " alt="" coords="1443,35,1400,54,1359,82,1324,117,1301,148,1284,183,1269,230,1266,260,1269,288,1264,289,1261,260,1264,229,1279,181,1296,145,1320,113,1356,78,1397,49,1440,30"/>
+<area shape="rect" title=" " alt="" coords="1595,229,1714,256"/>
+<area shape="poly" title=" " alt="" coords="1476,33,1461,68,1459,87,1464,105,1488,132,1529,163,1620,219,1617,224,1525,168,1484,136,1459,108,1454,87,1456,66,1471,31"/>
+<area shape="rect" title=" " alt="" coords="1378,229,1478,256"/>
+<area shape="poly" title=" " alt="" coords="1464,35,1438,55,1408,82,1381,116,1363,156,1360,168,1362,180,1377,201,1395,218,1392,222,1372,205,1358,182,1354,168,1357,154,1376,114,1404,79,1434,50,1461,30"/>
+<area shape="rect" title=" " alt="" coords="1474,80,1580,107"/>
+<area shape="poly" title=" " alt="" coords="1491,31,1513,65,1508,68,1487,34"/>
+<area shape="rect" title=" " alt="" coords="1604,80,1700,107"/>
+<area shape="poly" title=" " alt="" coords="1512,30,1609,71,1607,76,1510,35"/>
+<area shape="rect" title=" " alt="" coords="1724,80,1841,107"/>
+<area shape="poly" title=" " alt="" coords="1535,30,1716,73,1714,78,1534,35"/>
+<area shape="rect" title=" " alt="" coords="1865,80,1954,107"/>
+<area shape="poly" title=" " alt="" coords="1541,26,1850,77,1849,82,1540,31"/>
+<area shape="rect" title=" " alt="" coords="1977,80,2082,107"/>
+<area shape="poly" title=" " alt="" coords="1541,23,1725,45,1962,77,1961,82,1724,50,1540,29"/>
+<area shape="rect" title=" " alt="" coords="2106,80,2208,107"/>
+<area shape="poly" title=" " alt="" coords="1541,21,1777,41,2091,77,2090,82,1777,46,1540,27"/>
+<area shape="rect" title=" " alt="" coords="2232,80,2381,107"/>
+<area shape="poly" title=" " alt="" coords="1541,21,1827,41,2217,77,2217,82,1827,47,1540,26"/>
+<area shape="rect" title=" " alt="" coords="2405,80,2467,107"/>
+<area shape="poly" title=" " alt="" coords="1541,17,1688,19,1897,27,2140,45,2266,59,2390,77,2390,83,2265,64,2139,50,1897,32,1688,24,1540,22"/>
+<area shape="rect" href="myopenglwidget__camera_8h.html" title=" " alt="" coords="2490,80,2667,107"/>
+<area shape="poly" title=" " alt="" coords="1541,20,1929,39,2197,55,2475,77,2475,82,2197,61,1928,44,1540,25"/>
+<area shape="rect" title=" " alt="" coords="314,155,420,181"/>
+<area shape="poly" title=" " alt="" coords="571,110,425,152,424,147,570,105"/>
+<area shape="rect" title=" " alt="" coords="443,155,557,181"/>
+<area shape="poly" title=" " alt="" coords="595,109,534,148,531,144,592,105"/>
+<area shape="poly" title=" " alt="" coords="646,105,752,146,750,151,644,110"/>
+<area shape="rect" title=" " alt="" coords="580,155,665,181"/>
+<area shape="poly" title=" " alt="" coords="618,107,622,139,616,140,612,108"/>
+<area shape="rect" title=" " alt="" coords="163,229,253,256"/>
+<area shape="poly" title=" " alt="" coords="740,181,722,184,596,198,496,206,396,215,268,232,267,227,396,210,496,201,595,193,721,179,739,176"/>
+<area shape="rect" title=" " alt="" coords="277,229,398,256"/>
+<area shape="poly" title=" " alt="" coords="740,181,722,184,413,231,412,226,721,179,739,176"/>
+<area shape="rect" title=" " alt="" coords="422,229,615,256"/>
+<area shape="poly" title=" " alt="" coords="749,184,583,228,581,222,748,179"/>
+<area shape="poly" title=" " alt="" coords="740,182,722,184,564,200,439,208,314,216,154,232,154,226,314,211,439,203,563,195,721,179,739,176"/>
+<area shape="rect" title=" " alt="" coords="639,229,692,256"/>
+<area shape="poly" title=" " alt="" coords="776,184,703,224,700,219,773,180"/>
+<area shape="rect" title=" " alt="" coords="716,229,770,256"/>
+<area shape="poly" title=" " alt="" coords="790,183,763,218,759,215,786,180"/>
+<area shape="rect" title=" " alt="" coords="794,229,910,256"/>
+<area shape="poly" title=" " alt="" coords="809,180,835,215,831,218,805,183"/>
+<area shape="rect" title=" " alt="" coords="981,379,1075,405"/>
+<area shape="poly" title=" " alt="" coords="837,180,881,199,923,227,944,252,970,288,1016,364,1011,367,965,291,940,255,920,231,878,204,835,184"/>
+<area shape="rect" href="interpolator_8h.html" title=" " alt="" coords="1035,229,1133,256"/>
+<area shape="poly" title=" " alt="" coords="848,179,1021,223,1020,228,847,184"/>
+<area shape="rect" href="_camera_keyframe_8h.html" title=" " alt="" coords="1017,304,1151,331"/>
+<area shape="poly" title=" " alt="" coords="845,179,904,199,967,227,1018,259,1060,292,1057,296,1015,264,964,232,902,204,843,184"/>
+<area shape="poly" title=" " alt="" coords="1058,259,1030,278,1017,291,1008,305,1004,320,1004,335,1015,364,1010,366,999,336,998,319,1003,303,1013,287,1027,274,1055,254"/>
+<area shape="rect" title=" " alt="" coords="1145,379,1231,405"/>
+<area shape="poly" title=" " alt="" coords="1109,254,1138,274,1165,302,1179,333,1187,363,1182,364,1174,335,1160,306,1135,278,1106,259"/>
+<area shape="poly" title=" " alt="" coords="1087,257,1087,288,1081,288,1081,257"/>
+<area shape="poly" title=" " alt="" coords="1076,333,1049,368,1045,365,1072,330"/>
+<area shape="poly" title=" " alt="" coords="1104,329,1159,367,1156,372,1101,333"/>
+<area shape="poly" title=" " alt="" coords="1415,184,1351,223,1348,219,1413,180"/>
+<area shape="poly" title=" " alt="" coords="1474,179,1602,221,1601,226,1472,184"/>
+<area shape="poly" title=" " alt="" coords="1436,182,1433,214,1428,213,1431,182"/>
+<area shape="rect" title=" " alt="" coords="1501,229,1571,256"/>
+<area shape="poly" title=" " alt="" coords="1454,180,1507,218,1504,222,1451,184"/>
+<area shape="poly" title=" " alt="" coords="1326,255,1342,292,1344,313,1335,332,1323,340,1302,348,1239,362,1091,385,1091,380,1238,357,1300,342,1321,335,1331,329,1338,312,1337,293,1322,257"/>
+<area shape="poly" title=" " alt="" coords="1355,251,1424,273,1455,287,1474,302,1480,318,1474,332,1459,345,1436,356,1377,372,1310,383,1247,389,1246,384,1309,378,1376,367,1435,351,1456,340,1470,329,1475,318,1470,306,1452,291,1423,278,1353,256"/>
+<area shape="rect" title=" " alt="" coords="1396,304,1460,331"/>
+<area shape="poly" title=" " alt="" coords="1337,254,1397,293,1394,298,1334,259"/>
+<area shape="poly" title=" " alt="" coords="1311,258,1291,292,1286,289,1306,255"/>
+<area shape="poly" title=" " alt="" coords="2491,108,2479,109,2201,131,1927,147,1514,166,1513,161,1926,142,2200,125,2478,104,2490,103"/>
+<area shape="poly" title=" " alt="" coords="2500,110,1730,232,1729,227,2499,105"/>
+<area shape="rect" title=" " alt="" coords="2544,155,2613,181"/>
+<area shape="poly" title=" " alt="" coords="2581,107,2581,139,2576,139,2576,107"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+マクロ定義</h2></td></tr>
+<tr class="memitem:a96733d752f26337e8085e1827258b973" id="r_a96733d752f26337e8085e1827258b973"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mainwindow_8cpp_a96733d752f26337e8085e1827258b973.html#a96733d752f26337e8085e1827258b973">EIGEN_DISABLE_UNALIGNED_ARRAY_ASSERT</a></td></tr>
+<tr class="separator:a96733d752f26337e8085e1827258b973"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4962bceade5775b0464f7b604f886cd4" id="r_a4962bceade5775b0464f7b604f886cd4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mainwindow_8cpp_a4962bceade5775b0464f7b604f886cd4.html#a4962bceade5775b0464f7b604f886cd4">EIGEN_DONT_VECTORIZE</a></td></tr>
+<tr class="separator:a4962bceade5775b0464f7b604f886cd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a525335710b53cb064ca56b936120431e" id="r_a525335710b53cb064ca56b936120431e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mainwindow_8cpp_a525335710b53cb064ca56b936120431e.html#a525335710b53cb064ca56b936120431e">_USE_MATH_DEFINES</a></td></tr>
+<tr class="separator:a525335710b53cb064ca56b936120431e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

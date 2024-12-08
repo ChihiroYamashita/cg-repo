@@ -1,3 +1,21 @@
+/**
+ * @file camera.cpp
+ * @brief カメラクラスの定義
+ *
+ * このファイルには、カメラ操作を実現するCameraクラスの定義が含まれている
+ * カメラの視点設定、回転、移動、ズーム機能などを提供します。
+ *
+ * @details
+ * Cameraクラスは、QVector3Dを用いた3Dベクトルの操作をベースにしており、Eigenライブラリとの互換性を考慮しています。
+ * - 視点位置と注視点の設定
+ * - ローカル座標およびグローバル座標での移動操作
+ * - カメラのズームや回転
+ * - 視野角 (Field of View) の取得と設定
+ * などの機能を提供します。
+ *
+ * カメラの制御は、QQuaternionを使用して回転を簡単に管理できるように設計されています。
+ */
+
 //
 //  Camera.cpp
 //
@@ -27,11 +45,18 @@ Camera::Camera()
 
 }
 
+/**
+ * @brief カメラの視点を設定する関数
+ * @param[in] in_eyePoint 設定する視点座標
+ * @details
+ * カメラの視点を指定された座標に設定します。
+ */
 void Camera::setEyePoint( const QVector3D& in_eyePoint )
 {
     m_EyePoint = in_eyePoint;
 
 }
+
 
 void Camera::setDistanceToObject( const double& in_DistanceToObject )
 {
@@ -53,7 +78,13 @@ float Camera:: getFov() const {
 }
 
 /*--------------------------------------------------------------*/
-
+/**
+ * @brief 注視点を設定する関数
+ * @param[in] in_LookAt 注視点の座標
+ * @param[in] in_Up カメラの上方向ベクトル
+ * @details
+ * カメラを指定された注視点に向け、座標軸を更新します。
+ */
 void Camera::lookAt( const QVector3D& in_LookAt, const QVector3D& in_Up )
 {
     // armの定義
@@ -68,6 +99,12 @@ void Camera::lookAt( const QVector3D& in_LookAt, const QVector3D& in_Up )
     m_xVector = QVector3D::crossProduct(m_yVector, m_zVector);
 }
 
+/**
+ * @brief カメラをローカル座標で移動する関数
+ * @param[in] in_delta 移動量ベクトル
+ * @details
+ * カメラをローカル座標系に基づいて移動します。
+ */
 void Camera::moveInGlobalFrame( const QVector3D& in_delta )
 {
     m_EyePoint += in_delta;

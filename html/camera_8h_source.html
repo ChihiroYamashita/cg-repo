@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Qt_project: camera.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Qt_project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="doc-content">
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">camera.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="camera_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#ifndef CAMERA_H</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#define CAMERA_H</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;QVector3D&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;QtMath&gt;</span> <span class="comment">// Qtの数学関数用</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;QQuaternion&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//  Camera.h</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  Created by Yonghao Yue on 2019/09/28.</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  Updated: 2020/09/23</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  Copyright © 2019 Yonghao Yue. All rights reserved.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="camera_8h_a96733d752f26337e8085e1827258b973.html#a96733d752f26337e8085e1827258b973">   18</a></span><span class="preprocessor">#define EIGEN_DISABLE_UNALIGNED_ARRAY_ASSERT</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="camera_8h_a4962bceade5775b0464f7b604f886cd4.html#a4962bceade5775b0464f7b604f886cd4">   19</a></span><span class="preprocessor">#define EIGEN_DONT_VECTORIZE</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;Eigen/Dense&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="foldopen" id="foldopen00038" data-start="{" data-end="};">
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="class_camera.html">   38</a></span><span class="keyword">class </span><a class="code hl_class" href="class_camera.html">Camera</a></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>{</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <a class="code hl_function" href="class_camera_a01f94c3543f56ede7af49dc778f19331.html#a01f94c3543f56ede7af49dc778f19331">Camera</a>();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_camera_afdb61b807cf934f4a6392b31b1846463.html#afdb61b807cf934f4a6392b31b1846463">setEyePoint</a>( <span class="keyword">const</span> QVector3D&amp; in_eyePoint );</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_camera_a45da002e01422ed9ca56ac6eecade21d.html#a45da002e01422ed9ca56ac6eecade21d">setDistanceToObject</a>( <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; in_DistanceToObject );</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_camera_a5515dff16f5025ada6b0d39eefa18f2c.html#a5515dff16f5025ada6b0d39eefa18f2c">setFocalLength</a>( <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; in_FocalLength );</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_camera_ad03b601dc3f2ae667ed2af48d12d072b.html#ad03b601dc3f2ae667ed2af48d12d072b">lookAt</a>( <span class="keyword">const</span> QVector3D&amp; in_LookAt, <span class="keyword">const</span> QVector3D&amp; in_Up );</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_camera_ab47a6adf321f636da65b123fa692639b.html#ab47a6adf321f636da65b123fa692639b">moveInGlobalFrame</a>( <span class="keyword">const</span> QVector3D&amp; in_delta );</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_camera_aef31c9c6e1c616c552c19dc92cb648e2.html#aef31c9c6e1c616c552c19dc92cb648e2">moveInLocalFrame</a>( <span class="keyword">const</span> QVector3D&amp; in_delta );</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_camera_ae23b0e56d9e1767eebcc87a39801f922.html#ae23b0e56d9e1767eebcc87a39801f922">zoomCamera</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> delta);<span class="comment">//カメラズーム</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_camera_a08ce1082a7a1dab888ad388ad31af8cb.html#a08ce1082a7a1dab888ad388ad31af8cb">moveInGlobalFrameFixLookAt</a>( <span class="keyword">const</span> QVector3D&amp; in_delta );</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_camera_a07c45fff1154ce07c27499954d3c2e2c.html#a07c45fff1154ce07c27499954d3c2e2c">moveInLocalFrameFixLookAt</a>( <span class="keyword">const</span> QVector3D&amp; in_delta );</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_camera_aabc5c4628ab12c591997bec9021485b2.html#aabc5c4628ab12c591997bec9021485b2">setFov</a>(<span class="keyword">const</span> <span class="keywordtype">float</span>&amp; in_Fov);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="class_camera_a1e6f2044fa0777281cce45d573e2eed4.html#a1e6f2044fa0777281cce45d573e2eed4">getFov</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_camera_aaf4a66bb0da5e49eb57af4d241cc109e.html#aaf4a66bb0da5e49eb57af4d241cc109e">rotateCameraInLocalFrameFixLookAt</a>(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; in_HorizontalAngle, <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; in_VerticalAngle);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    QVector3D <a class="code hl_function" href="class_camera_a8a67ae1a0f56ea46227cc48bb7ce0a4c.html#a8a67ae1a0f56ea46227cc48bb7ce0a4c">getLookAtPoint</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    QVector3D <a class="code hl_function" href="class_camera_a0caf21c9e3a338a8872144c4db686c15.html#a0caf21c9e3a338a8872144c4db686c15">getEyePoint</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    QVector3D <a class="code hl_function" href="class_camera_ae60da009a8ed3542240d6d56737e144d.html#ae60da009a8ed3542240d6d56737e144d">getXVector</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    QVector3D <a class="code hl_function" href="class_camera_a26764ca2c0e409d439e486452854f853.html#a26764ca2c0e409d439e486452854f853">getYVector</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    QVector3D <a class="code hl_function" href="class_camera_a4a76c1384dc3b05e8fb52d6e0139676a.html#a4a76c1384dc3b05e8fb52d6e0139676a">getZVector</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">double</span> <a class="code hl_function" href="class_camera_aa7e6b02549647dcad610ec2134a228da.html#aa7e6b02549647dcad610ec2134a228da">getDistanceToObject</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordtype">double</span> <a class="code hl_function" href="class_camera_a2885c98c404c8a2975d67c609ac948e3.html#a2885c98c404c8a2975d67c609ac948e3">getFocalLength</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordtype">double</span> <a class="code hl_function" href="class_camera_a3e9f8c32d07c418c83ab73eec617f105.html#a3e9f8c32d07c418c83ab73eec617f105">getScreenWidth</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordtype">double</span> <a class="code hl_function" href="class_camera_a2782500b14dcfa6ddf9394b71670fc5f.html#a2782500b14dcfa6ddf9394b71670fc5f">getScreenHeight</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="class_camera_adb6eb9fb389c7091f775d002f5edcb3d.html#adb6eb9fb389c7091f775d002f5edcb3d">   78</a></span>    QVector3D <a class="code hl_variable" href="class_camera_adb6eb9fb389c7091f775d002f5edcb3d.html#adb6eb9fb389c7091f775d002f5edcb3d">m_EyePoint</a>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="class_camera_a17656c36ae6f215f3cfe7199d05f570d.html#a17656c36ae6f215f3cfe7199d05f570d">   79</a></span>    QVector3D <a class="code hl_variable" href="class_camera_a17656c36ae6f215f3cfe7199d05f570d.html#a17656c36ae6f215f3cfe7199d05f570d">m_xVector</a>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="class_camera_afe87fabe82e5d4c008c5c9471a5b299b.html#afe87fabe82e5d4c008c5c9471a5b299b">   80</a></span>    QVector3D <a class="code hl_variable" href="class_camera_afe87fabe82e5d4c008c5c9471a5b299b.html#afe87fabe82e5d4c008c5c9471a5b299b">m_yVector</a>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="class_camera_a776f77069aa0c620848856fa0cfa7730.html#a776f77069aa0c620848856fa0cfa7730">   81</a></span>    QVector3D <a class="code hl_variable" href="class_camera_a776f77069aa0c620848856fa0cfa7730.html#a776f77069aa0c620848856fa0cfa7730">m_zVector</a>;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="class_camera_a8849265fb5a25fa3aa70a0e4aabe993f.html#a8849265fb5a25fa3aa70a0e4aabe993f">   83</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="class_camera_a8849265fb5a25fa3aa70a0e4aabe993f.html#a8849265fb5a25fa3aa70a0e4aabe993f">m_Fov</a>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="class_camera_a901901148144dbffc13b62248d7d72a7.html#a901901148144dbffc13b62248d7d72a7">   85</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="class_camera_a901901148144dbffc13b62248d7d72a7.html#a901901148144dbffc13b62248d7d72a7">m_DistanceToObject</a>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="class_camera_ab144a27c2209faa36c760cdb55aaec7f.html#ab144a27c2209faa36c760cdb55aaec7f">   86</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="class_camera_ab144a27c2209faa36c760cdb55aaec7f.html#ab144a27c2209faa36c760cdb55aaec7f">m_FocalLength</a>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="class_camera_a9c76dbbb9b77aba8a69488c6e4a02e23.html#a9c76dbbb9b77aba8a69488c6e4a02e23">   87</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="class_camera_a9c76dbbb9b77aba8a69488c6e4a02e23.html#a9c76dbbb9b77aba8a69488c6e4a02e23">m_ScreenWidth</a>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="class_camera_ade0f9c3d3401c9eb05140207dfb76b91.html#ade0f9c3d3401c9eb05140207dfb76b91">   88</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="class_camera_ade0f9c3d3401c9eb05140207dfb76b91.html#ade0f9c3d3401c9eb05140207dfb76b91">m_ScreenHeight</a>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="class_camera_a3229313d580662aa28b02e3b6992c5a9.html#a3229313d580662aa28b02e3b6992c5a9">   90</a></span>    QVector3D <a class="code hl_variable" href="class_camera_a3229313d580662aa28b02e3b6992c5a9.html#a3229313d580662aa28b02e3b6992c5a9">m_LastLookAtPoint</a>;<span class="comment">//新規追加　getlookatpointの丸め誤差用</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>};</div>
+</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="comment">// rotate a given vector in_v around a given axis in_axis for a given angle in_angle_rad,</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="comment">// using quaternion</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment">// 入力 ( 回転させたいベクトル, 回転軸を表すベクトル,回転させる角度（ラジアン単位）)</span></div>
+<div class="foldopen" id="foldopen00097" data-start="{" data-end="}">
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="camera_8h_af015f28f2f4f1ecab0f2ceedecdb4cbb.html#af015f28f2f4f1ecab0f2ceedecdb4cbb">   97</a></span><span class="keyword">inline</span> QVector3D <a class="code hl_function" href="camera_8h_af015f28f2f4f1ecab0f2ceedecdb4cbb.html#af015f28f2f4f1ecab0f2ceedecdb4cbb">rotateVector</a>( <span class="keyword">const</span> QVector3D&amp; in_v, <span class="keyword">const</span> QVector3D&amp; in_axis, <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; in_angle_rad )</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>{</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="comment">/*QVector3D axis = in_axis.normalized();</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment"></span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="comment">    const double cos_a = cos( in_angle_rad * 0.5 );</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="comment">    const double sin_a = sin( in_angle_rad * 0.5 );</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="comment">    const double m_sin_a = -sin_a;</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="comment"></span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment">    // compute (r * p * q).v, where r, p, and q are quaternions given by</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment">    // p = (0, px, py, pz)</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment">    // q = (cos_a, axis_x * sin_a, axis_y * sin_a, axis_z * sin_a)</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="comment">    // r = (cos_a, axis_x * m_sin_a, axis_y * m_sin_a, axis_z * m_sin_a)</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="comment"></span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="comment">    const double r_p_t = -m_sin_a * QVector3D::dotProduct(axis, in_v);</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="comment">    const QVector3D r_p  = cos_a * in_v + m_sin_a * QVector3D::crossProduct(axis, in_v);</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="comment">    return sin_a * r_p_t * axis + cos_a * r_p + sin_a * QVector3D::crossProduct(axis, r_p);*/</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    QQuaternion rotation = QQuaternion::fromAxisAndAngle(in_axis, qRadiansToDegrees(in_angle_rad));</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keywordflow">return</span> rotation.rotatedVector(in_v);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>}</div>
+</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="preprocessor">#endif </span><span class="comment">// CAMERA_H</span></div>
+<div class="ttc" id="acamera_8h_af015f28f2f4f1ecab0f2ceedecdb4cbb_html_af015f28f2f4f1ecab0f2ceedecdb4cbb"><div class="ttname"><a href="camera_8h_af015f28f2f4f1ecab0f2ceedecdb4cbb.html#af015f28f2f4f1ecab0f2ceedecdb4cbb">rotateVector</a></div><div class="ttdeci">QVector3D rotateVector(const QVector3D &amp;in_v, const QVector3D &amp;in_axis, const double &amp;in_angle_rad)</div><div class="ttdef"><b>Definition</b> camera.h:97</div></div>
+<div class="ttc" id="aclass_camera_a01f94c3543f56ede7af49dc778f19331_html_a01f94c3543f56ede7af49dc778f19331"><div class="ttname"><a href="class_camera_a01f94c3543f56ede7af49dc778f19331.html#a01f94c3543f56ede7af49dc778f19331">Camera::Camera</a></div><div class="ttdeci">Camera()</div><div class="ttdef"><b>Definition</b> camera.cpp:34</div></div>
+<div class="ttc" id="aclass_camera_a07c45fff1154ce07c27499954d3c2e2c_html_a07c45fff1154ce07c27499954d3c2e2c"><div class="ttname"><a href="class_camera_a07c45fff1154ce07c27499954d3c2e2c.html#a07c45fff1154ce07c27499954d3c2e2c">Camera::moveInLocalFrameFixLookAt</a></div><div class="ttdeci">void moveInLocalFrameFixLookAt(const QVector3D &amp;in_delta)</div><div class="ttdef"><b>Definition</b> camera.cpp:128</div></div>
+<div class="ttc" id="aclass_camera_a08ce1082a7a1dab888ad388ad31af8cb_html_a08ce1082a7a1dab888ad388ad31af8cb"><div class="ttname"><a href="class_camera_a08ce1082a7a1dab888ad388ad31af8cb.html#a08ce1082a7a1dab888ad388ad31af8cb">Camera::moveInGlobalFrameFixLookAt</a></div><div class="ttdeci">void moveInGlobalFrameFixLookAt(const QVector3D &amp;in_delta)</div><div class="ttdef"><b>Definition</b> camera.cpp:119</div></div>
+<div class="ttc" id="aclass_camera_a0caf21c9e3a338a8872144c4db686c15_html_a0caf21c9e3a338a8872144c4db686c15"><div class="ttname"><a href="class_camera_a0caf21c9e3a338a8872144c4db686c15.html#a0caf21c9e3a338a8872144c4db686c15">Camera::getEyePoint</a></div><div class="ttdeci">QVector3D getEyePoint() const</div><div class="ttdef"><b>Definition</b> camera.cpp:211</div></div>
+<div class="ttc" id="aclass_camera_a17656c36ae6f215f3cfe7199d05f570d_html_a17656c36ae6f215f3cfe7199d05f570d"><div class="ttname"><a href="class_camera_a17656c36ae6f215f3cfe7199d05f570d.html#a17656c36ae6f215f3cfe7199d05f570d">Camera::m_xVector</a></div><div class="ttdeci">QVector3D m_xVector</div><div class="ttdef"><b>Definition</b> camera.h:79</div></div>
+<div class="ttc" id="aclass_camera_a1e6f2044fa0777281cce45d573e2eed4_html_a1e6f2044fa0777281cce45d573e2eed4"><div class="ttname"><a href="class_camera_a1e6f2044fa0777281cce45d573e2eed4.html#a1e6f2044fa0777281cce45d573e2eed4">Camera::getFov</a></div><div class="ttdeci">float getFov() const</div><div class="ttdef"><b>Definition</b> camera.cpp:76</div></div>
+<div class="ttc" id="aclass_camera_a26764ca2c0e409d439e486452854f853_html_a26764ca2c0e409d439e486452854f853"><div class="ttname"><a href="class_camera_a26764ca2c0e409d439e486452854f853.html#a26764ca2c0e409d439e486452854f853">Camera::getYVector</a></div><div class="ttdeci">QVector3D getYVector() const</div><div class="ttdef"><b>Definition</b> camera.cpp:221</div></div>
+<div class="ttc" id="aclass_camera_a2782500b14dcfa6ddf9394b71670fc5f_html_a2782500b14dcfa6ddf9394b71670fc5f"><div class="ttname"><a href="class_camera_a2782500b14dcfa6ddf9394b71670fc5f.html#a2782500b14dcfa6ddf9394b71670fc5f">Camera::getScreenHeight</a></div><div class="ttdeci">double getScreenHeight() const</div><div class="ttdef"><b>Definition</b> camera.cpp:246</div></div>
+<div class="ttc" id="aclass_camera_a2885c98c404c8a2975d67c609ac948e3_html_a2885c98c404c8a2975d67c609ac948e3"><div class="ttname"><a href="class_camera_a2885c98c404c8a2975d67c609ac948e3.html#a2885c98c404c8a2975d67c609ac948e3">Camera::getFocalLength</a></div><div class="ttdeci">double getFocalLength() const</div><div class="ttdef"><b>Definition</b> camera.cpp:236</div></div>
+<div class="ttc" id="aclass_camera_a3229313d580662aa28b02e3b6992c5a9_html_a3229313d580662aa28b02e3b6992c5a9"><div class="ttname"><a href="class_camera_a3229313d580662aa28b02e3b6992c5a9.html#a3229313d580662aa28b02e3b6992c5a9">Camera::m_LastLookAtPoint</a></div><div class="ttdeci">QVector3D m_LastLookAtPoint</div><div class="ttdef"><b>Definition</b> camera.h:90</div></div>
+<div class="ttc" id="aclass_camera_a3e9f8c32d07c418c83ab73eec617f105_html_a3e9f8c32d07c418c83ab73eec617f105"><div class="ttname"><a href="class_camera_a3e9f8c32d07c418c83ab73eec617f105.html#a3e9f8c32d07c418c83ab73eec617f105">Camera::getScreenWidth</a></div><div class="ttdeci">double getScreenWidth() const</div><div class="ttdef"><b>Definition</b> camera.cpp:241</div></div>
+<div class="ttc" id="aclass_camera_a45da002e01422ed9ca56ac6eecade21d_html_a45da002e01422ed9ca56ac6eecade21d"><div class="ttname"><a href="class_camera_a45da002e01422ed9ca56ac6eecade21d.html#a45da002e01422ed9ca56ac6eecade21d">Camera::setDistanceToObject</a></div><div class="ttdeci">void setDistanceToObject(const double &amp;in_DistanceToObject)</div><div class="ttdef"><b>Definition</b> camera.cpp:61</div></div>
+<div class="ttc" id="aclass_camera_a4a76c1384dc3b05e8fb52d6e0139676a_html_a4a76c1384dc3b05e8fb52d6e0139676a"><div class="ttname"><a href="class_camera_a4a76c1384dc3b05e8fb52d6e0139676a.html#a4a76c1384dc3b05e8fb52d6e0139676a">Camera::getZVector</a></div><div class="ttdeci">QVector3D getZVector() const</div><div class="ttdef"><b>Definition</b> camera.cpp:226</div></div>
+<div class="ttc" id="aclass_camera_a5515dff16f5025ada6b0d39eefa18f2c_html_a5515dff16f5025ada6b0d39eefa18f2c"><div class="ttname"><a href="class_camera_a5515dff16f5025ada6b0d39eefa18f2c.html#a5515dff16f5025ada6b0d39eefa18f2c">Camera::setFocalLength</a></div><div class="ttdeci">void setFocalLength(const double &amp;in_FocalLength)</div><div class="ttdef"><b>Definition</b> camera.cpp:66</div></div>
+<div class="ttc" id="aclass_camera_a776f77069aa0c620848856fa0cfa7730_html_a776f77069aa0c620848856fa0cfa7730"><div class="ttname"><a href="class_camera_a776f77069aa0c620848856fa0cfa7730.html#a776f77069aa0c620848856fa0cfa7730">Camera::m_zVector</a></div><div class="ttdeci">QVector3D m_zVector</div><div class="ttdef"><b>Definition</b> camera.h:81</div></div>
+<div class="ttc" id="aclass_camera_a8849265fb5a25fa3aa70a0e4aabe993f_html_a8849265fb5a25fa3aa70a0e4aabe993f"><div class="ttname"><a href="class_camera_a8849265fb5a25fa3aa70a0e4aabe993f.html#a8849265fb5a25fa3aa70a0e4aabe993f">Camera::m_Fov</a></div><div class="ttdeci">float m_Fov</div><div class="ttdef"><b>Definition</b> camera.h:83</div></div>
+<div class="ttc" id="aclass_camera_a8a67ae1a0f56ea46227cc48bb7ce0a4c_html_a8a67ae1a0f56ea46227cc48bb7ce0a4c"><div class="ttname"><a href="class_camera_a8a67ae1a0f56ea46227cc48bb7ce0a4c.html#a8a67ae1a0f56ea46227cc48bb7ce0a4c">Camera::getLookAtPoint</a></div><div class="ttdeci">QVector3D getLookAtPoint() const</div><div class="ttdef"><b>Definition</b> camera.cpp:195</div></div>
+<div class="ttc" id="aclass_camera_a901901148144dbffc13b62248d7d72a7_html_a901901148144dbffc13b62248d7d72a7"><div class="ttname"><a href="class_camera_a901901148144dbffc13b62248d7d72a7.html#a901901148144dbffc13b62248d7d72a7">Camera::m_DistanceToObject</a></div><div class="ttdeci">double m_DistanceToObject</div><div class="ttdef"><b>Definition</b> camera.h:85</div></div>
+<div class="ttc" id="aclass_camera_a9c76dbbb9b77aba8a69488c6e4a02e23_html_a9c76dbbb9b77aba8a69488c6e4a02e23"><div class="ttname"><a href="class_camera_a9c76dbbb9b77aba8a69488c6e4a02e23.html#a9c76dbbb9b77aba8a69488c6e4a02e23">Camera::m_ScreenWidth</a></div><div class="ttdeci">double m_ScreenWidth</div><div class="ttdef"><b>Definition</b> camera.h:87</div></div>
+<div class="ttc" id="aclass_camera_aa7e6b02549647dcad610ec2134a228da_html_aa7e6b02549647dcad610ec2134a228da"><div class="ttname"><a href="class_camera_aa7e6b02549647dcad610ec2134a228da.html#aa7e6b02549647dcad610ec2134a228da">Camera::getDistanceToObject</a></div><div class="ttdeci">double getDistanceToObject() const</div><div class="ttdef"><b>Definition</b> camera.cpp:231</div></div>
+<div class="ttc" id="aclass_camera_aabc5c4628ab12c591997bec9021485b2_html_aabc5c4628ab12c591997bec9021485b2"><div class="ttname"><a href="class_camera_aabc5c4628ab12c591997bec9021485b2.html#aabc5c4628ab12c591997bec9021485b2">Camera::setFov</a></div><div class="ttdeci">void setFov(const float &amp;in_Fov)</div><div class="ttdef"><b>Definition</b> camera.cpp:72</div></div>
+<div class="ttc" id="aclass_camera_aaf4a66bb0da5e49eb57af4d241cc109e_html_aaf4a66bb0da5e49eb57af4d241cc109e"><div class="ttname"><a href="class_camera_aaf4a66bb0da5e49eb57af4d241cc109e.html#aaf4a66bb0da5e49eb57af4d241cc109e">Camera::rotateCameraInLocalFrameFixLookAt</a></div><div class="ttdeci">void rotateCameraInLocalFrameFixLookAt(const double &amp;in_HorizontalAngle, const double &amp;in_VerticalAngle)</div><div class="ttdef"><b>Definition</b> camera.cpp:141</div></div>
+<div class="ttc" id="aclass_camera_ab144a27c2209faa36c760cdb55aaec7f_html_ab144a27c2209faa36c760cdb55aaec7f"><div class="ttname"><a href="class_camera_ab144a27c2209faa36c760cdb55aaec7f.html#ab144a27c2209faa36c760cdb55aaec7f">Camera::m_FocalLength</a></div><div class="ttdeci">double m_FocalLength</div><div class="ttdef"><b>Definition</b> camera.h:86</div></div>
+<div class="ttc" id="aclass_camera_ab47a6adf321f636da65b123fa692639b_html_ab47a6adf321f636da65b123fa692639b"><div class="ttname"><a href="class_camera_ab47a6adf321f636da65b123fa692639b.html#ab47a6adf321f636da65b123fa692639b">Camera::moveInGlobalFrame</a></div><div class="ttdeci">void moveInGlobalFrame(const QVector3D &amp;in_delta)</div><div class="ttdoc">カメラをローカル座標で移動する関数</div><div class="ttdef"><b>Definition</b> camera.cpp:108</div></div>
+<div class="ttc" id="aclass_camera_ad03b601dc3f2ae667ed2af48d12d072b_html_ad03b601dc3f2ae667ed2af48d12d072b"><div class="ttname"><a href="class_camera_ad03b601dc3f2ae667ed2af48d12d072b.html#ad03b601dc3f2ae667ed2af48d12d072b">Camera::lookAt</a></div><div class="ttdeci">void lookAt(const QVector3D &amp;in_LookAt, const QVector3D &amp;in_Up)</div><div class="ttdoc">注視点を設定する関数</div><div class="ttdef"><b>Definition</b> camera.cpp:88</div></div>
+<div class="ttc" id="aclass_camera_adb6eb9fb389c7091f775d002f5edcb3d_html_adb6eb9fb389c7091f775d002f5edcb3d"><div class="ttname"><a href="class_camera_adb6eb9fb389c7091f775d002f5edcb3d.html#adb6eb9fb389c7091f775d002f5edcb3d">Camera::m_EyePoint</a></div><div class="ttdeci">QVector3D m_EyePoint</div><div class="ttdef"><b>Definition</b> camera.h:78</div></div>
+<div class="ttc" id="aclass_camera_ade0f9c3d3401c9eb05140207dfb76b91_html_ade0f9c3d3401c9eb05140207dfb76b91"><div class="ttname"><a href="class_camera_ade0f9c3d3401c9eb05140207dfb76b91.html#ade0f9c3d3401c9eb05140207dfb76b91">Camera::m_ScreenHeight</a></div><div class="ttdeci">double m_ScreenHeight</div><div class="ttdef"><b>Definition</b> camera.h:88</div></div>
+<div class="ttc" id="aclass_camera_ae23b0e56d9e1767eebcc87a39801f922_html_ae23b0e56d9e1767eebcc87a39801f922"><div class="ttname"><a href="class_camera_ae23b0e56d9e1767eebcc87a39801f922.html#ae23b0e56d9e1767eebcc87a39801f922">Camera::zoomCamera</a></div><div class="ttdeci">void zoomCamera(const double delta)</div><div class="ttdef"><b>Definition</b> camera.cpp:187</div></div>
+<div class="ttc" id="aclass_camera_ae60da009a8ed3542240d6d56737e144d_html_ae60da009a8ed3542240d6d56737e144d"><div class="ttname"><a href="class_camera_ae60da009a8ed3542240d6d56737e144d.html#ae60da009a8ed3542240d6d56737e144d">Camera::getXVector</a></div><div class="ttdeci">QVector3D getXVector() const</div><div class="ttdef"><b>Definition</b> camera.cpp:216</div></div>
+<div class="ttc" id="aclass_camera_aef31c9c6e1c616c552c19dc92cb648e2_html_aef31c9c6e1c616c552c19dc92cb648e2"><div class="ttname"><a href="class_camera_aef31c9c6e1c616c552c19dc92cb648e2.html#aef31c9c6e1c616c552c19dc92cb648e2">Camera::moveInLocalFrame</a></div><div class="ttdeci">void moveInLocalFrame(const QVector3D &amp;in_delta)</div><div class="ttdef"><b>Definition</b> camera.cpp:113</div></div>
+<div class="ttc" id="aclass_camera_afdb61b807cf934f4a6392b31b1846463_html_afdb61b807cf934f4a6392b31b1846463"><div class="ttname"><a href="class_camera_afdb61b807cf934f4a6392b31b1846463.html#afdb61b807cf934f4a6392b31b1846463">Camera::setEyePoint</a></div><div class="ttdeci">void setEyePoint(const QVector3D &amp;in_eyePoint)</div><div class="ttdoc">カメラの視点を設定する関数</div><div class="ttdef"><b>Definition</b> camera.cpp:54</div></div>
+<div class="ttc" id="aclass_camera_afe87fabe82e5d4c008c5c9471a5b299b_html_afe87fabe82e5d4c008c5c9471a5b299b"><div class="ttname"><a href="class_camera_afe87fabe82e5d4c008c5c9471a5b299b.html#afe87fabe82e5d4c008c5c9471a5b299b">Camera::m_yVector</a></div><div class="ttdeci">QVector3D m_yVector</div><div class="ttdef"><b>Definition</b> camera.h:80</div></div>
+<div class="ttc" id="aclass_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdoc">3Dカメラを操作するクラス</div><div class="ttdef"><b>Definition</b> camera.h:39</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

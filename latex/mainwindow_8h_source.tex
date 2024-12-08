@@ -1,0 +1,58 @@
+\doxysection{mainwindow.\+h}
+\hypertarget{mainwindow_8h_source}{}\label{mainwindow_8h_source}\mbox{\hyperlink{mainwindow_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifndef\ MAINWINDOW\_H}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ MAINWINDOW\_H}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QMainWindow>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <QSharedPointer>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_custom_scene_8h}{CustomScene.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <QScrollBar>}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\#include\ "{}openglwidget\_camera.h"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00019\ QT\_BEGIN\_NAMESPACE}
+\DoxyCodeLine{00020\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_ui}{Ui}}\ \{\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_main_window}{MainWindow}};\ \}}
+\DoxyCodeLine{00021\ QT\_END\_NAMESPACE}
+\DoxyCodeLine{00032\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_main_window}{MainWindow}}\ :\ \textcolor{keyword}{public}\ QMainWindow}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{class_main_window_a996c5a2b6f77944776856f08ec30858d_a996c5a2b6f77944776856f08ec30858d}{MainWindow}}(QWidget\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{class_main_window_ae98d00a93bc118200eeef9f9bba1dba7_ae98d00a93bc118200eeef9f9bba1dba7}{\string~MainWindow}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//線形補間でカメラワークを更新する}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_main_window_a82f70bb0042d1b461b4f5d6284d1fd3c_a82f70bb0042d1b461b4f5d6284d1fd3c}{updateCamera}}(\textcolor{keyword}{const}\ QVector3D\&\ eyePoint,\ \textcolor{keyword}{const}\ QVector3D\&\ lookAtPoint,\ \textcolor{keyword}{const}\ QVector3D\&\ upVector,\ \textcolor{keywordtype}{float}\ fov,\ \textcolor{keywordtype}{double}\ zoom);}
+\DoxyCodeLine{00042\ \textcolor{keyword}{private}\ slots:}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_main_window_ac10ac46e60cbaef88a34312b7339d22b_ac10ac46e60cbaef88a34312b7339d22b}{on\_fovSlider\_valueChanged}}(\textcolor{keywordtype}{int}\ value);}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_main_window_a91db46599d443ab0ab2c6472b25f9ac5_a91db46599d443ab0ab2c6472b25f9ac5}{on\_OrthoButton\_clicked}}();\textcolor{comment}{//\ 平行投影モードのボタンがONになったときの処理を記述する関数（スロット）（ボタンの色が変わる）}}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_main_window_ae54386d9feee7e009633c258c977fc01_ae54386d9feee7e009633c258c977fc01}{on\_cameraButtondefalt\_clicked}}();}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_main_window_aceb829eac397e836e82ff726a46bb212_aceb829eac397e836e82ff726a46bb212}{on\_cameraButtonup\_clicked}}();}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_main_window_a5207d5725afe3cf9b29f4d4ac1ca3993_a5207d5725afe3cf9b29f4d4ac1ca3993}{on\_cameraButtonfront\_clicked}}();}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_main_window_a1d00d0f999fe244dbf8d533fa01be355_a1d00d0f999fe244dbf8d533fa01be355}{on\_cameraButtonright\_clicked}}();}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_main_window_ae1590a3c7d7c4364faa02823449d5cb7_ae1590a3c7d7c4364faa02823449d5cb7}{on\_cameraButtonleft\_clicked}}();}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_main_window_adabb967cf76d3ed1a3392a1744f027dc_adabb967cf76d3ed1a3392a1744f027dc}{on\_ZoomSlider\_ValueChanged}}(\textcolor{keywordtype}{int}\ value);}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_main_window_a026991cfbe95c4e6867248d692c15e6b_a026991cfbe95c4e6867248d692c15e6b}{on\_keyframeCameraButton\_clicked}}();\textcolor{comment}{//キーフレーム登録}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_main_window_a7d276864de83c20301e916ecb5a60e3f_a7d276864de83c20301e916ecb5a60e3f}{on\_keyframeCameraDeleteButton\_clicked}}();\textcolor{comment}{//キーフレーム削除}}
+\DoxyCodeLine{00058\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00059\ \ \ \ \ Ui::MainWindow\ *\mbox{\hyperlink{class_main_window_a35466a70ed47252a0191168126a352a5_a35466a70ed47252a0191168126a352a5}{ui}};}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/タイムライン関連の変数-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{class_custom_scene}{CustomScene}}\ *\mbox{\hyperlink{class_main_window_aa6174d0f79775bca6450cd6a4470addc_aa6174d0f79775bca6450cd6a4470addc}{scene}};\ \textcolor{comment}{//\ CustomSceneのインスタンスを保持するメンバ変数}}
+\DoxyCodeLine{00062\ \ \ \ \ QGraphicsLineItem\ *\mbox{\hyperlink{class_main_window_a11ccd5de8f02f1aee5363350514b2f5d_a11ccd5de8f02f1aee5363350514b2f5d}{playhead}};\textcolor{comment}{//\ プレイヘッドのためのメンバ変数}}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_main_window_aef1853fcce800089839a9c4a06f67107_aef1853fcce800089839a9c4a06f67107}{setupScene}}();\ \textcolor{comment}{//\ シーンのセットアップを行うメソッド}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{comment}{//\ シーンの規定の横幅}}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_main_window_a98c156af3c0d0bf6823c27205c891457_a98c156af3c0d0bf6823c27205c891457}{fixedWidth}}\ =\ 2000;}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_main_window_aad75236c74a5c340c3e18749a9b5eb4f_aad75236c74a5c340c3e18749a9b5eb4f}{resizeEvent}}(QResizeEvent\ *event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_main_window_a3febb9ef08a8e0f7fc00848ea540a899_a3febb9ef08a8e0f7fc00848ea540a899}{showEvent}}(QShowEvent\ *event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \};}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MAINWINDOW\_H}}
+
+\end{DoxyCode}

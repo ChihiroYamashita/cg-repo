@@ -1,3 +1,5 @@
+
+
 #ifndef CAMERA_H
 #define CAMERA_H
 #include <QVector3D>
@@ -18,6 +20,21 @@
 
 #include <Eigen/Dense>
 
+/**
+ * @brief 3Dカメラを操作するクラス
+ * @details
+ * Cameraクラスは、3D空間でのカメラ操作を提供します。
+ * カメラの位置、視点、方向、視野角、焦点距離、ズームなどを制御できます。
+ * 主な機能として以下を提供します:
+ *
+ * - 視点位置（Eye Point）と注視点（Look At Point）の設定
+ * - ローカル座標系およびグローバル座標系でのカメラ移動
+ * - カメラのズーム操作
+ * - カメラの視野角（Field of View）の設定と取得
+ * - ローカルフレームを基準としたカメラの回転操作
+ *
+ * このクラスはQVector3DとQQuaternionを使用して、ベクトルや回転操作を効率的に処理します。
+ */
 class Camera
 {
 public:

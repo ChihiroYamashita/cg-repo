@@ -17,6 +17,13 @@ CustomScene::CustomScene(MainWindow *mainWindow,QObject *parent) : QGraphicsScen
  this->installEventFilter(this);
 }
 
+/**
+ * @brief シーンをセットアップする関数
+ * @param[in] width シーンの幅
+ * @param[in] height シーンの高さ
+ * @details
+ * シーン全体のサイズを設定し、タイムラインやプレイヘッドを初期化します。
+ */
 void  CustomScene::setupScene(int width, int height)
 {
 //qDebug() << " height:" <<  height;
@@ -190,6 +197,12 @@ pen：直線を描画するために使用するペン。QPenオブジェクト�
     // 他にもアイテムを追加するコードなど
 }
 
+/**
+ * @brief プレイヘッドのX座標を取得する関数
+ * @return プレイヘッドのX座標
+ * @details
+ * 現在のプレイヘッドのX座標を返す
+ */
 qreal CustomScene::getPlayheadPositionX() const {
 return playheadPositionX;
 }

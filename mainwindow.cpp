@@ -77,8 +77,21 @@ MainWindow::~MainWindow()
 
 /*------------------スロット/シグナル---------------------*/
 
-//視野角スライダー
 
+/**
+ * @brief FOVを変更するスロット
+ * ユーザーがスライダーを操作してカメラの視野角を変更します。
+ *
+ * シーケンス図:
+ *
+ * @startuml
+ * User -> MainWindow : on_fovSlider_valueChanged(int value)\n FOV sliderをいじる
+ * MainWindow -> MyOpenGLWidget : setCameraFov(float fov)\n カメラFOVを更新
+ * MyOpenGLWidget -> Camera : setFov(float cameraFov)\n 新しい FOVを設置
+ * Camera --> MyOpenGLWidget : getFov(float cameraFov)\n FOVを更新
+ * @enduml
+ *
+ */
 void MainWindow::on_fovSlider_valueChanged(int value)
 {
     // ここでカメラの視野角を更新

@@ -1,0 +1,55 @@
+\doxysection{camera.\+cpp ファイル}
+\hypertarget{camera_8cpp}{}\label{camera_8cpp}\index{camera.cpp@{camera.cpp}}
+
+
+カメラクラスの定義  
+
+
+{\ttfamily \#include "{}camera.\+h"{}}\newline
+{\ttfamily \#include $<$QVector3D$>$}\newline
+{\ttfamily \#include $<$Qt\+Math$>$}\newline
+{\ttfamily \#include $<$QDebug$>$}\newline
+camera.\+cpp の依存先関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{camera_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{camera_8cpp_a96733d752f26337e8085e1827258b973_a96733d752f26337e8085e1827258b973}{EIGEN\+\_\+\+DISABLE\+\_\+\+UNALIGNED\+\_\+\+ARRAY\+\_\+\+ASSERT}}
+\item 
+\#define \mbox{\hyperlink{camera_8cpp_a4962bceade5775b0464f7b604f886cd4_a4962bceade5775b0464f7b604f886cd4}{EIGEN\+\_\+\+DONT\+\_\+\+VECTORIZE}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{詳解}
+カメラクラスの定義 
+
+このファイルには、カメラ操作を実現する\+Cameraクラスの定義が含まれている カメラの視点設定、回転、移動、ズーム機能などを提供します。
+
+Cameraクラスは、\+QVector3\+Dを用いた3\+Dベクトルの操作をベースにしており、\+Eigenライブラリとの互換性を考慮しています。
+\begin{DoxyItemize}
+\item 視点位置と注視点の設定
+\item ローカル座標およびグローバル座標での移動操作
+\item カメラのズームや回転
+\item 視野角 (Field of View) の取得と設定 などの機能を提供します。
+\end{DoxyItemize}
+
+カメラの制御は、\+QQuaternionを使用して回転を簡単に管理できるように設計されています。 
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{camera_8cpp_a96733d752f26337e8085e1827258b973_a96733d752f26337e8085e1827258b973}\index{camera.cpp@{camera.cpp}!EIGEN\_DISABLE\_UNALIGNED\_ARRAY\_ASSERT@{EIGEN\_DISABLE\_UNALIGNED\_ARRAY\_ASSERT}}
+\index{EIGEN\_DISABLE\_UNALIGNED\_ARRAY\_ASSERT@{EIGEN\_DISABLE\_UNALIGNED\_ARRAY\_ASSERT}!camera.cpp@{camera.cpp}}
+\doxysubsubsection{\texorpdfstring{EIGEN\_DISABLE\_UNALIGNED\_ARRAY\_ASSERT}{EIGEN\_DISABLE\_UNALIGNED\_ARRAY\_ASSERT}}
+{\footnotesize\ttfamily \label{camera_8cpp_a96733d752f26337e8085e1827258b973_a96733d752f26337e8085e1827258b973} 
+\#define EIGEN\+\_\+\+DISABLE\+\_\+\+UNALIGNED\+\_\+\+ARRAY\+\_\+\+ASSERT}
+
+\Hypertarget{camera_8cpp_a4962bceade5775b0464f7b604f886cd4_a4962bceade5775b0464f7b604f886cd4}\index{camera.cpp@{camera.cpp}!EIGEN\_DONT\_VECTORIZE@{EIGEN\_DONT\_VECTORIZE}}
+\index{EIGEN\_DONT\_VECTORIZE@{EIGEN\_DONT\_VECTORIZE}!camera.cpp@{camera.cpp}}
+\doxysubsubsection{\texorpdfstring{EIGEN\_DONT\_VECTORIZE}{EIGEN\_DONT\_VECTORIZE}}
+{\footnotesize\ttfamily \label{camera_8cpp_a4962bceade5775b0464f7b604f886cd4_a4962bceade5775b0464f7b604f886cd4} 
+\#define EIGEN\+\_\+\+DONT\+\_\+\+VECTORIZE}
+
