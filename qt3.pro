@@ -50,4 +50,5 @@ RESOURCES += \
 
 DISTFILES += \
     README.md \
+    about_convertions.md \
     sequence_diagrams.md

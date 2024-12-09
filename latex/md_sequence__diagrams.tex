@@ -1,0 +1,42 @@
+\chapter{シーケンス図一覧}
+\hypertarget{md_sequence__diagrams}{}\label{md_sequence__diagrams}\index{シーケンス図一覧@{シーケンス図一覧}}
+プロジェクト内のシーケンス図をまとめたグループ
+
+\label{md_sequence__diagrams_autotoc_md2}%
+\Hypertarget{md_sequence__diagrams_autotoc_md2}%
+\hypertarget{md_sequence__diagrams_autotoc_md3}{}\doxysubsection{\texorpdfstring{全体ざっくり}{全体ざっくり}}\label{md_sequence__diagrams_autotoc_md3}
+こんな感じのソフト
+
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_6}}
+\end{DoxyImageNoCaption}
+\hypertarget{md_sequence__diagrams_autotoc_md4}{}\doxysubsection{\texorpdfstring{カメラ位置変更後の情報取得フロー}{カメラ位置変更後の情報取得フロー}}\label{md_sequence__diagrams_autotoc_md4}
+挙動～
+
+QOpen\+GLWidgetなどのクラスでupdate()を呼び出すと、内部的に\+Open\+GLの再描画メソッド（通常paint\+GL()）が実行されるため、このような記述になっている。 ここまででカメラの位置情報をどうやって習得するかを記述した。次のセクションでこれらの情報を下にワールド座標系→ビューポート表示までの挙動を記述する。 
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_7}}
+\end{DoxyImageNoCaption}
+ \hypertarget{md_sequence__diagrams_autotoc_md5}{}\doxysubsection{\texorpdfstring{視野変換→ビューポート変換までのフロー}{視野変換→ビューポート変換までのフロー}}\label{md_sequence__diagrams_autotoc_md5}
+update()関数によってpaint\+GL()が自動で呼び出されたあとの挙動
+
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_8}}
+\end{DoxyImageNoCaption}
+ projection\+\_\+and\+\_\+modelview\hypertarget{md_sequence__diagrams_autotoc_md6}{}\doxysubsection{\texorpdfstring{キーフレームの追加}{キーフレームの追加}}\label{md_sequence__diagrams_autotoc_md6}
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_9}}
+\end{DoxyImageNoCaption}
+\hypertarget{md_sequence__diagrams_autotoc_md7}{}\doxysubsection{\texorpdfstring{視野角（\+FOV）の変更}{視野角（\+FOV）の変更}}\label{md_sequence__diagrams_autotoc_md7}
+FOVを変更するスロット ユーザーがスライダーを操作してカメラの視野角を変更します。
+
+シーケンス図\+:
+
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_10}}
+\end{DoxyImageNoCaption}
+ 

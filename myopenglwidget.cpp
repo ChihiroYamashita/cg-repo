@@ -126,8 +126,12 @@ drawcube();
 
 /*------------------------------------------------------------*/
 
+/**
+ * @brief 注視点を設定する関数
+ * @details 画面サイズからアスペクト比を計算し、OpenGLの投影行列を設定する.
 
-//画面サイズからアスペクト比を計算し、OpenGLの投影行列を設定するメソッド
+ */
+
 void MyOpenGLWidget::updateProjectionMatrix() {
     //③投影変換
     float aspect = float(width) / float(height ? height : 1); // アスペクト比の計算
