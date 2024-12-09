@@ -46,16 +46,21 @@ MyOpenGLWidget -> OpenGL : update()\nすべての処理が終わったら画面�
 @enduml
 ### 視野変換→ビューポート変換までのフロー
 @brief 
-@details update()関数によってpaintGL()が自動で呼び出されたあとの挙動
-
+@details update()関数によってpaintGL()が自動で呼び出されたあとのpaintGL()の挙動\n
+[基礎情報ページ](about_convertions.md)に変換周りの挙動を記述。
+MyOpenGLWidget::projection_and_modelview
+MyOpenGLWidget::updateProjectionMatrix()　を参照。
 @startuml
 actor User
 
 
-MyOpenGLWidget -> MyOpenGLWidget : paintGL()
-MyOpenGLWidget -> MyOpenGLWidget : 投影変換を適用（gluPerspective / glOrtho）
-MyOpenGLWidget -> OpenGL : ビューポート変換を適用（glViewport）
-MyOpenGLWidget -> OpenGL : シーンをレンダリング
+
+MyOpenGLWidget -> MyOpenGLWidget : updateProjectionMatrix();\n投影変換を適用（gluPerspective / glOrtho）
+MyOpenGLWidget -> OpenGL : glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)\nカラーバッファ（画面上のピクセルデータ）と深度バッファ（奥行き情報）をクリア\nglViewport(0, 0, width * g_FrameSize_WindowSize_Scale_x, height * g_FrameSize_WindowSize_Scale_y);\n画面上で描画が行われる領域を設定
+
+MyOpenGLWidget -> MyOpenGLWidget : projection_and_modelview(g_Camera);\nカメラの投影行列とモデルビュー行列を設定
+MyOpenGLWidget -> OpenGL : glEnable(GL_DEPTH_TEST);\n深度テスト（Depth Test）を有効化\nglBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);\nアルファブレンディング（透明度の計算）\nglEnable(GL_BLEND);ブレンディングを有効化\nglEnable(GL_POINT_SMOOTH);, glEnable(GL_LINE_SMOOTH);, glEnable(GL_POLYGON_SMOOTH);\n（アンチエイリアス）を有効化\nglHint(GL_POINT_SMOOTH_HINT, GL_NICEST);\nスムージング
+MyOpenGLWidget -> drawObject :drawXYZAxes(); drawXYGrid(0.5, 50); drawcube();
 @enduml
 projection_and_modelview
 

@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['_7emainwindow_0',['~MainWindow',['../class_main_window_ae98d00a93bc118200eeef9f9bba1dba7.html#ae98d00a93bc118200eeef9f9bba1dba7',1,'MainWindow']]],
-  ['_7emyopenglwidget_1',['~MyOpenGLWidget',['../class_my_open_g_l_widget_aa9bdb4eb867d9e0bbfab210732fa5883.html#aa9bdb4eb867d9e0bbfab210732fa5883',1,'MyOpenGLWidget']]]
+  ['zoom_0',['zoom',['../struct_camera_keyframe_a891fc265dfd5c266408b999296acef50.html#a891fc265dfd5c266408b999296acef50',1,'CameraKeyframe']]],
+  ['zoombutton_1',['zoombutton',['../class_my_open_g_l_widget_a079c42a9b8e1ebde537391506a3e0cb0.html#a079c42a9b8e1ebde537391506a3e0cb0',1,'MyOpenGLWidget']]],
+  ['zoombuttonpressed_2',['zoomButtonPressed',['../class_my_open_g_l_widget_ab1fb9e74868c34593799e32f0eab4c55.html#ab1fb9e74868c34593799e32f0eab4c55',1,'MyOpenGLWidget']]],
+  ['zoomcamera_3',['zoomCamera',['../class_camera_ae23b0e56d9e1767eebcc87a39801f922.html#ae23b0e56d9e1767eebcc87a39801f922',1,'Camera']]],
+  ['zvector_4',['zVector',['../struct_camera_keyframe_a2d389011fb33fc564b1cc80eb2022a77.html#a2d389011fb33fc564b1cc80eb2022a77',1,'CameraKeyframe']]]
 ];

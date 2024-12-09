@@ -1,10 +1,11 @@
-# 基礎情報
+# 座標変換の話
 
 ## はじめに
 このページでは、ややこしいOpenGLの挙動などをまとめます
 
 
 - OpenGL描画の流れ
+- おもろい話
 
 ## OpenGL描画の流れ
 
@@ -26,6 +27,9 @@ glRotatef(45.0f, 0.0f, 1.0f, 0.0f);
 // 3. オブジェクトのサイズを倍に拡大する
 glScalef(2.0f, 2.0f, 2.0f);
 ```
+### ②視野変換
+> モデリング変換が行われた段階では，世界(ワールド座標系)の中心を基準としてモデルが描かれるが，これを投影する前に，カメラを原点としてレンズの傾きなどカメラから見える状態の座標系に変換する．これが視野変換である．
+> 本来なら視野変換もアフィン変換同様行列演算で行うが，OpenGL 1.x系ではこの部分はgluLookAt()を使いカメラの位置を指定することで，自動的に行われる．
 ### ③投影変換
 MyOpenGLWidget::updateProjectionMatrix()内で行う。
 
@@ -39,6 +43,6 @@ MyOpenGLWidget::updateProjectionMatrix()内で行う。
 このため、OpenGL内ではただglOrtho()かgluPerspective()を設定すればOK
 ここで初期設定されたwidth、height,orthoモードなどの情報を参考にモデルビュー行列を計算してGPUに送信する。
 
-### 描画フロー
-- `MyOpenGLWidget` は `initializeGL` と `paintGL` を通じて描画を管理します。
-- `update()` メソッドが描画更新をトリガーします。
+## おもろい話
+### OpenGLでは①モデリング変換と②視野変換のモードを区別しない
+両方glMatrixMode(GL_MODELVIEW);モードを使う　なんでかはなんとな～く

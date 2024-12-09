@@ -1,13 +1,13 @@
 var indexSectionsWithContent =
 {
-  0: "_abcdefghiklmnoprsuvwxyz~①③はカキシ全基描概視",
+  0: "_abcdefghiklmnoprstuvwxyz~①②③おなのはオカキシテモ使全具座引役投概注行視関",
   1: "cdim",
   2: "u",
-  3: "acdgimrs",
+  3: "acdgimors",
   4: "acdefgilmnoprsuwz~",
   5: "bcdefghiklmoprsuvwxyz",
   6: "_e",
-  7: "pシ基"
+  7: "opシ座"
 };
 
 var indexSectionNames =

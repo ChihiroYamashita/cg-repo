@@ -1,7 +1,7 @@
 var searchData=
 [
   ['paintgl_0',['paintGL',['../class_my_open_g_l_widget_a9c4399d47addbd03bcf57f9baffd66d2.html#a9c4399d47addbd03bcf57f9baffd66d2',1,'MyOpenGLWidget::paintGL() override'],['../class_my_open_g_l_widget_a9c4399d47addbd03bcf57f9baffd66d2.html#a9c4399d47addbd03bcf57f9baffd66d2',1,'MyOpenGLWidget::paintGL() override'],['../class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f.html#a97469860ecb6dfc1c784c5797854bc2f',1,'MyOpenGLWidget_camera::paintGL()']]],
-  ['pass_5ftracing_1',['Pass_tracing',['../index.html',1,'']]],
+  ['pass_5ftracing_1',['Pass_tracing',['../md__r_e_a_d_m_e.html',1,'']]],
   ['pixelsperframe_2',['pixelsPerFrame',['../class_custom_scene_a071d9d5303aaa8780cc6c57908f82dbd.html#a071d9d5303aaa8780cc6c57908f82dbd',1,'CustomScene']]],
   ['playhead_3',['playhead',['../class_custom_scene_a42ec11664b6f7d41cabfd3ac02f70e6d.html#a42ec11664b6f7d41cabfd3ac02f70e6d',1,'CustomScene::playhead'],['../class_main_window_a11ccd5de8f02f1aee5363350514b2f5d.html#a11ccd5de8f02f1aee5363350514b2f5d',1,'MainWindow::playhead']]],
   ['playheadbeingdragged_4',['playheadBeingDragged',['../class_custom_scene_ab7448c293519dd849ad8c41ca2f82427.html#ab7448c293519dd849ad8c41ca2f82427',1,'CustomScene']]],

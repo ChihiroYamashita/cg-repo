@@ -49,6 +49,7 @@ RESOURCES += \
     resorce.qrc
 
 DISTFILES += \
+    OpenGL_func.md \
     README.md \
     about_convertions.md \
     sequence_diagrams.md

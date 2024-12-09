@@ -98,13 +98,19 @@ if (button != nullptr) {
 
 
 
+/**
+ * @brief 描画関数
+ *
+ * @details
 
+ */
 void MyOpenGLWidget::paintGL(){
 updateProjectionMatrix(); //実際のモデルビュー・視野変換の適用は、オブジェクトが実際に描画される際にGPU内で行われる
 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // カラーバッファと深度バッファをクリア
 glViewport(0, 0, width * g_FrameSize_WindowSize_Scale_x, height * g_FrameSize_WindowSize_Scale_y);
 
 projection_and_modelview(g_Camera);
+
 glEnable(GL_DEPTH_TEST);
 
 glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -127,11 +133,30 @@ drawcube();
 /*------------------------------------------------------------*/
 
 /**
- * @brief 注視点を設定する関数
- * @details 画面サイズからアスペクト比を計算し、OpenGLの投影行列を設定する.
-
+ * @brief OpenGLの投影行列を更新する。
+ *
+ * @details
+ * この関数は投影行列の設定を行います。投影モードに基づいて、
+ * 平行投影 (`glOrtho()`) または透視投影 (`gluPerspective()`) を選択し、
+ * 必要な行列操作を実行します。
+ * - アスペクト比を計算します。
+ * - 投影行列モードに切り替え、行列を初期化します。
+ * - 選択された投影モードに基づき、適切な行列を設定します。
+ * - 最後にモデルビュー行列モードに戻ります。
+ *
+ * シーケンス図:
+ * @startuml
+ * MyOpenGLWidget -> MyOpenGLWidget : updateProjectionMatrix()
+ * MyOpenGLWidget -> OpenGL : glMatrixMode(GL_PROJECTION)
+ * MyOpenGLWidget -> OpenGL : glLoadIdentity()
+ * alt orthoMode == true
+ *     MyOpenGLWidget -> OpenGL : glOrtho()
+ * else
+ *     MyOpenGLWidget -> OpenGL : gluPerspective()
+ * end
+ * MyOpenGLWidget -> OpenGL : glMatrixMode(GL_MODELVIEW)
+ * @enduml
  */
-
 void MyOpenGLWidget::updateProjectionMatrix() {
     //③投影変換
     float aspect = float(width) / float(height ? height : 1); // アスペクト比の計算
@@ -152,7 +177,22 @@ void MyOpenGLWidget::updateProjectionMatrix() {
     glMatrixMode(GL_MODELVIEW);
 }
 
-
+/**
+ * @brief カメラの視野変換を設定する関数
+ * カメラの位置、注視点、上方向ベクトルを基にモデルビュー行列を設定します。
+ *
+ * シーケンス図:
+ *
+ * @startuml
+ * MyOpenGLWidget -> Camera : getEyePoint()\n カメラ位置を取得
+ * MyOpenGLWidget -> Camera : getLookAtPoint()\n 注視点を取得
+ * MyOpenGLWidget -> Camera : getYVector()\n 上方向ベクトルを取得
+ * MyOpenGLWidget -> OpenGL : glMatrixMode(GL_MODELVIEW)\n モデルビュー行列を選択
+ * MyOpenGLWidget -> OpenGL : glLoadIdentity()\n モデルビュー行列を初期化
+ * MyOpenGLWidget -> OpenGL : gluLookAt(eyePoint, lookAtPoint, upVector)\n カメラ行列を適用
+ * @enduml
+ *
+ */
 void MyOpenGLWidget::projection_and_modelview(const Camera& in_Camera) {
     // ②視界変換
     glMatrixMode(GL_MODELVIEW);

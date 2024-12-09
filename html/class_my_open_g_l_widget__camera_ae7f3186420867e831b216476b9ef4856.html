@@ -141,9 +141,17 @@ $(function(){ initResizable(false); });
 </table>
 </div><div class="memdoc">
 
-<p>注視点を設定する関数 </p>
-<p>画面サイズからアスペクト比を計算し、OpenGLの投影行列を設定する. </p>
-
+<p>OpenGLの投影行列を更新する。 </p>
+<p>この関数は投影行列の設定を行います。投影モードに基づいて、 平行投影 (<code>glOrtho()</code>) または透視投影 (<code>gluPerspective()</code>) を選択し、 必要な行列操作を実行します。</p><ul>
+<li>アスペクト比を計算します。</li>
+<li>投影行列モードに切り替え、行列を初期化します。</li>
+<li>選択された投影モードに基づき、適切な行列を設定します。</li>
+<li>最後にモデルビュー行列モードに戻ります。</li>
+</ul>
+<p>シーケンス図: </p><div class="plantumlgraph">
+<img src="inline_umlgraph_8.png" />
+</div>
+ 
 <p><a class="el" href="class_my_open_g_l_widget_a481e6f37c00892b3ab5afefdf22715c4.html#a481e6f37c00892b3ab5afefdf22715c4">MyOpenGLWidget</a>を再実装しています。</p>
 
 </div>
