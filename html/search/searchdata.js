@@ -1,13 +1,13 @@
 var indexSectionsWithContent =
 {
-  0: "_abcdefghiklmnoprsuvwxyz~カキシ全概視",
+  0: "_abcdefghiklmnoprsuvwxyz~①③はカキシ全基描概視",
   1: "cdim",
   2: "u",
-  3: "cdgimrs",
+  3: "acdgimrs",
   4: "acdefgilmnoprsuwz~",
   5: "bcdefghiklmoprsuvwxyz",
   6: "_e",
-  7: "pシ"
+  7: "pシ基"
 };
 
 var indexSectionNames =

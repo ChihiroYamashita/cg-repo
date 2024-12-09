@@ -1,0 +1,44 @@
+# 基礎情報
+
+## はじめに
+このページでは、ややこしいOpenGLの挙動などをまとめます
+
+
+- OpenGL描画の流れ
+
+## OpenGL描画の流れ
+
+### ①モデリング変換
+
+void drawcube()で行う。
+
+> glTranslate()やglRotate()を使いオブジェクトを任意の場所に配置するが，2Dグラフィックスや前項で述べた通り，アフィン変換によって，「オブジェクトのローカル座標系」を「移動・回転・拡大縮小」させるために「ワールド座標系」に変換した状態である．
+> https://cad.lolipop.jp/work/class/OpenGL/1_OpenGL1x/CoordinateSystemsCamera.htm
+
+平行移動などの処理をするとOpenGLが勝手にワールド座標系に変換してくれる。
+```
+// 1. オブジェクトを平行移動する
+glTranslatef(1.0f, 1.0f, -0.0f);
+
+// 2. オブジェクトをY軸周りに45度回転する
+glRotatef(45.0f, 0.0f, 1.0f, 0.0f);
+
+// 3. オブジェクトのサイズを倍に拡大する
+glScalef(2.0f, 2.0f, 2.0f);
+```
+### ③投影変換
+MyOpenGLWidget::updateProjectionMatrix()内で行う。
+
+投影変換とは
+> - 視野変換で得られた「カメラを原点とした座標系で表現された世界(これはまだ3次元)」を2次元に落とし込む変換である．いわゆる **「パース図を描く」** 作業に相当する  
+> OpenGL 1.x系では，この作業はglOrtho()(平行投影)
+> もしくはgluPerspective()(透視投影)により，自動的に行われる．  
+> この投影変換も，本質的には行列演算で行われる．
+
+
+このため、OpenGL内ではただglOrtho()かgluPerspective()を設定すればOK
+ここで初期設定されたwidth、height,orthoモードなどの情報を参考にモデルビュー行列を計算してGPUに送信する。
+
+### 描画フロー
+- `MyOpenGLWidget` は `initializeGL` と `paintGL` を通じて描画を管理します。
+- `update()` メソッドが描画更新をトリガーします。

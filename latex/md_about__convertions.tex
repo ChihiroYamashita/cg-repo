@@ -1,0 +1,27 @@
+\chapter{基礎情報}
+\hypertarget{md_about__convertions}{}\label{md_about__convertions}\index{基礎情報@{基礎情報}}
+\label{md_about__convertions_autotoc_md0}%
+\Hypertarget{md_about__convertions_autotoc_md0}%
+\hypertarget{md_about__convertions_autotoc_md1}{}\doxysection{\texorpdfstring{はじめに}{はじめに}}\label{md_about__convertions_autotoc_md1}
+このページでは、ややこしい\+Open\+GLの挙動などをまとめます
+
+
+\begin{DoxyItemize}
+\item Open\+GL描画の流れ
+\end{DoxyItemize}\hypertarget{md_about__convertions_autotoc_md2}{}\doxysection{\texorpdfstring{Open\+GL描画の流れ}{Open\+GL描画の流れ}}\label{md_about__convertions_autotoc_md2}
+\hypertarget{md_about__convertions_autotoc_md3}{}\doxysubsection{\texorpdfstring{①モデリング変換}{①モデリング変換}}\label{md_about__convertions_autotoc_md3}
+\hypertarget{md_about__convertions_autotoc_md4}{}\doxysubsection{\texorpdfstring{③投影変換}{③投影変換}}\label{md_about__convertions_autotoc_md4}
+\doxylink{class_my_open_g_l_widget_a481e6f37c00892b3ab5afefdf22715c4_a481e6f37c00892b3ab5afefdf22715c4}{My\+Open\+GLWidget\+::update\+Projection\+Matrix()}内で行う。
+
+投影変換とは \begin{quote}
+-\/ 視野変換で得られた「カメラを原点とした座標系で表現された世界(これはまだ3次元)」を2次元に落とし込む変換である．いわゆる {\bfseries{「パース図を描く」}} 作業に相当する ~\newline
+ Open\+GL 1.\+x系では，この作業はgl\+Ortho()(平行投影) もしくはglu\+Perspective()(透視投影)により，自動的に行われる． ~\newline
+ この投影変換も，本質的には行列演算で行われる． \end{quote}
+
+
+このため、\hypertarget{md_about__convertions_autotoc_md5}{}\doxysubsection{\texorpdfstring{描画フロー}{描画フロー}}\label{md_about__convertions_autotoc_md5}
+
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{class_my_open_g_l_widget}{My\+Open\+GLWidget}} は {\ttfamily initialize\+GL} と {\ttfamily paint\+GL} を通じて描画を管理します。
+\item {\ttfamily update()} メソッドが描画更新をトリガーします。 
+\end{DoxyItemize}
