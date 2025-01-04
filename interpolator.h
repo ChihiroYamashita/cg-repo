@@ -1,3 +1,11 @@
+/**
+ * @file interpolator.h
+ * @brief 補間クラス
+ *
+ * @details
+ * Interpolatorクラスは、カメラのキーフレーム間で線形補間や球面線形補間（SLERP）を行うための機能を提供します。
+ * スムーズなカメラアニメーションを実現できます。
+ */
 #ifndef INTERPOLATOR_H
 #define INTERPOLATOR_H
 

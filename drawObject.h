@@ -1,3 +1,11 @@
+/**
+ * @file drawObject.h
+ * @brief OpenGL描画ユーティリティ
+ *
+ * @details
+ * OpenGLで3Dオブジェクトを描画するための関数群を提供します。
+ * キューブやグリッド、座標軸などの基本図形を簡単に描画できます。
+ */
 #ifndef DRAWOBJECT_H
 #define DRAWOBJECT_H
 #include "camera.h"

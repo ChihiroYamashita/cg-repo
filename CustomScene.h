@@ -1,3 +1,12 @@
+/**
+ * @file CustomScene.h
+ * @brief カスタムシーン管理クラス
+ *
+ * @details
+ * CustomSceneクラスは、QtのQGraphicsSceneを拡張したクラスです。タイムラインやカメラのキーフレームを管理し、
+ * ユーザーがシーン内で操作可能な要素を提供します。線形補間やキーフレームの削除もサポートします。
+ */
+
 //タイムラインに関する記述 11111
 #ifndef CUSTOMSCENE_H
 #define CUSTOMSCENE_H

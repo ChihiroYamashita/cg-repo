@@ -1,3 +1,11 @@
+/**
+ * @file myopenglwidget_camera.h
+ * @brief カメラ専用のOpenGLウィジェット
+ *
+ * @details
+ * MyOpenGLWidget_cameraクラスは、MyOpenGLWidgetを拡張し、カメラ操作と状態管理に特化した機能を提供します。
+ * カメラの視点や注視点を管理し、描画処理を制御します。
+ */
 #ifndef OPENGLWIDGET_CAMERA_H
 #define OPENGLWIDGET_CAMERA_H
 #include <QOpenGLWidget>

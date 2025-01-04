@@ -207,7 +207,21 @@ qreal CustomScene::getPlayheadPositionX() const {
 return playheadPositionX;
 }
 
-/*キーフレーム挿入*/
+
+/**
+ * @brief キーフレームを追加する関数
+ * @param[in] frameNumber フレーム番号
+ * @param[in] eyePoint カメラの視点座標
+ * @param[in] lookAtPoint カメラの注視点
+ * @param[in] upVector カメラの上方向ベクトル
+ * @param[in] xVector カメラのX軸ベクトル
+ * @param[in] yVector カメラのY軸ベクトル
+ * @param[in] zVector カメラのZ軸ベクトル
+ * @param[in] fov 視野角
+ * @param[in] zoom ズーム値
+ * @details
+ * キーフレームをタイムラインに追加し、関連データを更新します。
+ */
 void CustomScene::addKeyframe(int frameNumber, const QVector3D& eyePoint, const QVector3D& lookAtPoint, const QVector3D& upVector, const QVector3D& xVector, const QVector3D& yVector, const QVector3D& zVector, float fov, double zoom)  {
 
 QPolygonF diamond;

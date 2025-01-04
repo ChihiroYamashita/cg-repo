@@ -1,3 +1,11 @@
+/**
+ * @file myopenglwidget.h
+ * @brief OpenGLウィジェットの拡張
+ *
+ * @details
+ * MyOpenGLWidgetクラスは、QOpenGLWidgetを拡張してカメラ操作やズーム、投影モードの切り替えを提供します。
+ * ユーザーのマウスイベントを処理してカメラの動きを制御します。
+ */
 #ifndef MYOPENGLWIDGET_H
 #define MYOPENGLWIDGET_H
 

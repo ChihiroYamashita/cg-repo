@@ -1,52 +1,53 @@
 \doxysection{Dual\+Quaternion.\+h}
 \hypertarget{_dual_quaternion_8h_source}{}\label{_dual_quaternion_8h_source}\mbox{\hyperlink{_dual_quaternion_8h}{\mbox{[}詳解\mbox{]}}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <QVector3D>}}
-\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <QQuaternion>}}
-\DoxyCodeLine{00003\ }
-\DoxyCodeLine{00004\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_dual_quaternion}{DualQuaternion}}\ \{}
-\DoxyCodeLine{00005\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00006\ \ \ \ \ QQuaternion\ \mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}};}
-\DoxyCodeLine{00007\ \ \ \ \ QQuaternion\ \mbox{\hyperlink{class_dual_quaternion_a0e866553dadd9ecb729700084e0fe61e_a0e866553dadd9ecb729700084e0fe61e}{dual}};}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \ \ \ \ \mbox{\hyperlink{class_dual_quaternion_aff76abcae3e1e0ecadb307a89faa7a3c_aff76abcae3e1e0ecadb307a89faa7a3c}{DualQuaternion}}()\ :\ \mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}}(1,\ 0,\ 0,\ 0),\ \mbox{\hyperlink{class_dual_quaternion_a0e866553dadd9ecb729700084e0fe61e_a0e866553dadd9ecb729700084e0fe61e}{dual}}(0,\ 0,\ 0,\ 0)\ \{\}}
-\DoxyCodeLine{00010\ }
-\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{class_dual_quaternion_a1f04d6a1052350468f95bc0afd5ddff7_a1f04d6a1052350468f95bc0afd5ddff7}{DualQuaternion}}(\textcolor{keyword}{const}\ QQuaternion\&\ realPart,\ \textcolor{keyword}{const}\ QQuaternion\&\ dualPart)}
-\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}}(realPart),\ \mbox{\hyperlink{class_dual_quaternion_a0e866553dadd9ecb729700084e0fe61e_a0e866553dadd9ecb729700084e0fe61e}{dual}}(dualPart)\ \{\}}
-\DoxyCodeLine{00013\ }
-\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_dual_quaternion}{DualQuaternion}}\ \mbox{\hyperlink{class_dual_quaternion_a9d3a343858354b4931594639840df879_a9d3a343858354b4931594639840df879}{fromTranslationRotation}}(\textcolor{keyword}{const}\ QVector3D\&\ translation,\ \textcolor{keyword}{const}\ QQuaternion\&\ rotation)\ \{}
-\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ QQuaternion\ t(0,\ translation.x(),\ translation.y(),\ translation.z());}
-\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_dual_quaternion}{DualQuaternion}}\ dq;}
-\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ dq.\mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}}\ =\ rotation;}
-\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ dq.\mbox{\hyperlink{class_dual_quaternion_a0e866553dadd9ecb729700084e0fe61e_a0e866553dadd9ecb729700084e0fe61e}{dual}}\ =\ 0.5f\ *\ (t\ *\ rotation);}
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ dq;}
-\DoxyCodeLine{00020\ \ \ \ \ \}}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <QVector3D>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <QQuaternion>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_dual_quaternion}{DualQuaternion}}\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ QQuaternion\ \mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}};}
+\DoxyCodeLine{00015\ \ \ \ \ QQuaternion\ \mbox{\hyperlink{class_dual_quaternion_a0e866553dadd9ecb729700084e0fe61e_a0e866553dadd9ecb729700084e0fe61e}{dual}};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{class_dual_quaternion_aff76abcae3e1e0ecadb307a89faa7a3c_aff76abcae3e1e0ecadb307a89faa7a3c}{DualQuaternion}}()\ :\ \mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}}(1,\ 0,\ 0,\ 0),\ \mbox{\hyperlink{class_dual_quaternion_a0e866553dadd9ecb729700084e0fe61e_a0e866553dadd9ecb729700084e0fe61e}{dual}}(0,\ 0,\ 0,\ 0)\ \{\}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{class_dual_quaternion_a1f04d6a1052350468f95bc0afd5ddff7_a1f04d6a1052350468f95bc0afd5ddff7}{DualQuaternion}}(\textcolor{keyword}{const}\ QQuaternion\&\ realPart,\ \textcolor{keyword}{const}\ QQuaternion\&\ dualPart)}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}}(realPart),\ \mbox{\hyperlink{class_dual_quaternion_a0e866553dadd9ecb729700084e0fe61e_a0e866553dadd9ecb729700084e0fe61e}{dual}}(dualPart)\ \{\}}
 \DoxyCodeLine{00021\ }
-\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{class_dual_quaternion}{DualQuaternion}}\ \mbox{\hyperlink{class_dual_quaternion_a2ab44c045fe661808ede2f7c38234a8a_a2ab44c045fe661808ede2f7c38234a8a}{operator*}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_dual_quaternion}{DualQuaternion}}\&\ dq)\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_dual_quaternion_aff76abcae3e1e0ecadb307a89faa7a3c_aff76abcae3e1e0ecadb307a89faa7a3c}{DualQuaternion}}(\mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}}\ *\ dq.\mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}},\ \mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}}\ *\ dq.\mbox{\hyperlink{class_dual_quaternion_a0e866553dadd9ecb729700084e0fe61e_a0e866553dadd9ecb729700084e0fe61e}{dual}}\ +\ \mbox{\hyperlink{class_dual_quaternion_a0e866553dadd9ecb729700084e0fe61e_a0e866553dadd9ecb729700084e0fe61e}{dual}}\ *\ dq.\mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}});}
-\DoxyCodeLine{00024\ \ \ \ \ \}}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_dual_quaternion}{DualQuaternion}}\ \mbox{\hyperlink{class_dual_quaternion_a583d277fac904edacb919e0db6868ca8_a583d277fac904edacb919e0db6868ca8}{operator*}}(\textcolor{keywordtype}{float}\ scalar)\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_dual_quaternion_aff76abcae3e1e0ecadb307a89faa7a3c_aff76abcae3e1e0ecadb307a89faa7a3c}{DualQuaternion}}(\mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}}\ *\ scalar,\ \mbox{\hyperlink{class_dual_quaternion_a0e866553dadd9ecb729700084e0fe61e_a0e866553dadd9ecb729700084e0fe61e}{dual}}\ *\ scalar);}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_dual_quaternion}{DualQuaternion}}\ \mbox{\hyperlink{class_dual_quaternion_a9d3a343858354b4931594639840df879_a9d3a343858354b4931594639840df879}{fromTranslationRotation}}(\textcolor{keyword}{const}\ QVector3D\&\ translation,\ \textcolor{keyword}{const}\ QQuaternion\&\ rotation)\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ QQuaternion\ t(0,\ translation.x(),\ translation.y(),\ translation.z());}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_dual_quaternion}{DualQuaternion}}\ dq;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ dq.\mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}}\ =\ rotation;}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ dq.\mbox{\hyperlink{class_dual_quaternion_a0e866553dadd9ecb729700084e0fe61e_a0e866553dadd9ecb729700084e0fe61e}{dual}}\ =\ 0.5f\ *\ (t\ *\ rotation);}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ dq;}
 \DoxyCodeLine{00028\ \ \ \ \ \}}
 \DoxyCodeLine{00029\ }
-\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{class_dual_quaternion}{DualQuaternion}}\ \mbox{\hyperlink{class_dual_quaternion_a4f44e429fb15e33460f2231fc66efb13_a4f44e429fb15e33460f2231fc66efb13}{operator+}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_dual_quaternion}{DualQuaternion}}\&\ dq)\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_dual_quaternion_aff76abcae3e1e0ecadb307a89faa7a3c_aff76abcae3e1e0ecadb307a89faa7a3c}{DualQuaternion}}(\mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}}\ +\ dq.\mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}},\ \mbox{\hyperlink{class_dual_quaternion_a0e866553dadd9ecb729700084e0fe61e_a0e866553dadd9ecb729700084e0fe61e}{dual}}\ +\ dq.\mbox{\hyperlink{class_dual_quaternion_a0e866553dadd9ecb729700084e0fe61e_a0e866553dadd9ecb729700084e0fe61e}{dual}});}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{class_dual_quaternion}{DualQuaternion}}\ \mbox{\hyperlink{class_dual_quaternion_a2ab44c045fe661808ede2f7c38234a8a_a2ab44c045fe661808ede2f7c38234a8a}{operator*}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_dual_quaternion}{DualQuaternion}}\&\ dq)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_dual_quaternion_aff76abcae3e1e0ecadb307a89faa7a3c_aff76abcae3e1e0ecadb307a89faa7a3c}{DualQuaternion}}(\mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}}\ *\ dq.\mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}},\ \mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}}\ *\ dq.\mbox{\hyperlink{class_dual_quaternion_a0e866553dadd9ecb729700084e0fe61e_a0e866553dadd9ecb729700084e0fe61e}{dual}}\ +\ \mbox{\hyperlink{class_dual_quaternion_a0e866553dadd9ecb729700084e0fe61e_a0e866553dadd9ecb729700084e0fe61e}{dual}}\ *\ dq.\mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}});}
 \DoxyCodeLine{00032\ \ \ \ \ \}}
 \DoxyCodeLine{00033\ }
-\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_dual_quaternion}{DualQuaternion}}\ \mbox{\hyperlink{class_dual_quaternion_ae4e645db0f51f87b0b8160907873b08c_ae4e645db0f51f87b0b8160907873b08c}{normalized}}()\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ norm\ =\ \mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}}.length();}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_dual_quaternion_aff76abcae3e1e0ecadb307a89faa7a3c_aff76abcae3e1e0ecadb307a89faa7a3c}{DualQuaternion}}(\mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}}\ /\ norm,\ \mbox{\hyperlink{class_dual_quaternion_a0e866553dadd9ecb729700084e0fe61e_a0e866553dadd9ecb729700084e0fe61e}{dual}}\ /\ norm);}
-\DoxyCodeLine{00037\ \ \ \ \ \}}
-\DoxyCodeLine{00038\ }
-\DoxyCodeLine{00039\ \ \ \ \ QQuaternion\ \mbox{\hyperlink{class_dual_quaternion_a0013b7c88ca2bf5179e483d609ec164d_a0013b7c88ca2bf5179e483d609ec164d}{getRotation}}()\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}};}
-\DoxyCodeLine{00041\ \ \ \ \ \}}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00043\ \ \ \ \ QVector3D\ \mbox{\hyperlink{class_dual_quaternion_adc222ea151454a0d2f7faa8339d57546_adc222ea151454a0d2f7faa8339d57546}{getTranslation}}()\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ QQuaternion\ t\ =\ 2.0f\ *\ (\mbox{\hyperlink{class_dual_quaternion_a0e866553dadd9ecb729700084e0fe61e_a0e866553dadd9ecb729700084e0fe61e}{dual}}\ *\ \mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}}.conjugated());}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ QVector3D(t.x(),\ t.y(),\ t.z());}
-\DoxyCodeLine{00046\ \ \ \ \ \}}
-\DoxyCodeLine{00047\ \};}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_dual_quaternion}{DualQuaternion}}\ \mbox{\hyperlink{class_dual_quaternion_a583d277fac904edacb919e0db6868ca8_a583d277fac904edacb919e0db6868ca8}{operator*}}(\textcolor{keywordtype}{float}\ scalar)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_dual_quaternion_aff76abcae3e1e0ecadb307a89faa7a3c_aff76abcae3e1e0ecadb307a89faa7a3c}{DualQuaternion}}(\mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}}\ *\ scalar,\ \mbox{\hyperlink{class_dual_quaternion_a0e866553dadd9ecb729700084e0fe61e_a0e866553dadd9ecb729700084e0fe61e}{dual}}\ *\ scalar);}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{class_dual_quaternion}{DualQuaternion}}\ \mbox{\hyperlink{class_dual_quaternion_a4f44e429fb15e33460f2231fc66efb13_a4f44e429fb15e33460f2231fc66efb13}{operator+}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_dual_quaternion}{DualQuaternion}}\&\ dq)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_dual_quaternion_aff76abcae3e1e0ecadb307a89faa7a3c_aff76abcae3e1e0ecadb307a89faa7a3c}{DualQuaternion}}(\mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}}\ +\ dq.\mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}},\ \mbox{\hyperlink{class_dual_quaternion_a0e866553dadd9ecb729700084e0fe61e_a0e866553dadd9ecb729700084e0fe61e}{dual}}\ +\ dq.\mbox{\hyperlink{class_dual_quaternion_a0e866553dadd9ecb729700084e0fe61e_a0e866553dadd9ecb729700084e0fe61e}{dual}});}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{class_dual_quaternion}{DualQuaternion}}\ \mbox{\hyperlink{class_dual_quaternion_ae4e645db0f51f87b0b8160907873b08c_ae4e645db0f51f87b0b8160907873b08c}{normalized}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ norm\ =\ \mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}}.length();}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_dual_quaternion_aff76abcae3e1e0ecadb307a89faa7a3c_aff76abcae3e1e0ecadb307a89faa7a3c}{DualQuaternion}}(\mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}}\ /\ norm,\ \mbox{\hyperlink{class_dual_quaternion_a0e866553dadd9ecb729700084e0fe61e_a0e866553dadd9ecb729700084e0fe61e}{dual}}\ /\ norm);}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ QQuaternion\ \mbox{\hyperlink{class_dual_quaternion_a0013b7c88ca2bf5179e483d609ec164d_a0013b7c88ca2bf5179e483d609ec164d}{getRotation}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}};}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ QVector3D\ \mbox{\hyperlink{class_dual_quaternion_adc222ea151454a0d2f7faa8339d57546_adc222ea151454a0d2f7faa8339d57546}{getTranslation}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ QQuaternion\ t\ =\ 2.0f\ *\ (\mbox{\hyperlink{class_dual_quaternion_a0e866553dadd9ecb729700084e0fe61e_a0e866553dadd9ecb729700084e0fe61e}{dual}}\ *\ \mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}}.conjugated());}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ QVector3D(t.x(),\ t.y(),\ t.z());}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \};}
 
 \end{DoxyCode}

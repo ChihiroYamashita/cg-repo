@@ -1,15 +1,22 @@
 \doxysection{Camera\+Keyframe.\+h ファイル}
 \hypertarget{_camera_keyframe_8h}{}\label{_camera_keyframe_8h}\index{CameraKeyframe.h@{CameraKeyframe.h}}
+
+
+カメラのキーフレーム定義  
+
+
 {\ttfamily \#include $<$QVector3D$>$}\newline
 {\ttfamily \#include $<$QQuaternion$>$}\newline
-Camera\+Keyframe.\+h の依存先関係図\+:\nopagebreak
+Camera\+Keyframe.\+h の依存先関係図\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=232pt]{_camera_keyframe_8h__incl}
 \end{center}
 \end{figure}
-被依存関係図\+:\nopagebreak
+被依存関係図\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,3 +28,30 @@ Camera\+Keyframe.\+h の依存先関係図\+:\nopagebreak
 \item 
 struct \mbox{\hyperlink{struct_camera_keyframe}{Camera\+Keyframe}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{詳解}
+カメラのキーフレーム定義 
+
+このファイルには、3\+D空間におけるカメラのキーフレーム情報を格納するための Camera\+Keyframe構造体が定義されています。
+
+Camera\+Keyframe構造体は、カメラのアニメーションを管理する際に使用されるデータ構造です。 キーフレームごとに以下の情報を記録します\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{frame\+Number}}\+: キーフレームが適用されるフレーム番号
+\item {\bfseries{eye\+Point}}\+: カメラの視点座標
+\item {\bfseries{look\+At\+Point}}\+: カメラが注視する目標点
+\item {\bfseries{up\+Vector}}\+: カメラの上方向を示すベクトル
+\item {\bfseries{x\+Vector, y\+Vector, z\+Vector}}\+: カメラのローカル座標軸
+\item {\bfseries{fov}}\+: 視野角（\+Field of View）
+\item {\bfseries{zoom}}\+: カメラのズーム倍率
+\end{DoxyItemize}
+
+この構造体は主に以下の用途に使用されます\+:
+\begin{DoxyItemize}
+\item アニメーションの補間\+: キーフレーム間で値を補間し、滑らかなカメラ移動を実現します。
+\item カメラの動きの記録と再現\+: 過去の動きを保存し、再現可能な形式で保持します。
+\end{DoxyItemize}
+
+Camera\+Keyframeを用いることで、カメラアニメーションの制御が容易になります。 

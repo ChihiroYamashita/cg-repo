@@ -1,3 +1,11 @@
+/**
+ * @file DualQuaternion.h
+ * @brief デュアルクォータニオンクラスの定義
+ *
+ * @details
+ * DualQuaternionクラスは、3D空間における回転と並進を統一的に表現するためのデータ構造です。
+ * クォータニオンによる回転と並進の操作を効率的に処理できます。
+ */
 #include <QVector3D>
 #include <QQuaternion>
 

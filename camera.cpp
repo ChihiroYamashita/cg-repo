@@ -31,6 +31,8 @@
 #include <QVector3D>
 #include <QtMath> // Qtの数学関数用
 #include <QDebug>
+
+
 Camera::Camera()
     : m_EyePoint(0.0, 0.0, 0.0)
     , m_xVector(1.0, 0.0, 0.0)

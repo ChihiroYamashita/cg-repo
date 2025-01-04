@@ -40,11 +40,7 @@ public:
     //線形補間でカメラワークを更新する
     void updateCamera(const QVector3D& eyePoint, const QVector3D& lookAtPoint, const QVector3D& upVector, float fov, double zoom);
 private slots:
-    /**
- * @brief 視野角を変更するスロット。
- *
- * スライダーの値を使用してカメラの視野角を更新します。
- */
+
     void on_fovSlider_valueChanged(int value);
     void on_OrthoButton_clicked();// 平行投影モードのボタンがONになったときの処理を記述する関数（スロット）（ボタンの色が変わる）
     void on_cameraButtondefalt_clicked();

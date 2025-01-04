@@ -89,6 +89,9 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title">CameraKeyframe.h ファイル</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>カメラのキーフレーム定義  
+<a href="#details">[詳解]</a></p>
 <div class="textblock"><code>#include &lt;QVector3D&gt;</code><br />
 <code>#include &lt;QQuaternion&gt;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -98,7 +101,7 @@ $(function(){ initResizable(false); });
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="_camera_keyframe_8h__incl.png" border="0" usemap="#a_camera_keyframe_8h" alt=""/></div>
 <map name="a_camera_keyframe_8h" id="a_camera_keyframe_8h">
-<area shape="rect" title=" " alt="" coords="37,5,171,32"/>
+<area shape="rect" title="カメラのキーフレーム定義" alt="" coords="37,5,171,32"/>
 <area shape="rect" title=" " alt="" coords="5,80,91,107"/>
 <area shape="poly" title=" " alt="" coords="96,34,69,69,65,66,92,31"/>
 <area shape="rect" title=" " alt="" coords="114,80,208,107"/>
@@ -112,10 +115,10 @@ $(function(){ initResizable(false); });
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="_camera_keyframe_8h__dep__incl.png" border="0" usemap="#a_camera_keyframe_8hdep" alt=""/></div>
 <map name="a_camera_keyframe_8hdep" id="a_camera_keyframe_8hdep">
-<area shape="rect" title=" " alt="" coords="171,5,305,32"/>
-<area shape="rect" href="_custom_scene_8h.html" title=" " alt="" coords="138,155,253,181"/>
+<area shape="rect" title="カメラのキーフレーム定義" alt="" coords="171,5,305,32"/>
+<area shape="rect" href="_custom_scene_8h.html" title="カスタムシーン管理クラス" alt="" coords="138,155,253,181"/>
 <area shape="poly" title=" " alt="" coords="233,48,202,155,196,153,228,46"/>
-<area shape="rect" href="interpolator_8h.html" title=" " alt="" coords="232,80,329,107"/>
+<area shape="rect" href="interpolator_8h.html" title="補間クラス" alt="" coords="232,80,329,107"/>
 <area shape="poly" title=" " alt="" coords="255,44,276,78,271,81,251,47"/>
 <area shape="rect" href="_custom_scene_8cpp.html" title=" " alt="" coords="5,304,135,331"/>
 <area shape="poly" title=" " alt="" coords="171,194,133,231,103,271,80,305,75,302,98,268,129,228,167,190"/>
@@ -140,7 +143,25 @@ $(function(){ initResizable(false); });
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_camera_keyframe.html">CameraKeyframe</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>カメラのキーフレーム定義 </p>
+<p>このファイルには、3D空間におけるカメラのキーフレーム情報を格納するための CameraKeyframe構造体が定義されています。</p>
+<p>CameraKeyframe構造体は、カメラのアニメーションを管理する際に使用されるデータ構造です。 キーフレームごとに以下の情報を記録します:</p>
+<ul>
+<li><b>frameNumber</b>: キーフレームが適用されるフレーム番号</li>
+<li><b>eyePoint</b>: カメラの視点座標</li>
+<li><b>lookAtPoint</b>: カメラが注視する目標点</li>
+<li><b>upVector</b>: カメラの上方向を示すベクトル</li>
+<li><b>xVector, yVector, zVector</b>: カメラのローカル座標軸</li>
+<li><b>fov</b>: 視野角（Field of View）</li>
+<li><b>zoom</b>: カメラのズーム倍率</li>
+</ul>
+<p>この構造体は主に以下の用途に使用されます:</p><ul>
+<li>アニメーションの補間: キーフレーム間で値を補間し、滑らかなカメラ移動を実現します。</li>
+<li>カメラの動きの記録と再現: 過去の動きを保存し、再現可能な形式で保持します。</li>
+</ul>
+<p>CameraKeyframeを用いることで、カメラアニメーションの制御が容易になります。 </p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
