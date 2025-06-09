@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vertex_0',['vertex',['../class_my_open_g_l_widget__camera_a268de1c0655b3f1964486b9e2abdf4a3.html#a268de1c0655b3f1964486b9e2abdf4a3',1,'MyOpenGLWidget_camera']]]
+  ['normalized_0',['normalized',['../class_dual_quaternion_ae4e645db0f51f87b0b8160907873b08c.html#ae4e645db0f51f87b0b8160907873b08c',1,'DualQuaternion']]]
 ];

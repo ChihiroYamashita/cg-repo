@@ -79,6 +79,14 @@ float Camera:: getFov() const {
     return m_Fov;
 }
 
+void Camera::setScreenWidth(double screenWidth) {
+    m_ScreenWidth = screenWidth;
+}
+
+void Camera::setScreenHeight(double screenHeight) {
+    m_ScreenHeight = screenHeight;
+}
+
 /*--------------------------------------------------------------*/
 /**
  * @brief 注視点を設定する関数

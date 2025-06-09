@@ -12,7 +12,9 @@ var searchData=
   ['setlookatpoint_9',['setlookAtPoint',['../class_my_open_g_l_widget_a236534b5cad3131d77681387398e8c13.html#a236534b5cad3131d77681387398e8c13',1,'MyOpenGLWidget']]],
   ['setlookatpoint2_10',['setlookAtPoint2',['../class_my_open_g_l_widget__camera_a07c25220009b002ee98bd3a000512f8e.html#a07c25220009b002ee98bd3a000512f8e',1,'MyOpenGLWidget_camera']]],
   ['setorthomode_11',['setOrthoMode',['../class_my_open_g_l_widget_a566d82473dbb868ca50552c954efe7eb.html#a566d82473dbb868ca50552c954efe7eb',1,'MyOpenGLWidget']]],
-  ['setupscene_12',['setupScene',['../class_custom_scene_a8d08d1fe3e2a5d2b1985a5014be34e67.html#a8d08d1fe3e2a5d2b1985a5014be34e67',1,'CustomScene::setupScene()'],['../class_main_window_aef1853fcce800089839a9c4a06f67107.html#aef1853fcce800089839a9c4a06f67107',1,'MainWindow::setupScene()']]],
-  ['showevent_13',['showEvent',['../class_main_window_a3febb9ef08a8e0f7fc00848ea540a899.html#a3febb9ef08a8e0f7fc00848ea540a899',1,'MainWindow']]],
-  ['slerp_14',['slerp',['../class_custom_scene_a7b5fe6e1708e4b44219b78340ee5fc46.html#a7b5fe6e1708e4b44219b78340ee5fc46',1,'CustomScene::slerp()'],['../class_interpolator_a870079754d95dacf398894d34f61a717.html#a870079754d95dacf398894d34f61a717',1,'Interpolator::slerp()']]]
+  ['setscreenheight_12',['setScreenHeight',['../class_camera_af77b974be890ddd91a86ca844ceabbf0.html#af77b974be890ddd91a86ca844ceabbf0',1,'Camera']]],
+  ['setscreenwidth_13',['setScreenWidth',['../class_camera_ae0f16cc6c453ce1798fef8245fcd8a2f.html#ae0f16cc6c453ce1798fef8245fcd8a2f',1,'Camera']]],
+  ['setupscene_14',['setupScene',['../class_custom_scene_a8d08d1fe3e2a5d2b1985a5014be34e67.html#a8d08d1fe3e2a5d2b1985a5014be34e67',1,'CustomScene::setupScene()'],['../class_main_window_aef1853fcce800089839a9c4a06f67107.html#aef1853fcce800089839a9c4a06f67107',1,'MainWindow::setupScene()']]],
+  ['showevent_15',['showEvent',['../class_main_window_a3febb9ef08a8e0f7fc00848ea540a899.html#a3febb9ef08a8e0f7fc00848ea540a899',1,'MainWindow']]],
+  ['slerp_16',['slerp',['../class_custom_scene_a7b5fe6e1708e4b44219b78340ee5fc46.html#a7b5fe6e1708e4b44219b78340ee5fc46',1,'CustomScene::slerp()'],['../class_interpolator_a870079754d95dacf398894d34f61a717.html#a870079754d95dacf398894d34f61a717',1,'Interpolator::slerp()']]]
 ];

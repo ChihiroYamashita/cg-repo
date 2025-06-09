@@ -85,7 +85,7 @@ float \mbox{\hyperlink{class_my_open_g_l_widget_a228b81c260d087970c762f0e96f2554
 void \mbox{\hyperlink{class_my_open_g_l_widget__camera_a111447932df8e1bb6eaa4f28faa9e0ea_a111447932df8e1bb6eaa4f28faa9e0ea}{initialize\+GL}} () override
 \item 
 void \mbox{\hyperlink{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_a97469860ecb6dfc1c784c5797854bc2f}{paint\+GL}} () override
-\item 
+\begin{DoxyCompactList}\small\item\em Open\+GL描画処理を行う関数 \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_my_open_g_l_widget__camera_af13efb9347ccaf2911590bcc2915618c_af13efb9347ccaf2911590bcc2915618c}{resize\+GL}} (int \mbox{\hyperlink{class_my_open_g_l_widget_a0169195f42130fa0a1ed1dd607ca2fac_a0169195f42130fa0a1ed1dd607ca2fac}{width}}, int \mbox{\hyperlink{class_my_open_g_l_widget_a82a3a515de41da7166ef55d22467cf09_a82a3a515de41da7166ef55d22467cf09}{height}}) override
 \item 
 void \mbox{\hyperlink{class_my_open_g_l_widget__camera_a58e0869417866df943d685310148d852_a58e0869417866df943d685310148d852}{mouse\+Move\+Event}} (QMouse\+Event \texorpdfstring{$\ast$}{*}event) override
@@ -98,6 +98,8 @@ void \mbox{\hyperlink{class_my_open_g_l_widget__camera_a6b28b647e417a9544b475d2a
 \item 
 void \mbox{\hyperlink{class_my_open_g_l_widget__camera_ae7f3186420867e831b216476b9ef4856_ae7f3186420867e831b216476b9ef4856}{update\+Projection\+Matrix}} () override
 \begin{DoxyCompactList}\small\item\em Open\+GLの投影行列を更新する。 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_my_open_g_l_widget__camera_a6c5a55d1291752da9fcea42ec0395c6d_a6c5a55d1291752da9fcea42ec0395c6d}{update\+Camera\+Screen\+Size}} ()
+\item 
 void \mbox{\hyperlink{class_my_open_g_l_widget__camera_ab290dec13bdf65078d0e5aca6e73ac03_ab290dec13bdf65078d0e5aca6e73ac03}{save\+Camera\+State}} ()
 \item 
 void \mbox{\hyperlink{class_my_open_g_l_widget__camera_a067a62971c54314c6f0d89ea91e893d8_a067a62971c54314c6f0d89ea91e893d8}{load\+Camera\+State}} ()
@@ -241,6 +243,91 @@ void My\+Open\+GLWidget\+\_\+camera\+::on\+Camera\+Fov\+Changed (\begin{DoxyPara
 {\footnotesize\ttfamily \label{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_a97469860ecb6dfc1c784c5797854bc2f} 
 void My\+Open\+GLWidget\+\_\+camera\+::paint\+GL (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
 
+
+
+Open\+GL描画処理を行う関数 
+
+この関数は、\+Qtの\+Open\+GLウィジェット内で呼び出され、3\+Dシーンの描画を行います。 投影行列やモデルビュー行列の設定、バッファのクリア、アンチエイリアス設定、座標軸やグリッドの描画を行います。
+
+{\bfseries{処理の流れ}}\+:\hypertarget{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md8}{}\doxysubsubsubsubsection{\texorpdfstring{1. プロジェクション行列の更新}{1. プロジェクション行列の更新}}\label{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md8}
+投影行列を更新し、カメラの設定を適用します。 実際のモデルビュー・視野変換は\+GPU内でオブジェクト描画時に行われます。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{class_my_open_g_l_widget__camera_ae7f3186420867e831b216476b9ef4856_ae7f3186420867e831b216476b9ef4856}{updateProjectionMatrix}}();}
+
+\end{DoxyCode}
+\hypertarget{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md9}{}\doxysubsubsubsubsection{\texorpdfstring{2. バッファのクリア}{2. バッファのクリア}}\label{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md9}
+カラーバッファと深度バッファをクリアします。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{glClear(GL\_COLOR\_BUFFER\_BIT\ |\ GL\_DEPTH\_BUFFER\_BIT);}
+
+\end{DoxyCode}
+\hypertarget{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md10}{}\doxysubsubsubsubsection{\texorpdfstring{3. ビューポート設定}{3. ビューポート設定}}\label{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md10}
+ウィジェットのサイズとスケールに基づいてビューポートを設定します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{glViewport(0,\ 0,\ \mbox{\hyperlink{class_my_open_g_l_widget_a0169195f42130fa0a1ed1dd607ca2fac_a0169195f42130fa0a1ed1dd607ca2fac}{width}}\ *\ \mbox{\hyperlink{class_my_open_g_l_widget_af11e158edb17b8e97e1a0f8cef04f9b0_af11e158edb17b8e97e1a0f8cef04f9b0}{g\_FrameSize\_WindowSize\_Scale\_x}},\ \mbox{\hyperlink{class_my_open_g_l_widget_a82a3a515de41da7166ef55d22467cf09_a82a3a515de41da7166ef55d22467cf09}{height}}\ *\ \mbox{\hyperlink{class_my_open_g_l_widget_a15032a752a2f8a676faacc50a4ec78cd_a15032a752a2f8a676faacc50a4ec78cd}{g\_FrameSize\_WindowSize\_Scale\_y}});}
+
+\end{DoxyCode}
+\hypertarget{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md11}{}\doxysubsubsubsubsection{\texorpdfstring{4. 投影とモデルビュー行列の設定}{4. 投影とモデルビュー行列の設定}}\label{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md11}
+カメラの投影とモデルビュー行列を設定します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{class_my_open_g_l_widget_a6a59b0003a3c6860ffdfe3fe696488e2_a6a59b0003a3c6860ffdfe3fe696488e2}{projection\_and\_modelview}}(\mbox{\hyperlink{class_my_open_g_l_widget__camera_adeed8a3966668cf7ca18c2426f0a216b_adeed8a3966668cf7ca18c2426f0a216b}{g\_Camera2}});}
+
+\end{DoxyCode}
+\hypertarget{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md12}{}\doxysubsubsubsubsection{\texorpdfstring{5. 描画の前処理}{5. 描画の前処理}}\label{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md12}
+
+\begin{DoxyItemize}
+\item 深度テストを有効化します（{\ttfamily GL\+\_\+\+DEPTH\+\_\+\+TEST}）。
+\item アルファブレンドとアンチエイリアスの設定を行います。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{glEnable(GL\_DEPTH\_TEST);}
+\DoxyCodeLine{glBlendFunc(GL\_SRC\_ALPHA,\ GL\_ONE\_MINUS\_SRC\_ALPHA);}
+\DoxyCodeLine{glEnable(GL\_BLEND);}
+\DoxyCodeLine{glEnable(GL\_POINT\_SMOOTH);}
+\DoxyCodeLine{glEnable(GL\_LINE\_SMOOTH);}
+\DoxyCodeLine{glEnable(GL\_POLYGON\_SMOOTH);}
+\DoxyCodeLine{glHint(GL\_POINT\_SMOOTH\_HINT,\ GL\_NICEST);}
+\DoxyCodeLine{glHint(GL\_LINE\_SMOOTH\_HINT,\ GL\_NICEST);}
+\DoxyCodeLine{glHint(GL\_POLYGON\_SMOOTH\_HINT,\ GL\_NICEST);}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}\hypertarget{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md13}{}\doxysubsubsubsubsection{\texorpdfstring{6. シーンの描画}{6. シーンの描画}}\label{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md13}
+
+\begin{DoxyItemize}
+\item 座標軸（\+XYZ軸）を描画します。
+\item グリッド（\+XY平面のグリッド）を描画します。
+\item キューブを描画します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{draw_object_8cpp_a01a438ea9dc43dd7f5b7ac2052836be5_a01a438ea9dc43dd7f5b7ac2052836be5}{drawXYZAxes}}();}
+\DoxyCodeLine{\mbox{\hyperlink{draw_object_8cpp_afdba6981bb29f21dd9c8cbff3865254c_afdba6981bb29f21dd9c8cbff3865254c}{drawXYGrid}}(0.5,\ 50);}
+\DoxyCodeLine{\mbox{\hyperlink{draw_object_8cpp_ab127d7c13829e0bdce3fc756fc122786_ab127d7c13829e0bdce3fc756fc122786}{drawcube}}();}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}\hypertarget{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md14}{}\doxysubsubsubsubsection{\texorpdfstring{7. デバッグ出力}{7. デバッグ出力}}\label{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md14}
+カメラの視野角をデバッグ出力します（{\ttfamily q\+Debug}）。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{qDebug()\ <<\ \textcolor{stringliteral}{"{}Child\ sees\ camerafov\ as\ "{}}\ <<\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a50465cac8ace45b6d158fe330777e841_a50465cac8ace45b6d158fe330777e841}{updatedFov}};}
+
+\end{DoxyCode}
+\hypertarget{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md15}{}\doxysubsubsubsection{\texorpdfstring{シーケンス図}{シーケンス図}}\label{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md15}
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_7}}
+\end{DoxyImageNoCaption}
+
+
+\begin{DoxySeeAlso}{参照}
+gl\+Clear 
+
+gl\+Viewport 
+
+gl\+Enable 
+
+gl\+Blend\+Func 
+
+gl\+Hint 
+\end{DoxySeeAlso}
 \Hypertarget{class_my_open_g_l_widget__camera_af13efb9347ccaf2911590bcc2915618c_af13efb9347ccaf2911590bcc2915618c}\index{MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}!resizeGL@{resizeGL}}
 \index{resizeGL@{resizeGL}!MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}}
 \doxysubsubsection{\texorpdfstring{resizeGL()}{resizeGL()}}
@@ -275,6 +362,12 @@ void My\+Open\+GLWidget\+\_\+camera\+::set\+Camerakeyframe (\begin{DoxyParamCapt
 {\footnotesize\ttfamily \label{class_my_open_g_l_widget__camera_a07c25220009b002ee98bd3a000512f8e_a07c25220009b002ee98bd3a000512f8e} 
 void My\+Open\+GLWidget\+\_\+camera\+::setlook\+At\+Point2 (\begin{DoxyParamCaption}\item[{const QVector3D \&}]{look\+At\+Point}{}\end{DoxyParamCaption})}
 
+\Hypertarget{class_my_open_g_l_widget__camera_a6c5a55d1291752da9fcea42ec0395c6d_a6c5a55d1291752da9fcea42ec0395c6d}\index{MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}!updateCameraScreenSize@{updateCameraScreenSize}}
+\index{updateCameraScreenSize@{updateCameraScreenSize}!MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}}
+\doxysubsubsection{\texorpdfstring{updateCameraScreenSize()}{updateCameraScreenSize()}}
+{\footnotesize\ttfamily \label{class_my_open_g_l_widget__camera_a6c5a55d1291752da9fcea42ec0395c6d_a6c5a55d1291752da9fcea42ec0395c6d} 
+void My\+Open\+GLWidget\+\_\+camera\+::update\+Camera\+Screen\+Size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
 \Hypertarget{class_my_open_g_l_widget__camera_ae7f3186420867e831b216476b9ef4856_ae7f3186420867e831b216476b9ef4856}\index{MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}!updateProjectionMatrix@{updateProjectionMatrix}}
 \index{updateProjectionMatrix@{updateProjectionMatrix}!MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}}
 \doxysubsubsection{\texorpdfstring{updateProjectionMatrix()}{updateProjectionMatrix()}}
@@ -295,7 +388,7 @@ Open\+GLの投影行列を更新する。
 
 シーケンス図\+: 
 \begin{DoxyImageNoCaption}
-  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_7}}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_8}}
 \end{DoxyImageNoCaption}
  
 

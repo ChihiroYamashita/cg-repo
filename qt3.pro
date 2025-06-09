@@ -4,6 +4,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += core gui widgets
 
 INCLUDEPATH += $$PWD/freeglut-2.8.1.tar/freeglut-2.8.1/freeglut-2.8.1/include
 INCLUDEPATH += $$PWD/eigen-3.4.0/eigen-3.4.0
+INCLUDEPATH += "C:/A_Qt_clone/cg-repo/pass_tracing"
 
 LIBS += -lopengl32
 LIBS += -lglu32
@@ -24,7 +25,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     myopenglwidget.cpp \
-    myopenglwidget_camera.cpp
+    myopenglwidget_camera.cpp \
+    pass_tracing/GLPreview.cpp
 
 HEADERS += \
     CameraKeyframe.h \
@@ -35,7 +37,10 @@ HEADERS += \
     interpolator.h \
     mainwindow.h \
     myopenglwidget.h \
-    myopenglwidget_camera.h
+    myopenglwidget_camera.h \
+    pass_tracing/GLPreview.h \
+    pass_tracing/Light.h \
+    pass_tracing/TriMesh.h
 
 FORMS += \
     mainwindow.ui

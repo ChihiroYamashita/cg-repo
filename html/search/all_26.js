@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['モデルビュー行列を設定する例_20strong_0',['&lt;strong&gt;モデルビュー行列を設定する例&lt;/strong&gt;',['../md__open_g_l__func.html#autotoc_md19',1,'']]]
+  ['の流れと操作対象_20strong_0',['&lt;strong&gt;&lt;tt&gt;glMatrixMode&lt;/tt&gt; の流れと操作対象&lt;/strong&gt;',['../md__open_g_l__func.html#autotoc_md31',1,'']]]
 ];

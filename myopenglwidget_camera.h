@@ -32,6 +32,7 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event) override;
     void wheelEvent(QWheelEvent *event) override;
     void updateProjectionMatrix() override;
+    void updateCameraScreenSize();//Cameraクラスのアスペクト比をウィジェットから動的に変更
 
     // カメラの状態を保存・設定するためのメソッド（必要に応じて実装）
 

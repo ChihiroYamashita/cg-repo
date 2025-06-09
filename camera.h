@@ -56,6 +56,10 @@ public:
     void setFov(const float& in_Fov);
     float getFov() const;
 
+    //カメラサイズをウィジェットから動的に作成
+    void setScreenWidth(double screenWidth);
+    void setScreenHeight(double screenHeight);
+
 
 
     void rotateCameraInLocalFrameFixLookAt(const double& in_HorizontalAngle, const double& in_VerticalAngle);

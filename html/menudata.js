@@ -101,7 +101,15 @@ var menudata={children:[
 {text:"ファイル",url:"files.html",children:[
 {text:"ファイル一覧",url:"files.html"},
 {text:"ファイルメンバ",url:"globals.html",children:[
-{text:"全て",url:"globals.html"},
+{text:"全て",url:"globals.html",children:[
+{text:"_",url:"globals.html#index__5F"},
+{text:"d",url:"globals.html#index_d"},
+{text:"e",url:"globals.html#index_e"},
+{text:"g",url:"globals.html#index_g"},
+{text:"h",url:"globals.html#index_h"},
+{text:"m",url:"globals.html#index_m"},
+{text:"r",url:"globals.html#index_r"},
+{text:"w",url:"globals.html#index_w"}]},
 {text:"関数",url:"globals_func.html"},
 {text:"変数",url:"globals_vars.html"},
 {text:"マクロ定義",url:"globals_defs.html"}]}]}]}

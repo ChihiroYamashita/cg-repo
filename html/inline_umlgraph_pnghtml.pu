@@ -23,7 +23,22 @@ else
 end
 MyOpenGLWidget -> OpenGL : glMatrixMode(GL_MODELVIEW)
 @enduml
-@startuml inline_umlgraph_8.png
+@startuml inline_umlgraph_9.png
+participant OpenGLWidget as W
+participant OpenGL as GL
+participant Camera as C
+
+W -> C: updateProjectionMatrix()
+W -> GL: Clear buffers (Color & Depth)
+W -> GL: Set viewport
+W -> C: Apply projection and modelview matrices
+W -> GL: Enable depth test, blending, and smoothing
+W -> GL: Draw XYZ Axes
+W -> GL: Draw XY Grid
+W -> GL: Draw Cube
+W -> W: Output debug information
+@enduml
+@startuml inline_umlgraph_10.png
 MyOpenGLWidget -> MyOpenGLWidget : updateProjectionMatrix()
 MyOpenGLWidget -> OpenGL : glMatrixMode(GL_PROJECTION)
 MyOpenGLWidget -> OpenGL : glLoadIdentity()
@@ -34,7 +49,7 @@ else
 end
 MyOpenGLWidget -> OpenGL : glMatrixMode(GL_MODELVIEW)
 @enduml
-@startuml inline_umlgraph_9.png
+@startuml inline_umlgraph_11.png
 actor User
 
 User -> MainWindow : スライダー操作などのユーザー入力
@@ -47,7 +62,7 @@ MyOpenGLWidget -> MyOpenGLWidget : 投影変換を適用（gluPerspective / glOr
 MyOpenGLWidget -> OpenGL : ビューポート変換を適用（glViewport）
 MyOpenGLWidget -> OpenGL : シーンをレンダリング
 @enduml
-@startuml inline_umlgraph_10.png
+@startuml inline_umlgraph_12.png
 actor User
 
 User -> MainWindow : スライダー操作/マウス操作\n（拡縮、回転、平行移動）
@@ -64,7 +79,7 @@ Camera -> Camera  : lookAt( QVector3D in_LookAt, QVector3D in_Up )\nカメラの
 
 MyOpenGLWidget -> OpenGL : update()\nすべての処理が終わったら画面を再描画（正確な記述は次項）
 @enduml
-@startuml inline_umlgraph_11.png
+@startuml inline_umlgraph_13.png
 actor User
 
 
@@ -76,12 +91,12 @@ MyOpenGLWidget -> MyOpenGLWidget : projection_and_modelview(g_Camera);\nカメ�
 MyOpenGLWidget -> OpenGL : glEnable(GL_DEPTH_TEST);\n深度テスト（Depth Test）を有効化\nglBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);\nアルファブレンディング（透明度の計算）\nglEnable(GL_BLEND);ブレンディングを有効化\nglEnable(GL_POINT_SMOOTH);, glEnable(GL_LINE_SMOOTH);, glEnable(GL_POLYGON_SMOOTH);\n（アンチエイリアス）を有効化\nglHint(GL_POINT_SMOOTH_HINT, GL_NICEST);\nスムージング
 MyOpenGLWidget -> drawObject :drawXYZAxes(); drawXYGrid(0.5, 50); drawcube();
 @enduml
-@startuml inline_umlgraph_12.png
+@startuml inline_umlgraph_14.png
 User -> Timeline : Add keyframe
 Timeline -> CustomScene : Insert keyframe
 CustomScene -> MainWindow : Notify keyframe added
 @enduml
-@startuml inline_umlgraph_13.png
+@startuml inline_umlgraph_15.png
  User -> MainWindow : on_fovSlider_valueChanged(int value)\n FOV sliderをいじる
  MainWindow -> MyOpenGLWidget : setCameraFov(float fov)\n カメラFOVを更新
  MyOpenGLWidget -> Camera : setFov(float cameraFov)\n 新しい FOVを設置
