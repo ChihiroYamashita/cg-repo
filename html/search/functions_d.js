@@ -15,6 +15,7 @@ var searchData=
   ['setscreenheight_12',['setScreenHeight',['../class_camera_af77b974be890ddd91a86ca844ceabbf0.html#af77b974be890ddd91a86ca844ceabbf0',1,'Camera']]],
   ['setscreenwidth_13',['setScreenWidth',['../class_camera_ae0f16cc6c453ce1798fef8245fcd8a2f.html#ae0f16cc6c453ce1798fef8245fcd8a2f',1,'Camera']]],
   ['setupscene_14',['setupScene',['../class_custom_scene_a8d08d1fe3e2a5d2b1985a5014be34e67.html#a8d08d1fe3e2a5d2b1985a5014be34e67',1,'CustomScene::setupScene()'],['../class_main_window_aef1853fcce800089839a9c4a06f67107.html#aef1853fcce800089839a9c4a06f67107',1,'MainWindow::setupScene()']]],
-  ['showevent_15',['showEvent',['../class_main_window_a3febb9ef08a8e0f7fc00848ea540a899.html#a3febb9ef08a8e0f7fc00848ea540a899',1,'MainWindow']]],
-  ['slerp_16',['slerp',['../class_custom_scene_a7b5fe6e1708e4b44219b78340ee5fc46.html#a7b5fe6e1708e4b44219b78340ee5fc46',1,'CustomScene::slerp()'],['../class_interpolator_a870079754d95dacf398894d34f61a717.html#a870079754d95dacf398894d34f61a717',1,'Interpolator::slerp()']]]
+  ['shadenextpixel_15',['shadeNextPixel',['../myopenglwidget__camera_8cpp_a194b2b4c12d48f9d977fc14d60756703.html#a194b2b4c12d48f9d977fc14d60756703',1,'shadeNextPixel():&#160;myopenglwidget_camera.cpp'],['../myopenglwidget__camera_8h_a194b2b4c12d48f9d977fc14d60756703.html#a194b2b4c12d48f9d977fc14d60756703',1,'shadeNextPixel():&#160;myopenglwidget_camera.cpp']]],
+  ['showevent_16',['showEvent',['../class_main_window_a3febb9ef08a8e0f7fc00848ea540a899.html#a3febb9ef08a8e0f7fc00848ea540a899',1,'MainWindow']]],
+  ['slerp_17',['slerp',['../class_custom_scene_a7b5fe6e1708e4b44219b78340ee5fc46.html#a7b5fe6e1708e4b44219b78340ee5fc46',1,'CustomScene::slerp()'],['../class_interpolator_a870079754d95dacf398894d34f61a717.html#a870079754d95dacf398894d34f61a717',1,'Interpolator::slerp()']]]
 ];

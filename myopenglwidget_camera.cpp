@@ -2,15 +2,31 @@
 #include "drawObject.h"
 #include "GLPreview.h"
 #include "Camera.h"
+#include "RayTracingInternalData.h"
+#include "random.h"
+#include "ray.h"
 #include <GL/glu.h>
-
+#include <QTimer>
+const int g_FilmWidth = 640;
+const int g_FilmHeight = 480;
 bool g_DrawFilm = true;
 GLuint g_FilmTexture = 0;
+float* g_FilmBuffer = nullptr;
+float* g_AccumulationBuffer = nullptr;
+int* g_CountBuffer = nullptr;
+int nSamplesPerPixel = 4;
 
+
+RayTracingInternalData g_RayTracingInternalData;
 
 MyOpenGLWidget_camera::MyOpenGLWidget_camera(QWidget* parent)
     : MyOpenGLWidget(parent) {
     // 初期化コードをここに記述
+
+    //idle()相当処理用
+    QTimer* timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, &MyOpenGLWidget_camera::updateFrame);
+    timer->start(1000 / 60); // 60fps 相当
 }
 
 
@@ -23,6 +39,7 @@ void MyOpenGLWidget_camera::initializeGL() {
     updatedFov=45;
 
     //checkOpenGLVersion();
+    initFilm();
 }
 
 /**
@@ -259,4 +276,115 @@ void MyOpenGLWidget_camera::mouseReleaseEvent(QMouseEvent *event)
 void MyOpenGLWidget_camera::wheelEvent(QWheelEvent *event)
 {
     // 何もしない
+}
+
+
+/*---------pass_tracing追加-----------*/
+
+void resetFilm()
+{
+    memset( g_AccumulationBuffer, 0, sizeof(float) * g_FilmWidth * g_FilmHeight * 3 );
+    memset( g_CountBuffer, 0, sizeof(int) * g_FilmWidth * g_FilmHeight );
+}
+
+void initFilm()
+{
+    g_FilmBuffer = (float*)malloc( sizeof(float) * g_FilmWidth * g_FilmHeight * 3 );
+    g_AccumulationBuffer = (float*)malloc( sizeof(float) * g_FilmWidth * g_FilmHeight * 3 );
+    g_CountBuffer = (int*)malloc( sizeof(int) * g_FilmWidth * g_FilmHeight );
+    resetFilm();
+
+    glGenTextures( 1, &g_FilmTexture );
+    glBindTexture( GL_TEXTURE_2D, g_FilmTexture );
+
+    glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB, g_FilmWidth, g_FilmHeight, 0, GL_RGB, GL_FLOAT, g_FilmBuffer );
+
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+     qDebug() << "initFilm is executed sucessfully";
+}
+
+void updateFilm()
+{
+     for( int i=0; i<g_FilmWidth * g_FilmHeight; i++ )
+     {
+        if( g_CountBuffer[i] > 0 )
+        {
+            g_FilmBuffer[i*3] = g_AccumulationBuffer[i*3] / g_CountBuffer[i];
+            g_FilmBuffer[i*3+1] = g_AccumulationBuffer[i*3+1] / g_CountBuffer[i];
+            g_FilmBuffer[i*3+2] = g_AccumulationBuffer[i*3+2] / g_CountBuffer[i];
+        }
+        else
+        {
+            g_FilmBuffer[i*3] = 0.0;
+            g_FilmBuffer[i*3+1] = 0.0;
+            g_FilmBuffer[i*3+2] = 0.0;
+        }
+     }
+
+     glBindTexture( GL_TEXTURE_2D, g_FilmTexture );
+     glTexSubImage2D( GL_TEXTURE_2D, 0, 0, 0, g_FilmWidth, g_FilmHeight, GL_RGB, GL_FLOAT, g_FilmBuffer);
+}
+
+//idle()相当処理用
+void MyOpenGLWidget_camera::updateFrame()
+{
+     // 1フレーム分のピクセルを処理
+     for (int i = 0; i < g_FilmWidth * g_FilmHeight; i++) {
+        shadeNextPixel();
+     }
+
+     // テクスチャ更新
+     updateFilm();
+
+     // Qtで再描画をリクエスト
+     update();
+}
+
+//仕様はVSの方に記載
+void MyOpenGLWidget_camera::shadeNextPixel()
+{
+     stepToNextPixel( g_RayTracingInternalData );
+
+     const int pixel_flat_idx = g_RayTracingInternalData.nextPixel_j * g_FilmWidth + g_RayTracingInternalData.nextPixel_i;
+
+     Eigen::Vector3d I = Eigen::Vector3d::Zero();
+
+     for( int k=0; k<nSamplesPerPixel; k++ )
+     {
+        double p_x = ( g_RayTracingInternalData.nextPixel_i + randomMT() ) / g_FilmWidth;
+        double p_y = ( g_RayTracingInternalData.nextPixel_j + randomMT() ) / g_FilmHeight;
+
+        Ray ray; ray.depth = 0;
+        g_Camera2.screenView( p_x, p_y, ray );
+        ray.prev_mesh_idx = -99; ray.prev_primitive_idx = -1;
+
+        RayHit ray_hit;
+        rayTracing( g_Obj, g_AreaLights, ray, ray_hit );
+
+        if( ray_hit.primitive_idx >= 0 )
+        {
+            I += computeShading( ray, ray_hit, g_Obj, g_AreaLights );
+        }
+     }
+
+     g_AccumulationBuffer[pixel_flat_idx*3] += I.x();
+     g_AccumulationBuffer[pixel_flat_idx*3+1] += I.y();
+     g_AccumulationBuffer[pixel_flat_idx*3+2] += I.z();
+     g_CountBuffer[pixel_flat_idx] += nSamplesPerPixel;
+}
+
+void stepToNextPixel( RayTracingInternalData& io_data )
+{
+     io_data.nextPixel_i++;
+     if( io_data.nextPixel_i >= g_FilmWidth )
+     {
+        io_data.nextPixel_i = 0;
+        io_data.nextPixel_j++;
+
+        if( io_data.nextPixel_j >= g_FilmHeight )
+        {
+            io_data.nextPixel_j = 0;
+        }
+     }
 }

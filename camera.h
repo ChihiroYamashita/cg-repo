@@ -5,6 +5,7 @@
 #include <QVector3D>
 #include <QtMath> // Qtの数学関数用
 #include <QQuaternion>
+#include "ray.h"
 //
 //  Camera.h
 //
@@ -77,6 +78,8 @@ public:
     double getFocalLength() const;
     double getScreenWidth() const;
     double getScreenHeight() const;
+
+    void screenView( const double in_x, const double in_y, Ray& out_Ray );
 
 protected:
     QVector3D m_EyePoint;

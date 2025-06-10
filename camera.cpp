@@ -31,7 +31,7 @@
 #include <QVector3D>
 #include <QtMath> // Qtの数学関数用
 #include <QDebug>
-
+#include "ray.h"
 
 Camera::Camera()
     : m_EyePoint(0.0, 0.0, 0.0)
@@ -256,5 +256,15 @@ double Camera::getScreenWidth() const
 double Camera::getScreenHeight() const
 {
     return m_ScreenHeight;
+}
+
+void Camera::screenView( const double in_x, const double in_y, Ray& out_Ray )
+{
+    const double s = ( in_x - 0.5 ) * m_ScreenWidth;
+    const double t = ( 0.5 - in_y ) * m_ScreenHeight;
+
+    out_Ray.o = m_EyePoint;
+    out_Ray.d = m_xVector * s + m_yVector * t - m_zVector * m_FocalLength;
+    out_Ray.d.normalize();
 }
 

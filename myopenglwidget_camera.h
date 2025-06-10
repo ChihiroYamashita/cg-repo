@@ -11,6 +11,11 @@
 #include <QOpenGLWidget>
 #include <QObject>
 #include "myopenglwidget.h" // MyOpenGLWidget クラスをインクルード
+#include "RayTracingInternalData.h"
+
+void initFilm();
+void resetFilm();
+void updateFilm();
 
 
 class MyOpenGLWidget_camera :public MyOpenGLWidget {
@@ -21,6 +26,7 @@ public:
     void setCamerakeyframe(const QVector3D& eyePoint,const QVector3D& lookAtPoint);//カメラ（画面2用）
     void setCameraEyePoint2(const QVector3D& eyePoint);//MyOpenGLWidgetの外からカメラの画角を設定する関数
     void setlookAtPoint2(const QVector3D& lookAtPoint);
+    void updateFrame();
 public slots:
     void onCameraFovChanged(float newFov); // シグナルに応答するスロット
 protected:
@@ -41,6 +47,8 @@ protected:
     void saveCameraState();
     void loadCameraState();
 private:
+    void shadeNextPixel();
+    void stepToNextPixel(RayTracingInternalData& io_data);
     Camera g_Camera2;
     void drawCube();
     GLdouble vertex[8][3];

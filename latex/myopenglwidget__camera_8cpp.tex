@@ -5,32 +5,112 @@
 {\ttfamily \#include "{}GLPreview.\+h"{}}\newline
 {\ttfamily \#include "{}Camera.\+h"{}}\newline
 {\ttfamily \#include $<$GL/glu.\+h$>$}\newline
-myopenglwidget\+\_\+camera.\+cpp の依存先関係図\+:\nopagebreak
+{\ttfamily \#include $<$QTimer$>$}\newline
+myopenglwidget\+\_\+camera.\+cpp の依存先関係図\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{myopenglwidget__camera_8cpp__incl}
 \end{center}
 \end{figure}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{myopenglwidget__camera_8cpp_af848ee1e8e6aa06ccdbc4b548158f5fa_af848ee1e8e6aa06ccdbc4b548158f5fa}{reset\+Film}} ()
+\item 
+void \mbox{\hyperlink{myopenglwidget__camera_8cpp_adc659dc6e4788fd965bbccf86f696be0_adc659dc6e4788fd965bbccf86f696be0}{init\+Film}} ()
+\item 
+void \mbox{\hyperlink{myopenglwidget__camera_8cpp_a39c38563b075ca4414b135fe1a91bf01_a39c38563b075ca4414b135fe1a91bf01}{update\+Film}} ()
+\item 
+void \mbox{\hyperlink{myopenglwidget__camera_8cpp_a194b2b4c12d48f9d977fc14d60756703_a194b2b4c12d48f9d977fc14d60756703}{shade\+Next\+Pixel}} ()
+\end{DoxyCompactItemize}
 \doxysubsubsection*{変数}
 \begin{DoxyCompactItemize}
+\item 
+const int \mbox{\hyperlink{myopenglwidget__camera_8cpp_a63e92c3171f6a27fb09456c1e01da214_a63e92c3171f6a27fb09456c1e01da214}{g\+\_\+\+Film\+Width}} = 640
+\item 
+const int \mbox{\hyperlink{myopenglwidget__camera_8cpp_ad8425ff17afe0f402379a9f095f9b1c6_ad8425ff17afe0f402379a9f095f9b1c6}{g\+\_\+\+Film\+Height}} = 480
 \item 
 bool \mbox{\hyperlink{myopenglwidget__camera_8cpp_a97f8c668ac25917b013801d271b2abaa_a97f8c668ac25917b013801d271b2abaa}{g\+\_\+\+Draw\+Film}} = true
 \item 
 GLuint \mbox{\hyperlink{myopenglwidget__camera_8cpp_a797f2b3090b124ff2d264fde513d5f20_a797f2b3090b124ff2d264fde513d5f20}{g\+\_\+\+Film\+Texture}} = 0
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{myopenglwidget__camera_8cpp_a398b287054d3511e2cb50d9fdaa1e010_a398b287054d3511e2cb50d9fdaa1e010}{g\+\_\+\+Film\+Buffer}} = nullptr
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{myopenglwidget__camera_8cpp_a7adccbec26849e271c6bd379a5a09bb0_a7adccbec26849e271c6bd379a5a09bb0}{g\+\_\+\+Accumulation\+Buffer}} = nullptr
+\item 
+int \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{myopenglwidget__camera_8cpp_a368dd5013eb7fbdb75d5306df4708c7f_a368dd5013eb7fbdb75d5306df4708c7f}{g\+\_\+\+Count\+Buffer}} = nullptr
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{関数詳解}
+\Hypertarget{myopenglwidget__camera_8cpp_adc659dc6e4788fd965bbccf86f696be0_adc659dc6e4788fd965bbccf86f696be0}\index{myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}!initFilm@{initFilm}}
+\index{initFilm@{initFilm}!myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}}
+\doxysubsubsection{\texorpdfstring{initFilm()}{initFilm()}}
+{\footnotesize\ttfamily \label{myopenglwidget__camera_8cpp_adc659dc6e4788fd965bbccf86f696be0_adc659dc6e4788fd965bbccf86f696be0} 
+void init\+Film (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{myopenglwidget__camera_8cpp_af848ee1e8e6aa06ccdbc4b548158f5fa_af848ee1e8e6aa06ccdbc4b548158f5fa}\index{myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}!resetFilm@{resetFilm}}
+\index{resetFilm@{resetFilm}!myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}}
+\doxysubsubsection{\texorpdfstring{resetFilm()}{resetFilm()}}
+{\footnotesize\ttfamily \label{myopenglwidget__camera_8cpp_af848ee1e8e6aa06ccdbc4b548158f5fa_af848ee1e8e6aa06ccdbc4b548158f5fa} 
+void reset\+Film (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{myopenglwidget__camera_8cpp_a194b2b4c12d48f9d977fc14d60756703_a194b2b4c12d48f9d977fc14d60756703}\index{myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}!shadeNextPixel@{shadeNextPixel}}
+\index{shadeNextPixel@{shadeNextPixel}!myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}}
+\doxysubsubsection{\texorpdfstring{shadeNextPixel()}{shadeNextPixel()}}
+{\footnotesize\ttfamily \label{myopenglwidget__camera_8cpp_a194b2b4c12d48f9d977fc14d60756703_a194b2b4c12d48f9d977fc14d60756703} 
+void shade\+Next\+Pixel (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{myopenglwidget__camera_8cpp_a39c38563b075ca4414b135fe1a91bf01_a39c38563b075ca4414b135fe1a91bf01}\index{myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}!updateFilm@{updateFilm}}
+\index{updateFilm@{updateFilm}!myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}}
+\doxysubsubsection{\texorpdfstring{updateFilm()}{updateFilm()}}
+{\footnotesize\ttfamily \label{myopenglwidget__camera_8cpp_a39c38563b075ca4414b135fe1a91bf01_a39c38563b075ca4414b135fe1a91bf01} 
+void update\+Film (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
 \doxysubsection{変数詳解}
+\Hypertarget{myopenglwidget__camera_8cpp_a7adccbec26849e271c6bd379a5a09bb0_a7adccbec26849e271c6bd379a5a09bb0}\index{myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}!g\_AccumulationBuffer@{g\_AccumulationBuffer}}
+\index{g\_AccumulationBuffer@{g\_AccumulationBuffer}!myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_AccumulationBuffer}{g\_AccumulationBuffer}}
+{\footnotesize\ttfamily \label{myopenglwidget__camera_8cpp_a7adccbec26849e271c6bd379a5a09bb0_a7adccbec26849e271c6bd379a5a09bb0} 
+float\texorpdfstring{$\ast$}{*} g\+\_\+\+Accumulation\+Buffer = nullptr}
+
+\Hypertarget{myopenglwidget__camera_8cpp_a368dd5013eb7fbdb75d5306df4708c7f_a368dd5013eb7fbdb75d5306df4708c7f}\index{myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}!g\_CountBuffer@{g\_CountBuffer}}
+\index{g\_CountBuffer@{g\_CountBuffer}!myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_CountBuffer}{g\_CountBuffer}}
+{\footnotesize\ttfamily \label{myopenglwidget__camera_8cpp_a368dd5013eb7fbdb75d5306df4708c7f_a368dd5013eb7fbdb75d5306df4708c7f} 
+int\texorpdfstring{$\ast$}{*} g\+\_\+\+Count\+Buffer = nullptr}
+
 \Hypertarget{myopenglwidget__camera_8cpp_a97f8c668ac25917b013801d271b2abaa_a97f8c668ac25917b013801d271b2abaa}\index{myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}!g\_DrawFilm@{g\_DrawFilm}}
 \index{g\_DrawFilm@{g\_DrawFilm}!myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}}
 \doxysubsubsection{\texorpdfstring{g\_DrawFilm}{g\_DrawFilm}}
 {\footnotesize\ttfamily \label{myopenglwidget__camera_8cpp_a97f8c668ac25917b013801d271b2abaa_a97f8c668ac25917b013801d271b2abaa} 
 bool g\+\_\+\+Draw\+Film = true}
 
+\Hypertarget{myopenglwidget__camera_8cpp_a398b287054d3511e2cb50d9fdaa1e010_a398b287054d3511e2cb50d9fdaa1e010}\index{myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}!g\_FilmBuffer@{g\_FilmBuffer}}
+\index{g\_FilmBuffer@{g\_FilmBuffer}!myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_FilmBuffer}{g\_FilmBuffer}}
+{\footnotesize\ttfamily \label{myopenglwidget__camera_8cpp_a398b287054d3511e2cb50d9fdaa1e010_a398b287054d3511e2cb50d9fdaa1e010} 
+float\texorpdfstring{$\ast$}{*} g\+\_\+\+Film\+Buffer = nullptr}
+
+\Hypertarget{myopenglwidget__camera_8cpp_ad8425ff17afe0f402379a9f095f9b1c6_ad8425ff17afe0f402379a9f095f9b1c6}\index{myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}!g\_FilmHeight@{g\_FilmHeight}}
+\index{g\_FilmHeight@{g\_FilmHeight}!myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_FilmHeight}{g\_FilmHeight}}
+{\footnotesize\ttfamily \label{myopenglwidget__camera_8cpp_ad8425ff17afe0f402379a9f095f9b1c6_ad8425ff17afe0f402379a9f095f9b1c6} 
+const int g\+\_\+\+Film\+Height = 480}
+
 \Hypertarget{myopenglwidget__camera_8cpp_a797f2b3090b124ff2d264fde513d5f20_a797f2b3090b124ff2d264fde513d5f20}\index{myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}!g\_FilmTexture@{g\_FilmTexture}}
 \index{g\_FilmTexture@{g\_FilmTexture}!myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}}
 \doxysubsubsection{\texorpdfstring{g\_FilmTexture}{g\_FilmTexture}}
 {\footnotesize\ttfamily \label{myopenglwidget__camera_8cpp_a797f2b3090b124ff2d264fde513d5f20_a797f2b3090b124ff2d264fde513d5f20} 
 GLuint g\+\_\+\+Film\+Texture = 0}
+
+\Hypertarget{myopenglwidget__camera_8cpp_a63e92c3171f6a27fb09456c1e01da214_a63e92c3171f6a27fb09456c1e01da214}\index{myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}!g\_FilmWidth@{g\_FilmWidth}}
+\index{g\_FilmWidth@{g\_FilmWidth}!myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_FilmWidth}{g\_FilmWidth}}
+{\footnotesize\ttfamily \label{myopenglwidget__camera_8cpp_a63e92c3171f6a27fb09456c1e01da214_a63e92c3171f6a27fb09456c1e01da214} 
+const int g\+\_\+\+Film\+Width = 640}
 

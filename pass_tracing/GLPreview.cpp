@@ -214,13 +214,8 @@ void drawFilm( const Camera& in_Camera, GLuint in_FilmTexture )
   glEnd();
 
   glDisable( GL_TEXTURE_2D );
+  qDebug() << "drawFilm is executed sucessfully";
 
-  // デバッグ用に画面を青く塗りつぶす
-  //glClearColor(0.0f, 0.0f, 1.0f, 1.0f); // 青色
-  //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-  // 関数が呼び出されたことを確認するログ
-  //qDebug() << "drawFilm が呼び出されました: 画面を青く描画しています（デバッグ用）";
 
 
 }
