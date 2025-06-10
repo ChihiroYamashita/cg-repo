@@ -11,7 +11,7 @@
 #ifndef CUSTOMSCENE_H
 #define CUSTOMSCENE_H
 
-#include "qvector3d.h"
+#include <Eigen/Dense>
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
 #include <QGraphicsLineItem>
@@ -67,7 +67,7 @@ private:
 public:
     explicit CustomScene(MainWindow *mainWindow,QObject *parent = nullptr);
     void setupScene(int width, int height); // サイズをパラメータとして受け取るように変更  // シーンのセットアップ関数
-    void addKeyframe(int frameNumber, const QVector3D& eyePoint, const QVector3D& lookAtPoint, const QVector3D& upVector, const QVector3D& xVector, const QVector3D& yVector, const QVector3D& zVector, float fov, double zoom);
+    void addKeyframe(int frameNumber, const Eigen::Vector3d& eyePoint, const Eigen::Vector3d& lookAtPoint, const Eigen::Vector3d& upVector, const Eigen::Vector3d& xVector, const Eigen::Vector3d& yVector, const Eigen::Vector3d& zVector, float fov, double zoom);
 
     qreal currentMousePositionX() const;  // マウス位置を取得するメソッド
     qreal getPlayheadPositionX() const;//クラス外にPlayheadPositionX()を教える

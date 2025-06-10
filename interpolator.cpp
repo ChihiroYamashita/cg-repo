@@ -20,8 +20,8 @@ CameraKeyframe Interpolator::interpolateKeyframe(const CameraKeyframe& kf1, cons
     DualQuaternion dqInterpolated = (dq1 * (1 - t) + dq2 * t).normalized();
 
     result.eyePoint = dqInterpolated.getTranslation();
-    result.lookAtPoint = result.eyePoint + dqInterpolated.getRotation() * QVector3D(0, 0, -1);  // 例として前方向を設定
-    result.upVector = dqInterpolated.getRotation() * QVector3D(0, 1, 0);*/  // 例として上方向を設定
+    result.lookAtPoint = result.eyePoint + dqInterpolated.getRotation() * Eigen::Vector3d(0, 0, -1);  // 例として前方向を設定
+    result.upVector = dqInterpolated.getRotation() * Eigen::Vector3d(0, 1, 0);*/  // 例として上方向を設定
 
 
     result.eyePoint = kf1.eyePoint * (1 - t) + kf2.eyePoint * t;

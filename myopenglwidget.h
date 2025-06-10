@@ -8,7 +8,7 @@
  */
 #ifndef MYOPENGLWIDGET_H
 #define MYOPENGLWIDGET_H
-
+#include <Eigen/Dense>
 #include "camera.h"
 #include <QOpenGLWidget>
 #include <QPushButton>
@@ -48,16 +48,16 @@ public:
     void setCameraFov(float fov); // 視野角設定用メソッド
     void setOrthoMode(bool mode); // メソッドの宣言
     bool getOrthoMode();
-    QVector3D getEyePoint() const;
-    QVector3D getlookAtPoint() const;
-    QVector3D getUpVector()const;
-    QVector3D getXVector()const;
-    QVector3D getYVector()const;
-    QVector3D getZVector()const;
+    Eigen::Vector3d getEyePoint() const;
+    Eigen::Vector3d getlookAtPoint() const;
+    Eigen::Vector3d getUpVector()const;
+    Eigen::Vector3d getXVector()const;
+    Eigen::Vector3d getYVector()const;
+    Eigen::Vector3d getZVector()const;
     double getZoom()const;
 
-    void setCameraEyePoint(const QVector3D& eyePoint);//MyOpenGLWidgetの外からカメラの画角を設定する関数
-    void setlookAtPoint(const QVector3D& lookAtPoint);
+    void setCameraEyePoint(const Eigen::Vector3d& eyePoint);//MyOpenGLWidgetの外からカメラの画角を設定する関数
+    void setlookAtPoint(const Eigen::Vector3d& lookAtPoint);
     //カメラ（画面2用）
 
 

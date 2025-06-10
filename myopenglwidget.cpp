@@ -13,7 +13,7 @@
 #include <GL/glu.h>
 #include "drawObject.h"
 #include <iostream>
-
+#include <Eigen/Dense>
 #define EIGEN_DISABLE_UNALIGNED_ARRAY_ASSERT
 #define EIGEN_DONT_VECTORIZE
 
@@ -21,6 +21,7 @@
 #include <math.h>
 
 #include "Camera.h"
+
 
 
 int width = 500;
@@ -60,8 +61,8 @@ initializeButtons();
 
     //カメラ設定
 
-    g_Camera.setEyePoint(QVector3D( 1.0, 1.0, 3.0 ));
-    g_Camera.lookAt(QVector3D{ 0.0, 0.0, 0.0 }, QVector3D{ 0.0, 1.0, 0.0 });
+    g_Camera.setEyePoint(Eigen::Vector3d( 1.0, 1.0, 3.0 ));
+    g_Camera.lookAt(Eigen::Vector3d{ 0.0, 0.0, 0.0 }, Eigen::Vector3d{ 0.0, 1.0, 0.0 });
 
     qDebug() << "cameraFov2initializeGL():" << cameraFov;
 
@@ -198,10 +199,10 @@ void MyOpenGLWidget::projection_and_modelview(const Camera& in_Camera) {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    const QVector3D eyePoint = in_Camera.getEyePoint();
+    const Eigen::Vector3d eyePoint = in_Camera.getEyePoint();
    // qDebug() << "EyePoint:" <<in_Camera.getEyePoint();
-    const QVector3D lookAtPoint = in_Camera.getLookAtPoint();
-    const QVector3D upVector = in_Camera.getYVector();
+    const Eigen::Vector3d lookAtPoint = in_Camera.getLookAtPoint();
+    const Eigen::Vector3d upVector = in_Camera.getYVector();
 
     gluLookAt(eyePoint.x(), eyePoint.y(), eyePoint.z(),  // カメラの位置
               lookAtPoint.x(), lookAtPoint.y(), lookAtPoint.z(),  // 注視点
@@ -236,7 +237,9 @@ void MyOpenGLWidget::mouseMoveEvent(QMouseEvent *event)
 
         g_Camera.rotateCameraInLocalFrameFixLookAt(dx * scale,dy* scale);
 
-         qDebug() << "EyePoint:" <<g_Camera.getEyePoint();
+        Eigen::Vector3d eye = g_Camera.getEyePoint();
+        qDebug() << "EyePoint:" << QString("(%1, %2, %3)").arg(eye.x()).arg(eye.y()).arg(eye.z());
+
 
         QWidget::update();
     }
@@ -367,7 +370,7 @@ void MyOpenGLWidget::onButtonMoved(QMouseEvent *event) {
         // 移動量に基づいて平行移動の量を計算
         // ここでは、Y軸方向の移動量に基づいてカメラを上下に移動。
         // 実際には、マウスの移動方向やアプリケーションの要件に応じて調整が必要。
-        QVector3D delta(dx * 0.005, dy * -0.005, 0); // Y軸方向に動かすため、Y成分を使用
+        Eigen::Vector3d delta(dx * 0.005, dy * -0.005, 0); // Y軸方向に動かすため、Y成分を使用
 
         // デバッグ出力
        // qDebug() << "Mouse delta X:" << dx << ", Y:" << dy << ", Move amount:" << delta;
@@ -406,16 +409,16 @@ bool MyOpenGLWidget:: getOrthoMode()  {
     return orthoMode;
 }
 
-void MyOpenGLWidget::setCameraEyePoint(const QVector3D& eyePoint) {
+void MyOpenGLWidget::setCameraEyePoint(const Eigen::Vector3d& eyePoint) {
     g_Camera.setEyePoint(eyePoint);
     update(); // カメラの状態が変わったら描画を更新する
 }
 
-void MyOpenGLWidget::setlookAtPoint(const QVector3D& lookAtPoint) {
+void MyOpenGLWidget::setlookAtPoint(const Eigen::Vector3d& lookAtPoint) {
     // 現在のカメラ位置を取得
-    QVector3D eyePoint = g_Camera.getEyePoint();
+    Eigen::Vector3d eyePoint = g_Camera.getEyePoint();
     // カメラの上方向ベクトルを取得（仮定または既知の値を使用）
-    QVector3D upVector =QVector3D(0.0, 1.0, 0.0);
+    Eigen::Vector3d upVector =Eigen::Vector3d(0.0, 1.0, 0.0);
         //g_Camera.getYVector(); // 通常はY軸方向（0,1,0）が使用される
 
     // CameraクラスのlookAtメソッドを呼び出し、新しい注視点に基づいてカメラの向きを設定
@@ -442,27 +445,27 @@ void MyOpenGLWidget::setCameraFov(float fov) {
 }
 
 
-QVector3D MyOpenGLWidget::getEyePoint() const {
+Eigen::Vector3d MyOpenGLWidget::getEyePoint() const {
     return g_Camera.getEyePoint();
 }
 
-QVector3D MyOpenGLWidget::getlookAtPoint() const {
+Eigen::Vector3d MyOpenGLWidget::getlookAtPoint() const {
     return g_Camera.getLookAtPoint();
 }
 
-QVector3D MyOpenGLWidget::getUpVector() const {
+Eigen::Vector3d MyOpenGLWidget::getUpVector() const {
     return g_Camera.getYVector();
 }
 
-QVector3D MyOpenGLWidget::getXVector() const {
+Eigen::Vector3d MyOpenGLWidget::getXVector() const {
     return g_Camera.getXVector();
 }
 
-QVector3D MyOpenGLWidget::getYVector() const {
+Eigen::Vector3d MyOpenGLWidget::getYVector() const {
     return g_Camera.getYVector();
 }
 
-QVector3D MyOpenGLWidget::getZVector() const {
+Eigen::Vector3d MyOpenGLWidget::getZVector() const {
     return g_Camera.getZVector();
 }
 

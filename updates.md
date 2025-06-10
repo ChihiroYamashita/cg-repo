@@ -9,6 +9,16 @@ Paragraph.
     * ray構造体も同様に分離
     * cameraのインスタンスはg_Camera2
 
+- rayTracing 関数は別ファイルに切り出して RayTracer.cpp/h に置いた
+    * 再利用性
+
+
+| ファイル                       | 役割                                                                              |
+| -------------------------- | ------------------------------------------------------------------------------- |
+| `RayTracer.cpp` / `.h`     | **交差判定**（`rayTracing`, `rayTriangleIntersect` など）                               |
+| `Shading.cpp` / `.h`       | **放射輝度の計算=レンダリング方程式**（`computeShading`, `computeDirectLighting`, `computeReflection`, など） |
+| `random.c`   | `randomMT()` などランダムサンプル関連                                                       |
+
 
 - bullet
 + other bullet

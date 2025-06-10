@@ -19,7 +19,7 @@ void projection_and_modelview( const Camera& in_Camera, const int width, const i
   glMatrixMode( GL_MODELVIEW );
   glLoadIdentity();
   
-  const QVector3D lookAtPoint = in_Camera.getLookAtPoint();
+  const Eigen::Vector3d lookAtPoint = in_Camera.getLookAtPoint();
   gluLookAt( in_Camera.getEyePoint().x(), in_Camera.getEyePoint().y(), in_Camera.getEyePoint().z(), lookAtPoint.x(), lookAtPoint.y(), lookAtPoint.z(), in_Camera.getYVector().x(), in_Camera.getYVector().y(), in_Camera.getYVector().z() );
 }
 
@@ -182,11 +182,11 @@ void drawLights( const std::vector<AreaLight>& in_Lights )
 
 void drawFilm( const Camera& in_Camera, GLuint in_FilmTexture )
 {
-  const QVector3D screen_center = in_Camera.getEyePoint() - in_Camera.getZVector() * in_Camera.getFocalLength();
-  const QVector3D p1 = screen_center - in_Camera.getXVector() * in_Camera.getScreenWidth() * 0.5 - in_Camera.getYVector() * in_Camera.getScreenHeight() * 0.5;
-  const QVector3D p2 = screen_center + in_Camera.getXVector() * in_Camera.getScreenWidth() * 0.5 - in_Camera.getYVector() * in_Camera.getScreenHeight() * 0.5;
-  const QVector3D p3 = screen_center + in_Camera.getXVector() * in_Camera.getScreenWidth() * 0.5 + in_Camera.getYVector() * in_Camera.getScreenHeight() * 0.5;
-  const QVector3D p4 = screen_center - in_Camera.getXVector() * in_Camera.getScreenWidth() * 0.5 + in_Camera.getYVector() * in_Camera.getScreenHeight() * 0.5;
+  const Eigen::Vector3d screen_center = in_Camera.getEyePoint() - in_Camera.getZVector() * in_Camera.getFocalLength();
+  const Eigen::Vector3d p1 = screen_center - in_Camera.getXVector() * in_Camera.getScreenWidth() * 0.5 - in_Camera.getYVector() * in_Camera.getScreenHeight() * 0.5;
+  const Eigen::Vector3d p2 = screen_center + in_Camera.getXVector() * in_Camera.getScreenWidth() * 0.5 - in_Camera.getYVector() * in_Camera.getScreenHeight() * 0.5;
+  const Eigen::Vector3d p3 = screen_center + in_Camera.getXVector() * in_Camera.getScreenWidth() * 0.5 + in_Camera.getYVector() * in_Camera.getScreenHeight() * 0.5;
+  const Eigen::Vector3d p4 = screen_center - in_Camera.getXVector() * in_Camera.getScreenWidth() * 0.5 + in_Camera.getYVector() * in_Camera.getScreenHeight() * 0.5;
 
   //glClearColor(0.0f, 0.0f, 1.0f, 1.0f); // 青色
   //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

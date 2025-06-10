@@ -6,7 +6,7 @@
  * DualQuaternionクラスは、3D空間における回転と並進を統一的に表現するためのデータ構造です。
  * クォータニオンによる回転と並進の操作を効率的に処理できます。
  */
-#include <QVector3D>
+#include <Eigen/Dense>
 #include <QQuaternion>
 
 class DualQuaternion {
@@ -19,7 +19,7 @@ public:
     DualQuaternion(const QQuaternion& realPart, const QQuaternion& dualPart)
         : real(realPart), dual(dualPart) {}
 
-    static DualQuaternion fromTranslationRotation(const QVector3D& translation, const QQuaternion& rotation) {
+    static DualQuaternion fromTranslationRotation(const Eigen::Vector3d& translation, const QQuaternion& rotation) {
         QQuaternion t(0, translation.x(), translation.y(), translation.z());
         DualQuaternion dq;
         dq.real = rotation;
@@ -48,8 +48,8 @@ public:
         return real;
     }
 
-    QVector3D getTranslation() const {
+    Eigen::Vector3d getTranslation() const {
         QQuaternion t = 2.0f * (dual * real.conjugated());
-        return QVector3D(t.x(), t.y(), t.z());
+        return Eigen::Vector3d(t.x(), t.y(), t.z());
     }
 };

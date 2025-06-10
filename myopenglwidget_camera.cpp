@@ -5,8 +5,12 @@
 #include "RayTracingInternalData.h"
 #include "random.h"
 #include "ray.h"
+#include "RayHit.h"
+#include "RayTracer.h"
+
 #include <GL/glu.h>
 #include <QTimer>
+#include <Eigen/Dense>
 const int g_FilmWidth = 640;
 const int g_FilmHeight = 480;
 bool g_DrawFilm = true;
@@ -16,12 +20,16 @@ float* g_AccumulationBuffer = nullptr;
 int* g_CountBuffer = nullptr;
 int nSamplesPerPixel = 4;
 
+Object g_Obj;
+std::vector<AreaLight> g_AreaLights;
+
 
 RayTracingInternalData g_RayTracingInternalData;
 
 MyOpenGLWidget_camera::MyOpenGLWidget_camera(QWidget* parent)
     : MyOpenGLWidget(parent) {
     // 初期化コードをここに記述
+
 
     //idle()相当処理用
     QTimer* timer = new QTimer(this);
@@ -34,8 +42,8 @@ void MyOpenGLWidget_camera::initializeGL() {
     //背景色指定
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
     glEnable(GL_DEPTH_TEST); // 深度テストを有効にする
-    g_Camera2.setEyePoint(QVector3D( -1.0, 2.0, 3.0 ));
-    g_Camera2.lookAt(QVector3D{ 0.0, 0.0, 0.0 }, QVector3D{ 0.0, 1.0, 0.0 });
+    g_Camera2.setEyePoint(Eigen::Vector3d( -1.0, 2.0, 3.0 ));
+    g_Camera2.lookAt(Eigen::Vector3d{ 0.0, 0.0, 0.0 }, Eigen::Vector3d{ 0.0, 1.0, 0.0 });
     updatedFov=45;
 
     //checkOpenGLVersion();
@@ -187,7 +195,7 @@ void MyOpenGLWidget_camera::updateCameraScreenSize() {
 }
 
 //視点をカメラに変換する
-void MyOpenGLWidget_camera::setCamerakeyframe(const QVector3D& eyePoint,const QVector3D& lookAtPoint){
+void MyOpenGLWidget_camera::setCamerakeyframe(const Eigen::Vector3d& eyePoint,const Eigen::Vector3d& lookAtPoint){
 
     setCameraEyePoint2(eyePoint);
     setlookAtPoint2(lookAtPoint);
@@ -199,16 +207,16 @@ void MyOpenGLWidget_camera::setCamerakeyframe(const QVector3D& eyePoint,const QV
 
 }
 
-void MyOpenGLWidget_camera::setCameraEyePoint2(const QVector3D& eyePoint){
+void MyOpenGLWidget_camera::setCameraEyePoint2(const Eigen::Vector3d& eyePoint){
     g_Camera2.setEyePoint(eyePoint);
     update(); // カメラの状態が変わったら描画を更新する
 }
-void MyOpenGLWidget_camera::setlookAtPoint2(const QVector3D& lookAtPoint){
+void MyOpenGLWidget_camera::setlookAtPoint2(const Eigen::Vector3d& lookAtPoint){
     // 現在のカメラ位置を取得
-    QVector3D eyePoint = g_Camera2.getEyePoint();
+    Eigen::Vector3d eyePoint = g_Camera2.getEyePoint();
 
     // カメラの上方向ベクトルを取得（仮定または既知の値を使用）
-    QVector3D upVector =QVector3D(0.0, 1.0, 0.0);
+    Eigen::Vector3d upVector =Eigen::Vector3d(0.0, 1.0, 0.0);
         //g_Camera.getYVector(); // 通常はY軸方向（0,1,0）が使用される
 
     // CameraクラスのlookAtメソッドを呼び出し、新しい注視点に基づいてカメラの向きを設定
@@ -388,3 +396,4 @@ void stepToNextPixel( RayTracingInternalData& io_data )
         }
      }
 }
+

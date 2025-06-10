@@ -9,7 +9,7 @@
 #include <QGraphicsTextItem>
 #include <QFont>
 #include <Eigen/Geometry> // Eigenライブラリを使用
-
+#include <Eigen/Dense>
 
 
 CustomScene::CustomScene(MainWindow *mainWindow,QObject *parent) : QGraphicsScene(parent), playhead(nullptr), m_mainWindow(mainWindow)
@@ -222,7 +222,7 @@ return playheadPositionX;
  * @details
  * キーフレームをタイムラインに追加し、関連データを更新します。
  */
-void CustomScene::addKeyframe(int frameNumber, const QVector3D& eyePoint, const QVector3D& lookAtPoint, const QVector3D& upVector, const QVector3D& xVector, const QVector3D& yVector, const QVector3D& zVector, float fov, double zoom)  {
+void CustomScene::addKeyframe(int frameNumber, const Eigen::Vector3d& eyePoint, const Eigen::Vector3d& lookAtPoint, const Eigen::Vector3d& upVector, const Eigen::Vector3d& xVector, const Eigen::Vector3d& yVector, const Eigen::Vector3d& zVector, float fov, double zoom)  {
 
 QPolygonF diamond;
 qreal x = currentMousePositionX();
@@ -257,7 +257,7 @@ CameraKeyframe keyframe = { frameNumber, eyePoint, lookAtPoint, upVector, xVecto
 keyframes.append(keyframe);// カメラ構造体のインスタンスを カメラ構造体のリストに追加
 
 qDebug() << "Keyframe" << frameNumber;
-qDebug() << "Keyframe added at frame:" <<frameNumber << " eyePoint:" << eyePoint << "lookAtPoint:" << lookAtPoint;
+//qDebug() << "Keyframe added at frame:" <<frameNumber << " eyePoint:" << eyePoint << "lookAtPoint:" << lookAtPoint;
 
 //qDebug() << "playheadBeingDragged=" << playheadPositionX;
 
@@ -338,7 +338,7 @@ if (selectedKeyframe != nullptr) {
     qDebug() << "削除前のキーフレーム数:" << keyframes.size();
     qDebug() << "削除対象のフレーム番号:" << frameNumber;
     for (const CameraKeyframe& kf : keyframes) {
-        qDebug() << "Frame:" << kf.frameNumber << "Eye:" << kf.eyePoint << "LookAt:" << kf.lookAtPoint;
+        //qDebug() << "Frame:" << kf.frameNumber << "Eye:" << kf.eyePoint << "LookAt:" << kf.lookAtPoint;
     }
 
     // 選択されたキーフレームに結びついていたカメラデータを削除
@@ -356,7 +356,7 @@ if (selectedKeyframe != nullptr) {
     qDebug() << "削除後のキーフレーム数:" << keyframes.size();
     qDebug() << "削除されたか:" << removed;
         for (const CameraKeyframe& kf : keyframes) {
-        qDebug() << "Frame:" << kf.frameNumber << "Eye:" << kf.eyePoint << "LookAt:" << kf.lookAtPoint;
+        //qDebug() << "Frame:" << kf.frameNumber << "Eye:" << kf.eyePoint << "LookAt:" << kf.lookAtPoint;
     }
 
     // 関連する線を削除

@@ -29,7 +29,9 @@ SOURCES += \
     myopenglwidget.cpp \
     myopenglwidget_camera.cpp \
     pass_tracing/GLPreview.cpp \
-    pass_tracing/random.c
+    pass_tracing/RayTracer.cpp \
+    pass_tracing/random.c \
+    pass_tracing/shading.cpp
 
 HEADERS += \
     CameraKeyframe.h \
@@ -43,10 +45,13 @@ HEADERS += \
     myopenglwidget_camera.h \
     pass_tracing/GLPreview.h \
     pass_tracing/Light.h \
+    pass_tracing/RayHit.h \
+    pass_tracing/RayTracer.h \
     pass_tracing/RayTracingInternalData.h \
     pass_tracing/TriMesh.h \
     pass_tracing/random.h \
-    pass_tracing/ray.h
+    pass_tracing/ray.h \
+    pass_tracing/shading.h
 
 FORMS += \
     mainwindow.ui

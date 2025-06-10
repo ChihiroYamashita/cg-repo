@@ -38,7 +38,7 @@ public:
     ~MainWindow();
 
     //線形補間でカメラワークを更新する
-    void updateCamera(const QVector3D& eyePoint, const QVector3D& lookAtPoint, const QVector3D& upVector, float fov, double zoom);
+    void updateCamera(const Eigen::Vector3d& eyePoint, const Eigen::Vector3d& lookAtPoint, const Eigen::Vector3d& upVector, float fov, double zoom);
 private slots:
 
     void on_fovSlider_valueChanged(int value);
