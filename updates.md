@@ -11,6 +11,7 @@ Paragraph.
 
 - rayTracing 関数は別ファイルに切り出して RayTracer.cpp/h に置いた
     * 再利用性
+- void initAreaLights()をlight.cpp二隔離
 
 
 | ファイル                       | 役割                                                                              |

@@ -214,7 +214,7 @@ void drawFilm( const Camera& in_Camera, GLuint in_FilmTexture )
   glEnd();
 
   glDisable( GL_TEXTURE_2D );
-  qDebug() << "drawFilm is executed sucessfully";
+  //qDebug() << "drawFilm is executed sucessfully";
 
 
 

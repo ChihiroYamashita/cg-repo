@@ -7,10 +7,12 @@
 #include "ray.h"
 #include "RayHit.h"
 #include "RayTracer.h"
-
+#include "shading.h"
+#include "Light.h"
 #include <GL/glu.h>
 #include <QTimer>
 #include <Eigen/Dense>
+
 const int g_FilmWidth = 640;
 const int g_FilmHeight = 480;
 bool g_DrawFilm = true;
@@ -47,7 +49,14 @@ void MyOpenGLWidget_camera::initializeGL() {
     updatedFov=45;
 
     //checkOpenGLVersion();
+    // ライト・フィルム初期化
+    initAreaLights();
     initFilm();
+    resetFilm();
+    clearRayTracedResult();
+
+    // モデル読み込み
+    loadObj("box.obj", g_Obj);
 }
 
 /**
@@ -168,6 +177,7 @@ void MyOpenGLWidget_camera::paintGL() {
     // drawFilm 関数を呼び出す
     if (g_DrawFilm) { // g_DrawFilm が true の場合に呼び出す
         drawFilm(g_Camera2, g_FilmTexture); // g_FilmTexture が初期化されていることを確認
+        qDebug() << "drawFilm is exuting in  paintGL()" ;
     }
 
    //qDebug() << "Child sees camerafov as " <<updatedFov;
@@ -382,7 +392,7 @@ void MyOpenGLWidget_camera::shadeNextPixel()
      g_CountBuffer[pixel_flat_idx] += nSamplesPerPixel;
 }
 
-void stepToNextPixel( RayTracingInternalData& io_data )
+void MyOpenGLWidget_camera::stepToNextPixel( RayTracingInternalData& io_data )
 {
      io_data.nextPixel_i++;
      if( io_data.nextPixel_i >= g_FilmWidth )
@@ -395,5 +405,46 @@ void stepToNextPixel( RayTracingInternalData& io_data )
             io_data.nextPixel_j = 0;
         }
      }
+}
+
+void clearRayTracedResult()
+{
+     g_RayTracingInternalData.nextPixel_i = -1;
+     g_RayTracingInternalData.nextPixel_j = 0;
+
+     memset( g_FilmBuffer, 0, sizeof(float) * g_FilmWidth * g_FilmHeight * 3 );
+}
+
+
+void initAreaLights()
+{
+     AreaLight light1;
+     light1.pos << -1.2, 1.2, 1.2;
+     light1.arm_u << 1.0, 0.0, 0.0;
+     light1.arm_v = -light1.pos.cross( light1.arm_u );
+     light1.arm_v.normalize();
+     light1.arm_u = light1.arm_u * 0.3;
+     light1.arm_v = light1.arm_v * 0.2;
+
+     light1.color << 1.0, 0.8, 0.3;
+     //light1.color << 1.0, 1.0, 1.0;
+     //light1.intensity = 64.0;
+     light1.intensity = 48.0;
+
+     AreaLight light2;
+     light2.pos << 1.2, 1.2, 0.0;
+     light2.arm_u << 1.0, 0.0, 0.0;
+     light2.arm_v = -light2.pos.cross( light2.arm_u );
+     light2.arm_v.normalize();
+     light2.arm_u = light2.arm_u * 0.3;
+     light2.arm_v = light2.arm_v * 0.2;
+
+     //light2.color << 0.3, 0.3, 1.0;
+     light2.color << 1.0, 1.0, 1.0;
+     //light2.intensity = 64.0;
+     light2.intensity = 30.0;
+
+     g_AreaLights.push_back( light1 );
+     g_AreaLights.push_back( light2 );
 }
 

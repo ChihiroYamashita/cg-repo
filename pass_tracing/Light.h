@@ -23,6 +23,6 @@ struct AreaLight
   double intensity;
 };
 
-
+void initAreaLights();
 
 #endif /* Light_h */

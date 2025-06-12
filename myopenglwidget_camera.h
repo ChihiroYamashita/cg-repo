@@ -16,6 +16,8 @@
 void initFilm();
 void resetFilm();
 void updateFilm();
+void clearRayTracedResult();
+void initAreaLights();
 
 
 class MyOpenGLWidget_camera :public MyOpenGLWidget {

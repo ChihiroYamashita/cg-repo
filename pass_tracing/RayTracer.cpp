@@ -171,3 +171,22 @@ void rayAreaLightIntersect( const std::vector<AreaLight>& in_AreaLights, const i
     out_Result.beta = v;
     out_Result.isFront = isFront;
 }
+
+Eigen::Vector3d computeRayHitNormal( const Object& in_Object, const RayHit& in_Hit )
+{
+    const int v1_idx = in_Object.meshes[in_Hit.mesh_idx].triangles[in_Hit.primitive_idx](0);
+    const int v2_idx = in_Object.meshes[in_Hit.mesh_idx].triangles[in_Hit.primitive_idx](1);
+    const int v3_idx = in_Object.meshes[in_Hit.mesh_idx].triangles[in_Hit.primitive_idx](2);
+
+    const Eigen::Vector3d n1 = in_Object.meshes[in_Hit.mesh_idx].vertex_normals[v1_idx];
+    const Eigen::Vector3d n2 = in_Object.meshes[in_Hit.mesh_idx].vertex_normals[v2_idx];
+    const Eigen::Vector3d n3 = in_Object.meshes[in_Hit.mesh_idx].vertex_normals[v3_idx];
+
+    const double gamma = 1.0 - in_Hit.alpha - in_Hit.beta;
+    Eigen::Vector3d n = in_Hit.alpha * n1 + in_Hit.beta * n2 + gamma * n3;
+    n.normalize();
+
+    if( !in_Hit.isFront ) n = -n;
+
+    return n;
+}
