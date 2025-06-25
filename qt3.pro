@@ -4,6 +4,11 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += core gui widgets
 
 INCLUDEPATH += $$PWD/freeglut-2.8.1.tar/freeglut-2.8.1/freeglut-2.8.1/include
 INCLUDEPATH += $$PWD/eigen-3.4.0/eigen-3.4.0
+INCLUDEPATH += $$PWD/sources
+INCLUDEPATH += $$PWD/sources/scene
+INCLUDEPATH += $$PWD/sources/animation
+INCLUDEPATH += $$PWD/sources/object
+INCLUDEPATH += $$PWD/sources/camera
 
 LIBS += -lopengl32
 LIBS += -lglu32
@@ -17,27 +22,29 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    CustomScene.cpp \
-    camera.cpp \
-    drawObject.cpp \
-    interpolator.cpp \
-    keyframemanager.cpp \
-    main.cpp \
-    mainwindow.cpp \
-    myopenglwidget.cpp \
-    myopenglwidget_camera.cpp
+    sources/animation/interpolator.cpp \
+    sources/animation/keyframemanager.cpp \
+    sources/camera/camera.cpp \
+    sources/main.cpp \
+    sources/mainwindow.cpp \
+    sources/object/drawObject.cpp \
+    sources/scene/CustomScene.cpp \
+    sources/scene/myopenglwidget.cpp \
+    sources/scene/myopenglwidget_camera.cpp
+
 
 HEADERS += \
-    CameraKeyframe.h \
-    CustomScene.h \
-    DualQuaternion.h \
-    camera.h \
-    drawObject.h \
-    interpolator.h \
-    keyframemanager.h \
-    mainwindow.h \
-    myopenglwidget.h \
-    myopenglwidget_camera.h
+    sources/animation/CameraKeyframe.h \
+    sources/animation/DualQuaternion.h \
+    sources/animation/interpolator.h \
+    sources/animation/keyframemanager.h \
+    sources/camera/camera.h \
+    sources/mainwindow.h \
+    sources/object/drawObject.h \
+    sources/scene/CustomScene.h \
+    sources/scene/myopenglwidget.h \
+    sources/scene/myopenglwidget_camera.h
+
 
 FORMS += \
     mainwindow.ui
