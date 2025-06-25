@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['ui_0',['ui',['../class_main_window_a35466a70ed47252a0191168126a352a5.html#a35466a70ed47252a0191168126a352a5',1,'MainWindow']]],
-  ['updatedfov_1',['updatedFov',['../class_my_open_g_l_widget__camera_a50465cac8ace45b6d158fe330777e841.html#a50465cac8ace45b6d158fe330777e841',1,'MyOpenGLWidget_camera']]],
-  ['upvector_2',['upVector',['../struct_camera_keyframe_aa5c2babc1df575c6036fd2901b531cc3.html#aa5c2babc1df575c6036fd2901b531cc3',1,'CameraKeyframe']]]
+  ['scene_0',['scene',['../class_main_window_aa6174d0f79775bca6450cd6a4470addc.html#aa6174d0f79775bca6450cd6a4470addc',1,'MainWindow']]],
+  ['selectedkeyframe_1',['selectedKeyframe',['../class_custom_scene_a3cbb68ad1a01c0b4bf12454ce08041b5.html#a3cbb68ad1a01c0b4bf12454ce08041b5',1,'CustomScene']]],
+  ['startpixel_2',['startpixel',['../class_custom_scene_aead46db0081c065f14164e727c64b783.html#aead46db0081c065f14164e727c64b783',1,'CustomScene']]]
 ];

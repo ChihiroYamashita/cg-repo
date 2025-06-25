@@ -1,5 +1,6 @@
 #include "myopenglwidget_camera.h"
 #include "drawObject.h"
+#include "Light.h"
 #include "GLPreview.h"
 #include "Camera.h"
 #include "RayTracingInternalData.h"
@@ -9,6 +10,7 @@
 #include "RayTracer.h"
 #include "shading.h"
 #include "Light.h"
+#include "TriMesh.h"
 #include <GL/glu.h>
 #include <QTimer>
 #include <Eigen/Dense>
@@ -33,10 +35,16 @@ MyOpenGLWidget_camera::MyOpenGLWidget_camera(QWidget* parent)
     // 初期化コードをここに記述
 
 
+    //*-----------------------レイトレ用----------------------------------
+
+    qDebug() << "construtor is executed sucessfully";
+
     //idle()相当処理用
-    QTimer* timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &MyOpenGLWidget_camera::updateFrame);
-    timer->start(1000 / 60); // 60fps 相当
+    //QTimer* timer = new QTimer(this);
+// qDebug() << "QTimer* timer is generated sucessfully";
+    //connect(timer, &QTimer::timeout, this, &MyOpenGLWidget_camera::updateFrame);
+  //qDebug() << "updateFrame timer is executed sucessfully";
+    //timer->start(1000 / 60); // 60fps 相当
 }
 
 
@@ -49,14 +57,19 @@ void MyOpenGLWidget_camera::initializeGL() {
     updatedFov=45;
 
     //checkOpenGLVersion();
+    //*-----------------------レイトレ用----------------------------------
     // ライト・フィルム初期化
-    initAreaLights();
-    initFilm();
-    resetFilm();
-    clearRayTracedResult();
+    //initAreaLights();
+    //initFilm();
+    //resetFilm();
+    //qDebug() << " resetFilm() is executed sucessfully";
+    //clearRayTracedResult();
+    //qDebug() << " clearRayTracedResult() is executed sucessfully";
 
     // モデル読み込み
-    loadObj("box.obj", g_Obj);
+    //loadObj("D:/OneDrive_2/OneDrive/CGProgramings/qt3/box.obj", g_Obj);
+    //qDebug() << " loadObj is executed sucessfully";
+
 }
 
 /**
@@ -158,7 +171,7 @@ void MyOpenGLWidget_camera::paintGL() {
     projection_and_modelview(g_Camera2);
     glEnable(GL_DEPTH_TEST);
 
-//qDebug() << "Camera Screen Width:" << g_Camera2.getScreenWidth();
+//qDebug() << "paintGL()is excuted" ;
 
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
@@ -173,12 +186,21 @@ void MyOpenGLWidget_camera::paintGL() {
     drawXYZAxes();
     drawXYGrid(0.5, 50);
     drawcube();
-    drawFloor();
+
+    //*-----------------------レイトレ用----------------------------------
+    //drawFloor();
+    //computeGLShading( g_Obj, g_AreaLights );
+    //drawObject( g_Obj );
+    //drawLights( g_AreaLights );
+
     // drawFilm 関数を呼び出す
-    if (g_DrawFilm) { // g_DrawFilm が true の場合に呼び出す
-        drawFilm(g_Camera2, g_FilmTexture); // g_FilmTexture が初期化されていることを確認
-        qDebug() << "drawFilm is exuting in  paintGL()" ;
-    }
+    //if (g_DrawFilm) { // g_DrawFilm が true の場合に呼び出す
+        //qDebug() << "g_FilmTexture is valid:" << g_FilmTexture;
+        //drawFilm(g_Camera2, g_FilmTexture); // g_FilmTexture が初期化されていることを確認
+        //qDebug() << "drawFilm is exuting in  paintGL()" ;
+    //}
+     //glDisable( GL_DEPTH_TEST );
+     //glutSwapBuffers();
 
    //qDebug() << "Child sees camerafov as " <<updatedFov;
 }
@@ -217,6 +239,7 @@ void MyOpenGLWidget_camera::setCamerakeyframe(const Eigen::Vector3d& eyePoint,co
 
 }
 
+//g_cameraのカメラワークを反映
 void MyOpenGLWidget_camera::setCameraEyePoint2(const Eigen::Vector3d& eyePoint){
     g_Camera2.setEyePoint(eyePoint);
     update(); // カメラの状態が変わったら描画を更新する
@@ -301,7 +324,11 @@ void MyOpenGLWidget_camera::wheelEvent(QWheelEvent *event)
 
 void resetFilm()
 {
+
+
+
     memset( g_AccumulationBuffer, 0, sizeof(float) * g_FilmWidth * g_FilmHeight * 3 );
+    qDebug() << " g_AccumulationBuffer" << g_AccumulationBuffer;
     memset( g_CountBuffer, 0, sizeof(int) * g_FilmWidth * g_FilmHeight );
 }
 
@@ -311,6 +338,7 @@ void initFilm()
     g_AccumulationBuffer = (float*)malloc( sizeof(float) * g_FilmWidth * g_FilmHeight * 3 );
     g_CountBuffer = (int*)malloc( sizeof(int) * g_FilmWidth * g_FilmHeight );
     resetFilm();
+
 
     glGenTextures( 1, &g_FilmTexture );
     glBindTexture( GL_TEXTURE_2D, g_FilmTexture );
@@ -326,7 +354,10 @@ void updateFilm()
 {
      for( int i=0; i<g_FilmWidth * g_FilmHeight; i++ )
      {
-        if( g_CountBuffer[i] > 0 )
+        g_FilmBuffer[i*3] = 0.0; // 赤成分を0
+        g_FilmBuffer[i*3+1] = 0.0; // 緑成分を0
+        g_FilmBuffer[i*3+2] = 1.0; // 青成分を1.0 (最大)
+        /*if( g_CountBuffer[i] > 0 )
         {
             g_FilmBuffer[i*3] = g_AccumulationBuffer[i*3] / g_CountBuffer[i];
             g_FilmBuffer[i*3+1] = g_AccumulationBuffer[i*3+1] / g_CountBuffer[i];
@@ -337,7 +368,16 @@ void updateFilm()
             g_FilmBuffer[i*3] = 0.0;
             g_FilmBuffer[i*3+1] = 0.0;
             g_FilmBuffer[i*3+2] = 0.0;
-        }
+        }*/
+        // g_FilmBufferの値を確認するためのデバッグ文をここに追加します
+        /*if (i % (g_FilmWidth * 100) == 0) { // 出力が多いので、10行ごとに表示します
+            qDebug() << "g_FilmBuffer[" << i*3 << "]:" << g_FilmBuffer[i*3]
+                     << "g_FilmBuffer[" << i*3 + 1 << "]:" << g_FilmBuffer[i*3+1]
+                     << "g_FilmBuffer[" << i*3 + 2 << "]:" << g_FilmBuffer[i*3+2];
+            qDebug() << "g_AccumulationBuffer[" << i*3 << "]:" << g_AccumulationBuffer[i*3]
+                     << "g_CountBuffer[" << i << "]:" << g_CountBuffer[i];
+        }*/
+
      }
 
      glBindTexture( GL_TEXTURE_2D, g_FilmTexture );

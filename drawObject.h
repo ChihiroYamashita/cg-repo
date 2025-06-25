@@ -10,11 +10,18 @@
 #define DRAWOBJECT_H
 #include "camera.h"
 #include <QOpenGLFunctions>
-
+struct Material;
+struct TriMesh;
 void drawcube();
 void drawFloor();
 void  drawcamera(const Eigen::Vector3d &eyePoint, const Eigen::Vector3d &lookAtPoint);
 void drawPlaneInCameraCoords(const Camera& camera, float size);
 void drawXYZAxes();
 void drawXYGrid(float gridSize, int gridCount) ;
+void drawMesh( const TriMesh& in_Mesh );
+
+
+
+
+
 #endif // DRAWOBJECT_H

@@ -1,4 +1,5 @@
 #include "drawObject.h"
+#include "TriMesh.h"
 #include <QOpenGLFunctions>
 
 #include "myopenglwidget.h"
@@ -16,6 +17,7 @@
 #include <GL/glu.h>
 #include "drawObject.h"
 #include <iostream>
+#include "Light.h"
 
 #define EIGEN_DISABLE_UNALIGNED_ARRAY_ASSERT
 #define EIGEN_DONT_VECTORIZE
@@ -241,4 +243,76 @@ void drawXYGrid(float gridSize, int gridCount) {
     }
 
     glEnd();
+}
+
+
+void drawObject( const Object& in_Object )
+{
+    for( int i=0; i<in_Object.meshes.size(); i++ )
+        drawMesh( in_Object.meshes[i] );
+}
+
+Eigen::Vector3d computeGLDirectShading( const Eigen::Vector3d& x, const Eigen::Vector3d& n, const Material& material, const std::vector<AreaLight>& lights )
+{
+    Eigen::Vector3d I = Eigen::Vector3d::Zero();
+
+    for( int i=0; i<lights.size(); i++ )
+    {
+        Eigen::Vector3d L = lights[i].pos - x;
+        const double dist = L.norm();
+        L.normalize();
+        const double cos_theta = std::max<double>( 0.0, L.dot( n ) );
+
+        I += lights[i].color.cwiseProduct( material.kd ) * lights[i].intensity * cos_theta / ( dist * dist );
+    }
+
+    return I;
+}
+
+void computeGLShading( TriMesh& io_Mesh, const std::vector<AreaLight>& lights )
+{
+    for( int i=0; i<io_Mesh.vertices.size(); i++ )
+    {
+        Eigen::Vector3d p = io_Mesh.vertices[i];
+        Eigen::Vector3d n = io_Mesh.vertex_normals[i];
+
+        io_Mesh.vertex_colors[i] = computeGLDirectShading( p, n, io_Mesh.material, lights );
+    }
+}
+
+void computeGLShading( Object& io_Object, const std::vector<AreaLight>& lights )
+{
+    for( int i=0; i<io_Object.meshes.size(); i++ )
+    {
+        computeGLShading( io_Object.meshes[i], lights );
+    }
+}
+
+void drawMesh( const TriMesh& in_Mesh )
+{
+    if( in_Mesh.material.texture != 0 )
+    {
+        glEnable( GL_TEXTURE_2D );
+        glBindTexture( GL_TEXTURE_2D, in_Mesh.material.texture );
+    }
+
+    glBegin( GL_TRIANGLES );
+
+    for( int j=0; j<in_Mesh.triangles.size(); j++ )
+    {
+        for( int i=0; i<3; i++ )
+        {
+            const int vid = in_Mesh.triangles[j](i);
+            glColor3d( in_Mesh.vertex_colors[vid].x(), in_Mesh.vertex_colors[vid].y(), in_Mesh.vertex_colors[vid].z() );
+            glTexCoord2d( in_Mesh.tex_coords[vid].x() , in_Mesh.tex_coords[vid].y() );
+            glVertex3d( in_Mesh.vertices[vid].x(), in_Mesh.vertices[vid].y(), in_Mesh.vertices[vid].z() );
+        }
+    }
+
+    glEnd();
+
+    if( in_Mesh.material.texture != 0 )
+    {
+        glDisable( GL_TEXTURE_2D );
+    }
 }

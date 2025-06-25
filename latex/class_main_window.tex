@@ -34,7 +34,7 @@ Main\+Window 連携図\nopagebreak
 \item 
 \mbox{\hyperlink{class_main_window_ae98d00a93bc118200eeef9f9bba1dba7_ae98d00a93bc118200eeef9f9bba1dba7}{\texorpdfstring{$\sim$}{\string~}\+Main\+Window}} ()
 \item 
-void \mbox{\hyperlink{class_main_window_a82f70bb0042d1b461b4f5d6284d1fd3c_a82f70bb0042d1b461b4f5d6284d1fd3c}{update\+Camera}} (const QVector3D \&eye\+Point, const QVector3D \&look\+At\+Point, const QVector3D \&up\+Vector, float fov, double zoom)
+void \mbox{\hyperlink{class_main_window_ae67bfa26046724c1b63b67e9bdffc9eb_ae67bfa26046724c1b63b67e9bdffc9eb}{update\+Camera}} (const Eigen\+::\+Vector3d \&eye\+Point, const Eigen\+::\+Vector3d \&look\+At\+Point, const Eigen\+::\+Vector3d \&up\+Vector, float fov, double zoom)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{限定公開メンバ関数}
 \begin{DoxyCompactItemize}
@@ -63,7 +63,7 @@ void \mbox{\hyperlink{class_main_window_ae1590a3c7d7c4364faa02823449d5cb7_ae1590
 void \mbox{\hyperlink{class_main_window_adabb967cf76d3ed1a3392a1744f027dc_adabb967cf76d3ed1a3392a1744f027dc}{on\+\_\+\+Zoom\+Slider\+\_\+\+Value\+Changed}} (int value)
 \item 
 void \mbox{\hyperlink{class_main_window_a026991cfbe95c4e6867248d692c15e6b_a026991cfbe95c4e6867248d692c15e6b}{on\+\_\+keyframe\+Camera\+Button\+\_\+clicked}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em カメラのキーフレームを登録するスロット関数 \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_main_window_a7d276864de83c20301e916ecb5a60e3f_a7d276864de83c20301e916ecb5a60e3f}{on\+\_\+keyframe\+Camera\+Delete\+Button\+\_\+clicked}} ()
 \end{DoxyCompactItemize}
 \doxysubsubsection*{非公開メンバ関数}
@@ -159,6 +159,48 @@ FOVを変更するスロット ユーザーがスライダーを操作してカ�
 {\footnotesize\ttfamily \label{class_main_window_a026991cfbe95c4e6867248d692c15e6b_a026991cfbe95c4e6867248d692c15e6b} 
 void Main\+Window\+::on\+\_\+keyframe\+Camera\+Button\+\_\+clicked (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
 
+
+
+カメラのキーフレームを登録するスロット関数 
+
+現在のカメラの視点情報（\+Eye\+Point、\+Look\+At\+Point、\+Up\+Vectorなど）を取得し、 タイムライン上の現在位置にカメラのキーフレームとして登録します。 また、{\ttfamily \doxylink{class_my_open_g_l_widget__camera}{My\+Open\+GLWidget\+\_\+camera}} にもカメラ情報を転送してビューを更新します。
+
+
+\begin{DoxyParams}{引数}
+{\em なし（ボタンがクリックされた際に自動呼び出しされるスロット）} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+なし
+\end{DoxyReturn}
+\hypertarget{class_main_window_a026991cfbe95c4e6867248d692c15e6b_autotoc_md20}{}\doxysubsubsubsection{\texorpdfstring{処理の流れ}{処理の流れ}}\label{class_main_window_a026991cfbe95c4e6867248d692c15e6b_autotoc_md20}
+\hypertarget{class_main_window_a026991cfbe95c4e6867248d692c15e6b_autotoc_md21}{}\doxysubsubsubsubsection{\texorpdfstring{1. カメラ情報の取得}{1. カメラ情報の取得}}\label{class_main_window_a026991cfbe95c4e6867248d692c15e6b_autotoc_md21}
+メインビューの\+Open\+GLウィジェット（{\ttfamily \doxylink{class_my_open_g_l_widget}{My\+Open\+GLWidget}}）から以下のカメラ情報を取得：
+\begin{DoxyItemize}
+\item Eye\+Point（視点）
+\item Look\+At\+Point（注視点）
+\item Up/\+X/\+Y/Z ベクトル
+\item FOV（視野角）
+\item Zoom（ズーム値）
+\end{DoxyItemize}\hypertarget{class_main_window_a026991cfbe95c4e6867248d692c15e6b_autotoc_md22}{}\doxysubsubsubsubsection{\texorpdfstring{2. フレーム番号の計算}{2. フレーム番号の計算}}\label{class_main_window_a026991cfbe95c4e6867248d692c15e6b_autotoc_md22}
+{\ttfamily \doxylink{class_custom_scene_a8c573a90a2ca781852c03c5922e2866e_a8c573a90a2ca781852c03c5922e2866e}{Custom\+Scene\+::get\+Playhead\+Position\+X()}} から現在のプレイヘッド\+X座標を取得し、タイムライン上のフレーム番号に変換します。\hypertarget{class_main_window_a026991cfbe95c4e6867248d692c15e6b_autotoc_md23}{}\doxysubsubsubsubsection{\texorpdfstring{3. キーフレームの登録}{3. キーフレームの登録}}\label{class_main_window_a026991cfbe95c4e6867248d692c15e6b_autotoc_md23}
+{\ttfamily \doxylink{class_custom_scene_ada78408cc1b7b59328bd171be25eac70_ada78408cc1b7b59328bd171be25eac70}{Custom\+Scene\+::add\+Keyframe()}} を呼び出して、取得したカメラ情報を登録。\hypertarget{class_main_window_a026991cfbe95c4e6867248d692c15e6b_autotoc_md24}{}\doxysubsubsubsubsection{\texorpdfstring{4. カメラビューの同期}{4. カメラビューの同期}}\label{class_main_window_a026991cfbe95c4e6867248d692c15e6b_autotoc_md24}
+{\ttfamily \doxylink{class_my_open_g_l_widget__camera}{My\+Open\+GLWidget\+\_\+camera}} の {\ttfamily set\+Camerakeyframe()} を呼び出し、視点と注視点をカメラビューに反映します。\hypertarget{class_main_window_a026991cfbe95c4e6867248d692c15e6b_autotoc_md25}{}\doxysubsubsubsection{\texorpdfstring{シーケンス図}{シーケンス図}}\label{class_main_window_a026991cfbe95c4e6867248d692c15e6b_autotoc_md25}
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_2}}
+\end{DoxyImageNoCaption}
+
+
+\begin{DoxySeeAlso}{参照}
+\doxylink{class_custom_scene_ada78408cc1b7b59328bd171be25eac70_ada78408cc1b7b59328bd171be25eac70}{Custom\+Scene\+::add\+Keyframe} 
+
+\doxylink{class_my_open_g_l_widget_ae3f65df8147f1265b41c1e43e7ed6023_ae3f65df8147f1265b41c1e43e7ed6023}{My\+Open\+GLWidget\+::get\+Eye\+Point} 
+
+\doxylink{class_my_open_g_l_widget_a3accb2d05a17a9fe3e2b90bd71a16806_a3accb2d05a17a9fe3e2b90bd71a16806}{My\+Open\+GLWidget\+::getlook\+At\+Point} 
+
+\doxylink{class_my_open_g_l_widget__camera_a425691e2aa1e8a7b896a2917c3b709ae_a425691e2aa1e8a7b896a2917c3b709ae}{My\+Open\+GLWidget\+\_\+camera\+::set\+Camerakeyframe} 
+\end{DoxySeeAlso}
 \Hypertarget{class_main_window_a7d276864de83c20301e916ecb5a60e3f_a7d276864de83c20301e916ecb5a60e3f}\index{MainWindow@{MainWindow}!on\_keyframeCameraDeleteButton\_clicked@{on\_keyframeCameraDeleteButton\_clicked}}
 \index{on\_keyframeCameraDeleteButton\_clicked@{on\_keyframeCameraDeleteButton\_clicked}!MainWindow@{MainWindow}}
 \doxysubsubsection{\texorpdfstring{on\_keyframeCameraDeleteButton\_clicked}{on\_keyframeCameraDeleteButton\_clicked}}
@@ -195,11 +237,11 @@ void Main\+Window\+::setup\+Scene (\begin{DoxyParamCaption}{}{}\end{DoxyParamCap
 {\footnotesize\ttfamily \label{class_main_window_a3febb9ef08a8e0f7fc00848ea540a899_a3febb9ef08a8e0f7fc00848ea540a899} 
 void Main\+Window\+::show\+Event (\begin{DoxyParamCaption}\item[{QShow\+Event \texorpdfstring{$\ast$}{*}}]{event}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
 
-\Hypertarget{class_main_window_a82f70bb0042d1b461b4f5d6284d1fd3c_a82f70bb0042d1b461b4f5d6284d1fd3c}\index{MainWindow@{MainWindow}!updateCamera@{updateCamera}}
+\Hypertarget{class_main_window_ae67bfa26046724c1b63b67e9bdffc9eb_ae67bfa26046724c1b63b67e9bdffc9eb}\index{MainWindow@{MainWindow}!updateCamera@{updateCamera}}
 \index{updateCamera@{updateCamera}!MainWindow@{MainWindow}}
 \doxysubsubsection{\texorpdfstring{updateCamera()}{updateCamera()}}
-{\footnotesize\ttfamily \label{class_main_window_a82f70bb0042d1b461b4f5d6284d1fd3c_a82f70bb0042d1b461b4f5d6284d1fd3c} 
-void Main\+Window\+::update\+Camera (\begin{DoxyParamCaption}\item[{const QVector3D \&}]{eye\+Point}{, }\item[{const QVector3D \&}]{look\+At\+Point}{, }\item[{const QVector3D \&}]{up\+Vector}{, }\item[{float}]{fov}{, }\item[{double}]{zoom}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{class_main_window_ae67bfa26046724c1b63b67e9bdffc9eb_ae67bfa26046724c1b63b67e9bdffc9eb} 
+void Main\+Window\+::update\+Camera (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector3d \&}]{eye\+Point}{, }\item[{const Eigen\+::\+Vector3d \&}]{look\+At\+Point}{, }\item[{const Eigen\+::\+Vector3d \&}]{up\+Vector}{, }\item[{float}]{fov}{, }\item[{double}]{zoom}{}\end{DoxyParamCaption})}
 
 
 

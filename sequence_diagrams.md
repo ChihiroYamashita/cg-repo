@@ -3,6 +3,12 @@
 @brief プロジェクト内のシーケンス図をまとめたグループ
 @{
 
+### リンク
+openGLのmyopenglwiget.cppの座標変換に関しては [こちら](coordinate_transformation1.md) を参照してください。<br>
+openGLの基本については[こちら](openGL_basis.md)を参照してください。
+
+キーフレームカメラの処理については @ref MainWindow::on_keyframeCameraButton_clicked を参照。
+
 ### 全体ざっくり
 @brief こんな感じのソフト
 

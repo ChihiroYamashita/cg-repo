@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['はじめに_0',['はじめに',['../md_about__convertions.html#autotoc_md1',1,'はじめに'],['../md__open_g_l__func.html#autotoc_md17',1,'はじめに']]]
+  ['さらに学びたい方向け_0',['✳️ さらに学びたい方向け',['../md_open_g_l__basis.html#autotoc_md54',1,'']]]
 ];

@@ -174,14 +174,56 @@ void MainWindow::on_ZoomSlider_ValueChanged(int value)
 
 
 
-
+//gcamera→gcamera2への視点と注視点の受け渡し
 
 
 /*==========================keyframe登録ボタン=========================*/
+/**
+ * @brief カメラのキーフレームを登録するスロット関数
+ * @details 現在のカメラの視点情報（EyePoint、LookAtPoint、UpVectorなど）を取得し、
+ * タイムライン上の現在位置にカメラのキーフレームとして登録します。
+ * また、`MyOpenGLWidget_camera` にもカメラ情報を転送してビューを更新します。
+ *
+ * @param なし（ボタンがクリックされた際に自動呼び出しされるスロット）
+ * @return なし
+ *
+ * ### 処理の流れ
+ *
+ * #### 1. カメラ情報の取得
+ * メインビューのOpenGLウィジェット（`MyOpenGLWidget`）から以下のカメラ情報を取得：
+ * - EyePoint（視点）
+ * - LookAtPoint（注視点）
+ * - Up/X/Y/Z ベクトル
+ * - FOV（視野角）
+ * - Zoom（ズーム値）
+ *
+ * #### 2. フレーム番号の計算
+ * `CustomScene::getPlayheadPositionX()` から現在のプレイヘッドX座標を取得し、タイムライン上のフレーム番号に変換します。
+ *
+ * #### 3. キーフレームの登録
+ * `CustomScene::addKeyframe()` を呼び出して、取得したカメラ情報を登録。
+ *
+ * #### 4. カメラビューの同期
+ * `MyOpenGLWidget_camera` の `setCamerakeyframe()` を呼び出し、視点と注視点をカメラビューに反映します。
+ *
+ * ### シーケンス図
+ * @startuml
+ * User -> MainWindow : on_keyframeCameraButton_clicked()
+ * MainWindow -> MyOpenGLWidget : getEyePoint(), getlookAtPoint(), getUpVector(), getFov(), getZoom()
+ * MainWindow -> CustomScene : getPlayheadPositionX()
+ * MainWindow -> CustomScene : addKeyframe()
+ * MainWindow -> MyOpenGLWidget_camera : setCamerakeyframe()
+ * @enduml
+ *
+ * @see CustomScene::addKeyframe
+ * @see MyOpenGLWidget::getEyePoint
+ * @see MyOpenGLWidget::getlookAtPoint
+ * @see MyOpenGLWidget_camera::setCamerakeyframe
+ */
 void MainWindow::on_keyframeCameraButton_clicked()
 {
 
-
+// 1. メインカメラビュー(openGLWidget_instance)からカメラ情報を取得
     Eigen::Vector3d EyePoint=(ui->openGLWidget_instance->getEyePoint());
     Eigen::Vector3d lookAtPoint=(ui->openGLWidget_instance->getlookAtPoint());
 
@@ -189,20 +231,27 @@ void MainWindow::on_keyframeCameraButton_clicked()
     Eigen::Vector3d xVector = ui->openGLWidget_instance->getXVector();
     Eigen::Vector3d yVector = ui->openGLWidget_instance->getYVector();
     Eigen::Vector3d zVector =( ui->openGLWidget_instance->getZVector());
+
     float fov = ui->openGLWidget_instance->getCameraFov();
     double zoom = ui->openGLWidget_instance->getZoom();
+
+    //fov（視野角）や zoom（ズーム倍率）
+
+    //2. 現在のフレーム番号を計算
     int frameNumber = static_cast<int>((scene->getPlayheadPositionX() - scene->startpixel) / scene->pixelsPerFrame);
 
     //ui->openGLWidget_instance->setCamerakeyframe(); // ウィジェットを再描画して変更を反映
      frameNumber = static_cast<int>((scene->getPlayheadPositionX() - scene->startpixel) / scene->pixelsPerFrame);
 
 
+    //3.パストレカメラビュー（サブビュー）への反映
     ui->openGLWidget_camera_instance->setCamerakeyframe( EyePoint,lookAtPoint);
 
+    //4.両ビューを再描画
     ui->openGLWidget_instance->update();
     ui->openGLWidget_camera_instance->update();
 
-    //insert keyframe to customscene
+    // 5. タイムラインにキーフレームを登録
     qreal x = scene->currentMousePositionX();  // 現在のマウスX座標を取得する方法を実装する必要がある
 
     // キーフレームを追加

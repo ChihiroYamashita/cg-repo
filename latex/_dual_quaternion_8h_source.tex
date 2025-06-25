@@ -2,7 +2,7 @@
 \hypertarget{_dual_quaternion_8h_source}{}\label{_dual_quaternion_8h_source}\mbox{\hyperlink{_dual_quaternion_8h}{\mbox{[}詳解\mbox{]}}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ }
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <QVector3D>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Eigen/Dense>}}
 \DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <QQuaternion>}}
 \DoxyCodeLine{00011\ }
 \DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_dual_quaternion}{DualQuaternion}}\ \{}
@@ -15,7 +15,7 @@
 \DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{class_dual_quaternion_a1f04d6a1052350468f95bc0afd5ddff7_a1f04d6a1052350468f95bc0afd5ddff7}{DualQuaternion}}(\textcolor{keyword}{const}\ QQuaternion\&\ realPart,\ \textcolor{keyword}{const}\ QQuaternion\&\ dualPart)}
 \DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}}(realPart),\ \mbox{\hyperlink{class_dual_quaternion_a0e866553dadd9ecb729700084e0fe61e_a0e866553dadd9ecb729700084e0fe61e}{dual}}(dualPart)\ \{\}}
 \DoxyCodeLine{00021\ }
-\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_dual_quaternion}{DualQuaternion}}\ \mbox{\hyperlink{class_dual_quaternion_a9d3a343858354b4931594639840df879_a9d3a343858354b4931594639840df879}{fromTranslationRotation}}(\textcolor{keyword}{const}\ QVector3D\&\ translation,\ \textcolor{keyword}{const}\ QQuaternion\&\ rotation)\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_dual_quaternion}{DualQuaternion}}\ \mbox{\hyperlink{class_dual_quaternion_ad7696e0d2f3a82644efdaa9aee8a8d93_ad7696e0d2f3a82644efdaa9aee8a8d93}{fromTranslationRotation}}(\textcolor{keyword}{const}\ Eigen::Vector3d\&\ translation,\ \textcolor{keyword}{const}\ QQuaternion\&\ rotation)\ \{}
 \DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ QQuaternion\ t(0,\ translation.x(),\ translation.y(),\ translation.z());}
 \DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_dual_quaternion}{DualQuaternion}}\ dq;}
 \DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ dq.\mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}}\ =\ rotation;}
@@ -44,9 +44,9 @@
 \DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}};}
 \DoxyCodeLine{00049\ \ \ \ \ \}}
 \DoxyCodeLine{00050\ }
-\DoxyCodeLine{00051\ \ \ \ \ QVector3D\ \mbox{\hyperlink{class_dual_quaternion_adc222ea151454a0d2f7faa8339d57546_adc222ea151454a0d2f7faa8339d57546}{getTranslation}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00051\ \ \ \ \ Eigen::Vector3d\ \mbox{\hyperlink{class_dual_quaternion_ac7811685226cd4b83993e800f46ba983_ac7811685226cd4b83993e800f46ba983}{getTranslation}}()\textcolor{keyword}{\ const\ }\{}
 \DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ QQuaternion\ t\ =\ 2.0f\ *\ (\mbox{\hyperlink{class_dual_quaternion_a0e866553dadd9ecb729700084e0fe61e_a0e866553dadd9ecb729700084e0fe61e}{dual}}\ *\ \mbox{\hyperlink{class_dual_quaternion_a0592217cf276323aed1c1873338be7ef_a0592217cf276323aed1c1873338be7ef}{real}}.conjugated());}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ QVector3D(t.x(),\ t.y(),\ t.z());}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Eigen::Vector3d(t.x(),\ t.y(),\ t.z());}
 \DoxyCodeLine{00054\ \ \ \ \ \}}
 \DoxyCodeLine{00055\ \};}
 

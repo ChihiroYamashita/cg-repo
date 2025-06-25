@@ -106,10 +106,12 @@ if (button != nullptr) {
 
  */
 void MyOpenGLWidget::paintGL(){
+ // 投影変換
 updateProjectionMatrix(); //実際のモデルビュー・視野変換の適用は、オブジェクトが実際に描画される際にGPU内で行われる
 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // カラーバッファと深度バッファをクリア
+ // ビューポート変換
 glViewport(0, 0, width * g_FrameSize_WindowSize_Scale_x, height * g_FrameSize_WindowSize_Scale_y);
-
+//カメラ変換
 projection_and_modelview(g_Camera);
 
 glEnable(GL_DEPTH_TEST);

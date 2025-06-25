@@ -103,14 +103,15 @@ var menudata={children:[
 {text:"ファイルメンバ",url:"globals.html",children:[
 {text:"全て",url:"globals.html",children:[
 {text:"_",url:"globals.html#index__5F"},
+{text:"c",url:"globals.html#index_c"},
 {text:"d",url:"globals.html#index_d"},
 {text:"e",url:"globals.html#index_e"},
 {text:"g",url:"globals.html#index_g"},
 {text:"h",url:"globals.html#index_h"},
 {text:"i",url:"globals.html#index_i"},
 {text:"m",url:"globals.html#index_m"},
+{text:"n",url:"globals.html#index_n"},
 {text:"r",url:"globals.html#index_r"},
-{text:"s",url:"globals.html#index_s"},
 {text:"u",url:"globals.html#index_u"},
 {text:"w",url:"globals.html#index_w"}]},
 {text:"関数",url:"globals_func.html"},

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['関数の定義_20strong_0',['&lt;strong&gt;関数の定義&lt;/strong&gt;',['../md__open_g_l__func.html#autotoc_md21',1,'']]],
-  ['関数の概要_20strong_1',['&lt;strong&gt;&lt;tt&gt;glMatrixMode&lt;/tt&gt; 関数の概要&lt;/strong&gt;',['../md__open_g_l__func.html#autotoc_md20',1,'']]]
+  ['再描画要求（_20tt_20update_20tt_20or_20tt_20glutpostredisplay_20tt_20）_0',['🔵 4. 再描画要求（&lt;tt&gt;update()&lt;/tt&gt; or &lt;tt&gt;glutPostRedisplay()&lt;/tt&gt;）',['../md_open_g_l__basis.html#autotoc_md44',1,'']]]
 ];

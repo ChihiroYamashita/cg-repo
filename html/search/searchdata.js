@@ -1,13 +1,13 @@
 var indexSectionsWithContent =
 {
-  0: "1234567_abcdefghiklmnoprstuvwxyz~①②③おなのはオカキシテデバビプモ使全具座引役投描概注行視関",
+  0: "1234567_abcdefghiklmnoprstuvwxyz~①②③✅✳おさでなのはよアオカキコシテデバビフプモリ使全具再処初図実座引役投描普概注結行視関）🎯🔁🔵🗺🧭🧱",
   1: "cdim",
   2: "u",
-  3: "acdgimors",
+  3: "acdgimorsu",
   4: "acdefgilmnoprsuwz~",
-  5: "bcdefghiklmoprsuvwxyz",
+  5: "bcdefghiklmnoprsuvwxyz",
   6: "_e",
-  7: "opシ座"
+  7: "fhlopシ全座"
 };
 
 var indexSectionNames =

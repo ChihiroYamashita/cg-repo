@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['テクスチャ行列を操作する例_20strong_0',['&lt;strong&gt;テクスチャ行列を操作する例&lt;/strong&gt;',['../md__open_g_l__func.html#autotoc_md29',1,'']]]
+  ['よく使う関数まとめ_0',['✅ よく使う関数まとめ',['../md_open_g_l__basis.html#autotoc_md52',1,'']]]
 ];

@@ -96,6 +96,8 @@ $(function(){ initResizable(false); });
 <div class="textblock"><code>#include &lt;QOpenGLWidget&gt;</code><br />
 <code>#include &lt;QObject&gt;</code><br />
 <code>#include &quot;<a class="el" href="myopenglwidget_8h_source.html">myopenglwidget.h</a>&quot;</code><br />
+<code>#include &quot;RayTracingInternalData.h&quot;</code><br />
+<code>#include &lt;Eigen/Dense&gt;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> myopenglwidget_camera.h の依存先関係図:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -103,28 +105,32 @@ $(function(){ initResizable(false); });
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="myopenglwidget__camera_8h__incl.png" border="0" usemap="#amyopenglwidget__camera_8h" alt=""/></div>
 <map name="amyopenglwidget__camera_8h" id="amyopenglwidget__camera_8h">
-<area shape="rect" title="カメラ専用のOpenGLウィジェット" alt="" coords="61,5,238,32"/>
-<area shape="rect" title=" " alt="" coords="18,155,137,181"/>
-<area shape="poly" title=" " alt="" coords="139,34,122,55,105,81,93,111,85,140,80,139,88,109,100,79,117,52,135,31"/>
-<area shape="rect" title=" " alt="" coords="115,80,184,107"/>
-<area shape="poly" title=" " alt="" coords="152,33,152,64,147,64,147,33"/>
-<area shape="rect" href="myopenglwidget_8h.html" title="OpenGLウィジェットの拡張" alt="" coords="208,80,334,107"/>
-<area shape="poly" title=" " alt="" coords="172,30,238,69,235,74,169,35"/>
-<area shape="poly" title=" " alt="" coords="238,110,126,151,124,146,236,105"/>
-<area shape="rect" href="camera_8h.html" title=" " alt="" coords="161,155,236,181"/>
-<area shape="poly" title=" " alt="" coords="260,109,224,145,220,142,256,105"/>
-<area shape="rect" title=" " alt="" coords="261,155,360,181"/>
-<area shape="poly" title=" " alt="" coords="280,106,299,140,294,142,275,109"/>
-<area shape="rect" title=" " alt="" coords="384,155,453,181"/>
-<area shape="poly" title=" " alt="" coords="298,105,380,145,378,150,295,110"/>
-<area shape="rect" title=" " alt="" coords="5,229,91,256"/>
-<area shape="poly" title=" " alt="" coords="174,184,89,225,87,220,171,179"/>
-<area shape="rect" title=" " alt="" coords="114,229,179,256"/>
-<area shape="poly" title=" " alt="" coords="192,183,167,218,162,215,187,180"/>
-<area shape="rect" title=" " alt="" coords="204,229,298,256"/>
-<area shape="poly" title=" " alt="" coords="210,180,235,215,231,218,206,183"/>
-<area shape="rect" title=" " alt="" coords="322,229,419,256"/>
-<area shape="poly" title=" " alt="" coords="230,179,328,220,326,225,228,184"/>
+<area shape="rect" title="カメラ専用のOpenGLウィジェット" alt="" coords="136,5,312,32"/>
+<area shape="rect" title=" " alt="" coords="31,155,150,181"/>
+<area shape="poly" title=" " alt="" coords="207,35,179,56,151,82,127,112,107,143,103,140,122,109,147,78,176,51,204,30"/>
+<area shape="rect" title=" " alt="" coords="310,80,380,107"/>
+<area shape="poly" title=" " alt="" coords="246,30,312,69,309,74,244,35"/>
+<area shape="rect" href="myopenglwidget_8h.html" title="OpenGLウィジェットの拡張" alt="" coords="161,80,287,107"/>
+<area shape="poly" title=" " alt="" coords="226,33,226,64,221,64,221,33"/>
+<area shape="rect" title=" " alt="" coords="262,229,359,256"/>
+<area shape="poly" title=" " alt="" coords="182,35,118,59,53,93,28,113,13,134,9,156,21,180,35,191,56,201,115,217,183,228,247,235,246,240,182,234,114,223,54,206,32,196,16,183,4,157,8,132,24,109,50,89,115,54,180,30"/>
+<area shape="rect" title=" " alt="" coords="404,80,574,107"/>
+<area shape="poly" title=" " alt="" coords="271,30,429,73,427,78,269,35"/>
+<area shape="poly" title=" " alt="" coords="202,110,128,149,126,145,199,105"/>
+<area shape="poly" title=" " alt="" coords="274,105,337,126,364,139,381,153,386,173,379,191,364,208,347,223,343,219,361,204,374,189,381,172,376,156,361,143,335,131,272,110"/>
+<area shape="rect" href="camera_8h.html" title=" " alt="" coords="441,155,516,181"/>
+<area shape="poly" title=" " alt="" coords="269,105,427,149,425,154,267,110"/>
+<area shape="rect" title=" " alt="" coords="174,155,273,181"/>
+<area shape="poly" title=" " alt="" coords="226,107,226,139,221,139,221,107"/>
+<area shape="rect" title=" " alt="" coords="297,155,366,181"/>
+<area shape="poly" title=" " alt="" coords="244,105,302,143,299,148,241,109"/>
+<area shape="poly" title=" " alt="" coords="450,184,355,225,353,220,448,179"/>
+<area shape="rect" title=" " alt="" coords="576,229,640,256"/>
+<area shape="poly" title=" " alt="" coords="502,180,573,219,571,224,500,184"/>
+<area shape="rect" title=" " alt="" coords="383,229,478,256"/>
+<area shape="poly" title=" " alt="" coords="472,183,449,218,445,215,468,180"/>
+<area shape="rect" title=" " alt="" coords="502,229,551,256"/>
+<area shape="poly" title=" " alt="" coords="489,180,512,215,508,218,485,183"/>
 </map>
 </div>
 </div><div class="textblock"><div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -159,8 +165,10 @@ $(function(){ initResizable(false); });
 <tr class="separator:af848ee1e8e6aa06ccdbc4b548158f5fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39c38563b075ca4414b135fe1a91bf01" id="r_a39c38563b075ca4414b135fe1a91bf01"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="myopenglwidget__camera_8h_a39c38563b075ca4414b135fe1a91bf01.html#a39c38563b075ca4414b135fe1a91bf01">updateFilm</a> ()</td></tr>
 <tr class="separator:a39c38563b075ca4414b135fe1a91bf01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a194b2b4c12d48f9d977fc14d60756703" id="r_a194b2b4c12d48f9d977fc14d60756703"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="myopenglwidget__camera_8h_a194b2b4c12d48f9d977fc14d60756703.html#a194b2b4c12d48f9d977fc14d60756703">shadeNextPixel</a> ()</td></tr>
-<tr class="separator:a194b2b4c12d48f9d977fc14d60756703"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3b014bc8047da638f3fbb909689abef" id="r_ad3b014bc8047da638f3fbb909689abef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="myopenglwidget__camera_8h_ad3b014bc8047da638f3fbb909689abef.html#ad3b014bc8047da638f3fbb909689abef">clearRayTracedResult</a> ()</td></tr>
+<tr class="separator:ad3b014bc8047da638f3fbb909689abef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a992f6f672cf6898c7c345cd917e5d822" id="r_a992f6f672cf6898c7c345cd917e5d822"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="myopenglwidget__camera_8h_a992f6f672cf6898c7c345cd917e5d822.html#a992f6f672cf6898c7c345cd917e5d822">initAreaLights</a> ()</td></tr>
+<tr class="separator:a992f6f672cf6898c7c345cd917e5d822"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p>カメラ専用のOpenGLウィジェット </p>

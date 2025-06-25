@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['など_0',['glHint(GL_POINT_SMOOTH_HINT, GL_NICEST); など',['../md__open_g_l__func.html#autotoc_md43',1,'']]]
+  ['✳️_20さらに学びたい方向け_0',['✳️ さらに学びたい方向け',['../md_open_g_l__basis.html#autotoc_md54',1,'']]]
 ];

@@ -1,0 +1,141 @@
+\chapter{open\+GL\+\_\+basis}
+\hypertarget{md_open_g_l__basis}{}\label{md_open_g_l__basis}\index{openGL\_basis@{openGL\_basis}}
+ここでは「\+Open\+GL の基本的な使い方」を、初心者の方でも理解できるように \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}ステップごとに分かりやすく整理\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}します。
+
+\DoxyHorRuler{0}
+\hypertarget{md_open_g_l__basis_autotoc_md35}{}\doxysubsection{\texorpdfstring{🎯 Open\+GLとは？}{🎯 Open\+GLとは？}}\label{md_open_g_l__basis_autotoc_md35}
+Open\+GL（\+Open Graphics Library）は、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+GPUを使って2\+D/3\+Dグラフィックスを描画するためのクロスプラットフォームな\+API\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}です。
+
+Open\+GL自体は「何を描くか」や「どう描くか」の命令を出すだけで、「ウィンドウ」や「イベント処理」は行いません。そのため、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+GLUT\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} や {\bfseries{Qt}} などのライブラリと組み合わせて使うことが多いです。
+
+\DoxyHorRuler{0}
+\hypertarget{md_open_g_l__basis_autotoc_md37}{}\doxysubsection{\texorpdfstring{🧭 Open\+GLの基本的な使い方：5ステップ}{🧭 Open\+GLの基本的な使い方：5ステップ}}\label{md_open_g_l__basis_autotoc_md37}
+\hypertarget{md_open_g_l__basis_autotoc_md38}{}\doxysubsubsection{\texorpdfstring{🔵 1. コンテキストとウィンドウの用意}{🔵 1. コンテキストとウィンドウの用意}}\label{md_open_g_l__basis_autotoc_md38}
+Open\+GLは単体では動かず、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}描画対象（ウィンドウ）とコンテキスト（\+Open\+GL環境）\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}が必要です。
+
+
+\begin{DoxyItemize}
+\item GLUTでは {\ttfamily glut\+Create\+Window()} や {\ttfamily glut\+Init\+Display\+Mode()} を使います。
+\item Qtでは {\ttfamily QOpen\+GLWidget} を継承したクラスを作成します。
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_open_g_l__basis_autotoc_md40}{}\doxysubsubsection{\texorpdfstring{🔵 2. 初期化（{\ttfamily initialize\+GL()} / {\ttfamily init()}）}{🔵 2. 初期化（{\ttfamily initialize\+GL()} / {\ttfamily init()}）}}\label{md_open_g_l__basis_autotoc_md40}
+ここで行うこと：
+
+
+\begin{DoxyItemize}
+\item 背景色の設定：{\ttfamily gl\+Clear\+Color(r, g, b, a);}
+\item 深度テストの有効化：{\ttfamily gl\+Enable(\+GL\+\_\+\+DEPTH\+\_\+\+TEST);}
+\item ライティングやテクスチャなどの設定（必要に応じて）
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_open_g_l__basis_autotoc_md42}{}\doxysubsubsection{\texorpdfstring{🔵 3. 描画（{\ttfamily paint\+GL()} / {\ttfamily display()}）}{🔵 3. 描画（{\ttfamily paint\+GL()} / {\ttfamily display()}）}}\label{md_open_g_l__basis_autotoc_md42}
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}描画処理の中心\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}です。
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{glClear(GL\_COLOR\_BUFFER\_BIT\ |\ GL\_DEPTH\_BUFFER\_BIT);\ \textcolor{comment}{//\ バッファクリア}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ 投影行列の設定}}
+\DoxyCodeLine{glMatrixMode(GL\_PROJECTION);}
+\DoxyCodeLine{glLoadIdentity();}
+\DoxyCodeLine{gluPerspective(...);\ \textcolor{comment}{//\ or\ glOrtho(...)}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ モデルビュー行列の設定（カメラ）}}
+\DoxyCodeLine{glMatrixMode(GL\_MODELVIEW);}
+\DoxyCodeLine{glLoadIdentity();}
+\DoxyCodeLine{gluLookAt(...);\ \textcolor{comment}{//\ カメラの位置・注視点・上方向}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ オブジェクトの描画}}
+\DoxyCodeLine{drawSomething();\ \textcolor{comment}{//\ glBegin〜glEnd\ など}}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_open_g_l__basis_autotoc_md44}{}\doxysubsubsection{\texorpdfstring{🔵 4. 再描画要求（{\ttfamily update()} or {\ttfamily glut\+Post\+Redisplay()}）}{🔵 4. 再描画要求（{\ttfamily update()} or {\ttfamily glut\+Post\+Redisplay()}）}}\label{md_open_g_l__basis_autotoc_md44}
+オブジェクトが動いたり視点が変わったりしたときに、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}描画を更新する必要があります\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}。
+
+
+\begin{DoxyItemize}
+\item Qt：{\ttfamily update();} を呼ぶことで再描画
+\item GLUT：{\ttfamily glut\+Post\+Redisplay();} を呼ぶことで再描画
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_open_g_l__basis_autotoc_md46}{}\doxysubsubsection{\texorpdfstring{🔵 5. バッファスワップ（ダブルバッファ）}{🔵 5. バッファスワップ（ダブルバッファ）}}\label{md_open_g_l__basis_autotoc_md46}
+描画内容を「チラつきなく表示する」ために、2枚のバッファを交互に使います。
+
+
+\begin{DoxyItemize}
+\item GLUT：{\ttfamily glut\+Swap\+Buffers();}
+\item Qt：内部で自動処理、明示的な呼び出しは不要
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_open_g_l__basis_autotoc_md48}{}\doxysubsection{\texorpdfstring{🗺️ Open\+GLにおける座標変換の流れ（重要）}{🗺️ Open\+GLにおける座標変換の流れ（重要）}}\label{md_open_g_l__basis_autotoc_md48}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[モデル座標系]\ モデル変換（オブジェクトの位置・回転）}
+\DoxyCodeLine{\ \ \ ↓}
+\DoxyCodeLine{[ワールド座標系]\ 視野変換（カメラ位置）}
+\DoxyCodeLine{\ \ \ ↓}
+\DoxyCodeLine{[ビュー座標系]\ 投影変換（遠近感）}
+\DoxyCodeLine{\ \ \ ↓}
+\DoxyCodeLine{[クリップ座標系]\ ビューポート変換（スクリーン上のピクセル位置）}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_open_g_l__basis_autotoc_md50}{}\doxysubsection{\texorpdfstring{🧱 図形の描画方法（固定機能パイプラインの例）}{🧱 図形の描画方法（固定機能パイプラインの例）}}\label{md_open_g_l__basis_autotoc_md50}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{glBegin(GL\_TRIANGLES);}
+\DoxyCodeLine{\ \ glColor3f(1.0,\ 0.0,\ 0.0);\ \textcolor{comment}{//\ 赤}}
+\DoxyCodeLine{\ \ glVertex3f(0.0,\ 1.0,\ 0.0);}
+\DoxyCodeLine{\ \ glVertex3f(-\/1.0,\ -\/1.0,\ 0.0);}
+\DoxyCodeLine{\ \ glVertex3f(1.0,\ -\/1.0,\ 0.0);}
+\DoxyCodeLine{glEnd();}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_open_g_l__basis_autotoc_md52}{}\doxysubsection{\texorpdfstring{✅ よく使う関数まとめ}{✅ よく使う関数まとめ}}\label{md_open_g_l__basis_autotoc_md52}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 関数   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 説明    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 関数   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 説明    }\\\cline{1-2}
+\endhead
+{\ttfamily gl\+Clear\+Color()}   &背景色を設定    \\\cline{1-2}
+{\ttfamily gl\+Clear()}   &画面をクリア    \\\cline{1-2}
+{\ttfamily gl\+Enable(\+GL\+\_\+\+DEPTH\+\_\+\+TEST)}   &Zバッファによる奥行き判定を有効化    \\\cline{1-2}
+{\ttfamily gl\+Viewport()}   &ビューポート領域の設定    \\\cline{1-2}
+{\ttfamily gl\+Matrix\+Mode()}   &行列モードの選択（投影 or モデルビュー）    \\\cline{1-2}
+{\ttfamily gl\+Load\+Identity()}   &単位行列で初期化    \\\cline{1-2}
+{\ttfamily glu\+Perspective()} / {\ttfamily gl\+Ortho()}   &投影行列を設定（透視投影 / 正射影）    \\\cline{1-2}
+{\ttfamily glu\+Look\+At()}   &カメラ視点を設定   \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_open_g_l__basis_autotoc_md54}{}\doxysubsection{\texorpdfstring{✳️ さらに学びたい方向け}{✳️ さらに学びたい方向け}}\label{md_open_g_l__basis_autotoc_md54}
+
+\begin{DoxyItemize}
+\item {\bfseries{Open\+GL 3.\+x以降ではシェーダープログラミング\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}が主流（モダン\+Open\+GL）}}
+\item {\bfseries{ここで紹介したのは \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}固定機能パイプライン（レガシー\+Open\+GL）}}
+\item モダン\+Open\+GLでは {\ttfamily gl\+Use\+Program()} や {\ttfamily gl\+Draw\+Arrays()}、{\ttfamily VBO}, {\ttfamily VAO} などを使います
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+
+
+ご希望があれば、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}モダン\+Open\+GLとの違いや、\+Qtでの3\+D描画の拡張方法\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}などもお手伝いできます。どこまで掘り下げたいですか？ 

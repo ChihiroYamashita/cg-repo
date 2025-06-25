@@ -1,0 +1,106 @@
+\chapter{全体フロー：\+Open\+GL描画の処理の流れ（\+Qt版）}
+\hypertarget{md_coordinate__transformation1}{}\label{md_coordinate__transformation1}\index{全体フロー：OpenGL描画の処理の流れ（Qt版）@{全体フロー：OpenGL描画の処理の流れ（Qt版）}}
+\label{md_coordinate__transformation1_autotoc_md8}%
+\Hypertarget{md_coordinate__transformation1_autotoc_md8}%
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ QOpenGLWidgetによる初期化\ \&\ 描画}
+\DoxyCodeLine{┌─────────────────────────────────────────┐}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ 1回だけ呼ばれる関数\ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ ┌──────────────┐\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ │\ initializeGL()│←\ OpenGLの初期設定\ \ \ \ │}
+\DoxyCodeLine{│\ \ \ └──────────────┘\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ 毎フレーム\ or\ 明示的再描画で呼ばれる関数\ │}
+\DoxyCodeLine{│\ \ \ ┌──────────────┐\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ │\ resizeGL()\ \ \ \ │←\ リサイズ時に呼ばれる\ │}
+\DoxyCodeLine{│\ \ \ └──────────────┘\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ ┌──────────────┐\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ │\ paintGL()\ \ \ \ \ │←\ 描画処理の本体\ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ └──────────────┘\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{└─────────────────────────────────────────┘}
+
+\end{DoxyCode}
+\hypertarget{md_coordinate__transformation1_autotoc_md9}{}\doxysection{\texorpdfstring{普通、視野変換、投影変換、ビューポート変換の順に呼ばれませんか？}{普通、視野変換、投影変換、ビューポート変換の順に呼ばれませんか？}}\label{md_coordinate__transformation1_autotoc_md9}
+とても良い視点です。ご指摘の通り、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}理論的・概念的には\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}：
+
+\begin{quote}
+{\bfseries{視野変換（\+View） → 投影変換（\+Projection） → ビューポート変換（\+Viewport）}} \end{quote}
+の順で処理されるのが自然です。なぜなら、\+Open\+GLのグラフィックスパイプラインは以下のような順番で頂点に対して変換をかけていくからです：
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[モデル座標]}
+\DoxyCodeLine{\ →\ モデリング変換}
+\DoxyCodeLine{\ →\ 視野変換（カメラ座標系へ）}
+\DoxyCodeLine{\ →\ 投影変換（視錐台\ →\ 正規化デバイス座標）}
+\DoxyCodeLine{\ →\ ビューポート変換（スクリーン座標へ）}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_coordinate__transformation1_autotoc_md11}{}\doxysection{\texorpdfstring{✅ ではなぜ {\ttfamily paint\+GL()} では投影→ビューポート→視野 の順なのか？}{✅ ではなぜ {\ttfamily paint\+GL()} では投影→ビューポート→視野 の順なのか？}}\label{md_coordinate__transformation1_autotoc_md11}
+これは \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+Open\+GL の状態設定\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}と\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}描画タイミング\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}の関係によるものです。\hypertarget{md_coordinate__transformation1_autotoc_md12}{}\doxysubsection{\texorpdfstring{Open\+GLの描画順序（実際の{\ttfamily paint\+GL()}）：}{Open\+GLの描画順序（実際の{\ttfamily paint\+GL()}）：}}\label{md_coordinate__transformation1_autotoc_md12}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{updateProjectionMatrix();\ \textcolor{comment}{//\ ①\ 投影行列の設定}}
+\DoxyCodeLine{glViewport(...);\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ②\ スクリーンサイズの設定}}
+\DoxyCodeLine{projection\_and\_modelview();\ \textcolor{comment}{//\ ③\ カメラの視点を設定}}
+
+\end{DoxyCode}
+\hypertarget{md_coordinate__transformation1_autotoc_md13}{}\doxysubsection{\texorpdfstring{なぜこの順で\+OKか：}{なぜこの順で\+OKか：}}\label{md_coordinate__transformation1_autotoc_md13}
+
+\begin{DoxyItemize}
+\item Open\+GLでは、「\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}行列の設定\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}」は \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}描画が始まる前\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}に行っておけばよく、実際の行列計算は内部で最終的に以下のように合成されます：
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{gl\_Position\ =\ ProjectionMatrix\ ×\ ModelViewMatrix\ ×\ vertex}
+
+\end{DoxyCode}
+
+\item モデルビュー行列（視野変換）は {\ttfamily gl\+Matrix\+Mode(\+GL\+\_\+\+MODELVIEW)} 時に設定。
+\item 投影行列は {\ttfamily gl\+Matrix\+Mode(\+GL\+\_\+\+PROJECTION)} 時に設定。
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}それぞれの行列スタックは独立に管理される\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}ので、順番が逆でも最終的に行列積が正しく合成されれば\+OKです。
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_coordinate__transformation1_autotoc_md15}{}\doxysection{\texorpdfstring{✅ ビューポート変換はいつでも\+OK？}{✅ ビューポート変換はいつでも\+OK？}}\label{md_coordinate__transformation1_autotoc_md15}
+はい、{\ttfamily gl\+Viewport()} は \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}座標変換ではなく「画面にどうマッピングするか」\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}の設定です。したがって、描画前に呼ばれていれば OK です。行列に関係なく独立に働きます。
+
+\DoxyHorRuler{0}
+\hypertarget{md_coordinate__transformation1_autotoc_md17}{}\doxysection{\texorpdfstring{🔁 結論：理論 vs 実装順の違い}{🔁 結論：理論 vs 実装順の違い}}\label{md_coordinate__transformation1_autotoc_md17}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 観点   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 理論的な順序   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Open\+GL 実装での順序（あなたのコード）    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 観点   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 理論的な順序   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Open\+GL 実装での順序（あなたのコード）    }\\\cline{1-3}
+\endhead
+モデル変換 → 視野変換   &✅   &✅ ({\ttfamily gl\+Load\+Identity} + {\ttfamily glu\+Look\+At})    \\\cline{1-3}
+視野変換 → 投影変換   &✅   &❌（逆順でも\+OK、状態として管理）    \\\cline{1-3}
+投影変換 → ビューポート   &✅   &✅    \\\cline{1-3}
+行列が正しく積まれるか   &✅   &✅ 問題なし   \\\cline{1-3}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+
+
+つまり、
+
+\begin{quote}
+{\bfseries{理論的には視野→投影→ビューポートが自然ですが、\+Open\+GLでは投影→ビューポート→視野でも動作に問題はありません。}} \end{quote}
+ただし、「理論通りに組むほうが可読性・教育的には望ましい」とされることが多いです。
+
+\DoxyHorRuler{0}
+
+
+もし視点変換と投影変換を\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}一つの変換行列に統合したい場合\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}や、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+GLSLで扱いたい場合\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}なども説明可能です。必要ですか？ 

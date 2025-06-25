@@ -4,10 +4,17 @@
 {\ttfamily \#include "{}draw\+Object.\+h"{}}\newline
 {\ttfamily \#include "{}GLPreview.\+h"{}}\newline
 {\ttfamily \#include "{}Camera.\+h"{}}\newline
+{\ttfamily \#include "{}Ray\+Tracing\+Internal\+Data.\+h"{}}\newline
+{\ttfamily \#include "{}random.\+h"{}}\newline
+{\ttfamily \#include "{}ray.\+h"{}}\newline
+{\ttfamily \#include "{}Ray\+Hit.\+h"{}}\newline
+{\ttfamily \#include "{}Ray\+Tracer.\+h"{}}\newline
+{\ttfamily \#include "{}shading.\+h"{}}\newline
+{\ttfamily \#include "{}Light.\+h"{}}\newline
 {\ttfamily \#include $<$GL/glu.\+h$>$}\newline
 {\ttfamily \#include $<$QTimer$>$}\newline
-myopenglwidget\+\_\+camera.\+cpp の依存先関係図\+:
-\nopagebreak
+{\ttfamily \#include $<$Eigen/\+Dense$>$}\newline
+myopenglwidget\+\_\+camera.\+cpp の依存先関係図\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -23,7 +30,9 @@ void \mbox{\hyperlink{myopenglwidget__camera_8cpp_adc659dc6e4788fd965bbccf86f696
 \item 
 void \mbox{\hyperlink{myopenglwidget__camera_8cpp_a39c38563b075ca4414b135fe1a91bf01_a39c38563b075ca4414b135fe1a91bf01}{update\+Film}} ()
 \item 
-void \mbox{\hyperlink{myopenglwidget__camera_8cpp_a194b2b4c12d48f9d977fc14d60756703_a194b2b4c12d48f9d977fc14d60756703}{shade\+Next\+Pixel}} ()
+void \mbox{\hyperlink{myopenglwidget__camera_8cpp_ad3b014bc8047da638f3fbb909689abef_ad3b014bc8047da638f3fbb909689abef}{clear\+Ray\+Traced\+Result}} ()
+\item 
+void \mbox{\hyperlink{myopenglwidget__camera_8cpp_a992f6f672cf6898c7c345cd917e5d822_a992f6f672cf6898c7c345cd917e5d822}{init\+Area\+Lights}} ()
 \end{DoxyCompactItemize}
 \doxysubsubsection*{変数}
 \begin{DoxyCompactItemize}
@@ -41,10 +50,30 @@ float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{myopenglwidget__camera_8cpp_a3
 float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{myopenglwidget__camera_8cpp_a7adccbec26849e271c6bd379a5a09bb0_a7adccbec26849e271c6bd379a5a09bb0}{g\+\_\+\+Accumulation\+Buffer}} = nullptr
 \item 
 int \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{myopenglwidget__camera_8cpp_a368dd5013eb7fbdb75d5306df4708c7f_a368dd5013eb7fbdb75d5306df4708c7f}{g\+\_\+\+Count\+Buffer}} = nullptr
+\item 
+int \mbox{\hyperlink{myopenglwidget__camera_8cpp_a373703dea27426ca22bcfe71ff286e4e_a373703dea27426ca22bcfe71ff286e4e}{n\+Samples\+Per\+Pixel}} = 4
+\item 
+Object \mbox{\hyperlink{myopenglwidget__camera_8cpp_a9dbe642fb485e3761bdee2e93b2ff41f_a9dbe642fb485e3761bdee2e93b2ff41f}{g\+\_\+\+Obj}}
+\item 
+std\+::vector$<$ Area\+Light $>$ \mbox{\hyperlink{myopenglwidget__camera_8cpp_a0046f7f865d239a9b095580a7139b2a2_a0046f7f865d239a9b095580a7139b2a2}{g\+\_\+\+Area\+Lights}}
+\item 
+Ray\+Tracing\+Internal\+Data \mbox{\hyperlink{myopenglwidget__camera_8cpp_a7a60fdc5f2b9304a22325e8b32f94676_a7a60fdc5f2b9304a22325e8b32f94676}{g\+\_\+\+Ray\+Tracing\+Internal\+Data}}
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{関数詳解}
+\Hypertarget{myopenglwidget__camera_8cpp_ad3b014bc8047da638f3fbb909689abef_ad3b014bc8047da638f3fbb909689abef}\index{myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}!clearRayTracedResult@{clearRayTracedResult}}
+\index{clearRayTracedResult@{clearRayTracedResult}!myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}}
+\doxysubsubsection{\texorpdfstring{clearRayTracedResult()}{clearRayTracedResult()}}
+{\footnotesize\ttfamily \label{myopenglwidget__camera_8cpp_ad3b014bc8047da638f3fbb909689abef_ad3b014bc8047da638f3fbb909689abef} 
+void clear\+Ray\+Traced\+Result (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{myopenglwidget__camera_8cpp_a992f6f672cf6898c7c345cd917e5d822_a992f6f672cf6898c7c345cd917e5d822}\index{myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}!initAreaLights@{initAreaLights}}
+\index{initAreaLights@{initAreaLights}!myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}}
+\doxysubsubsection{\texorpdfstring{initAreaLights()}{initAreaLights()}}
+{\footnotesize\ttfamily \label{myopenglwidget__camera_8cpp_a992f6f672cf6898c7c345cd917e5d822_a992f6f672cf6898c7c345cd917e5d822} 
+void init\+Area\+Lights (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
 \Hypertarget{myopenglwidget__camera_8cpp_adc659dc6e4788fd965bbccf86f696be0_adc659dc6e4788fd965bbccf86f696be0}\index{myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}!initFilm@{initFilm}}
 \index{initFilm@{initFilm}!myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}}
 \doxysubsubsection{\texorpdfstring{initFilm()}{initFilm()}}
@@ -56,12 +85,6 @@ void init\+Film (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 \doxysubsubsection{\texorpdfstring{resetFilm()}{resetFilm()}}
 {\footnotesize\ttfamily \label{myopenglwidget__camera_8cpp_af848ee1e8e6aa06ccdbc4b548158f5fa_af848ee1e8e6aa06ccdbc4b548158f5fa} 
 void reset\+Film (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
-
-\Hypertarget{myopenglwidget__camera_8cpp_a194b2b4c12d48f9d977fc14d60756703_a194b2b4c12d48f9d977fc14d60756703}\index{myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}!shadeNextPixel@{shadeNextPixel}}
-\index{shadeNextPixel@{shadeNextPixel}!myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}}
-\doxysubsubsection{\texorpdfstring{shadeNextPixel()}{shadeNextPixel()}}
-{\footnotesize\ttfamily \label{myopenglwidget__camera_8cpp_a194b2b4c12d48f9d977fc14d60756703_a194b2b4c12d48f9d977fc14d60756703} 
-void shade\+Next\+Pixel (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 \Hypertarget{myopenglwidget__camera_8cpp_a39c38563b075ca4414b135fe1a91bf01_a39c38563b075ca4414b135fe1a91bf01}\index{myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}!updateFilm@{updateFilm}}
 \index{updateFilm@{updateFilm}!myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}}
@@ -77,6 +100,12 @@ void update\+Film (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 \doxysubsubsection{\texorpdfstring{g\_AccumulationBuffer}{g\_AccumulationBuffer}}
 {\footnotesize\ttfamily \label{myopenglwidget__camera_8cpp_a7adccbec26849e271c6bd379a5a09bb0_a7adccbec26849e271c6bd379a5a09bb0} 
 float\texorpdfstring{$\ast$}{*} g\+\_\+\+Accumulation\+Buffer = nullptr}
+
+\Hypertarget{myopenglwidget__camera_8cpp_a0046f7f865d239a9b095580a7139b2a2_a0046f7f865d239a9b095580a7139b2a2}\index{myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}!g\_AreaLights@{g\_AreaLights}}
+\index{g\_AreaLights@{g\_AreaLights}!myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_AreaLights}{g\_AreaLights}}
+{\footnotesize\ttfamily \label{myopenglwidget__camera_8cpp_a0046f7f865d239a9b095580a7139b2a2_a0046f7f865d239a9b095580a7139b2a2} 
+std\+::vector$<$Area\+Light$>$ g\+\_\+\+Area\+Lights}
 
 \Hypertarget{myopenglwidget__camera_8cpp_a368dd5013eb7fbdb75d5306df4708c7f_a368dd5013eb7fbdb75d5306df4708c7f}\index{myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}!g\_CountBuffer@{g\_CountBuffer}}
 \index{g\_CountBuffer@{g\_CountBuffer}!myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}}
@@ -113,4 +142,22 @@ GLuint g\+\_\+\+Film\+Texture = 0}
 \doxysubsubsection{\texorpdfstring{g\_FilmWidth}{g\_FilmWidth}}
 {\footnotesize\ttfamily \label{myopenglwidget__camera_8cpp_a63e92c3171f6a27fb09456c1e01da214_a63e92c3171f6a27fb09456c1e01da214} 
 const int g\+\_\+\+Film\+Width = 640}
+
+\Hypertarget{myopenglwidget__camera_8cpp_a9dbe642fb485e3761bdee2e93b2ff41f_a9dbe642fb485e3761bdee2e93b2ff41f}\index{myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}!g\_Obj@{g\_Obj}}
+\index{g\_Obj@{g\_Obj}!myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_Obj}{g\_Obj}}
+{\footnotesize\ttfamily \label{myopenglwidget__camera_8cpp_a9dbe642fb485e3761bdee2e93b2ff41f_a9dbe642fb485e3761bdee2e93b2ff41f} 
+Object g\+\_\+\+Obj}
+
+\Hypertarget{myopenglwidget__camera_8cpp_a7a60fdc5f2b9304a22325e8b32f94676_a7a60fdc5f2b9304a22325e8b32f94676}\index{myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}!g\_RayTracingInternalData@{g\_RayTracingInternalData}}
+\index{g\_RayTracingInternalData@{g\_RayTracingInternalData}!myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_RayTracingInternalData}{g\_RayTracingInternalData}}
+{\footnotesize\ttfamily \label{myopenglwidget__camera_8cpp_a7a60fdc5f2b9304a22325e8b32f94676_a7a60fdc5f2b9304a22325e8b32f94676} 
+Ray\+Tracing\+Internal\+Data g\+\_\+\+Ray\+Tracing\+Internal\+Data}
+
+\Hypertarget{myopenglwidget__camera_8cpp_a373703dea27426ca22bcfe71ff286e4e_a373703dea27426ca22bcfe71ff286e4e}\index{myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}!nSamplesPerPixel@{nSamplesPerPixel}}
+\index{nSamplesPerPixel@{nSamplesPerPixel}!myopenglwidget\_camera.cpp@{myopenglwidget\_camera.cpp}}
+\doxysubsubsection{\texorpdfstring{nSamplesPerPixel}{nSamplesPerPixel}}
+{\footnotesize\ttfamily \label{myopenglwidget__camera_8cpp_a373703dea27426ca22bcfe71ff286e4e_a373703dea27426ca22bcfe71ff286e4e} 
+int n\+Samples\+Per\+Pixel = 4}
 

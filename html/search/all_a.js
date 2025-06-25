@@ -9,9 +9,11 @@ var searchData=
   ['camerakeyframe_6',['CameraKeyframe',['../struct_camera_keyframe.html',1,'']]],
   ['camerakeyframe_2eh_7',['CameraKeyframe.h',['../_camera_keyframe_8h.html',1,'']]],
   ['checkopenglversion_8',['checkOpenGLVersion',['../class_my_open_g_l_widget_a4769bc50ce5e1c8c014d4adc2681202c.html#a4769bc50ce5e1c8c014d4adc2681202c',1,'MyOpenGLWidget']]],
-  ['color_9',['color',['../class_my_open_g_l_widget__camera_a4a3e2b37507c74dc90fd3aff5b2fefa4.html#a4a3e2b37507c74dc90fd3aff5b2fefa4',1,'MyOpenGLWidget_camera']]],
-  ['currentmousepositionx_10',['currentMousePositionX',['../class_custom_scene_a547635870c2283801596735e59fbf658.html#a547635870c2283801596735e59fbf658',1,'CustomScene']]],
-  ['customscene_11',['CustomScene',['../class_custom_scene.html',1,'CustomScene'],['../class_custom_scene_a76afc0f46f8bb8d952735a45c705d8cb.html#a76afc0f46f8bb8d952735a45c705d8cb',1,'CustomScene::CustomScene()']]],
-  ['customscene_2ecpp_12',['CustomScene.cpp',['../_custom_scene_8cpp.html',1,'']]],
-  ['customscene_2eh_13',['CustomScene.h',['../_custom_scene_8h.html',1,'']]]
+  ['clearraytracedresult_9',['clearRayTracedResult',['../myopenglwidget__camera_8cpp_ad3b014bc8047da638f3fbb909689abef.html#ad3b014bc8047da638f3fbb909689abef',1,'clearRayTracedResult():&#160;myopenglwidget_camera.cpp'],['../myopenglwidget__camera_8h_ad3b014bc8047da638f3fbb909689abef.html#ad3b014bc8047da638f3fbb909689abef',1,'clearRayTracedResult():&#160;myopenglwidget_camera.cpp']]],
+  ['color_10',['color',['../class_my_open_g_l_widget__camera_a4a3e2b37507c74dc90fd3aff5b2fefa4.html#a4a3e2b37507c74dc90fd3aff5b2fefa4',1,'MyOpenGLWidget_camera']]],
+  ['coordinate_5ftransformation1_2emd_11',['coordinate_transformation1.md',['../coordinate__transformation1_8md.html',1,'']]],
+  ['currentmousepositionx_12',['currentMousePositionX',['../class_custom_scene_a547635870c2283801596735e59fbf658.html#a547635870c2283801596735e59fbf658',1,'CustomScene']]],
+  ['customscene_13',['CustomScene',['../class_custom_scene.html',1,'CustomScene'],['../class_custom_scene_a76afc0f46f8bb8d952735a45c705d8cb.html#a76afc0f46f8bb8d952735a45c705d8cb',1,'CustomScene::CustomScene()']]],
+  ['customscene_2ecpp_14',['CustomScene.cpp',['../_custom_scene_8cpp.html',1,'']]],
+  ['customscene_2eh_15',['CustomScene.h',['../_custom_scene_8h.html',1,'']]]
 ];

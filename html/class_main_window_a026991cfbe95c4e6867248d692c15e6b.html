@@ -111,7 +111,7 @@ $(function(){ initResizable(false); });
           <tr><td class="navtab"><a class="navtab" href="class_main_window_aef1853fcce800089839a9c4a06f67107.html#aef1853fcce800089839a9c4a06f67107">setupScene</a></td></tr>
           <tr><td class="navtab"><a class="navtab" href="class_main_window_a3febb9ef08a8e0f7fc00848ea540a899.html#a3febb9ef08a8e0f7fc00848ea540a899">showEvent</a></td></tr>
           <tr><td class="navtab"><a class="navtab" href="class_main_window_a35466a70ed47252a0191168126a352a5.html#a35466a70ed47252a0191168126a352a5">ui</a></td></tr>
-          <tr><td class="navtab"><a class="navtab" href="class_main_window_a82f70bb0042d1b461b4f5d6284d1fd3c.html#a82f70bb0042d1b461b4f5d6284d1fd3c">updateCamera</a></td></tr>
+          <tr><td class="navtab"><a class="navtab" href="class_main_window_ae67bfa26046724c1b63b67e9bdffc9eb.html#ae67bfa26046724c1b63b67e9bdffc9eb">updateCamera</a></td></tr>
           <tr><td class="navtab"><a class="navtab" href="class_main_window_ae98d00a93bc118200eeef9f9bba1dba7.html#ae98d00a93bc118200eeef9f9bba1dba7">~MainWindow</a></td></tr>
         </table>
       </div>
@@ -139,6 +139,48 @@ $(function(){ initResizable(false); });
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>カメラのキーフレームを登録するスロット関数 </p>
+<p>現在のカメラの視点情報（EyePoint、LookAtPoint、UpVectorなど）を取得し、 タイムライン上の現在位置にカメラのキーフレームとして登録します。 また、<code><a class="el" href="class_my_open_g_l_widget__camera.html">MyOpenGLWidget_camera</a></code> にもカメラ情報を転送してビューを更新します。</p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">なし（ボタンがクリックされた際に自動呼び出しされるスロット）</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>なし</dd></dl>
+<h3><a class="anchor" id="autotoc_md20"></a>
+処理の流れ</h3>
+<h4><a class="anchor" id="autotoc_md21"></a>
+1. カメラ情報の取得</h4>
+<p>メインビューのOpenGLウィジェット（<code><a class="el" href="class_my_open_g_l_widget.html">MyOpenGLWidget</a></code>）から以下のカメラ情報を取得：</p><ul>
+<li>EyePoint（視点）</li>
+<li>LookAtPoint（注視点）</li>
+<li>Up/X/Y/Z ベクトル</li>
+<li>FOV（視野角）</li>
+<li>Zoom（ズーム値）</li>
+</ul>
+<h4><a class="anchor" id="autotoc_md22"></a>
+2. フレーム番号の計算</h4>
+<p><code><a class="el" href="class_custom_scene_a8c573a90a2ca781852c03c5922e2866e.html#a8c573a90a2ca781852c03c5922e2866e" title="プレイヘッドのX座標を取得する関数">CustomScene::getPlayheadPositionX()</a></code> から現在のプレイヘッドX座標を取得し、タイムライン上のフレーム番号に変換します。</p>
+<h4><a class="anchor" id="autotoc_md23"></a>
+3. キーフレームの登録</h4>
+<p><code><a class="el" href="class_custom_scene_ada78408cc1b7b59328bd171be25eac70.html#ada78408cc1b7b59328bd171be25eac70" title="キーフレームを追加する関数">CustomScene::addKeyframe()</a></code> を呼び出して、取得したカメラ情報を登録。</p>
+<h4><a class="anchor" id="autotoc_md24"></a>
+4. カメラビューの同期</h4>
+<p><code><a class="el" href="class_my_open_g_l_widget__camera.html">MyOpenGLWidget_camera</a></code> の <code>setCamerakeyframe()</code> を呼び出し、視点と注視点をカメラビューに反映します。</p>
+<h3><a class="anchor" id="autotoc_md25"></a>
+シーケンス図</h3>
+<div class="plantumlgraph">
+<img src="inline_umlgraph_4.png" />
+</div>
+<dl class="section see"><dt>参照</dt><dd><a class="el" href="class_custom_scene_ada78408cc1b7b59328bd171be25eac70.html#ada78408cc1b7b59328bd171be25eac70" title="キーフレームを追加する関数">CustomScene::addKeyframe</a> </dd>
+<dd>
+<a class="el" href="class_my_open_g_l_widget_ae3f65df8147f1265b41c1e43e7ed6023.html#ae3f65df8147f1265b41c1e43e7ed6023">MyOpenGLWidget::getEyePoint</a> </dd>
+<dd>
+<a class="el" href="class_my_open_g_l_widget_a3accb2d05a17a9fe3e2b90bd71a16806.html#a3accb2d05a17a9fe3e2b90bd71a16806">MyOpenGLWidget::getlookAtPoint</a> </dd>
+<dd>
+<a class="el" href="class_my_open_g_l_widget__camera_a425691e2aa1e8a7b896a2917c3b709ae.html#a425691e2aa1e8a7b896a2917c3b709ae">MyOpenGLWidget_camera::setCamerakeyframe</a> </dd></dl>
 
 </div>
 </div>

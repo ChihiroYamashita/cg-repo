@@ -6,13 +6,13 @@ INCLUDEPATH += $$PWD/freeglut-2.8.1.tar/freeglut-2.8.1/freeglut-2.8.1/include
 INCLUDEPATH += $$PWD/eigen-3.4.0/eigen-3.4.0
 INCLUDEPATH += "C:/A_Qt_clone/cg-repo/pass_tracing"
 INCLUDEPATH += $$PWD/pass_tracing
-
+INCLUDEPATH += $$PWD/jpeg-9c/jpeg-9c
 
 LIBS += -lopengl32
 LIBS += -lglu32
 # LIBS += -L"D:/OneDrive_2/OneDrive/CGProgramings/qt3/freeglut-2.8.1.tar/freeglut-2.8.1/freeglut-2.8.1/lib/x86" -lfreeglut
 LIBS += -L"$$PWD/freeglut-2.8.1.tar/freeglut-2.8.1/freeglut-2.8.1/lib/x86" -lfreeglut
-
+LIBS += -L$$PWD/jpeg-9c/jpeg-9c/Release -ljpeg
 CONFIG += c++17
 
 # You can make your code fail to compile if it uses deprecated APIs.
@@ -72,5 +72,6 @@ DISTFILES += \
     OpenGL_func.md \
     README.md \
     about_convertions.md \
+    memo.md \
     sequence_diagrams.md \
     updates.md
