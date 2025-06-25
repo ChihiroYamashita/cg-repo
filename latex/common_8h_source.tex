@@ -1,0 +1,181 @@
+\doxysection{common.\+h}
+\hypertarget{common_8h_source}{}\label{common_8h_source}\index{eigen-\/3.4.0/eigen-\/3.4.0/blas/common.h@{eigen-\/3.4.0/eigen-\/3.4.0/blas/common.h}}
+\mbox{\hyperlink{common_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ Eigen,\ a\ lightweight\ C++\ template\ library}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ for\ linear\ algebra.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (C)\ 2009-\/2015\ Gael\ Guennebaud\ <gael.guennebaud@inria.fr>}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ This\ Source\ Code\ Form\ is\ subject\ to\ the\ terms\ of\ the\ Mozilla}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Public\ License\ v.\ 2.0.\ If\ a\ copy\ of\ the\ MPL\ was\ not\ distributed}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ with\ this\ file,\ You\ can\ obtain\ one\ at\ http://mozilla.org/MPL/2.0/.}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_BLAS\_COMMON\_H}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ EIGEN\_BLAS\_COMMON\_H}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifdef\ \_\_GNUC\_\_}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#\ if\ \_\_GNUC\_\_<5}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ GCC\ <\ 5.0\ does\ not\ like\ the\ global\ Scalar\ typedef}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ we\ just\ keep\ shadow-\/warnings\ disabled\ permanently}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#\ \ define\ EIGEN\_PERMANENTLY\_DISABLE\_STUPID\_WARNINGS}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#\ endif}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}../Eigen/Core"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}../Eigen/Jacobi"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <complex>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#ifndef\ SCALAR}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#error\ the\ token\ SCALAR\ must\ be\ defined\ to\ compile\ this\ file}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_eigen_2src_2misc_2blas_8h}{../Eigen/src/misc/blas.h}}"{}}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ NOTR\ \ \ \ 0}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ TR\ \ \ \ \ \ 1}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ ADJ\ \ \ \ \ 2}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ LEFT\ \ \ \ 0}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ RIGHT\ \ \ 1}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ UP\ \ \ \ \ \ 0}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ LO\ \ \ \ \ \ 1}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ NUNIT\ \ \ 0}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ UNIT\ \ \ \ 1}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ INVALID\ 0xff}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ OP(X)\ \ \ (\ \ \ ((X)=='N'\ ||\ (X)=='n')\ ?\ NOTR\ \ \ \(\backslash\)}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ ((X)=='T'\ ||\ (X)=='t')\ ?\ TR\ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ ((X)=='C'\ ||\ (X)=='c')\ ?\ ADJ\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ INVALID)}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ SIDE(X)\ (\ \ \ ((X)=='L'\ ||\ (X)=='l')\ ?\ LEFT\ \ \ \(\backslash\)}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ ((X)=='R'\ ||\ (X)=='r')\ ?\ RIGHT\ \ \(\backslash\)}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ INVALID)}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ UPLO(X)\ (\ \ \ ((X)=='U'\ ||\ (X)=='u')\ ?\ UP\ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ ((X)=='L'\ ||\ (X)=='l')\ ?\ LO\ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ INVALID)}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ DIAG(X)\ (\ \ \ ((X)=='N'\ ||\ (X)=='n')\ ?\ NUNIT\ \ \(\backslash\)}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ ((X)=='U'\ ||\ (X)=='u')\ ?\ UNIT\ \ \ \(\backslash\)}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ INVALID)}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{common_8h_a8acda11879ff1b59de02c56c99a98289_a8acda11879ff1b59de02c56c99a98289}{check\_op}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ op)}
+\DoxyCodeLine{00066\ \{}
+\DoxyCodeLine{00067\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{common_8h_a63a3664cbdee9b346c8d91509aa829f7_a63a3664cbdee9b346c8d91509aa829f7}{OP}}(*op)!=0xff;}
+\DoxyCodeLine{00068\ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{common_8h_ac8c43dc903c27a45be520dbfefde82e8_ac8c43dc903c27a45be520dbfefde82e8}{check\_side}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ side)}
+\DoxyCodeLine{00071\ \{}
+\DoxyCodeLine{00072\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{common_8h_a56e22fa53d6e79b0a7729fbd2a20f0d9_a56e22fa53d6e79b0a7729fbd2a20f0d9}{SIDE}}(*side)!=0xff;}
+\DoxyCodeLine{00073\ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{common_8h_a47cad79ba5af39d67810caf6e8539f8d_a47cad79ba5af39d67810caf6e8539f8d}{check\_uplo}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ uplo)}
+\DoxyCodeLine{00076\ \{}
+\DoxyCodeLine{00077\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{common_8h_aede440fdc60eff8db8599716ca73b449_aede440fdc60eff8db8599716ca73b449}{UPLO}}(*uplo)!=0xff;}
+\DoxyCodeLine{00078\ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_eigen}{Eigen}}\ \{}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_band_triangular_solver_8h}{BandTriangularSolver.h}}"{}}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_general_rank1_update_8h}{GeneralRank1Update.h}}"{}}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_packed_selfadjoint_product_8h}{PackedSelfadjointProduct.h}}"{}}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_packed_triangular_matrix_vector_8h}{PackedTriangularMatrixVector.h}}"{}}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_packed_triangular_solver_vector_8h}{PackedTriangularSolverVector.h}}"{}}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_rank2_update_8h}{Rank2Update.h}}"{}}}
+\DoxyCodeLine{00088\ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespace_eigen}{Eigen}};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{bench__gemm_8cpp_aae7e5362e39df9265f4fd78ffa61660a_aae7e5362e39df9265f4fd78ffa61660a}{SCALAR}}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}};}
+\DoxyCodeLine{00093\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<Scalar>::Real}}\ \mbox{\hyperlink{common_8h_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{RealScalar}};}
+\DoxyCodeLine{00094\ \textcolor{keyword}{typedef}\ std::complex<RealScalar>\ \mbox{\hyperlink{common_8h_a1a215510434ed195e4ce08e1f0b86afe_a1a215510434ed195e4ce08e1f0b86afe}{Complex}};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00097\ \{}
+\DoxyCodeLine{00098\ \ \ \mbox{\hyperlink{common_8h_a80155586fa275b28773c9b203f52caba_a80155586fa275b28773c9b203f52cabaa66d6dc5b929fc072f7dce7fdab0ee378}{IsComplex}}\ =\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Eigen::NumTraits<SCALAR>::IsComplex}},}
+\DoxyCodeLine{00099\ \ \ \mbox{\hyperlink{common_8h_a80155586fa275b28773c9b203f52caba_a80155586fa275b28773c9b203f52cabaaa9e2d59cf36dc044b75f06551d65d28d}{Conj}}\ =\ \mbox{\hyperlink{common_8h_a80155586fa275b28773c9b203f52caba_a80155586fa275b28773c9b203f52cabaa66d6dc5b929fc072f7dce7fdab0ee378}{IsComplex}}}
+\DoxyCodeLine{00100\ \};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<Scalar,Dynamic,Dynamic,ColMajor>}}\ \mbox{\hyperlink{common_8h_aa269c0151a2f2c0570f004c77ca88b4a_aa269c0151a2f2c0570f004c77ca88b4a}{PlainMatrixType}};}
+\DoxyCodeLine{00103\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_map}{Map<Matrix<Scalar,Dynamic,Dynamic,ColMajor>}},\ 0,\ \mbox{\hyperlink{class_eigen_1_1_outer_stride}{OuterStride<>}}\ >\ \mbox{\hyperlink{common_8h_ab5ea5a8e50af90c1c95350572f8b649b_ab5ea5a8e50af90c1c95350572f8b649b}{MatrixType}};}
+\DoxyCodeLine{00104\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_map}{Map<const\ Matrix<Scalar,Dynamic,Dynamic,ColMajor>}},\ 0,\ \mbox{\hyperlink{class_eigen_1_1_outer_stride}{OuterStride<>}}\ >\ \mbox{\hyperlink{common_8h_ad4f5e51b86e93e40a62c8a60192c726a_ad4f5e51b86e93e40a62c8a60192c726a}{ConstMatrixType}};}
+\DoxyCodeLine{00105\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_map}{Map<Matrix<Scalar,Dynamic,1>}},\ 0,\ \mbox{\hyperlink{class_eigen_1_1_inner_stride}{InnerStride<Dynamic>}}\ >\ \mbox{\hyperlink{common_8h_ac48d24eedfe72efd6bacbcbe70117378_ac48d24eedfe72efd6bacbcbe70117378}{StridedVectorType}};}
+\DoxyCodeLine{00106\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_map}{Map<Matrix<Scalar,Dynamic,1>}}\ >\ \mbox{\hyperlink{common_8h_adfd435adfcda708025c324115f7c1364_adfd435adfcda708025c324115f7c1364}{CompactVectorType}};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00109\ \mbox{\hyperlink{class_eigen_1_1_map}{Map<Matrix<T,Dynamic,Dynamic,ColMajor>}},\ 0,\ \mbox{\hyperlink{class_eigen_1_1_outer_stride}{OuterStride<>}}\ >}
+\DoxyCodeLine{00110\ \mbox{\hyperlink{common_8h_a2c4e93d1f3604b217c5d0e211def96fb_a2c4e93d1f3604b217c5d0e211def96fb}{matrix}}(\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\ \mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{smooth__opengl3_8c_a1439e44b5cc058f6010e6c47f272e6b6_a1439e44b5cc058f6010e6c47f272e6b6ae0940137d009e3d8d2cf0938f99fe615}{stride}})}
+\DoxyCodeLine{00111\ \{}
+\DoxyCodeLine{00112\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_map}{Map<Matrix<T,Dynamic,Dynamic,ColMajor>}},\ 0,\ \mbox{\hyperlink{class_eigen_1_1_outer_stride}{OuterStride<>}}\ >(\mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}},\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}},\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}},\ \mbox{\hyperlink{class_eigen_1_1_outer_stride}{OuterStride<>}}(\mbox{\hyperlink{smooth__opengl3_8c_a1439e44b5cc058f6010e6c47f272e6b6_a1439e44b5cc058f6010e6c47f272e6b6ae0940137d009e3d8d2cf0938f99fe615}{stride}}));}
+\DoxyCodeLine{00113\ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00116\ \mbox{\hyperlink{class_eigen_1_1_map}{Map<const\ Matrix<T,Dynamic,Dynamic,ColMajor>}},\ 0,\ \mbox{\hyperlink{class_eigen_1_1_outer_stride}{OuterStride<>}}\ >}
+\DoxyCodeLine{00117\ \mbox{\hyperlink{common_8h_a2c4e93d1f3604b217c5d0e211def96fb_a2c4e93d1f3604b217c5d0e211def96fb}{matrix}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\ \mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{smooth__opengl3_8c_a1439e44b5cc058f6010e6c47f272e6b6_a1439e44b5cc058f6010e6c47f272e6b6ae0940137d009e3d8d2cf0938f99fe615}{stride}})}
+\DoxyCodeLine{00118\ \{}
+\DoxyCodeLine{00119\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_map}{Map<const\ Matrix<T,Dynamic,Dynamic,ColMajor>}},\ 0,\ \mbox{\hyperlink{class_eigen_1_1_outer_stride}{OuterStride<>}}\ >(\mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}},\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}},\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}},\ \mbox{\hyperlink{class_eigen_1_1_outer_stride}{OuterStride<>}}(\mbox{\hyperlink{smooth__opengl3_8c_a1439e44b5cc058f6010e6c47f272e6b6_a1439e44b5cc058f6010e6c47f272e6b6ae0940137d009e3d8d2cf0938f99fe615}{stride}}));}
+\DoxyCodeLine{00120\ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00123\ \mbox{\hyperlink{class_eigen_1_1_map}{Map<Matrix<T,Dynamic,1>}},\ 0,\ \mbox{\hyperlink{class_eigen_1_1_inner_stride}{InnerStride<Dynamic>}}\ >\ \mbox{\hyperlink{common_8h_a5271e1713820dbe05a27309a551c63a8_a5271e1713820dbe05a27309a551c63a8}{make\_vector}}(\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\ \mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},\ \textcolor{keywordtype}{int}\ incr)}
+\DoxyCodeLine{00124\ \{}
+\DoxyCodeLine{00125\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_map}{Map<Matrix<T,Dynamic,1>}},\ 0,\ \mbox{\hyperlink{class_eigen_1_1_inner_stride}{InnerStride<Dynamic>}}\ >(\mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}},\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},\ \mbox{\hyperlink{class_eigen_1_1_inner_stride}{InnerStride<Dynamic>}}(incr));}
+\DoxyCodeLine{00126\ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00129\ \mbox{\hyperlink{class_eigen_1_1_map}{Map<const\ Matrix<T,Dynamic,1>}},\ 0,\ \mbox{\hyperlink{class_eigen_1_1_inner_stride}{InnerStride<Dynamic>}}\ >\ \mbox{\hyperlink{common_8h_a5271e1713820dbe05a27309a551c63a8_a5271e1713820dbe05a27309a551c63a8}{make\_vector}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\ \mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},\ \textcolor{keywordtype}{int}\ incr)}
+\DoxyCodeLine{00130\ \{}
+\DoxyCodeLine{00131\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_map}{Map<const\ Matrix<T,Dynamic,1>}},\ 0,\ \mbox{\hyperlink{class_eigen_1_1_inner_stride}{InnerStride<Dynamic>}}\ >(\mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}},\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},\ \mbox{\hyperlink{class_eigen_1_1_inner_stride}{InnerStride<Dynamic>}}(incr));}
+\DoxyCodeLine{00132\ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00135\ \mbox{\hyperlink{class_eigen_1_1_map}{Map<Matrix<T,Dynamic,1>}}\ >\ \mbox{\hyperlink{common_8h_a5271e1713820dbe05a27309a551c63a8_a5271e1713820dbe05a27309a551c63a8}{make\_vector}}(\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\ \mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}})}
+\DoxyCodeLine{00136\ \{}
+\DoxyCodeLine{00137\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_map}{Map<Matrix<T,Dynamic,1>}}\ >(\mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}},\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}});}
+\DoxyCodeLine{00138\ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00141\ \mbox{\hyperlink{class_eigen_1_1_map}{Map<const\ Matrix<T,Dynamic,1>}}\ >\ \mbox{\hyperlink{common_8h_a5271e1713820dbe05a27309a551c63a8_a5271e1713820dbe05a27309a551c63a8}{make\_vector}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\ \mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}})}
+\DoxyCodeLine{00142\ \{}
+\DoxyCodeLine{00143\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_map}{Map<const\ Matrix<T,Dynamic,1>}}\ >(\mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}},\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}});}
+\DoxyCodeLine{00144\ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00147\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\ \mbox{\hyperlink{common_8h_a46647738db769de3e702ddacc0987d15_a46647738db769de3e702ddacc0987d15}{get\_compact\_vector}}(\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{level1__cplx__impl_8h_a06a1d4b19192c3a34bd552d9047a0f8b_a06a1d4b19192c3a34bd552d9047a0f8b}{incx}})}
+\DoxyCodeLine{00148\ \{}
+\DoxyCodeLine{00149\ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{level1__cplx__impl_8h_a06a1d4b19192c3a34bd552d9047a0f8b_a06a1d4b19192c3a34bd552d9047a0f8b}{incx}}==1)}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}};}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{Eigen::internal::remove\_const<T>::type}}*\ \mbox{\hyperlink{level1__cplx__impl_8h_afb8d513d0298d2695018eb494b092786_afb8d513d0298d2695018eb494b092786}{ret}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}[\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}];}
+\DoxyCodeLine{00153\ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{level1__cplx__impl_8h_a06a1d4b19192c3a34bd552d9047a0f8b_a06a1d4b19192c3a34bd552d9047a0f8b}{incx}}<0)\ \mbox{\hyperlink{common_8h_a5271e1713820dbe05a27309a551c63a8_a5271e1713820dbe05a27309a551c63a8}{make\_vector}}(\mbox{\hyperlink{level1__cplx__impl_8h_afb8d513d0298d2695018eb494b092786_afb8d513d0298d2695018eb494b092786}{ret}},\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}})\ =\ \mbox{\hyperlink{common_8h_a5271e1713820dbe05a27309a551c63a8_a5271e1713820dbe05a27309a551c63a8}{make\_vector}}(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}},\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}},-\/\mbox{\hyperlink{level1__cplx__impl_8h_a06a1d4b19192c3a34bd552d9047a0f8b_a06a1d4b19192c3a34bd552d9047a0f8b}{incx}}).reverse();}
+\DoxyCodeLine{00154\ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \ \ \mbox{\hyperlink{common_8h_a5271e1713820dbe05a27309a551c63a8_a5271e1713820dbe05a27309a551c63a8}{make\_vector}}(\mbox{\hyperlink{level1__cplx__impl_8h_afb8d513d0298d2695018eb494b092786_afb8d513d0298d2695018eb494b092786}{ret}},\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}})\ =\ \mbox{\hyperlink{common_8h_a5271e1713820dbe05a27309a551c63a8_a5271e1713820dbe05a27309a551c63a8}{make\_vector}}(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}},\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a06a1d4b19192c3a34bd552d9047a0f8b_a06a1d4b19192c3a34bd552d9047a0f8b}{incx}});}
+\DoxyCodeLine{00155\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{level1__cplx__impl_8h_afb8d513d0298d2695018eb494b092786_afb8d513d0298d2695018eb494b092786}{ret}};}
+\DoxyCodeLine{00156\ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00159\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\ \mbox{\hyperlink{common_8h_ae425a0591b761ea8b6b7e35734b86da9_ae425a0591b761ea8b6b7e35734b86da9}{copy\_back}}(\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\ x\_cpy,\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{level1__cplx__impl_8h_a06a1d4b19192c3a34bd552d9047a0f8b_a06a1d4b19192c3a34bd552d9047a0f8b}{incx}})}
+\DoxyCodeLine{00160\ \{}
+\DoxyCodeLine{00161\ \ \ \textcolor{keywordflow}{if}(x\_cpy==\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}})}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{level1__cplx__impl_8h_a06a1d4b19192c3a34bd552d9047a0f8b_a06a1d4b19192c3a34bd552d9047a0f8b}{incx}}<0)\ \mbox{\hyperlink{common_8h_a5271e1713820dbe05a27309a551c63a8_a5271e1713820dbe05a27309a551c63a8}{make\_vector}}(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}},\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}},-\/\mbox{\hyperlink{level1__cplx__impl_8h_a06a1d4b19192c3a34bd552d9047a0f8b_a06a1d4b19192c3a34bd552d9047a0f8b}{incx}}).reverse()\ =\ \mbox{\hyperlink{common_8h_a5271e1713820dbe05a27309a551c63a8_a5271e1713820dbe05a27309a551c63a8}{make\_vector}}(x\_cpy,\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}});}
+\DoxyCodeLine{00165\ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \ \ \mbox{\hyperlink{common_8h_a5271e1713820dbe05a27309a551c63a8_a5271e1713820dbe05a27309a551c63a8}{make\_vector}}(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}},\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a06a1d4b19192c3a34bd552d9047a0f8b_a06a1d4b19192c3a34bd552d9047a0f8b}{incx}})\ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{common_8h_a5271e1713820dbe05a27309a551c63a8_a5271e1713820dbe05a27309a551c63a8}{make\_vector}}(x\_cpy,\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}});}
+\DoxyCodeLine{00166\ \ \ \textcolor{keywordflow}{return}\ x\_cpy;}
+\DoxyCodeLine{00167\ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_BLAS\_FUNC\_SUFFIX}}
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\#define\ EIGEN\_BLAS\_FUNC\_SUFFIX\ \_}}
+\DoxyCodeLine{00171\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \textcolor{preprocessor}{\#define\ EIGEN\_BLAS\_FUNC(X)\ EIGEN\_CAT(SCALAR\_SUFFIX,\ EIGEN\_CAT(X,\ EIGEN\_BLAS\_FUNC\_SUFFIX))}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ EIGEN\_BLAS\_COMMON\_H}}
+
+\end{DoxyCode}

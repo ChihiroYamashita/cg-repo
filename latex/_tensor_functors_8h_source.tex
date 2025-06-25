@@ -1,0 +1,488 @@
+\doxysection{Tensor\+Functors.\+h}
+\hypertarget{_tensor_functors_8h_source}{}\label{_tensor_functors_8h_source}\index{eigen-\/3.4.0/eigen-\/3.4.0/unsupported/Eigen/CXX11/src/Tensor/TensorFunctors.h@{eigen-\/3.4.0/eigen-\/3.4.0/unsupported/Eigen/CXX11/src/Tensor/TensorFunctors.h}}
+\mbox{\hyperlink{_tensor_functors_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ Eigen,\ a\ lightweight\ C++\ template\ library}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ for\ linear\ algebra.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (C)\ 2014\ Benoit\ Steiner\ <benoit.steiner.goog@gmail.com>}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ This\ Source\ Code\ Form\ is\ subject\ to\ the\ terms\ of\ the\ Mozilla}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Public\ License\ v.\ 2.0.\ If\ a\ copy\ of\ the\ MPL\ was\ not\ distributed}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ with\ this\ file,\ You\ can\ obtain\ one\ at\ http://mozilla.org/MPL/2.0/.}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_CXX11\_TENSOR\_TENSOR\_FUNCTORS\_H}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ EIGEN\_CXX11\_TENSOR\_TENSOR\_FUNCTORS\_H}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_eigen}{Eigen}}\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceinternal}{internal}}\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00021\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__mod__op}{scalar\_mod\_op}}\ \{}
+\DoxyCodeLine{00022\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__mod__op_ace3524064fc3f8cf41689c7c7af72de5_ace3524064fc3f8cf41689c7c7af72de5}{scalar\_mod\_op}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}\&\ divisor)\ :\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__mod__op_ad5977d5b4b6b3af1992d846befd800eb_ad5977d5b4b6b3af1992d846befd800eb}{m\_divisor}}(divisor)\ \{\}}
+\DoxyCodeLine{00023\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__mod__op_a315fbedf8c065c899f3298b07fa64dcb_a315fbedf8c065c899f3298b07fa64dcb}{operator()\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}\&\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}})\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}\ \%\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__mod__op_ad5977d5b4b6b3af1992d846befd800eb_ad5977d5b4b6b3af1992d846befd800eb}{m\_divisor}};\ \}}
+\DoxyCodeLine{00024\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__mod__op_ad5977d5b4b6b3af1992d846befd800eb_ad5977d5b4b6b3af1992d846befd800eb}{m\_divisor}};}
+\DoxyCodeLine{00025\ \};}
+\DoxyCodeLine{00026\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00027\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1functor__traits}{functor\_traits}}<\mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__mod__op}{scalar\_mod\_op}}<\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}>\ >}
+\DoxyCodeLine{00028\ \{\ \textcolor{keyword}{enum}\ \{\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1functor__traits_a9f5fd8e8f3dd0f19b2b268c5738c3e15_a9f5fd8e8f3dd0f19b2b268c5738c3e15aaaf05f4dc0b825ef9e0c3d89c033e90a}{Cost}}\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__div__cost}{scalar\_div\_cost<Scalar,false>::value}},\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1functor__traits_a9f5fd8e8f3dd0f19b2b268c5738c3e15_a9f5fd8e8f3dd0f19b2b268c5738c3e15a27f488e5e287acd27ebd9624df3c8c46}{PacketAccess}}\ =\ \textcolor{keyword}{false}\ \};\ \};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00035\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__mod2__op}{scalar\_mod2\_op}}\ \{}
+\DoxyCodeLine{00036\ \ \ \mbox{\hyperlink{_xpr_helper_8h_a4363bfa78f2780a0714888ec373b2673_a4363bfa78f2780a0714888ec373b2673}{EIGEN\_EMPTY\_STRUCT\_CTOR}}(\mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__mod2__op}{scalar\_mod2\_op}})}
+\DoxyCodeLine{00037\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}\ operator()\ (const\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}\&\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ const\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}\&\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}\ \%\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}};\ \}}
+\DoxyCodeLine{00038\ \};}
+\DoxyCodeLine{00039\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00040\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1functor__traits}{functor\_traits}}<\mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__mod2__op}{scalar\_mod2\_op}}<\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}>\ >}
+\DoxyCodeLine{00041\ \{\ \textcolor{keyword}{enum}\ \{\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1functor__traits_a9f5fd8e8f3dd0f19b2b268c5738c3e15_a9f5fd8e8f3dd0f19b2b268c5738c3e15aaaf05f4dc0b825ef9e0c3d89c033e90a}{Cost}}\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__div__cost}{scalar\_div\_cost<Scalar,false>::value}},\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1functor__traits_a9f5fd8e8f3dd0f19b2b268c5738c3e15_a9f5fd8e8f3dd0f19b2b268c5738c3e15a27f488e5e287acd27ebd9624df3c8c46}{PacketAccess}}\ =\ \textcolor{keyword}{false}\ \};\ \};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00044\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__fmod__op}{scalar\_fmod\_op}}\ \{}
+\DoxyCodeLine{00045\ \ \ \mbox{\hyperlink{_xpr_helper_8h_a4363bfa78f2780a0714888ec373b2673_a4363bfa78f2780a0714888ec373b2673}{EIGEN\_EMPTY\_STRUCT\_CTOR}}(\mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__fmod__op}{scalar\_fmod\_op}})}
+\DoxyCodeLine{00046\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}}
+\DoxyCodeLine{00047\ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__fmod__op_abe66894cd9bff490262537ba3c31a04d_abe66894cd9bff490262537ba3c31a04d}{operator()}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}\&\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}\&\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1numext_a2c422bfa9948fd999b98528de28abc19_a2c422bfa9948fd999b98528de28abc19}{numext::fmod}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00049\ \ \ \}}
+\DoxyCodeLine{00050\ \};}
+\DoxyCodeLine{00051\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00052\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1functor__traits}{functor\_traits}}<\mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__fmod__op}{scalar\_fmod\_op}}<\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}>\ >\ \{}
+\DoxyCodeLine{00053\ \ \ \textcolor{keyword}{enum}\ \{\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1functor__traits_a9f5fd8e8f3dd0f19b2b268c5738c3e15_a9f5fd8e8f3dd0f19b2b268c5738c3e15aaaf05f4dc0b825ef9e0c3d89c033e90a}{Cost}}\ =\ 13,\ \ \textcolor{comment}{//\ Reciprocal\ throughput\ of\ FPREM\ on\ Haswell.}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1functor__traits_a9f5fd8e8f3dd0f19b2b268c5738c3e15_a9f5fd8e8f3dd0f19b2b268c5738c3e15a27f488e5e287acd27ebd9624df3c8c46}{PacketAccess}}\ =\ \textcolor{keyword}{false}\ \};}
+\DoxyCodeLine{00055\ \};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Reducer,\ \textcolor{keyword}{typename}\ Device>}
+\DoxyCodeLine{00058\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits}{reducer\_traits}}\ \{}
+\DoxyCodeLine{00059\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afab69b17773f7ad98b93e2f3655c302a82}{Cost}}\ =\ 1,}
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa182285e009d3b4550f2f97bdd19261d6}{PacketAccess}}\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa6e8cc04cc4674b4465cd8e4a35f38049}{IsStateful}}\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa9100c0c542ec61b539b02581c749ca5a}{IsExactlyAssociative}}\ =\ \textcolor{keyword}{true}}
+\DoxyCodeLine{00064\ \ \ \};}
+\DoxyCodeLine{00065\ \};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{comment}{//\ Standard\ reduction\ functors}}
+\DoxyCodeLine{00068\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1_sum_reducer}{SumReducer}}}
+\DoxyCodeLine{00069\ \{}
+\DoxyCodeLine{00070\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_sum_reducer_a70cab9917c7d28a521d639535be41fb4_a70cab9917c7d28a521d639535be41fb4}{reduce}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ t,\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\ accum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__sum__op}{internal::scalar\_sum\_op<T>}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1sum__op}{sum\_op}};}
+\DoxyCodeLine{00072\ \ \ \ \ *accum\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1sum__op}{sum\_op}}(*accum,\ t);}
+\DoxyCodeLine{00073\ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Packet>}
+\DoxyCodeLine{00075\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_sum_reducer_a6d29d6c7e2c0f46f7a5b7f573b8e9f42_a6d29d6c7e2c0f46f7a5b7f573b8e9f42}{reducePacket}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\&\ \mbox{\hyperlink{_tutorial___map__using_8cpp_a7fe964f6b1afd4591f637999272ab9a2_a7fe964f6b1afd4591f637999272ab9a2}{p}},\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}*\ accum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00076\ \ \ \ \ (*accum)\ =\ \mbox{\hyperlink{namespace_eigen_1_1internal_a0f50f3baa0dcc73cd1c0baa06e5c8c13_a0f50f3baa0dcc73cd1c0baa06e5c8c13}{padd<Packet>}}(*accum,\ \mbox{\hyperlink{_tutorial___map__using_8cpp_a7fe964f6b1afd4591f637999272ab9a2_a7fe964f6b1afd4591f637999272ab9a2}{p}});}
+\DoxyCodeLine{00077\ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_sum_reducer_af56eb063e0036254dfe696d4d1f3ea9e_af56eb063e0036254dfe696d4d1f3ea9e}{initialize}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__cast__op}{internal::scalar\_cast\_op<int,\ T>}}\ conv;}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{return}\ conv(0);}
+\DoxyCodeLine{00082\ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Packet>}
+\DoxyCodeLine{00084\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_sum_reducer_ab2a98c39e56e2d2052c8405fbe22dfc1_ab2a98c39e56e2d2052c8405fbe22dfc1}{initializePacket}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1internal_afa6f9a9f3c905b28cc29841935e44fdb_afa6f9a9f3c905b28cc29841935e44fdb}{pset1<Packet>}}(\mbox{\hyperlink{struct_eigen_1_1internal_1_1_sum_reducer_af56eb063e0036254dfe696d4d1f3ea9e_af56eb063e0036254dfe696d4d1f3ea9e}{initialize}}());}
+\DoxyCodeLine{00086\ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_sum_reducer_aec71c7f579be1d3397fd0eda23382eff_aec71c7f579be1d3397fd0eda23382eff}{finalize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ accum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{return}\ accum;}
+\DoxyCodeLine{00089\ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Packet>}
+\DoxyCodeLine{00091\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_sum_reducer_a111e02068b2cbfd2b8ec7270f5e08241_a111e02068b2cbfd2b8ec7270f5e08241}{finalizePacket}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\&\ vaccum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{return}\ vaccum;}
+\DoxyCodeLine{00093\ \ \ \}}
+\DoxyCodeLine{00094\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Packet>}
+\DoxyCodeLine{00095\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_sum_reducer_afd3c643dba373ebb9873475c5033387e_afd3c643dba373ebb9873475c5033387e}{finalizeBoth}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ saccum,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\&\ vaccum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__sum__op}{internal::scalar\_sum\_op<T>}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1sum__op}{sum\_op}};}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1sum__op}{sum\_op}}(saccum,\ \mbox{\hyperlink{namespace_eigen_1_1internal_a1374897acbe2e3e2692a7ce362939a6a_a1374897acbe2e3e2692a7ce362939a6a}{predux}}(vaccum));}
+\DoxyCodeLine{00098\ \ \ \}}
+\DoxyCodeLine{00099\ \};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Device>}
+\DoxyCodeLine{00102\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits}{reducer\_traits}}<\mbox{\hyperlink{struct_eigen_1_1internal_1_1_sum_reducer}{SumReducer}}<\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}>,\ Device>\ \{}
+\DoxyCodeLine{00103\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afab69b17773f7ad98b93e2f3655c302a82}{Cost}}\ =\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<T>::AddCost}},}
+\DoxyCodeLine{00105\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa182285e009d3b4550f2f97bdd19261d6}{PacketAccess}}\ =\ \mbox{\hyperlink{struct_eigen_1_1_packet_type}{PacketType<T,\ Device>::HasAdd}},}
+\DoxyCodeLine{00106\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa6e8cc04cc4674b4465cd8e4a35f38049}{IsStateful}}\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa9100c0c542ec61b539b02581c749ca5a}{IsExactlyAssociative}}\ =\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<T>::IsInteger}}}
+\DoxyCodeLine{00108\ \ \ \};}
+\DoxyCodeLine{00109\ \};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1_mean_reducer}{MeanReducer}}}
+\DoxyCodeLine{00112\ \{}
+\DoxyCodeLine{00113\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}}
+\DoxyCodeLine{00114\ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_mean_reducer_a764e7c80e29a3d1056645d2fc5068fea_a764e7c80e29a3d1056645d2fc5068fea}{MeanReducer}}()\ :\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_mean_reducer_a74b875a984110becaf1cb1b3800060d8_a74b875a984110becaf1cb1b3800060d8}{scalarCount\_}}(0),\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_mean_reducer_ae9c73087ba000a3c4128b074bb6c2b5c_ae9c73087ba000a3c4128b074bb6c2b5c}{packetCount\_}}(0)\ \{\ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_mean_reducer_adecc23997b0000f8d1ab64e25ab0dee4_adecc23997b0000f8d1ab64e25ab0dee4}{reduce}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ t,\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\ accum)\ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__sum__op}{internal::scalar\_sum\_op<T>}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1sum__op}{sum\_op}};}
+\DoxyCodeLine{00118\ \ \ \ \ *accum\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1sum__op}{sum\_op}}(*accum,\ t);}
+\DoxyCodeLine{00119\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_mean_reducer_a74b875a984110becaf1cb1b3800060d8_a74b875a984110becaf1cb1b3800060d8}{scalarCount\_}}++;}
+\DoxyCodeLine{00120\ \ \ \}}
+\DoxyCodeLine{00121\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Packet>}
+\DoxyCodeLine{00122\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_mean_reducer_a5f5ab34d27356ed03bf03c53be5820e3_a5f5ab34d27356ed03bf03c53be5820e3}{reducePacket}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\&\ \mbox{\hyperlink{_tutorial___map__using_8cpp_a7fe964f6b1afd4591f637999272ab9a2_a7fe964f6b1afd4591f637999272ab9a2}{p}},\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}*\ accum)\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ (*accum)\ =\ \mbox{\hyperlink{namespace_eigen_1_1internal_a0f50f3baa0dcc73cd1c0baa06e5c8c13_a0f50f3baa0dcc73cd1c0baa06e5c8c13}{padd<Packet>}}(*accum,\ \mbox{\hyperlink{_tutorial___map__using_8cpp_a7fe964f6b1afd4591f637999272ab9a2_a7fe964f6b1afd4591f637999272ab9a2}{p}});}
+\DoxyCodeLine{00124\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_mean_reducer_ae9c73087ba000a3c4128b074bb6c2b5c_ae9c73087ba000a3c4128b074bb6c2b5c}{packetCount\_}}++;}
+\DoxyCodeLine{00125\ \ \ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_mean_reducer_aafe198895bac3ca4733fa15d17240dd3_aafe198895bac3ca4733fa15d17240dd3}{initialize}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00128\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__cast__op}{internal::scalar\_cast\_op<int,\ T>}}\ conv;}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{return}\ conv(0);}
+\DoxyCodeLine{00130\ \ \ \}}
+\DoxyCodeLine{00131\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Packet>}
+\DoxyCodeLine{00132\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_mean_reducer_a8a816de00e834e5a27a80308792ec738_a8a816de00e834e5a27a80308792ec738}{initializePacket}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1internal_afa6f9a9f3c905b28cc29841935e44fdb_afa6f9a9f3c905b28cc29841935e44fdb}{pset1<Packet>}}(\mbox{\hyperlink{struct_eigen_1_1internal_1_1_mean_reducer_aafe198895bac3ca4733fa15d17240dd3_aafe198895bac3ca4733fa15d17240dd3}{initialize}}());}
+\DoxyCodeLine{00134\ \ \ \}}
+\DoxyCodeLine{00135\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_mean_reducer_a407eb7c15f632bde4e6d43e8c90ee92f_a407eb7c15f632bde4e6d43e8c90ee92f}{finalize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ accum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00136\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__quotient__op}{internal::scalar\_quotient\_op<T>}}\ quotient\_op;}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordflow}{return}\ quotient\_op(accum,\ \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}}(\mbox{\hyperlink{struct_eigen_1_1internal_1_1_mean_reducer_a74b875a984110becaf1cb1b3800060d8_a74b875a984110becaf1cb1b3800060d8}{scalarCount\_}}));}
+\DoxyCodeLine{00138\ \ \ \}}
+\DoxyCodeLine{00139\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Packet>}
+\DoxyCodeLine{00140\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_mean_reducer_a25d3b4bcf0f09611dd84b8c133f2e5a8_a25d3b4bcf0f09611dd84b8c133f2e5a8}{finalizePacket}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\&\ vaccum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1internal_a462e918f3381d435028a0decd5485844_a462e918f3381d435028a0decd5485844}{pdiv}}(vaccum,\ \mbox{\hyperlink{namespace_eigen_1_1internal_afa6f9a9f3c905b28cc29841935e44fdb_afa6f9a9f3c905b28cc29841935e44fdb}{pset1<Packet>}}(\mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}}(\mbox{\hyperlink{struct_eigen_1_1internal_1_1_mean_reducer_ae9c73087ba000a3c4128b074bb6c2b5c_ae9c73087ba000a3c4128b074bb6c2b5c}{packetCount\_}})));}
+\DoxyCodeLine{00142\ \ \ \}}
+\DoxyCodeLine{00143\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Packet>}
+\DoxyCodeLine{00144\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_mean_reducer_aefe62aa35a6ed4cfd76ec4cc853606dc_aefe62aa35a6ed4cfd76ec4cc853606dc}{finalizeBoth}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ saccum,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\&\ vaccum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00145\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__sum__op}{internal::scalar\_sum\_op<T>}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1sum__op}{sum\_op}};}
+\DoxyCodeLine{00146\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__quotient__op}{internal::scalar\_quotient\_op<T>}}\ quotient\_op;}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordflow}{return}\ quotient\_op(}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1sum__op}{sum\_op}}(saccum,\ \mbox{\hyperlink{namespace_eigen_1_1internal_a1374897acbe2e3e2692a7ce362939a6a_a1374897acbe2e3e2692a7ce362939a6a}{predux}}(vaccum)),}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}}(\mbox{\hyperlink{struct_eigen_1_1internal_1_1_mean_reducer_a74b875a984110becaf1cb1b3800060d8_a74b875a984110becaf1cb1b3800060d8}{scalarCount\_}}\ +\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_mean_reducer_ae9c73087ba000a3c4128b074bb6c2b5c_ae9c73087ba000a3c4128b074bb6c2b5c}{packetCount\_}}\ *\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1unpacket__traits}{unpacket\_traits<Packet>::size}}));}
+\DoxyCodeLine{00150\ \ \ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00153\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_aa06499c94936a19673e53deb516a1b76_aa06499c94936a19673e53deb516a1b76}{DenseIndex}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_mean_reducer_a74b875a984110becaf1cb1b3800060d8_a74b875a984110becaf1cb1b3800060d8}{scalarCount\_}};}
+\DoxyCodeLine{00154\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_aa06499c94936a19673e53deb516a1b76_aa06499c94936a19673e53deb516a1b76}{DenseIndex}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_mean_reducer_ae9c73087ba000a3c4128b074bb6c2b5c_ae9c73087ba000a3c4128b074bb6c2b5c}{packetCount\_}};}
+\DoxyCodeLine{00155\ \};}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Device>}
+\DoxyCodeLine{00158\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits}{reducer\_traits}}<\mbox{\hyperlink{struct_eigen_1_1internal_1_1_mean_reducer}{MeanReducer}}<\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}>,\ Device>\ \{}
+\DoxyCodeLine{00159\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afab69b17773f7ad98b93e2f3655c302a82}{Cost}}\ =\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<T>::AddCost}},}
+\DoxyCodeLine{00161\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa182285e009d3b4550f2f97bdd19261d6}{PacketAccess}}\ =\ \mbox{\hyperlink{struct_eigen_1_1_packet_type}{PacketType<T,\ Device>::HasAdd}}\ \&\&}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_packet_type}{PacketType<T,\ Device>::HasDiv}}\ \&\&\ !\mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<T>::IsInteger}},}
+\DoxyCodeLine{00163\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa6e8cc04cc4674b4465cd8e4a35f38049}{IsStateful}}\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00164\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa9100c0c542ec61b539b02581c749ca5a}{IsExactlyAssociative}}\ =\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<T>::IsInteger}}}
+\DoxyCodeLine{00165\ \ \ \};}
+\DoxyCodeLine{00166\ \};}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keywordtype}{bool}\ IsMax\ =\ true,\ \textcolor{keywordtype}{bool}\ IsInteger\ =\ true>}
+\DoxyCodeLine{00170\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1_min_max_bottom_value}{MinMaxBottomValue}}\ \{}
+\DoxyCodeLine{00171\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_min_max_bottom_value_ad40fc0cfe19605d15cde305048376152_ad40fc0cfe19605d15cde305048376152}{bottom\_value}}()\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a63432cfd874a34d02a848cd70e1e9c55_a63432cfd874a34d02a848cd70e1e9c55}{Eigen::NumTraits<T>::lowest}}();}
+\DoxyCodeLine{00173\ \ \ \}}
+\DoxyCodeLine{00174\ \};}
+\DoxyCodeLine{00175\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00176\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1_min_max_bottom_value}{MinMaxBottomValue}}<\mbox{\hyperlink{class_eigen_1_1_triplet}{T}},\ true,\ false>\ \{}
+\DoxyCodeLine{00177\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_min_max_bottom_value_3_01_t_00_01true_00_01false_01_4_ac1145c6858176be30b3a9f9edb9ec67b_ac1145c6858176be30b3a9f9edb9ec67b}{bottom\_value}}()\ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/\mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_ac0eb6dd89e4229113abf965c2187bccc_ac0eb6dd89e4229113abf965c2187bccc}{Eigen::NumTraits<T>::infinity}}();}
+\DoxyCodeLine{00179\ \ \ \}}
+\DoxyCodeLine{00180\ \};}
+\DoxyCodeLine{00181\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00182\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1_min_max_bottom_value}{MinMaxBottomValue}}<\mbox{\hyperlink{class_eigen_1_1_triplet}{T}},\ false,\ true>\ \{}
+\DoxyCodeLine{00183\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_min_max_bottom_value_3_01_t_00_01false_00_01true_01_4_a2c4e67168a4a27191e07a93718abb57c_a2c4e67168a4a27191e07a93718abb57c}{bottom\_value}}()\ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_ac8509669719a15051e933e0dc7efd3b6_ac8509669719a15051e933e0dc7efd3b6}{Eigen::NumTraits<T>::highest}}();}
+\DoxyCodeLine{00185\ \ \ \}}
+\DoxyCodeLine{00186\ \};}
+\DoxyCodeLine{00187\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00188\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1_min_max_bottom_value}{MinMaxBottomValue}}<\mbox{\hyperlink{class_eigen_1_1_triplet}{T}},\ false,\ false>\ \{}
+\DoxyCodeLine{00189\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_min_max_bottom_value_3_01_t_00_01false_00_01false_01_4_a2e6192527e6eb5862127bf0700888f4f_a2e6192527e6eb5862127bf0700888f4f}{bottom\_value}}()\ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_ac0eb6dd89e4229113abf965c2187bccc_ac0eb6dd89e4229113abf965c2187bccc}{Eigen::NumTraits<T>::infinity}}();}
+\DoxyCodeLine{00191\ \ \ \}}
+\DoxyCodeLine{00192\ \};}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keywordtype}{int}\ NaNPropagation=PropagateFast>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1_max_reducer}{MaxReducer}}}
+\DoxyCodeLine{00196\ \{}
+\DoxyCodeLine{00197\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_max_reducer_ab99e15ce4c515e76e8aeaaed281fe851_ab99e15ce4c515e76e8aeaaed281fe851}{reduce}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ t,\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\ accum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00198\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__max__op}{scalar\_max\_op<T,\ T,\ NaNPropagation>}}\ op;}
+\DoxyCodeLine{00199\ \ \ \ \ *accum\ =\ op(t,\ *accum);}
+\DoxyCodeLine{00200\ \ \ \}}
+\DoxyCodeLine{00201\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Packet>}
+\DoxyCodeLine{00202\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_max_reducer_af342a19ccfac7880f02577b00edc839b_af342a19ccfac7880f02577b00edc839b}{reducePacket}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\&\ \mbox{\hyperlink{_tutorial___map__using_8cpp_a7fe964f6b1afd4591f637999272ab9a2_a7fe964f6b1afd4591f637999272ab9a2}{p}},\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}*\ accum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00203\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__max__op}{scalar\_max\_op<T,\ T,\ NaNPropagation>}}\ op;}
+\DoxyCodeLine{00204\ \ \ \ \ (*accum)\ =\ op.\mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__max__op_a779ca15b2b170f27d27de108c14751d8_a779ca15b2b170f27d27de108c14751d8}{packetOp}}(*accum,\ \mbox{\hyperlink{_tutorial___map__using_8cpp_a7fe964f6b1afd4591f637999272ab9a2_a7fe964f6b1afd4591f637999272ab9a2}{p}});}
+\DoxyCodeLine{00205\ \ \ \}}
+\DoxyCodeLine{00206\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_max_reducer_a80e9862bb731068dc6f28af5ef25f57e_a80e9862bb731068dc6f28af5ef25f57e}{initialize}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_min_max_bottom_value}{MinMaxBottomValue}}<\mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}},\ \textcolor{comment}{/*IsMax=*/}\textcolor{keyword}{true},\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Eigen::NumTraits<T>::IsInteger}}>::bottom\_value();}
+\DoxyCodeLine{00208\ \ \ \}}
+\DoxyCodeLine{00209\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Packet>}
+\DoxyCodeLine{00210\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_max_reducer_a747f4d555820e076356ede5ef16b4548_a747f4d555820e076356ede5ef16b4548}{initializePacket}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1internal_afa6f9a9f3c905b28cc29841935e44fdb_afa6f9a9f3c905b28cc29841935e44fdb}{pset1<Packet>}}(\mbox{\hyperlink{struct_eigen_1_1internal_1_1_max_reducer_a80e9862bb731068dc6f28af5ef25f57e_a80e9862bb731068dc6f28af5ef25f57e}{initialize}}());}
+\DoxyCodeLine{00212\ \ \ \}}
+\DoxyCodeLine{00213\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_max_reducer_a0ae393f1bf0b689a52ef6947ca82ea8a_a0ae393f1bf0b689a52ef6947ca82ea8a}{finalize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ accum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordflow}{return}\ accum;}
+\DoxyCodeLine{00215\ \ \ \}}
+\DoxyCodeLine{00216\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Packet>}
+\DoxyCodeLine{00217\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_max_reducer_abc5300298b3543e13b2a19bb78562d0f_abc5300298b3543e13b2a19bb78562d0f}{finalizePacket}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\&\ vaccum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordflow}{return}\ vaccum;}
+\DoxyCodeLine{00219\ \ \ \}}
+\DoxyCodeLine{00220\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Packet>}
+\DoxyCodeLine{00221\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_max_reducer_ae084a92507b405cc81ae6ca3aefbeb61_ae084a92507b405cc81ae6ca3aefbeb61}{finalizeBoth}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ saccum,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\&\ vaccum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00222\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__max__op}{scalar\_max\_op<T,\ T,\ NaNPropagation>}}\ op;}
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keywordflow}{return}\ op(saccum,\ op.\mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__max__op_a685858a7e3fbf3c3c5957a61a04b9a87_a685858a7e3fbf3c3c5957a61a04b9a87}{predux}}(vaccum));}
+\DoxyCodeLine{00224\ \ \ \}}
+\DoxyCodeLine{00225\ \};}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Device,\ \textcolor{keywordtype}{int}\ NaNPropagation>}
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits}{reducer\_traits}}<\mbox{\hyperlink{struct_eigen_1_1internal_1_1_max_reducer}{MaxReducer}}<\mbox{\hyperlink{class_eigen_1_1_triplet}{T}},\ NaNPropagation>,\ Device>\ \{}
+\DoxyCodeLine{00229\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afab69b17773f7ad98b93e2f3655c302a82}{Cost}}\ =\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<T>::AddCost}},}
+\DoxyCodeLine{00231\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa182285e009d3b4550f2f97bdd19261d6}{PacketAccess}}\ =\ \mbox{\hyperlink{struct_eigen_1_1_packet_type}{PacketType<T,\ Device>::HasMax}},}
+\DoxyCodeLine{00232\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa6e8cc04cc4674b4465cd8e4a35f38049}{IsStateful}}\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00233\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa9100c0c542ec61b539b02581c749ca5a}{IsExactlyAssociative}}\ =\ (NaNPropagation!=\mbox{\hyperlink{group__enums_ga7f4e3f96895bdb325eab1a0b651e211f_gga7f4e3f96895bdb325eab1a0b651e211fa917fa8982b7eb0cbb440d38ee50e0b9c}{PropagateFast}})}
+\DoxyCodeLine{00234\ \ \ \};}
+\DoxyCodeLine{00235\ \};}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keywordtype}{int}\ NaNPropagation=PropagateFast>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1_min_reducer}{MinReducer}}}
+\DoxyCodeLine{00238\ \{}
+\DoxyCodeLine{00239\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_min_reducer_aba790690310ebaffd84ec1728c856950_aba790690310ebaffd84ec1728c856950}{reduce}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ t,\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\ accum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00240\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__min__op}{scalar\_min\_op<T,\ T,\ NaNPropagation>}}\ op;}
+\DoxyCodeLine{00241\ \ \ \ \ *accum\ =\ op(t,\ *accum);}
+\DoxyCodeLine{00242\ \ \ \}}
+\DoxyCodeLine{00243\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Packet>}
+\DoxyCodeLine{00244\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_min_reducer_ad8999dd182b11d4f340ca3c7a8d04d5d_ad8999dd182b11d4f340ca3c7a8d04d5d}{reducePacket}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\&\ \mbox{\hyperlink{_tutorial___map__using_8cpp_a7fe964f6b1afd4591f637999272ab9a2_a7fe964f6b1afd4591f637999272ab9a2}{p}},\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}*\ accum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00245\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__min__op}{scalar\_min\_op<T,\ T,\ NaNPropagation>}}\ op;}
+\DoxyCodeLine{00246\ \ \ \ \ (*accum)\ =\ op.\mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__min__op_aee2dbc27d2ced73d06adc08e730bbe60_aee2dbc27d2ced73d06adc08e730bbe60}{packetOp}}(*accum,\ \mbox{\hyperlink{_tutorial___map__using_8cpp_a7fe964f6b1afd4591f637999272ab9a2_a7fe964f6b1afd4591f637999272ab9a2}{p}});}
+\DoxyCodeLine{00247\ \ \ \}}
+\DoxyCodeLine{00248\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_min_reducer_af2a4909d10ea77c7f1dc6608de3f3af9_af2a4909d10ea77c7f1dc6608de3f3af9}{initialize}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_min_max_bottom_value}{MinMaxBottomValue}}<\mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}},\ \textcolor{comment}{/*IsMax=*/}\textcolor{keyword}{false},\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Eigen::NumTraits<T>::IsInteger}}>::bottom\_value();}
+\DoxyCodeLine{00250\ \ \ \}}
+\DoxyCodeLine{00251\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Packet>}
+\DoxyCodeLine{00252\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_min_reducer_a95a8d41dafa634bda5e1795ae0fcae45_a95a8d41dafa634bda5e1795ae0fcae45}{initializePacket}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00253\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1internal_afa6f9a9f3c905b28cc29841935e44fdb_afa6f9a9f3c905b28cc29841935e44fdb}{pset1<Packet>}}(\mbox{\hyperlink{struct_eigen_1_1internal_1_1_min_reducer_af2a4909d10ea77c7f1dc6608de3f3af9_af2a4909d10ea77c7f1dc6608de3f3af9}{initialize}}());}
+\DoxyCodeLine{00254\ \ \ \}}
+\DoxyCodeLine{00255\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_min_reducer_a07d05684d0b6046b1fb21983f86873f5_a07d05684d0b6046b1fb21983f86873f5}{finalize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ accum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00256\ \ \ \ \ \textcolor{keywordflow}{return}\ accum;}
+\DoxyCodeLine{00257\ \ \ \}}
+\DoxyCodeLine{00258\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Packet>}
+\DoxyCodeLine{00259\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_min_reducer_ab9697ba7b439e5d8e1dc93792366fca2_ab9697ba7b439e5d8e1dc93792366fca2}{finalizePacket}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\&\ vaccum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{keywordflow}{return}\ vaccum;}
+\DoxyCodeLine{00261\ \ \ \}}
+\DoxyCodeLine{00262\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Packet>}
+\DoxyCodeLine{00263\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_min_reducer_a8e74f6215400b002c59a62ba53781aae_a8e74f6215400b002c59a62ba53781aae}{finalizeBoth}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ saccum,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\&\ vaccum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00264\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__min__op}{scalar\_min\_op<T,\ T,\ NaNPropagation>}}\ op;}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keywordflow}{return}\ op(saccum,\ op.\mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__min__op_acdb52c87f531b2396bf47bea0646e3aa_acdb52c87f531b2396bf47bea0646e3aa}{predux}}(vaccum));}
+\DoxyCodeLine{00266\ \ \ \}}
+\DoxyCodeLine{00267\ \};}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Device,\ \textcolor{keywordtype}{int}\ NaNPropagation>}
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits}{reducer\_traits}}<\mbox{\hyperlink{struct_eigen_1_1internal_1_1_min_reducer}{MinReducer}}<\mbox{\hyperlink{class_eigen_1_1_triplet}{T}},\ NaNPropagation>,\ Device>\ \{}
+\DoxyCodeLine{00271\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afab69b17773f7ad98b93e2f3655c302a82}{Cost}}\ =\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<T>::AddCost}},}
+\DoxyCodeLine{00273\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa182285e009d3b4550f2f97bdd19261d6}{PacketAccess}}\ =\ \mbox{\hyperlink{struct_eigen_1_1_packet_type}{PacketType<T,\ Device>::HasMin}},}
+\DoxyCodeLine{00274\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa6e8cc04cc4674b4465cd8e4a35f38049}{IsStateful}}\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00275\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa9100c0c542ec61b539b02581c749ca5a}{IsExactlyAssociative}}\ =\ (NaNPropagation!=\mbox{\hyperlink{group__enums_ga7f4e3f96895bdb325eab1a0b651e211f_gga7f4e3f96895bdb325eab1a0b651e211fa917fa8982b7eb0cbb440d38ee50e0b9c}{PropagateFast}})}
+\DoxyCodeLine{00276\ \ \ \};}
+\DoxyCodeLine{00277\ \};}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1_prod_reducer}{ProdReducer}}}
+\DoxyCodeLine{00280\ \{}
+\DoxyCodeLine{00281\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_prod_reducer_aa24c0a12f0cb8ec2c12a978e63c65b27_aa24c0a12f0cb8ec2c12a978e63c65b27}{reduce}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ t,\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\ accum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00282\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__product__op}{internal::scalar\_product\_op<T>}}\ prod\_op;}
+\DoxyCodeLine{00283\ \ \ \ \ (*accum)\ =\ prod\_op(*accum,\ t);}
+\DoxyCodeLine{00284\ \ \ \}}
+\DoxyCodeLine{00285\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Packet>}
+\DoxyCodeLine{00286\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_prod_reducer_a93136dafe31ae00c5a9de5150e8f2f66_a93136dafe31ae00c5a9de5150e8f2f66}{reducePacket}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\&\ \mbox{\hyperlink{_tutorial___map__using_8cpp_a7fe964f6b1afd4591f637999272ab9a2_a7fe964f6b1afd4591f637999272ab9a2}{p}},\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}*\ accum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00287\ \ \ \ \ (*accum)\ =\ \mbox{\hyperlink{namespace_eigen_1_1internal_a776f5f4b514ecaed2a98db928b8f745f_a776f5f4b514ecaed2a98db928b8f745f}{pmul<Packet>}}(*accum,\ \mbox{\hyperlink{_tutorial___map__using_8cpp_a7fe964f6b1afd4591f637999272ab9a2_a7fe964f6b1afd4591f637999272ab9a2}{p}});}
+\DoxyCodeLine{00288\ \ \ \}}
+\DoxyCodeLine{00289\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_prod_reducer_a6609e47e6b26429236c89d3f33e0fb0c_a6609e47e6b26429236c89d3f33e0fb0c}{initialize}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00290\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__cast__op}{internal::scalar\_cast\_op<int,\ T>}}\ conv;}
+\DoxyCodeLine{00291\ \ \ \ \ \textcolor{keywordflow}{return}\ conv(1);}
+\DoxyCodeLine{00292\ \ \ \}}
+\DoxyCodeLine{00293\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Packet>}
+\DoxyCodeLine{00294\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_prod_reducer_ad211cbb6d1f2a98e554134b84dbd7ca8_ad211cbb6d1f2a98e554134b84dbd7ca8}{initializePacket}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1internal_afa6f9a9f3c905b28cc29841935e44fdb_afa6f9a9f3c905b28cc29841935e44fdb}{pset1<Packet>}}(\mbox{\hyperlink{struct_eigen_1_1internal_1_1_prod_reducer_a6609e47e6b26429236c89d3f33e0fb0c_a6609e47e6b26429236c89d3f33e0fb0c}{initialize}}());}
+\DoxyCodeLine{00296\ \ \ \}}
+\DoxyCodeLine{00297\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_prod_reducer_a95049bb4b4c277f8b04c5e6dcb5087d1_a95049bb4b4c277f8b04c5e6dcb5087d1}{finalize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ accum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{keywordflow}{return}\ accum;}
+\DoxyCodeLine{00299\ \ \ \}}
+\DoxyCodeLine{00300\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Packet>}
+\DoxyCodeLine{00301\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_prod_reducer_a98d6abc15b8ad6b6b8c87b2cdb32912f_a98d6abc15b8ad6b6b8c87b2cdb32912f}{finalizePacket}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\&\ vaccum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keywordflow}{return}\ vaccum;}
+\DoxyCodeLine{00303\ \ \ \}}
+\DoxyCodeLine{00304\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Packet>}
+\DoxyCodeLine{00305\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_prod_reducer_a323559d5af0d53d1b36a258a7555958e_a323559d5af0d53d1b36a258a7555958e}{finalizeBoth}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ saccum,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\&\ vaccum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00306\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__product__op}{internal::scalar\_product\_op<T>}}\ prod\_op;}
+\DoxyCodeLine{00307\ \ \ \ \ \textcolor{keywordflow}{return}\ prod\_op(saccum,\ \mbox{\hyperlink{namespace_eigen_1_1internal_a72c18eeb6b62334e65831b46ab2946fc_a72c18eeb6b62334e65831b46ab2946fc}{predux\_mul}}(vaccum));}
+\DoxyCodeLine{00308\ \ \ \}}
+\DoxyCodeLine{00309\ \};}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Device>}
+\DoxyCodeLine{00312\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits}{reducer\_traits}}<\mbox{\hyperlink{struct_eigen_1_1internal_1_1_prod_reducer}{ProdReducer}}<\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}>,\ Device>\ \{}
+\DoxyCodeLine{00313\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00314\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afab69b17773f7ad98b93e2f3655c302a82}{Cost}}\ =\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<T>::MulCost}},}
+\DoxyCodeLine{00315\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa182285e009d3b4550f2f97bdd19261d6}{PacketAccess}}\ =\ \mbox{\hyperlink{struct_eigen_1_1_packet_type}{PacketType<T,\ Device>::HasMul}},}
+\DoxyCodeLine{00316\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa6e8cc04cc4674b4465cd8e4a35f38049}{IsStateful}}\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00317\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa9100c0c542ec61b539b02581c749ca5a}{IsExactlyAssociative}}\ =\ \textcolor{keyword}{true}}
+\DoxyCodeLine{00318\ \ \ \};}
+\DoxyCodeLine{00319\ \};}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ }
+\DoxyCodeLine{00322\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1_and_reducer}{AndReducer}}}
+\DoxyCodeLine{00323\ \{}
+\DoxyCodeLine{00324\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_and_reducer_ac303758a712fed8a6c93f3958279ad1d_ac303758a712fed8a6c93f3958279ad1d}{reduce}}(\textcolor{keywordtype}{bool}\ t,\ \textcolor{keywordtype}{bool}*\ accum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00325\ \ \ \ \ *accum\ =\ *accum\ \&\&\ t;}
+\DoxyCodeLine{00326\ \ \ \}}
+\DoxyCodeLine{00327\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_and_reducer_acdddc8d09285814f535a6914c10c2152_acdddc8d09285814f535a6914c10c2152}{initialize}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00328\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00329\ \ \ \}}
+\DoxyCodeLine{00330\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_and_reducer_adabaf29e8c15f3296ebb067343dff239_adabaf29e8c15f3296ebb067343dff239}{finalize}}(\textcolor{keywordtype}{bool}\ accum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00331\ \ \ \ \ \textcolor{keywordflow}{return}\ accum;}
+\DoxyCodeLine{00332\ \ \ \}}
+\DoxyCodeLine{00333\ \};}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Device>}
+\DoxyCodeLine{00336\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits}{reducer\_traits}}<\mbox{\hyperlink{struct_eigen_1_1internal_1_1_and_reducer}{AndReducer}},\ Device>\ \{}
+\DoxyCodeLine{00337\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00338\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afab69b17773f7ad98b93e2f3655c302a82}{Cost}}\ =\ 1,}
+\DoxyCodeLine{00339\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa182285e009d3b4550f2f97bdd19261d6}{PacketAccess}}\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00340\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa6e8cc04cc4674b4465cd8e4a35f38049}{IsStateful}}\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00341\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa9100c0c542ec61b539b02581c749ca5a}{IsExactlyAssociative}}\ =\ \textcolor{keyword}{true}}
+\DoxyCodeLine{00342\ \ \ \};}
+\DoxyCodeLine{00343\ \};}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1_or_reducer}{OrReducer}}\ \{}
+\DoxyCodeLine{00347\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_or_reducer_a37d73ca982ac58f8a3f0c820f0f701f6_a37d73ca982ac58f8a3f0c820f0f701f6}{reduce}}(\textcolor{keywordtype}{bool}\ t,\ \textcolor{keywordtype}{bool}*\ accum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00348\ \ \ \ \ *accum\ =\ *accum\ ||\ t;}
+\DoxyCodeLine{00349\ \ \ \}}
+\DoxyCodeLine{00350\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_or_reducer_a962a0415af7673cf55e7e94bdcc72dc6_a962a0415af7673cf55e7e94bdcc72dc6}{initialize}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00351\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00352\ \ \ \}}
+\DoxyCodeLine{00353\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_or_reducer_a3f857cf6a887104cf90f060ae9f7efb1_a3f857cf6a887104cf90f060ae9f7efb1}{finalize}}(\textcolor{keywordtype}{bool}\ accum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00354\ \ \ \ \ \textcolor{keywordflow}{return}\ accum;}
+\DoxyCodeLine{00355\ \ \ \}}
+\DoxyCodeLine{00356\ \};}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00358\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Device>}
+\DoxyCodeLine{00359\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits}{reducer\_traits}}<\mbox{\hyperlink{struct_eigen_1_1internal_1_1_or_reducer}{OrReducer}},\ Device>\ \{}
+\DoxyCodeLine{00360\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00361\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afab69b17773f7ad98b93e2f3655c302a82}{Cost}}\ =\ 1,}
+\DoxyCodeLine{00362\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa182285e009d3b4550f2f97bdd19261d6}{PacketAccess}}\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00363\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa6e8cc04cc4674b4465cd8e4a35f38049}{IsStateful}}\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00364\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa9100c0c542ec61b539b02581c749ca5a}{IsExactlyAssociative}}\ =\ \textcolor{keyword}{true}}
+\DoxyCodeLine{00365\ \ \ \};}
+\DoxyCodeLine{00366\ \};}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00368\ \textcolor{comment}{//\ Argmin/Argmax\ reducers.\ \ Returns\ the\ first\ occurrence\ if\ multiple\ locations}}
+\DoxyCodeLine{00369\ \textcolor{comment}{//\ contain\ the\ same\ min/max\ value.}}
+\DoxyCodeLine{00370\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1_arg_max_tuple_reducer}{ArgMaxTupleReducer}}}
+\DoxyCodeLine{00371\ \{}
+\DoxyCodeLine{00372\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_arg_max_tuple_reducer_a2c3c4f0f5a6ff938b4791384ab0911f0_a2c3c4f0f5a6ff938b4791384ab0911f0}{reduce}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ t,\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\ accum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00373\ \ \ \ \ \textcolor{keywordflow}{if}\ (t.second\ <\ accum-\/>second)\ \{}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00375\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (t.second\ >\ accum-\/>second\ ||\ accum-\/>first\ >\ t.first\ )\ \{}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ *accum\ =\ t;}
+\DoxyCodeLine{00377\ \ \ \ \ \}}
+\DoxyCodeLine{00378\ \ \ \}}
+\DoxyCodeLine{00379\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_arg_max_tuple_reducer_a0637b0519eae7a318cb992348cc13b79_a0637b0519eae7a318cb992348cc13b79}{initialize}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00380\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}}(0,\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<typename\ T::second\_type>::lowest}}());}
+\DoxyCodeLine{00381\ \ \ \}}
+\DoxyCodeLine{00382\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_arg_max_tuple_reducer_a407ab409b07907ffd472dea343c4f490_a407ab409b07907ffd472dea343c4f490}{finalize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\&\ accum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00383\ \ \ \ \ \textcolor{keywordflow}{return}\ accum;}
+\DoxyCodeLine{00384\ \ \ \}}
+\DoxyCodeLine{00385\ \};}
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00387\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Device>}
+\DoxyCodeLine{00388\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits}{reducer\_traits}}<\mbox{\hyperlink{struct_eigen_1_1internal_1_1_arg_max_tuple_reducer}{ArgMaxTupleReducer}}<\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}>,\ Device>\ \{}
+\DoxyCodeLine{00389\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00390\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afab69b17773f7ad98b93e2f3655c302a82}{Cost}}\ =\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<T>::AddCost}},}
+\DoxyCodeLine{00391\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa182285e009d3b4550f2f97bdd19261d6}{PacketAccess}}\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00392\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa6e8cc04cc4674b4465cd8e4a35f38049}{IsStateful}}\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00393\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa9100c0c542ec61b539b02581c749ca5a}{IsExactlyAssociative}}\ =\ \textcolor{keyword}{true}}
+\DoxyCodeLine{00394\ \ \ \};}
+\DoxyCodeLine{00395\ \};}
+\DoxyCodeLine{00396\ }
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00398\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1_arg_min_tuple_reducer}{ArgMinTupleReducer}}}
+\DoxyCodeLine{00399\ \{}
+\DoxyCodeLine{00400\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_arg_min_tuple_reducer_a8d45c619743b0bf25d8530529c2bd69b_a8d45c619743b0bf25d8530529c2bd69b}{reduce}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\&\ t,\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\ accum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00401\ \ \ \ \ \textcolor{keywordflow}{if}\ (t.second\ >\ accum-\/>second)\ \{}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00403\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (t.second\ <\ accum-\/>second\ ||\ accum-\/>first\ >\ t.first)\ \{}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ *accum\ =\ t;}
+\DoxyCodeLine{00405\ \ \ \ \ \}}
+\DoxyCodeLine{00406\ \ \ \}}
+\DoxyCodeLine{00407\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_arg_min_tuple_reducer_a3861e16cd31e4f06c3d726dae9956fd9_a3861e16cd31e4f06c3d726dae9956fd9}{initialize}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00408\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}}(0,\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<typename\ T::second\_type>::highest}}());}
+\DoxyCodeLine{00409\ \ \ \}}
+\DoxyCodeLine{00410\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_arg_min_tuple_reducer_aa825ab40b1079197432a31f70acce2dd_aa825ab40b1079197432a31f70acce2dd}{finalize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\&\ accum)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00411\ \ \ \ \ \textcolor{keywordflow}{return}\ accum;}
+\DoxyCodeLine{00412\ \ \ \}}
+\DoxyCodeLine{00413\ \};}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00415\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Device>}
+\DoxyCodeLine{00416\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits}{reducer\_traits}}<\mbox{\hyperlink{struct_eigen_1_1internal_1_1_arg_min_tuple_reducer}{ArgMinTupleReducer}}<\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}>,\ Device>\ \{}
+\DoxyCodeLine{00417\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00418\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afab69b17773f7ad98b93e2f3655c302a82}{Cost}}\ =\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<T>::AddCost}},}
+\DoxyCodeLine{00419\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa182285e009d3b4550f2f97bdd19261d6}{PacketAccess}}\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00420\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa6e8cc04cc4674b4465cd8e4a35f38049}{IsStateful}}\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00421\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1reducer__traits_ae50db2d8c74e95a316f3d328eeb3d6af_ae50db2d8c74e95a316f3d328eeb3d6afa9100c0c542ec61b539b02581c749ca5a}{IsExactlyAssociative}}\ =\ \textcolor{keyword}{true}}
+\DoxyCodeLine{00422\ \ \ \};}
+\DoxyCodeLine{00423\ \};}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ }
+\DoxyCodeLine{00426\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{size\_t}\ NumDims>}
+\DoxyCodeLine{00427\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1internal_1_1_gaussian_generator}{GaussianGenerator}}\ \{}
+\DoxyCodeLine{00428\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00429\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_gaussian_generator_adfd474e7dab4c9251f1326a0a4746dd3_adfd474e7dab4c9251f1326a0a4746dd3}{PacketAccess}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00431\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_gaussian_generator_a54fa35a51a93200db4469b4b2b288ea4_a54fa35a51a93200db4469b4b2b288ea4}{GaussianGenerator}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1array}{array<T,\ NumDims>}}\&\ means,}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1array}{array<T,\ NumDims>}}\&\ std\_devs)}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ :\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_gaussian_generator_acf42446cd583d55deaa1d708857669de_acf42446cd583d55deaa1d708857669de}{m\_means}}(means)}
+\DoxyCodeLine{00434\ \ \ \{}
+\DoxyCodeLine{00435\ \ \ \ \ \mbox{\hyperlink{_macros_8h_a3c7e37b5f6cd41e80197523bca19b505_a3c7e37b5f6cd41e80197523bca19b505}{EIGEN\_UNROLL\_LOOP}}}
+\DoxyCodeLine{00436\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ <\ NumDims;\ ++\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}})\ \{}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1internal_1_1_gaussian_generator_ad36335a492d18f90be11baee36466a35_ad36335a492d18f90be11baee36466a35}{m\_two\_sigmas}}[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}]\ =\ std\_devs[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}]\ *\ std\_devs[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}]\ *\ 2;}
+\DoxyCodeLine{00438\ \ \ \ \ \}}
+\DoxyCodeLine{00439\ \ \ \}}
+\DoxyCodeLine{00440\ }
+\DoxyCodeLine{00441\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_gaussian_generator_a8d19ca5434d3049cade619afd3c2ac8d_a8d19ca5434d3049cade619afd3c2ac8d}{operator()}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1array}{array<Index,\ NumDims>}}\&\ coordinates)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00442\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ tmp\ =\ \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}}(0);}
+\DoxyCodeLine{00443\ \ \ \ \ \mbox{\hyperlink{_macros_8h_a3c7e37b5f6cd41e80197523bca19b505_a3c7e37b5f6cd41e80197523bca19b505}{EIGEN\_UNROLL\_LOOP}}}
+\DoxyCodeLine{00444\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ <\ NumDims;\ ++\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}})\ \{}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a855fbae0ff7d592163aaf60fd0b22f71_a855fbae0ff7d592163aaf60fd0b22f71}{offset}}\ =\ coordinates[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}]\ -\/\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_gaussian_generator_acf42446cd583d55deaa1d708857669de_acf42446cd583d55deaa1d708857669de}{m\_means}}[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}];}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ tmp\ +=\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a855fbae0ff7d592163aaf60fd0b22f71_a855fbae0ff7d592163aaf60fd0b22f71}{offset}}\ *\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a855fbae0ff7d592163aaf60fd0b22f71_a855fbae0ff7d592163aaf60fd0b22f71}{offset}}\ /\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_gaussian_generator_ad36335a492d18f90be11baee36466a35_ad36335a492d18f90be11baee36466a35}{m\_two\_sigmas}}[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}];}
+\DoxyCodeLine{00447\ \ \ \ \ \}}
+\DoxyCodeLine{00448\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1numext_a8813a696fa1e2c04f7fc4e072139dede_a8813a696fa1e2c04f7fc4e072139dede}{numext::exp}}(-\/tmp);}
+\DoxyCodeLine{00449\ \ \ \}}
+\DoxyCodeLine{00450\ }
+\DoxyCodeLine{00451\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00452\ \ \ \mbox{\hyperlink{class_eigen_1_1array}{array<T,\ NumDims>}}\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_gaussian_generator_acf42446cd583d55deaa1d708857669de_acf42446cd583d55deaa1d708857669de}{m\_means}};}
+\DoxyCodeLine{00453\ \ \ \mbox{\hyperlink{class_eigen_1_1array}{array<T,\ NumDims>}}\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_gaussian_generator_ad36335a492d18f90be11baee36466a35_ad36335a492d18f90be11baee36466a35}{m\_two\_sigmas}};}
+\DoxyCodeLine{00454\ \};}
+\DoxyCodeLine{00455\ }
+\DoxyCodeLine{00456\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{size\_t}\ NumDims>}
+\DoxyCodeLine{00457\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1functor__traits}{functor\_traits}}<\mbox{\hyperlink{class_eigen_1_1internal_1_1_gaussian_generator}{GaussianGenerator}}<\mbox{\hyperlink{class_eigen_1_1_triplet}{T}},\ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}},\ NumDims>\ >\ \{}
+\DoxyCodeLine{00458\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00459\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1functor__traits_a9f5fd8e8f3dd0f19b2b268c5738c3e15_a9f5fd8e8f3dd0f19b2b268c5738c3e15aaaf05f4dc0b825ef9e0c3d89c033e90a}{Cost}}\ =\ NumDims\ *\ (2\ *\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<T>::AddCost}}\ +\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<T>::MulCost}}\ +}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1functor__traits}{functor\_traits<scalar\_quotient\_op<T,\ T>}}\ >\mbox{\hyperlink{struct_eigen_1_1internal_1_1functor__traits_a9f5fd8e8f3dd0f19b2b268c5738c3e15_a9f5fd8e8f3dd0f19b2b268c5738c3e15aaaf05f4dc0b825ef9e0c3d89c033e90a}{::Cost}})\ +}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1functor__traits}{functor\_traits}}<\mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__exp__op}{scalar\_exp\_op<T>}}\ >\mbox{\hyperlink{struct_eigen_1_1internal_1_1functor__traits_a9f5fd8e8f3dd0f19b2b268c5738c3e15_a9f5fd8e8f3dd0f19b2b268c5738c3e15aaaf05f4dc0b825ef9e0c3d89c033e90a}{::Cost}},}
+\DoxyCodeLine{00462\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1functor__traits_a9f5fd8e8f3dd0f19b2b268c5738c3e15_a9f5fd8e8f3dd0f19b2b268c5738c3e15a27f488e5e287acd27ebd9624df3c8c46}{PacketAccess}}\ =\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_gaussian_generator}{GaussianGenerator<T,\ Index,\ NumDims>::PacketAccess}}}
+\DoxyCodeLine{00463\ \ \ \};}
+\DoxyCodeLine{00464\ \};}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00467\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__clamp__op}{scalar\_clamp\_op}}\ \{}
+\DoxyCodeLine{00468\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__clamp__op_a1a4d837bf6231bc359d5512703a6ac09_a1a4d837bf6231bc359d5512703a6ac09}{scalar\_clamp\_op}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}\&\ \_min,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}\&\ \_max)\ :\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__clamp__op_aecc0332117d8d6456ad620ba962ab6cc_aecc0332117d8d6456ad620ba962ab6cc}{m\_min}}(\_min),\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__clamp__op_a3960f64b47e0dad06dc192276fe1e2d7_a3960f64b47e0dad06dc192276fe1e2d7}{m\_max}}(\_max)\ \{\}}
+\DoxyCodeLine{00469\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}}
+\DoxyCodeLine{00470\ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__clamp__op_a82eaf179d347549d4861fdfcb02b6a84_a82eaf179d347549d4861fdfcb02b6a84}{operator()}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}\&\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00471\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1numext_ab3b30bf0bcfa1ad91dbec75fabb3bea0_ab3b30bf0bcfa1ad91dbec75fabb3bea0}{numext::mini}}(\mbox{\hyperlink{namespace_eigen_1_1numext_a29d502349f2ec9897c808e65e0f96eb4_a29d502349f2ec9897c808e65e0f96eb4}{numext::maxi}}(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}},\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__clamp__op_aecc0332117d8d6456ad620ba962ab6cc_aecc0332117d8d6456ad620ba962ab6cc}{m\_min}}),\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__clamp__op_a3960f64b47e0dad06dc192276fe1e2d7_a3960f64b47e0dad06dc192276fe1e2d7}{m\_max}});}
+\DoxyCodeLine{00472\ \ \ \}}
+\DoxyCodeLine{00473\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Packet>}
+\DoxyCodeLine{00474\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}}
+\DoxyCodeLine{00475\ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__clamp__op_a3c770bbedfdd81dc98257acbc2dc11c7_a3c770bbedfdd81dc98257acbc2dc11c7}{packetOp}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}\&\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00476\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1internal_a7963a08a4667f2c17320ca8c82b8571d_a7963a08a4667f2c17320ca8c82b8571d}{internal::pmin}}(\mbox{\hyperlink{namespace_eigen_1_1internal_a5b48179611579b41066884b064345c60_a5b48179611579b41066884b064345c60}{internal::pmax}}(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}},\ \mbox{\hyperlink{namespace_eigen_1_1internal_afa6f9a9f3c905b28cc29841935e44fdb_afa6f9a9f3c905b28cc29841935e44fdb}{pset1<Packet>}}(\mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__clamp__op_aecc0332117d8d6456ad620ba962ab6cc_aecc0332117d8d6456ad620ba962ab6cc}{m\_min}})),\ \mbox{\hyperlink{namespace_eigen_1_1internal_afa6f9a9f3c905b28cc29841935e44fdb_afa6f9a9f3c905b28cc29841935e44fdb}{pset1<Packet>}}(\mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__clamp__op_a3960f64b47e0dad06dc192276fe1e2d7_a3960f64b47e0dad06dc192276fe1e2d7}{m\_max}}));}
+\DoxyCodeLine{00477\ \ \ \}}
+\DoxyCodeLine{00478\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__clamp__op_aecc0332117d8d6456ad620ba962ab6cc_aecc0332117d8d6456ad620ba962ab6cc}{m\_min}};}
+\DoxyCodeLine{00479\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__clamp__op_a3960f64b47e0dad06dc192276fe1e2d7_a3960f64b47e0dad06dc192276fe1e2d7}{m\_max}};}
+\DoxyCodeLine{00480\ \};}
+\DoxyCodeLine{00481\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00482\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1functor__traits}{functor\_traits}}<\mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__clamp__op}{scalar\_clamp\_op}}<\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}>\ >}
+\DoxyCodeLine{00483\ \{\ \textcolor{keyword}{enum}\ \{\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1functor__traits_a9f5fd8e8f3dd0f19b2b268c5738c3e15_a9f5fd8e8f3dd0f19b2b268c5738c3e15aaaf05f4dc0b825ef9e0c3d89c033e90a}{Cost}}\ =\ 2\ *\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<Scalar>::AddCost}},\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1functor__traits_a9f5fd8e8f3dd0f19b2b268c5738c3e15_a9f5fd8e8f3dd0f19b2b268c5738c3e15a27f488e5e287acd27ebd9624df3c8c46}{PacketAccess}}\ =\ (\mbox{\hyperlink{struct_eigen_1_1internal_1_1packet__traits}{packet\_traits<Scalar>::HasMin}}\ \&\&\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1packet__traits}{packet\_traits<Scalar>::HasMax}})\};\ \};}
+\DoxyCodeLine{00484\ }
+\DoxyCodeLine{00485\ \}\ \textcolor{comment}{//\ end\ namespace\ internal}}
+\DoxyCodeLine{00486\ \}\ \textcolor{comment}{//\ end\ namespace\ Eigen}}
+\DoxyCodeLine{00487\ }
+\DoxyCodeLine{00488\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ EIGEN\_CXX11\_TENSOR\_TENSOR\_FUNCTORS\_H}}
+
+\end{DoxyCode}

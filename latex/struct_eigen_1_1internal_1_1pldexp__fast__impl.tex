@@ -1,0 +1,96 @@
+\doxysection{Eigen\+::internal\+::pldexp\+\_\+fast\+\_\+impl\texorpdfstring{$<$}{<} Packet \texorpdfstring{$>$}{>} 構造体テンプレート}
+\hypertarget{struct_eigen_1_1internal_1_1pldexp__fast__impl}{}\label{struct_eigen_1_1internal_1_1pldexp__fast__impl}\index{Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$@{Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$}}
+
+
+{\ttfamily \#include $<$Generic\+Packet\+Math\+Functions.\+h$>$}
+
+
+
+Eigen\+::internal\+::pldexp\+\_\+fast\+\_\+impl\texorpdfstring{$<$}{<} Packet \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=185pt]{struct_eigen_1_1internal_1_1pldexp__fast__impl__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{struct_eigen_1_1internal_1_1pldexp__fast__impl_a91240afaef8d65b5c231556cc6cf5484_a91240afaef8d65b5c231556cc6cf5484a41d77d0b94532c2b90bbdfd3cdbd91f0}{Total\+Bits}} = sizeof(Scalar) \texorpdfstring{$\ast$}{*} CHAR\+\_\+\+BIT
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1pldexp__fast__impl_a91240afaef8d65b5c231556cc6cf5484_a91240afaef8d65b5c231556cc6cf5484a05b78112285aa5fc05331e20c17604c9}{Mantissa\+Bits}} = numext\+::numeric\+\_\+limits\texorpdfstring{$<$}{<}Scalar\texorpdfstring{$>$}{>}\+::digits -\/ 1
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1pldexp__fast__impl_a91240afaef8d65b5c231556cc6cf5484_a91240afaef8d65b5c231556cc6cf5484af4f64fd91109a01a7602ee06a4710af4}{Exponent\+Bits}} = int(Total\+Bits) -\/ int(Mantissa\+Bits) -\/ 1
+ \}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1unpacket__traits}{unpacket\+\_\+traits}}$<$ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} $>$\+::integer\+\_\+packet \mbox{\hyperlink{struct_eigen_1_1internal_1_1pldexp__fast__impl_a63d8175eeb053570d4a2a963c800767f_a63d8175eeb053570d4a2a963c800767f}{PacketI}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1unpacket__traits}{unpacket\+\_\+traits}}$<$ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} $>$\+::type \mbox{\hyperlink{struct_eigen_1_1internal_1_1pldexp__fast__impl_ab0c127ebdc2e327ff62366164c2bc5dc_ab0c127ebdc2e327ff62366164c2bc5dc}{Scalar}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1unpacket__traits}{unpacket\+\_\+traits}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1pldexp__fast__impl_a63d8175eeb053570d4a2a963c800767f_a63d8175eeb053570d4a2a963c800767f}{PacketI}} $>$\+::type \mbox{\hyperlink{struct_eigen_1_1internal_1_1pldexp__fast__impl_adde5cdc0bb4c70067086c9ced109a2dd_adde5cdc0bb4c70067086c9ced109a2dd}{ScalarI}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} \mbox{\hyperlink{struct_eigen_1_1internal_1_1pldexp__fast__impl_a6d2f6f3ce635840017bfd7e3c5f63e55_a6d2f6f3ce635840017bfd7e3c5f63e55}{run}} (const \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}, const \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} \&exponent)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{型定義メンバ詳解}
+\Hypertarget{struct_eigen_1_1internal_1_1pldexp__fast__impl_a63d8175eeb053570d4a2a963c800767f_a63d8175eeb053570d4a2a963c800767f}\index{Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$@{Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$}!PacketI@{PacketI}}
+\index{PacketI@{PacketI}!Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$@{Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$}}
+\doxysubsubsection{\texorpdfstring{PacketI}{PacketI}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1pldexp__fast__impl_a63d8175eeb053570d4a2a963c800767f_a63d8175eeb053570d4a2a963c800767f} 
+template$<$typename \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1unpacket__traits}{unpacket\+\_\+traits}}$<$\mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}$>$\+::integer\+\_\+packet \mbox{\hyperlink{struct_eigen_1_1internal_1_1pldexp__fast__impl}{Eigen\+::internal\+::pldexp\+\_\+fast\+\_\+impl}}$<$ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} $>$\+::\+PacketI}
+
+\Hypertarget{struct_eigen_1_1internal_1_1pldexp__fast__impl_ab0c127ebdc2e327ff62366164c2bc5dc_ab0c127ebdc2e327ff62366164c2bc5dc}\index{Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$@{Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$@{Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1pldexp__fast__impl_ab0c127ebdc2e327ff62366164c2bc5dc_ab0c127ebdc2e327ff62366164c2bc5dc} 
+template$<$typename \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1unpacket__traits}{unpacket\+\_\+traits}}$<$\mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}}$>$\+::type \mbox{\hyperlink{struct_eigen_1_1internal_1_1pldexp__fast__impl}{Eigen\+::internal\+::pldexp\+\_\+fast\+\_\+impl}}$<$ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} $>$\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{\+::\+Scalar}}}
+
+\Hypertarget{struct_eigen_1_1internal_1_1pldexp__fast__impl_adde5cdc0bb4c70067086c9ced109a2dd_adde5cdc0bb4c70067086c9ced109a2dd}\index{Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$@{Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$}!ScalarI@{ScalarI}}
+\index{ScalarI@{ScalarI}!Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$@{Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$}}
+\doxysubsubsection{\texorpdfstring{ScalarI}{ScalarI}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1pldexp__fast__impl_adde5cdc0bb4c70067086c9ced109a2dd_adde5cdc0bb4c70067086c9ced109a2dd} 
+template$<$typename \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1unpacket__traits}{unpacket\+\_\+traits}}$<$\mbox{\hyperlink{struct_eigen_1_1internal_1_1pldexp__fast__impl_a63d8175eeb053570d4a2a963c800767f_a63d8175eeb053570d4a2a963c800767f}{PacketI}}$>$\+::type \mbox{\hyperlink{struct_eigen_1_1internal_1_1pldexp__fast__impl}{Eigen\+::internal\+::pldexp\+\_\+fast\+\_\+impl}}$<$ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} $>$\+::\+ScalarI}
+
+
+
+\doxysubsection{列挙型メンバ詳解}
+\Hypertarget{struct_eigen_1_1internal_1_1pldexp__fast__impl_a91240afaef8d65b5c231556cc6cf5484_a91240afaef8d65b5c231556cc6cf5484}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1pldexp__fast__impl_a91240afaef8d65b5c231556cc6cf5484_a91240afaef8d65b5c231556cc6cf5484} 
+template$<$typename \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} $>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TotalBits@{TotalBits}!Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$@{Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$}}\index{Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$@{Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$}!TotalBits@{TotalBits}}}\Hypertarget{struct_eigen_1_1internal_1_1pldexp__fast__impl_a91240afaef8d65b5c231556cc6cf5484_a91240afaef8d65b5c231556cc6cf5484a41d77d0b94532c2b90bbdfd3cdbd91f0}\label{struct_eigen_1_1internal_1_1pldexp__fast__impl_a91240afaef8d65b5c231556cc6cf5484_a91240afaef8d65b5c231556cc6cf5484} 
+Total\+Bits&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MantissaBits@{MantissaBits}!Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$@{Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$}}\index{Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$@{Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$}!MantissaBits@{MantissaBits}}}\Hypertarget{struct_eigen_1_1internal_1_1pldexp__fast__impl_a91240afaef8d65b5c231556cc6cf5484_a91240afaef8d65b5c231556cc6cf5484a05b78112285aa5fc05331e20c17604c9}\label{struct_eigen_1_1internal_1_1pldexp__fast__impl_a91240afaef8d65b5c231556cc6cf5484_a91240afaef8d65b5c231556cc6cf5484} 
+Mantissa\+Bits&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ExponentBits@{ExponentBits}!Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$@{Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$}}\index{Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$@{Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$}!ExponentBits@{ExponentBits}}}\Hypertarget{struct_eigen_1_1internal_1_1pldexp__fast__impl_a91240afaef8d65b5c231556cc6cf5484_a91240afaef8d65b5c231556cc6cf5484af4f64fd91109a01a7602ee06a4710af4}\label{struct_eigen_1_1internal_1_1pldexp__fast__impl_a91240afaef8d65b5c231556cc6cf5484_a91240afaef8d65b5c231556cc6cf5484} 
+Exponent\+Bits&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{struct_eigen_1_1internal_1_1pldexp__fast__impl_a6d2f6f3ce635840017bfd7e3c5f63e55_a6d2f6f3ce635840017bfd7e3c5f63e55}\index{Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$@{Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$}!run@{run}}
+\index{run@{run}!Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$@{Eigen::internal::pldexp\_fast\_impl$<$ Packet $>$}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1pldexp__fast__impl_a6d2f6f3ce635840017bfd7e3c5f63e55_a6d2f6f3ce635840017bfd7e3c5f63e55} 
+template$<$typename \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} $>$ \\
+static \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} \mbox{\hyperlink{struct_eigen_1_1internal_1_1pldexp__fast__impl}{Eigen\+::internal\+::pldexp\+\_\+fast\+\_\+impl}}$<$ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} $>$\+::run (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} \&}]{a}{, }\item[{const \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} \&}]{exponent}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+この構造体詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Core/arch/\+Default/\mbox{\hyperlink{_generic_packet_math_functions_8h}{Generic\+Packet\+Math\+Functions.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,518 @@
+\doxysection{Eigen\+::Householder\+QR\texorpdfstring{$<$}{<} \+\_\+\+Matrix\+Type \texorpdfstring{$>$}{>} クラステンプレート}
+\hypertarget{class_eigen_1_1_householder_q_r}{}\label{class_eigen_1_1_householder_q_r}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+
+
+Householder QR decomposition of a matrix  
+
+
+
+
+{\ttfamily \#include $<$Householder\+QR.\+h$>$}
+
+
+
+Eigen\+::Householder\+QR\texorpdfstring{$<$}{<} \+\_\+\+Matrix\+Type \texorpdfstring{$>$}{>} の継承関係図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_eigen_1_1_householder_q_r__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Eigen\+::Householder\+QR\texorpdfstring{$<$}{<} \+\_\+\+Matrix\+Type \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_eigen_1_1_householder_q_r__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{class_eigen_1_1_householder_q_r_a7f91a2a1cf0e9816f74693dfbfb4b7d3_a7f91a2a1cf0e9816f74693dfbfb4b7d3aa76fa2d9fd64a5607418e54f3bacc57f}{Max\+Rows\+At\+Compile\+Time}} = Matrix\+Type\+::Max\+Rows\+At\+Compile\+Time
+, \mbox{\hyperlink{class_eigen_1_1_householder_q_r_a7f91a2a1cf0e9816f74693dfbfb4b7d3_a7f91a2a1cf0e9816f74693dfbfb4b7d3a066a795d9b4cc7bfc4e61ee82abc14ef}{Max\+Cols\+At\+Compile\+Time}} = Matrix\+Type\+::Max\+Cols\+At\+Compile\+Time
+ \}
+\item 
+typedef \+\_\+\+Matrix\+Type \mbox{\hyperlink{class_eigen_1_1_householder_q_r_ac7e0656829ddeffb7c97ecddf609a093_ac7e0656829ddeffb7c97ecddf609a093}{Matrix\+Type}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_solver_base}{Solver\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Householder\+QR}} $>$ \mbox{\hyperlink{class_eigen_1_1_householder_q_r_a108cc775695947041e8c5ee6aa337391_a108cc775695947041e8c5ee6aa337391}{Base}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_solver_base_aad8fd6304f726bd6061512408670e83c_aad8fd6304f726bd6061512408670e83c}{Scalar}}, \mbox{\hyperlink{class_eigen_1_1_solver_base_afc743c24b0b3fea7a8b10deff7123816_afc743c24b0b3fea7a8b10deff7123816a2a478017a27efa168c261c5912587d51}{Rows\+At\+Compile\+Time}}, \mbox{\hyperlink{class_eigen_1_1_solver_base_afc743c24b0b3fea7a8b10deff7123816_afc743c24b0b3fea7a8b10deff7123816a2a478017a27efa168c261c5912587d51}{Rows\+At\+Compile\+Time}},(Matrix\+Type\+::\+Flags \&\mbox{\hyperlink{group__flags_gae4f56c2a60bbe4bd2e44c5b19cbe8762_gae4f56c2a60bbe4bd2e44c5b19cbe8762}{Row\+Major\+Bit}}) ? \mbox{\hyperlink{group__enums_gaacded1a18ae58b0f554751f6cdf9eb13_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}} \+:\mbox{\hyperlink{group__enums_gaacded1a18ae58b0f554751f6cdf9eb13_ggaacded1a18ae58b0f554751f6cdf9eb13a0103672ae41005ab03b4176c765afd62}{Col\+Major}}, \mbox{\hyperlink{class_eigen_1_1_householder_q_r_a7f91a2a1cf0e9816f74693dfbfb4b7d3_a7f91a2a1cf0e9816f74693dfbfb4b7d3aa76fa2d9fd64a5607418e54f3bacc57f}{Max\+Rows\+At\+Compile\+Time}}, \mbox{\hyperlink{class_eigen_1_1_householder_q_r_a7f91a2a1cf0e9816f74693dfbfb4b7d3_a7f91a2a1cf0e9816f74693dfbfb4b7d3aa76fa2d9fd64a5607418e54f3bacc57f}{Max\+Rows\+At\+Compile\+Time}} $>$ \mbox{\hyperlink{class_eigen_1_1_householder_q_r_a3c0e850cd81ab0cde68fc814907e3d40_a3c0e850cd81ab0cde68fc814907e3d40}{Matrix\+QType}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1plain__diag__type}{internal\+::plain\+\_\+diag\+\_\+type}}$<$ \mbox{\hyperlink{class_eigen_1_1_householder_q_r_ac7e0656829ddeffb7c97ecddf609a093_ac7e0656829ddeffb7c97ecddf609a093}{Matrix\+Type}} $>$\+::type \mbox{\hyperlink{class_eigen_1_1_householder_q_r_a3ecac58698a4410ddd9655b978cd009f_a3ecac58698a4410ddd9655b978cd009f}{HCoeffs\+Type}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1plain__row__type}{internal\+::plain\+\_\+row\+\_\+type}}$<$ \mbox{\hyperlink{class_eigen_1_1_householder_q_r_ac7e0656829ddeffb7c97ecddf609a093_ac7e0656829ddeffb7c97ecddf609a093}{Matrix\+Type}} $>$\+::type \mbox{\hyperlink{class_eigen_1_1_householder_q_r_aaad89084e255c9ce83c9aebef69553ce_aaad89084e255c9ce83c9aebef69553ce}{Row\+Vector\+Type}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_householder_sequence}{Householder\+Sequence}}$<$ \mbox{\hyperlink{class_eigen_1_1_householder_q_r_ac7e0656829ddeffb7c97ecddf609a093_ac7e0656829ddeffb7c97ecddf609a093}{Matrix\+Type}}, typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ typename HCoeffs\+Type\+::\+Conjugate\+Return\+Type $>$\+::type $>$ \mbox{\hyperlink{class_eigen_1_1_householder_q_r_a91e0f0563a851621c5941914278d5d9b_a91e0f0563a851621c5941914278d5d9b}{Householder\+Sequence\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsection*{基底クラス \mbox{\hyperlink{class_eigen_1_1_solver_base}{Eigen\+::\+Solver\+Base$<$ Householder\+QR$<$ \+\_\+\+Matrix\+Type $>$ $>$}} に属する継承公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum 
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$ $>$ \mbox{\hyperlink{class_eigen_1_1_solver_base_a0cb88443c1d50675c3c11a972edf18fd_a0cb88443c1d50675c3c11a972edf18fd}{Base}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$ $>$\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{\+::\+Scalar}} \mbox{\hyperlink{class_eigen_1_1_solver_base_aad8fd6304f726bd6061512408670e83c_aad8fd6304f726bd6061512408670e83c}{Scalar}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_solver_base_aad8fd6304f726bd6061512408670e83c_aad8fd6304f726bd6061512408670e83c}{Scalar}} \mbox{\hyperlink{class_eigen_1_1_solver_base_a9b9fb46c7490805adcaf9cbbc808beb5_a9b9fb46c7490805adcaf9cbbc808beb5}{Coeff\+Return\+Type}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1add__const}{internal\+::add\+\_\+const}}$<$ \mbox{\hyperlink{class_eigen_1_1_transpose}{Transpose}}$<$ const\+Derived $>$ $>$\+::type \mbox{\hyperlink{class_eigen_1_1_solver_base_a02e2d9d5d73985473c5d723b7f22820c_a02e2d9d5d73985473c5d723b7f22820c}{Const\+Transpose\+Return\+Type}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{internal\+::conditional}}$<$ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_solver_base_aad8fd6304f726bd6061512408670e83c_aad8fd6304f726bd6061512408670e83c}{Scalar}} $>$\mbox{\hyperlink{common_8h_a80155586fa275b28773c9b203f52caba_a80155586fa275b28773c9b203f52cabaa66d6dc5b929fc072f7dce7fdab0ee378}{\+::\+Is\+Complex}}, \mbox{\hyperlink{class_eigen_1_1_cwise_unary_op}{Cwise\+Unary\+Op}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__conjugate__op}{internal\+::scalar\+\_\+conjugate\+\_\+op}}$<$ \mbox{\hyperlink{class_eigen_1_1_solver_base_aad8fd6304f726bd6061512408670e83c_aad8fd6304f726bd6061512408670e83c}{Scalar}} $>$, \mbox{\hyperlink{class_eigen_1_1_solver_base_a02e2d9d5d73985473c5d723b7f22820c_a02e2d9d5d73985473c5d723b7f22820c}{Const\+Transpose\+Return\+Type}} $>$, \mbox{\hyperlink{class_eigen_1_1_solver_base_a02e2d9d5d73985473c5d723b7f22820c_a02e2d9d5d73985473c5d723b7f22820c}{Const\+Transpose\+Return\+Type}} $>$\+::type \mbox{\hyperlink{class_eigen_1_1_solver_base_a9a7552f7b91a7190502909f56640a3ff_a9a7552f7b91a7190502909f56640a3ff}{Adjoint\+Return\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsection*{基底クラス \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+::\+Eigen\+Base$<$ Householder\+QR$<$ \+\_\+\+Matrix\+Type $>$ $>$}} に属する継承公開型}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}} \mbox{\hyperlink{struct_eigen_1_1_eigen_base_ade9431198306d6053f3a8fd8efb12b94_ade9431198306d6053f3a8fd8efb12b94}{Index}}
+\begin{DoxyCompactList}\small\item\em The interface type of indices \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$ $>$\+::\+Storage\+Kind \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a2c5d3c1d201f036f813af6cb615b5f9c_a2c5d3c1d201f036f813af6cb615b5f9c}{Storage\+Kind}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_householder_q_r_a974adb10a0e066057aeb3b360df68380_a974adb10a0e066057aeb3b360df68380}{Householder\+QR}} ()
+\begin{DoxyCompactList}\small\item\em Default Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eigen_1_1_householder_q_r_a1087457610c53e1574de521a51de0cd3_a1087457610c53e1574de521a51de0cd3}{Householder\+QR}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_householder_q_r_aa5d8f6ec5fbedfdf0ec0d02459981e69_aa5d8f6ec5fbedfdf0ec0d02459981e69}{rows}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_householder_q_r_a2cd92da5485f0c4b79f39d7503e5c3f7_a2cd92da5485f0c4b79f39d7503e5c3f7}{cols}})
+\begin{DoxyCompactList}\small\item\em Default Constructor with memory preallocation \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_householder_q_r_afa7cfb4faa89195c4dc8d196924c8230_afa7cfb4faa89195c4dc8d196924c8230}{Householder\+QR}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&\mbox{\hyperlink{common_8h_a2c4e93d1f3604b217c5d0e211def96fb_a2c4e93d1f3604b217c5d0e211def96fb}{matrix}})
+\begin{DoxyCompactList}\small\item\em Constructs a QR factorization from a given matrix \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_householder_q_r_a95a53f8479ee147d7b0ccab71c13e45d_a95a53f8479ee147d7b0ccab71c13e45d}{Householder\+QR}} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&\mbox{\hyperlink{common_8h_a2c4e93d1f3604b217c5d0e211def96fb_a2c4e93d1f3604b217c5d0e211def96fb}{matrix}})
+\begin{DoxyCompactList}\small\item\em Constructs a QR factorization from a given matrix \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eigen_1_1_householder_q_r_a91e0f0563a851621c5941914278d5d9b_a91e0f0563a851621c5941914278d5d9b}{Householder\+Sequence\+Type}} \mbox{\hyperlink{class_eigen_1_1_householder_q_r_affd506c10ef2d25f56e7b1f9f25ff885_affd506c10ef2d25f56e7b1f9f25ff885}{householderQ}} () const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_householder_q_r_ac7e0656829ddeffb7c97ecddf609a093_ac7e0656829ddeffb7c97ecddf609a093}{Matrix\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_householder_q_r_a42552dd4708954432161da95af4442ba_a42552dd4708954432161da95af4442ba}{matrix\+QR}} () const
+\item 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Householder\+QR}} \& \mbox{\hyperlink{class_eigen_1_1_householder_q_r_abaaf0df20ba1894710b9f3787625625a_abaaf0df20ba1894710b9f3787625625a}{compute}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&\mbox{\hyperlink{common_8h_a2c4e93d1f3604b217c5d0e211def96fb_a2c4e93d1f3604b217c5d0e211def96fb}{matrix}})
+\item 
+Matrix\+Type\+::\+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_householder_q_r_aaf4ef26c0b7affc91431ec59c92d64c3_aaf4ef26c0b7affc91431ec59c92d64c3}{abs\+Determinant}} () const
+\item 
+Matrix\+Type\+::\+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_householder_q_r_af61b6dbef34fc51c825182b16dc43ca1_af61b6dbef34fc51c825182b16dc43ca1}{log\+Abs\+Determinant}} () const
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_householder_q_r_aa5d8f6ec5fbedfdf0ec0d02459981e69_aa5d8f6ec5fbedfdf0ec0d02459981e69}{rows}} () const
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_householder_q_r_a2cd92da5485f0c4b79f39d7503e5c3f7_a2cd92da5485f0c4b79f39d7503e5c3f7}{cols}} () const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_householder_q_r_a3ecac58698a4410ddd9655b978cd009f_a3ecac58698a4410ddd9655b978cd009f}{HCoeffs\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_householder_q_r_a0e140bdf5fb504220cafe78e2fab96f6_a0e140bdf5fb504220cafe78e2fab96f6}{h\+Coeffs}} () const
+\item 
+{\footnotesize template$<$typename Rhs\+Type , typename Dst\+Type $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_householder_q_r_ade4806131aa604a7e767a276d99894e9_ade4806131aa604a7e767a276d99894e9}{\+\_\+solve\+\_\+impl}} (const Rhs\+Type \&rhs, Dst\+Type \&dst) const
+\item 
+{\footnotesize template$<$bool Conjugate, typename Rhs\+Type , typename Dst\+Type $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_householder_q_r_abbd6458cd58b0e50b1a8977f11b726b7_abbd6458cd58b0e50b1a8977f11b726b7}{\+\_\+solve\+\_\+impl\+\_\+transposed}} (const Rhs\+Type \&rhs, Dst\+Type \&dst) const
+\end{DoxyCompactItemize}
+\doxysubsection*{基底クラス \mbox{\hyperlink{class_eigen_1_1_solver_base}{Eigen\+::\+Solver\+Base$<$ Householder\+QR$<$ \+\_\+\+Matrix\+Type $>$ $>$}} に属する継承公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_solver_base_a4d5e5baddfba3790ab1a5f247dcc4dc1_a4d5e5baddfba3790ab1a5f247dcc4dc1}{Solver\+Base}} ()
+\item 
+\mbox{\hyperlink{class_eigen_1_1_solver_base_a5a9bb1cec6324ffd4016319e9ae94477_a5a9bb1cec6324ffd4016319e9ae94477}{\texorpdfstring{$\sim$}{\string~}\+Solver\+Base}} ()
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$ \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$, Rhs $>$ \mbox{\hyperlink{class_eigen_1_1_solver_base_a943c352b597e3cd4744d5c11bfd77520_a943c352b597e3cd4744d5c11bfd77520}{solve}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}) const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_solver_base_a02e2d9d5d73985473c5d723b7f22820c_a02e2d9d5d73985473c5d723b7f22820c}{Const\+Transpose\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_solver_base_a732e75b5132bb4db3775916927b0e86c_a732e75b5132bb4db3775916927b0e86c}{transpose}} () const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_solver_base_a9a7552f7b91a7190502909f56640a3ff_a9a7552f7b91a7190502909f56640a3ff}{Adjoint\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_solver_base_a05a3686a89888681c8e0c2bcab6d1ce5_a05a3686a89888681c8e0c2bcab6d1ce5}{adjoint}} () const
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$ \& \mbox{\hyperlink{class_eigen_1_1_solver_base_ab4cf3e6bb046a94a46b69b857bd3dbc9_ab4cf3e6bb046a94a46b69b857bd3dbc9}{derived}} ()
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} const \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$ \& \mbox{\hyperlink{class_eigen_1_1_solver_base_a80808d9477b4dddab2613a5d8764d79e_a80808d9477b4dddab2613a5d8764d79e}{derived}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{基底クラス \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+::\+Eigen\+Base$<$ Householder\+QR$<$ \+\_\+\+Matrix\+Type $>$ $>$}} に属する継承公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$ \& \mbox{\hyperlink{struct_eigen_1_1_eigen_base_ab4cf3e6bb046a94a46b69b857bd3dbc9_ab4cf3e6bb046a94a46b69b857bd3dbc9}{derived}} ()
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} const \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$ \& \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a80808d9477b4dddab2613a5d8764d79e_a80808d9477b4dddab2613a5d8764d79e}{derived}} () const
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$ \& \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a23248b545ee580f3ddb8150cd3d032a3_a23248b545ee580f3ddb8150cd3d032a3}{const\+\_\+cast\+\_\+derived}} () const
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} const \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$ \& \mbox{\hyperlink{struct_eigen_1_1_eigen_base_abf0796214cde38991fd56c07f0765829_abf0796214cde38991fd56c07f0765829}{const\+\_\+derived}} () const
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{struct_eigen_1_1_eigen_base_ade9431198306d6053f3a8fd8efb12b94_ade9431198306d6053f3a8fd8efb12b94}{Index}} \mbox{\hyperlink{struct_eigen_1_1_eigen_base_af1d12fdb3361e150427e1fd94ebb1f14_af1d12fdb3361e150427e1fd94ebb1f14}{rows}} () const \mbox{\hyperlink{_macros_8h_a532c42c61426cc18d84097e29577acf8_a532c42c61426cc18d84097e29577acf8}{EIGEN\+\_\+\+NOEXCEPT}}
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{struct_eigen_1_1_eigen_base_ade9431198306d6053f3a8fd8efb12b94_ade9431198306d6053f3a8fd8efb12b94}{Index}} \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a50c19c45f15acdfe1cb66ab5e879b8e3_a50c19c45f15acdfe1cb66ab5e879b8e3}{cols}} () const \mbox{\hyperlink{_macros_8h_a532c42c61426cc18d84097e29577acf8_a532c42c61426cc18d84097e29577acf8}{EIGEN\+\_\+\+NOEXCEPT}}
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{struct_eigen_1_1_eigen_base_ade9431198306d6053f3a8fd8efb12b94_ade9431198306d6053f3a8fd8efb12b94}{Index}} \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a9f40726259520d7e9c5ce58d19d62e79_a9f40726259520d7e9c5ce58d19d62e79}{size}} () const \mbox{\hyperlink{_macros_8h_a532c42c61426cc18d84097e29577acf8_a532c42c61426cc18d84097e29577acf8}{EIGEN\+\_\+\+NOEXCEPT}}
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} void \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a991b21b79bb613171a53271933c53cab_a991b21b79bb613171a53271933c53cab}{eval\+To}} (Dest \&dst) const
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} void \mbox{\hyperlink{struct_eigen_1_1_eigen_base_ad4300dbb47b34596d8ce6b2361c07b52_ad4300dbb47b34596d8ce6b2361c07b52}{add\+To}} (Dest \&dst) const
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} void \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a677a970c7d063d7033180dd9dbb53565_a677a970c7d063d7033180dd9dbb53565}{sub\+To}} (Dest \&dst) const
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} void \mbox{\hyperlink{struct_eigen_1_1_eigen_base_aabee6205996703a37df914e379472653_aabee6205996703a37df914e379472653}{apply\+This\+On\+The\+Right}} (Dest \&dst) const
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} void \mbox{\hyperlink{struct_eigen_1_1_eigen_base_ac8a579c4f982dddd2a01489fe66b73c9_ac8a579c4f982dddd2a01489fe66b73c9}{apply\+This\+On\+The\+Left}} (Dest \&dst) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{限定公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_householder_q_r_a3a16530338a734971fc45efb0ef9ac94_a3a16530338a734971fc45efb0ef9ac94}{compute\+In\+Place}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{基底クラス \mbox{\hyperlink{class_eigen_1_1_solver_base}{Eigen\+::\+Solver\+Base$<$ Householder\+QR$<$ \+\_\+\+Matrix\+Type $>$ $>$}} に属する継承限定公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_solver_base_ac0bf165255e731b5c8a254dbfe5545c9_ac0bf165255e731b5c8a254dbfe5545c9}{\+\_\+check\+\_\+solve\+\_\+assertion}} (const Rhs \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静的限定公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_eigen_1_1_householder_q_r_ab9ae903a54d86452afaf77531396fc27_ab9ae903a54d86452afaf77531396fc27}{check\+\_\+template\+\_\+parameters}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{限定公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_householder_q_r_ac7e0656829ddeffb7c97ecddf609a093_ac7e0656829ddeffb7c97ecddf609a093}{Matrix\+Type}} \mbox{\hyperlink{class_eigen_1_1_householder_q_r_adb06ba1b2259a00b25b5f0e1d86e22ae_adb06ba1b2259a00b25b5f0e1d86e22ae}{m\+\_\+qr}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_householder_q_r_a3ecac58698a4410ddd9655b978cd009f_a3ecac58698a4410ddd9655b978cd009f}{HCoeffs\+Type}} \mbox{\hyperlink{class_eigen_1_1_householder_q_r_ad5cba8a1c0ad16e52bc8aeda2710013f_ad5cba8a1c0ad16e52bc8aeda2710013f}{m\+\_\+h\+Coeffs}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_householder_q_r_aaad89084e255c9ce83c9aebef69553ce_aaad89084e255c9ce83c9aebef69553ce}{Row\+Vector\+Type}} \mbox{\hyperlink{class_eigen_1_1_householder_q_r_a640f06115b8b7ecebac29ca785ff2527_a640f06115b8b7ecebac29ca785ff2527}{m\+\_\+temp}}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_householder_q_r_aa616849e6a79978091208f4d15046205_aa616849e6a79978091208f4d15046205}{m\+\_\+is\+Initialized}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{フレンド}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_eigen_1_1_householder_q_r_adc73f8ce38cf71bddfc7859d6bb552ef_adc73f8ce38cf71bddfc7859d6bb552ef}{Solver\+Base$<$ Householder\+QR $>$}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{詳解}
+\subsubsection*{template$<$typename \+\_\+\+Matrix\+Type$>$\newline
+class Eigen\+::\+Householder\+QR$<$ \+\_\+\+Matrix\+Type $>$}
+Householder QR decomposition of a matrix 
+
+
+\begin{DoxyTemplParams}{テンプレート引数}
+{\em \+\_\+\+Matrix\+Type} & the type of the matrix of which we are computing the QR decomposition\\
+\hline
+\end{DoxyTemplParams}
+This class performs a QR decomposition of a matrix {\bfseries{A}} into matrices {\bfseries{Q}} and {\bfseries{R}} such that   \[
+ \mathbf{A} = \mathbf{Q} \, \mathbf{R}
+\] by using Householder transformations. Here, {\bfseries{Q}} a unitary matrix and {\bfseries{R}} an upper triangular matrix. The result is stored in a compact way compatible with LAPACK.
+
+Note that no pivoting is performed. This is {\bfseries{not}} a rank-\/revealing decomposition. If you want that feature, use \doxylink{class_eigen_1_1_full_piv_householder_q_r}{Full\+Piv\+Householder\+QR} or \doxylink{class_eigen_1_1_col_piv_householder_q_r}{Col\+Piv\+Householder\+QR} instead.
+
+This Householder QR decomposition is faster, but less numerically stable and less feature-\/full than \doxylink{class_eigen_1_1_full_piv_householder_q_r}{Full\+Piv\+Householder\+QR} or \doxylink{class_eigen_1_1_col_piv_householder_q_r}{Col\+Piv\+Householder\+QR}.
+
+This class supports the \doxylink{group___inplace_decomposition}{inplace decomposition } mechanism.
+
+\begin{DoxySeeAlso}{参照}
+\doxylink{class_eigen_1_1_matrix_base_a9a9377aab1cea26db5f25bab7e682f8f_a9a9377aab1cea26db5f25bab7e682f8f}{Matrix\+Base\+::householder\+Qr()} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{型定義メンバ詳解}
+\Hypertarget{class_eigen_1_1_householder_q_r_a108cc775695947041e8c5ee6aa337391_a108cc775695947041e8c5ee6aa337391}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!Base@{Base}}
+\index{Base@{Base}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{Base}{Base}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_a108cc775695947041e8c5ee6aa337391_a108cc775695947041e8c5ee6aa337391} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_solver_base}{Solver\+Base}}$<$\mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Householder\+QR}}$>$ \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Base}
+
+\Hypertarget{class_eigen_1_1_householder_q_r_a3ecac58698a4410ddd9655b978cd009f_a3ecac58698a4410ddd9655b978cd009f}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!HCoeffsType@{HCoeffsType}}
+\index{HCoeffsType@{HCoeffsType}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{HCoeffsType}{HCoeffsType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_a3ecac58698a4410ddd9655b978cd009f_a3ecac58698a4410ddd9655b978cd009f} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1plain__diag__type}{internal\+::plain\+\_\+diag\+\_\+type}}$<$\mbox{\hyperlink{class_eigen_1_1_householder_q_r_ac7e0656829ddeffb7c97ecddf609a093_ac7e0656829ddeffb7c97ecddf609a093}{Matrix\+Type}}$>$\+::type \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+HCoeffs\+Type}
+
+\Hypertarget{class_eigen_1_1_householder_q_r_a91e0f0563a851621c5941914278d5d9b_a91e0f0563a851621c5941914278d5d9b}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!HouseholderSequenceType@{HouseholderSequenceType}}
+\index{HouseholderSequenceType@{HouseholderSequenceType}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{HouseholderSequenceType}{HouseholderSequenceType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_a91e0f0563a851621c5941914278d5d9b_a91e0f0563a851621c5941914278d5d9b} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_householder_sequence}{Householder\+Sequence}}$<$\mbox{\hyperlink{class_eigen_1_1_householder_q_r_ac7e0656829ddeffb7c97ecddf609a093_ac7e0656829ddeffb7c97ecddf609a093}{Matrix\+Type}},typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$typename HCoeffs\+Type\+::\+Conjugate\+Return\+Type$>$\+::type$>$ \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Householder\+Sequence\+Type}
+
+\Hypertarget{class_eigen_1_1_householder_q_r_a3c0e850cd81ab0cde68fc814907e3d40_a3c0e850cd81ab0cde68fc814907e3d40}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!MatrixQType@{MatrixQType}}
+\index{MatrixQType@{MatrixQType}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{MatrixQType}{MatrixQType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_a3c0e850cd81ab0cde68fc814907e3d40_a3c0e850cd81ab0cde68fc814907e3d40} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1_solver_base_aad8fd6304f726bd6061512408670e83c_aad8fd6304f726bd6061512408670e83c}{Scalar}}, \mbox{\hyperlink{class_eigen_1_1_solver_base_afc743c24b0b3fea7a8b10deff7123816_afc743c24b0b3fea7a8b10deff7123816a2a478017a27efa168c261c5912587d51}{Rows\+At\+Compile\+Time}}, \mbox{\hyperlink{class_eigen_1_1_solver_base_afc743c24b0b3fea7a8b10deff7123816_afc743c24b0b3fea7a8b10deff7123816a2a478017a27efa168c261c5912587d51}{Rows\+At\+Compile\+Time}}, (Matrix\+Type\+::\+Flags\&\mbox{\hyperlink{group__flags_gae4f56c2a60bbe4bd2e44c5b19cbe8762_gae4f56c2a60bbe4bd2e44c5b19cbe8762}{Row\+Major\+Bit}}) ? \mbox{\hyperlink{group__enums_gaacded1a18ae58b0f554751f6cdf9eb13_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}} \+: \mbox{\hyperlink{group__enums_gaacded1a18ae58b0f554751f6cdf9eb13_ggaacded1a18ae58b0f554751f6cdf9eb13a0103672ae41005ab03b4176c765afd62}{Col\+Major}}, \mbox{\hyperlink{class_eigen_1_1_householder_q_r_a7f91a2a1cf0e9816f74693dfbfb4b7d3_a7f91a2a1cf0e9816f74693dfbfb4b7d3aa76fa2d9fd64a5607418e54f3bacc57f}{Max\+Rows\+At\+Compile\+Time}}, \mbox{\hyperlink{class_eigen_1_1_householder_q_r_a7f91a2a1cf0e9816f74693dfbfb4b7d3_a7f91a2a1cf0e9816f74693dfbfb4b7d3aa76fa2d9fd64a5607418e54f3bacc57f}{Max\+Rows\+At\+Compile\+Time}}$>$ \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Matrix\+QType}
+
+\Hypertarget{class_eigen_1_1_householder_q_r_ac7e0656829ddeffb7c97ecddf609a093_ac7e0656829ddeffb7c97ecddf609a093}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!MatrixType@{MatrixType}}
+\index{MatrixType@{MatrixType}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{MatrixType}{MatrixType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_ac7e0656829ddeffb7c97ecddf609a093_ac7e0656829ddeffb7c97ecddf609a093} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\+\_\+\+Matrix\+Type \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{\+::\+Matrix\+Type}}}
+
+\Hypertarget{class_eigen_1_1_householder_q_r_aaad89084e255c9ce83c9aebef69553ce_aaad89084e255c9ce83c9aebef69553ce}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!RowVectorType@{RowVectorType}}
+\index{RowVectorType@{RowVectorType}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{RowVectorType}{RowVectorType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_aaad89084e255c9ce83c9aebef69553ce_aaad89084e255c9ce83c9aebef69553ce} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1plain__row__type}{internal\+::plain\+\_\+row\+\_\+type}}$<$\mbox{\hyperlink{class_eigen_1_1_householder_q_r_ac7e0656829ddeffb7c97ecddf609a093_ac7e0656829ddeffb7c97ecddf609a093}{Matrix\+Type}}$>$\+::type \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Row\+Vector\+Type}
+
+
+
+\doxysubsection{列挙型メンバ詳解}
+\Hypertarget{class_eigen_1_1_householder_q_r_a7f91a2a1cf0e9816f74693dfbfb4b7d3_a7f91a2a1cf0e9816f74693dfbfb4b7d3}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_a7f91a2a1cf0e9816f74693dfbfb4b7d3_a7f91a2a1cf0e9816f74693dfbfb4b7d3} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MaxRowsAtCompileTime@{MaxRowsAtCompileTime}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!MaxRowsAtCompileTime@{MaxRowsAtCompileTime}}}\Hypertarget{class_eigen_1_1_householder_q_r_a7f91a2a1cf0e9816f74693dfbfb4b7d3_a7f91a2a1cf0e9816f74693dfbfb4b7d3aa76fa2d9fd64a5607418e54f3bacc57f}\label{class_eigen_1_1_householder_q_r_a7f91a2a1cf0e9816f74693dfbfb4b7d3_a7f91a2a1cf0e9816f74693dfbfb4b7d3} 
+Max\+Rows\+At\+Compile\+Time&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MaxColsAtCompileTime@{MaxColsAtCompileTime}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!MaxColsAtCompileTime@{MaxColsAtCompileTime}}}\Hypertarget{class_eigen_1_1_householder_q_r_a7f91a2a1cf0e9816f74693dfbfb4b7d3_a7f91a2a1cf0e9816f74693dfbfb4b7d3a066a795d9b4cc7bfc4e61ee82abc14ef}\label{class_eigen_1_1_householder_q_r_a7f91a2a1cf0e9816f74693dfbfb4b7d3_a7f91a2a1cf0e9816f74693dfbfb4b7d3} 
+Max\+Cols\+At\+Compile\+Time&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{構築子と解体子}
+\Hypertarget{class_eigen_1_1_householder_q_r_a974adb10a0e066057aeb3b360df68380_a974adb10a0e066057aeb3b360df68380}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!HouseholderQR@{HouseholderQR}}
+\index{HouseholderQR@{HouseholderQR}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{HouseholderQR()}{HouseholderQR()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_a974adb10a0e066057aeb3b360df68380_a974adb10a0e066057aeb3b360df68380} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Householder\+QR (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default Constructor. 
+
+The default constructor is useful in cases in which the user intends to perform decompositions via Householder\+QR\+::compute(const Matrix\+Type\&). \Hypertarget{class_eigen_1_1_householder_q_r_a1087457610c53e1574de521a51de0cd3_a1087457610c53e1574de521a51de0cd3}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!HouseholderQR@{HouseholderQR}}
+\index{HouseholderQR@{HouseholderQR}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{HouseholderQR()}{HouseholderQR()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_a1087457610c53e1574de521a51de0cd3_a1087457610c53e1574de521a51de0cd3} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Householder\+QR (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{rows}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{cols}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default Constructor with memory preallocation 
+
+Like the default constructor but with preallocation of the internal data according to the specified problem {\itshape size}. \begin{DoxySeeAlso}{参照}
+\doxylink{class_eigen_1_1_householder_q_r_a974adb10a0e066057aeb3b360df68380_a974adb10a0e066057aeb3b360df68380}{Householder\+QR()} 
+\end{DoxySeeAlso}
+\Hypertarget{class_eigen_1_1_householder_q_r_afa7cfb4faa89195c4dc8d196924c8230_afa7cfb4faa89195c4dc8d196924c8230}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!HouseholderQR@{HouseholderQR}}
+\index{HouseholderQR@{HouseholderQR}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{HouseholderQR()}{HouseholderQR()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_afa7cfb4faa89195c4dc8d196924c8230_afa7cfb4faa89195c4dc8d196924c8230} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+template$<$typename Input\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Householder\+QR (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&}]{matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructs a QR factorization from a given matrix 
+
+This constructor computes the QR factorization of the matrix {\itshape matrix} by calling the method \doxylink{class_eigen_1_1_householder_q_r_abaaf0df20ba1894710b9f3787625625a_abaaf0df20ba1894710b9f3787625625a}{compute()}. It is a short cut for\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{HouseholderQR<MatrixType>\ \mbox{\hyperlink{qr__colpivoting_8cpp_a234047f1d6b0303293c8918968a9670e_a234047f1d6b0303293c8918968a9670e}{qr}}(\mbox{\hyperlink{common_8h_a2c4e93d1f3604b217c5d0e211def96fb_a2c4e93d1f3604b217c5d0e211def96fb}{matrix}}.rows(),\ \mbox{\hyperlink{common_8h_a2c4e93d1f3604b217c5d0e211def96fb_a2c4e93d1f3604b217c5d0e211def96fb}{matrix}}.cols());}
+\DoxyCodeLine{\mbox{\hyperlink{qr__colpivoting_8cpp_a234047f1d6b0303293c8918968a9670e_a234047f1d6b0303293c8918968a9670e}{qr}}.compute(\mbox{\hyperlink{common_8h_a2c4e93d1f3604b217c5d0e211def96fb_a2c4e93d1f3604b217c5d0e211def96fb}{matrix}});}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{参照}
+\doxylink{class_eigen_1_1_householder_q_r_abaaf0df20ba1894710b9f3787625625a_abaaf0df20ba1894710b9f3787625625a}{compute()} 
+\end{DoxySeeAlso}
+\Hypertarget{class_eigen_1_1_householder_q_r_a95a53f8479ee147d7b0ccab71c13e45d_a95a53f8479ee147d7b0ccab71c13e45d}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!HouseholderQR@{HouseholderQR}}
+\index{HouseholderQR@{HouseholderQR}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{HouseholderQR()}{HouseholderQR()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_a95a53f8479ee147d7b0ccab71c13e45d_a95a53f8479ee147d7b0ccab71c13e45d} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+template$<$typename Input\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Householder\+QR (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&}]{matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructs a QR factorization from a given matrix 
+
+This overloaded constructor is provided for \doxylink{group___inplace_decomposition}{inplace decomposition } when {\ttfamily Matrix\+Type} is a \doxylink{class_eigen_1_1_ref}{Eigen\+::\+Ref}.
+
+\begin{DoxySeeAlso}{参照}
+Householder\+QR(const Eigen\+Base\&) 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{class_eigen_1_1_householder_q_r_ade4806131aa604a7e767a276d99894e9_ade4806131aa604a7e767a276d99894e9}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!\_solve\_impl@{\_solve\_impl}}
+\index{\_solve\_impl@{\_solve\_impl}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{\_solve\_impl()}{\_solve\_impl()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_ade4806131aa604a7e767a276d99894e9_ade4806131aa604a7e767a276d99894e9} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+template$<$typename Rhs\+Type , typename Dst\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+\_\+solve\+\_\+impl (\begin{DoxyParamCaption}\item[{const Rhs\+Type \&}]{rhs}{, }\item[{Dst\+Type \&}]{dst}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_eigen_1_1_householder_q_r_abbd6458cd58b0e50b1a8977f11b726b7_abbd6458cd58b0e50b1a8977f11b726b7}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!\_solve\_impl\_transposed@{\_solve\_impl\_transposed}}
+\index{\_solve\_impl\_transposed@{\_solve\_impl\_transposed}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{\_solve\_impl\_transposed()}{\_solve\_impl\_transposed()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_abbd6458cd58b0e50b1a8977f11b726b7_abbd6458cd58b0e50b1a8977f11b726b7} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+template$<$bool Conjugate, typename Rhs\+Type , typename Dst\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+\_\+solve\+\_\+impl\+\_\+transposed (\begin{DoxyParamCaption}\item[{const Rhs\+Type \&}]{rhs}{, }\item[{Dst\+Type \&}]{dst}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_eigen_1_1_householder_q_r_aaf4ef26c0b7affc91431ec59c92d64c3_aaf4ef26c0b7affc91431ec59c92d64c3}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!absDeterminant@{absDeterminant}}
+\index{absDeterminant@{absDeterminant}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{absDeterminant()}{absDeterminant()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_aaf4ef26c0b7affc91431ec59c92d64c3_aaf4ef26c0b7affc91431ec59c92d64c3} 
+template$<$typename \mbox{\hyperlink{class_eigen_1_1_householder_q_r_ac7e0656829ddeffb7c97ecddf609a093_ac7e0656829ddeffb7c97ecddf609a093}{Matrix\+Type}} $>$ \\
+Matrix\+Type\+::\+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \mbox{\hyperlink{class_eigen_1_1_householder_q_r_ac7e0656829ddeffb7c97ecddf609a093_ac7e0656829ddeffb7c97ecddf609a093}{Matrix\+Type}} $>$\+::abs\+Determinant (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{戻り値}
+the absolute value of the determinant of the matrix of which \texorpdfstring{$\ast$}{*}this is the QR decomposition. It has only linear complexity (that is, O(n) where n is the dimension of the square matrix) as the QR decomposition has already been computed.
+\end{DoxyReturn}
+\begin{DoxyNote}{覚え書き}
+This is only for square matrices.
+\end{DoxyNote}
+\begin{DoxyWarning}{警告}
+a determinant can be very big or small, so for matrices of large enough dimension, there is a risk of overflow/underflow. One way to work around that is to use \doxylink{class_eigen_1_1_householder_q_r_af61b6dbef34fc51c825182b16dc43ca1_af61b6dbef34fc51c825182b16dc43ca1}{log\+Abs\+Determinant()} instead.
+\end{DoxyWarning}
+\begin{DoxySeeAlso}{参照}
+\doxylink{class_eigen_1_1_householder_q_r_af61b6dbef34fc51c825182b16dc43ca1_af61b6dbef34fc51c825182b16dc43ca1}{log\+Abs\+Determinant()}, \doxylink{class_eigen_1_1_matrix_base_add0789a9cbd9bf1cc71048eaa75a1abb_add0789a9cbd9bf1cc71048eaa75a1abb}{Matrix\+Base\+::determinant()} 
+\end{DoxySeeAlso}
+\Hypertarget{class_eigen_1_1_householder_q_r_ab9ae903a54d86452afaf77531396fc27_ab9ae903a54d86452afaf77531396fc27}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!check\_template\_parameters@{check\_template\_parameters}}
+\index{check\_template\_parameters@{check\_template\_parameters}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{check\_template\_parameters()}{check\_template\_parameters()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_ab9ae903a54d86452afaf77531396fc27_ab9ae903a54d86452afaf77531396fc27} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+static void \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::check\+\_\+template\+\_\+parameters (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_householder_q_r_a2cd92da5485f0c4b79f39d7503e5c3f7_a2cd92da5485f0c4b79f39d7503e5c3f7}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!cols@{cols}}
+\index{cols@{cols}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{cols()}{cols()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_a2cd92da5485f0c4b79f39d7503e5c3f7_a2cd92da5485f0c4b79f39d7503e5c3f7} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::cols (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_householder_q_r_abaaf0df20ba1894710b9f3787625625a_abaaf0df20ba1894710b9f3787625625a}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!compute@{compute}}
+\index{compute@{compute}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_abaaf0df20ba1894710b9f3787625625a_abaaf0df20ba1894710b9f3787625625a} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+template$<$typename Input\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Householder\+QR}} \& \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::compute (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&}]{matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_householder_q_r_a3a16530338a734971fc45efb0ef9ac94_a3a16530338a734971fc45efb0ef9ac94}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!computeInPlace@{computeInPlace}}
+\index{computeInPlace@{computeInPlace}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{computeInPlace()}{computeInPlace()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_a3a16530338a734971fc45efb0ef9ac94_a3a16530338a734971fc45efb0ef9ac94} 
+template$<$typename \mbox{\hyperlink{class_eigen_1_1_householder_q_r_ac7e0656829ddeffb7c97ecddf609a093_ac7e0656829ddeffb7c97ecddf609a093}{Matrix\+Type}} $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \mbox{\hyperlink{class_eigen_1_1_householder_q_r_ac7e0656829ddeffb7c97ecddf609a093_ac7e0656829ddeffb7c97ecddf609a093}{Matrix\+Type}} $>$\+::compute\+In\+Place (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Performs the QR factorization of the given matrix {\itshape matrix}. The result of the factorization is stored into {\ttfamily \texorpdfstring{$\ast$}{*}this}, and a reference to {\ttfamily \texorpdfstring{$\ast$}{*}this} is returned.
+
+\begin{DoxySeeAlso}{参照}
+class \doxylink{class_eigen_1_1_householder_q_r}{Householder\+QR}, Householder\+QR(const Matrix\+Type\&) 
+\end{DoxySeeAlso}
+\Hypertarget{class_eigen_1_1_householder_q_r_a0e140bdf5fb504220cafe78e2fab96f6_a0e140bdf5fb504220cafe78e2fab96f6}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!hCoeffs@{hCoeffs}}
+\index{hCoeffs@{hCoeffs}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{hCoeffs()}{hCoeffs()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_a0e140bdf5fb504220cafe78e2fab96f6_a0e140bdf5fb504220cafe78e2fab96f6} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_householder_q_r_a3ecac58698a4410ddd9655b978cd009f_a3ecac58698a4410ddd9655b978cd009f}{HCoeffs\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::h\+Coeffs (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{戻り値}
+a const reference to the vector of Householder coefficients used to represent the factor {\ttfamily Q}.
+\end{DoxyReturn}
+For advanced uses only. \Hypertarget{class_eigen_1_1_householder_q_r_affd506c10ef2d25f56e7b1f9f25ff885_affd506c10ef2d25f56e7b1f9f25ff885}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!householderQ@{householderQ}}
+\index{householderQ@{householderQ}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{householderQ()}{householderQ()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_affd506c10ef2d25f56e7b1f9f25ff885_affd506c10ef2d25f56e7b1f9f25ff885} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_householder_q_r_a91e0f0563a851621c5941914278d5d9b_a91e0f0563a851621c5941914278d5d9b}{Householder\+Sequence\+Type}} \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::householderQ (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+This method returns an expression of the unitary matrix Q as a sequence of Householder transformations.
+
+The returned expression can directly be used to perform matrix products. It can also be assigned to a dense \doxylink{class_eigen_1_1_matrix}{Matrix} object. Here is an example showing how to recover the full or thin matrix Q, as well as how to perform matrix products using operator\texorpdfstring{$\ast$}{*}\+:
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+ \Hypertarget{class_eigen_1_1_householder_q_r_af61b6dbef34fc51c825182b16dc43ca1_af61b6dbef34fc51c825182b16dc43ca1}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!logAbsDeterminant@{logAbsDeterminant}}
+\index{logAbsDeterminant@{logAbsDeterminant}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{logAbsDeterminant()}{logAbsDeterminant()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_af61b6dbef34fc51c825182b16dc43ca1_af61b6dbef34fc51c825182b16dc43ca1} 
+template$<$typename \mbox{\hyperlink{class_eigen_1_1_householder_q_r_ac7e0656829ddeffb7c97ecddf609a093_ac7e0656829ddeffb7c97ecddf609a093}{Matrix\+Type}} $>$ \\
+Matrix\+Type\+::\+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \mbox{\hyperlink{class_eigen_1_1_householder_q_r_ac7e0656829ddeffb7c97ecddf609a093_ac7e0656829ddeffb7c97ecddf609a093}{Matrix\+Type}} $>$\+::log\+Abs\+Determinant (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{戻り値}
+the natural log of the absolute value of the determinant of the matrix of which \texorpdfstring{$\ast$}{*}this is the QR decomposition. It has only linear complexity (that is, O(n) where n is the dimension of the square matrix) as the QR decomposition has already been computed.
+\end{DoxyReturn}
+\begin{DoxyNote}{覚え書き}
+This is only for square matrices.
+
+This method is useful to work around the risk of overflow/underflow that\textquotesingle{}s inherent to determinant computation.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{参照}
+\doxylink{class_eigen_1_1_householder_q_r_aaf4ef26c0b7affc91431ec59c92d64c3_aaf4ef26c0b7affc91431ec59c92d64c3}{abs\+Determinant()}, \doxylink{class_eigen_1_1_matrix_base_add0789a9cbd9bf1cc71048eaa75a1abb_add0789a9cbd9bf1cc71048eaa75a1abb}{Matrix\+Base\+::determinant()} 
+\end{DoxySeeAlso}
+\Hypertarget{class_eigen_1_1_householder_q_r_a42552dd4708954432161da95af4442ba_a42552dd4708954432161da95af4442ba}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!matrixQR@{matrixQR}}
+\index{matrixQR@{matrixQR}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{matrixQR()}{matrixQR()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_a42552dd4708954432161da95af4442ba_a42552dd4708954432161da95af4442ba} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_householder_q_r_ac7e0656829ddeffb7c97ecddf609a093_ac7e0656829ddeffb7c97ecddf609a093}{Matrix\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::matrix\+QR (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{戻り値}
+a reference to the matrix where the Householder QR decomposition is stored in a LAPACK-\/compatible way. 
+\end{DoxyReturn}
+\Hypertarget{class_eigen_1_1_householder_q_r_aa5d8f6ec5fbedfdf0ec0d02459981e69_aa5d8f6ec5fbedfdf0ec0d02459981e69}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!rows@{rows}}
+\index{rows@{rows}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{rows()}{rows()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_aa5d8f6ec5fbedfdf0ec0d02459981e69_aa5d8f6ec5fbedfdf0ec0d02459981e69} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::rows (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{フレンドと関連関数の詳解}
+\Hypertarget{class_eigen_1_1_householder_q_r_adc73f8ce38cf71bddfc7859d6bb552ef_adc73f8ce38cf71bddfc7859d6bb552ef}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!SolverBase$<$ HouseholderQR $>$@{SolverBase$<$ HouseholderQR $>$}}
+\index{SolverBase$<$ HouseholderQR $>$@{SolverBase$<$ HouseholderQR $>$}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{SolverBase$<$ HouseholderQR $>$}{SolverBase< HouseholderQR >}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_adc73f8ce38cf71bddfc7859d6bb552ef_adc73f8ce38cf71bddfc7859d6bb552ef} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+friend class \mbox{\hyperlink{class_eigen_1_1_solver_base}{Solver\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Householder\+QR}} $>$\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+\doxysubsection{メンバ詳解}
+\Hypertarget{class_eigen_1_1_householder_q_r_ad5cba8a1c0ad16e52bc8aeda2710013f_ad5cba8a1c0ad16e52bc8aeda2710013f}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!m\_hCoeffs@{m\_hCoeffs}}
+\index{m\_hCoeffs@{m\_hCoeffs}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{m\_hCoeffs}{m\_hCoeffs}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_ad5cba8a1c0ad16e52bc8aeda2710013f_ad5cba8a1c0ad16e52bc8aeda2710013f} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_householder_q_r_a3ecac58698a4410ddd9655b978cd009f_a3ecac58698a4410ddd9655b978cd009f}{HCoeffs\+Type}} \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::m\+\_\+h\+Coeffs\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_householder_q_r_aa616849e6a79978091208f4d15046205_aa616849e6a79978091208f4d15046205}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!m\_isInitialized@{m\_isInitialized}}
+\index{m\_isInitialized@{m\_isInitialized}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{m\_isInitialized}{m\_isInitialized}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_aa616849e6a79978091208f4d15046205_aa616849e6a79978091208f4d15046205} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::m\+\_\+is\+Initialized\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_householder_q_r_adb06ba1b2259a00b25b5f0e1d86e22ae_adb06ba1b2259a00b25b5f0e1d86e22ae}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!m\_qr@{m\_qr}}
+\index{m\_qr@{m\_qr}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{m\_qr}{m\_qr}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_adb06ba1b2259a00b25b5f0e1d86e22ae_adb06ba1b2259a00b25b5f0e1d86e22ae} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_householder_q_r_ac7e0656829ddeffb7c97ecddf609a093_ac7e0656829ddeffb7c97ecddf609a093}{Matrix\+Type}} \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::m\+\_\+qr\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_householder_q_r_a640f06115b8b7ecebac29ca785ff2527_a640f06115b8b7ecebac29ca785ff2527}\index{Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}!m\_temp@{m\_temp}}
+\index{m\_temp@{m\_temp}!Eigen::HouseholderQR$<$ \_MatrixType $>$@{Eigen::HouseholderQR$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{m\_temp}{m\_temp}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_householder_q_r_a640f06115b8b7ecebac29ca785ff2527_a640f06115b8b7ecebac29ca785ff2527} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_householder_q_r_aaad89084e255c9ce83c9aebef69553ce_aaad89084e255c9ce83c9aebef69553ce}{Row\+Vector\+Type}} \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Eigen\+::\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::m\+\_\+temp\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Core/util/\mbox{\hyperlink{_forward_declarations_8h}{Forward\+Declarations.\+h}}\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+QR/\mbox{\hyperlink{_householder_q_r_8h}{Householder\+QR.\+h}}\end{DoxyCompactItemize}

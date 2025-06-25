@@ -1,0 +1,126 @@
+\doxysection{eigen-\/3.4.0/eigen-\/3.4.0/bench/sparse\+\_\+randomsetter.cpp ファイル}
+\hypertarget{sparse__randomsetter_8cpp}{}\label{sparse__randomsetter_8cpp}\index{eigen-\/3.4.0/eigen-\/3.4.0/bench/sparse\_randomsetter.cpp@{eigen-\/3.4.0/eigen-\/3.4.0/bench/sparse\_randomsetter.cpp}}
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$ext/hash\+\_\+map$>$}\newline
+{\ttfamily \#include $<$google/dense\+\_\+hash\+\_\+map$>$}\newline
+{\ttfamily \#include $<$google/sparse\+\_\+hash\+\_\+map$>$}\newline
+{\ttfamily \#include "{}Bench\+Sparse\+Util.\+h"{}}\newline
+sparse\+\_\+randomsetter.\+cpp の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sparse__randomsetter_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sparse__randomsetter_8cpp_ad0bab6f624ce77f1fc9e30fe985c03e9_ad0bab6f624ce77f1fc9e30fe985c03e9}{NOGMM}}
+\item 
+\#define \mbox{\hyperlink{sparse__randomsetter_8cpp_a72946e3eacf12138c66bae67e8525e28_a72946e3eacf12138c66bae67e8525e28}{NOMTL}}
+\item 
+\#define \mbox{\hyperlink{sparse__randomsetter_8cpp_aa145b0df6609701b438291b56c10021c_aa145b0df6609701b438291b56c10021c}{EIGEN\+\_\+\+GOOGLEHASH\+\_\+\+SUPPORT}}~1
+\item 
+\#define \mbox{\hyperlink{sparse__randomsetter_8cpp_a70ed59adcb4159ac551058053e649640_a70ed59adcb4159ac551058053e649640}{SIZE}}~10000
+\item 
+\#define \mbox{\hyperlink{sparse__randomsetter_8cpp_a8653167a303d0c18dd3260d76c622da4_a8653167a303d0c18dd3260d76c622da4}{DENSITY}}~0.\+01
+\item 
+\#define \mbox{\hyperlink{sparse__randomsetter_8cpp_a2c9384c67919c632913b8db2088f8341_a2c9384c67919c632913b8db2088f8341}{REPEAT}}~1
+\item 
+\#define \mbox{\hyperlink{sparse__randomsetter_8cpp_a4290054d7292918fb1fcb4c7166eca81_a4290054d7292918fb1fcb4c7166eca81}{MINDENSITY}}~0.\+0004
+\item 
+\#define \mbox{\hyperlink{sparse__randomsetter_8cpp_a4ba7e63cc7b53c648c5b2d15a2ee6dba_a4ba7e63cc7b53c648c5b2d15a2ee6dba}{NBTRIES}}~10
+\item 
+\#define \mbox{\hyperlink{sparse__randomsetter_8cpp_a5fcf11b9dba96e1e0555440c480f839c_a5fcf11b9dba96e1e0555440c480f839c}{BENCH}}(\mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Setter\+Type $>$ }\\void \mbox{\hyperlink{sparse__randomsetter_8cpp_a728f25a36d04ee2c3aa05cb72245345a_a728f25a36d04ee2c3aa05cb72245345a}{dostuff}} (const char \texorpdfstring{$\ast$}{*}name, \mbox{\hyperlink{_bench_sparse_util_8h_a2d6963f6e06a8f2ddcc73f219523df66_a2d6963f6e06a8f2ddcc73f219523df66}{Eigen\+Sparse\+Matrix}} \&sm1)
+\item 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{sparse__randomsetter_8cpp_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97}{main}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{sparse__randomsetter_8cpp_a5fcf11b9dba96e1e0555440c480f839c_a5fcf11b9dba96e1e0555440c480f839c}\index{sparse\_randomsetter.cpp@{sparse\_randomsetter.cpp}!BENCH@{BENCH}}
+\index{BENCH@{BENCH}!sparse\_randomsetter.cpp@{sparse\_randomsetter.cpp}}
+\doxysubsubsection{\texorpdfstring{BENCH}{BENCH}}
+{\footnotesize\ttfamily \label{sparse__randomsetter_8cpp_a5fcf11b9dba96e1e0555440c480f839c_a5fcf11b9dba96e1e0555440c480f839c} 
+\#define BENCH(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}}}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ timer.reset();\ \(\backslash\)}
+\DoxyCodeLine{\ \ for\ (\textcolor{keywordtype}{int}\ \_j=0;\ \_j<\mbox{\hyperlink{sparse__randomsetter_8cpp_a4ba7e63cc7b53c648c5b2d15a2ee6dba_a4ba7e63cc7b53c648c5b2d15a2ee6dba}{NBTRIES}};\ ++\_j)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ timer.start();\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ for\ (\textcolor{keywordtype}{int}\ \_k=0;\ \_k<\mbox{\hyperlink{sparse__randomsetter_8cpp_a2c9384c67919c632913b8db2088f8341_a2c9384c67919c632913b8db2088f8341}{REPEAT}};\ ++\_k)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}}\ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \}\ timer.stop();\ \}}
+
+\end{DoxyCode}
+\Hypertarget{sparse__randomsetter_8cpp_a8653167a303d0c18dd3260d76c622da4_a8653167a303d0c18dd3260d76c622da4}\index{sparse\_randomsetter.cpp@{sparse\_randomsetter.cpp}!DENSITY@{DENSITY}}
+\index{DENSITY@{DENSITY}!sparse\_randomsetter.cpp@{sparse\_randomsetter.cpp}}
+\doxysubsubsection{\texorpdfstring{DENSITY}{DENSITY}}
+{\footnotesize\ttfamily \label{sparse__randomsetter_8cpp_a8653167a303d0c18dd3260d76c622da4_a8653167a303d0c18dd3260d76c622da4} 
+\#define DENSITY~0.\+01}
+
+\Hypertarget{sparse__randomsetter_8cpp_aa145b0df6609701b438291b56c10021c_aa145b0df6609701b438291b56c10021c}\index{sparse\_randomsetter.cpp@{sparse\_randomsetter.cpp}!EIGEN\_GOOGLEHASH\_SUPPORT@{EIGEN\_GOOGLEHASH\_SUPPORT}}
+\index{EIGEN\_GOOGLEHASH\_SUPPORT@{EIGEN\_GOOGLEHASH\_SUPPORT}!sparse\_randomsetter.cpp@{sparse\_randomsetter.cpp}}
+\doxysubsubsection{\texorpdfstring{EIGEN\_GOOGLEHASH\_SUPPORT}{EIGEN\_GOOGLEHASH\_SUPPORT}}
+{\footnotesize\ttfamily \label{sparse__randomsetter_8cpp_aa145b0df6609701b438291b56c10021c_aa145b0df6609701b438291b56c10021c} 
+\#define EIGEN\+\_\+\+GOOGLEHASH\+\_\+\+SUPPORT~1}
+
+\Hypertarget{sparse__randomsetter_8cpp_a4290054d7292918fb1fcb4c7166eca81_a4290054d7292918fb1fcb4c7166eca81}\index{sparse\_randomsetter.cpp@{sparse\_randomsetter.cpp}!MINDENSITY@{MINDENSITY}}
+\index{MINDENSITY@{MINDENSITY}!sparse\_randomsetter.cpp@{sparse\_randomsetter.cpp}}
+\doxysubsubsection{\texorpdfstring{MINDENSITY}{MINDENSITY}}
+{\footnotesize\ttfamily \label{sparse__randomsetter_8cpp_a4290054d7292918fb1fcb4c7166eca81_a4290054d7292918fb1fcb4c7166eca81} 
+\#define MINDENSITY~0.\+0004}
+
+\Hypertarget{sparse__randomsetter_8cpp_a4ba7e63cc7b53c648c5b2d15a2ee6dba_a4ba7e63cc7b53c648c5b2d15a2ee6dba}\index{sparse\_randomsetter.cpp@{sparse\_randomsetter.cpp}!NBTRIES@{NBTRIES}}
+\index{NBTRIES@{NBTRIES}!sparse\_randomsetter.cpp@{sparse\_randomsetter.cpp}}
+\doxysubsubsection{\texorpdfstring{NBTRIES}{NBTRIES}}
+{\footnotesize\ttfamily \label{sparse__randomsetter_8cpp_a4ba7e63cc7b53c648c5b2d15a2ee6dba_a4ba7e63cc7b53c648c5b2d15a2ee6dba} 
+\#define NBTRIES~10}
+
+\Hypertarget{sparse__randomsetter_8cpp_ad0bab6f624ce77f1fc9e30fe985c03e9_ad0bab6f624ce77f1fc9e30fe985c03e9}\index{sparse\_randomsetter.cpp@{sparse\_randomsetter.cpp}!NOGMM@{NOGMM}}
+\index{NOGMM@{NOGMM}!sparse\_randomsetter.cpp@{sparse\_randomsetter.cpp}}
+\doxysubsubsection{\texorpdfstring{NOGMM}{NOGMM}}
+{\footnotesize\ttfamily \label{sparse__randomsetter_8cpp_ad0bab6f624ce77f1fc9e30fe985c03e9_ad0bab6f624ce77f1fc9e30fe985c03e9} 
+\#define NOGMM}
+
+\Hypertarget{sparse__randomsetter_8cpp_a72946e3eacf12138c66bae67e8525e28_a72946e3eacf12138c66bae67e8525e28}\index{sparse\_randomsetter.cpp@{sparse\_randomsetter.cpp}!NOMTL@{NOMTL}}
+\index{NOMTL@{NOMTL}!sparse\_randomsetter.cpp@{sparse\_randomsetter.cpp}}
+\doxysubsubsection{\texorpdfstring{NOMTL}{NOMTL}}
+{\footnotesize\ttfamily \label{sparse__randomsetter_8cpp_a72946e3eacf12138c66bae67e8525e28_a72946e3eacf12138c66bae67e8525e28} 
+\#define NOMTL}
+
+\Hypertarget{sparse__randomsetter_8cpp_a2c9384c67919c632913b8db2088f8341_a2c9384c67919c632913b8db2088f8341}\index{sparse\_randomsetter.cpp@{sparse\_randomsetter.cpp}!REPEAT@{REPEAT}}
+\index{REPEAT@{REPEAT}!sparse\_randomsetter.cpp@{sparse\_randomsetter.cpp}}
+\doxysubsubsection{\texorpdfstring{REPEAT}{REPEAT}}
+{\footnotesize\ttfamily \label{sparse__randomsetter_8cpp_a2c9384c67919c632913b8db2088f8341_a2c9384c67919c632913b8db2088f8341} 
+\#define REPEAT~1}
+
+\Hypertarget{sparse__randomsetter_8cpp_a70ed59adcb4159ac551058053e649640_a70ed59adcb4159ac551058053e649640}\index{sparse\_randomsetter.cpp@{sparse\_randomsetter.cpp}!SIZE@{SIZE}}
+\index{SIZE@{SIZE}!sparse\_randomsetter.cpp@{sparse\_randomsetter.cpp}}
+\doxysubsubsection{\texorpdfstring{SIZE}{SIZE}}
+{\footnotesize\ttfamily \label{sparse__randomsetter_8cpp_a70ed59adcb4159ac551058053e649640_a70ed59adcb4159ac551058053e649640} 
+\#define SIZE~10000}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{sparse__randomsetter_8cpp_a728f25a36d04ee2c3aa05cb72245345a_a728f25a36d04ee2c3aa05cb72245345a}\index{sparse\_randomsetter.cpp@{sparse\_randomsetter.cpp}!dostuff@{dostuff}}
+\index{dostuff@{dostuff}!sparse\_randomsetter.cpp@{sparse\_randomsetter.cpp}}
+\doxysubsubsection{\texorpdfstring{dostuff()}{dostuff()}}
+{\footnotesize\ttfamily \label{sparse__randomsetter_8cpp_a728f25a36d04ee2c3aa05cb72245345a_a728f25a36d04ee2c3aa05cb72245345a} 
+template$<$typename Setter\+Type $>$ \\
+void dostuff (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{, }\item[{\mbox{\hyperlink{_bench_sparse_util_8h_a2d6963f6e06a8f2ddcc73f219523df66_a2d6963f6e06a8f2ddcc73f219523df66}{Eigen\+Sparse\+Matrix}} \&}]{sm1}{}\end{DoxyParamCaption})}
+
+\Hypertarget{sparse__randomsetter_8cpp_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97}\index{sparse\_randomsetter.cpp@{sparse\_randomsetter.cpp}!main@{main}}
+\index{main@{main}!sparse\_randomsetter.cpp@{sparse\_randomsetter.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{sparse__randomsetter_8cpp_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97} 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} main (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{argv}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+

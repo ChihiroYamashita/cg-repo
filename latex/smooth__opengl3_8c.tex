@@ -1,0 +1,764 @@
+\doxysection{freeglut-\/2.8.1.tar/freeglut-\/2.8.1/freeglut-\/2.8.1/progs/demos/smooth\+\_\+opengl3/smooth\+\_\+opengl3.c ファイル}
+\hypertarget{smooth__opengl3_8c}{}\label{smooth__opengl3_8c}\index{freeglut-\/2.8.1.tar/freeglut-\/2.8.1/freeglut-\/2.8.1/progs/demos/smooth\_opengl3/smooth\_opengl3.c@{freeglut-\/2.8.1.tar/freeglut-\/2.8.1/freeglut-\/2.8.1/progs/demos/smooth\_opengl3/smooth\_opengl3.c}}
+{\ttfamily \#include $<$GL/freeglut.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+smooth\+\_\+opengl3.\+c の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{smooth__opengl3_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{smooth__opengl3_8c_a7180045dcb52b22af2cd0366026bc3ed_a7180045dcb52b22af2cd0366026bc3ed}{GL\+\_\+\+ARRAY\+\_\+\+BUFFER}}~0x8892
+\item 
+\#define \mbox{\hyperlink{smooth__opengl3_8c_ab7dffdc215fbbe75b6ccacfecfc14648_ab7dffdc215fbbe75b6ccacfecfc14648}{GL\+\_\+\+STATIC\+\_\+\+DRAW}}~0x88\+E4
+\item 
+\#define \mbox{\hyperlink{smooth__opengl3_8c_a1a0294662b50921555cae95fb20740d4_a1a0294662b50921555cae95fb20740d4}{GL\+\_\+\+FRAGMENT\+\_\+\+SHADER}}~0x8\+B30
+\item 
+\#define \mbox{\hyperlink{smooth__opengl3_8c_aceb29bc16e885f956eb9e351a7dd6276_aceb29bc16e885f956eb9e351a7dd6276}{GL\+\_\+\+VERTEX\+\_\+\+SHADER}}~0x8\+B31
+\item 
+\#define \mbox{\hyperlink{smooth__opengl3_8c_acd91f154544ab6a152e97adcb742c891_acd91f154544ab6a152e97adcb742c891}{GL\+\_\+\+SHADING\+\_\+\+LANGUAGE\+\_\+\+VERSION}}~0x8\+B8C
+\item 
+\#define \mbox{\hyperlink{smooth__opengl3_8c_a8b14cf3c9445c50aabe5c7d21b31d215_a8b14cf3c9445c50aabe5c7d21b31d215}{GL\+\_\+\+COMPILE\+\_\+\+STATUS}}~0x8\+B81
+\item 
+\#define \mbox{\hyperlink{smooth__opengl3_8c_ae644ef6b281c9378fa49d9b1ccefaf31_ae644ef6b281c9378fa49d9b1ccefaf31}{GL\+\_\+\+LINK\+\_\+\+STATUS}}~0x8\+B82
+\item 
+\#define \mbox{\hyperlink{smooth__opengl3_8c_ae77c1e831fd164e9ac6c1a9cdb697ce5_ae77c1e831fd164e9ac6c1a9cdb697ce5}{GL\+\_\+\+INFO\+\_\+\+LOG\+\_\+\+LENGTH}}~0x8\+B84
+\item 
+\#define \mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{型定義}
+\begin{DoxyCompactItemize}
+\item 
+typedef ptrdiff\+\_\+t \mbox{\hyperlink{smooth__opengl3_8c_ae7de13cd18c473d3059b4d49af8b931c_ae7de13cd18c473d3059b4d49af8b931c}{our\+GLsizeiptr}}
+\item 
+typedef char \mbox{\hyperlink{smooth__opengl3_8c_a471fe12c610068f7cb416e4fae2726b8_a471fe12c610068f7cb416e4fae2726b8}{our\+GLchar}}
+\item 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{smooth__opengl3_8c_ab67d0472f341a8c44c3e18f7cec5252d_ab67d0472f341a8c44c3e18f7cec5252d}{PFNGLGENVERTEXARRAYSPROC}}) (GLsizei \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}, GLuint \texorpdfstring{$\ast$}{*}arrays)
+\item 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{smooth__opengl3_8c_a2956bbf253fa3f7ac7c0d34376db7f67_a2956bbf253fa3f7ac7c0d34376db7f67}{PFNGLBINDVERTEXARRAYPROC}}) (GLuint \mbox{\hyperlink{_map__general__stride_8cpp_a3980e06d64d38c84d1ffc56cc2fd8e33_a3980e06d64d38c84d1ffc56cc2fd8e33}{array}})
+\item 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{smooth__opengl3_8c_a5083a8ea5b1e2bb492c62a6afe9d50bd_a5083a8ea5b1e2bb492c62a6afe9d50bd}{PFNGLGENBUFFERSPROC}}) (GLsizei \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}, GLuint \texorpdfstring{$\ast$}{*}buffers)
+\item 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{smooth__opengl3_8c_ab1609d5de200c06c28576fab26133a17_ab1609d5de200c06c28576fab26133a17}{PFNGLBINDBUFFERPROC}}) (GLenum target, GLuint buffer)
+\item 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{smooth__opengl3_8c_a4933e5e3ca8590bba1994b379db46c99_a4933e5e3ca8590bba1994b379db46c99}{PFNGLBUFFERDATAPROC}}) (GLenum target, \mbox{\hyperlink{smooth__opengl3_8c_ae7de13cd18c473d3059b4d49af8b931c_ae7de13cd18c473d3059b4d49af8b931c}{our\+GLsizeiptr}} \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}, const GLvoid \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}}, GLenum usage)
+\item 
+typedef GLuint(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{smooth__opengl3_8c_a3148ef07fb786a8a16568adb7a5b3c1a_a3148ef07fb786a8a16568adb7a5b3c1a}{PFNGLCREATESHADERPROC}}) (GLenum type)
+\item 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{smooth__opengl3_8c_a85e5029390cb8f0c0865a1760d5da3bd_a85e5029390cb8f0c0865a1760d5da3bd}{PFNGLSHADERSOURCEPROC}}) (GLuint shader, GLsizei count, const \mbox{\hyperlink{smooth__opengl3_8c_a471fe12c610068f7cb416e4fae2726b8_a471fe12c610068f7cb416e4fae2726b8}{our\+GLchar}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}string, const GLint \texorpdfstring{$\ast$}{*}length)
+\item 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{smooth__opengl3_8c_ab979fdc7049cdc5556b650e02065f4d2_ab979fdc7049cdc5556b650e02065f4d2}{PFNGLCOMPILESHADERPROC}}) (GLuint shader)
+\item 
+typedef GLuint(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{smooth__opengl3_8c_aa94a9c89f9b33c4e717be6773f3dbcd2_aa94a9c89f9b33c4e717be6773f3dbcd2}{PFNGLCREATEPROGRAMPROC}}) (void)
+\item 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{smooth__opengl3_8c_abe02950ea68d8f42071f7d8e60ab6bc9_abe02950ea68d8f42071f7d8e60ab6bc9}{PFNGLATTACHSHADERPROC}}) (GLuint program, GLuint shader)
+\item 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{smooth__opengl3_8c_aac7bdbc99d61f55843c1c3cf623e60a3_aac7bdbc99d61f55843c1c3cf623e60a3}{PFNGLLINKPROGRAMPROC}}) (GLuint program)
+\item 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{smooth__opengl3_8c_ad97afb994853eb576ec71ee10891cf6a_ad97afb994853eb576ec71ee10891cf6a}{PFNGLUSEPROGRAMPROC}}) (GLuint program)
+\item 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{smooth__opengl3_8c_a6cd77cb201f975fc9a18d3568b106e75_a6cd77cb201f975fc9a18d3568b106e75}{PFNGLGETSHADERIVPROC}}) (GLuint shader, GLenum pname, GLint \texorpdfstring{$\ast$}{*}params)
+\item 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{smooth__opengl3_8c_a9836e34ddac7319e924938a343ea59c6_a9836e34ddac7319e924938a343ea59c6}{PFNGLGETSHADERINFOLOGPROC}}) (GLuint shader, GLsizei buf\+Size, GLsizei \texorpdfstring{$\ast$}{*}length, \mbox{\hyperlink{smooth__opengl3_8c_a471fe12c610068f7cb416e4fae2726b8_a471fe12c610068f7cb416e4fae2726b8}{our\+GLchar}} \texorpdfstring{$\ast$}{*}info\+Log)
+\item 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{smooth__opengl3_8c_ab3c93fa88c755c8c144d435d7677f387_ab3c93fa88c755c8c144d435d7677f387}{PFNGLGETPROGRAMIVPROC}}) (GLenum target, GLenum pname, GLint \texorpdfstring{$\ast$}{*}params)
+\item 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{smooth__opengl3_8c_ada136fdb9d4fbf501cdd87866cb569d2_ada136fdb9d4fbf501cdd87866cb569d2}{PFNGLGETPROGRAMINFOLOGPROC}}) (GLuint program, GLsizei buf\+Size, GLsizei \texorpdfstring{$\ast$}{*}length, \mbox{\hyperlink{smooth__opengl3_8c_a471fe12c610068f7cb416e4fae2726b8_a471fe12c610068f7cb416e4fae2726b8}{our\+GLchar}} \texorpdfstring{$\ast$}{*}info\+Log)
+\item 
+typedef GLint(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{smooth__opengl3_8c_ac829ac5d1979f2cf79121540d13d576c_ac829ac5d1979f2cf79121540d13d576c}{PFNGLGETATTRIBLOCATIONPROC}}) (GLuint program, const \mbox{\hyperlink{smooth__opengl3_8c_a471fe12c610068f7cb416e4fae2726b8_a471fe12c610068f7cb416e4fae2726b8}{our\+GLchar}} \texorpdfstring{$\ast$}{*}name)
+\item 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{smooth__opengl3_8c_a66ead4b7d7fed8c71b3dd33d3e56d147_a66ead4b7d7fed8c71b3dd33d3e56d147}{PFNGLVERTEXATTRIBPOINTERPROC}}) (GLuint index, GLint \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}, GLenum type, GLboolean normalized, GLsizei \mbox{\hyperlink{smooth__opengl3_8c_a1439e44b5cc058f6010e6c47f272e6b6_a1439e44b5cc058f6010e6c47f272e6b6ae0940137d009e3d8d2cf0938f99fe615}{stride}}, const GLvoid \texorpdfstring{$\ast$}{*}pointer)
+\item 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{smooth__opengl3_8c_a7adb5280eca68e8664478aa615992c5c_a7adb5280eca68e8664478aa615992c5c}{PFNGLENABLEVERTEXATTRIBARRAYPROC}}) (GLuint index)
+\item 
+typedef GLint(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{smooth__opengl3_8c_a2f9b77ae38d38cbded3405379a10c1c4_a2f9b77ae38d38cbded3405379a10c1c4}{PFNGLGETUNIFORMLOCATIONPROC}}) (GLuint program, const \mbox{\hyperlink{smooth__opengl3_8c_a471fe12c610068f7cb416e4fae2726b8_a471fe12c610068f7cb416e4fae2726b8}{our\+GLchar}} \texorpdfstring{$\ast$}{*}name)
+\item 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{smooth__opengl3_8c_a5b94904181e32eec7d0b69f358a8a309_a5b94904181e32eec7d0b69f358a8a309}{PFNGLUNIFORMMATRIX4\+FVPROC}}) (GLint location, GLsizei count, GLboolean transpose, const GLfloat \texorpdfstring{$\ast$}{*}value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{列挙型}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{smooth__opengl3_8c_a1439e44b5cc058f6010e6c47f272e6b6_a1439e44b5cc058f6010e6c47f272e6b6abceed00f9eb8431a88796f9e48e3f4f3}{num\+Color\+Components}} = 3
+, \mbox{\hyperlink{smooth__opengl3_8c_a1439e44b5cc058f6010e6c47f272e6b6_a1439e44b5cc058f6010e6c47f272e6b6aba2b40a4b98a25f7bfce449acc93886a}{num\+Vertex\+Components}} = 2
+, \mbox{\hyperlink{smooth__opengl3_8c_a1439e44b5cc058f6010e6c47f272e6b6_a1439e44b5cc058f6010e6c47f272e6b6ae0940137d009e3d8d2cf0938f99fe615}{stride}} = sizeof(GLfloat) \texorpdfstring{$\ast$}{*} (num\+Color\+Components + num\+Vertex\+Components)
+, \mbox{\hyperlink{smooth__opengl3_8c_a1439e44b5cc058f6010e6c47f272e6b6_a1439e44b5cc058f6010e6c47f272e6b6a7519a50de43e4a8c405db68e69f87918}{num\+Elements}} = sizeof(varray) / stride
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{smooth__opengl3_8c_a0e7e0e55ed3e380332b21f49fb0d4c20_a0e7e0e55ed3e380332b21f49fb0d4c20}{check\+Error}} (const char \texorpdfstring{$\ast$}{*}function\+Name)
+\item 
+void \mbox{\hyperlink{smooth__opengl3_8c_a9e73069b0c18471e5430859383e43347_a9e73069b0c18471e5430859383e43347}{init\+Extension\+Entries}} (void)
+\item 
+void \mbox{\hyperlink{smooth__opengl3_8c_a87092bc1d22ddb202e268a6edb4f6c85_a87092bc1d22ddb202e268a6edb4f6c85}{init\+Buffer}} (void)
+\item 
+void \mbox{\hyperlink{smooth__opengl3_8c_a7e27b37686d0f7b41aee0396f5769c19_a7e27b37686d0f7b41aee0396f5769c19}{compile\+And\+Check}} (GLuint shader)
+\item 
+GLuint \mbox{\hyperlink{smooth__opengl3_8c_a8fe58a3662b163c4e00364b979f8e149_a8fe58a3662b163c4e00364b979f8e149}{compile\+Shader\+Source}} (GLenum type, GLsizei count, const \mbox{\hyperlink{smooth__opengl3_8c_a471fe12c610068f7cb416e4fae2726b8_a471fe12c610068f7cb416e4fae2726b8}{our\+GLchar}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}string)
+\item 
+void \mbox{\hyperlink{smooth__opengl3_8c_a6785fd6e67bc357f606776460a4bcaf3_a6785fd6e67bc357f606776460a4bcaf3}{link\+And\+Check}} (GLuint program)
+\item 
+GLuint \mbox{\hyperlink{smooth__opengl3_8c_a62fd0badf2f2f51c2589746c5364af40_a62fd0badf2f2f51c2589746c5364af40}{create\+Program}} (GLuint vertex\+Shader, GLuint fragment\+Shader)
+\item 
+void \mbox{\hyperlink{smooth__opengl3_8c_a1275fe1f097a8fc5d548dbe0153453fb_a1275fe1f097a8fc5d548dbe0153453fb}{init\+Shader}} (void)
+\item 
+void \mbox{\hyperlink{smooth__opengl3_8c_a3c6dfaad816ba9ea05fdf2ab65f54ad1_a3c6dfaad816ba9ea05fdf2ab65f54ad1}{init\+Rendering}} (void)
+\item 
+void \mbox{\hyperlink{smooth__opengl3_8c_a2858154e2009b0e6e616f313177762bc_a2858154e2009b0e6e616f313177762bc}{init}} (void)
+\item 
+void \mbox{\hyperlink{smooth__opengl3_8c_ae903a80068b1a3b5a61a27bec9ec6557_ae903a80068b1a3b5a61a27bec9ec6557}{dump\+Info}} (void)
+\item 
+const GLvoid \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{smooth__opengl3_8c_a5ed428e874123277209a79f717d06424_a5ed428e874123277209a79f717d06424}{buffer\+Object\+Ptr}} (GLsizei index)
+\item 
+void \mbox{\hyperlink{smooth__opengl3_8c_a440156f0e4f747c75a6e915581ca61df_a440156f0e4f747c75a6e915581ca61df}{triangle}} (void)
+\item 
+void \mbox{\hyperlink{smooth__opengl3_8c_a4ea013001a5fb47853d0fab8f8de35cd_a4ea013001a5fb47853d0fab8f8de35cd}{display}} (void)
+\item 
+void \mbox{\hyperlink{smooth__opengl3_8c_a180c7a68a8d6a58bded49f11125ebae1_a180c7a68a8d6a58bded49f11125ebae1}{load\+Orthof}} (GLfloat \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}, GLfloat l, GLfloat \mbox{\hyperlink{lorenz_8c_a880a49112fedae68e714341a9a082fb6_a880a49112fedae68e714341a9a082fb6}{r}}, GLfloat \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, GLfloat t, GLfloat \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}, GLfloat f)
+\item 
+void \mbox{\hyperlink{smooth__opengl3_8c_aba44f2dfa3bc866440ed204e3269a301_aba44f2dfa3bc866440ed204e3269a301}{load\+Ortho2\+Df}} (GLfloat \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}, GLfloat l, GLfloat \mbox{\hyperlink{lorenz_8c_a880a49112fedae68e714341a9a082fb6_a880a49112fedae68e714341a9a082fb6}{r}}, GLfloat \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, GLfloat t)
+\item 
+void \mbox{\hyperlink{smooth__opengl3_8c_acc1ffe65e6869931318610cae7210078_acc1ffe65e6869931318610cae7210078}{reshape}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{_matrix__resize__int_8cpp_aab236ce080522c9832217fd5f157541b_aab236ce080522c9832217fd5f157541b}{w}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} h)
+\item 
+void \mbox{\hyperlink{smooth__opengl3_8c_aef7ba2f69afb2d954545f64c7fe24b14_aef7ba2f69afb2d954545f64c7fe24b14}{keyboard}} (unsigned char key, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{level1__cplx__impl_8h_a792f7d150beb978a4945c84df6867679_a792f7d150beb978a4945c84df6867679}{y}})
+\item 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{smooth__opengl3_8c_a3c04138a5bfe5d72780bb7e82a18e627_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{変数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{smooth__opengl3_8c_ab67d0472f341a8c44c3e18f7cec5252d_ab67d0472f341a8c44c3e18f7cec5252d}{PFNGLGENVERTEXARRAYSPROC}} \mbox{\hyperlink{smooth__opengl3_8c_acf98b3fce41b73ad116f6fc035c566dd_acf98b3fce41b73ad116f6fc035c566dd}{gl\+\_\+\+Gen\+Vertex\+Arrays}}
+\item 
+\mbox{\hyperlink{smooth__opengl3_8c_a2956bbf253fa3f7ac7c0d34376db7f67_a2956bbf253fa3f7ac7c0d34376db7f67}{PFNGLBINDVERTEXARRAYPROC}} \mbox{\hyperlink{smooth__opengl3_8c_ae66e4573910b0d14a609f200ef5b7487_ae66e4573910b0d14a609f200ef5b7487}{gl\+\_\+\+Bind\+Vertex\+Array}}
+\item 
+\mbox{\hyperlink{smooth__opengl3_8c_a5083a8ea5b1e2bb492c62a6afe9d50bd_a5083a8ea5b1e2bb492c62a6afe9d50bd}{PFNGLGENBUFFERSPROC}} \mbox{\hyperlink{smooth__opengl3_8c_abc3411843d95fc62e29fd6e52326d256_abc3411843d95fc62e29fd6e52326d256}{gl\+\_\+\+Gen\+Buffers}}
+\item 
+\mbox{\hyperlink{smooth__opengl3_8c_ab1609d5de200c06c28576fab26133a17_ab1609d5de200c06c28576fab26133a17}{PFNGLBINDBUFFERPROC}} \mbox{\hyperlink{smooth__opengl3_8c_a839d4f0fd326d4d339cf4eff3314e373_a839d4f0fd326d4d339cf4eff3314e373}{gl\+\_\+\+Bind\+Buffer}}
+\item 
+\mbox{\hyperlink{smooth__opengl3_8c_a4933e5e3ca8590bba1994b379db46c99_a4933e5e3ca8590bba1994b379db46c99}{PFNGLBUFFERDATAPROC}} \mbox{\hyperlink{smooth__opengl3_8c_a1973767011457b1bf058d458117176fe_a1973767011457b1bf058d458117176fe}{gl\+\_\+\+Buffer\+Data}}
+\item 
+\mbox{\hyperlink{smooth__opengl3_8c_a3148ef07fb786a8a16568adb7a5b3c1a_a3148ef07fb786a8a16568adb7a5b3c1a}{PFNGLCREATESHADERPROC}} \mbox{\hyperlink{smooth__opengl3_8c_a7e2444dbf5004a0aac2cc484ddde6069_a7e2444dbf5004a0aac2cc484ddde6069}{gl\+\_\+\+Create\+Shader}}
+\item 
+\mbox{\hyperlink{smooth__opengl3_8c_a85e5029390cb8f0c0865a1760d5da3bd_a85e5029390cb8f0c0865a1760d5da3bd}{PFNGLSHADERSOURCEPROC}} \mbox{\hyperlink{smooth__opengl3_8c_aafd3b65e3bac37e5c5175585709f059c_aafd3b65e3bac37e5c5175585709f059c}{gl\+\_\+\+Shader\+Source}}
+\item 
+\mbox{\hyperlink{smooth__opengl3_8c_ab979fdc7049cdc5556b650e02065f4d2_ab979fdc7049cdc5556b650e02065f4d2}{PFNGLCOMPILESHADERPROC}} \mbox{\hyperlink{smooth__opengl3_8c_a186f0bfed79c2815ecbad4f3d667a1d4_a186f0bfed79c2815ecbad4f3d667a1d4}{gl\+\_\+\+Compile\+Shader}}
+\item 
+\mbox{\hyperlink{smooth__opengl3_8c_aa94a9c89f9b33c4e717be6773f3dbcd2_aa94a9c89f9b33c4e717be6773f3dbcd2}{PFNGLCREATEPROGRAMPROC}} \mbox{\hyperlink{smooth__opengl3_8c_ae2026327aa1e897b141f2a50841b3c45_ae2026327aa1e897b141f2a50841b3c45}{gl\+\_\+\+Create\+Program}}
+\item 
+\mbox{\hyperlink{smooth__opengl3_8c_abe02950ea68d8f42071f7d8e60ab6bc9_abe02950ea68d8f42071f7d8e60ab6bc9}{PFNGLATTACHSHADERPROC}} \mbox{\hyperlink{smooth__opengl3_8c_acb3d0bb268a9dec15aed3198662ab7ae_acb3d0bb268a9dec15aed3198662ab7ae}{gl\+\_\+\+Attach\+Shader}}
+\item 
+\mbox{\hyperlink{smooth__opengl3_8c_aac7bdbc99d61f55843c1c3cf623e60a3_aac7bdbc99d61f55843c1c3cf623e60a3}{PFNGLLINKPROGRAMPROC}} \mbox{\hyperlink{smooth__opengl3_8c_a907bfdfbbebaf31b1c24bcf214961054_a907bfdfbbebaf31b1c24bcf214961054}{gl\+\_\+\+Link\+Program}}
+\item 
+\mbox{\hyperlink{smooth__opengl3_8c_ad97afb994853eb576ec71ee10891cf6a_ad97afb994853eb576ec71ee10891cf6a}{PFNGLUSEPROGRAMPROC}} \mbox{\hyperlink{smooth__opengl3_8c_a24192991a9890fd879c2102645745a97_a24192991a9890fd879c2102645745a97}{gl\+\_\+\+Use\+Program}}
+\item 
+\mbox{\hyperlink{smooth__opengl3_8c_a6cd77cb201f975fc9a18d3568b106e75_a6cd77cb201f975fc9a18d3568b106e75}{PFNGLGETSHADERIVPROC}} \mbox{\hyperlink{smooth__opengl3_8c_ae3262c8e655d91119ea3757ba0a482de_ae3262c8e655d91119ea3757ba0a482de}{gl\+\_\+\+Get\+Shaderiv}}
+\item 
+\mbox{\hyperlink{smooth__opengl3_8c_a9836e34ddac7319e924938a343ea59c6_a9836e34ddac7319e924938a343ea59c6}{PFNGLGETSHADERINFOLOGPROC}} \mbox{\hyperlink{smooth__opengl3_8c_aa395dc4334cbf13434af42328af32c9f_aa395dc4334cbf13434af42328af32c9f}{gl\+\_\+\+Get\+Shader\+Info\+Log}}
+\item 
+\mbox{\hyperlink{smooth__opengl3_8c_ab3c93fa88c755c8c144d435d7677f387_ab3c93fa88c755c8c144d435d7677f387}{PFNGLGETPROGRAMIVPROC}} \mbox{\hyperlink{smooth__opengl3_8c_af473f07cbf11ee63dfac78e1d4786fcf_af473f07cbf11ee63dfac78e1d4786fcf}{gl\+\_\+\+Get\+Programiv}}
+\item 
+\mbox{\hyperlink{smooth__opengl3_8c_ada136fdb9d4fbf501cdd87866cb569d2_ada136fdb9d4fbf501cdd87866cb569d2}{PFNGLGETPROGRAMINFOLOGPROC}} \mbox{\hyperlink{smooth__opengl3_8c_a81dbee893dbfb5eebfb704f02093def9_a81dbee893dbfb5eebfb704f02093def9}{gl\+\_\+\+Get\+Program\+Info\+Log}}
+\item 
+\mbox{\hyperlink{smooth__opengl3_8c_ac829ac5d1979f2cf79121540d13d576c_ac829ac5d1979f2cf79121540d13d576c}{PFNGLGETATTRIBLOCATIONPROC}} \mbox{\hyperlink{smooth__opengl3_8c_a523c325af52093133630b7af32c0017e_a523c325af52093133630b7af32c0017e}{gl\+\_\+\+Get\+Attrib\+Location}}
+\item 
+\mbox{\hyperlink{smooth__opengl3_8c_a66ead4b7d7fed8c71b3dd33d3e56d147_a66ead4b7d7fed8c71b3dd33d3e56d147}{PFNGLVERTEXATTRIBPOINTERPROC}} \mbox{\hyperlink{smooth__opengl3_8c_a21269be66db89b440e535a93480da5b6_a21269be66db89b440e535a93480da5b6}{gl\+\_\+\+Vertex\+Attrib\+Pointer}}
+\item 
+\mbox{\hyperlink{smooth__opengl3_8c_a7adb5280eca68e8664478aa615992c5c_a7adb5280eca68e8664478aa615992c5c}{PFNGLENABLEVERTEXATTRIBARRAYPROC}} \mbox{\hyperlink{smooth__opengl3_8c_ae67983b52df4dbf7a868e68414eee2b5_ae67983b52df4dbf7a868e68414eee2b5}{gl\+\_\+\+Enable\+Vertex\+Attrib\+Array}}
+\item 
+\mbox{\hyperlink{smooth__opengl3_8c_a2f9b77ae38d38cbded3405379a10c1c4_a2f9b77ae38d38cbded3405379a10c1c4}{PFNGLGETUNIFORMLOCATIONPROC}} \mbox{\hyperlink{smooth__opengl3_8c_ac3eedec08de8777cdfbc32b50492cbd7_ac3eedec08de8777cdfbc32b50492cbd7}{gl\+\_\+\+Get\+Uniform\+Location}}
+\item 
+\mbox{\hyperlink{smooth__opengl3_8c_a5b94904181e32eec7d0b69f358a8a309_a5b94904181e32eec7d0b69f358a8a309}{PFNGLUNIFORMMATRIX4\+FVPROC}} \mbox{\hyperlink{smooth__opengl3_8c_a7e32d1e0432592f98635e1ff0eac30e4_a7e32d1e0432592f98635e1ff0eac30e4}{gl\+\_\+\+Uniform\+Matrix4fv}}
+\item 
+const GLfloat \mbox{\hyperlink{smooth__opengl3_8c_a85ba8bd13214fd2a12616df134296f03_a85ba8bd13214fd2a12616df134296f03}{varray}} \mbox{[}$\,$\mbox{]}
+\item 
+GLuint \mbox{\hyperlink{smooth__opengl3_8c_a741b295bef05fe6edb38b63d30e1b770_a741b295bef05fe6edb38b63d30e1b770}{vertex\+Buffer\+Name}}
+\item 
+GLuint \mbox{\hyperlink{smooth__opengl3_8c_a7b31dc78dc8b230fc2fd2ef9ddd51d40_a7b31dc78dc8b230fc2fd2ef9ddd51d40}{vertex\+Array\+Name}}
+\item 
+const \mbox{\hyperlink{smooth__opengl3_8c_a471fe12c610068f7cb416e4fae2726b8_a471fe12c610068f7cb416e4fae2726b8}{our\+GLchar}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{smooth__opengl3_8c_aa09d558b032c1b79057ed97939a6e453_aa09d558b032c1b79057ed97939a6e453}{vertex\+Shader\+Source}} \mbox{[}$\,$\mbox{]}
+\item 
+const \mbox{\hyperlink{smooth__opengl3_8c_a471fe12c610068f7cb416e4fae2726b8_a471fe12c610068f7cb416e4fae2726b8}{our\+GLchar}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{smooth__opengl3_8c_a78910360d093089e107d50616a2629bc_a78910360d093089e107d50616a2629bc}{fragment\+Shader\+Source}} \mbox{[}$\,$\mbox{]}
+\item 
+GLuint \mbox{\hyperlink{smooth__opengl3_8c_a555217f18186613a2b8d05a387d578c0_a555217f18186613a2b8d05a387d578c0}{fg\+Projection\+Matrix\+Index}}
+\item 
+GLuint \mbox{\hyperlink{smooth__opengl3_8c_a1b01af970c6d048e6070cee892e16852_a1b01af970c6d048e6070cee892e16852}{fg\+Color\+Index}}
+\item 
+GLuint \mbox{\hyperlink{smooth__opengl3_8c_a7bb60b9ceaa5d32074d74cc3275b076e_a7bb60b9ceaa5d32074d74cc3275b076e}{fg\+Vertex\+Index}}
+\item 
+GLfloat \mbox{\hyperlink{smooth__opengl3_8c_a34ea9ce4b2d8cea7b52b3295435f5ef7_a34ea9ce4b2d8cea7b52b3295435f5ef7}{projection\+Matrix}} \mbox{[}16\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!APIENTRY@{APIENTRY}}
+\index{APIENTRY@{APIENTRY}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{APIENTRY}{APIENTRY}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805} 
+\#define APIENTRY}
+
+\Hypertarget{smooth__opengl3_8c_a7180045dcb52b22af2cd0366026bc3ed_a7180045dcb52b22af2cd0366026bc3ed}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!GL\_ARRAY\_BUFFER@{GL\_ARRAY\_BUFFER}}
+\index{GL\_ARRAY\_BUFFER@{GL\_ARRAY\_BUFFER}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{GL\_ARRAY\_BUFFER}{GL\_ARRAY\_BUFFER}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a7180045dcb52b22af2cd0366026bc3ed_a7180045dcb52b22af2cd0366026bc3ed} 
+\#define GL\+\_\+\+ARRAY\+\_\+\+BUFFER~0x8892}
+
+\Hypertarget{smooth__opengl3_8c_a8b14cf3c9445c50aabe5c7d21b31d215_a8b14cf3c9445c50aabe5c7d21b31d215}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!GL\_COMPILE\_STATUS@{GL\_COMPILE\_STATUS}}
+\index{GL\_COMPILE\_STATUS@{GL\_COMPILE\_STATUS}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{GL\_COMPILE\_STATUS}{GL\_COMPILE\_STATUS}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a8b14cf3c9445c50aabe5c7d21b31d215_a8b14cf3c9445c50aabe5c7d21b31d215} 
+\#define GL\+\_\+\+COMPILE\+\_\+\+STATUS~0x8\+B81}
+
+\Hypertarget{smooth__opengl3_8c_a1a0294662b50921555cae95fb20740d4_a1a0294662b50921555cae95fb20740d4}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!GL\_FRAGMENT\_SHADER@{GL\_FRAGMENT\_SHADER}}
+\index{GL\_FRAGMENT\_SHADER@{GL\_FRAGMENT\_SHADER}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{GL\_FRAGMENT\_SHADER}{GL\_FRAGMENT\_SHADER}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a1a0294662b50921555cae95fb20740d4_a1a0294662b50921555cae95fb20740d4} 
+\#define GL\+\_\+\+FRAGMENT\+\_\+\+SHADER~0x8\+B30}
+
+\Hypertarget{smooth__opengl3_8c_ae77c1e831fd164e9ac6c1a9cdb697ce5_ae77c1e831fd164e9ac6c1a9cdb697ce5}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!GL\_INFO\_LOG\_LENGTH@{GL\_INFO\_LOG\_LENGTH}}
+\index{GL\_INFO\_LOG\_LENGTH@{GL\_INFO\_LOG\_LENGTH}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{GL\_INFO\_LOG\_LENGTH}{GL\_INFO\_LOG\_LENGTH}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_ae77c1e831fd164e9ac6c1a9cdb697ce5_ae77c1e831fd164e9ac6c1a9cdb697ce5} 
+\#define GL\+\_\+\+INFO\+\_\+\+LOG\+\_\+\+LENGTH~0x8\+B84}
+
+\Hypertarget{smooth__opengl3_8c_ae644ef6b281c9378fa49d9b1ccefaf31_ae644ef6b281c9378fa49d9b1ccefaf31}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!GL\_LINK\_STATUS@{GL\_LINK\_STATUS}}
+\index{GL\_LINK\_STATUS@{GL\_LINK\_STATUS}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{GL\_LINK\_STATUS}{GL\_LINK\_STATUS}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_ae644ef6b281c9378fa49d9b1ccefaf31_ae644ef6b281c9378fa49d9b1ccefaf31} 
+\#define GL\+\_\+\+LINK\+\_\+\+STATUS~0x8\+B82}
+
+\Hypertarget{smooth__opengl3_8c_acd91f154544ab6a152e97adcb742c891_acd91f154544ab6a152e97adcb742c891}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!GL\_SHADING\_LANGUAGE\_VERSION@{GL\_SHADING\_LANGUAGE\_VERSION}}
+\index{GL\_SHADING\_LANGUAGE\_VERSION@{GL\_SHADING\_LANGUAGE\_VERSION}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{GL\_SHADING\_LANGUAGE\_VERSION}{GL\_SHADING\_LANGUAGE\_VERSION}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_acd91f154544ab6a152e97adcb742c891_acd91f154544ab6a152e97adcb742c891} 
+\#define GL\+\_\+\+SHADING\+\_\+\+LANGUAGE\+\_\+\+VERSION~0x8\+B8C}
+
+\Hypertarget{smooth__opengl3_8c_ab7dffdc215fbbe75b6ccacfecfc14648_ab7dffdc215fbbe75b6ccacfecfc14648}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!GL\_STATIC\_DRAW@{GL\_STATIC\_DRAW}}
+\index{GL\_STATIC\_DRAW@{GL\_STATIC\_DRAW}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{GL\_STATIC\_DRAW}{GL\_STATIC\_DRAW}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_ab7dffdc215fbbe75b6ccacfecfc14648_ab7dffdc215fbbe75b6ccacfecfc14648} 
+\#define GL\+\_\+\+STATIC\+\_\+\+DRAW~0x88\+E4}
+
+\Hypertarget{smooth__opengl3_8c_aceb29bc16e885f956eb9e351a7dd6276_aceb29bc16e885f956eb9e351a7dd6276}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!GL\_VERTEX\_SHADER@{GL\_VERTEX\_SHADER}}
+\index{GL\_VERTEX\_SHADER@{GL\_VERTEX\_SHADER}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{GL\_VERTEX\_SHADER}{GL\_VERTEX\_SHADER}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_aceb29bc16e885f956eb9e351a7dd6276_aceb29bc16e885f956eb9e351a7dd6276} 
+\#define GL\+\_\+\+VERTEX\+\_\+\+SHADER~0x8\+B31}
+
+
+
+\doxysubsection{型定義詳解}
+\Hypertarget{smooth__opengl3_8c_a471fe12c610068f7cb416e4fae2726b8_a471fe12c610068f7cb416e4fae2726b8}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!ourGLchar@{ourGLchar}}
+\index{ourGLchar@{ourGLchar}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{ourGLchar}{ourGLchar}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a471fe12c610068f7cb416e4fae2726b8_a471fe12c610068f7cb416e4fae2726b8} 
+typedef char \mbox{\hyperlink{smooth__opengl3_8c_a471fe12c610068f7cb416e4fae2726b8_a471fe12c610068f7cb416e4fae2726b8}{our\+GLchar}}}
+
+\Hypertarget{smooth__opengl3_8c_ae7de13cd18c473d3059b4d49af8b931c_ae7de13cd18c473d3059b4d49af8b931c}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!ourGLsizeiptr@{ourGLsizeiptr}}
+\index{ourGLsizeiptr@{ourGLsizeiptr}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{ourGLsizeiptr}{ourGLsizeiptr}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_ae7de13cd18c473d3059b4d49af8b931c_ae7de13cd18c473d3059b4d49af8b931c} 
+typedef ptrdiff\+\_\+t \mbox{\hyperlink{smooth__opengl3_8c_ae7de13cd18c473d3059b4d49af8b931c_ae7de13cd18c473d3059b4d49af8b931c}{our\+GLsizeiptr}}}
+
+\Hypertarget{smooth__opengl3_8c_abe02950ea68d8f42071f7d8e60ab6bc9_abe02950ea68d8f42071f7d8e60ab6bc9}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!PFNGLATTACHSHADERPROC@{PFNGLATTACHSHADERPROC}}
+\index{PFNGLATTACHSHADERPROC@{PFNGLATTACHSHADERPROC}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{PFNGLATTACHSHADERPROC}{PFNGLATTACHSHADERPROC}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_abe02950ea68d8f42071f7d8e60ab6bc9_abe02950ea68d8f42071f7d8e60ab6bc9} 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} PFNGLATTACHSHADERPROC) (GLuint program, GLuint shader)}
+
+\Hypertarget{smooth__opengl3_8c_ab1609d5de200c06c28576fab26133a17_ab1609d5de200c06c28576fab26133a17}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!PFNGLBINDBUFFERPROC@{PFNGLBINDBUFFERPROC}}
+\index{PFNGLBINDBUFFERPROC@{PFNGLBINDBUFFERPROC}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{PFNGLBINDBUFFERPROC}{PFNGLBINDBUFFERPROC}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_ab1609d5de200c06c28576fab26133a17_ab1609d5de200c06c28576fab26133a17} 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} PFNGLBINDBUFFERPROC) (GLenum target, GLuint buffer)}
+
+\Hypertarget{smooth__opengl3_8c_a2956bbf253fa3f7ac7c0d34376db7f67_a2956bbf253fa3f7ac7c0d34376db7f67}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!PFNGLBINDVERTEXARRAYPROC@{PFNGLBINDVERTEXARRAYPROC}}
+\index{PFNGLBINDVERTEXARRAYPROC@{PFNGLBINDVERTEXARRAYPROC}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{PFNGLBINDVERTEXARRAYPROC}{PFNGLBINDVERTEXARRAYPROC}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a2956bbf253fa3f7ac7c0d34376db7f67_a2956bbf253fa3f7ac7c0d34376db7f67} 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} PFNGLBINDVERTEXARRAYPROC) (GLuint \mbox{\hyperlink{_map__general__stride_8cpp_a3980e06d64d38c84d1ffc56cc2fd8e33_a3980e06d64d38c84d1ffc56cc2fd8e33}{array}})}
+
+\Hypertarget{smooth__opengl3_8c_a4933e5e3ca8590bba1994b379db46c99_a4933e5e3ca8590bba1994b379db46c99}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!PFNGLBUFFERDATAPROC@{PFNGLBUFFERDATAPROC}}
+\index{PFNGLBUFFERDATAPROC@{PFNGLBUFFERDATAPROC}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{PFNGLBUFFERDATAPROC}{PFNGLBUFFERDATAPROC}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a4933e5e3ca8590bba1994b379db46c99_a4933e5e3ca8590bba1994b379db46c99} 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} PFNGLBUFFERDATAPROC) (GLenum target, \mbox{\hyperlink{smooth__opengl3_8c_ae7de13cd18c473d3059b4d49af8b931c_ae7de13cd18c473d3059b4d49af8b931c}{our\+GLsizeiptr}} \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}, const GLvoid \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}}, GLenum usage)}
+
+\Hypertarget{smooth__opengl3_8c_ab979fdc7049cdc5556b650e02065f4d2_ab979fdc7049cdc5556b650e02065f4d2}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!PFNGLCOMPILESHADERPROC@{PFNGLCOMPILESHADERPROC}}
+\index{PFNGLCOMPILESHADERPROC@{PFNGLCOMPILESHADERPROC}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{PFNGLCOMPILESHADERPROC}{PFNGLCOMPILESHADERPROC}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_ab979fdc7049cdc5556b650e02065f4d2_ab979fdc7049cdc5556b650e02065f4d2} 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} PFNGLCOMPILESHADERPROC) (GLuint shader)}
+
+\Hypertarget{smooth__opengl3_8c_aa94a9c89f9b33c4e717be6773f3dbcd2_aa94a9c89f9b33c4e717be6773f3dbcd2}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!PFNGLCREATEPROGRAMPROC@{PFNGLCREATEPROGRAMPROC}}
+\index{PFNGLCREATEPROGRAMPROC@{PFNGLCREATEPROGRAMPROC}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{PFNGLCREATEPROGRAMPROC}{PFNGLCREATEPROGRAMPROC}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_aa94a9c89f9b33c4e717be6773f3dbcd2_aa94a9c89f9b33c4e717be6773f3dbcd2} 
+typedef GLuint(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} PFNGLCREATEPROGRAMPROC) (void)}
+
+\Hypertarget{smooth__opengl3_8c_a3148ef07fb786a8a16568adb7a5b3c1a_a3148ef07fb786a8a16568adb7a5b3c1a}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!PFNGLCREATESHADERPROC@{PFNGLCREATESHADERPROC}}
+\index{PFNGLCREATESHADERPROC@{PFNGLCREATESHADERPROC}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{PFNGLCREATESHADERPROC}{PFNGLCREATESHADERPROC}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a3148ef07fb786a8a16568adb7a5b3c1a_a3148ef07fb786a8a16568adb7a5b3c1a} 
+typedef GLuint(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} PFNGLCREATESHADERPROC) (GLenum type)}
+
+\Hypertarget{smooth__opengl3_8c_a7adb5280eca68e8664478aa615992c5c_a7adb5280eca68e8664478aa615992c5c}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!PFNGLENABLEVERTEXATTRIBARRAYPROC@{PFNGLENABLEVERTEXATTRIBARRAYPROC}}
+\index{PFNGLENABLEVERTEXATTRIBARRAYPROC@{PFNGLENABLEVERTEXATTRIBARRAYPROC}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{PFNGLENABLEVERTEXATTRIBARRAYPROC}{PFNGLENABLEVERTEXATTRIBARRAYPROC}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a7adb5280eca68e8664478aa615992c5c_a7adb5280eca68e8664478aa615992c5c} 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} PFNGLENABLEVERTEXATTRIBARRAYPROC) (GLuint index)}
+
+\Hypertarget{smooth__opengl3_8c_a5083a8ea5b1e2bb492c62a6afe9d50bd_a5083a8ea5b1e2bb492c62a6afe9d50bd}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!PFNGLGENBUFFERSPROC@{PFNGLGENBUFFERSPROC}}
+\index{PFNGLGENBUFFERSPROC@{PFNGLGENBUFFERSPROC}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{PFNGLGENBUFFERSPROC}{PFNGLGENBUFFERSPROC}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a5083a8ea5b1e2bb492c62a6afe9d50bd_a5083a8ea5b1e2bb492c62a6afe9d50bd} 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} PFNGLGENBUFFERSPROC) (GLsizei \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}, GLuint \texorpdfstring{$\ast$}{*}buffers)}
+
+\Hypertarget{smooth__opengl3_8c_ab67d0472f341a8c44c3e18f7cec5252d_ab67d0472f341a8c44c3e18f7cec5252d}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!PFNGLGENVERTEXARRAYSPROC@{PFNGLGENVERTEXARRAYSPROC}}
+\index{PFNGLGENVERTEXARRAYSPROC@{PFNGLGENVERTEXARRAYSPROC}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{PFNGLGENVERTEXARRAYSPROC}{PFNGLGENVERTEXARRAYSPROC}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_ab67d0472f341a8c44c3e18f7cec5252d_ab67d0472f341a8c44c3e18f7cec5252d} 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} PFNGLGENVERTEXARRAYSPROC) (GLsizei \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}, GLuint \texorpdfstring{$\ast$}{*}arrays)}
+
+\Hypertarget{smooth__opengl3_8c_ac829ac5d1979f2cf79121540d13d576c_ac829ac5d1979f2cf79121540d13d576c}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!PFNGLGETATTRIBLOCATIONPROC@{PFNGLGETATTRIBLOCATIONPROC}}
+\index{PFNGLGETATTRIBLOCATIONPROC@{PFNGLGETATTRIBLOCATIONPROC}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{PFNGLGETATTRIBLOCATIONPROC}{PFNGLGETATTRIBLOCATIONPROC}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_ac829ac5d1979f2cf79121540d13d576c_ac829ac5d1979f2cf79121540d13d576c} 
+typedef GLint(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} PFNGLGETATTRIBLOCATIONPROC) (GLuint program, const \mbox{\hyperlink{smooth__opengl3_8c_a471fe12c610068f7cb416e4fae2726b8_a471fe12c610068f7cb416e4fae2726b8}{our\+GLchar}} \texorpdfstring{$\ast$}{*}name)}
+
+\Hypertarget{smooth__opengl3_8c_ada136fdb9d4fbf501cdd87866cb569d2_ada136fdb9d4fbf501cdd87866cb569d2}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!PFNGLGETPROGRAMINFOLOGPROC@{PFNGLGETPROGRAMINFOLOGPROC}}
+\index{PFNGLGETPROGRAMINFOLOGPROC@{PFNGLGETPROGRAMINFOLOGPROC}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{PFNGLGETPROGRAMINFOLOGPROC}{PFNGLGETPROGRAMINFOLOGPROC}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_ada136fdb9d4fbf501cdd87866cb569d2_ada136fdb9d4fbf501cdd87866cb569d2} 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} PFNGLGETPROGRAMINFOLOGPROC) (GLuint program, GLsizei buf\+Size, GLsizei \texorpdfstring{$\ast$}{*}length, \mbox{\hyperlink{smooth__opengl3_8c_a471fe12c610068f7cb416e4fae2726b8_a471fe12c610068f7cb416e4fae2726b8}{our\+GLchar}} \texorpdfstring{$\ast$}{*}info\+Log)}
+
+\Hypertarget{smooth__opengl3_8c_ab3c93fa88c755c8c144d435d7677f387_ab3c93fa88c755c8c144d435d7677f387}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!PFNGLGETPROGRAMIVPROC@{PFNGLGETPROGRAMIVPROC}}
+\index{PFNGLGETPROGRAMIVPROC@{PFNGLGETPROGRAMIVPROC}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{PFNGLGETPROGRAMIVPROC}{PFNGLGETPROGRAMIVPROC}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_ab3c93fa88c755c8c144d435d7677f387_ab3c93fa88c755c8c144d435d7677f387} 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} PFNGLGETPROGRAMIVPROC) (GLenum target, GLenum pname, GLint \texorpdfstring{$\ast$}{*}params)}
+
+\Hypertarget{smooth__opengl3_8c_a9836e34ddac7319e924938a343ea59c6_a9836e34ddac7319e924938a343ea59c6}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!PFNGLGETSHADERINFOLOGPROC@{PFNGLGETSHADERINFOLOGPROC}}
+\index{PFNGLGETSHADERINFOLOGPROC@{PFNGLGETSHADERINFOLOGPROC}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{PFNGLGETSHADERINFOLOGPROC}{PFNGLGETSHADERINFOLOGPROC}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a9836e34ddac7319e924938a343ea59c6_a9836e34ddac7319e924938a343ea59c6} 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} PFNGLGETSHADERINFOLOGPROC) (GLuint shader, GLsizei buf\+Size, GLsizei \texorpdfstring{$\ast$}{*}length, \mbox{\hyperlink{smooth__opengl3_8c_a471fe12c610068f7cb416e4fae2726b8_a471fe12c610068f7cb416e4fae2726b8}{our\+GLchar}} \texorpdfstring{$\ast$}{*}info\+Log)}
+
+\Hypertarget{smooth__opengl3_8c_a6cd77cb201f975fc9a18d3568b106e75_a6cd77cb201f975fc9a18d3568b106e75}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!PFNGLGETSHADERIVPROC@{PFNGLGETSHADERIVPROC}}
+\index{PFNGLGETSHADERIVPROC@{PFNGLGETSHADERIVPROC}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{PFNGLGETSHADERIVPROC}{PFNGLGETSHADERIVPROC}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a6cd77cb201f975fc9a18d3568b106e75_a6cd77cb201f975fc9a18d3568b106e75} 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} PFNGLGETSHADERIVPROC) (GLuint shader, GLenum pname, GLint \texorpdfstring{$\ast$}{*}params)}
+
+\Hypertarget{smooth__opengl3_8c_a2f9b77ae38d38cbded3405379a10c1c4_a2f9b77ae38d38cbded3405379a10c1c4}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!PFNGLGETUNIFORMLOCATIONPROC@{PFNGLGETUNIFORMLOCATIONPROC}}
+\index{PFNGLGETUNIFORMLOCATIONPROC@{PFNGLGETUNIFORMLOCATIONPROC}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{PFNGLGETUNIFORMLOCATIONPROC}{PFNGLGETUNIFORMLOCATIONPROC}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a2f9b77ae38d38cbded3405379a10c1c4_a2f9b77ae38d38cbded3405379a10c1c4} 
+typedef GLint(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} PFNGLGETUNIFORMLOCATIONPROC) (GLuint program, const \mbox{\hyperlink{smooth__opengl3_8c_a471fe12c610068f7cb416e4fae2726b8_a471fe12c610068f7cb416e4fae2726b8}{our\+GLchar}} \texorpdfstring{$\ast$}{*}name)}
+
+\Hypertarget{smooth__opengl3_8c_aac7bdbc99d61f55843c1c3cf623e60a3_aac7bdbc99d61f55843c1c3cf623e60a3}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!PFNGLLINKPROGRAMPROC@{PFNGLLINKPROGRAMPROC}}
+\index{PFNGLLINKPROGRAMPROC@{PFNGLLINKPROGRAMPROC}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{PFNGLLINKPROGRAMPROC}{PFNGLLINKPROGRAMPROC}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_aac7bdbc99d61f55843c1c3cf623e60a3_aac7bdbc99d61f55843c1c3cf623e60a3} 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} PFNGLLINKPROGRAMPROC) (GLuint program)}
+
+\Hypertarget{smooth__opengl3_8c_a85e5029390cb8f0c0865a1760d5da3bd_a85e5029390cb8f0c0865a1760d5da3bd}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!PFNGLSHADERSOURCEPROC@{PFNGLSHADERSOURCEPROC}}
+\index{PFNGLSHADERSOURCEPROC@{PFNGLSHADERSOURCEPROC}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{PFNGLSHADERSOURCEPROC}{PFNGLSHADERSOURCEPROC}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a85e5029390cb8f0c0865a1760d5da3bd_a85e5029390cb8f0c0865a1760d5da3bd} 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} PFNGLSHADERSOURCEPROC) (GLuint shader, GLsizei count, const \mbox{\hyperlink{smooth__opengl3_8c_a471fe12c610068f7cb416e4fae2726b8_a471fe12c610068f7cb416e4fae2726b8}{our\+GLchar}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}string, const GLint \texorpdfstring{$\ast$}{*}length)}
+
+\Hypertarget{smooth__opengl3_8c_a5b94904181e32eec7d0b69f358a8a309_a5b94904181e32eec7d0b69f358a8a309}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!PFNGLUNIFORMMATRIX4FVPROC@{PFNGLUNIFORMMATRIX4FVPROC}}
+\index{PFNGLUNIFORMMATRIX4FVPROC@{PFNGLUNIFORMMATRIX4FVPROC}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{PFNGLUNIFORMMATRIX4FVPROC}{PFNGLUNIFORMMATRIX4FVPROC}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a5b94904181e32eec7d0b69f358a8a309_a5b94904181e32eec7d0b69f358a8a309} 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} PFNGLUNIFORMMATRIX4\+FVPROC) (GLint location, GLsizei count, GLboolean transpose, const GLfloat \texorpdfstring{$\ast$}{*}value)}
+
+\Hypertarget{smooth__opengl3_8c_ad97afb994853eb576ec71ee10891cf6a_ad97afb994853eb576ec71ee10891cf6a}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!PFNGLUSEPROGRAMPROC@{PFNGLUSEPROGRAMPROC}}
+\index{PFNGLUSEPROGRAMPROC@{PFNGLUSEPROGRAMPROC}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{PFNGLUSEPROGRAMPROC}{PFNGLUSEPROGRAMPROC}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_ad97afb994853eb576ec71ee10891cf6a_ad97afb994853eb576ec71ee10891cf6a} 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} PFNGLUSEPROGRAMPROC) (GLuint program)}
+
+\Hypertarget{smooth__opengl3_8c_a66ead4b7d7fed8c71b3dd33d3e56d147_a66ead4b7d7fed8c71b3dd33d3e56d147}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!PFNGLVERTEXATTRIBPOINTERPROC@{PFNGLVERTEXATTRIBPOINTERPROC}}
+\index{PFNGLVERTEXATTRIBPOINTERPROC@{PFNGLVERTEXATTRIBPOINTERPROC}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{PFNGLVERTEXATTRIBPOINTERPROC}{PFNGLVERTEXATTRIBPOINTERPROC}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a66ead4b7d7fed8c71b3dd33d3e56d147_a66ead4b7d7fed8c71b3dd33d3e56d147} 
+typedef void(\mbox{\hyperlink{smooth__opengl3_8c_a428a91acf2c2439dc1a257708ee1f805_a428a91acf2c2439dc1a257708ee1f805}{APIENTRY}} \texorpdfstring{$\ast$}{*} PFNGLVERTEXATTRIBPOINTERPROC) (GLuint index, GLint \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}, GLenum type, GLboolean normalized, GLsizei \mbox{\hyperlink{smooth__opengl3_8c_a1439e44b5cc058f6010e6c47f272e6b6_a1439e44b5cc058f6010e6c47f272e6b6ae0940137d009e3d8d2cf0938f99fe615}{stride}}, const GLvoid \texorpdfstring{$\ast$}{*}pointer)}
+
+
+
+\doxysubsection{列挙型詳解}
+\Hypertarget{smooth__opengl3_8c_a1439e44b5cc058f6010e6c47f272e6b6_a1439e44b5cc058f6010e6c47f272e6b6}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a1439e44b5cc058f6010e6c47f272e6b6_a1439e44b5cc058f6010e6c47f272e6b6} 
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{numColorComponents@{numColorComponents}!smooth\_opengl3.c@{smooth\_opengl3.c}}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!numColorComponents@{numColorComponents}}}\Hypertarget{smooth__opengl3_8c_a1439e44b5cc058f6010e6c47f272e6b6_a1439e44b5cc058f6010e6c47f272e6b6abceed00f9eb8431a88796f9e48e3f4f3}\label{smooth__opengl3_8c_a1439e44b5cc058f6010e6c47f272e6b6_a1439e44b5cc058f6010e6c47f272e6b6} 
+num\+Color\+Components&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{numVertexComponents@{numVertexComponents}!smooth\_opengl3.c@{smooth\_opengl3.c}}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!numVertexComponents@{numVertexComponents}}}\Hypertarget{smooth__opengl3_8c_a1439e44b5cc058f6010e6c47f272e6b6_a1439e44b5cc058f6010e6c47f272e6b6aba2b40a4b98a25f7bfce449acc93886a}\label{smooth__opengl3_8c_a1439e44b5cc058f6010e6c47f272e6b6_a1439e44b5cc058f6010e6c47f272e6b6} 
+num\+Vertex\+Components&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{stride@{stride}!smooth\_opengl3.c@{smooth\_opengl3.c}}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!stride@{stride}}}\Hypertarget{smooth__opengl3_8c_a1439e44b5cc058f6010e6c47f272e6b6_a1439e44b5cc058f6010e6c47f272e6b6ae0940137d009e3d8d2cf0938f99fe615}\label{smooth__opengl3_8c_a1439e44b5cc058f6010e6c47f272e6b6_a1439e44b5cc058f6010e6c47f272e6b6} 
+stride&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{numElements@{numElements}!smooth\_opengl3.c@{smooth\_opengl3.c}}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!numElements@{numElements}}}\Hypertarget{smooth__opengl3_8c_a1439e44b5cc058f6010e6c47f272e6b6_a1439e44b5cc058f6010e6c47f272e6b6a7519a50de43e4a8c405db68e69f87918}\label{smooth__opengl3_8c_a1439e44b5cc058f6010e6c47f272e6b6_a1439e44b5cc058f6010e6c47f272e6b6} 
+num\+Elements&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{smooth__opengl3_8c_a5ed428e874123277209a79f717d06424_a5ed428e874123277209a79f717d06424}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!bufferObjectPtr@{bufferObjectPtr}}
+\index{bufferObjectPtr@{bufferObjectPtr}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{bufferObjectPtr()}{bufferObjectPtr()}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a5ed428e874123277209a79f717d06424_a5ed428e874123277209a79f717d06424} 
+const GLvoid \texorpdfstring{$\ast$}{*} buffer\+Object\+Ptr (\begin{DoxyParamCaption}\item[{GLsizei}]{index}{}\end{DoxyParamCaption})}
+
+\Hypertarget{smooth__opengl3_8c_a0e7e0e55ed3e380332b21f49fb0d4c20_a0e7e0e55ed3e380332b21f49fb0d4c20}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!checkError@{checkError}}
+\index{checkError@{checkError}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{checkError()}{checkError()}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a0e7e0e55ed3e380332b21f49fb0d4c20_a0e7e0e55ed3e380332b21f49fb0d4c20} 
+void check\+Error (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{function\+Name}{}\end{DoxyParamCaption})}
+
+\Hypertarget{smooth__opengl3_8c_a7e27b37686d0f7b41aee0396f5769c19_a7e27b37686d0f7b41aee0396f5769c19}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!compileAndCheck@{compileAndCheck}}
+\index{compileAndCheck@{compileAndCheck}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{compileAndCheck()}{compileAndCheck()}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a7e27b37686d0f7b41aee0396f5769c19_a7e27b37686d0f7b41aee0396f5769c19} 
+void compile\+And\+Check (\begin{DoxyParamCaption}\item[{GLuint}]{shader}{}\end{DoxyParamCaption})}
+
+\Hypertarget{smooth__opengl3_8c_a8fe58a3662b163c4e00364b979f8e149_a8fe58a3662b163c4e00364b979f8e149}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!compileShaderSource@{compileShaderSource}}
+\index{compileShaderSource@{compileShaderSource}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{compileShaderSource()}{compileShaderSource()}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a8fe58a3662b163c4e00364b979f8e149_a8fe58a3662b163c4e00364b979f8e149} 
+GLuint compile\+Shader\+Source (\begin{DoxyParamCaption}\item[{GLenum}]{type}{, }\item[{GLsizei}]{count}{, }\item[{const \mbox{\hyperlink{smooth__opengl3_8c_a471fe12c610068f7cb416e4fae2726b8_a471fe12c610068f7cb416e4fae2726b8}{our\+GLchar}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{string}{}\end{DoxyParamCaption})}
+
+\Hypertarget{smooth__opengl3_8c_a62fd0badf2f2f51c2589746c5364af40_a62fd0badf2f2f51c2589746c5364af40}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!createProgram@{createProgram}}
+\index{createProgram@{createProgram}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{createProgram()}{createProgram()}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a62fd0badf2f2f51c2589746c5364af40_a62fd0badf2f2f51c2589746c5364af40} 
+GLuint create\+Program (\begin{DoxyParamCaption}\item[{GLuint}]{vertex\+Shader}{, }\item[{GLuint}]{fragment\+Shader}{}\end{DoxyParamCaption})}
+
+\Hypertarget{smooth__opengl3_8c_a4ea013001a5fb47853d0fab8f8de35cd_a4ea013001a5fb47853d0fab8f8de35cd}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!display@{display}}
+\index{display@{display}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{display()}{display()}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a4ea013001a5fb47853d0fab8f8de35cd_a4ea013001a5fb47853d0fab8f8de35cd} 
+void display (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{smooth__opengl3_8c_ae903a80068b1a3b5a61a27bec9ec6557_ae903a80068b1a3b5a61a27bec9ec6557}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!dumpInfo@{dumpInfo}}
+\index{dumpInfo@{dumpInfo}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{dumpInfo()}{dumpInfo()}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_ae903a80068b1a3b5a61a27bec9ec6557_ae903a80068b1a3b5a61a27bec9ec6557} 
+void dump\+Info (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{smooth__opengl3_8c_a2858154e2009b0e6e616f313177762bc_a2858154e2009b0e6e616f313177762bc}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!init@{init}}
+\index{init@{init}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a2858154e2009b0e6e616f313177762bc_a2858154e2009b0e6e616f313177762bc} 
+void init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{smooth__opengl3_8c_a87092bc1d22ddb202e268a6edb4f6c85_a87092bc1d22ddb202e268a6edb4f6c85}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!initBuffer@{initBuffer}}
+\index{initBuffer@{initBuffer}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{initBuffer()}{initBuffer()}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a87092bc1d22ddb202e268a6edb4f6c85_a87092bc1d22ddb202e268a6edb4f6c85} 
+void init\+Buffer (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{smooth__opengl3_8c_a9e73069b0c18471e5430859383e43347_a9e73069b0c18471e5430859383e43347}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!initExtensionEntries@{initExtensionEntries}}
+\index{initExtensionEntries@{initExtensionEntries}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{initExtensionEntries()}{initExtensionEntries()}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a9e73069b0c18471e5430859383e43347_a9e73069b0c18471e5430859383e43347} 
+void init\+Extension\+Entries (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{smooth__opengl3_8c_a3c6dfaad816ba9ea05fdf2ab65f54ad1_a3c6dfaad816ba9ea05fdf2ab65f54ad1}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!initRendering@{initRendering}}
+\index{initRendering@{initRendering}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{initRendering()}{initRendering()}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a3c6dfaad816ba9ea05fdf2ab65f54ad1_a3c6dfaad816ba9ea05fdf2ab65f54ad1} 
+void init\+Rendering (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{smooth__opengl3_8c_a1275fe1f097a8fc5d548dbe0153453fb_a1275fe1f097a8fc5d548dbe0153453fb}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!initShader@{initShader}}
+\index{initShader@{initShader}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{initShader()}{initShader()}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a1275fe1f097a8fc5d548dbe0153453fb_a1275fe1f097a8fc5d548dbe0153453fb} 
+void init\+Shader (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{smooth__opengl3_8c_aef7ba2f69afb2d954545f64c7fe24b14_aef7ba2f69afb2d954545f64c7fe24b14}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!keyboard@{keyboard}}
+\index{keyboard@{keyboard}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{keyboard()}{keyboard()}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_aef7ba2f69afb2d954545f64c7fe24b14_aef7ba2f69afb2d954545f64c7fe24b14} 
+void keyboard (\begin{DoxyParamCaption}\item[{unsigned char}]{key}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{x}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{y}{}\end{DoxyParamCaption})}
+
+\Hypertarget{smooth__opengl3_8c_a6785fd6e67bc357f606776460a4bcaf3_a6785fd6e67bc357f606776460a4bcaf3}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!linkAndCheck@{linkAndCheck}}
+\index{linkAndCheck@{linkAndCheck}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{linkAndCheck()}{linkAndCheck()}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a6785fd6e67bc357f606776460a4bcaf3_a6785fd6e67bc357f606776460a4bcaf3} 
+void link\+And\+Check (\begin{DoxyParamCaption}\item[{GLuint}]{program}{}\end{DoxyParamCaption})}
+
+\Hypertarget{smooth__opengl3_8c_aba44f2dfa3bc866440ed204e3269a301_aba44f2dfa3bc866440ed204e3269a301}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!loadOrtho2Df@{loadOrtho2Df}}
+\index{loadOrtho2Df@{loadOrtho2Df}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{loadOrtho2Df()}{loadOrtho2Df()}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_aba44f2dfa3bc866440ed204e3269a301_aba44f2dfa3bc866440ed204e3269a301} 
+void load\+Ortho2\+Df (\begin{DoxyParamCaption}\item[{GLfloat \texorpdfstring{$\ast$}{*}}]{m}{, }\item[{GLfloat}]{l}{, }\item[{GLfloat}]{r}{, }\item[{GLfloat}]{b}{, }\item[{GLfloat}]{t}{}\end{DoxyParamCaption})}
+
+\Hypertarget{smooth__opengl3_8c_a180c7a68a8d6a58bded49f11125ebae1_a180c7a68a8d6a58bded49f11125ebae1}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!loadOrthof@{loadOrthof}}
+\index{loadOrthof@{loadOrthof}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{loadOrthof()}{loadOrthof()}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a180c7a68a8d6a58bded49f11125ebae1_a180c7a68a8d6a58bded49f11125ebae1} 
+void load\+Orthof (\begin{DoxyParamCaption}\item[{GLfloat \texorpdfstring{$\ast$}{*}}]{m}{, }\item[{GLfloat}]{l}{, }\item[{GLfloat}]{r}{, }\item[{GLfloat}]{b}{, }\item[{GLfloat}]{t}{, }\item[{GLfloat}]{n}{, }\item[{GLfloat}]{f}{}\end{DoxyParamCaption})}
+
+\Hypertarget{smooth__opengl3_8c_a3c04138a5bfe5d72780bb7e82a18e627_a3c04138a5bfe5d72780bb7e82a18e627}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!main@{main}}
+\index{main@{main}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a3c04138a5bfe5d72780bb7e82a18e627_a3c04138a5bfe5d72780bb7e82a18e627} 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} main (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv}{}\end{DoxyParamCaption})}
+
+\Hypertarget{smooth__opengl3_8c_acc1ffe65e6869931318610cae7210078_acc1ffe65e6869931318610cae7210078}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!reshape@{reshape}}
+\index{reshape@{reshape}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{reshape()}{reshape()}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_acc1ffe65e6869931318610cae7210078_acc1ffe65e6869931318610cae7210078} 
+void reshape (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{w}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{h}{}\end{DoxyParamCaption})}
+
+\Hypertarget{smooth__opengl3_8c_a440156f0e4f747c75a6e915581ca61df_a440156f0e4f747c75a6e915581ca61df}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!triangle@{triangle}}
+\index{triangle@{triangle}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{triangle()}{triangle()}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a440156f0e4f747c75a6e915581ca61df_a440156f0e4f747c75a6e915581ca61df} 
+void triangle (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{変数詳解}
+\Hypertarget{smooth__opengl3_8c_a1b01af970c6d048e6070cee892e16852_a1b01af970c6d048e6070cee892e16852}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!fgColorIndex@{fgColorIndex}}
+\index{fgColorIndex@{fgColorIndex}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{fgColorIndex}{fgColorIndex}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a1b01af970c6d048e6070cee892e16852_a1b01af970c6d048e6070cee892e16852} 
+GLuint fg\+Color\+Index}
+
+\Hypertarget{smooth__opengl3_8c_a555217f18186613a2b8d05a387d578c0_a555217f18186613a2b8d05a387d578c0}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!fgProjectionMatrixIndex@{fgProjectionMatrixIndex}}
+\index{fgProjectionMatrixIndex@{fgProjectionMatrixIndex}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{fgProjectionMatrixIndex}{fgProjectionMatrixIndex}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a555217f18186613a2b8d05a387d578c0_a555217f18186613a2b8d05a387d578c0} 
+GLuint fg\+Projection\+Matrix\+Index}
+
+\Hypertarget{smooth__opengl3_8c_a7bb60b9ceaa5d32074d74cc3275b076e_a7bb60b9ceaa5d32074d74cc3275b076e}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!fgVertexIndex@{fgVertexIndex}}
+\index{fgVertexIndex@{fgVertexIndex}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{fgVertexIndex}{fgVertexIndex}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a7bb60b9ceaa5d32074d74cc3275b076e_a7bb60b9ceaa5d32074d74cc3275b076e} 
+GLuint fg\+Vertex\+Index}
+
+\Hypertarget{smooth__opengl3_8c_a78910360d093089e107d50616a2629bc_a78910360d093089e107d50616a2629bc}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!fragmentShaderSource@{fragmentShaderSource}}
+\index{fragmentShaderSource@{fragmentShaderSource}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{fragmentShaderSource}{fragmentShaderSource}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a78910360d093089e107d50616a2629bc_a78910360d093089e107d50616a2629bc} 
+const \mbox{\hyperlink{smooth__opengl3_8c_a471fe12c610068f7cb416e4fae2726b8_a471fe12c610068f7cb416e4fae2726b8}{our\+GLchar}}\texorpdfstring{$\ast$}{*} fragment\+Shader\+Source\mbox{[}$\,$\mbox{]}}
+
+{\bfseries 初期値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \textcolor{stringliteral}{"{}\#version\ 140\(\backslash\)n"{}},}
+\DoxyCodeLine{\ \ \ \textcolor{stringliteral}{"{}smooth\ in\ vec4\ fg\_SmoothColor;\(\backslash\)n"{}},}
+\DoxyCodeLine{\ \ \ \textcolor{stringliteral}{"{}out\ vec4\ fg\_FragColor;\(\backslash\)n"{}},}
+\DoxyCodeLine{\ \ \ \textcolor{stringliteral}{"{}void\ main(void)\(\backslash\)n"{}},}
+\DoxyCodeLine{\ \ \ \textcolor{stringliteral}{"{}\{\(\backslash\)n"{}},}
+\DoxyCodeLine{\ \ \ \textcolor{stringliteral}{"{}\ \ \ fg\_FragColor\ =\ fg\_SmoothColor;\(\backslash\)n"{}},}
+\DoxyCodeLine{\ \ \ \textcolor{stringliteral}{"{}\}\(\backslash\)n"{}}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{smooth__opengl3_8c_acb3d0bb268a9dec15aed3198662ab7ae_acb3d0bb268a9dec15aed3198662ab7ae}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!gl\_AttachShader@{gl\_AttachShader}}
+\index{gl\_AttachShader@{gl\_AttachShader}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{gl\_AttachShader}{gl\_AttachShader}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_acb3d0bb268a9dec15aed3198662ab7ae_acb3d0bb268a9dec15aed3198662ab7ae} 
+\mbox{\hyperlink{smooth__opengl3_8c_abe02950ea68d8f42071f7d8e60ab6bc9_abe02950ea68d8f42071f7d8e60ab6bc9}{PFNGLATTACHSHADERPROC}} gl\+\_\+\+Attach\+Shader}
+
+\Hypertarget{smooth__opengl3_8c_a839d4f0fd326d4d339cf4eff3314e373_a839d4f0fd326d4d339cf4eff3314e373}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!gl\_BindBuffer@{gl\_BindBuffer}}
+\index{gl\_BindBuffer@{gl\_BindBuffer}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{gl\_BindBuffer}{gl\_BindBuffer}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a839d4f0fd326d4d339cf4eff3314e373_a839d4f0fd326d4d339cf4eff3314e373} 
+\mbox{\hyperlink{smooth__opengl3_8c_ab1609d5de200c06c28576fab26133a17_ab1609d5de200c06c28576fab26133a17}{PFNGLBINDBUFFERPROC}} gl\+\_\+\+Bind\+Buffer}
+
+\Hypertarget{smooth__opengl3_8c_ae66e4573910b0d14a609f200ef5b7487_ae66e4573910b0d14a609f200ef5b7487}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!gl\_BindVertexArray@{gl\_BindVertexArray}}
+\index{gl\_BindVertexArray@{gl\_BindVertexArray}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{gl\_BindVertexArray}{gl\_BindVertexArray}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_ae66e4573910b0d14a609f200ef5b7487_ae66e4573910b0d14a609f200ef5b7487} 
+\mbox{\hyperlink{smooth__opengl3_8c_a2956bbf253fa3f7ac7c0d34376db7f67_a2956bbf253fa3f7ac7c0d34376db7f67}{PFNGLBINDVERTEXARRAYPROC}} gl\+\_\+\+Bind\+Vertex\+Array}
+
+\Hypertarget{smooth__opengl3_8c_a1973767011457b1bf058d458117176fe_a1973767011457b1bf058d458117176fe}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!gl\_BufferData@{gl\_BufferData}}
+\index{gl\_BufferData@{gl\_BufferData}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{gl\_BufferData}{gl\_BufferData}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a1973767011457b1bf058d458117176fe_a1973767011457b1bf058d458117176fe} 
+\mbox{\hyperlink{smooth__opengl3_8c_a4933e5e3ca8590bba1994b379db46c99_a4933e5e3ca8590bba1994b379db46c99}{PFNGLBUFFERDATAPROC}} gl\+\_\+\+Buffer\+Data}
+
+\Hypertarget{smooth__opengl3_8c_a186f0bfed79c2815ecbad4f3d667a1d4_a186f0bfed79c2815ecbad4f3d667a1d4}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!gl\_CompileShader@{gl\_CompileShader}}
+\index{gl\_CompileShader@{gl\_CompileShader}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{gl\_CompileShader}{gl\_CompileShader}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a186f0bfed79c2815ecbad4f3d667a1d4_a186f0bfed79c2815ecbad4f3d667a1d4} 
+\mbox{\hyperlink{smooth__opengl3_8c_ab979fdc7049cdc5556b650e02065f4d2_ab979fdc7049cdc5556b650e02065f4d2}{PFNGLCOMPILESHADERPROC}} gl\+\_\+\+Compile\+Shader}
+
+\Hypertarget{smooth__opengl3_8c_ae2026327aa1e897b141f2a50841b3c45_ae2026327aa1e897b141f2a50841b3c45}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!gl\_CreateProgram@{gl\_CreateProgram}}
+\index{gl\_CreateProgram@{gl\_CreateProgram}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{gl\_CreateProgram}{gl\_CreateProgram}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_ae2026327aa1e897b141f2a50841b3c45_ae2026327aa1e897b141f2a50841b3c45} 
+\mbox{\hyperlink{smooth__opengl3_8c_aa94a9c89f9b33c4e717be6773f3dbcd2_aa94a9c89f9b33c4e717be6773f3dbcd2}{PFNGLCREATEPROGRAMPROC}} gl\+\_\+\+Create\+Program}
+
+\Hypertarget{smooth__opengl3_8c_a7e2444dbf5004a0aac2cc484ddde6069_a7e2444dbf5004a0aac2cc484ddde6069}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!gl\_CreateShader@{gl\_CreateShader}}
+\index{gl\_CreateShader@{gl\_CreateShader}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{gl\_CreateShader}{gl\_CreateShader}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a7e2444dbf5004a0aac2cc484ddde6069_a7e2444dbf5004a0aac2cc484ddde6069} 
+\mbox{\hyperlink{smooth__opengl3_8c_a3148ef07fb786a8a16568adb7a5b3c1a_a3148ef07fb786a8a16568adb7a5b3c1a}{PFNGLCREATESHADERPROC}} gl\+\_\+\+Create\+Shader}
+
+\Hypertarget{smooth__opengl3_8c_ae67983b52df4dbf7a868e68414eee2b5_ae67983b52df4dbf7a868e68414eee2b5}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!gl\_EnableVertexAttribArray@{gl\_EnableVertexAttribArray}}
+\index{gl\_EnableVertexAttribArray@{gl\_EnableVertexAttribArray}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{gl\_EnableVertexAttribArray}{gl\_EnableVertexAttribArray}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_ae67983b52df4dbf7a868e68414eee2b5_ae67983b52df4dbf7a868e68414eee2b5} 
+\mbox{\hyperlink{smooth__opengl3_8c_a7adb5280eca68e8664478aa615992c5c_a7adb5280eca68e8664478aa615992c5c}{PFNGLENABLEVERTEXATTRIBARRAYPROC}} gl\+\_\+\+Enable\+Vertex\+Attrib\+Array}
+
+\Hypertarget{smooth__opengl3_8c_abc3411843d95fc62e29fd6e52326d256_abc3411843d95fc62e29fd6e52326d256}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!gl\_GenBuffers@{gl\_GenBuffers}}
+\index{gl\_GenBuffers@{gl\_GenBuffers}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{gl\_GenBuffers}{gl\_GenBuffers}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_abc3411843d95fc62e29fd6e52326d256_abc3411843d95fc62e29fd6e52326d256} 
+\mbox{\hyperlink{smooth__opengl3_8c_a5083a8ea5b1e2bb492c62a6afe9d50bd_a5083a8ea5b1e2bb492c62a6afe9d50bd}{PFNGLGENBUFFERSPROC}} gl\+\_\+\+Gen\+Buffers}
+
+\Hypertarget{smooth__opengl3_8c_acf98b3fce41b73ad116f6fc035c566dd_acf98b3fce41b73ad116f6fc035c566dd}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!gl\_GenVertexArrays@{gl\_GenVertexArrays}}
+\index{gl\_GenVertexArrays@{gl\_GenVertexArrays}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{gl\_GenVertexArrays}{gl\_GenVertexArrays}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_acf98b3fce41b73ad116f6fc035c566dd_acf98b3fce41b73ad116f6fc035c566dd} 
+\mbox{\hyperlink{smooth__opengl3_8c_ab67d0472f341a8c44c3e18f7cec5252d_ab67d0472f341a8c44c3e18f7cec5252d}{PFNGLGENVERTEXARRAYSPROC}} gl\+\_\+\+Gen\+Vertex\+Arrays}
+
+\Hypertarget{smooth__opengl3_8c_a523c325af52093133630b7af32c0017e_a523c325af52093133630b7af32c0017e}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!gl\_GetAttribLocation@{gl\_GetAttribLocation}}
+\index{gl\_GetAttribLocation@{gl\_GetAttribLocation}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{gl\_GetAttribLocation}{gl\_GetAttribLocation}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a523c325af52093133630b7af32c0017e_a523c325af52093133630b7af32c0017e} 
+\mbox{\hyperlink{smooth__opengl3_8c_ac829ac5d1979f2cf79121540d13d576c_ac829ac5d1979f2cf79121540d13d576c}{PFNGLGETATTRIBLOCATIONPROC}} gl\+\_\+\+Get\+Attrib\+Location}
+
+\Hypertarget{smooth__opengl3_8c_a81dbee893dbfb5eebfb704f02093def9_a81dbee893dbfb5eebfb704f02093def9}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!gl\_GetProgramInfoLog@{gl\_GetProgramInfoLog}}
+\index{gl\_GetProgramInfoLog@{gl\_GetProgramInfoLog}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{gl\_GetProgramInfoLog}{gl\_GetProgramInfoLog}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a81dbee893dbfb5eebfb704f02093def9_a81dbee893dbfb5eebfb704f02093def9} 
+\mbox{\hyperlink{smooth__opengl3_8c_ada136fdb9d4fbf501cdd87866cb569d2_ada136fdb9d4fbf501cdd87866cb569d2}{PFNGLGETPROGRAMINFOLOGPROC}} gl\+\_\+\+Get\+Program\+Info\+Log}
+
+\Hypertarget{smooth__opengl3_8c_af473f07cbf11ee63dfac78e1d4786fcf_af473f07cbf11ee63dfac78e1d4786fcf}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!gl\_GetProgramiv@{gl\_GetProgramiv}}
+\index{gl\_GetProgramiv@{gl\_GetProgramiv}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{gl\_GetProgramiv}{gl\_GetProgramiv}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_af473f07cbf11ee63dfac78e1d4786fcf_af473f07cbf11ee63dfac78e1d4786fcf} 
+\mbox{\hyperlink{smooth__opengl3_8c_ab3c93fa88c755c8c144d435d7677f387_ab3c93fa88c755c8c144d435d7677f387}{PFNGLGETPROGRAMIVPROC}} gl\+\_\+\+Get\+Programiv}
+
+\Hypertarget{smooth__opengl3_8c_aa395dc4334cbf13434af42328af32c9f_aa395dc4334cbf13434af42328af32c9f}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!gl\_GetShaderInfoLog@{gl\_GetShaderInfoLog}}
+\index{gl\_GetShaderInfoLog@{gl\_GetShaderInfoLog}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{gl\_GetShaderInfoLog}{gl\_GetShaderInfoLog}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_aa395dc4334cbf13434af42328af32c9f_aa395dc4334cbf13434af42328af32c9f} 
+\mbox{\hyperlink{smooth__opengl3_8c_a9836e34ddac7319e924938a343ea59c6_a9836e34ddac7319e924938a343ea59c6}{PFNGLGETSHADERINFOLOGPROC}} gl\+\_\+\+Get\+Shader\+Info\+Log}
+
+\Hypertarget{smooth__opengl3_8c_ae3262c8e655d91119ea3757ba0a482de_ae3262c8e655d91119ea3757ba0a482de}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!gl\_GetShaderiv@{gl\_GetShaderiv}}
+\index{gl\_GetShaderiv@{gl\_GetShaderiv}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{gl\_GetShaderiv}{gl\_GetShaderiv}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_ae3262c8e655d91119ea3757ba0a482de_ae3262c8e655d91119ea3757ba0a482de} 
+\mbox{\hyperlink{smooth__opengl3_8c_a6cd77cb201f975fc9a18d3568b106e75_a6cd77cb201f975fc9a18d3568b106e75}{PFNGLGETSHADERIVPROC}} gl\+\_\+\+Get\+Shaderiv}
+
+\Hypertarget{smooth__opengl3_8c_ac3eedec08de8777cdfbc32b50492cbd7_ac3eedec08de8777cdfbc32b50492cbd7}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!gl\_GetUniformLocation@{gl\_GetUniformLocation}}
+\index{gl\_GetUniformLocation@{gl\_GetUniformLocation}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{gl\_GetUniformLocation}{gl\_GetUniformLocation}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_ac3eedec08de8777cdfbc32b50492cbd7_ac3eedec08de8777cdfbc32b50492cbd7} 
+\mbox{\hyperlink{smooth__opengl3_8c_a2f9b77ae38d38cbded3405379a10c1c4_a2f9b77ae38d38cbded3405379a10c1c4}{PFNGLGETUNIFORMLOCATIONPROC}} gl\+\_\+\+Get\+Uniform\+Location}
+
+\Hypertarget{smooth__opengl3_8c_a907bfdfbbebaf31b1c24bcf214961054_a907bfdfbbebaf31b1c24bcf214961054}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!gl\_LinkProgram@{gl\_LinkProgram}}
+\index{gl\_LinkProgram@{gl\_LinkProgram}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{gl\_LinkProgram}{gl\_LinkProgram}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a907bfdfbbebaf31b1c24bcf214961054_a907bfdfbbebaf31b1c24bcf214961054} 
+\mbox{\hyperlink{smooth__opengl3_8c_aac7bdbc99d61f55843c1c3cf623e60a3_aac7bdbc99d61f55843c1c3cf623e60a3}{PFNGLLINKPROGRAMPROC}} gl\+\_\+\+Link\+Program}
+
+\Hypertarget{smooth__opengl3_8c_aafd3b65e3bac37e5c5175585709f059c_aafd3b65e3bac37e5c5175585709f059c}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!gl\_ShaderSource@{gl\_ShaderSource}}
+\index{gl\_ShaderSource@{gl\_ShaderSource}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{gl\_ShaderSource}{gl\_ShaderSource}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_aafd3b65e3bac37e5c5175585709f059c_aafd3b65e3bac37e5c5175585709f059c} 
+\mbox{\hyperlink{smooth__opengl3_8c_a85e5029390cb8f0c0865a1760d5da3bd_a85e5029390cb8f0c0865a1760d5da3bd}{PFNGLSHADERSOURCEPROC}} gl\+\_\+\+Shader\+Source}
+
+\Hypertarget{smooth__opengl3_8c_a7e32d1e0432592f98635e1ff0eac30e4_a7e32d1e0432592f98635e1ff0eac30e4}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!gl\_UniformMatrix4fv@{gl\_UniformMatrix4fv}}
+\index{gl\_UniformMatrix4fv@{gl\_UniformMatrix4fv}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{gl\_UniformMatrix4fv}{gl\_UniformMatrix4fv}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a7e32d1e0432592f98635e1ff0eac30e4_a7e32d1e0432592f98635e1ff0eac30e4} 
+\mbox{\hyperlink{smooth__opengl3_8c_a5b94904181e32eec7d0b69f358a8a309_a5b94904181e32eec7d0b69f358a8a309}{PFNGLUNIFORMMATRIX4\+FVPROC}} gl\+\_\+\+Uniform\+Matrix4fv}
+
+\Hypertarget{smooth__opengl3_8c_a24192991a9890fd879c2102645745a97_a24192991a9890fd879c2102645745a97}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!gl\_UseProgram@{gl\_UseProgram}}
+\index{gl\_UseProgram@{gl\_UseProgram}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{gl\_UseProgram}{gl\_UseProgram}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a24192991a9890fd879c2102645745a97_a24192991a9890fd879c2102645745a97} 
+\mbox{\hyperlink{smooth__opengl3_8c_ad97afb994853eb576ec71ee10891cf6a_ad97afb994853eb576ec71ee10891cf6a}{PFNGLUSEPROGRAMPROC}} gl\+\_\+\+Use\+Program}
+
+\Hypertarget{smooth__opengl3_8c_a21269be66db89b440e535a93480da5b6_a21269be66db89b440e535a93480da5b6}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!gl\_VertexAttribPointer@{gl\_VertexAttribPointer}}
+\index{gl\_VertexAttribPointer@{gl\_VertexAttribPointer}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{gl\_VertexAttribPointer}{gl\_VertexAttribPointer}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a21269be66db89b440e535a93480da5b6_a21269be66db89b440e535a93480da5b6} 
+\mbox{\hyperlink{smooth__opengl3_8c_a66ead4b7d7fed8c71b3dd33d3e56d147_a66ead4b7d7fed8c71b3dd33d3e56d147}{PFNGLVERTEXATTRIBPOINTERPROC}} gl\+\_\+\+Vertex\+Attrib\+Pointer}
+
+\Hypertarget{smooth__opengl3_8c_a34ea9ce4b2d8cea7b52b3295435f5ef7_a34ea9ce4b2d8cea7b52b3295435f5ef7}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!projectionMatrix@{projectionMatrix}}
+\index{projectionMatrix@{projectionMatrix}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{projectionMatrix}{projectionMatrix}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a34ea9ce4b2d8cea7b52b3295435f5ef7_a34ea9ce4b2d8cea7b52b3295435f5ef7} 
+GLfloat projection\+Matrix\mbox{[}16\mbox{]}}
+
+\Hypertarget{smooth__opengl3_8c_a85ba8bd13214fd2a12616df134296f03_a85ba8bd13214fd2a12616df134296f03}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!varray@{varray}}
+\index{varray@{varray}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{varray}{varray}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a85ba8bd13214fd2a12616df134296f03_a85ba8bd13214fd2a12616df134296f03} 
+const GLfloat varray\mbox{[}$\,$\mbox{]}}
+
+{\bfseries 初期値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ 1.0f,\ 0.0f,\ 0.0f,\ }
+\DoxyCodeLine{\ \ \ 5.0f,\ 5.0f,\ \ \ \ \ \ \ }
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ 0.0f,\ 1.0f,\ 0.0f,\ }
+\DoxyCodeLine{\ \ \ 25.0f,\ 5.0f,\ \ \ \ \ \ }
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ 0.0f,\ 0.0f,\ 1.0f,\ }
+\DoxyCodeLine{\ \ \ 5.0f,\ 25.0f\ \ \ \ \ \ \ }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{smooth__opengl3_8c_a7b31dc78dc8b230fc2fd2ef9ddd51d40_a7b31dc78dc8b230fc2fd2ef9ddd51d40}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!vertexArrayName@{vertexArrayName}}
+\index{vertexArrayName@{vertexArrayName}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{vertexArrayName}{vertexArrayName}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a7b31dc78dc8b230fc2fd2ef9ddd51d40_a7b31dc78dc8b230fc2fd2ef9ddd51d40} 
+GLuint vertex\+Array\+Name}
+
+\Hypertarget{smooth__opengl3_8c_a741b295bef05fe6edb38b63d30e1b770_a741b295bef05fe6edb38b63d30e1b770}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!vertexBufferName@{vertexBufferName}}
+\index{vertexBufferName@{vertexBufferName}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{vertexBufferName}{vertexBufferName}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_a741b295bef05fe6edb38b63d30e1b770_a741b295bef05fe6edb38b63d30e1b770} 
+GLuint vertex\+Buffer\+Name}
+
+\Hypertarget{smooth__opengl3_8c_aa09d558b032c1b79057ed97939a6e453_aa09d558b032c1b79057ed97939a6e453}\index{smooth\_opengl3.c@{smooth\_opengl3.c}!vertexShaderSource@{vertexShaderSource}}
+\index{vertexShaderSource@{vertexShaderSource}!smooth\_opengl3.c@{smooth\_opengl3.c}}
+\doxysubsubsection{\texorpdfstring{vertexShaderSource}{vertexShaderSource}}
+{\footnotesize\ttfamily \label{smooth__opengl3_8c_aa09d558b032c1b79057ed97939a6e453_aa09d558b032c1b79057ed97939a6e453} 
+const \mbox{\hyperlink{smooth__opengl3_8c_a471fe12c610068f7cb416e4fae2726b8_a471fe12c610068f7cb416e4fae2726b8}{our\+GLchar}}\texorpdfstring{$\ast$}{*} vertex\+Shader\+Source\mbox{[}$\,$\mbox{]}}
+
+{\bfseries 初期値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \textcolor{stringliteral}{"{}\#version\ 140\(\backslash\)n"{}},}
+\DoxyCodeLine{\ \ \ \textcolor{stringliteral}{"{}uniform\ mat4\ fg\_ProjectionMatrix;\(\backslash\)n"{}},}
+\DoxyCodeLine{\ \ \ \textcolor{stringliteral}{"{}in\ vec4\ fg\_Color;\(\backslash\)n"{}},}
+\DoxyCodeLine{\ \ \ \textcolor{stringliteral}{"{}in\ vec4\ fg\_Vertex;\(\backslash\)n"{}},}
+\DoxyCodeLine{\ \ \ \textcolor{stringliteral}{"{}smooth\ out\ vec4\ fg\_SmoothColor;\(\backslash\)n"{}},}
+\DoxyCodeLine{\ \ \ \textcolor{stringliteral}{"{}void\ main()\(\backslash\)n"{}},}
+\DoxyCodeLine{\ \ \ \textcolor{stringliteral}{"{}\{\(\backslash\)n"{}},}
+\DoxyCodeLine{\ \ \ \textcolor{stringliteral}{"{}\ \ \ fg\_SmoothColor\ =\ fg\_Color;\(\backslash\)n"{}},}
+\DoxyCodeLine{\ \ \ \textcolor{stringliteral}{"{}\ \ \ gl\_Position\ =\ fg\_ProjectionMatrix\ *\ fg\_Vertex;\(\backslash\)n"{}},}
+\DoxyCodeLine{\ \ \ \textcolor{stringliteral}{"{}\}\(\backslash\)n"{}}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

@@ -1,0 +1,80 @@
+\doxysection{eigen-\/3.4.0/eigen-\/3.4.0/test/product\+\_\+trsolve.cpp ファイル}
+\hypertarget{product__trsolve_8cpp}{}\label{product__trsolve_8cpp}\index{eigen-\/3.4.0/eigen-\/3.4.0/test/product\_trsolve.cpp@{eigen-\/3.4.0/eigen-\/3.4.0/test/product\_trsolve.cpp}}
+{\ttfamily \#include "{}main.\+h"{}}\newline
+product\+\_\+trsolve.\+cpp の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{product__trsolve_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{product__trsolve_8cpp_a6f6a852e7db26c380de8ca20eef1c01e_a6f6a852e7db26c380de8ca20eef1c01e}{VERIFY\+\_\+\+TRSM}}(TRI,  XB)
+\item 
+\#define \mbox{\hyperlink{product__trsolve_8cpp_a70b0a90305fabdbe5b6e563b7c8e2d15_a70b0a90305fabdbe5b6e563b7c8e2d15}{VERIFY\+\_\+\+TRSM\+\_\+\+ONTHERIGHT}}(TRI,  XB)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Size, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Cols$>$ }\\void \mbox{\hyperlink{product__trsolve_8cpp_af06c20e014dd39f1c87e7e1e2790f356_af06c20e014dd39f1c87e7e1e2790f356}{trsolve}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}=Size, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}}=Cols)
+\item 
+\mbox{\hyperlink{product__trsolve_8cpp_a3e120d38194555e093a680f88664dcb3_a3e120d38194555e093a680f88664dcb3}{EIGEN\+\_\+\+DECLARE\+\_\+\+TEST}} (product\+\_\+trsolve)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{product__trsolve_8cpp_a6f6a852e7db26c380de8ca20eef1c01e_a6f6a852e7db26c380de8ca20eef1c01e}\index{product\_trsolve.cpp@{product\_trsolve.cpp}!VERIFY\_TRSM@{VERIFY\_TRSM}}
+\index{VERIFY\_TRSM@{VERIFY\_TRSM}!product\_trsolve.cpp@{product\_trsolve.cpp}}
+\doxysubsubsection{\texorpdfstring{VERIFY\_TRSM}{VERIFY\_TRSM}}
+{\footnotesize\ttfamily \label{product__trsolve_8cpp_a6f6a852e7db26c380de8ca20eef1c01e_a6f6a852e7db26c380de8ca20eef1c01e} 
+\#define VERIFY\+\_\+\+TRSM(\begin{DoxyParamCaption}\item[{}]{TRI}{, }\item[{}]{XB}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ (XB).\mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7bddadaf72fd7356fb04dd15cf547bc2_a7bddadaf72fd7356fb04dd15cf547bc2}{setRandom}}();\ ref\ =\ (XB);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ (TRI).solveInPlace(XB);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ VERIFY\_IS\_APPROX((TRI).toDenseMatrix()\ *\ (XB),\ ref);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ (XB).\mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7bddadaf72fd7356fb04dd15cf547bc2_a7bddadaf72fd7356fb04dd15cf547bc2}{setRandom}}();\ ref\ =\ (XB);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ (XB)\ =\ (TRI).solve(XB);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ VERIFY\_IS\_APPROX((TRI).toDenseMatrix()\ *\ (XB),\ ref);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{product__trsolve_8cpp_a70b0a90305fabdbe5b6e563b7c8e2d15_a70b0a90305fabdbe5b6e563b7c8e2d15}\index{product\_trsolve.cpp@{product\_trsolve.cpp}!VERIFY\_TRSM\_ONTHERIGHT@{VERIFY\_TRSM\_ONTHERIGHT}}
+\index{VERIFY\_TRSM\_ONTHERIGHT@{VERIFY\_TRSM\_ONTHERIGHT}!product\_trsolve.cpp@{product\_trsolve.cpp}}
+\doxysubsubsection{\texorpdfstring{VERIFY\_TRSM\_ONTHERIGHT}{VERIFY\_TRSM\_ONTHERIGHT}}
+{\footnotesize\ttfamily \label{product__trsolve_8cpp_a70b0a90305fabdbe5b6e563b7c8e2d15_a70b0a90305fabdbe5b6e563b7c8e2d15} 
+\#define VERIFY\+\_\+\+TRSM\+\_\+\+ONTHERIGHT(\begin{DoxyParamCaption}\item[{}]{TRI}{, }\item[{}]{XB}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ (XB).\mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7bddadaf72fd7356fb04dd15cf547bc2_a7bddadaf72fd7356fb04dd15cf547bc2}{setRandom}}();\ ref\ =\ (XB);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ (TRI).transpose().template\ solveInPlace<OnTheRight>(XB.transpose());\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ VERIFY\_IS\_APPROX((XB).transpose()\ *\ (TRI).transpose().toDenseMatrix(),\ ref.transpose());\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ (XB).\mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7bddadaf72fd7356fb04dd15cf547bc2_a7bddadaf72fd7356fb04dd15cf547bc2}{setRandom}}();\ ref\ =\ (XB);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ (XB).transpose()\ =\ (TRI).transpose().template\ solve<OnTheRight>(XB.transpose());\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ VERIFY\_IS\_APPROX((XB).transpose()\ *\ (TRI).transpose().toDenseMatrix(),\ ref.transpose());\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{product__trsolve_8cpp_a3e120d38194555e093a680f88664dcb3_a3e120d38194555e093a680f88664dcb3}\index{product\_trsolve.cpp@{product\_trsolve.cpp}!EIGEN\_DECLARE\_TEST@{EIGEN\_DECLARE\_TEST}}
+\index{EIGEN\_DECLARE\_TEST@{EIGEN\_DECLARE\_TEST}!product\_trsolve.cpp@{product\_trsolve.cpp}}
+\doxysubsubsection{\texorpdfstring{EIGEN\_DECLARE\_TEST()}{EIGEN\_DECLARE\_TEST()}}
+{\footnotesize\ttfamily \label{product__trsolve_8cpp_a3e120d38194555e093a680f88664dcb3_a3e120d38194555e093a680f88664dcb3} 
+EIGEN\+\_\+\+DECLARE\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{product\+\_\+trsolve}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{product__trsolve_8cpp_af06c20e014dd39f1c87e7e1e2790f356_af06c20e014dd39f1c87e7e1e2790f356}\index{product\_trsolve.cpp@{product\_trsolve.cpp}!trsolve@{trsolve}}
+\index{trsolve@{trsolve}!product\_trsolve.cpp@{product\_trsolve.cpp}}
+\doxysubsubsection{\texorpdfstring{trsolve()}{trsolve()}}
+{\footnotesize\ttfamily \label{product__trsolve_8cpp_af06c20e014dd39f1c87e7e1e2790f356_af06c20e014dd39f1c87e7e1e2790f356} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Size, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Cols$>$ \\
+void trsolve (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{size}{ = {\ttfamily Size}, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{cols}{ = {\ttfamily Cols}}\end{DoxyParamCaption})}
+

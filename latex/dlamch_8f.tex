@@ -1,0 +1,100 @@
+\doxysection{eigen-\/3.4.0/eigen-\/3.4.0/lapack/dlamch.f ファイル}
+\hypertarget{dlamch_8f}{}\label{dlamch_8f}\index{eigen-\/3.4.0/eigen-\/3.4.0/lapack/dlamch.f@{eigen-\/3.4.0/eigen-\/3.4.0/lapack/dlamch.f}}
+\doxysubsubsection*{関数/サブルーチン}
+\begin{DoxyCompactItemize}
+\item 
+double precision function \mbox{\hyperlink{dlamch_8f_aeab255e77cbd3b0f31aea74ed0ce099e_aeab255e77cbd3b0f31aea74ed0ce099e}{dlamch}} (cmach)
+\begin{DoxyCompactList}\small\item\em {\bfseries{DLAMCH}} \end{DoxyCompactList}\item 
+double precision function \mbox{\hyperlink{dlamch_8f_a070e27658a7f8f8bc236575a82d91769_a070e27658a7f8f8bc236575a82d91769}{dlamc3}} (a, b)
+\begin{DoxyCompactList}\small\item\em {\bfseries{DLAMC3}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{関数/サブルーチン詳解}
+\Hypertarget{dlamch_8f_a070e27658a7f8f8bc236575a82d91769_a070e27658a7f8f8bc236575a82d91769}\index{dlamch.f@{dlamch.f}!dlamc3@{dlamc3}}
+\index{dlamc3@{dlamc3}!dlamch.f@{dlamch.f}}
+\doxysubsubsection{\texorpdfstring{dlamc3()}{dlamc3()}}
+{\footnotesize\ttfamily \label{dlamch_8f_a070e27658a7f8f8bc236575a82d91769_a070e27658a7f8f8bc236575a82d91769} 
+double precision function dlamc3 (\begin{DoxyParamCaption}\item[{double precision}]{a}{, }\item[{double precision}]{b}{}\end{DoxyParamCaption})}
+
+
+
+{\bfseries{DLAMC3}} 
+
+{\bfseries{Purpose\+:}} \begin{DoxyVerb}!> DLAMC3  is intended to force  A  and  B  to be stored prior to doing
+!> the addition of  A  and  B ,  for use in situations where optimizers
+!> might hold one of these in a register.
+!> \end{DoxyVerb}
+ \begin{DoxyAuthor}{著者}
+LAPACK is a software package provided by Univ. of Tennessee, Univ. of California Berkeley, Univ. of Colorado Denver and NAG Ltd.. 
+\end{DoxyAuthor}
+\begin{DoxyDate}{日付}
+November 2011
+\end{DoxyDate}
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\texttt{ in}}  & {\em A} & \begin{DoxyVerb}!>          A is a DOUBLE PRECISION
+!> \end{DoxyVerb}
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em B} & \begin{DoxyVerb}!>          B is a DOUBLE PRECISION
+!>          The values A and B.
+!> \end{DoxyVerb}
+ \\
+\hline
+\end{DoxyParams}
+\Hypertarget{dlamch_8f_aeab255e77cbd3b0f31aea74ed0ce099e_aeab255e77cbd3b0f31aea74ed0ce099e}\index{dlamch.f@{dlamch.f}!dlamch@{dlamch}}
+\index{dlamch@{dlamch}!dlamch.f@{dlamch.f}}
+\doxysubsubsection{\texorpdfstring{dlamch()}{dlamch()}}
+{\footnotesize\ttfamily \label{dlamch_8f_aeab255e77cbd3b0f31aea74ed0ce099e_aeab255e77cbd3b0f31aea74ed0ce099e} 
+double precision function dlamch (\begin{DoxyParamCaption}\item[{character}]{cmach}{}\end{DoxyParamCaption})}
+
+
+
+{\bfseries{DLAMCH}} 
+
+\begin{DoxyParagraph}{Purpose\+:}
+\begin{DoxyVerb}!>
+!> DLAMCH determines double precision machine parameters.
+!> \end{DoxyVerb}
+ 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\texttt{ in}}  & {\em CMACH} & \begin{DoxyVerb}!>          Specifies the value to be returned by DLAMCH:
+!>          = 'E' or 'e',   DLAMCH := eps
+!>          = 'S' or 's ,   DLAMCH := sfmin
+!>          = 'B' or 'b',   DLAMCH := base
+!>          = 'P' or 'p',   DLAMCH := eps*base
+!>          = 'N' or 'n',   DLAMCH := t
+!>          = 'R' or 'r',   DLAMCH := rnd
+!>          = 'M' or 'm',   DLAMCH := emin
+!>          = 'U' or 'u',   DLAMCH := rmin
+!>          = 'L' or 'l',   DLAMCH := emax
+!>          = 'O' or 'o',   DLAMCH := rmax
+!>          where
+!>          eps   = relative machine precision
+!>          sfmin = safe minimum, such that 1/sfmin does not overflow
+!>          base  = base of the machine
+!>          prec  = eps*base
+!>          t     = number of (base) digits in the mantissa
+!>          rnd   = 1.0 when rounding occurs in addition, 0.0 otherwise
+!>          emin  = minimum exponent before (gradual) underflow
+!>          rmin  = underflow threshold - base**(emin-1)
+!>          emax  = largest exponent before overflow
+!>          rmax  = overflow threshold  - (base**emax)*(1-eps)
+!> \end{DoxyVerb}
+ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{著者}
+Univ. of Tennessee 
+
+Univ. of California Berkeley 
+
+Univ. of Colorado Denver 
+
+NAG Ltd. 
+\end{DoxyAuthor}
+\begin{DoxyDate}{日付}
+November 2011 
+\end{DoxyDate}

@@ -1,0 +1,140 @@
+\doxysection{Eigen\+::internal\+::Strided\+Linear\+Buffer\+Copy\texorpdfstring{$<$}{<} Scalar, Index\+Type \texorpdfstring{$>$}{>} クラステンプレート}
+\hypertarget{class_eigen_1_1internal_1_1_strided_linear_buffer_copy}{}\label{class_eigen_1_1internal_1_1_strided_linear_buffer_copy}\index{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$@{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$}}
+
+
+{\ttfamily \#include $<$Tensor\+Block.\+h$>$}
+
+
+
+Eigen\+::internal\+::Strided\+Linear\+Buffer\+Copy\texorpdfstring{$<$}{<} Scalar, Index\+Type \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=203pt]{class_eigen_1_1internal_1_1_strided_linear_buffer_copy__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{クラス}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_eigen_1_1internal_1_1_strided_linear_buffer_copy_1_1_dst}{Dst}}
+\item 
+struct \mbox{\hyperlink{struct_eigen_1_1internal_1_1_strided_linear_buffer_copy_1_1_src}{Src}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389d}{Kind}} \{ \newline
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389da32a843da6ea40ab3b17a3421ccdf671b}{Linear}} = 0
+, \mbox{\hyperlink{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389da09870720ca8134284e4e305ac6ce5f19}{Scatter}} = 1
+, \mbox{\hyperlink{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389dac6fac6cb6e9ef1112afbe80ba7d75e9d}{Fill\+Linear}} = 2
+, \mbox{\hyperlink{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389da169f5b22a803b87d715fd6100cbece9a}{Fill\+Scatter}} = 3
+, \newline
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389daad22c799930d644e8468fe44c0312d53}{Gather}} = 4
+, \mbox{\hyperlink{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389da64663f4646781c9c0110838b905daa23}{Random}} = 5
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389d}{Strided\+Linear\+Buffer\+Copy\+::\+Kind}} kind$>$ }\\static \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} void \mbox{\hyperlink{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_ab9173990055cffadb030e6c23ee34a01_ab9173990055cffadb030e6c23ee34a01}{Run}} (const \mbox{\hyperlink{struct_eigen_1_1internal_1_1_strided_linear_buffer_copy_1_1_dst}{Dst}} \&dst, const \mbox{\hyperlink{struct_eigen_1_1internal_1_1_strided_linear_buffer_copy_1_1_src}{Src}} \&src, const size\+\_\+t count)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{非公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a8bf095f3c22c37b1f840e3d8d9f06e1d_a8bf095f3c22c37b1f840e3d8d9f06e1dac3a62c143966111451ad833dcd9350fa}{Vectorizable}} = packet\+\_\+traits\texorpdfstring{$<$}{<}Scalar\texorpdfstring{$>$}{>}\+::Vectorizable
+, \mbox{\hyperlink{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a8bf095f3c22c37b1f840e3d8d9f06e1d_a8bf095f3c22c37b1f840e3d8d9f06e1dab5f878e7660d3e0b6991357e236fd14c}{Packet\+Size}} = packet\+\_\+traits\texorpdfstring{$<$}{<}Scalar\texorpdfstring{$>$}{>}\+::size
+ \}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1packet__traits}{packet\+\_\+traits}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} $>$\+::type \mbox{\hyperlink{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_ad8e65407cd90525ca87af40d00759ecc_ad8e65407cd90525ca87af40d00759ecc}{Packet}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静的非公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389d}{Strided\+Linear\+Buffer\+Copy\+::\+Kind}} kind$>$ }\\static \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} void \mbox{\hyperlink{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_af3af39c23f4479cdda766b6dd88893f0_af3af39c23f4479cdda766b6dd88893f0}{Run}} (const Index\+Type count, const Index\+Type dst\+\_\+offset, const Index\+Type dst\+\_\+stride, \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_macros_8h_a05b03c839f8f1357916472a45013c57b_a05b03c839f8f1357916472a45013c57b}{EIGEN\+\_\+\+RESTRICT}} dst\+\_\+data, const Index\+Type src\+\_\+offset, const Index\+Type src\+\_\+stride, const \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_macros_8h_a05b03c839f8f1357916472a45013c57b_a05b03c839f8f1357916472a45013c57b}{EIGEN\+\_\+\+RESTRICT}} src\+\_\+data)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{型定義メンバ詳解}
+\Hypertarget{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_ad8e65407cd90525ca87af40d00759ecc_ad8e65407cd90525ca87af40d00759ecc}\index{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$@{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$}!Packet@{Packet}}
+\index{Packet@{Packet}!Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$@{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$}}
+\doxysubsubsection{\texorpdfstring{Packet}{Packet}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_ad8e65407cd90525ca87af40d00759ecc_ad8e65407cd90525ca87af40d00759ecc} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Index\+Type $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1packet__traits}{packet\+\_\+traits}}$<$\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}$>$\+::type \mbox{\hyperlink{class_eigen_1_1internal_1_1_strided_linear_buffer_copy}{Eigen\+::internal\+::\+Strided\+Linear\+Buffer\+Copy}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Index\+Type $>$\mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af8736f5639bd4077ed9602ad1a220156_af8736f5639bd4077ed9602ad1a220156}{\+::\+Packet}}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{列挙型メンバ詳解}
+\Hypertarget{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a8bf095f3c22c37b1f840e3d8d9f06e1d_a8bf095f3c22c37b1f840e3d8d9f06e1d}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a8bf095f3c22c37b1f840e3d8d9f06e1d_a8bf095f3c22c37b1f840e3d8d9f06e1d} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Index\+Type $>$ \\
+anonymous enum\hspace{0.3cm}{\ttfamily [private]}}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Vectorizable@{Vectorizable}!Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$@{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$}}\index{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$@{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$}!Vectorizable@{Vectorizable}}}\Hypertarget{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a8bf095f3c22c37b1f840e3d8d9f06e1d_a8bf095f3c22c37b1f840e3d8d9f06e1dac3a62c143966111451ad833dcd9350fa}\label{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a8bf095f3c22c37b1f840e3d8d9f06e1d_a8bf095f3c22c37b1f840e3d8d9f06e1d} 
+Vectorizable&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PacketSize@{PacketSize}!Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$@{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$}}\index{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$@{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$}!PacketSize@{PacketSize}}}\Hypertarget{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a8bf095f3c22c37b1f840e3d8d9f06e1d_a8bf095f3c22c37b1f840e3d8d9f06e1dab5f878e7660d3e0b6991357e236fd14c}\label{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a8bf095f3c22c37b1f840e3d8d9f06e1d_a8bf095f3c22c37b1f840e3d8d9f06e1d} 
+Packet\+Size&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389d}\index{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$@{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$}!Kind@{Kind}}
+\index{Kind@{Kind}!Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$@{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$}}
+\doxysubsubsection{\texorpdfstring{Kind}{Kind}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389d} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Index\+Type $>$ \\
+enum class \mbox{\hyperlink{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389d}{Eigen\+::internal\+::\+Strided\+Linear\+Buffer\+Copy\+::\+Kind}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Linear@{Linear}!Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$@{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$}}\index{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$@{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$}!Linear@{Linear}}}\Hypertarget{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389da32a843da6ea40ab3b17a3421ccdf671b}\label{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389d} 
+Linear&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Scatter@{Scatter}!Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$@{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$}}\index{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$@{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$}!Scatter@{Scatter}}}\Hypertarget{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389da09870720ca8134284e4e305ac6ce5f19}\label{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389d} 
+Scatter&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FillLinear@{FillLinear}!Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$@{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$}}\index{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$@{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$}!FillLinear@{FillLinear}}}\Hypertarget{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389dac6fac6cb6e9ef1112afbe80ba7d75e9d}\label{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389d} 
+Fill\+Linear&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FillScatter@{FillScatter}!Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$@{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$}}\index{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$@{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$}!FillScatter@{FillScatter}}}\Hypertarget{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389da169f5b22a803b87d715fd6100cbece9a}\label{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389d} 
+Fill\+Scatter&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Gather@{Gather}!Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$@{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$}}\index{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$@{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$}!Gather@{Gather}}}\Hypertarget{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389daad22c799930d644e8468fe44c0312d53}\label{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389d} 
+Gather&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Random@{Random}!Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$@{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$}}\index{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$@{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$}!Random@{Random}}}\Hypertarget{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389da64663f4646781c9c0110838b905daa23}\label{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389d} 
+Random&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_ab9173990055cffadb030e6c23ee34a01_ab9173990055cffadb030e6c23ee34a01}\index{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$@{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$}!Run@{Run}}
+\index{Run@{Run}!Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$@{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$}}
+\doxysubsubsection{\texorpdfstring{Run()}{Run()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_ab9173990055cffadb030e6c23ee34a01_ab9173990055cffadb030e6c23ee34a01} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Index\+Type $>$ \\
+template$<$typename \mbox{\hyperlink{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389d}{Strided\+Linear\+Buffer\+Copy\+::\+Kind}} kind$>$ \\
+static \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} void \mbox{\hyperlink{class_eigen_1_1internal_1_1_strided_linear_buffer_copy}{Eigen\+::internal\+::\+Strided\+Linear\+Buffer\+Copy}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Index\+Type $>$\+::\+Run (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1internal_1_1_strided_linear_buffer_copy_1_1_dst}{Dst}} \&}]{dst}{, }\item[{const \mbox{\hyperlink{struct_eigen_1_1internal_1_1_strided_linear_buffer_copy_1_1_src}{Src}} \&}]{src}{, }\item[{const size\+\_\+t}]{count}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_af3af39c23f4479cdda766b6dd88893f0_af3af39c23f4479cdda766b6dd88893f0}\index{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$@{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$}!Run@{Run}}
+\index{Run@{Run}!Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$@{Eigen::internal::StridedLinearBufferCopy$<$ Scalar, IndexType $>$}}
+\doxysubsubsection{\texorpdfstring{Run()}{Run()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_af3af39c23f4479cdda766b6dd88893f0_af3af39c23f4479cdda766b6dd88893f0} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Index\+Type $>$ \\
+template$<$typename \mbox{\hyperlink{class_eigen_1_1internal_1_1_strided_linear_buffer_copy_a9b33c9925cacf0deff3334bc2f2d389d_a9b33c9925cacf0deff3334bc2f2d389d}{Strided\+Linear\+Buffer\+Copy\+::\+Kind}} kind$>$ \\
+static \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} void \mbox{\hyperlink{class_eigen_1_1internal_1_1_strided_linear_buffer_copy}{Eigen\+::internal\+::\+Strided\+Linear\+Buffer\+Copy}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Index\+Type $>$\+::\+Run (\begin{DoxyParamCaption}\item[{const Index\+Type}]{count}{, }\item[{const Index\+Type}]{dst\+\_\+offset}{, }\item[{const Index\+Type}]{dst\+\_\+stride}{, }\item[{\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_macros_8h_a05b03c839f8f1357916472a45013c57b_a05b03c839f8f1357916472a45013c57b}{EIGEN\+\_\+\+RESTRICT}}}]{dst\+\_\+data}{, }\item[{const Index\+Type}]{src\+\_\+offset}{, }\item[{const Index\+Type}]{src\+\_\+stride}{, }\item[{const \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_macros_8h_a05b03c839f8f1357916472a45013c57b_a05b03c839f8f1357916472a45013c57b}{EIGEN\+\_\+\+RESTRICT}}}]{src\+\_\+data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/unsupported/\+Eigen/\+CXX11/src/\+Tensor/\mbox{\hyperlink{_tensor_block_8h}{Tensor\+Block.\+h}}\end{DoxyCompactItemize}

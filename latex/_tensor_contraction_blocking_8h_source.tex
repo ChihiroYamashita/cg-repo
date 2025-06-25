@@ -1,0 +1,79 @@
+\doxysection{Tensor\+Contraction\+Blocking.\+h}
+\hypertarget{_tensor_contraction_blocking_8h_source}{}\label{_tensor_contraction_blocking_8h_source}\index{eigen-\/3.4.0/eigen-\/3.4.0/unsupported/Eigen/CXX11/src/Tensor/TensorContractionBlocking.h@{eigen-\/3.4.0/eigen-\/3.4.0/unsupported/Eigen/CXX11/src/Tensor/TensorContractionBlocking.h}}
+\mbox{\hyperlink{_tensor_contraction_blocking_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ Eigen,\ a\ lightweight\ C++\ template\ library}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ for\ linear\ algebra.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (C)\ 2014\ Benoit\ Steiner\ <benoit.steiner.goog@gmail.com>}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ This\ Source\ Code\ Form\ is\ subject\ to\ the\ terms\ of\ the\ Mozilla}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Public\ License\ v.\ 2.0.\ If\ a\ copy\ of\ the\ MPL\ was\ not\ distributed}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ with\ this\ file,\ You\ can\ obtain\ one\ at\ http://mozilla.org/MPL/2.0/.}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_CXX11\_TENSOR\_TENSOR\_CONTRACTION\_BLOCKING\_H}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ EIGEN\_CXX11\_TENSOR\_TENSOR\_CONTRACTION\_BLOCKING\_H}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_eigen}{Eigen}}\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceinternal}{internal}}\ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00018\ \ \ \mbox{\hyperlink{namespace_eigen_1_1internal_a25dfc93546a67dd39ba5acb87716dc44_a25dfc93546a67dd39ba5acb87716dc44af9cde5417288c6e829f4d62a2033f93a}{ShardByRow}}\ =\ 0,}
+\DoxyCodeLine{00019\ \ \ \mbox{\hyperlink{namespace_eigen_1_1internal_a25dfc93546a67dd39ba5acb87716dc44_a25dfc93546a67dd39ba5acb87716dc44a4880b90fa231e2d819d4e8303c09ccdc}{ShardByCol}}\ =\ 1}
+\DoxyCodeLine{00020\ \};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ Default\ Blocking\ Strategy}}
+\DoxyCodeLine{00024\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ResScalar,\ \textcolor{keyword}{typename}\ LhsScalar,\ \textcolor{keyword}{typename}\ RhsScalar,\ \textcolor{keyword}{typename}\ StorageIndex,\ \textcolor{keywordtype}{int}\ ShardingType\ =\ ShardByCol>}
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_contraction_blocking}{TensorContractionBlocking}}\ \{}
+\DoxyCodeLine{00026\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ \ adding\ EIGEN\_DEVICE\_FUNC\ unconditionally\ to\ 'TensorContractionBlocking'\ constructor\ in\ \`{}TensorContractionBlocking.h`}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ \ \ \ \ requires\ adding\ EIGEN\_DEVICE\_FUNC\ to\ \`{}computeProductBlockingSizes`\ in\ \`{}GeneralBlockPanelKernel.h`}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ \ \ which\ in\ turn,\ requires\ adding\ EIGEN\_DEVICE\_FUNC\ to\ \`{}evaluateProductBlockingSizesHeuristic`\ in\ \`{}GeneralBlockPanelKernel.h`}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ \ \ which\ in\ turn,\ requires\ adding\ EIGEN\_DEVICE\_FUNC\ to\ \`{}manage\_caching\_sizes`\ in\ \`{}GeneralBlockPanelKernel.h`}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ \ \ (else\ HIPCC\ will\ error\ out)}}
+\DoxyCodeLine{00034\ \textcolor{comment}{}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ \ However\ adding\ EIGEN\_DEVICE\_FUNC\ to\ \`{}manage\_caching\_sizes`\ in\ \`{}GeneralBlockPanelKernel.h`}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ \ \ results\ in\ NVCC\ erroring\ out\ with\ the\ following\ error}}
+\DoxyCodeLine{00037\ \textcolor{comment}{}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ \ \ ../Eigen/src/Core/products/GeneralBlockPanelKernel.h(57):\ error\ \#2901:}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ \ \ \ dynamic\ initialization\ is\ not\ supported\ for\ function-\/scope\ static\ variables\ within\ a\ \_\_device\_\_/\_\_global\_\_\ function}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\ \ \#if\ !defined(EIGEN\_HIPCC)}}
+\DoxyCodeLine{00043\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00045\ \ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_contraction_blocking_a6894c31c422f28f387926e4b889d512d_a6894c31c422f28f387926e4b889d512d}{TensorContractionBlocking}}(StorageIndex\ k,\ StorageIndex\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ StorageIndex\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}},\ StorageIndex\ num\_threads\ =\ 1)\ :}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_contraction_blocking_a9064519bfb75c88b5fac94c94e4cc45a_a9064519bfb75c88b5fac94c94e4cc45a}{kc\_}}(k),\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_contraction_blocking_add3283bd10f2dfacd819277afc2777cc_add3283bd10f2dfacd819277afc2777cc}{mc\_}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}),\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_contraction_blocking_ac219f33c3fa862e682cd2887160fd04b_ac219f33c3fa862e682cd2887160fd04b}{nc\_}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}})}
+\DoxyCodeLine{00047\ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{if}\ (ShardingType\ ==\ \mbox{\hyperlink{namespace_eigen_1_1internal_a25dfc93546a67dd39ba5acb87716dc44_a25dfc93546a67dd39ba5acb87716dc44a4880b90fa231e2d819d4e8303c09ccdc}{ShardByCol}})\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_1_1internal_a85af7f706f2ecd66aaa5a088fc32cbcc_a85af7f706f2ecd66aaa5a088fc32cbcc}{computeProductBlockingSizes<LhsScalar,\ RhsScalar,\ 1>}}(\mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_contraction_blocking_a9064519bfb75c88b5fac94c94e4cc45a_a9064519bfb75c88b5fac94c94e4cc45a}{kc\_}},\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_contraction_blocking_add3283bd10f2dfacd819277afc2777cc_add3283bd10f2dfacd819277afc2777cc}{mc\_}},\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_contraction_blocking_ac219f33c3fa862e682cd2887160fd04b_ac219f33c3fa862e682cd2887160fd04b}{nc\_}},\ num\_threads);}
+\DoxyCodeLine{00050\ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_1_1internal_a85af7f706f2ecd66aaa5a088fc32cbcc_a85af7f706f2ecd66aaa5a088fc32cbcc}{computeProductBlockingSizes<LhsScalar,\ RhsScalar,\ 1>}}(\mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_contraction_blocking_a9064519bfb75c88b5fac94c94e4cc45a_a9064519bfb75c88b5fac94c94e4cc45a}{kc\_}},\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_contraction_blocking_ac219f33c3fa862e682cd2887160fd04b_ac219f33c3fa862e682cd2887160fd04b}{nc\_}},\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_contraction_blocking_add3283bd10f2dfacd819277afc2777cc_add3283bd10f2dfacd819277afc2777cc}{mc\_}},\ num\_threads);}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ rhs\_packet\_size\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1packet__traits}{internal::packet\_traits<RhsScalar>::size}};}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_contraction_blocking_a9064519bfb75c88b5fac94c94e4cc45a_a9064519bfb75c88b5fac94c94e4cc45a}{kc\_}}\ =\ (rhs\_packet\_size\ <=\ 8\ ||\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_contraction_blocking_a9064519bfb75c88b5fac94c94e4cc45a_a9064519bfb75c88b5fac94c94e4cc45a}{kc\_}}\ <=\ rhs\_packet\_size)\ ?}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_contraction_blocking_a9064519bfb75c88b5fac94c94e4cc45a_a9064519bfb75c88b5fac94c94e4cc45a}{kc\_}}\ :\ (\mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_contraction_blocking_a9064519bfb75c88b5fac94c94e4cc45a_a9064519bfb75c88b5fac94c94e4cc45a}{kc\_}}\ /\ rhs\_packet\_size)\ *\ rhs\_packet\_size;}
+\DoxyCodeLine{00058\ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a1fdc6f94f20527c7275768d82b2eb9ce_a1fdc6f94f20527c7275768d82b2eb9ce}{EIGEN\_ALWAYS\_INLINE}}\ StorageIndex\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_contraction_blocking_af972aea63913e5952416ab2740b1c76e_af972aea63913e5952416ab2740b1c76e}{kc}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_contraction_blocking_a9064519bfb75c88b5fac94c94e4cc45a_a9064519bfb75c88b5fac94c94e4cc45a}{kc\_}};\ \}}
+\DoxyCodeLine{00061\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a1fdc6f94f20527c7275768d82b2eb9ce_a1fdc6f94f20527c7275768d82b2eb9ce}{EIGEN\_ALWAYS\_INLINE}}\ StorageIndex\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_contraction_blocking_a42f800cc23000d3d53c9fe008460937f_a42f800cc23000d3d53c9fe008460937f}{mc}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_contraction_blocking_add3283bd10f2dfacd819277afc2777cc_add3283bd10f2dfacd819277afc2777cc}{mc\_}};\ \}}
+\DoxyCodeLine{00062\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a1fdc6f94f20527c7275768d82b2eb9ce_a1fdc6f94f20527c7275768d82b2eb9ce}{EIGEN\_ALWAYS\_INLINE}}\ StorageIndex\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_contraction_blocking_a1d3c39a3233c03fb4aadec21669e8996_a1d3c39a3233c03fb4aadec21669e8996}{nc}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_contraction_blocking_ac219f33c3fa862e682cd2887160fd04b_ac219f33c3fa862e682cd2887160fd04b}{nc\_}};\ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00065\ \ \ StorageIndex\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_contraction_blocking_a9064519bfb75c88b5fac94c94e4cc45a_a9064519bfb75c88b5fac94c94e4cc45a}{kc\_}};}
+\DoxyCodeLine{00066\ \ \ StorageIndex\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_contraction_blocking_add3283bd10f2dfacd819277afc2777cc_add3283bd10f2dfacd819277afc2777cc}{mc\_}};}
+\DoxyCodeLine{00067\ \ \ StorageIndex\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_contraction_blocking_ac219f33c3fa862e682cd2887160fd04b_ac219f33c3fa862e682cd2887160fd04b}{nc\_}};}
+\DoxyCodeLine{00068\ \};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \}\ \textcolor{comment}{//\ end\ namespace\ internal}}
+\DoxyCodeLine{00071\ \}\ \textcolor{comment}{//\ end\ namespace\ Eigen}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ EIGEN\_CXX11\_TENSOR\_TENSOR\_CONTRACTION\_BLOCKING\_H}}
+
+\end{DoxyCode}

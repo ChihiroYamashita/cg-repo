@@ -1,0 +1,409 @@
+\doxysection{Eigen\+::Incomplete\+LUT\texorpdfstring{$<$}{<} \+\_\+\+Scalar, \+\_\+\+Storage\+Index \texorpdfstring{$>$}{>} クラステンプレート}
+\hypertarget{class_eigen_1_1_incomplete_l_u_t}{}\label{class_eigen_1_1_incomplete_l_u_t}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+
+
+Incomplete LU factorization with dual-\/threshold strategy  
+
+
+
+
+{\ttfamily \#include $<$Incomplete\+LUT.\+h$>$}
+
+
+
+Eigen\+::Incomplete\+LUT\texorpdfstring{$<$}{<} \+\_\+\+Scalar, \+\_\+\+Storage\+Index \texorpdfstring{$>$}{>} の継承関係図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_eigen_1_1_incomplete_l_u_t__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Eigen\+::Incomplete\+LUT\texorpdfstring{$<$}{<} \+\_\+\+Scalar, \+\_\+\+Storage\+Index \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_eigen_1_1_incomplete_l_u_t__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{クラス}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_eigen_1_1_incomplete_l_u_t_1_1keep__diag}{keep\+\_\+diag}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a62e05551866368a1ef54a5d6551a0e2d_a62e05551866368a1ef54a5d6551a0e2da5186808daff08196667a1db4ba78aae2}{Cols\+At\+Compile\+Time}} = Dynamic
+, \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a62e05551866368a1ef54a5d6551a0e2d_a62e05551866368a1ef54a5d6551a0e2dac1588550680fb7f447d61ae8fe339c9a}{Max\+Cols\+At\+Compile\+Time}} = Dynamic
+ \}
+\item 
+typedef \+\_\+\+Scalar \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_ac28be8e98bbbba3fe8515152d5d2689a_ac28be8e98bbbba3fe8515152d5d2689a}{Scalar}}
+\item 
+typedef \+\_\+\+Storage\+Index \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a7ed1bd8bb17630200895ef9957e63593_a7ed1bd8bb17630200895ef9957e63593}{Storage\+Index}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_ac28be8e98bbbba3fe8515152d5d2689a_ac28be8e98bbbba3fe8515152d5d2689a}{Scalar}} $>$\mbox{\hyperlink{boostmultiprec_8cpp_ad5abe8020ead32dcab5e3c15d6d7c30e_ad5abe8020ead32dcab5e3c15d6d7c30e}{\+::\+Real}} \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a05f99d4c8cfd0486cfc7feef7d47a0b4_a05f99d4c8cfd0486cfc7feef7d47a0b4}{Real\+Scalar}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_ac28be8e98bbbba3fe8515152d5d2689a_ac28be8e98bbbba3fe8515152d5d2689a}{Scalar}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, 1 $>$ \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_adddedfb9cc39d1fc7b14e531eff646a8_adddedfb9cc39d1fc7b14e531eff646a8}{Vector}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a7ed1bd8bb17630200895ef9957e63593_a7ed1bd8bb17630200895ef9957e63593}{Storage\+Index}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, 1 $>$ \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_ab6b94198c72c339e6858fc58bdcca481_ab6b94198c72c339e6858fc58bdcca481}{VectorI}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_ac28be8e98bbbba3fe8515152d5d2689a_ac28be8e98bbbba3fe8515152d5d2689a}{Scalar}}, \mbox{\hyperlink{group__enums_gaacded1a18ae58b0f554751f6cdf9eb13_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}}, \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a7ed1bd8bb17630200895ef9957e63593_a7ed1bd8bb17630200895ef9957e63593}{Storage\+Index}} $>$ \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_aaad57c198dabf6162d441a01f5ea7da8_aaad57c198dabf6162d441a01f5ea7da8}{Factor\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a6b3933e3a6fc2ab944c66ba80105b4de_a6b3933e3a6fc2ab944c66ba80105b4de}{Incomplete\+LUT}} ()
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{Matrix\+Type}} $>$ }\\\mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a366a154352cb8cc486113238015f9ba2_a366a154352cb8cc486113238015f9ba2}{Incomplete\+LUT}} (const \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{Matrix\+Type}} \&\mbox{\hyperlink{_tutorial___advanced_initialization___comma_temporary_8cpp_a5d2ded7a4c8830608d7b218f5f27c0a0_a5d2ded7a4c8830608d7b218f5f27c0a0}{mat}}, const \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a05f99d4c8cfd0486cfc7feef7d47a0b4_a05f99d4c8cfd0486cfc7feef7d47a0b4}{Real\+Scalar}} \&droptol=\mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_ac28be8e98bbbba3fe8515152d5d2689a_ac28be8e98bbbba3fe8515152d5d2689a}{Scalar}} $>$\+::dummy\+\_\+precision(), \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} fillfactor=10)
+\item 
+\mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a970111b1828c1c4b73d88ed56ee9bc95_a970111b1828c1c4b73d88ed56ee9bc95}{rows}} () const \mbox{\hyperlink{_macros_8h_a532c42c61426cc18d84097e29577acf8_a532c42c61426cc18d84097e29577acf8}{EIGEN\+\_\+\+NOEXCEPT}}
+\item 
+\mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a33272a2a53eebc0bf41dfd3fbd72624b_a33272a2a53eebc0bf41dfd3fbd72624b}{cols}} () const \mbox{\hyperlink{_macros_8h_a532c42c61426cc18d84097e29577acf8_a532c42c61426cc18d84097e29577acf8}{EIGEN\+\_\+\+NOEXCEPT}}
+\item 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a941c7d34f15d7bc287e780636be0ee2b_a941c7d34f15d7bc287e780636be0ee2b}{info}} () const
+\begin{DoxyCompactList}\small\item\em Reports whether previous computation was successful. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{Matrix\+Type}} $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_ae732858eb360316a1573f91eaba8855f_ae732858eb360316a1573f91eaba8855f}{analyze\+Pattern}} (const \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{Matrix\+Type}} \&amat)
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{Matrix\+Type}} $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a2bd72541bcaeb2dee2540b911c151f41_a2bd72541bcaeb2dee2540b911c151f41}{factorize}} (const \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{Matrix\+Type}} \&amat)
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{Matrix\+Type}} $>$ }\\\mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Incomplete\+LUT}} \& \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_ab36a50d4868afb842cd2c3677a46f010_ab36a50d4868afb842cd2c3677a46f010}{compute}} (const \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{Matrix\+Type}} \&amat)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a9628c5a595e9e984c72d1f8e671a6925_a9628c5a595e9e984c72d1f8e671a6925}{set\+Droptol}} (const \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a05f99d4c8cfd0486cfc7feef7d47a0b4_a05f99d4c8cfd0486cfc7feef7d47a0b4}{Real\+Scalar}} \&droptol)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a327767d12b55ff8a023f12a030051e17_a327767d12b55ff8a023f12a030051e17}{set\+Fillfactor}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} fillfactor)
+\item 
+{\footnotesize template$<$typename Rhs , typename Dest $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a33ddb6572db03a6dd90982b1c0540322_a33ddb6572db03a6dd90982b1c0540322}{\+\_\+solve\+\_\+impl}} (const Rhs \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, Dest \&\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}) const
+\item 
+{\footnotesize template$<$typename \+\_\+\+Matrix\+Type $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a28d9336b9af947fdb4dd6f1b6c167674_a28d9336b9af947fdb4dd6f1b6c167674}{analyze\+Pattern}} (const \+\_\+\+Matrix\+Type \&amat)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Matrix\+Type $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a1015390a28e92591773a557c666e7284_a1015390a28e92591773a557c666e7284}{factorize}} (const \+\_\+\+Matrix\+Type \&amat)
+\end{DoxyCompactItemize}
+\doxysubsection*{基底クラス \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Eigen\+::\+Sparse\+Solver\+Base$<$ Incomplete\+LUT$<$ \+\_\+\+Scalar, int $>$ $>$}} に属する継承公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_aacd99fa17db475e74d3834767f392f33_aacd99fa17db475e74d3834767f392f33}{Sparse\+Solver\+Base}} ()
+\item 
+\mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_ac48acdbbbbe58e6ceb0d48566aa5b398_ac48acdbbbbe58e6ceb0d48566aa5b398}{\texorpdfstring{$\sim$}{\string~}\+Sparse\+Solver\+Base}} ()
+\item 
+\mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} $>$ \& \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_ac8c149c121511c2f7e00a4b83d8b6791_ac8c149c121511c2f7e00a4b83d8b6791}{derived}} ()
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} $>$ \& \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_acd39421d74cb05d9413904c0d2596533_acd39421d74cb05d9413904c0d2596533}{derived}} () const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$ \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} $>$, Rhs $>$ \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_a57c5b7f5e35274b55b5d57e8c88cc4a6_a57c5b7f5e35274b55b5d57e8c88cc4a6}{solve}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}) const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$ \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} $>$, Rhs $>$ \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_aa525407e654603e8275cefeda32054c9_aa525407e654603e8275cefeda32054c9}{solve}} (const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Rhs $>$ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}) const
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_a886c757fea6fe1d992a66524213f14fb_a886c757fea6fe1d992a66524213f14fb}{\+\_\+solve\+\_\+impl}} (const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Rhs $>$ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Dest $>$ \&dest) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{限定公開型}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Sparse\+Solver\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Incomplete\+LUT}} $>$ \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_aae1a6fec17053d0d5041d874b17b18c9_aae1a6fec17053d0d5041d874b17b18c9}{Base}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{限定公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_aaad57c198dabf6162d441a01f5ea7da8_aaad57c198dabf6162d441a01f5ea7da8}{Factor\+Type}} \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_ae2f1c31f87874392c955fab460511d21_ae2f1c31f87874392c955fab460511d21}{m\+\_\+lu}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a05f99d4c8cfd0486cfc7feef7d47a0b4_a05f99d4c8cfd0486cfc7feef7d47a0b4}{Real\+Scalar}} \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a5eb0796236f8b99cf24a991b4fe31813_a5eb0796236f8b99cf24a991b4fe31813}{m\+\_\+droptol}}
+\item 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a40e52676389d807c3033de03bbd7b90a_a40e52676389d807c3033de03bbd7b90a}{m\+\_\+fillfactor}}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a3e304af30544b5e1b3396d017a657b26_a3e304af30544b5e1b3396d017a657b26}{m\+\_\+analysis\+Is\+Ok}}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a3f28ba1a776a45e098ddfc35425710b7_a3f28ba1a776a45e098ddfc35425710b7}{m\+\_\+factorization\+Is\+Ok}}
+\item 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a7d2cda3cd944579c417a9adf423edc9f_a7d2cda3cd944579c417a9adf423edc9f}{m\+\_\+info}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}}$<$ \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a7ed1bd8bb17630200895ef9957e63593_a7ed1bd8bb17630200895ef9957e63593}{Storage\+Index}} $>$ \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_af3553f5fb7aa859106c03939e9979635_af3553f5fb7aa859106c03939e9979635}{m\+\_\+P}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}}$<$ \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a7ed1bd8bb17630200895ef9957e63593_a7ed1bd8bb17630200895ef9957e63593}{Storage\+Index}} $>$ \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a652cc8edb84b570f762272f7b63f4238_a652cc8edb84b570f762272f7b63f4238}{m\+\_\+\+Pinv}}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_ac52101f69d048d5c4b036eadf1f13673_ac52101f69d048d5c4b036eadf1f13673}{m\+\_\+is\+Initialized}}
+\end{DoxyCompactItemize}
+\doxysubsection*{基底クラス \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Eigen\+::\+Sparse\+Solver\+Base$<$ Incomplete\+LUT$<$ \+\_\+\+Scalar, int $>$ $>$}} に属する継承限定公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_ac52101f69d048d5c4b036eadf1f13673_ac52101f69d048d5c4b036eadf1f13673}{m\+\_\+is\+Initialized}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{詳解}
+\subsubsection*{template$<$typename \+\_\+\+Scalar, typename \+\_\+\+Storage\+Index = int$>$\newline
+class Eigen\+::\+Incomplete\+LUT$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$}
+Incomplete LU factorization with dual-\/threshold strategy 
+
+\textbackslash{}implsparsesolverconcept
+
+During the numerical factorization, two dropping rules are used \+: 1) any element whose magnitude is less than some tolerance is dropped. This tolerance is obtained by multiplying the input tolerance {\ttfamily droptol} by the average magnitude of all the original elements in the current row. 2) After the elimination of the row, only the {\ttfamily fill} largest elements in the L part and the {\ttfamily fill} largest elements in the U part are kept (in addition to the diagonal element ). Note that {\ttfamily fill} is computed from the input parameter {\ttfamily fillfactor} which is used the ratio to control the fill\+\_\+in relatively to the initial number of nonzero elements.
+
+The two extreme cases are when {\ttfamily droptol=0} (to keep all the {\ttfamily fill\texorpdfstring{$\ast$}{*}2} largest elements) and when {\ttfamily fill=n/2} with {\ttfamily droptol} being different to zero.
+
+References \+: Yousef Saad, ILUT\+: A dual threshold incomplete LU factorization, Numerical Linear Algebra with Applications, 1(4), pp 387-\/402, 1994.
+
+NOTE \+: The following implementation is derived from the ILUT implementation in the SPARSKIT package, Copyright (C) 2005, the Regents of the University of Minnesota released under the terms of the GNU LGPL\+: \href{http://www-users.cs.umn.edu/~saad/software/SPARSKIT/README}{\texttt{ http\+://www-\/users.\+cs.\+umn.\+edu/\texorpdfstring{$\sim$}{\string~}saad/software/\+SPARSKIT/\+README}} However, Yousef Saad gave us permission to relicense his ILUT code to MPL2. See the \doxylink{namespace_eigen}{Eigen} mailing list archive, thread\+: ILUT, date\+: July 8, 2012\+: \href{http://listengine.tuxfamily.org/lists.tuxfamily.org/eigen/2012/07/msg00064.html}{\texttt{ http\+://listengine.\+tuxfamily.\+org/lists.\+tuxfamily.\+org/eigen/2012/07/msg00064.\+html}} alternatively, on GMANE\+: \href{http://comments.gmane.org/gmane.comp.lib.eigen/3302}{\texttt{ http\+://comments.\+gmane.\+org/gmane.\+comp.\+lib.\+eigen/3302}} 
+
+\doxysubsection{型定義メンバ詳解}
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_aae1a6fec17053d0d5041d874b17b18c9_aae1a6fec17053d0d5041d874b17b18c9}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!Base@{Base}}
+\index{Base@{Base}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{Base}{Base}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_aae1a6fec17053d0d5041d874b17b18c9_aae1a6fec17053d0d5041d874b17b18c9} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Sparse\+Solver\+Base}}$<$\mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Incomplete\+LUT}}$>$ \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::\+Base\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_aaad57c198dabf6162d441a01f5ea7da8_aaad57c198dabf6162d441a01f5ea7da8}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!FactorType@{FactorType}}
+\index{FactorType@{FactorType}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{FactorType}{FactorType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_aaad57c198dabf6162d441a01f5ea7da8_aaad57c198dabf6162d441a01f5ea7da8} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_ac28be8e98bbbba3fe8515152d5d2689a_ac28be8e98bbbba3fe8515152d5d2689a}{Scalar}},\mbox{\hyperlink{group__enums_gaacded1a18ae58b0f554751f6cdf9eb13_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}},\mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a7ed1bd8bb17630200895ef9957e63593_a7ed1bd8bb17630200895ef9957e63593}{Storage\+Index}}$>$ \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::\+Factor\+Type}
+
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_a05f99d4c8cfd0486cfc7feef7d47a0b4_a05f99d4c8cfd0486cfc7feef7d47a0b4}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!RealScalar@{RealScalar}}
+\index{RealScalar@{RealScalar}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{RealScalar}{RealScalar}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_a05f99d4c8cfd0486cfc7feef7d47a0b4_a05f99d4c8cfd0486cfc7feef7d47a0b4} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+\mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$\mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_ac28be8e98bbbba3fe8515152d5d2689a_ac28be8e98bbbba3fe8515152d5d2689a}{Scalar}}$>$\mbox{\hyperlink{boostmultiprec_8cpp_ad5abe8020ead32dcab5e3c15d6d7c30e_ad5abe8020ead32dcab5e3c15d6d7c30e}{\+::\+Real}} \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{\+::\+Real\+Scalar}}}
+
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_ac28be8e98bbbba3fe8515152d5d2689a_ac28be8e98bbbba3fe8515152d5d2689a}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_ac28be8e98bbbba3fe8515152d5d2689a_ac28be8e98bbbba3fe8515152d5d2689a} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+\+\_\+\+Scalar \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{\+::\+Scalar}}}
+
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_a7ed1bd8bb17630200895ef9957e63593_a7ed1bd8bb17630200895ef9957e63593}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!StorageIndex@{StorageIndex}}
+\index{StorageIndex@{StorageIndex}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{StorageIndex}{StorageIndex}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_a7ed1bd8bb17630200895ef9957e63593_a7ed1bd8bb17630200895ef9957e63593} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+\+\_\+\+Storage\+Index \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::\+Storage\+Index}
+
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_adddedfb9cc39d1fc7b14e531eff646a8_adddedfb9cc39d1fc7b14e531eff646a8}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!Vector@{Vector}}
+\index{Vector@{Vector}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{Vector}{Vector}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_adddedfb9cc39d1fc7b14e531eff646a8_adddedfb9cc39d1fc7b14e531eff646a8} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_ac28be8e98bbbba3fe8515152d5d2689a_ac28be8e98bbbba3fe8515152d5d2689a}{Scalar}},\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}},1$>$ \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::\+Vector}
+
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_ab6b94198c72c339e6858fc58bdcca481_ab6b94198c72c339e6858fc58bdcca481}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!VectorI@{VectorI}}
+\index{VectorI@{VectorI}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{VectorI}{VectorI}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_ab6b94198c72c339e6858fc58bdcca481_ab6b94198c72c339e6858fc58bdcca481} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a7ed1bd8bb17630200895ef9957e63593_a7ed1bd8bb17630200895ef9957e63593}{Storage\+Index}},\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}},1$>$ \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::\+VectorI}
+
+
+
+\doxysubsection{列挙型メンバ詳解}
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_a62e05551866368a1ef54a5d6551a0e2d_a62e05551866368a1ef54a5d6551a0e2d}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_a62e05551866368a1ef54a5d6551a0e2d_a62e05551866368a1ef54a5d6551a0e2d} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ColsAtCompileTime@{ColsAtCompileTime}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!ColsAtCompileTime@{ColsAtCompileTime}}}\Hypertarget{class_eigen_1_1_incomplete_l_u_t_a62e05551866368a1ef54a5d6551a0e2d_a62e05551866368a1ef54a5d6551a0e2da5186808daff08196667a1db4ba78aae2}\label{class_eigen_1_1_incomplete_l_u_t_a62e05551866368a1ef54a5d6551a0e2d_a62e05551866368a1ef54a5d6551a0e2d} 
+Cols\+At\+Compile\+Time&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MaxColsAtCompileTime@{MaxColsAtCompileTime}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!MaxColsAtCompileTime@{MaxColsAtCompileTime}}}\Hypertarget{class_eigen_1_1_incomplete_l_u_t_a62e05551866368a1ef54a5d6551a0e2d_a62e05551866368a1ef54a5d6551a0e2dac1588550680fb7f447d61ae8fe339c9a}\label{class_eigen_1_1_incomplete_l_u_t_a62e05551866368a1ef54a5d6551a0e2d_a62e05551866368a1ef54a5d6551a0e2d} 
+Max\+Cols\+At\+Compile\+Time&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{構築子と解体子}
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_a6b3933e3a6fc2ab944c66ba80105b4de_a6b3933e3a6fc2ab944c66ba80105b4de}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!IncompleteLUT@{IncompleteLUT}}
+\index{IncompleteLUT@{IncompleteLUT}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{IncompleteLUT()}{IncompleteLUT()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_a6b3933e3a6fc2ab944c66ba80105b4de_a6b3933e3a6fc2ab944c66ba80105b4de} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::\+Incomplete\+LUT (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_a366a154352cb8cc486113238015f9ba2_a366a154352cb8cc486113238015f9ba2}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!IncompleteLUT@{IncompleteLUT}}
+\index{IncompleteLUT@{IncompleteLUT}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{IncompleteLUT()}{IncompleteLUT()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_a366a154352cb8cc486113238015f9ba2_a366a154352cb8cc486113238015f9ba2} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+template$<$typename \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{Matrix\+Type}} $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::\+Incomplete\+LUT (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{Matrix\+Type}} \&}]{mat}{, }\item[{const \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a05f99d4c8cfd0486cfc7feef7d47a0b4_a05f99d4c8cfd0486cfc7feef7d47a0b4}{Real\+Scalar}} \&}]{droptol}{ = {\ttfamily \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$\mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_ac28be8e98bbbba3fe8515152d5d2689a_ac28be8e98bbbba3fe8515152d5d2689a}{Scalar}}$>$\+:\+:dummy\+\_\+precision()}, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{fillfactor}{ = {\ttfamily 10}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_a33ddb6572db03a6dd90982b1c0540322_a33ddb6572db03a6dd90982b1c0540322}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!\_solve\_impl@{\_solve\_impl}}
+\index{\_solve\_impl@{\_solve\_impl}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{\_solve\_impl()}{\_solve\_impl()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_a33ddb6572db03a6dd90982b1c0540322_a33ddb6572db03a6dd90982b1c0540322} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+template$<$typename Rhs , typename Dest $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::\+\_\+solve\+\_\+impl (\begin{DoxyParamCaption}\item[{const Rhs \&}]{b}{, }\item[{Dest \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_a28d9336b9af947fdb4dd6f1b6c167674_a28d9336b9af947fdb4dd6f1b6c167674}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!analyzePattern@{analyzePattern}}
+\index{analyzePattern@{analyzePattern}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{analyzePattern()}{analyzePattern()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_a28d9336b9af947fdb4dd6f1b6c167674_a28d9336b9af947fdb4dd6f1b6c167674} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::analyze\+Pattern (\begin{DoxyParamCaption}\item[{const \+\_\+\+Matrix\+Type \&}]{amat}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_ae732858eb360316a1573f91eaba8855f_ae732858eb360316a1573f91eaba8855f}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!analyzePattern@{analyzePattern}}
+\index{analyzePattern@{analyzePattern}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{analyzePattern()}{analyzePattern()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_ae732858eb360316a1573f91eaba8855f_ae732858eb360316a1573f91eaba8855f} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+template$<$typename \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{Matrix\+Type}} $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::analyze\+Pattern (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{Matrix\+Type}} \&}]{amat}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_a33272a2a53eebc0bf41dfd3fbd72624b_a33272a2a53eebc0bf41dfd3fbd72624b}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!cols@{cols}}
+\index{cols@{cols}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{cols()}{cols()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_a33272a2a53eebc0bf41dfd3fbd72624b_a33272a2a53eebc0bf41dfd3fbd72624b} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+\mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::cols (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_ab36a50d4868afb842cd2c3677a46f010_ab36a50d4868afb842cd2c3677a46f010}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!compute@{compute}}
+\index{compute@{compute}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_ab36a50d4868afb842cd2c3677a46f010_ab36a50d4868afb842cd2c3677a46f010} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+template$<$typename \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{Matrix\+Type}} $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Incomplete\+LUT}} \& \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::compute (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{Matrix\+Type}} \&}]{amat}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Compute an incomplete LU factorization with dual threshold on the matrix mat No pivoting is done in this version \Hypertarget{class_eigen_1_1_incomplete_l_u_t_a1015390a28e92591773a557c666e7284_a1015390a28e92591773a557c666e7284}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!factorize@{factorize}}
+\index{factorize@{factorize}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{factorize()}{factorize()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_a1015390a28e92591773a557c666e7284_a1015390a28e92591773a557c666e7284} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::factorize (\begin{DoxyParamCaption}\item[{const \+\_\+\+Matrix\+Type \&}]{amat}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_a2bd72541bcaeb2dee2540b911c151f41_a2bd72541bcaeb2dee2540b911c151f41}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!factorize@{factorize}}
+\index{factorize@{factorize}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{factorize()}{factorize()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_a2bd72541bcaeb2dee2540b911c151f41_a2bd72541bcaeb2dee2540b911c151f41} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+template$<$typename \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{Matrix\+Type}} $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::factorize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{Matrix\+Type}} \&}]{amat}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_a941c7d34f15d7bc287e780636be0ee2b_a941c7d34f15d7bc287e780636be0ee2b}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!info@{info}}
+\index{info@{info}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_a941c7d34f15d7bc287e780636be0ee2b_a941c7d34f15d7bc287e780636be0ee2b} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::info (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reports whether previous computation was successful. 
+
+\begin{DoxyReturn}{戻り値}
+{\ttfamily Success} if computation was successful, {\ttfamily Numerical\+Issue} if the matrix.\+appears to be negative. 
+\end{DoxyReturn}
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_a970111b1828c1c4b73d88ed56ee9bc95_a970111b1828c1c4b73d88ed56ee9bc95}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!rows@{rows}}
+\index{rows@{rows}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{rows()}{rows()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_a970111b1828c1c4b73d88ed56ee9bc95_a970111b1828c1c4b73d88ed56ee9bc95} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+\mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::rows (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_a9628c5a595e9e984c72d1f8e671a6925_a9628c5a595e9e984c72d1f8e671a6925}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!setDroptol@{setDroptol}}
+\index{setDroptol@{setDroptol}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{setDroptol()}{setDroptol()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_a9628c5a595e9e984c72d1f8e671a6925_a9628c5a595e9e984c72d1f8e671a6925} 
+template$<$typename \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_ac28be8e98bbbba3fe8515152d5d2689a_ac28be8e98bbbba3fe8515152d5d2689a}{Scalar}} , typename \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a7ed1bd8bb17630200895ef9957e63593_a7ed1bd8bb17630200895ef9957e63593}{Storage\+Index}} $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_ac28be8e98bbbba3fe8515152d5d2689a_ac28be8e98bbbba3fe8515152d5d2689a}{Scalar}}, \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a7ed1bd8bb17630200895ef9957e63593_a7ed1bd8bb17630200895ef9957e63593}{Storage\+Index}} $>$\+::set\+Droptol (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a05f99d4c8cfd0486cfc7feef7d47a0b4_a05f99d4c8cfd0486cfc7feef7d47a0b4}{Real\+Scalar}} \&}]{droptol}{}\end{DoxyParamCaption})}
+
+Set control parameter droptol 
+\begin{DoxyParams}{引数}
+{\em droptol} & Drop any element whose magnitude is less than this tolerance \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_a327767d12b55ff8a023f12a030051e17_a327767d12b55ff8a023f12a030051e17}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!setFillfactor@{setFillfactor}}
+\index{setFillfactor@{setFillfactor}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{setFillfactor()}{setFillfactor()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_a327767d12b55ff8a023f12a030051e17_a327767d12b55ff8a023f12a030051e17} 
+template$<$typename \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_ac28be8e98bbbba3fe8515152d5d2689a_ac28be8e98bbbba3fe8515152d5d2689a}{Scalar}} , typename \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a7ed1bd8bb17630200895ef9957e63593_a7ed1bd8bb17630200895ef9957e63593}{Storage\+Index}} $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_ac28be8e98bbbba3fe8515152d5d2689a_ac28be8e98bbbba3fe8515152d5d2689a}{Scalar}}, \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a7ed1bd8bb17630200895ef9957e63593_a7ed1bd8bb17630200895ef9957e63593}{Storage\+Index}} $>$\+::set\+Fillfactor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{fillfactor}{}\end{DoxyParamCaption})}
+
+Set control parameter fillfactor 
+\begin{DoxyParams}{引数}
+{\em fillfactor} & This is used to compute the number {\ttfamily fill\+\_\+in} of largest elements to keep on each row. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{メンバ詳解}
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_a3e304af30544b5e1b3396d017a657b26_a3e304af30544b5e1b3396d017a657b26}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!m\_analysisIsOk@{m\_analysisIsOk}}
+\index{m\_analysisIsOk@{m\_analysisIsOk}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{m\_analysisIsOk}{m\_analysisIsOk}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_a3e304af30544b5e1b3396d017a657b26_a3e304af30544b5e1b3396d017a657b26} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::m\+\_\+analysis\+Is\+Ok\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_a5eb0796236f8b99cf24a991b4fe31813_a5eb0796236f8b99cf24a991b4fe31813}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!m\_droptol@{m\_droptol}}
+\index{m\_droptol@{m\_droptol}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{m\_droptol}{m\_droptol}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_a5eb0796236f8b99cf24a991b4fe31813_a5eb0796236f8b99cf24a991b4fe31813} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a05f99d4c8cfd0486cfc7feef7d47a0b4_a05f99d4c8cfd0486cfc7feef7d47a0b4}{Real\+Scalar}} \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::m\+\_\+droptol\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_a3f28ba1a776a45e098ddfc35425710b7_a3f28ba1a776a45e098ddfc35425710b7}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!m\_factorizationIsOk@{m\_factorizationIsOk}}
+\index{m\_factorizationIsOk@{m\_factorizationIsOk}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{m\_factorizationIsOk}{m\_factorizationIsOk}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_a3f28ba1a776a45e098ddfc35425710b7_a3f28ba1a776a45e098ddfc35425710b7} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::m\+\_\+factorization\+Is\+Ok\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_a40e52676389d807c3033de03bbd7b90a_a40e52676389d807c3033de03bbd7b90a}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!m\_fillfactor@{m\_fillfactor}}
+\index{m\_fillfactor@{m\_fillfactor}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{m\_fillfactor}{m\_fillfactor}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_a40e52676389d807c3033de03bbd7b90a_a40e52676389d807c3033de03bbd7b90a} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::m\+\_\+fillfactor\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_a7d2cda3cd944579c417a9adf423edc9f_a7d2cda3cd944579c417a9adf423edc9f}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!m\_info@{m\_info}}
+\index{m\_info@{m\_info}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{m\_info}{m\_info}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_a7d2cda3cd944579c417a9adf423edc9f_a7d2cda3cd944579c417a9adf423edc9f} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::m\+\_\+info\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_ac52101f69d048d5c4b036eadf1f13673_ac52101f69d048d5c4b036eadf1f13673}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!m\_isInitialized@{m\_isInitialized}}
+\index{m\_isInitialized@{m\_isInitialized}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{m\_isInitialized}{m\_isInitialized}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_ac52101f69d048d5c4b036eadf1f13673_ac52101f69d048d5c4b036eadf1f13673} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Eigen\+::\+Sparse\+Solver\+Base}}$<$ Derived $>$\+::m\+\_\+is\+Initialized\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_ae2f1c31f87874392c955fab460511d21_ae2f1c31f87874392c955fab460511d21}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!m\_lu@{m\_lu}}
+\index{m\_lu@{m\_lu}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{m\_lu}{m\_lu}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_ae2f1c31f87874392c955fab460511d21_ae2f1c31f87874392c955fab460511d21} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_aaad57c198dabf6162d441a01f5ea7da8_aaad57c198dabf6162d441a01f5ea7da8}{Factor\+Type}} \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::m\+\_\+lu\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_af3553f5fb7aa859106c03939e9979635_af3553f5fb7aa859106c03939e9979635}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!m\_P@{m\_P}}
+\index{m\_P@{m\_P}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{m\_P}{m\_P}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_af3553f5fb7aa859106c03939e9979635_af3553f5fb7aa859106c03939e9979635} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}}$<$\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}},\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}},\mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a7ed1bd8bb17630200895ef9957e63593_a7ed1bd8bb17630200895ef9957e63593}{Storage\+Index}}$>$ \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::m\+\_\+P\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_incomplete_l_u_t_a652cc8edb84b570f762272f7b63f4238_a652cc8edb84b570f762272f7b63f4238}\index{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}!m\_Pinv@{m\_Pinv}}
+\index{m\_Pinv@{m\_Pinv}!Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$@{Eigen::IncompleteLUT$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{m\_Pinv}{m\_Pinv}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_incomplete_l_u_t_a652cc8edb84b570f762272f7b63f4238_a652cc8edb84b570f762272f7b63f4238} 
+template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index  = int$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}}$<$\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}},\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}},\mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t_a7ed1bd8bb17630200895ef9957e63593_a7ed1bd8bb17630200895ef9957e63593}{Storage\+Index}}$>$ \mbox{\hyperlink{class_eigen_1_1_incomplete_l_u_t}{Eigen\+::\+Incomplete\+LUT}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::m\+\_\+\+Pinv\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Iterative\+Linear\+Solvers/\mbox{\hyperlink{_incomplete_l_u_t_8h}{Incomplete\+LUT.\+h}}\end{DoxyCompactItemize}

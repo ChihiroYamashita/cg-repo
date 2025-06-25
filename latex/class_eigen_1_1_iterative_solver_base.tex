@@ -1,0 +1,587 @@
+\doxysection{Eigen\+::Iterative\+Solver\+Base\texorpdfstring{$<$}{<} Derived \texorpdfstring{$>$}{>} クラステンプレート}
+\hypertarget{class_eigen_1_1_iterative_solver_base}{}\label{class_eigen_1_1_iterative_solver_base}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+
+
+Base class for linear iterative solvers  
+
+
+
+
+{\ttfamily \#include $<$Iterative\+Solver\+Base.\+h$>$}
+
+
+
+Eigen\+::Iterative\+Solver\+Base\texorpdfstring{$<$}{<} Derived \texorpdfstring{$>$}{>} の継承関係図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_eigen_1_1_iterative_solver_base__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Eigen\+::Iterative\+Solver\+Base\texorpdfstring{$<$}{<} Derived \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_eigen_1_1_iterative_solver_base__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a37127402d8d48f78adad461aa7211a51_a37127402d8d48f78adad461aa7211a51aff47f4d1fea91fc54621081fdc9aa6d9}{Cols\+At\+Compile\+Time}} = Matrix\+Type\+::Cols\+At\+Compile\+Time
+, \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a37127402d8d48f78adad461aa7211a51_a37127402d8d48f78adad461aa7211a51af7bb41931c78fc722c3051958c8a99e9}{Max\+Cols\+At\+Compile\+Time}} = Matrix\+Type\+::Max\+Cols\+At\+Compile\+Time
+ \}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Derived $>$\mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{\+::\+Matrix\+Type}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ac3c4db3ee580cfb0b77e7cfa3834a6c0_ac3c4db3ee580cfb0b77e7cfa3834a6c0}{Matrix\+Type}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Derived $>$\+::\+Preconditioner \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a7353e13772e925d2eca72dc6f843b75d_a7353e13772e925d2eca72dc6f843b75d}{Preconditioner}}
+\item 
+typedef Matrix\+Type\+::\+Scalar \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a0858c6906bf3e84d6085e6d353158c2c_a0858c6906bf3e84d6085e6d353158c2c}{Scalar}}
+\item 
+typedef Matrix\+Type\+::\+Storage\+Index \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a6b5f4d476b5533681aa1c4f119358176_a6b5f4d476b5533681aa1c4f119358176}{Storage\+Index}}
+\item 
+typedef Matrix\+Type\+::\+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a25f79b6bae22e2bef46d865b7917bf7b_a25f79b6bae22e2bef46d865b7917bf7b}{Real\+Scalar}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a0922f2be45082690d7734aa6732fc493_a0922f2be45082690d7734aa6732fc493}{Iterative\+Solver\+Base}} ()
+\item 
+{\footnotesize template$<$typename Matrix\+Derived $>$ }\\\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a3c68fe3cd929ea1ff8a0d4cbcd65ebad_a3c68fe3cd929ea1ff8a0d4cbcd65ebad}{Iterative\+Solver\+Base}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Matrix\+Derived $>$ \&\mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}})
+\item 
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_aa09ca3c6944b3efb69a9e47f4fa69857_aa09ca3c6944b3efb69a9e47f4fa69857}{\texorpdfstring{$\sim$}{\string~}\+Iterative\+Solver\+Base}} ()
+\item 
+{\footnotesize template$<$typename Matrix\+Derived $>$ }\\Derived \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a7490c6531b523f768c0fb3b44f251dad_a7490c6531b523f768c0fb3b44f251dad}{analyze\+Pattern}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Matrix\+Derived $>$ \&\mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}})
+\item 
+{\footnotesize template$<$typename Matrix\+Derived $>$ }\\Derived \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a86f8f9865bedacfdf2322f52dde78e23_a86f8f9865bedacfdf2322f52dde78e23}{factorize}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Matrix\+Derived $>$ \&\mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}})
+\item 
+{\footnotesize template$<$typename Matrix\+Derived $>$ }\\Derived \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a3b0d9691964793bd55937666426fefbf_a3b0d9691964793bd55937666426fefbf}{compute}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Matrix\+Derived $>$ \&\mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}})
+\item 
+\mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a3f172c95041d588715d7193f528f43a0_a3f172c95041d588715d7193f528f43a0}{rows}} () const \mbox{\hyperlink{_macros_8h_a532c42c61426cc18d84097e29577acf8_a532c42c61426cc18d84097e29577acf8}{EIGEN\+\_\+\+NOEXCEPT}}
+\item 
+\mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a78efb7c93b11421a0e30edc235cdfcb5_a78efb7c93b11421a0e30edc235cdfcb5}{cols}} () const \mbox{\hyperlink{_macros_8h_a532c42c61426cc18d84097e29577acf8_a532c42c61426cc18d84097e29577acf8}{EIGEN\+\_\+\+NOEXCEPT}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a25f79b6bae22e2bef46d865b7917bf7b_a25f79b6bae22e2bef46d865b7917bf7b}{Real\+Scalar}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_acb442c19b5858d6b9be813dd7d36cc62_acb442c19b5858d6b9be813dd7d36cc62}{tolerance}} () const
+\item 
+Derived \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ac43c50c69a5b621cb5a9991a1005750d_ac43c50c69a5b621cb5a9991a1005750d}{set\+Tolerance}} (const \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a25f79b6bae22e2bef46d865b7917bf7b_a25f79b6bae22e2bef46d865b7917bf7b}{Real\+Scalar}} \&\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_acb442c19b5858d6b9be813dd7d36cc62_acb442c19b5858d6b9be813dd7d36cc62}{tolerance}})
+\item 
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a7353e13772e925d2eca72dc6f843b75d_a7353e13772e925d2eca72dc6f843b75d}{Preconditioner}} \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ab30e1bca8ebbd91d977306bb94e093b9_ab30e1bca8ebbd91d977306bb94e093b9}{preconditioner}} ()
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a7353e13772e925d2eca72dc6f843b75d_a7353e13772e925d2eca72dc6f843b75d}{Preconditioner}} \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a640bfaf268c64f35ac3996beece46021_a640bfaf268c64f35ac3996beece46021}{preconditioner}} () const
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a168a74c8dceb6233b220031fdd756ba0_a168a74c8dceb6233b220031fdd756ba0}{max\+Iterations}} () const
+\item 
+Derived \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a1bbaf86b7df6d54e78ced4da6ed2dac1_a1bbaf86b7df6d54e78ced4da6ed2dac1}{set\+Max\+Iterations}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} max\+Iters)
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ae778dd098bd5e6655625b20b1e9f15da_ae778dd098bd5e6655625b20b1e9f15da}{iterations}} () const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a25f79b6bae22e2bef46d865b7917bf7b_a25f79b6bae22e2bef46d865b7917bf7b}{Real\+Scalar}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a117c241af3fb1141ad0916a3cf3157ec_a117c241af3fb1141ad0916a3cf3157ec}{error}} () const
+\item 
+{\footnotesize template$<$typename Rhs , typename Guess $>$ }\\const \mbox{\hyperlink{class_eigen_1_1_solve_with_guess}{Solve\+With\+Guess}}$<$ Derived, Rhs, Guess $>$ \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ad8b889910ed260591652f22c640d6a20_ad8b889910ed260591652f22c640d6a20}{solve\+With\+Guess}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, const Guess \&x0) const
+\item 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a0d6b459433a316b4f12d48e5c80d61fe_a0d6b459433a316b4f12d48e5c80d61fe}{info}} () const
+\item 
+{\footnotesize template$<$typename Rhs , typename Dest\+Derived $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a9f2403e90106dcff20966cbc54ea38ff_a9f2403e90106dcff20966cbc54ea38ff}{\+\_\+solve\+\_\+with\+\_\+guess\+\_\+impl}} (const Rhs \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Dest\+Derived $>$ \&a\+Dest) const
+\item 
+{\footnotesize template$<$typename Rhs , typename Dest\+Derived $>$ }\\\mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{internal\+::enable\+\_\+if}}$<$ Rhs\+::\+Cols\+At\+Compile\+Time!=1 \&\&Dest\+Derived\+::\+Cols\+At\+Compile\+Time!=1 $>$\+::type \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ab8a10c52be0bf7437a163a742b89b5c6_ab8a10c52be0bf7437a163a742b89b5c6}{\+\_\+solve\+\_\+with\+\_\+guess\+\_\+impl}} (const Rhs \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Dest\+Derived $>$ \&a\+Dest) const
+\item 
+{\footnotesize template$<$typename Rhs , typename Dest\+Derived $>$ }\\\mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{internal\+::enable\+\_\+if}}$<$ Rhs\+::\+Cols\+At\+Compile\+Time==1\texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|}Dest\+Derived\+::\+Cols\+At\+Compile\+Time==1 $>$\+::type \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a3d877ee6f90593ed9fbd1eeba11aba6f_a3d877ee6f90593ed9fbd1eeba11aba6f}{\+\_\+solve\+\_\+with\+\_\+guess\+\_\+impl}} (const Rhs \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Dest\+Derived $>$ \&dest) const
+\item 
+{\footnotesize template$<$typename Rhs , typename Dest $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a946a3c9598afbc6f93fbd4ac2742f6e2_a946a3c9598afbc6f93fbd4ac2742f6e2}{\+\_\+solve\+\_\+impl}} (const Rhs \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, Dest \&\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}) const
+\item 
+Derived \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ac8c149c121511c2f7e00a4b83d8b6791_ac8c149c121511c2f7e00a4b83d8b6791}{derived}} ()
+\item 
+const Derived \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_acd39421d74cb05d9413904c0d2596533_acd39421d74cb05d9413904c0d2596533}{derived}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{基底クラス \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Eigen\+::\+Sparse\+Solver\+Base$<$ Derived $>$}} に属する継承公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_aacd99fa17db475e74d3834767f392f33_aacd99fa17db475e74d3834767f392f33}{Sparse\+Solver\+Base}} ()
+\item 
+\mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_ac48acdbbbbe58e6ceb0d48566aa5b398_ac48acdbbbbe58e6ceb0d48566aa5b398}{\texorpdfstring{$\sim$}{\string~}\+Sparse\+Solver\+Base}} ()
+\item 
+Derived \& \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_ac8c149c121511c2f7e00a4b83d8b6791_ac8c149c121511c2f7e00a4b83d8b6791}{derived}} ()
+\item 
+const Derived \& \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_acd39421d74cb05d9413904c0d2596533_acd39421d74cb05d9413904c0d2596533}{derived}} () const
+\item 
+{\footnotesize template$<$typename Rhs $>$ }\\const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$ Derived, Rhs $>$ \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_a57c5b7f5e35274b55b5d57e8c88cc4a6_a57c5b7f5e35274b55b5d57e8c88cc4a6}{solve}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}) const
+\item 
+{\footnotesize template$<$typename Rhs $>$ }\\const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$ Derived, Rhs $>$ \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_aa525407e654603e8275cefeda32054c9_aa525407e654603e8275cefeda32054c9}{solve}} (const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Rhs $>$ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}) const
+\item 
+{\footnotesize template$<$typename Rhs , typename Dest $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_a886c757fea6fe1d992a66524213f14fb_a886c757fea6fe1d992a66524213f14fb}{\+\_\+solve\+\_\+impl}} (const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Rhs $>$ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Dest $>$ \&dest) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{限定公開型}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Sparse\+Solver\+Base}}$<$ Derived $>$ \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a5b8654f08dd37b0622034ea0afb0d9dd_a5b8654f08dd37b0622034ea0afb0d9dd}{Base}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1internal_1_1generic__matrix__wrapper}{internal\+::generic\+\_\+matrix\+\_\+wrapper}}$<$ \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ac3c4db3ee580cfb0b77e7cfa3834a6c0_ac3c4db3ee580cfb0b77e7cfa3834a6c0}{Matrix\+Type}} $>$ \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a563a330953073333a64152842be50f0b_a563a330953073333a64152842be50f0b}{Matrix\+Wrapper}}
+\item 
+typedef Matrix\+Wrapper\+::\+Actual\+Matrix\+Type \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ae81615068fa9dba95b8329fb30b14afe_ae81615068fa9dba95b8329fb30b14afe}{Actual\+Matrix\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{限定公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a838f657cbd7a4e1e33941f386a4b4350_a838f657cbd7a4e1e33941f386a4b4350}{init}} ()
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ae81615068fa9dba95b8329fb30b14afe_ae81615068fa9dba95b8329fb30b14afe}{Actual\+Matrix\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_af24f53813d56a98491957dabc1d2f7eb_af24f53813d56a98491957dabc1d2f7eb}{matrix}} () const
+\item 
+{\footnotesize template$<$typename Input\+Type $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a5cc46e289554db119b042bd610e6cac0_a5cc46e289554db119b042bd610e6cac0}{grab}} (const Input\+Type \&\mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{限定公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a563a330953073333a64152842be50f0b_a563a330953073333a64152842be50f0b}{Matrix\+Wrapper}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a6cecc757c4503912b48b86db453ec011_a6cecc757c4503912b48b86db453ec011}{m\+\_\+matrix\+Wrapper}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a7353e13772e925d2eca72dc6f843b75d_a7353e13772e925d2eca72dc6f843b75d}{Preconditioner}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a965e3600bc2a59bc24af0bdf8e7f4dd4_a965e3600bc2a59bc24af0bdf8e7f4dd4}{m\+\_\+preconditioner}}
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ab7278684bb9385aa785a29f8cb29e6dc_ab7278684bb9385aa785a29f8cb29e6dc}{m\+\_\+max\+Iterations}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a25f79b6bae22e2bef46d865b7917bf7b_a25f79b6bae22e2bef46d865b7917bf7b}{Real\+Scalar}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_acf34fdb3eb17a876810b9d6c5031e175_acf34fdb3eb17a876810b9d6c5031e175}{m\+\_\+tolerance}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a25f79b6bae22e2bef46d865b7917bf7b_a25f79b6bae22e2bef46d865b7917bf7b}{Real\+Scalar}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a9140af00eb517cb5677dd6e1a60fab80_a9140af00eb517cb5677dd6e1a60fab80}{m\+\_\+error}}
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_aa1e43c88482d7d73394ec3229f6e8a4a_aa1e43c88482d7d73394ec3229f6e8a4a}{m\+\_\+iterations}}
+\item 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a283a3c6136f76e77ac29184352c3e940_a283a3c6136f76e77ac29184352c3e940}{m\+\_\+info}}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a05ff023a1206fd498d72e38d3bc8c9ef_a05ff023a1206fd498d72e38d3bc8c9ef}{m\+\_\+analysis\+Is\+Ok}}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a0e6d2376994c72cc75f571de2b1e76bc_a0e6d2376994c72cc75f571de2b1e76bc}{m\+\_\+factorization\+Is\+Ok}}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ac52101f69d048d5c4b036eadf1f13673_ac52101f69d048d5c4b036eadf1f13673}{m\+\_\+is\+Initialized}}
+\end{DoxyCompactItemize}
+\doxysubsection*{基底クラス \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Eigen\+::\+Sparse\+Solver\+Base$<$ Derived $>$}} に属する継承限定公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_ac52101f69d048d5c4b036eadf1f13673_ac52101f69d048d5c4b036eadf1f13673}{m\+\_\+is\+Initialized}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{詳解}
+\subsubsection*{template$<$typename Derived$>$\newline
+class Eigen\+::\+Iterative\+Solver\+Base$<$ Derived $>$}
+Base class for linear iterative solvers 
+
+\begin{DoxySeeAlso}{参照}
+class \doxylink{class_eigen_1_1_simplicial_cholesky}{Simplicial\+Cholesky}, \doxylink{class_eigen_1_1_diagonal_preconditioner}{Diagonal\+Preconditioner}, \doxylink{class_eigen_1_1_identity_preconditioner}{Identity\+Preconditioner} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{型定義メンバ詳解}
+\Hypertarget{class_eigen_1_1_iterative_solver_base_ae81615068fa9dba95b8329fb30b14afe_ae81615068fa9dba95b8329fb30b14afe}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!ActualMatrixType@{ActualMatrixType}}
+\index{ActualMatrixType@{ActualMatrixType}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{ActualMatrixType}{ActualMatrixType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_ae81615068fa9dba95b8329fb30b14afe_ae81615068fa9dba95b8329fb30b14afe} 
+template$<$typename Derived $>$ \\
+Matrix\+Wrapper\+::\+Actual\+Matrix\+Type \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::\+Actual\+Matrix\+Type\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a5b8654f08dd37b0622034ea0afb0d9dd_a5b8654f08dd37b0622034ea0afb0d9dd}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!Base@{Base}}
+\index{Base@{Base}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{Base}{Base}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a5b8654f08dd37b0622034ea0afb0d9dd_a5b8654f08dd37b0622034ea0afb0d9dd} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Sparse\+Solver\+Base}}$<$Derived$>$ \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::\+Base\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_ac3c4db3ee580cfb0b77e7cfa3834a6c0_ac3c4db3ee580cfb0b77e7cfa3834a6c0}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!MatrixType@{MatrixType}}
+\index{MatrixType@{MatrixType}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{MatrixType}{MatrixType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_ac3c4db3ee580cfb0b77e7cfa3834a6c0_ac3c4db3ee580cfb0b77e7cfa3834a6c0} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$Derived$>$\mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{\+::\+Matrix\+Type}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{\+::\+Matrix\+Type}}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a563a330953073333a64152842be50f0b_a563a330953073333a64152842be50f0b}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!MatrixWrapper@{MatrixWrapper}}
+\index{MatrixWrapper@{MatrixWrapper}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{MatrixWrapper}{MatrixWrapper}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a563a330953073333a64152842be50f0b_a563a330953073333a64152842be50f0b} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1internal_1_1generic__matrix__wrapper}{internal\+::generic\+\_\+matrix\+\_\+wrapper}}$<$\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ac3c4db3ee580cfb0b77e7cfa3834a6c0_ac3c4db3ee580cfb0b77e7cfa3834a6c0}{Matrix\+Type}}$>$ \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::\+Matrix\+Wrapper\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a7353e13772e925d2eca72dc6f843b75d_a7353e13772e925d2eca72dc6f843b75d}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!Preconditioner@{Preconditioner}}
+\index{Preconditioner@{Preconditioner}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{Preconditioner}{Preconditioner}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a7353e13772e925d2eca72dc6f843b75d_a7353e13772e925d2eca72dc6f843b75d} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$Derived$>$\+::\+Preconditioner \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::\+Preconditioner}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a25f79b6bae22e2bef46d865b7917bf7b_a25f79b6bae22e2bef46d865b7917bf7b}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!RealScalar@{RealScalar}}
+\index{RealScalar@{RealScalar}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{RealScalar}{RealScalar}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a25f79b6bae22e2bef46d865b7917bf7b_a25f79b6bae22e2bef46d865b7917bf7b} 
+template$<$typename Derived $>$ \\
+Matrix\+Type\+::\+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{\+::\+Real\+Scalar}}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a0858c6906bf3e84d6085e6d353158c2c_a0858c6906bf3e84d6085e6d353158c2c}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a0858c6906bf3e84d6085e6d353158c2c_a0858c6906bf3e84d6085e6d353158c2c} 
+template$<$typename Derived $>$ \\
+Matrix\+Type\+::\+Scalar \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{\+::\+Scalar}}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a6b5f4d476b5533681aa1c4f119358176_a6b5f4d476b5533681aa1c4f119358176}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!StorageIndex@{StorageIndex}}
+\index{StorageIndex@{StorageIndex}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{StorageIndex}{StorageIndex}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a6b5f4d476b5533681aa1c4f119358176_a6b5f4d476b5533681aa1c4f119358176} 
+template$<$typename Derived $>$ \\
+Matrix\+Type\+::\+Storage\+Index \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::\+Storage\+Index}
+
+
+
+\doxysubsection{列挙型メンバ詳解}
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a37127402d8d48f78adad461aa7211a51_a37127402d8d48f78adad461aa7211a51}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a37127402d8d48f78adad461aa7211a51_a37127402d8d48f78adad461aa7211a51} 
+template$<$typename Derived $>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ColsAtCompileTime@{ColsAtCompileTime}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!ColsAtCompileTime@{ColsAtCompileTime}}}\Hypertarget{class_eigen_1_1_iterative_solver_base_a37127402d8d48f78adad461aa7211a51_a37127402d8d48f78adad461aa7211a51aff47f4d1fea91fc54621081fdc9aa6d9}\label{class_eigen_1_1_iterative_solver_base_a37127402d8d48f78adad461aa7211a51_a37127402d8d48f78adad461aa7211a51} 
+Cols\+At\+Compile\+Time&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MaxColsAtCompileTime@{MaxColsAtCompileTime}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!MaxColsAtCompileTime@{MaxColsAtCompileTime}}}\Hypertarget{class_eigen_1_1_iterative_solver_base_a37127402d8d48f78adad461aa7211a51_a37127402d8d48f78adad461aa7211a51af7bb41931c78fc722c3051958c8a99e9}\label{class_eigen_1_1_iterative_solver_base_a37127402d8d48f78adad461aa7211a51_a37127402d8d48f78adad461aa7211a51} 
+Max\+Cols\+At\+Compile\+Time&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{構築子と解体子}
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a0922f2be45082690d7734aa6732fc493_a0922f2be45082690d7734aa6732fc493}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!IterativeSolverBase@{IterativeSolverBase}}
+\index{IterativeSolverBase@{IterativeSolverBase}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{IterativeSolverBase()}{IterativeSolverBase()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a0922f2be45082690d7734aa6732fc493_a0922f2be45082690d7734aa6732fc493} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::\+Iterative\+Solver\+Base (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor. \Hypertarget{class_eigen_1_1_iterative_solver_base_a3c68fe3cd929ea1ff8a0d4cbcd65ebad_a3c68fe3cd929ea1ff8a0d4cbcd65ebad}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!IterativeSolverBase@{IterativeSolverBase}}
+\index{IterativeSolverBase@{IterativeSolverBase}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{IterativeSolverBase()}{IterativeSolverBase()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a3c68fe3cd929ea1ff8a0d4cbcd65ebad_a3c68fe3cd929ea1ff8a0d4cbcd65ebad} 
+template$<$typename Derived $>$ \\
+template$<$typename Matrix\+Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::\+Iterative\+Solver\+Base (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Matrix\+Derived $>$ \&}]{A}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Initialize the solver with matrix {\itshape A} for further {\ttfamily Ax=b} solving.
+
+This constructor is a shortcut for the default constructor followed by a call to \doxylink{class_eigen_1_1_iterative_solver_base_a3b0d9691964793bd55937666426fefbf_a3b0d9691964793bd55937666426fefbf}{compute()}.
+
+\begin{DoxyWarning}{警告}
+this class stores a reference to the matrix A as well as some precomputed values that depend on it. Therefore, if {\itshape A} is changed this class becomes invalid. Call \doxylink{class_eigen_1_1_iterative_solver_base_a3b0d9691964793bd55937666426fefbf_a3b0d9691964793bd55937666426fefbf}{compute()} to update it with the new matrix A, or modify a copy of A. 
+\end{DoxyWarning}
+\Hypertarget{class_eigen_1_1_iterative_solver_base_aa09ca3c6944b3efb69a9e47f4fa69857_aa09ca3c6944b3efb69a9e47f4fa69857}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!````~IterativeSolverBase@{\texorpdfstring{$\sim$}{\string~}IterativeSolverBase}}
+\index{````~IterativeSolverBase@{\texorpdfstring{$\sim$}{\string~}IterativeSolverBase}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}IterativeSolverBase()}{\string~IterativeSolverBase()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_aa09ca3c6944b3efb69a9e47f4fa69857_aa09ca3c6944b3efb69a9e47f4fa69857} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::\texorpdfstring{$\sim$}{\string~}\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Iterative\+Solver\+Base}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a946a3c9598afbc6f93fbd4ac2742f6e2_a946a3c9598afbc6f93fbd4ac2742f6e2}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!\_solve\_impl@{\_solve\_impl}}
+\index{\_solve\_impl@{\_solve\_impl}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{\_solve\_impl()}{\_solve\_impl()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a946a3c9598afbc6f93fbd4ac2742f6e2_a946a3c9598afbc6f93fbd4ac2742f6e2} 
+template$<$typename Derived $>$ \\
+template$<$typename Rhs , typename Dest $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::\+\_\+solve\+\_\+impl (\begin{DoxyParamCaption}\item[{const Rhs \&}]{b}{, }\item[{Dest \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_ab8a10c52be0bf7437a163a742b89b5c6_ab8a10c52be0bf7437a163a742b89b5c6}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!\_solve\_with\_guess\_impl@{\_solve\_with\_guess\_impl}}
+\index{\_solve\_with\_guess\_impl@{\_solve\_with\_guess\_impl}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{\_solve\_with\_guess\_impl()}{\_solve\_with\_guess\_impl()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_ab8a10c52be0bf7437a163a742b89b5c6_ab8a10c52be0bf7437a163a742b89b5c6} 
+template$<$typename Derived $>$ \\
+template$<$typename Rhs , typename Dest\+Derived $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{internal\+::enable\+\_\+if}}$<$ Rhs\+::\+Cols\+At\+Compile\+Time!=1 \&\&Dest\+Derived\+::\+Cols\+At\+Compile\+Time!=1 $>$\+::type \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::\+\_\+solve\+\_\+with\+\_\+guess\+\_\+impl (\begin{DoxyParamCaption}\item[{const Rhs \&}]{b}{, }\item[{\mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Dest\+Derived $>$ \&}]{a\+Dest}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a3d877ee6f90593ed9fbd1eeba11aba6f_a3d877ee6f90593ed9fbd1eeba11aba6f}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!\_solve\_with\_guess\_impl@{\_solve\_with\_guess\_impl}}
+\index{\_solve\_with\_guess\_impl@{\_solve\_with\_guess\_impl}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{\_solve\_with\_guess\_impl()}{\_solve\_with\_guess\_impl()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a3d877ee6f90593ed9fbd1eeba11aba6f_a3d877ee6f90593ed9fbd1eeba11aba6f} 
+template$<$typename Derived $>$ \\
+template$<$typename Rhs , typename Dest\+Derived $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{internal\+::enable\+\_\+if}}$<$ Rhs\+::\+Cols\+At\+Compile\+Time==1\texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|}Dest\+Derived\+::\+Cols\+At\+Compile\+Time==1 $>$\+::type \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::\+\_\+solve\+\_\+with\+\_\+guess\+\_\+impl (\begin{DoxyParamCaption}\item[{const Rhs \&}]{b}{, }\item[{\mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Dest\+Derived $>$ \&}]{dest}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a9f2403e90106dcff20966cbc54ea38ff_a9f2403e90106dcff20966cbc54ea38ff}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!\_solve\_with\_guess\_impl@{\_solve\_with\_guess\_impl}}
+\index{\_solve\_with\_guess\_impl@{\_solve\_with\_guess\_impl}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{\_solve\_with\_guess\_impl()}{\_solve\_with\_guess\_impl()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a9f2403e90106dcff20966cbc54ea38ff_a9f2403e90106dcff20966cbc54ea38ff} 
+template$<$typename Derived $>$ \\
+template$<$typename Rhs , typename Dest\+Derived $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::\+\_\+solve\+\_\+with\+\_\+guess\+\_\+impl (\begin{DoxyParamCaption}\item[{const Rhs \&}]{b}{, }\item[{\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Dest\+Derived $>$ \&}]{a\+Dest}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a7490c6531b523f768c0fb3b44f251dad_a7490c6531b523f768c0fb3b44f251dad}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!analyzePattern@{analyzePattern}}
+\index{analyzePattern@{analyzePattern}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{analyzePattern()}{analyzePattern()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a7490c6531b523f768c0fb3b44f251dad_a7490c6531b523f768c0fb3b44f251dad} 
+template$<$typename Derived $>$ \\
+template$<$typename Matrix\+Derived $>$ \\
+Derived \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::analyze\+Pattern (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Matrix\+Derived $>$ \&}]{A}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Initializes the iterative solver for the sparsity pattern of the matrix {\itshape A} for further solving {\ttfamily Ax=b} problems.
+
+Currently, this function mostly calls analyze\+Pattern on the preconditioner. In the future we might, for instance, implement column reordering for faster matrix vector products. \Hypertarget{class_eigen_1_1_iterative_solver_base_a78efb7c93b11421a0e30edc235cdfcb5_a78efb7c93b11421a0e30edc235cdfcb5}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!cols@{cols}}
+\index{cols@{cols}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{cols()}{cols()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a78efb7c93b11421a0e30edc235cdfcb5_a78efb7c93b11421a0e30edc235cdfcb5} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::cols (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a3b0d9691964793bd55937666426fefbf_a3b0d9691964793bd55937666426fefbf}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!compute@{compute}}
+\index{compute@{compute}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a3b0d9691964793bd55937666426fefbf_a3b0d9691964793bd55937666426fefbf} 
+template$<$typename Derived $>$ \\
+template$<$typename Matrix\+Derived $>$ \\
+Derived \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::compute (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Matrix\+Derived $>$ \&}]{A}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Initializes the iterative solver with the matrix {\itshape A} for further solving {\ttfamily Ax=b} problems.
+
+Currently, this function mostly initializes/computes the preconditioner. In the future we might, for instance, implement column reordering for faster matrix vector products.
+
+\begin{DoxyWarning}{警告}
+this class stores a reference to the matrix A as well as some precomputed values that depend on it. Therefore, if {\itshape A} is changed this class becomes invalid. Call \doxylink{class_eigen_1_1_iterative_solver_base_a3b0d9691964793bd55937666426fefbf_a3b0d9691964793bd55937666426fefbf}{compute()} to update it with the new matrix A, or modify a copy of A. 
+\end{DoxyWarning}
+\Hypertarget{class_eigen_1_1_iterative_solver_base_ac8c149c121511c2f7e00a4b83d8b6791_ac8c149c121511c2f7e00a4b83d8b6791}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!derived@{derived}}
+\index{derived@{derived}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{derived()}{derived()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_ac8c149c121511c2f7e00a4b83d8b6791_ac8c149c121511c2f7e00a4b83d8b6791} 
+template$<$typename Derived $>$ \\
+Derived \& \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Eigen\+::\+Sparse\+Solver\+Base}}$<$ Derived $>$\+::derived (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_acd39421d74cb05d9413904c0d2596533_acd39421d74cb05d9413904c0d2596533}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!derived@{derived}}
+\index{derived@{derived}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{derived()}{derived()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_acd39421d74cb05d9413904c0d2596533_acd39421d74cb05d9413904c0d2596533} 
+template$<$typename Derived $>$ \\
+const Derived \& \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Eigen\+::\+Sparse\+Solver\+Base}}$<$ Derived $>$\+::derived (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a117c241af3fb1141ad0916a3cf3157ec_a117c241af3fb1141ad0916a3cf3157ec}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!error@{error}}
+\index{error@{error}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{error()}{error()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a117c241af3fb1141ad0916a3cf3157ec_a117c241af3fb1141ad0916a3cf3157ec} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a25f79b6bae22e2bef46d865b7917bf7b_a25f79b6bae22e2bef46d865b7917bf7b}{Real\+Scalar}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::error (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{戻り値}
+the tolerance error reached during the last solve. It is a close approximation of the true relative residual error \texorpdfstring{$\vert$}{|}\+Ax-\/b\texorpdfstring{$\vert$}{|}/\texorpdfstring{$\vert$}{|}b\texorpdfstring{$\vert$}{|}. 
+\end{DoxyReturn}
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a86f8f9865bedacfdf2322f52dde78e23_a86f8f9865bedacfdf2322f52dde78e23}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!factorize@{factorize}}
+\index{factorize@{factorize}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{factorize()}{factorize()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a86f8f9865bedacfdf2322f52dde78e23_a86f8f9865bedacfdf2322f52dde78e23} 
+template$<$typename Derived $>$ \\
+template$<$typename Matrix\+Derived $>$ \\
+Derived \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::factorize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Matrix\+Derived $>$ \&}]{A}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Initializes the iterative solver with the numerical values of the matrix {\itshape A} for further solving {\ttfamily Ax=b} problems.
+
+Currently, this function mostly calls factorize on the preconditioner.
+
+\begin{DoxyWarning}{警告}
+this class stores a reference to the matrix A as well as some precomputed values that depend on it. Therefore, if {\itshape A} is changed this class becomes invalid. Call \doxylink{class_eigen_1_1_iterative_solver_base_a3b0d9691964793bd55937666426fefbf_a3b0d9691964793bd55937666426fefbf}{compute()} to update it with the new matrix A, or modify a copy of A. 
+\end{DoxyWarning}
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a5cc46e289554db119b042bd610e6cac0_a5cc46e289554db119b042bd610e6cac0}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!grab@{grab}}
+\index{grab@{grab}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{grab()}{grab()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a5cc46e289554db119b042bd610e6cac0_a5cc46e289554db119b042bd610e6cac0} 
+template$<$typename Derived $>$ \\
+template$<$typename Input\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::grab (\begin{DoxyParamCaption}\item[{const Input\+Type \&}]{A}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a0d6b459433a316b4f12d48e5c80d61fe_a0d6b459433a316b4f12d48e5c80d61fe}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!info@{info}}
+\index{info@{info}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a0d6b459433a316b4f12d48e5c80d61fe_a0d6b459433a316b4f12d48e5c80d61fe} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::info (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{戻り値}
+Success if the iterations converged, and No\+Convergence otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a838f657cbd7a4e1e33941f386a4b4350_a838f657cbd7a4e1e33941f386a4b4350}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!init@{init}}
+\index{init@{init}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a838f657cbd7a4e1e33941f386a4b4350_a838f657cbd7a4e1e33941f386a4b4350} 
+template$<$typename Derived $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\mbox{\hyperlink{structinit}{\+::init}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_ae778dd098bd5e6655625b20b1e9f15da_ae778dd098bd5e6655625b20b1e9f15da}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!iterations@{iterations}}
+\index{iterations@{iterations}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{iterations()}{iterations()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_ae778dd098bd5e6655625b20b1e9f15da_ae778dd098bd5e6655625b20b1e9f15da} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::iterations (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{戻り値}
+the number of iterations performed during the last solve 
+\end{DoxyReturn}
+\Hypertarget{class_eigen_1_1_iterative_solver_base_af24f53813d56a98491957dabc1d2f7eb_af24f53813d56a98491957dabc1d2f7eb}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!matrix@{matrix}}
+\index{matrix@{matrix}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{matrix()}{matrix()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_af24f53813d56a98491957dabc1d2f7eb_af24f53813d56a98491957dabc1d2f7eb} 
+template$<$typename Derived $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ae81615068fa9dba95b8329fb30b14afe_ae81615068fa9dba95b8329fb30b14afe}{Actual\+Matrix\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::matrix (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a168a74c8dceb6233b220031fdd756ba0_a168a74c8dceb6233b220031fdd756ba0}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!maxIterations@{maxIterations}}
+\index{maxIterations@{maxIterations}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{maxIterations()}{maxIterations()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a168a74c8dceb6233b220031fdd756ba0_a168a74c8dceb6233b220031fdd756ba0} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::max\+Iterations (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{戻り値}
+the max number of iterations. It is either the value set by set\+Max\+Iterations or, by default, twice the number of columns of the matrix. 
+\end{DoxyReturn}
+\Hypertarget{class_eigen_1_1_iterative_solver_base_ab30e1bca8ebbd91d977306bb94e093b9_ab30e1bca8ebbd91d977306bb94e093b9}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!preconditioner@{preconditioner}}
+\index{preconditioner@{preconditioner}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{preconditioner()}{preconditioner()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_ab30e1bca8ebbd91d977306bb94e093b9_ab30e1bca8ebbd91d977306bb94e093b9} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a7353e13772e925d2eca72dc6f843b75d_a7353e13772e925d2eca72dc6f843b75d}{Preconditioner}} \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::preconditioner (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{戻り値}
+a read-\/write reference to the preconditioner for custom configuration. 
+\end{DoxyReturn}
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a640bfaf268c64f35ac3996beece46021_a640bfaf268c64f35ac3996beece46021}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!preconditioner@{preconditioner}}
+\index{preconditioner@{preconditioner}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{preconditioner()}{preconditioner()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a640bfaf268c64f35ac3996beece46021_a640bfaf268c64f35ac3996beece46021} 
+template$<$typename Derived $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a7353e13772e925d2eca72dc6f843b75d_a7353e13772e925d2eca72dc6f843b75d}{Preconditioner}} \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::preconditioner (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{戻り値}
+a read-\/only reference to the preconditioner. 
+\end{DoxyReturn}
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a3f172c95041d588715d7193f528f43a0_a3f172c95041d588715d7193f528f43a0}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!rows@{rows}}
+\index{rows@{rows}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{rows()}{rows()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a3f172c95041d588715d7193f528f43a0_a3f172c95041d588715d7193f528f43a0} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::rows (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a1bbaf86b7df6d54e78ced4da6ed2dac1_a1bbaf86b7df6d54e78ced4da6ed2dac1}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!setMaxIterations@{setMaxIterations}}
+\index{setMaxIterations@{setMaxIterations}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{setMaxIterations()}{setMaxIterations()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a1bbaf86b7df6d54e78ced4da6ed2dac1_a1bbaf86b7df6d54e78ced4da6ed2dac1} 
+template$<$typename Derived $>$ \\
+Derived \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::set\+Max\+Iterations (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{max\+Iters}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the max number of iterations. Default is twice the number of columns of the matrix. \Hypertarget{class_eigen_1_1_iterative_solver_base_ac43c50c69a5b621cb5a9991a1005750d_ac43c50c69a5b621cb5a9991a1005750d}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!setTolerance@{setTolerance}}
+\index{setTolerance@{setTolerance}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{setTolerance()}{setTolerance()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_ac43c50c69a5b621cb5a9991a1005750d_ac43c50c69a5b621cb5a9991a1005750d} 
+template$<$typename Derived $>$ \\
+Derived \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::set\+Tolerance (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a25f79b6bae22e2bef46d865b7917bf7b_a25f79b6bae22e2bef46d865b7917bf7b}{Real\+Scalar}} \&}]{tolerance}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the tolerance threshold used by the stopping criteria.
+
+This value is used as an upper bound to the relative residual error\+: \texorpdfstring{$\vert$}{|}\+Ax-\/b\texorpdfstring{$\vert$}{|}/\texorpdfstring{$\vert$}{|}b\texorpdfstring{$\vert$}{|}. The default value is the machine precision given by \doxylink{struct_eigen_1_1_generic_num_traits_a3a573c69713fbb143fb49af7db463cee_a3a573c69713fbb143fb49af7db463cee}{Num\+Traits$<$\+Scalar$>$\+::epsilon()} \Hypertarget{class_eigen_1_1_iterative_solver_base_ad8b889910ed260591652f22c640d6a20_ad8b889910ed260591652f22c640d6a20}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!solveWithGuess@{solveWithGuess}}
+\index{solveWithGuess@{solveWithGuess}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{solveWithGuess()}{solveWithGuess()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_ad8b889910ed260591652f22c640d6a20_ad8b889910ed260591652f22c640d6a20} 
+template$<$typename Derived $>$ \\
+template$<$typename Rhs , typename Guess $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_solve_with_guess}{Solve\+With\+Guess}}$<$ Derived, Rhs, Guess $>$ \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::solve\+With\+Guess (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&}]{b}{, }\item[{const Guess \&}]{x0}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{戻り値}
+the solution x of $ A x = b $ using the current decomposition of A and {\itshape x0} as an initial solution.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{参照}
+\doxylink{class_eigen_1_1_sparse_solver_base_a57c5b7f5e35274b55b5d57e8c88cc4a6_a57c5b7f5e35274b55b5d57e8c88cc4a6}{solve()}, \doxylink{class_eigen_1_1_iterative_solver_base_a3b0d9691964793bd55937666426fefbf_a3b0d9691964793bd55937666426fefbf}{compute()} 
+\end{DoxySeeAlso}
+\Hypertarget{class_eigen_1_1_iterative_solver_base_acb442c19b5858d6b9be813dd7d36cc62_acb442c19b5858d6b9be813dd7d36cc62}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!tolerance@{tolerance}}
+\index{tolerance@{tolerance}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{tolerance()}{tolerance()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_acb442c19b5858d6b9be813dd7d36cc62_acb442c19b5858d6b9be813dd7d36cc62} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a25f79b6bae22e2bef46d865b7917bf7b_a25f79b6bae22e2bef46d865b7917bf7b}{Real\+Scalar}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::tolerance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{戻り値}
+the tolerance threshold used by the stopping criteria. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{参照}
+\doxylink{class_eigen_1_1_iterative_solver_base_ac43c50c69a5b621cb5a9991a1005750d_ac43c50c69a5b621cb5a9991a1005750d}{set\+Tolerance()} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{メンバ詳解}
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a05ff023a1206fd498d72e38d3bc8c9ef_a05ff023a1206fd498d72e38d3bc8c9ef}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!m\_analysisIsOk@{m\_analysisIsOk}}
+\index{m\_analysisIsOk@{m\_analysisIsOk}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_analysisIsOk}{m\_analysisIsOk}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a05ff023a1206fd498d72e38d3bc8c9ef_a05ff023a1206fd498d72e38d3bc8c9ef} 
+template$<$typename Derived $>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::m\+\_\+analysis\+Is\+Ok\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a9140af00eb517cb5677dd6e1a60fab80_a9140af00eb517cb5677dd6e1a60fab80}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!m\_error@{m\_error}}
+\index{m\_error@{m\_error}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_error}{m\_error}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a9140af00eb517cb5677dd6e1a60fab80_a9140af00eb517cb5677dd6e1a60fab80} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a25f79b6bae22e2bef46d865b7917bf7b_a25f79b6bae22e2bef46d865b7917bf7b}{Real\+Scalar}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::m\+\_\+error\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a0e6d2376994c72cc75f571de2b1e76bc_a0e6d2376994c72cc75f571de2b1e76bc}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!m\_factorizationIsOk@{m\_factorizationIsOk}}
+\index{m\_factorizationIsOk@{m\_factorizationIsOk}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_factorizationIsOk}{m\_factorizationIsOk}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a0e6d2376994c72cc75f571de2b1e76bc_a0e6d2376994c72cc75f571de2b1e76bc} 
+template$<$typename Derived $>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::m\+\_\+factorization\+Is\+Ok\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a283a3c6136f76e77ac29184352c3e940_a283a3c6136f76e77ac29184352c3e940}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!m\_info@{m\_info}}
+\index{m\_info@{m\_info}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_info}{m\_info}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a283a3c6136f76e77ac29184352c3e940_a283a3c6136f76e77ac29184352c3e940} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::m\+\_\+info\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_ac52101f69d048d5c4b036eadf1f13673_ac52101f69d048d5c4b036eadf1f13673}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!m\_isInitialized@{m\_isInitialized}}
+\index{m\_isInitialized@{m\_isInitialized}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_isInitialized}{m\_isInitialized}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_ac52101f69d048d5c4b036eadf1f13673_ac52101f69d048d5c4b036eadf1f13673} 
+template$<$typename Derived $>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Eigen\+::\+Sparse\+Solver\+Base}}$<$ Derived $>$\+::m\+\_\+is\+Initialized\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_aa1e43c88482d7d73394ec3229f6e8a4a_aa1e43c88482d7d73394ec3229f6e8a4a}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!m\_iterations@{m\_iterations}}
+\index{m\_iterations@{m\_iterations}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_iterations}{m\_iterations}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_aa1e43c88482d7d73394ec3229f6e8a4a_aa1e43c88482d7d73394ec3229f6e8a4a} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::m\+\_\+iterations\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a6cecc757c4503912b48b86db453ec011_a6cecc757c4503912b48b86db453ec011}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!m\_matrixWrapper@{m\_matrixWrapper}}
+\index{m\_matrixWrapper@{m\_matrixWrapper}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_matrixWrapper}{m\_matrixWrapper}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a6cecc757c4503912b48b86db453ec011_a6cecc757c4503912b48b86db453ec011} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a563a330953073333a64152842be50f0b_a563a330953073333a64152842be50f0b}{Matrix\+Wrapper}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::m\+\_\+matrix\+Wrapper\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_ab7278684bb9385aa785a29f8cb29e6dc_ab7278684bb9385aa785a29f8cb29e6dc}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!m\_maxIterations@{m\_maxIterations}}
+\index{m\_maxIterations@{m\_maxIterations}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_maxIterations}{m\_maxIterations}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_ab7278684bb9385aa785a29f8cb29e6dc_ab7278684bb9385aa785a29f8cb29e6dc} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::m\+\_\+max\+Iterations\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_a965e3600bc2a59bc24af0bdf8e7f4dd4_a965e3600bc2a59bc24af0bdf8e7f4dd4}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!m\_preconditioner@{m\_preconditioner}}
+\index{m\_preconditioner@{m\_preconditioner}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_preconditioner}{m\_preconditioner}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_a965e3600bc2a59bc24af0bdf8e7f4dd4_a965e3600bc2a59bc24af0bdf8e7f4dd4} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a7353e13772e925d2eca72dc6f843b75d_a7353e13772e925d2eca72dc6f843b75d}{Preconditioner}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::m\+\_\+preconditioner\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_iterative_solver_base_acf34fdb3eb17a876810b9d6c5031e175_acf34fdb3eb17a876810b9d6c5031e175}\index{Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}!m\_tolerance@{m\_tolerance}}
+\index{m\_tolerance@{m\_tolerance}!Eigen::IterativeSolverBase$<$ Derived $>$@{Eigen::IterativeSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_tolerance}{m\_tolerance}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_iterative_solver_base_acf34fdb3eb17a876810b9d6c5031e175_acf34fdb3eb17a876810b9d6c5031e175} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a25f79b6bae22e2bef46d865b7917bf7b_a25f79b6bae22e2bef46d865b7917bf7b}{Real\+Scalar}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::m\+\_\+tolerance\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Iterative\+Linear\+Solvers/\mbox{\hyperlink{_iterative_solver_base_8h}{Iterative\+Solver\+Base.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,271 @@
+\doxysection{Eigen\+::internal\+::Colamd 名前空間}
+\hypertarget{namespace_eigen_1_1internal_1_1_colamd}{}\label{namespace_eigen_1_1internal_1_1_colamd}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}}
+\doxysubsubsection*{クラス}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_eigen_1_1internal_1_1_colamd_1_1_col_structure}{Col\+Structure}}
+\item 
+struct \mbox{\hyperlink{struct_eigen_1_1internal_1_1_colamd_1_1_row_structure}{Row\+Structure}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{列挙型}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_a705c7ebe92d186ab0eed81661dce15e3_a705c7ebe92d186ab0eed81661dce15e3}{Knobs\+Stats\+Index}} \{ \newline
+\mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_a705c7ebe92d186ab0eed81661dce15e3_a705c7ebe92d186ab0eed81661dce15e3afb59dae8a8d4f82937abd6995f74a270}{Dense\+Row}} = 0
+, \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_a705c7ebe92d186ab0eed81661dce15e3_a705c7ebe92d186ab0eed81661dce15e3ab11365ec21aa761700c6d7bd2ee540fe}{Dense\+Col}} = 1
+, \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_a705c7ebe92d186ab0eed81661dce15e3_a705c7ebe92d186ab0eed81661dce15e3ac699f74a386a7db9cf4b64cacd7ee45b}{Defrag\+Count}} = 2
+, \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_a705c7ebe92d186ab0eed81661dce15e3_a705c7ebe92d186ab0eed81661dce15e3a4d1267105e2b6be49ef132571bc213fe}{Status}} = 3
+, \newline
+\mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_a705c7ebe92d186ab0eed81661dce15e3_a705c7ebe92d186ab0eed81661dce15e3af0982ec838a974d4c39ac41718ca1930}{Info1}} = 4
+, \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_a705c7ebe92d186ab0eed81661dce15e3_a705c7ebe92d186ab0eed81661dce15e3a28659995f1d78ab3755f470a656464b9}{Info2}} = 5
+, \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_a705c7ebe92d186ab0eed81661dce15e3_a705c7ebe92d186ab0eed81661dce15e3ad1ccadb451c031391094c6c225ed8814}{Info3}} = 6
+ \}
+\item 
+enum \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9}{Status}} \{ \newline
+\mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9aa55ccc9996735ad7a32c8173e02dd4e4}{Ok}} = 0
+, \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9a370b9fa9b5c9a6faf536a8c10b8aa4f9}{Ok\+But\+Jumbled}} = 1
+, \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9a5fbdc6533d7840eac6754189a8f44a90}{Error\+ANot\+Present}} = -\/1
+, \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9ae78447b3eb7763e22e5737f8bfc634a4}{Error\+PNot\+Present}} = -\/2
+, \newline
+\mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9aae5ee66221b50c134a359d6972b3a21c}{Error\+Nrow\+Negative}} = -\/3
+, \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9a197f83d172d2efb71154edca3d8a39b0}{Error\+Ncol\+Negative}} = -\/4
+, \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9a55067726a7d8af2a8cc2eba1036400d4}{Error\+Nnz\+Negative}} = -\/5
+, \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9a64ac5fed7d7a4f00c070a5c9b67a4306}{Error\+P0\+Nonzero}} = -\/6
+, \newline
+\mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9ade49bcc26df12218ea4d4915125c182c}{Error\+AToo\+Small}} = -\/7
+, \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9a4b32a01ddd76393988e2d2d2b4e08f14}{Error\+Col\+Length\+Negative}} = -\/8
+, \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9a969f9d0b5c8f64a9227b3810cad3d703}{Error\+Row\+Index\+Out\+Of\+Bounds}} = -\/9
+, \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9a5e1a27b41c4f44c4bea39cc29dd8d41f}{Error\+Out\+Of\+Memory}} = -\/10
+, \newline
+\mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9a11ab49701de39f429e02a87de27c2945}{Error\+Internal\+Error}} = -\/999
+ \}
+\item 
+enum \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_af1e461f792d080875179238c5fd9e302_af1e461f792d080875179238c5fd9e302}{Row\+Column\+Status}} \{ \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_af1e461f792d080875179238c5fd9e302_af1e461f792d080875179238c5fd9e302aa55e95f85d54f0be2d1d3035a0ffef53}{Alive}} = 0
+, \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_af1e461f792d080875179238c5fd9e302_af1e461f792d080875179238c5fd9e302a204375e8eb1e4ccd6cf9b26a594ea68a}{Dead}} = -\/1
+ \}
+\item 
+enum \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_a2e433f8be388c01f0147abdedebd57c9_a2e433f8be388c01f0147abdedebd57c9}{Column\+Status}} \{ \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_a2e433f8be388c01f0147abdedebd57c9_a2e433f8be388c01f0147abdedebd57c9a780f3bcfca9d0f1a0a09ce2f38b78249}{Dead\+Principal}} = -\/1
+, \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_a2e433f8be388c01f0147abdedebd57c9_a2e433f8be388c01f0147abdedebd57c9a9ef5f628df7fc6d10844183c426321c7}{Dead\+Non\+Principal}} = -\/2
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Index\+Type $>$ }\\Index\+Type \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_ae51e872883870d95241705a3e90bebcc_ae51e872883870d95241705a3e90bebcc}{ones\+\_\+complement}} (const Index\+Type \mbox{\hyperlink{lorenz_8c_a880a49112fedae68e714341a9a082fb6_a880a49112fedae68e714341a9a082fb6}{r}})
+\item 
+{\footnotesize template$<$typename Index\+Type $>$ }\\Index\+Type \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_a33c223077fce335d6523c03d7432bbe0_a33c223077fce335d6523c03d7432bbe0}{colamd\+\_\+c}} (Index\+Type n\+\_\+col)
+\item 
+{\footnotesize template$<$typename Index\+Type $>$ }\\Index\+Type \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_a6196f51dca9ec229c2de3d156b09a195_a6196f51dca9ec229c2de3d156b09a195}{colamd\+\_\+r}} (Index\+Type n\+\_\+row)
+\item 
+{\footnotesize template$<$typename Index\+Type $>$ }\\Index\+Type \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_a5b61e3553f8b97b6a507f2647232e8bd_a5b61e3553f8b97b6a507f2647232e8bd}{recommended}} (Index\+Type nnz, Index\+Type n\+\_\+row, Index\+Type n\+\_\+col)
+\begin{DoxyCompactList}\small\item\em Returns the recommended value of Alen \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{変数}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_ab8ce862ae975e945b31e740a74868e65_ab8ce862ae975e945b31e740a74868e65}{NKnobs}} = 20
+\item 
+const \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_a788c9a591b635b6ca8e87f9307d3812c_a788c9a591b635b6ca8e87f9307d3812c}{NStats}} = 20
+\item 
+const \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_a7bef661b00d8dd4976ab517ab1297e6b_a7bef661b00d8dd4976ab517ab1297e6b}{Empty}} = -\/1
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{列挙型詳解}
+\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_a2e433f8be388c01f0147abdedebd57c9_a2e433f8be388c01f0147abdedebd57c9}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!ColumnStatus@{ColumnStatus}}
+\index{ColumnStatus@{ColumnStatus}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}
+\doxysubsubsection{\texorpdfstring{ColumnStatus}{ColumnStatus}}
+{\footnotesize\ttfamily \label{namespace_eigen_1_1internal_1_1_colamd_a2e433f8be388c01f0147abdedebd57c9_a2e433f8be388c01f0147abdedebd57c9} 
+enum \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_a2e433f8be388c01f0147abdedebd57c9_a2e433f8be388c01f0147abdedebd57c9}{Eigen\+::internal\+::\+Colamd\+::\+Column\+Status}}}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DeadPrincipal@{DeadPrincipal}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!DeadPrincipal@{DeadPrincipal}}}\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_a2e433f8be388c01f0147abdedebd57c9_a2e433f8be388c01f0147abdedebd57c9a780f3bcfca9d0f1a0a09ce2f38b78249}\label{namespace_eigen_1_1internal_1_1_colamd_a2e433f8be388c01f0147abdedebd57c9_a2e433f8be388c01f0147abdedebd57c9} 
+Dead\+Principal&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DeadNonPrincipal@{DeadNonPrincipal}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!DeadNonPrincipal@{DeadNonPrincipal}}}\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_a2e433f8be388c01f0147abdedebd57c9_a2e433f8be388c01f0147abdedebd57c9a9ef5f628df7fc6d10844183c426321c7}\label{namespace_eigen_1_1internal_1_1_colamd_a2e433f8be388c01f0147abdedebd57c9_a2e433f8be388c01f0147abdedebd57c9} 
+Dead\+Non\+Principal&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_a705c7ebe92d186ab0eed81661dce15e3_a705c7ebe92d186ab0eed81661dce15e3}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!KnobsStatsIndex@{KnobsStatsIndex}}
+\index{KnobsStatsIndex@{KnobsStatsIndex}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}
+\doxysubsubsection{\texorpdfstring{KnobsStatsIndex}{KnobsStatsIndex}}
+{\footnotesize\ttfamily \label{namespace_eigen_1_1internal_1_1_colamd_a705c7ebe92d186ab0eed81661dce15e3_a705c7ebe92d186ab0eed81661dce15e3} 
+enum \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_a705c7ebe92d186ab0eed81661dce15e3_a705c7ebe92d186ab0eed81661dce15e3}{Eigen\+::internal\+::\+Colamd\+::\+Knobs\+Stats\+Index}}}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DenseRow@{DenseRow}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!DenseRow@{DenseRow}}}\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_a705c7ebe92d186ab0eed81661dce15e3_a705c7ebe92d186ab0eed81661dce15e3afb59dae8a8d4f82937abd6995f74a270}\label{namespace_eigen_1_1internal_1_1_colamd_a705c7ebe92d186ab0eed81661dce15e3_a705c7ebe92d186ab0eed81661dce15e3} 
+Dense\+Row&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DenseCol@{DenseCol}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!DenseCol@{DenseCol}}}\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_a705c7ebe92d186ab0eed81661dce15e3_a705c7ebe92d186ab0eed81661dce15e3ab11365ec21aa761700c6d7bd2ee540fe}\label{namespace_eigen_1_1internal_1_1_colamd_a705c7ebe92d186ab0eed81661dce15e3_a705c7ebe92d186ab0eed81661dce15e3} 
+Dense\+Col&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DefragCount@{DefragCount}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!DefragCount@{DefragCount}}}\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_a705c7ebe92d186ab0eed81661dce15e3_a705c7ebe92d186ab0eed81661dce15e3ac699f74a386a7db9cf4b64cacd7ee45b}\label{namespace_eigen_1_1internal_1_1_colamd_a705c7ebe92d186ab0eed81661dce15e3_a705c7ebe92d186ab0eed81661dce15e3} 
+Defrag\+Count&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Status@{Status}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!Status@{Status}}}\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_a705c7ebe92d186ab0eed81661dce15e3_a705c7ebe92d186ab0eed81661dce15e3a4d1267105e2b6be49ef132571bc213fe}\label{namespace_eigen_1_1internal_1_1_colamd_a705c7ebe92d186ab0eed81661dce15e3_a705c7ebe92d186ab0eed81661dce15e3} 
+Status&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Info1@{Info1}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!Info1@{Info1}}}\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_a705c7ebe92d186ab0eed81661dce15e3_a705c7ebe92d186ab0eed81661dce15e3af0982ec838a974d4c39ac41718ca1930}\label{namespace_eigen_1_1internal_1_1_colamd_a705c7ebe92d186ab0eed81661dce15e3_a705c7ebe92d186ab0eed81661dce15e3} 
+Info1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Info2@{Info2}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!Info2@{Info2}}}\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_a705c7ebe92d186ab0eed81661dce15e3_a705c7ebe92d186ab0eed81661dce15e3a28659995f1d78ab3755f470a656464b9}\label{namespace_eigen_1_1internal_1_1_colamd_a705c7ebe92d186ab0eed81661dce15e3_a705c7ebe92d186ab0eed81661dce15e3} 
+Info2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Info3@{Info3}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!Info3@{Info3}}}\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_a705c7ebe92d186ab0eed81661dce15e3_a705c7ebe92d186ab0eed81661dce15e3ad1ccadb451c031391094c6c225ed8814}\label{namespace_eigen_1_1internal_1_1_colamd_a705c7ebe92d186ab0eed81661dce15e3_a705c7ebe92d186ab0eed81661dce15e3} 
+Info3&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_af1e461f792d080875179238c5fd9e302_af1e461f792d080875179238c5fd9e302}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!RowColumnStatus@{RowColumnStatus}}
+\index{RowColumnStatus@{RowColumnStatus}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}
+\doxysubsubsection{\texorpdfstring{RowColumnStatus}{RowColumnStatus}}
+{\footnotesize\ttfamily \label{namespace_eigen_1_1internal_1_1_colamd_af1e461f792d080875179238c5fd9e302_af1e461f792d080875179238c5fd9e302} 
+enum \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_af1e461f792d080875179238c5fd9e302_af1e461f792d080875179238c5fd9e302}{Eigen\+::internal\+::\+Colamd\+::\+Row\+Column\+Status}}}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Alive@{Alive}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!Alive@{Alive}}}\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_af1e461f792d080875179238c5fd9e302_af1e461f792d080875179238c5fd9e302aa55e95f85d54f0be2d1d3035a0ffef53}\label{namespace_eigen_1_1internal_1_1_colamd_af1e461f792d080875179238c5fd9e302_af1e461f792d080875179238c5fd9e302} 
+Alive&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Dead@{Dead}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!Dead@{Dead}}}\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_af1e461f792d080875179238c5fd9e302_af1e461f792d080875179238c5fd9e302a204375e8eb1e4ccd6cf9b26a594ea68a}\label{namespace_eigen_1_1internal_1_1_colamd_af1e461f792d080875179238c5fd9e302_af1e461f792d080875179238c5fd9e302} 
+Dead&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!Status@{Status}}
+\index{Status@{Status}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}
+\doxysubsubsection{\texorpdfstring{Status}{Status}}
+{\footnotesize\ttfamily \label{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9} 
+enum \mbox{\hyperlink{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9}{Eigen\+::internal\+::\+Colamd\+::\+Status}}}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Ok@{Ok}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!Ok@{Ok}}}\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9aa55ccc9996735ad7a32c8173e02dd4e4}\label{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9} 
+Ok&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OkButJumbled@{OkButJumbled}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!OkButJumbled@{OkButJumbled}}}\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9a370b9fa9b5c9a6faf536a8c10b8aa4f9}\label{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9} 
+Ok\+But\+Jumbled&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ErrorANotPresent@{ErrorANotPresent}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!ErrorANotPresent@{ErrorANotPresent}}}\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9a5fbdc6533d7840eac6754189a8f44a90}\label{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9} 
+Error\+ANot\+Present&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ErrorPNotPresent@{ErrorPNotPresent}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!ErrorPNotPresent@{ErrorPNotPresent}}}\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9ae78447b3eb7763e22e5737f8bfc634a4}\label{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9} 
+Error\+PNot\+Present&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ErrorNrowNegative@{ErrorNrowNegative}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!ErrorNrowNegative@{ErrorNrowNegative}}}\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9aae5ee66221b50c134a359d6972b3a21c}\label{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9} 
+Error\+Nrow\+Negative&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ErrorNcolNegative@{ErrorNcolNegative}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!ErrorNcolNegative@{ErrorNcolNegative}}}\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9a197f83d172d2efb71154edca3d8a39b0}\label{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9} 
+Error\+Ncol\+Negative&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ErrorNnzNegative@{ErrorNnzNegative}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!ErrorNnzNegative@{ErrorNnzNegative}}}\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9a55067726a7d8af2a8cc2eba1036400d4}\label{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9} 
+Error\+Nnz\+Negative&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ErrorP0Nonzero@{ErrorP0Nonzero}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!ErrorP0Nonzero@{ErrorP0Nonzero}}}\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9a64ac5fed7d7a4f00c070a5c9b67a4306}\label{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9} 
+Error\+P0\+Nonzero&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ErrorATooSmall@{ErrorATooSmall}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!ErrorATooSmall@{ErrorATooSmall}}}\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9ade49bcc26df12218ea4d4915125c182c}\label{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9} 
+Error\+AToo\+Small&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ErrorColLengthNegative@{ErrorColLengthNegative}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!ErrorColLengthNegative@{ErrorColLengthNegative}}}\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9a4b32a01ddd76393988e2d2d2b4e08f14}\label{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9} 
+Error\+Col\+Length\+Negative&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ErrorRowIndexOutOfBounds@{ErrorRowIndexOutOfBounds}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!ErrorRowIndexOutOfBounds@{ErrorRowIndexOutOfBounds}}}\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9a969f9d0b5c8f64a9227b3810cad3d703}\label{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9} 
+Error\+Row\+Index\+Out\+Of\+Bounds&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ErrorOutOfMemory@{ErrorOutOfMemory}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!ErrorOutOfMemory@{ErrorOutOfMemory}}}\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9a5e1a27b41c4f44c4bea39cc29dd8d41f}\label{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9} 
+Error\+Out\+Of\+Memory&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ErrorInternalError@{ErrorInternalError}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!ErrorInternalError@{ErrorInternalError}}}\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9a11ab49701de39f429e02a87de27c2945}\label{namespace_eigen_1_1internal_1_1_colamd_ac9cb85f1354daadc2173a20a28d9a2d9_ac9cb85f1354daadc2173a20a28d9a2d9} 
+Error\+Internal\+Error&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_a33c223077fce335d6523c03d7432bbe0_a33c223077fce335d6523c03d7432bbe0}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!colamd\_c@{colamd\_c}}
+\index{colamd\_c@{colamd\_c}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}
+\doxysubsubsection{\texorpdfstring{colamd\_c()}{colamd\_c()}}
+{\footnotesize\ttfamily \label{namespace_eigen_1_1internal_1_1_colamd_a33c223077fce335d6523c03d7432bbe0_a33c223077fce335d6523c03d7432bbe0} 
+template$<$typename Index\+Type $>$ \\
+Index\+Type Eigen\+::internal\+::\+Colamd\+::colamd\+\_\+c (\begin{DoxyParamCaption}\item[{Index\+Type}]{n\+\_\+col}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_a6196f51dca9ec229c2de3d156b09a195_a6196f51dca9ec229c2de3d156b09a195}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!colamd\_r@{colamd\_r}}
+\index{colamd\_r@{colamd\_r}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}
+\doxysubsubsection{\texorpdfstring{colamd\_r()}{colamd\_r()}}
+{\footnotesize\ttfamily \label{namespace_eigen_1_1internal_1_1_colamd_a6196f51dca9ec229c2de3d156b09a195_a6196f51dca9ec229c2de3d156b09a195} 
+template$<$typename Index\+Type $>$ \\
+Index\+Type Eigen\+::internal\+::\+Colamd\+::colamd\+\_\+r (\begin{DoxyParamCaption}\item[{Index\+Type}]{n\+\_\+row}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_ae51e872883870d95241705a3e90bebcc_ae51e872883870d95241705a3e90bebcc}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!ones\_complement@{ones\_complement}}
+\index{ones\_complement@{ones\_complement}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}
+\doxysubsubsection{\texorpdfstring{ones\_complement()}{ones\_complement()}}
+{\footnotesize\ttfamily \label{namespace_eigen_1_1internal_1_1_colamd_ae51e872883870d95241705a3e90bebcc_ae51e872883870d95241705a3e90bebcc} 
+template$<$typename Index\+Type $>$ \\
+Index\+Type Eigen\+::internal\+::\+Colamd\+::ones\+\_\+complement (\begin{DoxyParamCaption}\item[{const Index\+Type}]{r}{}\end{DoxyParamCaption})}
+
+\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_a5b61e3553f8b97b6a507f2647232e8bd_a5b61e3553f8b97b6a507f2647232e8bd}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!recommended@{recommended}}
+\index{recommended@{recommended}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}
+\doxysubsubsection{\texorpdfstring{recommended()}{recommended()}}
+{\footnotesize\ttfamily \label{namespace_eigen_1_1internal_1_1_colamd_a5b61e3553f8b97b6a507f2647232e8bd_a5b61e3553f8b97b6a507f2647232e8bd} 
+template$<$typename Index\+Type $>$ \\
+Index\+Type Eigen\+::internal\+::\+Colamd\+::recommended (\begin{DoxyParamCaption}\item[{Index\+Type}]{nnz}{, }\item[{Index\+Type}]{n\+\_\+row}{, }\item[{Index\+Type}]{n\+\_\+col}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the recommended value of Alen 
+
+Returns recommended value of Alen for use by colamd. Returns -\/1 if any input argument is negative. The use of this routine or macro is optional. Note that the macro uses its arguments more than once, so be careful for side effects, if you pass expressions as arguments to COLAMD\+\_\+\+RECOMMENDED.
+
+
+\begin{DoxyParams}{引数}
+{\em nnz} & nonzeros in A \\
+\hline
+{\em n\+\_\+row} & number of rows in A \\
+\hline
+{\em n\+\_\+col} & number of columns in A \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+recommended value of Alen for use by colamd 
+\end{DoxyReturn}
+
+
+\doxysubsection{変数詳解}
+\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_a7bef661b00d8dd4976ab517ab1297e6b_a7bef661b00d8dd4976ab517ab1297e6b}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!Empty@{Empty}}
+\index{Empty@{Empty}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}
+\doxysubsubsection{\texorpdfstring{Empty}{Empty}}
+{\footnotesize\ttfamily \label{namespace_eigen_1_1internal_1_1_colamd_a7bef661b00d8dd4976ab517ab1297e6b_a7bef661b00d8dd4976ab517ab1297e6b} 
+const \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Eigen\+::internal\+::\+Colamd\+::\+Empty = -\/1}
+
+\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_ab8ce862ae975e945b31e740a74868e65_ab8ce862ae975e945b31e740a74868e65}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!NKnobs@{NKnobs}}
+\index{NKnobs@{NKnobs}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}
+\doxysubsubsection{\texorpdfstring{NKnobs}{NKnobs}}
+{\footnotesize\ttfamily \label{namespace_eigen_1_1internal_1_1_colamd_ab8ce862ae975e945b31e740a74868e65_ab8ce862ae975e945b31e740a74868e65} 
+const \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Eigen\+::internal\+::\+Colamd\+::\+NKnobs = 20}
+
+\Hypertarget{namespace_eigen_1_1internal_1_1_colamd_a788c9a591b635b6ca8e87f9307d3812c_a788c9a591b635b6ca8e87f9307d3812c}\index{Eigen::internal::Colamd@{Eigen::internal::Colamd}!NStats@{NStats}}
+\index{NStats@{NStats}!Eigen::internal::Colamd@{Eigen::internal::Colamd}}
+\doxysubsubsection{\texorpdfstring{NStats}{NStats}}
+{\footnotesize\ttfamily \label{namespace_eigen_1_1internal_1_1_colamd_a788c9a591b635b6ca8e87f9307d3812c_a788c9a591b635b6ca8e87f9307d3812c} 
+const \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Eigen\+::internal\+::\+Colamd\+::\+NStats = 20}
+

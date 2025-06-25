@@ -1,0 +1,103 @@
+\doxysection{Band\+Triangular\+Solver.\+h}
+\hypertarget{_band_triangular_solver_8h_source}{}\label{_band_triangular_solver_8h_source}\index{eigen-\/3.4.0/eigen-\/3.4.0/blas/BandTriangularSolver.h@{eigen-\/3.4.0/eigen-\/3.4.0/blas/BandTriangularSolver.h}}
+\mbox{\hyperlink{_band_triangular_solver_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ Eigen,\ a\ lightweight\ C++\ template\ library}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ for\ linear\ algebra.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (C)\ 2011\ Gael\ Guennebaud\ <gael.guennebaud@inria.fr>}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ This\ Source\ Code\ Form\ is\ subject\ to\ the\ terms\ of\ the\ Mozilla}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Public\ License\ v.\ 2.0.\ If\ a\ copy\ of\ the\ MPL\ was\ not\ distributed}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ with\ this\ file,\ You\ can\ obtain\ one\ at\ http://mozilla.org/MPL/2.0/.}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_BAND\_TRIANGULARSOLVER\_H}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ EIGEN\_BAND\_TRIANGULARSOLVER\_H}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceinternal}{internal}}\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \textcolor{comment}{/*\ \(\backslash\)internal}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ *\ Solve\ Ax=b\ with\ A\ a\ band\ triangular\ matrix}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ \ *\ TODO:\ extend\ it\ to\ matrices\ for\ x\ abd\ b\ */}}
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{int}\ Mode,\ \textcolor{keyword}{typename}\ LhsScalar,\ \textcolor{keywordtype}{bool}\ ConjLhs,\ \textcolor{keyword}{typename}\ RhsScalar,\ \textcolor{keywordtype}{int}\ StorageOrder>}
+\DoxyCodeLine{00019\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinternal_1_1band__solve__triangular__selector}{band\_solve\_triangular\_selector}};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{int}\ Mode,\ \textcolor{keyword}{typename}\ LhsScalar,\ \textcolor{keywordtype}{bool}\ ConjLhs,\ \textcolor{keyword}{typename}\ RhsScalar>}
+\DoxyCodeLine{00023\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinternal_1_1band__solve__triangular__selector}{band\_solve\_triangular\_selector}}<Index,Mode,LhsScalar,ConjLhs,RhsScalar,RowMajor>}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \ \ \textcolor{keyword}{typedef}\ Map<const\ Matrix<LhsScalar,Dynamic,Dynamic,RowMajor>,\ 0,\ OuterStride<>\ >\ \mbox{\hyperlink{structinternal_1_1band__solve__triangular__selector_3_01_index_00_01_mode_00_01_lhs_scalar_00_0193d039d924d700ecb916fd425a10f1bb_ac8e9791ceedff65ef7314090a22c1c7d_ac8e9791ceedff65ef7314090a22c1c7d}{LhsMap}};}
+\DoxyCodeLine{00026\ \ \ \textcolor{keyword}{typedef}\ Map<Matrix<RhsScalar,Dynamic,1>\ >\ \mbox{\hyperlink{structinternal_1_1band__solve__triangular__selector_3_01_index_00_01_mode_00_01_lhs_scalar_00_0193d039d924d700ecb916fd425a10f1bb_a99d95523d8b48b9c3f1f0018934bbe7d_a99d95523d8b48b9c3f1f0018934bbe7d}{RhsMap}};}
+\DoxyCodeLine{00027\ \ \ \textcolor{keyword}{enum}\ \{\ IsLower\ =\ (Mode\&Lower)\ ?\ 1\ :\ 0\ \};}
+\DoxyCodeLine{00028\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structinternal_1_1band__solve__triangular__selector_3_01_index_00_01_mode_00_01_lhs_scalar_00_0193d039d924d700ecb916fd425a10f1bb_a501577e1c9c7215362460208701fb12a_a501577e1c9c7215362460208701fb12a}{run}}(Index\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},\ Index\ k,\ \textcolor{keyword}{const}\ LhsScalar*\ \_lhs,\ Index\ lhsStride,\ RhsScalar*\ \_other)}
+\DoxyCodeLine{00029\ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structinternal_1_1band__solve__triangular__selector_3_01_index_00_01_mode_00_01_lhs_scalar_00_0193d039d924d700ecb916fd425a10f1bb_ac8e9791ceedff65ef7314090a22c1c7d_ac8e9791ceedff65ef7314090a22c1c7d}{LhsMap}}\ lhs(\_lhs,\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},k+1,OuterStride<>(lhsStride));}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{structinternal_1_1band__solve__triangular__selector_3_01_index_00_01_mode_00_01_lhs_scalar_00_0193d039d924d700ecb916fd425a10f1bb_a99d95523d8b48b9c3f1f0018934bbe7d_a99d95523d8b48b9c3f1f0018934bbe7d}{RhsMap}}\ other(\_other,\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},1);}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{typename}\ internal::conditional<}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ConjLhs,}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ CwiseUnaryOp<typename\ internal::scalar\_conjugate\_op<LhsScalar>,\mbox{\hyperlink{structinternal_1_1band__solve__triangular__selector_3_01_index_00_01_mode_00_01_lhs_scalar_00_0193d039d924d700ecb916fd425a10f1bb_ac8e9791ceedff65ef7314090a22c1c7d_ac8e9791ceedff65ef7314090a22c1c7d}{LhsMap}}>,}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structinternal_1_1band__solve__triangular__selector_3_01_index_00_01_mode_00_01_lhs_scalar_00_0193d039d924d700ecb916fd425a10f1bb_ac8e9791ceedff65ef7314090a22c1c7d_ac8e9791ceedff65ef7314090a22c1c7d}{LhsMap}}\&>}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ::type\ cjLhs(lhs);}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_matrix_base__col_8cpp_aa168d9544aa6d49fce0cbfc0bec849b0_aa168d9544aa6d49fce0cbfc0bec849b0}{col}}=0\ ;\ \mbox{\hyperlink{_matrix_base__col_8cpp_aa168d9544aa6d49fce0cbfc0bec849b0_aa168d9544aa6d49fce0cbfc0bec849b0}{col}}<other.cols()\ ;\ ++\mbox{\hyperlink{_matrix_base__col_8cpp_aa168d9544aa6d49fce0cbfc0bec849b0_aa168d9544aa6d49fce0cbfc0bec849b0}{col}})}
+\DoxyCodeLine{00039\ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ ii=0;\ ii<\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}};\ ++ii)}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ IsLower\ ?\ ii\ :\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}-\/ii-\/1;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ actual\_k\ =\ (std::min)(k,ii);}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ actual\_start\ =\ IsLower\ ?\ k-\/actual\_k\ :\ 1;}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(actual\_k>0)}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ other.coeffRef(\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}},\mbox{\hyperlink{_matrix_base__col_8cpp_aa168d9544aa6d49fce0cbfc0bec849b0_aa168d9544aa6d49fce0cbfc0bec849b0}{col}})\ -\/=\ cjLhs.row(\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}).segment(actual\_start,actual\_k).transpose()}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .cwiseProduct(other.col(\mbox{\hyperlink{_matrix_base__col_8cpp_aa168d9544aa6d49fce0cbfc0bec849b0_aa168d9544aa6d49fce0cbfc0bec849b0}{col}}).segment(IsLower\ ?\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}-\/actual\_k\ :\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}+1,actual\_k)).sum();}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}((Mode\&UnitDiag)==0)}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ other.coeffRef(\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}},\mbox{\hyperlink{_matrix_base__col_8cpp_aa168d9544aa6d49fce0cbfc0bec849b0_aa168d9544aa6d49fce0cbfc0bec849b0}{col}})\ /=\ cjLhs(\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}},IsLower\ ?\ k\ :\ 0);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \}}
+\DoxyCodeLine{00055\ \ \ }
+\DoxyCodeLine{00056\ \};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{int}\ Mode,\ \textcolor{keyword}{typename}\ LhsScalar,\ \textcolor{keywordtype}{bool}\ ConjLhs,\ \textcolor{keyword}{typename}\ RhsScalar>}
+\DoxyCodeLine{00059\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinternal_1_1band__solve__triangular__selector}{band\_solve\_triangular\_selector}}<Index,Mode,LhsScalar,ConjLhs,RhsScalar,ColMajor>}
+\DoxyCodeLine{00060\ \{}
+\DoxyCodeLine{00061\ \ \ \textcolor{keyword}{typedef}\ Map<const\ Matrix<LhsScalar,Dynamic,Dynamic,ColMajor>,\ 0,\ OuterStride<>\ >\ \mbox{\hyperlink{structinternal_1_1band__solve__triangular__selector_3_01_index_00_01_mode_00_01_lhs_scalar_00_0137de00cf99d429d0f5d51514cfce90a6_a2b36dd55c2d0f3e3a1f914e97cdecf20_a2b36dd55c2d0f3e3a1f914e97cdecf20}{LhsMap}};}
+\DoxyCodeLine{00062\ \ \ \textcolor{keyword}{typedef}\ Map<Matrix<RhsScalar,Dynamic,1>\ >\ \mbox{\hyperlink{structinternal_1_1band__solve__triangular__selector_3_01_index_00_01_mode_00_01_lhs_scalar_00_0137de00cf99d429d0f5d51514cfce90a6_a9114ddcfedd156dfbe42f1976f0927d8_a9114ddcfedd156dfbe42f1976f0927d8}{RhsMap}};}
+\DoxyCodeLine{00063\ \ \ \textcolor{keyword}{enum}\ \{\ IsLower\ =\ (Mode\&Lower)\ ?\ 1\ :\ 0\ \};}
+\DoxyCodeLine{00064\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structinternal_1_1band__solve__triangular__selector_3_01_index_00_01_mode_00_01_lhs_scalar_00_0137de00cf99d429d0f5d51514cfce90a6_ae9359abe93b77be3fe9279c3d21919fe_ae9359abe93b77be3fe9279c3d21919fe}{run}}(Index\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},\ Index\ k,\ \textcolor{keyword}{const}\ LhsScalar*\ \_lhs,\ Index\ lhsStride,\ RhsScalar*\ \_other)}
+\DoxyCodeLine{00065\ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structinternal_1_1band__solve__triangular__selector_3_01_index_00_01_mode_00_01_lhs_scalar_00_0137de00cf99d429d0f5d51514cfce90a6_a2b36dd55c2d0f3e3a1f914e97cdecf20_a2b36dd55c2d0f3e3a1f914e97cdecf20}{LhsMap}}\ lhs(\_lhs,k+1,\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},OuterStride<>(lhsStride));}
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{structinternal_1_1band__solve__triangular__selector_3_01_index_00_01_mode_00_01_lhs_scalar_00_0137de00cf99d429d0f5d51514cfce90a6_a9114ddcfedd156dfbe42f1976f0927d8_a9114ddcfedd156dfbe42f1976f0927d8}{RhsMap}}\ other(\_other,\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},1);}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{typename}\ internal::conditional<}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ConjLhs,}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ CwiseUnaryOp<typename\ internal::scalar\_conjugate\_op<LhsScalar>,\mbox{\hyperlink{structinternal_1_1band__solve__triangular__selector_3_01_index_00_01_mode_00_01_lhs_scalar_00_0137de00cf99d429d0f5d51514cfce90a6_a2b36dd55c2d0f3e3a1f914e97cdecf20_a2b36dd55c2d0f3e3a1f914e97cdecf20}{LhsMap}}>,}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structinternal_1_1band__solve__triangular__selector_3_01_index_00_01_mode_00_01_lhs_scalar_00_0137de00cf99d429d0f5d51514cfce90a6_a2b36dd55c2d0f3e3a1f914e97cdecf20_a2b36dd55c2d0f3e3a1f914e97cdecf20}{LhsMap}}\&>}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ::type\ cjLhs(lhs);}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_matrix_base__col_8cpp_aa168d9544aa6d49fce0cbfc0bec849b0_aa168d9544aa6d49fce0cbfc0bec849b0}{col}}=0\ ;\ \mbox{\hyperlink{_matrix_base__col_8cpp_aa168d9544aa6d49fce0cbfc0bec849b0_aa168d9544aa6d49fce0cbfc0bec849b0}{col}}<other.cols()\ ;\ ++\mbox{\hyperlink{_matrix_base__col_8cpp_aa168d9544aa6d49fce0cbfc0bec849b0_aa168d9544aa6d49fce0cbfc0bec849b0}{col}})}
+\DoxyCodeLine{00075\ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ ii=0;\ ii<\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}};\ ++ii)}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ IsLower\ ?\ ii\ :\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}-\/ii-\/1;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ actual\_k\ =\ (std::min)(k,\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}-\/ii-\/1);}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ actual\_start\ =\ IsLower\ ?\ 1\ :\ k-\/actual\_k;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}((Mode\&UnitDiag)==0)}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ other.coeffRef(\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}},\mbox{\hyperlink{_matrix_base__col_8cpp_aa168d9544aa6d49fce0cbfc0bec849b0_aa168d9544aa6d49fce0cbfc0bec849b0}{col}})\ /=\ cjLhs(IsLower\ ?\ 0\ :\ k,\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}});}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(actual\_k>0)}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ other.col(\mbox{\hyperlink{_matrix_base__col_8cpp_aa168d9544aa6d49fce0cbfc0bec849b0_aa168d9544aa6d49fce0cbfc0bec849b0}{col}}).segment(IsLower\ ?\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}+1\ :\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}-\/actual\_k,\ actual\_k)}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/=\ other.coeff(\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}},\mbox{\hyperlink{_matrix_base__col_8cpp_aa168d9544aa6d49fce0cbfc0bec849b0_aa168d9544aa6d49fce0cbfc0bec849b0}{col}})\ *\ cjLhs.col(\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}).segment(actual\_start,actual\_k);}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \}}
+\DoxyCodeLine{00092\ \};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \}\ \textcolor{comment}{//\ end\ namespace\ internal}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ EIGEN\_BAND\_TRIANGULARSOLVER\_H}}
+
+\end{DoxyCode}

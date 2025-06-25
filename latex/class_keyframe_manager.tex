@@ -1,0 +1,116 @@
+\doxysection{Keyframe\+Manager クラス}
+\hypertarget{class_keyframe_manager}{}\label{class_keyframe_manager}\index{KeyframeManager@{KeyframeManager}}
+
+
+{\ttfamily \#include $<$keyframemanager.\+h$>$}
+
+
+
+Keyframe\+Manager 連携図\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{class_keyframe_manager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_keyframe_manager_ad17977130aa316c01e4e053aee4abd01_ad17977130aa316c01e4e053aee4abd01}{Keyframe\+Manager}} ()
+\item 
+void \mbox{\hyperlink{class_keyframe_manager_ac89c872ff493024847a2c151f98d34b6_ac89c872ff493024847a2c151f98d34b6}{add\+Keyframe}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} frame\+Number, const QVector3D \&eye\+Point, const QVector3D \&look\+At\+Point, const QVector3D \&up\+Vector, const QVector3D \&x\+Vector, const QVector3D \&y\+Vector, const QVector3D \&z\+Vector, float fov, double zoom, QGraphics\+Scene \texorpdfstring{$\ast$}{*}scene)
+\item 
+void \mbox{\hyperlink{class_keyframe_manager_a36e2330b01b241aa52291c0dd091e28f_a36e2330b01b241aa52291c0dd091e28f}{delete\+Keyframe}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} frame\+Number, QGraphics\+Scene \texorpdfstring{$\ast$}{*}scene)
+\item 
+\mbox{\hyperlink{struct_camera_keyframe}{Camera\+Keyframe}} \mbox{\hyperlink{class_keyframe_manager_a7e91864a9d25adb2d891a4c87b3e127c_a7e91864a9d25adb2d891a4c87b3e127c}{interpolate\+Keyframe}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} frame\+Number) const
+\item 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{class_keyframe_manager_a71ba5fcf4b2fd1fd3272ab324922b4ad_a71ba5fcf4b2fd1fd3272ab324922b4ad}{calculate\+Frame\+Number\+From\+Position}} (qreal positionX, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} start\+Pixel, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} pixels\+Per\+Frame) const
+\item 
+void \mbox{\hyperlink{class_keyframe_manager_a5bd70a92d82844b4a0a5986b17e63f31_a5bd70a92d82844b4a0a5986b17e63f31}{update\+Keyframe\+Lines}} (QGraphics\+Scene \texorpdfstring{$\ast$}{*}scene)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{非公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+QList$<$ \mbox{\hyperlink{struct_camera_keyframe}{Camera\+Keyframe}} $>$ \mbox{\hyperlink{class_keyframe_manager_a4c93871cc2c463f934dbb628cdcc6f81_a4c93871cc2c463f934dbb628cdcc6f81}{keyframes}}
+\item 
+QList$<$ QGraphics\+Polygon\+Item \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_keyframe_manager_abdb52d0180c3691b086273403ddf67da_abdb52d0180c3691b086273403ddf67da}{keyframe\+Items}}
+\item 
+QList$<$ QPair$<$ QGraphics\+Polygon\+Item \texorpdfstring{$\ast$}{*}, QGraphics\+Line\+Item \texorpdfstring{$\ast$}{*} $>$ $>$ \mbox{\hyperlink{class_keyframe_manager_a082f59cac6b05d1bb304cf57da788605_a082f59cac6b05d1bb304cf57da788605}{keyframe\+Lines}}
+\item 
+\mbox{\hyperlink{class_interpolator}{Interpolator}} \mbox{\hyperlink{class_keyframe_manager_aa101023047854abc4d02d0b1d4108a1f_aa101023047854abc4d02d0b1d4108a1f}{interpolator}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{構築子と解体子}
+\Hypertarget{class_keyframe_manager_ad17977130aa316c01e4e053aee4abd01_ad17977130aa316c01e4e053aee4abd01}\index{KeyframeManager@{KeyframeManager}!KeyframeManager@{KeyframeManager}}
+\index{KeyframeManager@{KeyframeManager}!KeyframeManager@{KeyframeManager}}
+\doxysubsubsection{\texorpdfstring{KeyframeManager()}{KeyframeManager()}}
+{\footnotesize\ttfamily \label{class_keyframe_manager_ad17977130aa316c01e4e053aee4abd01_ad17977130aa316c01e4e053aee4abd01} 
+Keyframe\+Manager\+::\+Keyframe\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{class_keyframe_manager_ac89c872ff493024847a2c151f98d34b6_ac89c872ff493024847a2c151f98d34b6}\index{KeyframeManager@{KeyframeManager}!addKeyframe@{addKeyframe}}
+\index{addKeyframe@{addKeyframe}!KeyframeManager@{KeyframeManager}}
+\doxysubsubsection{\texorpdfstring{addKeyframe()}{addKeyframe()}}
+{\footnotesize\ttfamily \label{class_keyframe_manager_ac89c872ff493024847a2c151f98d34b6_ac89c872ff493024847a2c151f98d34b6} 
+void Keyframe\+Manager\+::add\+Keyframe (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{frame\+Number}{, }\item[{const QVector3D \&}]{eye\+Point}{, }\item[{const QVector3D \&}]{look\+At\+Point}{, }\item[{const QVector3D \&}]{up\+Vector}{, }\item[{const QVector3D \&}]{x\+Vector}{, }\item[{const QVector3D \&}]{y\+Vector}{, }\item[{const QVector3D \&}]{z\+Vector}{, }\item[{float}]{fov}{, }\item[{double}]{zoom}{, }\item[{QGraphics\+Scene \texorpdfstring{$\ast$}{*}}]{scene}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_keyframe_manager_a71ba5fcf4b2fd1fd3272ab324922b4ad_a71ba5fcf4b2fd1fd3272ab324922b4ad}\index{KeyframeManager@{KeyframeManager}!calculateFrameNumberFromPosition@{calculateFrameNumberFromPosition}}
+\index{calculateFrameNumberFromPosition@{calculateFrameNumberFromPosition}!KeyframeManager@{KeyframeManager}}
+\doxysubsubsection{\texorpdfstring{calculateFrameNumberFromPosition()}{calculateFrameNumberFromPosition()}}
+{\footnotesize\ttfamily \label{class_keyframe_manager_a71ba5fcf4b2fd1fd3272ab324922b4ad_a71ba5fcf4b2fd1fd3272ab324922b4ad} 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Keyframe\+Manager\+::calculate\+Frame\+Number\+From\+Position (\begin{DoxyParamCaption}\item[{qreal}]{positionX}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{start\+Pixel}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{pixels\+Per\+Frame}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_keyframe_manager_a36e2330b01b241aa52291c0dd091e28f_a36e2330b01b241aa52291c0dd091e28f}\index{KeyframeManager@{KeyframeManager}!deleteKeyframe@{deleteKeyframe}}
+\index{deleteKeyframe@{deleteKeyframe}!KeyframeManager@{KeyframeManager}}
+\doxysubsubsection{\texorpdfstring{deleteKeyframe()}{deleteKeyframe()}}
+{\footnotesize\ttfamily \label{class_keyframe_manager_a36e2330b01b241aa52291c0dd091e28f_a36e2330b01b241aa52291c0dd091e28f} 
+void Keyframe\+Manager\+::delete\+Keyframe (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{frame\+Number}{, }\item[{QGraphics\+Scene \texorpdfstring{$\ast$}{*}}]{scene}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_keyframe_manager_a7e91864a9d25adb2d891a4c87b3e127c_a7e91864a9d25adb2d891a4c87b3e127c}\index{KeyframeManager@{KeyframeManager}!interpolateKeyframe@{interpolateKeyframe}}
+\index{interpolateKeyframe@{interpolateKeyframe}!KeyframeManager@{KeyframeManager}}
+\doxysubsubsection{\texorpdfstring{interpolateKeyframe()}{interpolateKeyframe()}}
+{\footnotesize\ttfamily \label{class_keyframe_manager_a7e91864a9d25adb2d891a4c87b3e127c_a7e91864a9d25adb2d891a4c87b3e127c} 
+\mbox{\hyperlink{struct_camera_keyframe}{Camera\+Keyframe}} Keyframe\+Manager\+::interpolate\+Keyframe (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{frame\+Number}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_keyframe_manager_a5bd70a92d82844b4a0a5986b17e63f31_a5bd70a92d82844b4a0a5986b17e63f31}\index{KeyframeManager@{KeyframeManager}!updateKeyframeLines@{updateKeyframeLines}}
+\index{updateKeyframeLines@{updateKeyframeLines}!KeyframeManager@{KeyframeManager}}
+\doxysubsubsection{\texorpdfstring{updateKeyframeLines()}{updateKeyframeLines()}}
+{\footnotesize\ttfamily \label{class_keyframe_manager_a5bd70a92d82844b4a0a5986b17e63f31_a5bd70a92d82844b4a0a5986b17e63f31} 
+void Keyframe\+Manager\+::update\+Keyframe\+Lines (\begin{DoxyParamCaption}\item[{QGraphics\+Scene \texorpdfstring{$\ast$}{*}}]{scene}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{メンバ詳解}
+\Hypertarget{class_keyframe_manager_aa101023047854abc4d02d0b1d4108a1f_aa101023047854abc4d02d0b1d4108a1f}\index{KeyframeManager@{KeyframeManager}!interpolator@{interpolator}}
+\index{interpolator@{interpolator}!KeyframeManager@{KeyframeManager}}
+\doxysubsubsection{\texorpdfstring{interpolator}{interpolator}}
+{\footnotesize\ttfamily \label{class_keyframe_manager_aa101023047854abc4d02d0b1d4108a1f_aa101023047854abc4d02d0b1d4108a1f} 
+\mbox{\hyperlink{class_interpolator}{Interpolator}} Keyframe\+Manager\+::interpolator\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_keyframe_manager_abdb52d0180c3691b086273403ddf67da_abdb52d0180c3691b086273403ddf67da}\index{KeyframeManager@{KeyframeManager}!keyframeItems@{keyframeItems}}
+\index{keyframeItems@{keyframeItems}!KeyframeManager@{KeyframeManager}}
+\doxysubsubsection{\texorpdfstring{keyframeItems}{keyframeItems}}
+{\footnotesize\ttfamily \label{class_keyframe_manager_abdb52d0180c3691b086273403ddf67da_abdb52d0180c3691b086273403ddf67da} 
+QList$<$QGraphics\+Polygon\+Item\texorpdfstring{$\ast$}{*}$>$ Keyframe\+Manager\+::keyframe\+Items\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_keyframe_manager_a082f59cac6b05d1bb304cf57da788605_a082f59cac6b05d1bb304cf57da788605}\index{KeyframeManager@{KeyframeManager}!keyframeLines@{keyframeLines}}
+\index{keyframeLines@{keyframeLines}!KeyframeManager@{KeyframeManager}}
+\doxysubsubsection{\texorpdfstring{keyframeLines}{keyframeLines}}
+{\footnotesize\ttfamily \label{class_keyframe_manager_a082f59cac6b05d1bb304cf57da788605_a082f59cac6b05d1bb304cf57da788605} 
+QList$<$QPair$<$QGraphics\+Polygon\+Item\texorpdfstring{$\ast$}{*}, QGraphics\+Line\+Item\texorpdfstring{$\ast$}{*}$>$ $>$ Keyframe\+Manager\+::keyframe\+Lines\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_keyframe_manager_a4c93871cc2c463f934dbb628cdcc6f81_a4c93871cc2c463f934dbb628cdcc6f81}\index{KeyframeManager@{KeyframeManager}!keyframes@{keyframes}}
+\index{keyframes@{keyframes}!KeyframeManager@{KeyframeManager}}
+\doxysubsubsection{\texorpdfstring{keyframes}{keyframes}}
+{\footnotesize\ttfamily \label{class_keyframe_manager_a4c93871cc2c463f934dbb628cdcc6f81_a4c93871cc2c463f934dbb628cdcc6f81} 
+QList$<$\mbox{\hyperlink{struct_camera_keyframe}{Camera\+Keyframe}}$>$ Keyframe\+Manager\+::keyframes\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+sources/animation/\mbox{\hyperlink{keyframemanager_8h}{keyframemanager.\+h}}\item 
+sources/animation/\mbox{\hyperlink{keyframemanager_8cpp}{keyframemanager.\+cpp}}\end{DoxyCompactItemize}

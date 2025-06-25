@@ -1,0 +1,556 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Qt_project: freeglut-2.8.1.tar/freeglut-2.8.1/freeglut-2.8.1/src/freeglut_internal.h ファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Qt_project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_85101678d453e8d550d72d50a2d6133f.html">freeglut-2.8.1.tar</a></li><li class="navelem"><a class="el" href="dir_cb733e7df0b5ef38d45aeaa7f12daa5d.html">freeglut-2.8.1</a></li><li class="navelem"><a class="el" href="dir_10334aea9d825674f88160173f701bca.html">freeglut-2.8.1</a></li><li class="navelem"><a class="el" href="dir_d27a4ce6eb478c27ad721e78473883dd.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">クラス</a> &#124;
+<a href="#define-members">マクロ定義</a> &#124;
+<a href="#typedef-members">型定義</a> &#124;
+<a href="#enum-members">列挙型</a> &#124;
+<a href="#func-members">関数</a> &#124;
+<a href="#var-members">変数</a>  </div>
+  <div class="headertitle"><div class="title">freeglut_internal.h ファイル</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;stdarg.h&gt;</code><br />
+<code>#include &lt;time.h&gt;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> freeglut_internal.h の依存先関係図:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="freeglut__internal_8h__incl.png" border="0" usemap="#afreeglut-2_88_81_8tar_2freeglut-2_88_81_2freeglut-2_88_81_2src_2freeglut__internal_8h" alt=""/></div>
+<map name="afreeglut-2_88_81_8tar_2freeglut-2_88_81_2freeglut-2_88_81_2src_2freeglut__internal_8h" id="afreeglut-2_88_81_8tar_2freeglut-2_88_81_2freeglut-2_88_81_2src_2freeglut__internal_8h">
+<area shape="rect" title=" " alt="" coords="160,5,343,64"/>
+<area shape="rect" title=" " alt="" coords="5,112,66,139"/>
+<area shape="poly" title=" " alt="" coords="182,67,81,108,79,103,180,62"/>
+<area shape="rect" title=" " alt="" coords="90,112,154,139"/>
+<area shape="poly" title=" " alt="" coords="211,67,155,105,152,101,208,62"/>
+<area shape="rect" title=" " alt="" coords="178,112,240,139"/>
+<area shape="poly" title=" " alt="" coords="240,65,224,99,219,97,235,63"/>
+<area shape="rect" title=" " alt="" coords="264,112,327,139"/>
+<area shape="poly" title=" " alt="" coords="268,63,285,97,280,99,263,66"/>
+<area shape="rect" title=" " alt="" coords="351,112,419,139"/>
+<area shape="poly" title=" " alt="" coords="296,62,355,101,352,106,293,67"/>
+<area shape="rect" title=" " alt="" coords="443,112,500,139"/>
+<area shape="poly" title=" " alt="" coords="324,62,429,104,427,109,322,67"/>
+</map>
+</div>
+</div><div class="textblock"><div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> 被依存関係図:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="freeglut__internal_8h__dep__incl.png" border="0" usemap="#afreeglut-2_88_81_8tar_2freeglut-2_88_81_2freeglut-2_88_81_2src_2freeglut__internal_8hdep" alt=""/></div>
+<map name="afreeglut-2_88_81_8tar_2freeglut-2_88_81_2freeglut-2_88_81_2src_2freeglut__internal_8hdep" id="afreeglut-2_88_81_8tar_2freeglut-2_88_81_2freeglut-2_88_81_2src_2freeglut__internal_8hdep">
+<area shape="rect" title=" " alt="" coords="2436,5,2619,64"/>
+<area shape="rect" href="freeglut__callbacks_8c.html" title=" " alt="" coords="5,120,202,179"/>
+<area shape="poly" title=" " alt="" coords="2421,38,1970,39,1331,47,997,56,685,70,416,89,305,101,213,115,182,122,180,117,212,109,304,96,415,84,684,65,997,51,1330,42,1970,33,2421,33"/>
+<area shape="rect" href="freeglut__cursor_8c.html" title=" " alt="" coords="226,120,403,179"/>
+<area shape="poly" title=" " alt="" coords="2421,38,2005,39,1425,48,1123,57,841,71,599,90,499,101,416,115,387,122,385,117,415,109,498,96,598,85,841,66,1123,52,1425,43,2005,34,2421,33"/>
+<area shape="rect" href="freeglut__display_8c.html" title=" " alt="" coords="428,120,609,179"/>
+<area shape="poly" title=" " alt="" coords="2421,39,2041,42,1521,52,1252,62,1000,75,784,92,621,115,592,122,591,117,620,109,784,87,1000,70,1252,56,1521,47,2041,36,2421,33"/>
+<area shape="rect" href="freeglut__ext_8c.html" title=" " alt="" coords="633,120,792,179"/>
+<area shape="poly" title=" " alt="" coords="2420,39,2074,42,1607,53,1367,62,1143,75,950,93,805,115,779,122,778,117,804,109,950,87,1142,70,1366,57,1607,47,2074,37,2420,33"/>
+<area shape="rect" href="freeglut__font_8c.html" title=" " alt="" coords="816,120,980,179"/>
+<area shape="poly" title=" " alt="" coords="2420,40,2108,45,1696,57,1485,67,1289,79,1121,95,993,115,966,122,965,117,992,109,1120,90,1288,74,1485,61,1695,52,2108,39,2420,34"/>
+<area shape="rect" href="freeglut__font__data_8c.html" title=" " alt="" coords="1004,120,1200,179"/>
+<area shape="poly" title=" " alt="" coords="2420,41,2149,50,1801,64,1460,86,1319,99,1212,115,1182,122,1180,117,1211,109,1318,94,1459,80,1801,59,2149,44,2420,36"/>
+<area shape="rect" href="freeglut__gamemode_8c.html" title=" " alt="" coords="1224,120,1429,179"/>
+<area shape="poly" title=" " alt="" coords="2421,38,2235,41,1990,51,1716,74,1577,92,1441,115,1410,122,1409,117,1440,109,1576,87,1716,69,1990,46,2234,35,2420,33"/>
+<area shape="rect" href="freeglut__geometry_8c.html" title=" " alt="" coords="1453,120,1647,179"/>
+<area shape="poly" title=" " alt="" coords="2420,40,2270,46,2080,58,1869,80,1763,96,1660,115,1630,122,1629,117,1659,109,1763,90,1869,75,2079,53,2270,40,2420,35"/>
+<area shape="rect" href="freeglut__glutfont__definitions_8c.html" title=" " alt="" coords="1672,112,1845,187"/>
+<area shape="poly" title=" " alt="" coords="2420,43,2304,51,2162,64,2009,85,1857,115,1846,118,1844,112,1856,109,2008,80,2161,59,2303,45,2420,38"/>
+<area shape="rect" href="freeglut__init_8c.html" title=" " alt="" coords="1868,120,2027,179"/>
+<area shape="poly" title=" " alt="" coords="2421,49,2241,73,2140,91,2040,115,2017,122,2015,117,2039,109,2139,86,2240,67,2420,43"/>
+<area shape="rect" href="freeglut__input__devices_8c.html" title=" " alt="" coords="2051,112,2209,187"/>
+<area shape="poly" title=" " alt="" coords="2421,61,2324,85,2222,115,2210,118,2209,113,2220,109,2322,80,2420,56"/>
+<area shape="rect" href="freeglut__joystick_8c.html" title=" " alt="" coords="2233,120,2419,179"/>
+<area shape="poly" title=" " alt="" coords="2464,74,2379,122,2376,117,2462,70"/>
+<area shape="rect" href="freeglut__main_8c.html" title=" " alt="" coords="2443,120,2612,179"/>
+<area shape="poly" title=" " alt="" coords="2530,79,2530,119,2525,119,2525,79"/>
+<area shape="rect" href="freeglut__menu_8c.html" title=" " alt="" coords="2637,120,2810,179"/>
+<area shape="poly" title=" " alt="" coords="2592,70,2675,117,2672,122,2589,74"/>
+<area shape="rect" href="freeglut__misc_8c.html" title=" " alt="" coords="2835,120,3004,179"/>
+<area shape="poly" title=" " alt="" coords="2635,58,2823,109,2846,117,2844,122,2821,115,2634,63"/>
+<area shape="rect" href="freeglut__overlay_8c.html" title=" " alt="" coords="3028,120,3211,179"/>
+<area shape="poly" title=" " alt="" coords="2635,44,2815,69,2917,87,3017,109,3043,117,3042,122,3016,115,2916,92,2814,74,2634,50"/>
+<area shape="rect" href="freeglut__spaceball_8c.html" title=" " alt="" coords="3235,120,3431,179"/>
+<area shape="poly" title=" " alt="" coords="2635,38,2756,46,2903,60,3063,81,3223,109,3252,117,3251,122,3222,115,3063,86,2903,65,2755,52,2634,44"/>
+<area shape="rect" href="freeglut__state_8c.html" title=" " alt="" coords="3456,120,3626,179"/>
+<area shape="poly" title=" " alt="" coords="2635,33,2794,36,2996,48,3221,71,3334,88,3444,109,3471,117,3470,122,3443,115,3333,93,3220,76,2996,53,2794,42,2635,38"/>
+<area shape="rect" href="freeglut__stroke__mono__roman_8c.html" title=" " alt="" coords="3650,112,3816,187"/>
+<area shape="poly" title=" " alt="" coords="2635,37,2866,46,3156,60,3436,82,3551,95,3639,109,3650,112,3648,117,3638,115,3550,100,3435,87,3155,66,2866,51,2635,42"/>
+<area shape="rect" href="freeglut__stroke__roman_8c.html" title=" " alt="" coords="3840,112,4007,187"/>
+<area shape="poly" title=" " alt="" coords="2635,35,2903,43,3247,57,3583,78,3723,93,3828,109,3841,112,3840,118,3827,115,3722,98,3583,84,3247,62,2902,48,2635,41"/>
+<area shape="rect" href="freeglut__structure_8c.html" title=" " alt="" coords="4031,120,4224,179"/>
+<area shape="poly" title=" " alt="" coords="2635,35,2938,42,3338,56,3732,78,3895,92,4019,109,4050,117,4049,122,4018,115,3894,97,3731,83,3337,61,2938,47,2634,40"/>
+<area shape="rect" href="freeglut__teapot_8c.html" title=" " alt="" coords="4248,120,4426,179"/>
+<area shape="poly" title=" " alt="" coords="2635,34,2978,38,3441,50,3679,60,3901,72,4092,89,4236,109,4265,117,4264,122,4235,115,4091,94,3901,78,3679,65,3441,55,2978,44,2635,39"/>
+<area shape="rect" href="freeglut__videoresize_8c.html" title=" " alt="" coords="4449,120,4656,179"/>
+<area shape="poly" title=" " alt="" coords="2635,34,3014,38,3536,50,3806,59,4058,72,4275,89,4439,109,4471,117,4470,122,4438,115,4274,94,4057,78,3805,65,3536,55,3014,43,2634,39"/>
+<area shape="rect" href="freeglut__window_8c.html" title=" " alt="" coords="4681,120,4865,179"/>
+<area shape="poly" title=" " alt="" coords="2635,33,3055,34,3644,43,3950,52,4237,66,4483,85,4585,96,4669,109,4700,117,4698,122,4668,115,4584,102,4483,90,4236,71,3950,58,3644,48,3055,39,2634,38"/>
+<area shape="rect" href="freeglut__xinput_8c.html" title=" " alt="" coords="4889,120,5065,179"/>
+<area shape="poly" title=" " alt="" coords="2634,35,3135,43,3834,59,4494,81,4735,94,4877,109,4907,117,4905,122,4876,115,4734,100,4493,86,3834,64,3135,48,2634,40"/>
+</map>
+</div>
+</div>
+<p><a href="freeglut__internal_8h_source.html">[ソースコード]</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+クラス</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtag_s_f_g___list.html">tagSFG_List</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtag_s_f_g___node.html">tagSFG_Node</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtag_s_f_g___x_y_use.html">tagSFG_XYUse</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtag_s_f_g___state.html">tagSFG_State</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtag_s_f_g___display.html">tagSFG_Display</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtag_s_f_g___timer.html">tagSFG_Timer</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtag_s_f_g___context.html">tagSFG_Context</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtag_s_f_g___window_state.html">tagSFG_WindowState</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtag_s_f_g___menu_context.html">tagSFG_MenuContext</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtag_s_f_g___menu.html">tagSFG_Menu</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtag_s_f_g___menu_entry.html">tagSFG_MenuEntry</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtag_s_f_g___window.html">tagSFG_Window</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtag_s_f_g___window_list.html">tagSFG_WindowList</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtag_s_f_g___structure.html">tagSFG_Structure</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtag_s_f_g___enumerator.html">tagSFG_Enumerator</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtag_s_f_g___font.html">tagSFG_Font</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtag_s_f_g___stroke_vertex.html">tagSFG_StrokeVertex</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtag_s_f_g___stroke_strip.html">tagSFG_StrokeStrip</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtag_s_f_g___stroke_char.html">tagSFG_StrokeChar</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtag_s_f_g___stroke_font.html">tagSFG_StrokeFont</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+マクロ定義</h2></td></tr>
+<tr class="memitem:a1a53b724b6de666faa8a9e0d06d1055f" id="r_a1a53b724b6de666faa8a9e0d06d1055f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a1a53b724b6de666faa8a9e0d06d1055f.html#a1a53b724b6de666faa8a9e0d06d1055f">VERSION_MAJOR</a>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:a1a53b724b6de666faa8a9e0d06d1055f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0cb52afb79b185b1bf82c7e235f682b" id="r_ae0cb52afb79b185b1bf82c7e235f682b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_ae0cb52afb79b185b1bf82c7e235f682b.html#ae0cb52afb79b185b1bf82c7e235f682b">VERSION_MINOR</a>&#160;&#160;&#160;8</td></tr>
+<tr class="separator:ae0cb52afb79b185b1bf82c7e235f682b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a901edadf17488bb6be1ac9a1e3cfea7a" id="r_a901edadf17488bb6be1ac9a1e3cfea7a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a901edadf17488bb6be1ac9a1e3cfea7a.html#a901edadf17488bb6be1ac9a1e3cfea7a">VERSION_PATCH</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a901edadf17488bb6be1ac9a1e3cfea7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abce411b795409b2a0b78e32c804fc678" id="r_abce411b795409b2a0b78e32c804fc678"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_abce411b795409b2a0b78e32c804fc678.html#abce411b795409b2a0b78e32c804fc678">TARGET_HOST_MS_WINDOWS</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:abce411b795409b2a0b78e32c804fc678"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee7b8e18b743686cdd440d4ee8a47341" id="r_aee7b8e18b743686cdd440d4ee8a47341"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_aee7b8e18b743686cdd440d4ee8a47341.html#aee7b8e18b743686cdd440d4ee8a47341">TARGET_HOST_POSIX_X11</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:aee7b8e18b743686cdd440d4ee8a47341"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c0adebfb0543f7f0f9d2466282b4c4b" id="r_a0c0adebfb0543f7f0f9d2466282b4c4b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a0c0adebfb0543f7f0f9d2466282b4c4b.html#a0c0adebfb0543f7f0f9d2466282b4c4b">TARGET_HOST_MAC_OSX</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:a0c0adebfb0543f7f0f9d2466282b4c4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3c8ca6d14e6e0fdf74c74317dde8c67" id="r_af3c8ca6d14e6e0fdf74c74317dde8c67"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_af3c8ca6d14e6e0fdf74c74317dde8c67.html#af3c8ca6d14e6e0fdf74c74317dde8c67">TARGET_HOST_SOLARIS</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:af3c8ca6d14e6e0fdf74c74317dde8c67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa043a37a250dbf46addc5d99e91c6f34" id="r_aa043a37a250dbf46addc5d99e91c6f34"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_aa043a37a250dbf46addc5d99e91c6f34.html#aa043a37a250dbf46addc5d99e91c6f34">FREEGLUT_MAX_MENUS</a>&#160;&#160;&#160;3</td></tr>
+<tr class="separator:aa043a37a250dbf46addc5d99e91c6f34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae71449b1cc6e6250b91f539153a7a0d3" id="r_ae71449b1cc6e6250b91f539153a7a0d3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_ae71449b1cc6e6250b91f539153a7a0d3.html#ae71449b1cc6e6250b91f539153a7a0d3">M_PI</a>&#160;&#160;&#160;3.14159265358979323846</td></tr>
+<tr class="separator:ae71449b1cc6e6250b91f539153a7a0d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8cecfc5c5c054d2875c03e77b7be15d" id="r_aa8cecfc5c5c054d2875c03e77b7be15d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_aa8cecfc5c5c054d2875c03e77b7be15d.html#aa8cecfc5c5c054d2875c03e77b7be15d">TRUE</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:aa8cecfc5c5c054d2875c03e77b7be15d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa93f0eb578d23995850d61f7d61c55c1" id="r_aa93f0eb578d23995850d61f7d61c55c1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_aa93f0eb578d23995850d61f7d61c55c1.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:aa93f0eb578d23995850d61f7d61c55c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fc7a8526ae72eeb2e75d974ebdb3a17" id="r_a9fc7a8526ae72eeb2e75d974ebdb3a17"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a9fc7a8526ae72eeb2e75d974ebdb3a17.html#a9fc7a8526ae72eeb2e75d974ebdb3a17">INVALID_MODIFIERS</a>&#160;&#160;&#160;0xffffffff</td></tr>
+<tr class="separator:a9fc7a8526ae72eeb2e75d974ebdb3a17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4362d9bf5ab3e795c8031815353c17da" id="r_a4362d9bf5ab3e795c8031815353c17da"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a4362d9bf5ab3e795c8031815353c17da.html#a4362d9bf5ab3e795c8031815353c17da">SET_WCB</a>(window,  cbname,  <a class="el" href="structfunc.html">func</a>)</td></tr>
+<tr class="separator:a4362d9bf5ab3e795c8031815353c17da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf9fc00b371f6babd58341a84ff743e2" id="r_acf9fc00b371f6babd58341a84ff743e2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_acf9fc00b371f6babd58341a84ff743e2.html#acf9fc00b371f6babd58341a84ff743e2">FETCH_WCB</a>(window,  cbname)</td></tr>
+<tr class="separator:acf9fc00b371f6babd58341a84ff743e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b50119350ab0699028ef28a5e368b02" id="r_a9b50119350ab0699028ef28a5e368b02"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a9b50119350ab0699028ef28a5e368b02.html#a9b50119350ab0699028ef28a5e368b02">INVOKE_WCB</a>(window,  cbname,  arg_list)</td></tr>
+<tr class="separator:a9b50119350ab0699028ef28a5e368b02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4fd4b0c5653f18ecfb963ab8678c12a" id="r_af4fd4b0c5653f18ecfb963ab8678c12a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_af4fd4b0c5653f18ecfb963ab8678c12a.html#af4fd4b0c5653f18ecfb963ab8678c12a">FREEGLUT_EXIT_IF_NOT_INITIALISED</a>(string)</td></tr>
+<tr class="separator:af4fd4b0c5653f18ecfb963ab8678c12a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3482abb905950d3e54d3db0560f26862" id="r_a3482abb905950d3e54d3db0560f26862"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a3482abb905950d3e54d3db0560f26862.html#a3482abb905950d3e54d3db0560f26862">FREEGLUT_INTERNAL_ERROR_EXIT_IF_NOT_INITIALISED</a>(string)</td></tr>
+<tr class="separator:a3482abb905950d3e54d3db0560f26862"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc802523019ec0799c0ffc87cdc812c9" id="r_afc802523019ec0799c0ffc87cdc812c9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_afc802523019ec0799c0ffc87cdc812c9.html#afc802523019ec0799c0ffc87cdc812c9">FREEGLUT_INTERNAL_ERROR_EXIT</a>(cond,  string,  function)</td></tr>
+<tr class="separator:afc802523019ec0799c0ffc87cdc812c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00c5c5da425036d1c61f5d4473ab6e79" id="r_a00c5c5da425036d1c61f5d4473ab6e79"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a00c5c5da425036d1c61f5d4473ab6e79.html#a00c5c5da425036d1c61f5d4473ab6e79">freeglut_return_if_fail</a>(expr)</td></tr>
+<tr class="separator:a00c5c5da425036d1c61f5d4473ab6e79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f08a22cfcdcd1f6f85e6b9afa71260e" id="r_a8f08a22cfcdcd1f6f85e6b9afa71260e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a8f08a22cfcdcd1f6f85e6b9afa71260e.html#a8f08a22cfcdcd1f6f85e6b9afa71260e">freeglut_return_val_if_fail</a>(expr,  val)</td></tr>
+<tr class="separator:a8f08a22cfcdcd1f6f85e6b9afa71260e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47b0053a51c2a4bc187c7334a0c15535" id="r_a47b0053a51c2a4bc187c7334a0c15535"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a47b0053a51c2a4bc187c7334a0c15535.html#a47b0053a51c2a4bc187c7334a0c15535">FREEGLUT_EXIT_IF_NO_WINDOW</a>(string)</td></tr>
+<tr class="separator:a47b0053a51c2a4bc187c7334a0c15535"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+型定義</h2></td></tr>
+<tr class="memitem:a53dd017af3bc5b1498bbf1c3b92566eb" id="r_a53dd017af3bc5b1498bbf1c3b92566eb"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a53dd017af3bc5b1498bbf1c3b92566eb.html#a53dd017af3bc5b1498bbf1c3b92566eb">FGCBDisplay</a>) (void)</td></tr>
+<tr class="separator:a53dd017af3bc5b1498bbf1c3b92566eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14993d254cf6906e67a11886a69c83b0" id="r_a14993d254cf6906e67a11886a69c83b0"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a14993d254cf6906e67a11886a69c83b0.html#a14993d254cf6906e67a11886a69c83b0">FGCBReshape</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:a14993d254cf6906e67a11886a69c83b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f87ccf9c4d2d67491674b5c36d4d9df" id="r_a2f87ccf9c4d2d67491674b5c36d4d9df"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a2f87ccf9c4d2d67491674b5c36d4d9df.html#a2f87ccf9c4d2d67491674b5c36d4d9df">FGCBVisibility</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:a2f87ccf9c4d2d67491674b5c36d4d9df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af22eebf340e8a50b5566bd7072ec1232" id="r_af22eebf340e8a50b5566bd7072ec1232"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_af22eebf340e8a50b5566bd7072ec1232.html#af22eebf340e8a50b5566bd7072ec1232">FGCBKeyboard</a>) (unsigned char, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:af22eebf340e8a50b5566bd7072ec1232"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a314f55aa0ffdc0167b153636a3260160" id="r_a314f55aa0ffdc0167b153636a3260160"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a314f55aa0ffdc0167b153636a3260160.html#a314f55aa0ffdc0167b153636a3260160">FGCBSpecial</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:a314f55aa0ffdc0167b153636a3260160"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4727838f0df23206f86a0bbc1957104b" id="r_a4727838f0df23206f86a0bbc1957104b"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a4727838f0df23206f86a0bbc1957104b.html#a4727838f0df23206f86a0bbc1957104b">FGCBMouse</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:a4727838f0df23206f86a0bbc1957104b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbcf12d7f8f2e4077230532d897b1546" id="r_abbcf12d7f8f2e4077230532d897b1546"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_abbcf12d7f8f2e4077230532d897b1546.html#abbcf12d7f8f2e4077230532d897b1546">FGCBMouseWheel</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:abbcf12d7f8f2e4077230532d897b1546"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac476dfd0d4e084d0cf1c242c92746288" id="r_ac476dfd0d4e084d0cf1c242c92746288"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_ac476dfd0d4e084d0cf1c242c92746288.html#ac476dfd0d4e084d0cf1c242c92746288">FGCBMotion</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:ac476dfd0d4e084d0cf1c242c92746288"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af71e087fb19c5f1fae8562c14178ec0c" id="r_af71e087fb19c5f1fae8562c14178ec0c"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_af71e087fb19c5f1fae8562c14178ec0c.html#af71e087fb19c5f1fae8562c14178ec0c">FGCBPassive</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:af71e087fb19c5f1fae8562c14178ec0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af45609fa70491dfea9aa261cb98e15f8" id="r_af45609fa70491dfea9aa261cb98e15f8"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_af45609fa70491dfea9aa261cb98e15f8.html#af45609fa70491dfea9aa261cb98e15f8">FGCBEntry</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:af45609fa70491dfea9aa261cb98e15f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3d04bd73d440cdef2ce27ac9bbf0d77" id="r_af3d04bd73d440cdef2ce27ac9bbf0d77"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_af3d04bd73d440cdef2ce27ac9bbf0d77.html#af3d04bd73d440cdef2ce27ac9bbf0d77">FGCBWindowStatus</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:af3d04bd73d440cdef2ce27ac9bbf0d77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1be1c73c25d827a7980503317d4f1b24" id="r_a1be1c73c25d827a7980503317d4f1b24"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a1be1c73c25d827a7980503317d4f1b24.html#a1be1c73c25d827a7980503317d4f1b24">FGCBSelect</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:a1be1c73c25d827a7980503317d4f1b24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a850d19b9f05b584e2b4d0b487da63fb0" id="r_a850d19b9f05b584e2b4d0b487da63fb0"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a850d19b9f05b584e2b4d0b487da63fb0.html#a850d19b9f05b584e2b4d0b487da63fb0">FGCBJoystick</a>) (unsigned <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:a850d19b9f05b584e2b4d0b487da63fb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d727fb6299e165446dfd6e37bf2f7cf" id="r_a7d727fb6299e165446dfd6e37bf2f7cf"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a7d727fb6299e165446dfd6e37bf2f7cf.html#a7d727fb6299e165446dfd6e37bf2f7cf">FGCBKeyboardUp</a>) (unsigned char, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:a7d727fb6299e165446dfd6e37bf2f7cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07bf48b71b059fafb4fc85cd5f521611" id="r_a07bf48b71b059fafb4fc85cd5f521611"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a07bf48b71b059fafb4fc85cd5f521611.html#a07bf48b71b059fafb4fc85cd5f521611">FGCBSpecialUp</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:a07bf48b71b059fafb4fc85cd5f521611"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60bc0ee94793ab6ec3b3f52fd9661e9f" id="r_a60bc0ee94793ab6ec3b3f52fd9661e9f"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a60bc0ee94793ab6ec3b3f52fd9661e9f.html#a60bc0ee94793ab6ec3b3f52fd9661e9f">FGCBOverlayDisplay</a>) (void)</td></tr>
+<tr class="separator:a60bc0ee94793ab6ec3b3f52fd9661e9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd1ea49b962c2dd216415657cd0c941c" id="r_afd1ea49b962c2dd216415657cd0c941c"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_afd1ea49b962c2dd216415657cd0c941c.html#afd1ea49b962c2dd216415657cd0c941c">FGCBSpaceMotion</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:afd1ea49b962c2dd216415657cd0c941c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fa659c631d33a7e965d8a3a67982007" id="r_a5fa659c631d33a7e965d8a3a67982007"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a5fa659c631d33a7e965d8a3a67982007.html#a5fa659c631d33a7e965d8a3a67982007">FGCBSpaceRotation</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:a5fa659c631d33a7e965d8a3a67982007"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a922ab6f14e713f1aef360a53a1ffac6a" id="r_a922ab6f14e713f1aef360a53a1ffac6a"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a922ab6f14e713f1aef360a53a1ffac6a.html#a922ab6f14e713f1aef360a53a1ffac6a">FGCBSpaceButton</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:a922ab6f14e713f1aef360a53a1ffac6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9a4bbaa720c689c0c244d66759cc052" id="r_ad9a4bbaa720c689c0c244d66759cc052"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_ad9a4bbaa720c689c0c244d66759cc052.html#ad9a4bbaa720c689c0c244d66759cc052">FGCBDials</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:ad9a4bbaa720c689c0c244d66759cc052"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac875a7f49d077fbcfe1dfbff6d83bf8f" id="r_ac875a7f49d077fbcfe1dfbff6d83bf8f"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_ac875a7f49d077fbcfe1dfbff6d83bf8f.html#ac875a7f49d077fbcfe1dfbff6d83bf8f">FGCBButtonBox</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:ac875a7f49d077fbcfe1dfbff6d83bf8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ac270d9cca5c9a53608b28db5bf08c2" id="r_a4ac270d9cca5c9a53608b28db5bf08c2"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a4ac270d9cca5c9a53608b28db5bf08c2.html#a4ac270d9cca5c9a53608b28db5bf08c2">FGCBTabletMotion</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:a4ac270d9cca5c9a53608b28db5bf08c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf3c79b47b0cc61fe6530f73d01a46a9" id="r_aaf3c79b47b0cc61fe6530f73d01a46a9"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_aaf3c79b47b0cc61fe6530f73d01a46a9.html#aaf3c79b47b0cc61fe6530f73d01a46a9">FGCBTabletButton</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:aaf3c79b47b0cc61fe6530f73d01a46a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f1cffd302ecb6039ad71582f87c1e9f" id="r_a2f1cffd302ecb6039ad71582f87c1e9f"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a2f1cffd302ecb6039ad71582f87c1e9f.html#a2f1cffd302ecb6039ad71582f87c1e9f">FGCBDestroy</a>) (void)</td></tr>
+<tr class="separator:a2f1cffd302ecb6039ad71582f87c1e9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae77a0ff547d03dbc565f534136ed69bc" id="r_ae77a0ff547d03dbc565f534136ed69bc"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_ae77a0ff547d03dbc565f534136ed69bc.html#ae77a0ff547d03dbc565f534136ed69bc">FGCBMultiEntry</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:ae77a0ff547d03dbc565f534136ed69bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1822c9b4a41f7a2acbccca0726e3f423" id="r_a1822c9b4a41f7a2acbccca0726e3f423"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a1822c9b4a41f7a2acbccca0726e3f423.html#a1822c9b4a41f7a2acbccca0726e3f423">FGCBMultiButton</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:a1822c9b4a41f7a2acbccca0726e3f423"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39335304ad195e8ddf92ce4f49da0f07" id="r_a39335304ad195e8ddf92ce4f49da0f07"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a39335304ad195e8ddf92ce4f49da0f07.html#a39335304ad195e8ddf92ce4f49da0f07">FGCBMultiMotion</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:a39335304ad195e8ddf92ce4f49da0f07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e4f8f24028f7509e98c08baefb7546e" id="r_a9e4f8f24028f7509e98c08baefb7546e"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a9e4f8f24028f7509e98c08baefb7546e.html#a9e4f8f24028f7509e98c08baefb7546e">FGCBMultiPassive</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:a9e4f8f24028f7509e98c08baefb7546e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5af6472b8327df452e5096432b71616" id="r_aa5af6472b8327df452e5096432b71616"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_aa5af6472b8327df452e5096432b71616.html#aa5af6472b8327df452e5096432b71616">FGCBIdle</a>) (void)</td></tr>
+<tr class="separator:aa5af6472b8327df452e5096432b71616"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21c6976e35f002b03014c75d51d68b20" id="r_a21c6976e35f002b03014c75d51d68b20"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a21c6976e35f002b03014c75d51d68b20.html#a21c6976e35f002b03014c75d51d68b20">FGCBTimer</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:a21c6976e35f002b03014c75d51d68b20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac288427105487dcecfe807c3ee2471b6" id="r_ac288427105487dcecfe807c3ee2471b6"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_ac288427105487dcecfe807c3ee2471b6.html#ac288427105487dcecfe807c3ee2471b6">FGCBMenuState</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:ac288427105487dcecfe807c3ee2471b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6781c5b61e284a7a8b9a69a4c432862d" id="r_a6781c5b61e284a7a8b9a69a4c432862d"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a6781c5b61e284a7a8b9a69a4c432862d.html#a6781c5b61e284a7a8b9a69a4c432862d">FGCBMenuStatus</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:a6781c5b61e284a7a8b9a69a4c432862d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa55885854b676e2a366fee3f02d37119" id="r_aa55885854b676e2a366fee3f02d37119"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_aa55885854b676e2a366fee3f02d37119.html#aa55885854b676e2a366fee3f02d37119">FGCBMenu</a>) (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>)</td></tr>
+<tr class="separator:aa55885854b676e2a366fee3f02d37119"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f827ac6fd5e0f43fb4bed2686055332" id="r_a1f827ac6fd5e0f43fb4bed2686055332"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a1f827ac6fd5e0f43fb4bed2686055332.html#a1f827ac6fd5e0f43fb4bed2686055332">FGError</a>) (const char *fmt, va_list ap)</td></tr>
+<tr class="separator:a1f827ac6fd5e0f43fb4bed2686055332"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76352799248c9a90550cf4ec55e0982e" id="r_a76352799248c9a90550cf4ec55e0982e"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a76352799248c9a90550cf4ec55e0982e.html#a76352799248c9a90550cf4ec55e0982e">FGWarning</a>) (const char *fmt, va_list ap)</td></tr>
+<tr class="separator:a76352799248c9a90550cf4ec55e0982e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28d25a773a5fe63a0c33a017c11c5c80" id="r_a28d25a773a5fe63a0c33a017c11c5c80"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structtag_s_f_g___list.html">tagSFG_List</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a28d25a773a5fe63a0c33a017c11c5c80.html#a28d25a773a5fe63a0c33a017c11c5c80">SFG_List</a></td></tr>
+<tr class="separator:a28d25a773a5fe63a0c33a017c11c5c80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe80c6792ae84c5c9091b4f98d2071a6" id="r_abe80c6792ae84c5c9091b4f98d2071a6"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structtag_s_f_g___node.html">tagSFG_Node</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_abe80c6792ae84c5c9091b4f98d2071a6.html#abe80c6792ae84c5c9091b4f98d2071a6">SFG_Node</a></td></tr>
+<tr class="separator:abe80c6792ae84c5c9091b4f98d2071a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a004c23455658ba0554bb51904e252171" id="r_a004c23455658ba0554bb51904e252171"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structtag_s_f_g___x_y_use.html">tagSFG_XYUse</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a004c23455658ba0554bb51904e252171.html#a004c23455658ba0554bb51904e252171">SFG_XYUse</a></td></tr>
+<tr class="separator:a004c23455658ba0554bb51904e252171"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6570b3f8df83464b84da1942a473613" id="r_ad6570b3f8df83464b84da1942a473613"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structtag_s_f_g___state.html">tagSFG_State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_ad6570b3f8df83464b84da1942a473613.html#ad6570b3f8df83464b84da1942a473613">SFG_State</a></td></tr>
+<tr class="separator:ad6570b3f8df83464b84da1942a473613"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7000ba13961e5abe47f44d7ba822274e" id="r_a7000ba13961e5abe47f44d7ba822274e"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structtag_s_f_g___display.html">tagSFG_Display</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a7000ba13961e5abe47f44d7ba822274e.html#a7000ba13961e5abe47f44d7ba822274e">SFG_Display</a></td></tr>
+<tr class="separator:a7000ba13961e5abe47f44d7ba822274e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5959541df0b23c75ea8345513a7f152c" id="r_a5959541df0b23c75ea8345513a7f152c"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structtag_s_f_g___timer.html">tagSFG_Timer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a5959541df0b23c75ea8345513a7f152c.html#a5959541df0b23c75ea8345513a7f152c">SFG_Timer</a></td></tr>
+<tr class="separator:a5959541df0b23c75ea8345513a7f152c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31e82f6ad2cbd4b3942e6f72a6f1a84a" id="r_a31e82f6ad2cbd4b3942e6f72a6f1a84a"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structtag_s_f_g___context.html">tagSFG_Context</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a31e82f6ad2cbd4b3942e6f72a6f1a84a.html#a31e82f6ad2cbd4b3942e6f72a6f1a84a">SFG_Context</a></td></tr>
+<tr class="separator:a31e82f6ad2cbd4b3942e6f72a6f1a84a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1aef9949665783dfed8a54270b872394" id="r_a1aef9949665783dfed8a54270b872394"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structtag_s_f_g___window_state.html">tagSFG_WindowState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a1aef9949665783dfed8a54270b872394.html#a1aef9949665783dfed8a54270b872394">SFG_WindowState</a></td></tr>
+<tr class="separator:a1aef9949665783dfed8a54270b872394"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a9d998eb263a52483cd3f5ff9070b4f" id="r_a4a9d998eb263a52483cd3f5ff9070b4f"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a4a9d998eb263a52483cd3f5ff9070b4f.html#a4a9d998eb263a52483cd3f5ff9070b4f">SFG_Proc</a>) ()</td></tr>
+<tr class="separator:a4a9d998eb263a52483cd3f5ff9070b4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab59a3a9fdae87488c276771df63e4556" id="r_ab59a3a9fdae87488c276771df63e4556"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structtag_s_f_g___menu_context.html">tagSFG_MenuContext</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_ab59a3a9fdae87488c276771df63e4556.html#ab59a3a9fdae87488c276771df63e4556">SFG_MenuContext</a></td></tr>
+<tr class="separator:ab59a3a9fdae87488c276771df63e4556"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1591224a26149d3158a7ee4d471cce3" id="r_ad1591224a26149d3158a7ee4d471cce3"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structtag_s_f_g___window.html">tagSFG_Window</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_ad1591224a26149d3158a7ee4d471cce3.html#ad1591224a26149d3158a7ee4d471cce3">SFG_Window</a></td></tr>
+<tr class="separator:ad1591224a26149d3158a7ee4d471cce3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa03669020a22ba084487140bf695e43a" id="r_aa03669020a22ba084487140bf695e43a"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structtag_s_f_g___menu_entry.html">tagSFG_MenuEntry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_aa03669020a22ba084487140bf695e43a.html#aa03669020a22ba084487140bf695e43a">SFG_MenuEntry</a></td></tr>
+<tr class="separator:aa03669020a22ba084487140bf695e43a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1008f0f193f91d42e9622463cb4111ab" id="r_a1008f0f193f91d42e9622463cb4111ab"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structtag_s_f_g___menu.html">tagSFG_Menu</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a1008f0f193f91d42e9622463cb4111ab.html#a1008f0f193f91d42e9622463cb4111ab">SFG_Menu</a></td></tr>
+<tr class="separator:a1008f0f193f91d42e9622463cb4111ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeeda4a359244abd701e7d2337aa2124f" id="r_aeeda4a359244abd701e7d2337aa2124f"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structtag_s_f_g___window_list.html">tagSFG_WindowList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_aeeda4a359244abd701e7d2337aa2124f.html#aeeda4a359244abd701e7d2337aa2124f">SFG_WindowList</a></td></tr>
+<tr class="separator:aeeda4a359244abd701e7d2337aa2124f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b578253d5503239dc229a3cccb5e791" id="r_a0b578253d5503239dc229a3cccb5e791"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structtag_s_f_g___structure.html">tagSFG_Structure</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a0b578253d5503239dc229a3cccb5e791.html#a0b578253d5503239dc229a3cccb5e791">SFG_Structure</a></td></tr>
+<tr class="separator:a0b578253d5503239dc229a3cccb5e791"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e2d1c1a6415be65caf7bddc12c38887" id="r_a3e2d1c1a6415be65caf7bddc12c38887"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structtag_s_f_g___enumerator.html">tagSFG_Enumerator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a3e2d1c1a6415be65caf7bddc12c38887.html#a3e2d1c1a6415be65caf7bddc12c38887">SFG_Enumerator</a></td></tr>
+<tr class="separator:a3e2d1c1a6415be65caf7bddc12c38887"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4394b615e3eec0f466317dd6c4a9c5a" id="r_ad4394b615e3eec0f466317dd6c4a9c5a"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_ad4394b615e3eec0f466317dd6c4a9c5a.html#ad4394b615e3eec0f466317dd6c4a9c5a">FGCBWindowEnumerator</a>) (<a class="el" href="freeglut__internal_8h_ad1591224a26149d3158a7ee4d471cce3.html#ad1591224a26149d3158a7ee4d471cce3">SFG_Window</a> *, <a class="el" href="freeglut__internal_8h_a3e2d1c1a6415be65caf7bddc12c38887.html#a3e2d1c1a6415be65caf7bddc12c38887">SFG_Enumerator</a> *)</td></tr>
+<tr class="separator:ad4394b615e3eec0f466317dd6c4a9c5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd7c989104920721343e3723a00b5e99" id="r_abd7c989104920721343e3723a00b5e99"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_abd7c989104920721343e3723a00b5e99.html#abd7c989104920721343e3723a00b5e99">FGCBMenuEnumerator</a>) (<a class="el" href="freeglut__internal_8h_a1008f0f193f91d42e9622463cb4111ab.html#a1008f0f193f91d42e9622463cb4111ab">SFG_Menu</a> *, <a class="el" href="freeglut__internal_8h_a3e2d1c1a6415be65caf7bddc12c38887.html#a3e2d1c1a6415be65caf7bddc12c38887">SFG_Enumerator</a> *)</td></tr>
+<tr class="separator:abd7c989104920721343e3723a00b5e99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a7fa580011238ff82212210f175848f" id="r_a9a7fa580011238ff82212210f175848f"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structtag_s_f_g___font.html">tagSFG_Font</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a9a7fa580011238ff82212210f175848f.html#a9a7fa580011238ff82212210f175848f">SFG_Font</a></td></tr>
+<tr class="separator:a9a7fa580011238ff82212210f175848f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3adf4167992feec2892a214c1355a92b" id="r_a3adf4167992feec2892a214c1355a92b"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structtag_s_f_g___stroke_vertex.html">tagSFG_StrokeVertex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a3adf4167992feec2892a214c1355a92b.html#a3adf4167992feec2892a214c1355a92b">SFG_StrokeVertex</a></td></tr>
+<tr class="separator:a3adf4167992feec2892a214c1355a92b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a185d10b3662cdbf7a871a838e443e17c" id="r_a185d10b3662cdbf7a871a838e443e17c"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structtag_s_f_g___stroke_strip.html">tagSFG_StrokeStrip</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a185d10b3662cdbf7a871a838e443e17c.html#a185d10b3662cdbf7a871a838e443e17c">SFG_StrokeStrip</a></td></tr>
+<tr class="separator:a185d10b3662cdbf7a871a838e443e17c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47224cb00fbc916e15ea95cded401a5a" id="r_a47224cb00fbc916e15ea95cded401a5a"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structtag_s_f_g___stroke_char.html">tagSFG_StrokeChar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a47224cb00fbc916e15ea95cded401a5a.html#a47224cb00fbc916e15ea95cded401a5a">SFG_StrokeChar</a></td></tr>
+<tr class="separator:a47224cb00fbc916e15ea95cded401a5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaf39aa4905634c2926dacf6c5ad2135" id="r_acaf39aa4905634c2926dacf6c5ad2135"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structtag_s_f_g___stroke_font.html">tagSFG_StrokeFont</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_acaf39aa4905634c2926dacf6c5ad2135.html#acaf39aa4905634c2926dacf6c5ad2135">SFG_StrokeFont</a></td></tr>
+<tr class="separator:acaf39aa4905634c2926dacf6c5ad2135"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+列挙型</h2></td></tr>
+<tr class="memitem:a0b94e201a762721ac32f8b985cf3d1ea" id="r_a0b94e201a762721ac32f8b985cf3d1ea"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a0b94e201a762721ac32f8b985cf3d1ea.html#a0b94e201a762721ac32f8b985cf3d1ea">fgExecutionState</a> { <a class="el" href="freeglut__internal_8h_a0b94e201a762721ac32f8b985cf3d1ea.html#a0b94e201a762721ac32f8b985cf3d1eaa632b4cbb10683b44b15452e0ec941093">GLUT_EXEC_STATE_INIT</a>
+, <a class="el" href="freeglut__internal_8h_a0b94e201a762721ac32f8b985cf3d1ea.html#a0b94e201a762721ac32f8b985cf3d1eaa651298b35aede18af767103c2cde35c4">GLUT_EXEC_STATE_RUNNING</a>
+, <a class="el" href="freeglut__internal_8h_a0b94e201a762721ac32f8b985cf3d1ea.html#a0b94e201a762721ac32f8b985cf3d1eaa831c9030f6c0332971345741daf0d859">GLUT_EXEC_STATE_STOP</a>
+ }</td></tr>
+<tr class="separator:a0b94e201a762721ac32f8b985cf3d1ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a133aac90e230290fa8087f8b6cd16fd2" id="r_a133aac90e230290fa8087f8b6cd16fd2"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2a0c71b13da5ccf6ed7b79933176e1d3e3">CB_Display</a>
+, <a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2afbf723e0eff50a2ccc29065c2c48a711">CB_Reshape</a>
+, <a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2af03cc63971c3607ee5269df87ddd2035">CB_Keyboard</a>
+, <a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2ae1e9d3e5a2be9f8bb6ef8936ce72dbf4">CB_KeyboardUp</a>
+, <br />
+&#160;&#160;<a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2afa4fc05892723d8229518ab6ccf558ec">CB_Special</a>
+, <a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2a4d0267d6d17eebb61d665ccc7e39843d">CB_SpecialUp</a>
+, <a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2a5c5bc911748023f46b41ba3249ad2de4">CB_Mouse</a>
+, <a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2ac1532eadd005121d35c5b97586aaf02d">CB_MouseWheel</a>
+, <br />
+&#160;&#160;<a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2abc7d191edd656389f3590e621f40f037">CB_Motion</a>
+, <a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2a1ee1197a779bde1e0155aa537ada079b">CB_Passive</a>
+, <a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2a5f7d37754bb760600e1b3e24a3afa957">CB_Entry</a>
+, <a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2adb6d546d58ef656e86e8ae9956e964bc">CB_Visibility</a>
+, <br />
+&#160;&#160;<a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2af3bd62df53f366f9f1d5ba85ddfd707e">CB_WindowStatus</a>
+, <a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2a9102deb66a8d83a91d4340f6880868ea">CB_Joystick</a>
+, <a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2ad2a4c60efbf068b86b568e04b728ab30">CB_Destroy</a>
+, <a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2a577620a5d9ddb8c15e12f491907a1dbd">CB_MultiEntry</a>
+, <br />
+&#160;&#160;<a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2a29c3f0250057dc5eb6181b07486c3037">CB_MultiButton</a>
+, <a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2a5a2b91241702534a96810a01da65eddf">CB_MultiMotion</a>
+, <a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2aab9b3f36ec36e2af5b8c09e59a494e06">CB_MultiPassive</a>
+, <a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2ab059409afcc2d910fc1664cf11d95f01">CB_Select</a>
+, <br />
+&#160;&#160;<a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2a3ab8ff59b961a9432f498826ddc02c37">CB_OverlayDisplay</a>
+, <a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2aec6b3f0c1c79323fe96637a19a359738">CB_SpaceMotion</a>
+, <a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2a16e5c44227c6a17ad294200a0d680469">CB_SpaceRotation</a>
+, <a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2a7e8473fab9c33c78e98dc2f325ccaaee">CB_SpaceButton</a>
+, <br />
+&#160;&#160;<a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2abcf62c5424dd16bb67d2c09395d1fe87">CB_Dials</a>
+, <a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2a24c319493a1c9a6ec5e8a3fcb94f085f">CB_ButtonBox</a>
+, <a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2a70a795c54eaa634d5ccd8280787cdb2b">CB_TabletMotion</a>
+, <a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2a61ab4b271ea992acf7d59167777d8b5b">CB_TabletButton</a>
+, <br />
+&#160;&#160;<a class="el" href="freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2.html#a133aac90e230290fa8087f8b6cd16fd2a458163f2e5541babcf543ec51307e35e">TOTAL_CALLBACKS</a>
+<br />
+ }</td></tr>
+<tr class="separator:a133aac90e230290fa8087f8b6cd16fd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+関数</h2></td></tr>
+<tr class="memitem:a71a4beeb540e45f1e9d6428046ab7a0e" id="r_a71a4beeb540e45f1e9d6428046ab7a0e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a71a4beeb540e45f1e9d6428046ab7a0e.html#a71a4beeb540e45f1e9d6428046ab7a0e">fgDeinitialize</a> (void)</td></tr>
+<tr class="separator:a71a4beeb540e45f1e9d6428046ab7a0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1263d6168add0909cefdf6cf41bab6a" id="r_af1263d6168add0909cefdf6cf41bab6a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_af1263d6168add0909cefdf6cf41bab6a.html#af1263d6168add0909cefdf6cf41bab6a">fgCreateStructure</a> (void)</td></tr>
+<tr class="separator:af1263d6168add0909cefdf6cf41bab6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff7b59fbd01e4cfc53b837e8f55139d8" id="r_aff7b59fbd01e4cfc53b837e8f55139d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_aff7b59fbd01e4cfc53b837e8f55139d8.html#aff7b59fbd01e4cfc53b837e8f55139d8">fgDestroyStructure</a> (void)</td></tr>
+<tr class="separator:aff7b59fbd01e4cfc53b837e8f55139d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7347af76b0e5101d635ae193947f100" id="r_aa7347af76b0e5101d635ae193947f100"><td class="memItemLeft" align="right" valign="top"><a class="el" href="freeglut__internal_8h_ad1591224a26149d3158a7ee4d471cce3.html#ad1591224a26149d3158a7ee4d471cce3">SFG_Window</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_aa7347af76b0e5101d635ae193947f100.html#aa7347af76b0e5101d635ae193947f100">fgCreateWindow</a> (<a class="el" href="freeglut__internal_8h_ad1591224a26149d3158a7ee4d471cce3.html#ad1591224a26149d3158a7ee4d471cce3">SFG_Window</a> *parent, const char *title, GLboolean positionUse, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a> <a class="el" href="gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2.html#a5fd331c99e778f04762be6d8173eb4d2">x</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a> <a class="el" href="level1__cplx__impl_8h_a792f7d150beb978a4945c84df6867679.html#a792f7d150beb978a4945c84df6867679">y</a>, GLboolean sizeUse, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a> <a class="el" href="_matrix__resize__int_8cpp_aab236ce080522c9832217fd5f157541b.html#aab236ce080522c9832217fd5f157541b">w</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a> h, GLboolean gameMode, GLboolean isMenu)</td></tr>
+<tr class="separator:aa7347af76b0e5101d635ae193947f100"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4b4e832b57a381025f4f1c895fbaa34" id="r_aa4b4e832b57a381025f4f1c895fbaa34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_aa4b4e832b57a381025f4f1c895fbaa34.html#aa4b4e832b57a381025f4f1c895fbaa34">fgSetWindow</a> (<a class="el" href="freeglut__internal_8h_ad1591224a26149d3158a7ee4d471cce3.html#ad1591224a26149d3158a7ee4d471cce3">SFG_Window</a> *window)</td></tr>
+<tr class="separator:aa4b4e832b57a381025f4f1c895fbaa34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af39750e625fca76299d108f4a9a108ad" id="r_af39750e625fca76299d108f4a9a108ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_af39750e625fca76299d108f4a9a108ad.html#af39750e625fca76299d108f4a9a108ad">fgOpenWindow</a> (<a class="el" href="freeglut__internal_8h_ad1591224a26149d3158a7ee4d471cce3.html#ad1591224a26149d3158a7ee4d471cce3">SFG_Window</a> *window, const char *title, GLboolean positionUse, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a> <a class="el" href="gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2.html#a5fd331c99e778f04762be6d8173eb4d2">x</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a> <a class="el" href="level1__cplx__impl_8h_a792f7d150beb978a4945c84df6867679.html#a792f7d150beb978a4945c84df6867679">y</a>, GLboolean sizeUse, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a> <a class="el" href="_matrix__resize__int_8cpp_aab236ce080522c9832217fd5f157541b.html#aab236ce080522c9832217fd5f157541b">w</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a> h, GLboolean gameMode, GLboolean isSubWindow)</td></tr>
+<tr class="separator:af39750e625fca76299d108f4a9a108ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a421239c4568200f572099198c5ca66dd" id="r_a421239c4568200f572099198c5ca66dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a421239c4568200f572099198c5ca66dd.html#a421239c4568200f572099198c5ca66dd">fgCloseWindow</a> (<a class="el" href="freeglut__internal_8h_ad1591224a26149d3158a7ee4d471cce3.html#ad1591224a26149d3158a7ee4d471cce3">SFG_Window</a> *window)</td></tr>
+<tr class="separator:a421239c4568200f572099198c5ca66dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a516cdde49c2590b112f15beca9839f90" id="r_a516cdde49c2590b112f15beca9839f90"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a516cdde49c2590b112f15beca9839f90.html#a516cdde49c2590b112f15beca9839f90">fgAddToWindowDestroyList</a> (<a class="el" href="freeglut__internal_8h_ad1591224a26149d3158a7ee4d471cce3.html#ad1591224a26149d3158a7ee4d471cce3">SFG_Window</a> *window)</td></tr>
+<tr class="separator:a516cdde49c2590b112f15beca9839f90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a85fa772c55521e65fe517de27557e6" id="r_a0a85fa772c55521e65fe517de27557e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a0a85fa772c55521e65fe517de27557e6.html#a0a85fa772c55521e65fe517de27557e6">fgCloseWindows</a> ()</td></tr>
+<tr class="separator:a0a85fa772c55521e65fe517de27557e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac144f2434f2c498ccfb0cc00c47748b7" id="r_ac144f2434f2c498ccfb0cc00c47748b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_ac144f2434f2c498ccfb0cc00c47748b7.html#ac144f2434f2c498ccfb0cc00c47748b7">fgDestroyWindow</a> (<a class="el" href="freeglut__internal_8h_ad1591224a26149d3158a7ee4d471cce3.html#ad1591224a26149d3158a7ee4d471cce3">SFG_Window</a> *window)</td></tr>
+<tr class="separator:ac144f2434f2c498ccfb0cc00c47748b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3e45a28e826ca80c90d907a20ca0495" id="r_ac3e45a28e826ca80c90d907a20ca0495"><td class="memItemLeft" align="right" valign="top"><a class="el" href="freeglut__internal_8h_a1008f0f193f91d42e9622463cb4111ab.html#a1008f0f193f91d42e9622463cb4111ab">SFG_Menu</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_ac3e45a28e826ca80c90d907a20ca0495.html#ac3e45a28e826ca80c90d907a20ca0495">fgCreateMenu</a> (<a class="el" href="freeglut__internal_8h_aa55885854b676e2a366fee3f02d37119.html#aa55885854b676e2a366fee3f02d37119">FGCBMenu</a> menuCallback)</td></tr>
+<tr class="separator:ac3e45a28e826ca80c90d907a20ca0495"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c22157a4b6a8b0313b472c4189cb0f3" id="r_a4c22157a4b6a8b0313b472c4189cb0f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a4c22157a4b6a8b0313b472c4189cb0f3.html#a4c22157a4b6a8b0313b472c4189cb0f3">fgDestroyMenu</a> (<a class="el" href="freeglut__internal_8h_a1008f0f193f91d42e9622463cb4111ab.html#a1008f0f193f91d42e9622463cb4111ab">SFG_Menu</a> *menu)</td></tr>
+<tr class="separator:a4c22157a4b6a8b0313b472c4189cb0f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cba6fec39cdde281ff25072bed9e6c6" id="r_a8cba6fec39cdde281ff25072bed9e6c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a8cba6fec39cdde281ff25072bed9e6c6.html#a8cba6fec39cdde281ff25072bed9e6c6">fgJoystickDetect</a> (void)</td></tr>
+<tr class="separator:a8cba6fec39cdde281ff25072bed9e6c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a590d2a21656f502499bfc18a69c4d9e5" id="r_a590d2a21656f502499bfc18a69c4d9e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a590d2a21656f502499bfc18a69c4d9e5.html#a590d2a21656f502499bfc18a69c4d9e5">fgInitialiseJoysticks</a> (void)</td></tr>
+<tr class="separator:a590d2a21656f502499bfc18a69c4d9e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97b2085ddc4a5e0d42da8686412df830" id="r_a97b2085ddc4a5e0d42da8686412df830"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a97b2085ddc4a5e0d42da8686412df830.html#a97b2085ddc4a5e0d42da8686412df830">fgJoystickClose</a> (void)</td></tr>
+<tr class="separator:a97b2085ddc4a5e0d42da8686412df830"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a920dcd3c6eab47a5e120ea0e561287fa" id="r_a920dcd3c6eab47a5e120ea0e561287fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a920dcd3c6eab47a5e120ea0e561287fa.html#a920dcd3c6eab47a5e120ea0e561287fa">fgJoystickPollWindow</a> (<a class="el" href="freeglut__internal_8h_ad1591224a26149d3158a7ee4d471cce3.html#ad1591224a26149d3158a7ee4d471cce3">SFG_Window</a> *window)</td></tr>
+<tr class="separator:a920dcd3c6eab47a5e120ea0e561287fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5763b3f09b159fee8439d23b266d4b4" id="r_ae5763b3f09b159fee8439d23b266d4b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_ae5763b3f09b159fee8439d23b266d4b4.html#ae5763b3f09b159fee8439d23b266d4b4">fgInputDeviceDetect</a> (void)</td></tr>
+<tr class="separator:ae5763b3f09b159fee8439d23b266d4b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf755ccc8026513dd234cd27e0774b46" id="r_aaf755ccc8026513dd234cd27e0774b46"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_aaf755ccc8026513dd234cd27e0774b46.html#aaf755ccc8026513dd234cd27e0774b46">fgInitialiseInputDevices</a> (void)</td></tr>
+<tr class="separator:aaf755ccc8026513dd234cd27e0774b46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a393a93b83aff62c28cb5343088563d4c" id="r_a393a93b83aff62c28cb5343088563d4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a393a93b83aff62c28cb5343088563d4c.html#a393a93b83aff62c28cb5343088563d4c">fgInputDeviceClose</a> (void)</td></tr>
+<tr class="separator:a393a93b83aff62c28cb5343088563d4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9d76282d97f48242d767a43a6e589bc" id="r_ad9d76282d97f48242d767a43a6e589bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_ad9d76282d97f48242d767a43a6e589bc.html#ad9d76282d97f48242d767a43a6e589bc">fgInitialiseSpaceball</a> (void)</td></tr>
+<tr class="separator:ad9d76282d97f48242d767a43a6e589bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42e36354f89d28f8f4d2c08c72a3ec70" id="r_a42e36354f89d28f8f4d2c08c72a3ec70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a42e36354f89d28f8f4d2c08c72a3ec70.html#a42e36354f89d28f8f4d2c08c72a3ec70">fgSpaceballClose</a> (void)</td></tr>
+<tr class="separator:a42e36354f89d28f8f4d2c08c72a3ec70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b0e650516401ca01dccbc800d5d05a7" id="r_a9b0e650516401ca01dccbc800d5d05a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a9b0e650516401ca01dccbc800d5d05a7.html#a9b0e650516401ca01dccbc800d5d05a7">fgSpaceballSetWindow</a> (<a class="el" href="freeglut__internal_8h_ad1591224a26149d3158a7ee4d471cce3.html#ad1591224a26149d3158a7ee4d471cce3">SFG_Window</a> *window)</td></tr>
+<tr class="separator:a9b0e650516401ca01dccbc800d5d05a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b69a40ccbd18df91525aff7313be56b" id="r_a9b69a40ccbd18df91525aff7313be56b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a9b69a40ccbd18df91525aff7313be56b.html#a9b69a40ccbd18df91525aff7313be56b">fgHasSpaceball</a> (void)</td></tr>
+<tr class="separator:a9b69a40ccbd18df91525aff7313be56b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f00020da3bc9107038da724b59bb2a7" id="r_a5f00020da3bc9107038da724b59bb2a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a5f00020da3bc9107038da724b59bb2a7.html#a5f00020da3bc9107038da724b59bb2a7">fgSpaceballNumButtons</a> (void)</td></tr>
+<tr class="separator:a5f00020da3bc9107038da724b59bb2a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af60ff218acd32919f10baaadd47a1fa5" id="r_af60ff218acd32919f10baaadd47a1fa5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_af60ff218acd32919f10baaadd47a1fa5.html#af60ff218acd32919f10baaadd47a1fa5">fgSetCursor</a> (<a class="el" href="freeglut__internal_8h_ad1591224a26149d3158a7ee4d471cce3.html#ad1591224a26149d3158a7ee4d471cce3">SFG_Window</a> *window, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a> cursorID)</td></tr>
+<tr class="separator:af60ff218acd32919f10baaadd47a1fa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5e0984977f49f6054c8b2aaa5317914" id="r_ae5e0984977f49f6054c8b2aaa5317914"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_ae5e0984977f49f6054c8b2aaa5317914.html#ae5e0984977f49f6054c8b2aaa5317914">fgEnumWindows</a> (<a class="el" href="freeglut__internal_8h_ad4394b615e3eec0f466317dd6c4a9c5a.html#ad4394b615e3eec0f466317dd6c4a9c5a">FGCBWindowEnumerator</a> enumCallback, <a class="el" href="freeglut__internal_8h_a3e2d1c1a6415be65caf7bddc12c38887.html#a3e2d1c1a6415be65caf7bddc12c38887">SFG_Enumerator</a> *enumerator)</td></tr>
+<tr class="separator:ae5e0984977f49f6054c8b2aaa5317914"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5153c96f02172ba091c4c432a04c5f9" id="r_ad5153c96f02172ba091c4c432a04c5f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_ad5153c96f02172ba091c4c432a04c5f9.html#ad5153c96f02172ba091c4c432a04c5f9">fgEnumSubWindows</a> (<a class="el" href="freeglut__internal_8h_ad1591224a26149d3158a7ee4d471cce3.html#ad1591224a26149d3158a7ee4d471cce3">SFG_Window</a> *window, <a class="el" href="freeglut__internal_8h_ad4394b615e3eec0f466317dd6c4a9c5a.html#ad4394b615e3eec0f466317dd6c4a9c5a">FGCBWindowEnumerator</a> enumCallback, <a class="el" href="freeglut__internal_8h_a3e2d1c1a6415be65caf7bddc12c38887.html#a3e2d1c1a6415be65caf7bddc12c38887">SFG_Enumerator</a> *enumerator)</td></tr>
+<tr class="separator:ad5153c96f02172ba091c4c432a04c5f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30c55e66f8f92d2a7a8aa6798a1a9f87" id="r_a30c55e66f8f92d2a7a8aa6798a1a9f87"><td class="memItemLeft" align="right" valign="top"><a class="el" href="freeglut__internal_8h_ad1591224a26149d3158a7ee4d471cce3.html#ad1591224a26149d3158a7ee4d471cce3">SFG_Window</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a30c55e66f8f92d2a7a8aa6798a1a9f87.html#a30c55e66f8f92d2a7a8aa6798a1a9f87">fgWindowByHandle</a> (SFG_WindowHandleType hWindow)</td></tr>
+<tr class="separator:a30c55e66f8f92d2a7a8aa6798a1a9f87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2ef47af37580d4df7c956fbb4d27b48" id="r_ac2ef47af37580d4df7c956fbb4d27b48"><td class="memItemLeft" align="right" valign="top"><a class="el" href="freeglut__internal_8h_ad1591224a26149d3158a7ee4d471cce3.html#ad1591224a26149d3158a7ee4d471cce3">SFG_Window</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_ac2ef47af37580d4df7c956fbb4d27b48.html#ac2ef47af37580d4df7c956fbb4d27b48">fgWindowByID</a> (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a> windowID)</td></tr>
+<tr class="separator:ac2ef47af37580d4df7c956fbb4d27b48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab125cfeda83b44b17888377bebb373e5" id="r_ab125cfeda83b44b17888377bebb373e5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="freeglut__internal_8h_a1008f0f193f91d42e9622463cb4111ab.html#a1008f0f193f91d42e9622463cb4111ab">SFG_Menu</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_ab125cfeda83b44b17888377bebb373e5.html#ab125cfeda83b44b17888377bebb373e5">fgMenuByID</a> (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a> menuID)</td></tr>
+<tr class="separator:ab125cfeda83b44b17888377bebb373e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61397e768f8fa64f26ef4baafc47304a" id="r_a61397e768f8fa64f26ef4baafc47304a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="freeglut__internal_8h_a1008f0f193f91d42e9622463cb4111ab.html#a1008f0f193f91d42e9622463cb4111ab">SFG_Menu</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a61397e768f8fa64f26ef4baafc47304a.html#a61397e768f8fa64f26ef4baafc47304a">fgGetActiveMenu</a> ()</td></tr>
+<tr class="separator:a61397e768f8fa64f26ef4baafc47304a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19f5c16408e1b100bf3b18f3e1d104e1" id="r_a19f5c16408e1b100bf3b18f3e1d104e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a19f5c16408e1b100bf3b18f3e1d104e1.html#a19f5c16408e1b100bf3b18f3e1d104e1">fgUpdateMenuHighlight</a> (<a class="el" href="freeglut__internal_8h_a1008f0f193f91d42e9622463cb4111ab.html#a1008f0f193f91d42e9622463cb4111ab">SFG_Menu</a> *menu)</td></tr>
+<tr class="separator:a19f5c16408e1b100bf3b18f3e1d104e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3897f3120822098f558958d1efd3e02" id="r_ae3897f3120822098f558958d1efd3e02"><td class="memItemLeft" align="right" valign="top">GLboolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_ae3897f3120822098f558958d1efd3e02.html#ae3897f3120822098f558958d1efd3e02">fgCheckActiveMenu</a> (<a class="el" href="freeglut__internal_8h_ad1591224a26149d3158a7ee4d471cce3.html#ad1591224a26149d3158a7ee4d471cce3">SFG_Window</a> *window, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a> button, GLboolean pressed, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a> <a class="el" href="_callback_maker_8c_a6c59af730728bf5260ef828aea2eebee.html#a6c59af730728bf5260ef828aea2eebee">mouse_x</a>, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a> <a class="el" href="_callback_maker_8c_ab21653e455bbca86826aa5f628a5fdb2.html#ab21653e455bbca86826aa5f628a5fdb2">mouse_y</a>)</td></tr>
+<tr class="separator:ae3897f3120822098f558958d1efd3e02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41bcc928f3a3811b3f506dc620f8ff09" id="r_a41bcc928f3a3811b3f506dc620f8ff09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a41bcc928f3a3811b3f506dc620f8ff09.html#a41bcc928f3a3811b3f506dc620f8ff09">fgDeactivateMenu</a> (<a class="el" href="freeglut__internal_8h_ad1591224a26149d3158a7ee4d471cce3.html#ad1591224a26149d3158a7ee4d471cce3">SFG_Window</a> *window)</td></tr>
+<tr class="separator:a41bcc928f3a3811b3f506dc620f8ff09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a252b706419e6377b9d5f6da31eab402c" id="r_a252b706419e6377b9d5f6da31eab402c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a252b706419e6377b9d5f6da31eab402c.html#a252b706419e6377b9d5f6da31eab402c">fgDisplayMenu</a> (void)</td></tr>
+<tr class="separator:a252b706419e6377b9d5f6da31eab402c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac7c16f0f6ef90e294811953c1f606d5" id="r_aac7c16f0f6ef90e294811953c1f606d5"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_aac7c16f0f6ef90e294811953c1f606d5.html#aac7c16f0f6ef90e294811953c1f606d5">fgElapsedTime</a> (void)</td></tr>
+<tr class="separator:aac7c16f0f6ef90e294811953c1f606d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d4b6c275d59c80d93912404c5fcd178" id="r_a5d4b6c275d59c80d93912404c5fcd178"><td class="memItemLeft" align="right" valign="top">long unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a5d4b6c275d59c80d93912404c5fcd178.html#a5d4b6c275d59c80d93912404c5fcd178">fgSystemTime</a> (void)</td></tr>
+<tr class="separator:a5d4b6c275d59c80d93912404c5fcd178"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2779420295cc9028b24018cc8f1d2363" id="r_a2779420295cc9028b24018cc8f1d2363"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a2779420295cc9028b24018cc8f1d2363.html#a2779420295cc9028b24018cc8f1d2363">fgListInit</a> (<a class="el" href="freeglut__internal_8h_a28d25a773a5fe63a0c33a017c11c5c80.html#a28d25a773a5fe63a0c33a017c11c5c80">SFG_List</a> *list)</td></tr>
+<tr class="separator:a2779420295cc9028b24018cc8f1d2363"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae46e564c10c98a1e8384e995af24cf0c" id="r_ae46e564c10c98a1e8384e995af24cf0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_ae46e564c10c98a1e8384e995af24cf0c.html#ae46e564c10c98a1e8384e995af24cf0c">fgListAppend</a> (<a class="el" href="freeglut__internal_8h_a28d25a773a5fe63a0c33a017c11c5c80.html#a28d25a773a5fe63a0c33a017c11c5c80">SFG_List</a> *list, <a class="el" href="freeglut__internal_8h_abe80c6792ae84c5c9091b4f98d2071a6.html#abe80c6792ae84c5c9091b4f98d2071a6">SFG_Node</a> *node)</td></tr>
+<tr class="separator:ae46e564c10c98a1e8384e995af24cf0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1839846f37383d3f97256e1da53240e4" id="r_a1839846f37383d3f97256e1da53240e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a1839846f37383d3f97256e1da53240e4.html#a1839846f37383d3f97256e1da53240e4">fgListRemove</a> (<a class="el" href="freeglut__internal_8h_a28d25a773a5fe63a0c33a017c11c5c80.html#a28d25a773a5fe63a0c33a017c11c5c80">SFG_List</a> *list, <a class="el" href="freeglut__internal_8h_abe80c6792ae84c5c9091b4f98d2071a6.html#abe80c6792ae84c5c9091b4f98d2071a6">SFG_Node</a> *node)</td></tr>
+<tr class="separator:a1839846f37383d3f97256e1da53240e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98771d3e035d6d3468dcd19f0c274461" id="r_a98771d3e035d6d3468dcd19f0c274461"><td class="memItemLeft" align="right" valign="top"><a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a98771d3e035d6d3468dcd19f0c274461.html#a98771d3e035d6d3468dcd19f0c274461">fgListLength</a> (<a class="el" href="freeglut__internal_8h_a28d25a773a5fe63a0c33a017c11c5c80.html#a28d25a773a5fe63a0c33a017c11c5c80">SFG_List</a> *list)</td></tr>
+<tr class="separator:a98771d3e035d6d3468dcd19f0c274461"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7450e6f59bd72cf0ee45d5b9f6718fdf" id="r_a7450e6f59bd72cf0ee45d5b9f6718fdf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a7450e6f59bd72cf0ee45d5b9f6718fdf.html#a7450e6f59bd72cf0ee45d5b9f6718fdf">fgListInsert</a> (<a class="el" href="freeglut__internal_8h_a28d25a773a5fe63a0c33a017c11c5c80.html#a28d25a773a5fe63a0c33a017c11c5c80">SFG_List</a> *list, <a class="el" href="freeglut__internal_8h_abe80c6792ae84c5c9091b4f98d2071a6.html#abe80c6792ae84c5c9091b4f98d2071a6">SFG_Node</a> *next, <a class="el" href="freeglut__internal_8h_abe80c6792ae84c5c9091b4f98d2071a6.html#abe80c6792ae84c5c9091b4f98d2071a6">SFG_Node</a> *node)</td></tr>
+<tr class="separator:a7450e6f59bd72cf0ee45d5b9f6718fdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ef268b003c06fa96a2e5c883c0b7c14" id="r_a5ef268b003c06fa96a2e5c883c0b7c14"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a5ef268b003c06fa96a2e5c883c0b7c14.html#a5ef268b003c06fa96a2e5c883c0b7c14">fgError</a> (const char *fmt,...)</td></tr>
+<tr class="separator:a5ef268b003c06fa96a2e5c883c0b7c14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7e4d70aeadd52d31dc7fde493218963" id="r_ab7e4d70aeadd52d31dc7fde493218963"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_ab7e4d70aeadd52d31dc7fde493218963.html#ab7e4d70aeadd52d31dc7fde493218963">fgWarning</a> (const char *fmt,...)</td></tr>
+<tr class="separator:ab7e4d70aeadd52d31dc7fde493218963"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54d0f4ceb19fe3aafee6501b87f597d8" id="r_a54d0f4ceb19fe3aafee6501b87f597d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="freeglut__internal_8h_a4a9d998eb263a52483cd3f5ff9070b4f.html#a4a9d998eb263a52483cd3f5ff9070b4f">SFG_Proc</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a54d0f4ceb19fe3aafee6501b87f597d8.html#a54d0f4ceb19fe3aafee6501b87f597d8">fghGetProcAddress</a> (const char *procName)</td></tr>
+<tr class="separator:a54d0f4ceb19fe3aafee6501b87f597d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+変数</h2></td></tr>
+<tr class="memitem:a76fec867b1da5a2da5e66c0301bdf89a" id="r_a76fec867b1da5a2da5e66c0301bdf89a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="freeglut__internal_8h_a7000ba13961e5abe47f44d7ba822274e.html#a7000ba13961e5abe47f44d7ba822274e">SFG_Display</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a76fec867b1da5a2da5e66c0301bdf89a.html#a76fec867b1da5a2da5e66c0301bdf89a">fgDisplay</a></td></tr>
+<tr class="separator:a76fec867b1da5a2da5e66c0301bdf89a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2080ddc364d4d07b4f3352f353e10a7a" id="r_a2080ddc364d4d07b4f3352f353e10a7a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="freeglut__internal_8h_a0b578253d5503239dc229a3cccb5e791.html#a0b578253d5503239dc229a3cccb5e791">SFG_Structure</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a2080ddc364d4d07b4f3352f353e10a7a.html#a2080ddc364d4d07b4f3352f353e10a7a">fgStructure</a></td></tr>
+<tr class="separator:a2080ddc364d4d07b4f3352f353e10a7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60e848bebe3ba247ac42fe5d54f32e4e" id="r_a60e848bebe3ba247ac42fe5d54f32e4e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="freeglut__internal_8h_ad6570b3f8df83464b84da1942a473613.html#ad6570b3f8df83464b84da1942a473613">SFG_State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freeglut__internal_8h_a60e848bebe3ba247ac42fe5d54f32e4e.html#a60e848bebe3ba247ac42fe5d54f32e4e">fgState</a></td></tr>
+<tr class="separator:a60e848bebe3ba247ac42fe5d54f32e4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

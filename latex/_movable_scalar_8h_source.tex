@@ -1,0 +1,41 @@
+\doxysection{Movable\+Scalar.\+h}
+\hypertarget{_movable_scalar_8h_source}{}\label{_movable_scalar_8h_source}\index{eigen-\/3.4.0/eigen-\/3.4.0/test/MovableScalar.h@{eigen-\/3.4.0/eigen-\/3.4.0/test/MovableScalar.h}}
+\mbox{\hyperlink{_movable_scalar_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ Eigen,\ a\ lightweight\ C++\ template\ library}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ for\ linear\ algebra.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (C)\ 2020\ Sebastien\ Boisvert\ <seb@boisvert.info>}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ This\ Source\ Code\ Form\ is\ subject\ to\ the\ terms\ of\ the\ Mozilla}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Public\ License\ v.\ 2.0.\ If\ a\ copy\ of\ the\ MPL\ was\ not\ distributed}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ with\ this\ file,\ You\ can\ obtain\ one\ at\ http://mozilla.org/MPL/2.0/.}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_MISC\_MOVABLE\_SCALAR\_H}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ EIGEN\_MISC\_MOVABLE\_SCALAR\_H}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_eigen}{Eigen}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar,\ \textcolor{keyword}{typename}\ Base\ =\ std::vector<Scalar>>}
+\DoxyCodeLine{00018\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_movable_scalar}{MovableScalar}}\ :\ \textcolor{keyword}{public}\ Base}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \ \ \mbox{\hyperlink{struct_eigen_1_1_movable_scalar_aa85f2caa12dc69036fe51088d8ef86cb_aa85f2caa12dc69036fe51088d8ef86cb}{MovableScalar}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00021\ \ \ \mbox{\hyperlink{struct_eigen_1_1_movable_scalar_a778ce4b540463aa161bbe9762724ea69_a778ce4b540463aa161bbe9762724ea69}{\string~MovableScalar}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00022\ \ \ \mbox{\hyperlink{struct_eigen_1_1_movable_scalar_ab79466e9e19fdb2fb1dcc0f8ee898bba_ab79466e9e19fdb2fb1dcc0f8ee898bba}{MovableScalar}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_movable_scalar}{MovableScalar}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00023\ \ \ \mbox{\hyperlink{struct_eigen_1_1_movable_scalar_a3123dbb4407948768e09535324ed44d9_a3123dbb4407948768e09535324ed44d9}{MovableScalar}}(\mbox{\hyperlink{struct_eigen_1_1_movable_scalar}{MovableScalar}}\&\&\ other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00024\ \ \ \mbox{\hyperlink{struct_eigen_1_1_movable_scalar}{MovableScalar}}\&\ \mbox{\hyperlink{struct_eigen_1_1_movable_scalar_ad2b030b6c8515c54ab5fe19806f39aad_ad2b030b6c8515c54ab5fe19806f39aad}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_movable_scalar}{MovableScalar}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00025\ \ \ \mbox{\hyperlink{struct_eigen_1_1_movable_scalar}{MovableScalar}}\&\ \mbox{\hyperlink{struct_eigen_1_1_movable_scalar_af96233acf021f71f40ace0996475eeab_af96233acf021f71f40ace0996475eeab}{operator=}}(\mbox{\hyperlink{struct_eigen_1_1_movable_scalar}{MovableScalar}}\&\&\ other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00026\ \ \ \mbox{\hyperlink{struct_eigen_1_1_movable_scalar_a530fa7f846c8d609d58596fa06442b57_a530fa7f846c8d609d58596fa06442b57}{MovableScalar}}(\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}\ scalar)\ :\ Base(100,\ scalar)\ \{\}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \textcolor{keyword}{operator}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}()\ >\ 0\ ?\ this-\/>back()\ :\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}();\ \}}
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{template}<>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits}}<\mbox{\hyperlink{struct_eigen_1_1_movable_scalar}{MovableScalar}}<float>>\ :\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits}{GenericNumTraits}}<float>\ \{\};}
+\DoxyCodeLine{00032\ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00035\ }
+
+\end{DoxyCode}

@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Qt_project: backup/CustomScene.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Qt_project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_0b457ace402ca7986e274a9663e8d868.html">backup</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">CustomScene.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="backup_2_custom_scene_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//タイムラインに関する記述</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#ifndef CUSTOMSCENE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#define CUSTOMSCENE_H</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;qvector3d.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;QGraphicsScene&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;QGraphicsSceneMouseEvent&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;QGraphicsLineItem&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;QList&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;QPair&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">class </span><a class="code hl_class" href="class_main_window.html">MainWindow</a>; <span class="comment">// 前方宣言</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// キーフレーム構造体の定義</span></div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="struct_camera_keyframe.html">   15</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_camera_keyframe.html">CameraKeyframe</a> {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="struct_camera_keyframe_ace98e6dca820e62372cf1c8647865f6b.html#ace98e6dca820e62372cf1c8647865f6b">   16</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_camera_keyframe_ace98e6dca820e62372cf1c8647865f6b.html#ace98e6dca820e62372cf1c8647865f6b">frameNumber</a>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="struct_camera_keyframe_a86e0ae8b25dfa4731a870ed7b98cc2c3.html#a86e0ae8b25dfa4731a870ed7b98cc2c3">   17</a></span>    QVector3D <a class="code hl_variable" href="struct_camera_keyframe_a86e0ae8b25dfa4731a870ed7b98cc2c3.html#a86e0ae8b25dfa4731a870ed7b98cc2c3">eyePoint</a>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="struct_camera_keyframe_ae958338c7b301667d0622825d46ee24b.html#ae958338c7b301667d0622825d46ee24b">   18</a></span>    QVector3D <a class="code hl_variable" href="struct_camera_keyframe_ae958338c7b301667d0622825d46ee24b.html#ae958338c7b301667d0622825d46ee24b">lookAtPoint</a>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="struct_camera_keyframe_aa5c2babc1df575c6036fd2901b531cc3.html#aa5c2babc1df575c6036fd2901b531cc3">   19</a></span>    QVector3D <a class="code hl_variable" href="struct_camera_keyframe_aa5c2babc1df575c6036fd2901b531cc3.html#aa5c2babc1df575c6036fd2901b531cc3">upVector</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="struct_camera_keyframe_aa0a913d1aeb0fa49f990e99031999c5d.html#aa0a913d1aeb0fa49f990e99031999c5d">   20</a></span>    QVector3D <a class="code hl_variable" href="struct_camera_keyframe_aa0a913d1aeb0fa49f990e99031999c5d.html#aa0a913d1aeb0fa49f990e99031999c5d">xVector</a>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="struct_camera_keyframe_ac3b7b4003d2a41b0e445f5cb477ee666.html#ac3b7b4003d2a41b0e445f5cb477ee666">   21</a></span>    QVector3D <a class="code hl_variable" href="struct_camera_keyframe_ac3b7b4003d2a41b0e445f5cb477ee666.html#ac3b7b4003d2a41b0e445f5cb477ee666">yVector</a>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="struct_camera_keyframe_a2d389011fb33fc564b1cc80eb2022a77.html#a2d389011fb33fc564b1cc80eb2022a77">   22</a></span>    QVector3D <a class="code hl_variable" href="struct_camera_keyframe_a2d389011fb33fc564b1cc80eb2022a77.html#a2d389011fb33fc564b1cc80eb2022a77">zVector</a>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="struct_camera_keyframe_a972b4e115b9eccd742311565741c08e7.html#a972b4e115b9eccd742311565741c08e7">   23</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_camera_keyframe_a972b4e115b9eccd742311565741c08e7.html#a972b4e115b9eccd742311565741c08e7">fov</a>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="struct_camera_keyframe_a891fc265dfd5c266408b999296acef50.html#a891fc265dfd5c266408b999296acef50">   24</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="struct_camera_keyframe_a891fc265dfd5c266408b999296acef50.html#a891fc265dfd5c266408b999296acef50">zoom</a>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>};</div>
+</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="foldopen" id="foldopen00027" data-start="{" data-end="};">
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="class_custom_scene.html">   27</a></span><span class="keyword">class </span><a class="code hl_class" href="class_custom_scene.html">CustomScene</a> : <span class="keyword">public</span> QGraphicsScene</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>{</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    Q_OBJECT</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="class_custom_scene_a16c433119635358d3498a0516dafcd16.html#a16c433119635358d3498a0516dafcd16">   34</a></span>    QGraphicsLineItem* <a class="code hl_variable" href="class_custom_scene_a16c433119635358d3498a0516dafcd16.html#a16c433119635358d3498a0516dafcd16">playhead</a> ;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="class_custom_scene_ade97e4eb535a29238b427dbfca43c8a8.html#ade97e4eb535a29238b427dbfca43c8a8">   35</a></span>    QGraphicsPathItem* <a class="code hl_variable" href="class_custom_scene_ade97e4eb535a29238b427dbfca43c8a8.html#ade97e4eb535a29238b427dbfca43c8a8">backgroundItem</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="class_custom_scene_a405b137c603d6372b507a31d52265304.html#a405b137c603d6372b507a31d52265304">   36</a></span>    qreal <a class="code hl_variable" href="class_custom_scene_a405b137c603d6372b507a31d52265304.html#a405b137c603d6372b507a31d52265304">playheadPositionX</a> = 10.0; <span class="comment">// プレイヘッドのX位置を保持する変数</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="class_custom_scene_ab7448c293519dd849ad8c41ca2f82427.html#ab7448c293519dd849ad8c41ca2f82427">   37</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_custom_scene_ab7448c293519dd849ad8c41ca2f82427.html#ab7448c293519dd849ad8c41ca2f82427">playheadBeingDragged</a> = <span class="keyword">false</span>; <span class="comment">// ドラッグ状態を追跡するための変数</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="class_custom_scene_afd7420086283348d3d02a187df4618b1.html#afd7420086283348d3d02a187df4618b1">   38</a></span>    QGraphicsTextItem* <a class="code hl_variable" href="class_custom_scene_afd7420086283348d3d02a187df4618b1.html#afd7420086283348d3d02a187df4618b1">playheadText</a> = <span class="keyword">nullptr</span>; <span class="comment">// playheadのフレーム数を表示するテキスト</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="class_custom_scene_a7b54991751ed4d0a867b82c2f75ea64e.html#a7b54991751ed4d0a867b82c2f75ea64e">   39</a></span>     <span class="keywordtype">int</span> <a class="code hl_variable" href="class_custom_scene_a7b54991751ed4d0a867b82c2f75ea64e.html#a7b54991751ed4d0a867b82c2f75ea64e">frameRate</a> = 30; <span class="comment">// 1秒あたりのフレーム数</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="class_custom_scene_a7ae562d52c0e0b461e60fe0a5a251ffc.html#a7ae562d52c0e0b461e60fe0a5a251ffc">   41</a></span>     qreal <a class="code hl_variable" href="class_custom_scene_a7ae562d52c0e0b461e60fe0a5a251ffc.html#a7ae562d52c0e0b461e60fe0a5a251ffc">m_currentMouseX</a>;  <span class="comment">// マウスの現在のX座標を保存するメンバ変数</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>     <span class="comment">/*==========キーフレームアイコンに関する実装===========*/</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="class_custom_scene_a22500fa53b3eb02c7b1f00e907987a81.html#a22500fa53b3eb02c7b1f00e907987a81">   47</a></span>     QGraphicsPolygonItem* <a class="code hl_variable" href="class_custom_scene_a22500fa53b3eb02c7b1f00e907987a81.html#a22500fa53b3eb02c7b1f00e907987a81">keyframeItem</a>;<span class="comment">//キーフレームアイコン</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="class_custom_scene_a55871e4ca5ef095d77fa756a4c98d57a.html#a55871e4ca5ef095d77fa756a4c98d57a">   48</a></span>     QList&lt;QGraphicsPolygonItem*&gt; <a class="code hl_variable" href="class_custom_scene_a55871e4ca5ef095d77fa756a4c98d57a.html#a55871e4ca5ef095d77fa756a4c98d57a">keyframeItems</a>; <span class="comment">// キーフレームアイコンのリスト</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="class_custom_scene_ab3f653c107eca540b1a4c25314b06306.html#ab3f653c107eca540b1a4c25314b06306">   49</a></span>     QList&lt;QPair&lt;QGraphicsPolygonItem*, QGraphicsLineItem*&gt;&gt; <a class="code hl_variable" href="class_custom_scene_ab3f653c107eca540b1a4c25314b06306.html#ab3f653c107eca540b1a4c25314b06306">keyframeLines</a>; <span class="comment">// キーフレームと線をペアで管理するリスト</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>     <span class="comment">/*---------------線形補間---------------*/</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="class_custom_scene_a36ba6a3ad0adf5aea03fada681f84694.html#a36ba6a3ad0adf5aea03fada681f84694">   53</a></span>     QList&lt;CameraKeyframe&gt; <a class="code hl_variable" href="class_custom_scene_a36ba6a3ad0adf5aea03fada681f84694.html#a36ba6a3ad0adf5aea03fada681f84694">keyframes</a>; <span class="comment">// カメラデータ構造体CameraKeyframeのリスト</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="comment">//mainwindowからスロットをもらうためのポインタ</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="class_custom_scene_a7a269848be7913c87a852c4b15b1672d.html#a7a269848be7913c87a852c4b15b1672d">   56</a></span>     <a class="code hl_class" href="class_main_window.html">MainWindow</a> *<a class="code hl_variable" href="class_custom_scene_a7a269848be7913c87a852c4b15b1672d.html#a7a269848be7913c87a852c4b15b1672d">m_mainWindow</a>; <span class="comment">// メインウィンドウのポインタ</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>     <span class="comment">//キーフレームアイコンのリスト</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="class_custom_scene_aad0291a90880d01ad6259721eff34841.html#aad0291a90880d01ad6259721eff34841">   59</a></span>     <span class="keywordtype">int</span> <a class="code hl_variable" href="class_custom_scene_aad0291a90880d01ad6259721eff34841.html#aad0291a90880d01ad6259721eff34841">sceneWidth</a>; <span class="comment">// シーンの幅を保存するメンバ変数</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_custom_scene_a76afc0f46f8bb8d952735a45c705d8cb.html#a76afc0f46f8bb8d952735a45c705d8cb">CustomScene</a>(<a class="code hl_class" href="class_main_window.html">MainWindow</a> *mainWindow,QObject *parent = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_custom_scene_a8d08d1fe3e2a5d2b1985a5014be34e67.html#a8d08d1fe3e2a5d2b1985a5014be34e67">setupScene</a>(<span class="keywordtype">int</span> <a class="code hl_variable" href="myopenglwidget_8cpp_a2474a5474cbff19523a51eb1de01cda4.html#a2474a5474cbff19523a51eb1de01cda4">width</a>, <span class="keywordtype">int</span> <a class="code hl_variable" href="myopenglwidget_8cpp_ad12fc34ce789bce6c8a05d8a17138534.html#ad12fc34ce789bce6c8a05d8a17138534">height</a>); <span class="comment">// サイズをパラメータとして受け取るように変更  // シーンのセットアップ関数</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_custom_scene_a83a173bc67b1b7b8b281e192430bf067.html#a83a173bc67b1b7b8b281e192430bf067">addKeyframe</a>(<span class="keywordtype">int</span> frameNumber, <span class="keyword">const</span> QVector3D&amp; eyePoint, <span class="keyword">const</span> QVector3D&amp; lookAtPoint, <span class="keyword">const</span> QVector3D&amp; upVector, <span class="keyword">const</span> QVector3D&amp; xVector, <span class="keyword">const</span> QVector3D&amp; yVector, <span class="keyword">const</span> QVector3D&amp; zVector, <span class="keywordtype">float</span> fov, <span class="keywordtype">double</span> zoom);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    qreal <a class="code hl_function" href="class_custom_scene_a547635870c2283801596735e59fbf658.html#a547635870c2283801596735e59fbf658">currentMousePositionX</a>() <span class="keyword">const</span>;  <span class="comment">// マウス位置を取得するメソッド</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    qreal <a class="code hl_function" href="class_custom_scene_a8c573a90a2ca781852c03c5922e2866e.html#a8c573a90a2ca781852c03c5922e2866e">getPlayheadPositionX</a>() <span class="keyword">const</span>;<span class="comment">//クラス外にPlayheadPositionX()を教える</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="class_custom_scene_a30037db7e5e6de440b09ee4a99ca647a.html#a30037db7e5e6de440b09ee4a99ca647a">   71</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="class_custom_scene_a30037db7e5e6de440b09ee4a99ca647a.html#a30037db7e5e6de440b09ee4a99ca647a">startpixel</a>=10;<span class="comment">//タイムラインの開始位置</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="class_custom_scene_a071d9d5303aaa8780cc6c57908f82dbd.html#a071d9d5303aaa8780cc6c57908f82dbd">   72</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="class_custom_scene_a071d9d5303aaa8780cc6c57908f82dbd.html#a071d9d5303aaa8780cc6c57908f82dbd">pixelsPerFrame</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="comment">/*==========線形補間に関する実装===========*/</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="comment">//線形補間した値を適応するメソッド</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_custom_scene_ae098443942eb7ffb9b8a6c8799cfedf8.html#ae098443942eb7ffb9b8a6c8799cfedf8">updateCameraForFrame</a>(<span class="keywordtype">int</span> frameNumber);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="comment">//キーフレムを選択して削除するためのポインタ変数</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="class_custom_scene_ac21d9b92d141f055f57b0d46e171f19a.html#ac21d9b92d141f055f57b0d46e171f19a">   79</a></span>    QGraphicsPolygonItem* <a class="code hl_variable" href="class_custom_scene_ac21d9b92d141f055f57b0d46e171f19a.html#ac21d9b92d141f055f57b0d46e171f19a">selectedKeyframe</a> = <span class="keyword">nullptr</span>; <span class="comment">// 選択されたキーフレーム</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="comment">//キーフレームアイコンとそのデータを削除する変数</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_custom_scene_a1e80ebecf671c608696d91b5c957f6b5.html#a1e80ebecf671c608696d91b5c957f6b5">deleteSelectedKeyframe</a>(<span class="keywordtype">int</span> frameNumber);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="comment">//mainwidow等に渡すキーフレーム数</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_custom_scene_ae6d8f7d90fdb140af07acd99cec248f4.html#ae6d8f7d90fdb140af07acd99cec248f4">calculateFrameNumberFromPlayhead</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>   <span class="comment">// イベントハンドラ</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>   <span class="keywordtype">bool</span> <a class="code hl_function" href="class_custom_scene_aad0c880244be42094927e1024b487b6e.html#aad0c880244be42094927e1024b487b6e">eventFilter</a>(QObject *watched, QEvent *event) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>   <span class="keywordtype">void</span> <a class="code hl_function" href="class_custom_scene_a5f51d6f3ce39d949a08530ff03426c2d.html#a5f51d6f3ce39d949a08530ff03426c2d">mousePressEvent</a>(QGraphicsSceneMouseEvent *event) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>   <span class="keywordtype">void</span> <a class="code hl_function" href="class_custom_scene_adda499da620402ce4c0bce53215a22c0.html#adda499da620402ce4c0bce53215a22c0">mouseMoveEvent</a>(QGraphicsSceneMouseEvent *event) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>   <span class="keywordtype">void</span> <a class="code hl_function" href="class_custom_scene_a2270d9c00a5bbb861869dc569a4389f9.html#a2270d9c00a5bbb861869dc569a4389f9">mouseReleaseEvent</a>(QGraphicsSceneMouseEvent *event) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>   <span class="keywordtype">void</span> <a class="code hl_function" href="class_custom_scene_a013742784a1d474de3e707d0afdfe841.html#a013742784a1d474de3e707d0afdfe841">wheelEvent</a>(QGraphicsSceneWheelEvent *event) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="class_custom_scene_a84145e80b4373effadc59ab460033a8e.html#a84145e80b4373effadc59ab460033a8e">   96</a></span>   <span class="keywordtype">void</span> <a class="code hl_function" href="class_custom_scene_a84145e80b4373effadc59ab460033a8e.html#a84145e80b4373effadc59ab460033a8e">updatePlayheadText</a>(qreal newPos);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>   <span class="comment">//線形補間関数</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>   <a class="code hl_struct" href="struct_camera_keyframe.html">CameraKeyframe</a> <a class="code hl_function" href="class_custom_scene_a8b32e97d6b29ac997e4611660b052d1c.html#a8b32e97d6b29ac997e4611660b052d1c">interpolateKeyframe</a>(<span class="keyword">const</span> <a class="code hl_struct" href="struct_camera_keyframe.html">CameraKeyframe</a>&amp; kf1, <span class="keyword">const</span> <a class="code hl_struct" href="struct_camera_keyframe.html">CameraKeyframe</a>&amp; kf2, <span class="keywordtype">float</span> t) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>};</div>
+</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="preprocessor">#endif </span><span class="comment">// CUSTOMSCENE_H</span></div>
+<div class="ttc" id="aclass_custom_scene_a013742784a1d474de3e707d0afdfe841_html_a013742784a1d474de3e707d0afdfe841"><div class="ttname"><a href="class_custom_scene_a013742784a1d474de3e707d0afdfe841.html#a013742784a1d474de3e707d0afdfe841">CustomScene::wheelEvent</a></div><div class="ttdeci">void wheelEvent(QGraphicsSceneWheelEvent *event) override</div><div class="ttdef"><b>Definition</b> CustomScene.cpp:495</div></div>
+<div class="ttc" id="aclass_custom_scene_a071d9d5303aaa8780cc6c57908f82dbd_html_a071d9d5303aaa8780cc6c57908f82dbd"><div class="ttname"><a href="class_custom_scene_a071d9d5303aaa8780cc6c57908f82dbd.html#a071d9d5303aaa8780cc6c57908f82dbd">CustomScene::pixelsPerFrame</a></div><div class="ttdeci">int pixelsPerFrame</div><div class="ttdef"><b>Definition</b> CustomScene.h:72</div></div>
+<div class="ttc" id="aclass_custom_scene_a16c433119635358d3498a0516dafcd16_html_a16c433119635358d3498a0516dafcd16"><div class="ttname"><a href="class_custom_scene_a16c433119635358d3498a0516dafcd16.html#a16c433119635358d3498a0516dafcd16">CustomScene::playhead</a></div><div class="ttdeci">QGraphicsLineItem * playhead</div><div class="ttdef"><b>Definition</b> CustomScene.h:34</div></div>
+<div class="ttc" id="aclass_custom_scene_a1e80ebecf671c608696d91b5c957f6b5_html_a1e80ebecf671c608696d91b5c957f6b5"><div class="ttname"><a href="class_custom_scene_a1e80ebecf671c608696d91b5c957f6b5.html#a1e80ebecf671c608696d91b5c957f6b5">CustomScene::deleteSelectedKeyframe</a></div><div class="ttdeci">void deleteSelectedKeyframe(int frameNumber)</div><div class="ttdef"><b>Definition</b> CustomScene.cpp:303</div></div>
+<div class="ttc" id="aclass_custom_scene_a22500fa53b3eb02c7b1f00e907987a81_html_a22500fa53b3eb02c7b1f00e907987a81"><div class="ttname"><a href="class_custom_scene_a22500fa53b3eb02c7b1f00e907987a81.html#a22500fa53b3eb02c7b1f00e907987a81">CustomScene::keyframeItem</a></div><div class="ttdeci">QGraphicsPolygonItem * keyframeItem</div><div class="ttdef"><b>Definition</b> CustomScene.h:47</div></div>
+<div class="ttc" id="aclass_custom_scene_a2270d9c00a5bbb861869dc569a4389f9_html_a2270d9c00a5bbb861869dc569a4389f9"><div class="ttname"><a href="class_custom_scene_a2270d9c00a5bbb861869dc569a4389f9.html#a2270d9c00a5bbb861869dc569a4389f9">CustomScene::mouseReleaseEvent</a></div><div class="ttdeci">void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override</div><div class="ttdef"><b>Definition</b> CustomScene.cpp:478</div></div>
+<div class="ttc" id="aclass_custom_scene_a30037db7e5e6de440b09ee4a99ca647a_html_a30037db7e5e6de440b09ee4a99ca647a"><div class="ttname"><a href="class_custom_scene_a30037db7e5e6de440b09ee4a99ca647a.html#a30037db7e5e6de440b09ee4a99ca647a">CustomScene::startpixel</a></div><div class="ttdeci">int startpixel</div><div class="ttdef"><b>Definition</b> CustomScene.h:71</div></div>
+<div class="ttc" id="aclass_custom_scene_a36ba6a3ad0adf5aea03fada681f84694_html_a36ba6a3ad0adf5aea03fada681f84694"><div class="ttname"><a href="class_custom_scene_a36ba6a3ad0adf5aea03fada681f84694.html#a36ba6a3ad0adf5aea03fada681f84694">CustomScene::keyframes</a></div><div class="ttdeci">QList&lt; CameraKeyframe &gt; keyframes</div><div class="ttdef"><b>Definition</b> CustomScene.h:53</div></div>
+<div class="ttc" id="aclass_custom_scene_a405b137c603d6372b507a31d52265304_html_a405b137c603d6372b507a31d52265304"><div class="ttname"><a href="class_custom_scene_a405b137c603d6372b507a31d52265304.html#a405b137c603d6372b507a31d52265304">CustomScene::playheadPositionX</a></div><div class="ttdeci">qreal playheadPositionX</div><div class="ttdef"><b>Definition</b> CustomScene.h:36</div></div>
+<div class="ttc" id="aclass_custom_scene_a547635870c2283801596735e59fbf658_html_a547635870c2283801596735e59fbf658"><div class="ttname"><a href="class_custom_scene_a547635870c2283801596735e59fbf658.html#a547635870c2283801596735e59fbf658">CustomScene::currentMousePositionX</a></div><div class="ttdeci">qreal currentMousePositionX() const</div><div class="ttdef"><b>Definition</b> CustomScene.cpp:250</div></div>
+<div class="ttc" id="aclass_custom_scene_a55871e4ca5ef095d77fa756a4c98d57a_html_a55871e4ca5ef095d77fa756a4c98d57a"><div class="ttname"><a href="class_custom_scene_a55871e4ca5ef095d77fa756a4c98d57a.html#a55871e4ca5ef095d77fa756a4c98d57a">CustomScene::keyframeItems</a></div><div class="ttdeci">QList&lt; QGraphicsPolygonItem * &gt; keyframeItems</div><div class="ttdef"><b>Definition</b> CustomScene.h:48</div></div>
+<div class="ttc" id="aclass_custom_scene_a5f51d6f3ce39d949a08530ff03426c2d_html_a5f51d6f3ce39d949a08530ff03426c2d"><div class="ttname"><a href="class_custom_scene_a5f51d6f3ce39d949a08530ff03426c2d.html#a5f51d6f3ce39d949a08530ff03426c2d">CustomScene::mousePressEvent</a></div><div class="ttdeci">void mousePressEvent(QGraphicsSceneMouseEvent *event) override</div><div class="ttdef"><b>Definition</b> CustomScene.cpp:392</div></div>
+<div class="ttc" id="aclass_custom_scene_a76afc0f46f8bb8d952735a45c705d8cb_html_a76afc0f46f8bb8d952735a45c705d8cb"><div class="ttname"><a href="class_custom_scene_a76afc0f46f8bb8d952735a45c705d8cb.html#a76afc0f46f8bb8d952735a45c705d8cb">CustomScene::CustomScene</a></div><div class="ttdeci">CustomScene(MainWindow *mainWindow, QObject *parent=nullptr)</div><div class="ttdef"><b>Definition</b> CustomScene.cpp:14</div></div>
+<div class="ttc" id="aclass_custom_scene_a7a269848be7913c87a852c4b15b1672d_html_a7a269848be7913c87a852c4b15b1672d"><div class="ttname"><a href="class_custom_scene_a7a269848be7913c87a852c4b15b1672d.html#a7a269848be7913c87a852c4b15b1672d">CustomScene::m_mainWindow</a></div><div class="ttdeci">MainWindow * m_mainWindow</div><div class="ttdef"><b>Definition</b> CustomScene.h:56</div></div>
+<div class="ttc" id="aclass_custom_scene_a7ae562d52c0e0b461e60fe0a5a251ffc_html_a7ae562d52c0e0b461e60fe0a5a251ffc"><div class="ttname"><a href="class_custom_scene_a7ae562d52c0e0b461e60fe0a5a251ffc.html#a7ae562d52c0e0b461e60fe0a5a251ffc">CustomScene::m_currentMouseX</a></div><div class="ttdeci">qreal m_currentMouseX</div><div class="ttdef"><b>Definition</b> CustomScene.h:41</div></div>
+<div class="ttc" id="aclass_custom_scene_a7b54991751ed4d0a867b82c2f75ea64e_html_a7b54991751ed4d0a867b82c2f75ea64e"><div class="ttname"><a href="class_custom_scene_a7b54991751ed4d0a867b82c2f75ea64e.html#a7b54991751ed4d0a867b82c2f75ea64e">CustomScene::frameRate</a></div><div class="ttdeci">int frameRate</div><div class="ttdef"><b>Definition</b> CustomScene.h:39</div></div>
+<div class="ttc" id="aclass_custom_scene_a83a173bc67b1b7b8b281e192430bf067_html_a83a173bc67b1b7b8b281e192430bf067"><div class="ttname"><a href="class_custom_scene_a83a173bc67b1b7b8b281e192430bf067.html#a83a173bc67b1b7b8b281e192430bf067">CustomScene::addKeyframe</a></div><div class="ttdeci">void addKeyframe(int frameNumber, const QVector3D &amp;eyePoint, const QVector3D &amp;lookAtPoint, const QVector3D &amp;upVector, const QVector3D &amp;xVector, const QVector3D &amp;yVector, const QVector3D &amp;zVector, float fov, double zoom)</div><div class="ttdef"><b>Definition</b> CustomScene.cpp:192</div></div>
+<div class="ttc" id="aclass_custom_scene_a84145e80b4373effadc59ab460033a8e_html_a84145e80b4373effadc59ab460033a8e"><div class="ttname"><a href="class_custom_scene_a84145e80b4373effadc59ab460033a8e.html#a84145e80b4373effadc59ab460033a8e">CustomScene::updatePlayheadText</a></div><div class="ttdeci">void updatePlayheadText(qreal newPos)</div></div>
+<div class="ttc" id="aclass_custom_scene_a8b32e97d6b29ac997e4611660b052d1c_html_a8b32e97d6b29ac997e4611660b052d1c"><div class="ttname"><a href="class_custom_scene_a8b32e97d6b29ac997e4611660b052d1c.html#a8b32e97d6b29ac997e4611660b052d1c">CustomScene::interpolateKeyframe</a></div><div class="ttdeci">CameraKeyframe interpolateKeyframe(const CameraKeyframe &amp;kf1, const CameraKeyframe &amp;kf2, float t) const</div><div class="ttdef"><b>Definition</b> CustomScene.cpp:256</div></div>
+<div class="ttc" id="aclass_custom_scene_a8c573a90a2ca781852c03c5922e2866e_html_a8c573a90a2ca781852c03c5922e2866e"><div class="ttname"><a href="class_custom_scene_a8c573a90a2ca781852c03c5922e2866e.html#a8c573a90a2ca781852c03c5922e2866e">CustomScene::getPlayheadPositionX</a></div><div class="ttdeci">qreal getPlayheadPositionX() const</div><div class="ttdef"><b>Definition</b> CustomScene.cpp:187</div></div>
+<div class="ttc" id="aclass_custom_scene_a8d08d1fe3e2a5d2b1985a5014be34e67_html_a8d08d1fe3e2a5d2b1985a5014be34e67"><div class="ttname"><a href="class_custom_scene_a8d08d1fe3e2a5d2b1985a5014be34e67.html#a8d08d1fe3e2a5d2b1985a5014be34e67">CustomScene::setupScene</a></div><div class="ttdeci">void setupScene(int width, int height)</div><div class="ttdef"><b>Definition</b> CustomScene.cpp:18</div></div>
+<div class="ttc" id="aclass_custom_scene_aad0291a90880d01ad6259721eff34841_html_aad0291a90880d01ad6259721eff34841"><div class="ttname"><a href="class_custom_scene_aad0291a90880d01ad6259721eff34841.html#aad0291a90880d01ad6259721eff34841">CustomScene::sceneWidth</a></div><div class="ttdeci">int sceneWidth</div><div class="ttdef"><b>Definition</b> CustomScene.h:59</div></div>
+<div class="ttc" id="aclass_custom_scene_aad0c880244be42094927e1024b487b6e_html_aad0c880244be42094927e1024b487b6e"><div class="ttname"><a href="class_custom_scene_aad0c880244be42094927e1024b487b6e.html#aad0c880244be42094927e1024b487b6e">CustomScene::eventFilter</a></div><div class="ttdeci">bool eventFilter(QObject *watched, QEvent *event) override</div><div class="ttdef"><b>Definition</b> CustomScene.cpp:484</div></div>
+<div class="ttc" id="aclass_custom_scene_ab3f653c107eca540b1a4c25314b06306_html_ab3f653c107eca540b1a4c25314b06306"><div class="ttname"><a href="class_custom_scene_ab3f653c107eca540b1a4c25314b06306.html#ab3f653c107eca540b1a4c25314b06306">CustomScene::keyframeLines</a></div><div class="ttdeci">QList&lt; QPair&lt; QGraphicsPolygonItem *, QGraphicsLineItem * &gt; &gt; keyframeLines</div><div class="ttdef"><b>Definition</b> CustomScene.h:49</div></div>
+<div class="ttc" id="aclass_custom_scene_ab7448c293519dd849ad8c41ca2f82427_html_ab7448c293519dd849ad8c41ca2f82427"><div class="ttname"><a href="class_custom_scene_ab7448c293519dd849ad8c41ca2f82427.html#ab7448c293519dd849ad8c41ca2f82427">CustomScene::playheadBeingDragged</a></div><div class="ttdeci">bool playheadBeingDragged</div><div class="ttdef"><b>Definition</b> CustomScene.h:37</div></div>
+<div class="ttc" id="aclass_custom_scene_ac21d9b92d141f055f57b0d46e171f19a_html_ac21d9b92d141f055f57b0d46e171f19a"><div class="ttname"><a href="class_custom_scene_ac21d9b92d141f055f57b0d46e171f19a.html#ac21d9b92d141f055f57b0d46e171f19a">CustomScene::selectedKeyframe</a></div><div class="ttdeci">QGraphicsPolygonItem * selectedKeyframe</div><div class="ttdef"><b>Definition</b> CustomScene.h:79</div></div>
+<div class="ttc" id="aclass_custom_scene_adda499da620402ce4c0bce53215a22c0_html_adda499da620402ce4c0bce53215a22c0"><div class="ttname"><a href="class_custom_scene_adda499da620402ce4c0bce53215a22c0.html#adda499da620402ce4c0bce53215a22c0">CustomScene::mouseMoveEvent</a></div><div class="ttdeci">void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override</div><div class="ttdef"><b>Definition</b> CustomScene.cpp:436</div></div>
+<div class="ttc" id="aclass_custom_scene_ade97e4eb535a29238b427dbfca43c8a8_html_ade97e4eb535a29238b427dbfca43c8a8"><div class="ttname"><a href="class_custom_scene_ade97e4eb535a29238b427dbfca43c8a8.html#ade97e4eb535a29238b427dbfca43c8a8">CustomScene::backgroundItem</a></div><div class="ttdeci">QGraphicsPathItem * backgroundItem</div><div class="ttdef"><b>Definition</b> CustomScene.h:35</div></div>
+<div class="ttc" id="aclass_custom_scene_ae098443942eb7ffb9b8a6c8799cfedf8_html_ae098443942eb7ffb9b8a6c8799cfedf8"><div class="ttname"><a href="class_custom_scene_ae098443942eb7ffb9b8a6c8799cfedf8.html#ae098443942eb7ffb9b8a6c8799cfedf8">CustomScene::updateCameraForFrame</a></div><div class="ttdeci">void updateCameraForFrame(int frameNumber)</div><div class="ttdef"><b>Definition</b> CustomScene.cpp:271</div></div>
+<div class="ttc" id="aclass_custom_scene_ae6d8f7d90fdb140af07acd99cec248f4_html_ae6d8f7d90fdb140af07acd99cec248f4"><div class="ttname"><a href="class_custom_scene_ae6d8f7d90fdb140af07acd99cec248f4.html#ae6d8f7d90fdb140af07acd99cec248f4">CustomScene::calculateFrameNumberFromPlayhead</a></div><div class="ttdeci">int calculateFrameNumberFromPlayhead() const</div><div class="ttdef"><b>Definition</b> CustomScene.cpp:375</div></div>
+<div class="ttc" id="aclass_custom_scene_afd7420086283348d3d02a187df4618b1_html_afd7420086283348d3d02a187df4618b1"><div class="ttname"><a href="class_custom_scene_afd7420086283348d3d02a187df4618b1.html#afd7420086283348d3d02a187df4618b1">CustomScene::playheadText</a></div><div class="ttdeci">QGraphicsTextItem * playheadText</div><div class="ttdef"><b>Definition</b> CustomScene.h:38</div></div>
+<div class="ttc" id="aclass_custom_scene_html"><div class="ttname"><a href="class_custom_scene.html">CustomScene</a></div><div class="ttdef"><b>Definition</b> CustomScene.h:28</div></div>
+<div class="ttc" id="aclass_main_window_html"><div class="ttname"><a href="class_main_window.html">MainWindow</a></div><div class="ttdef"><b>Definition</b> mainwindow.h:18</div></div>
+<div class="ttc" id="amyopenglwidget_8cpp_a2474a5474cbff19523a51eb1de01cda4_html_a2474a5474cbff19523a51eb1de01cda4"><div class="ttname"><a href="myopenglwidget_8cpp_a2474a5474cbff19523a51eb1de01cda4.html#a2474a5474cbff19523a51eb1de01cda4">width</a></div><div class="ttdeci">int width</div><div class="ttdef"><b>Definition</b> myopenglwidget.cpp:26</div></div>
+<div class="ttc" id="amyopenglwidget_8cpp_ad12fc34ce789bce6c8a05d8a17138534_html_ad12fc34ce789bce6c8a05d8a17138534"><div class="ttname"><a href="myopenglwidget_8cpp_ad12fc34ce789bce6c8a05d8a17138534.html#ad12fc34ce789bce6c8a05d8a17138534">height</a></div><div class="ttdeci">int height</div><div class="ttdef"><b>Definition</b> myopenglwidget.cpp:27</div></div>
+<div class="ttc" id="astruct_camera_keyframe_a2d389011fb33fc564b1cc80eb2022a77_html_a2d389011fb33fc564b1cc80eb2022a77"><div class="ttname"><a href="struct_camera_keyframe_a2d389011fb33fc564b1cc80eb2022a77.html#a2d389011fb33fc564b1cc80eb2022a77">CameraKeyframe::zVector</a></div><div class="ttdeci">QVector3D zVector</div><div class="ttdef"><b>Definition</b> CustomScene.h:22</div></div>
+<div class="ttc" id="astruct_camera_keyframe_a86e0ae8b25dfa4731a870ed7b98cc2c3_html_a86e0ae8b25dfa4731a870ed7b98cc2c3"><div class="ttname"><a href="struct_camera_keyframe_a86e0ae8b25dfa4731a870ed7b98cc2c3.html#a86e0ae8b25dfa4731a870ed7b98cc2c3">CameraKeyframe::eyePoint</a></div><div class="ttdeci">QVector3D eyePoint</div><div class="ttdef"><b>Definition</b> CustomScene.h:17</div></div>
+<div class="ttc" id="astruct_camera_keyframe_a891fc265dfd5c266408b999296acef50_html_a891fc265dfd5c266408b999296acef50"><div class="ttname"><a href="struct_camera_keyframe_a891fc265dfd5c266408b999296acef50.html#a891fc265dfd5c266408b999296acef50">CameraKeyframe::zoom</a></div><div class="ttdeci">double zoom</div><div class="ttdef"><b>Definition</b> CustomScene.h:24</div></div>
+<div class="ttc" id="astruct_camera_keyframe_a972b4e115b9eccd742311565741c08e7_html_a972b4e115b9eccd742311565741c08e7"><div class="ttname"><a href="struct_camera_keyframe_a972b4e115b9eccd742311565741c08e7.html#a972b4e115b9eccd742311565741c08e7">CameraKeyframe::fov</a></div><div class="ttdeci">float fov</div><div class="ttdef"><b>Definition</b> CustomScene.h:23</div></div>
+<div class="ttc" id="astruct_camera_keyframe_aa0a913d1aeb0fa49f990e99031999c5d_html_aa0a913d1aeb0fa49f990e99031999c5d"><div class="ttname"><a href="struct_camera_keyframe_aa0a913d1aeb0fa49f990e99031999c5d.html#aa0a913d1aeb0fa49f990e99031999c5d">CameraKeyframe::xVector</a></div><div class="ttdeci">QVector3D xVector</div><div class="ttdef"><b>Definition</b> CustomScene.h:20</div></div>
+<div class="ttc" id="astruct_camera_keyframe_aa5c2babc1df575c6036fd2901b531cc3_html_aa5c2babc1df575c6036fd2901b531cc3"><div class="ttname"><a href="struct_camera_keyframe_aa5c2babc1df575c6036fd2901b531cc3.html#aa5c2babc1df575c6036fd2901b531cc3">CameraKeyframe::upVector</a></div><div class="ttdeci">QVector3D upVector</div><div class="ttdef"><b>Definition</b> CustomScene.h:19</div></div>
+<div class="ttc" id="astruct_camera_keyframe_ac3b7b4003d2a41b0e445f5cb477ee666_html_ac3b7b4003d2a41b0e445f5cb477ee666"><div class="ttname"><a href="struct_camera_keyframe_ac3b7b4003d2a41b0e445f5cb477ee666.html#ac3b7b4003d2a41b0e445f5cb477ee666">CameraKeyframe::yVector</a></div><div class="ttdeci">QVector3D yVector</div><div class="ttdef"><b>Definition</b> CustomScene.h:21</div></div>
+<div class="ttc" id="astruct_camera_keyframe_ace98e6dca820e62372cf1c8647865f6b_html_ace98e6dca820e62372cf1c8647865f6b"><div class="ttname"><a href="struct_camera_keyframe_ace98e6dca820e62372cf1c8647865f6b.html#ace98e6dca820e62372cf1c8647865f6b">CameraKeyframe::frameNumber</a></div><div class="ttdeci">int frameNumber</div><div class="ttdef"><b>Definition</b> CustomScene.h:16</div></div>
+<div class="ttc" id="astruct_camera_keyframe_ae958338c7b301667d0622825d46ee24b_html_ae958338c7b301667d0622825d46ee24b"><div class="ttname"><a href="struct_camera_keyframe_ae958338c7b301667d0622825d46ee24b.html#ae958338c7b301667d0622825d46ee24b">CameraKeyframe::lookAtPoint</a></div><div class="ttdeci">QVector3D lookAtPoint</div><div class="ttdef"><b>Definition</b> CustomScene.h:18</div></div>
+<div class="ttc" id="astruct_camera_keyframe_html"><div class="ttname"><a href="struct_camera_keyframe.html">CameraKeyframe</a></div><div class="ttdef"><b>Definition</b> CustomScene.h:15</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

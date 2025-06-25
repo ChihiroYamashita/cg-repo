@@ -1,0 +1,139 @@
+\doxysection{Eigen\+::Tensor\+Sycl\+::internal\+::Block\+Properties\texorpdfstring{$<$}{<} is\+\_\+transposed, is\+\_\+rhs\+\_\+, packet\+\_\+load\+\_\+, Packet\+Type \texorpdfstring{$>$}{>} 構造体テンプレート}
+\hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties}{}\label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties}\index{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$@{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$}}
+
+
+\doxylink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties}{Block\+Properties} is a template class that provides different characteristic of a block of each \doxylink{class_eigen_1_1_tensor}{Tensor} processed by each workgroup.  
+
+
+
+
+{\ttfamily \#include $<$Tensor\+Contraction\+Sycl.\+h$>$}
+
+
+
+Eigen\+::Tensor\+Sycl\+::internal\+::Block\+Properties\texorpdfstring{$<$}{<} is\+\_\+transposed, is\+\_\+rhs\+\_\+, packet\+\_\+load\+\_\+, Packet\+Type \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1unpacket__traits}{Eigen\+::internal\+::unpacket\+\_\+traits}}$<$ \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} $>$\+::type \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a027cea2b84fc7063433c4c5ed197448f_a027cea2b84fc7063433c4c5ed197448f}{Out\+Scalar}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{Eigen\+::internal\+::conditional}}$<$ \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a79ceafcd1a3714747e86bdc32eb44b3b_a79ceafcd1a3714747e86bdc32eb44b3b}{packet\+\_\+load}}, \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}}, \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a027cea2b84fc7063433c4c5ed197448f_a027cea2b84fc7063433c4c5ed197448f}{Out\+Scalar}} $>$\+::type \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_adfcaa9619b08247bd92020ae5e821588_adfcaa9619b08247bd92020ae5e821588}{Out\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静的公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} bool \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a79ceafcd1a3714747e86bdc32eb44b3b_a79ceafcd1a3714747e86bdc32eb44b3b}{packet\+\_\+load}} = packet\+\_\+load\+\_\+
+\item 
+static \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} bool \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a7038927b38c84fc162392f392a1d32bb_a7038927b38c84fc162392f392a1d32bb}{is\+\_\+rhs}} = is\+\_\+rhs\+\_\+
+\item 
+static \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a2f721f8a4d26c833042f5993944603af_a2f721f8a4d26c833042f5993944603af}{elements\+\_\+per\+\_\+access}} = \mbox{\hyperlink{struct_eigen_1_1internal_1_1unpacket__traits}{Eigen\+::internal\+::unpacket\+\_\+traits}}$<$\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_adfcaa9619b08247bd92020ae5e821588_adfcaa9619b08247bd92020ae5e821588}{Out\+Type}}$>$\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{\+::size}}
+\item 
+static \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} bool \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a563f2a016a0ae4e2934ad25748c87ba5_a563f2a016a0ae4e2934ad25748c87ba5}{is\+\_\+coalesced\+\_\+layout}} = !(is\+\_\+transposed \texorpdfstring{$^\wedge$}{\string^} \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a7038927b38c84fc162392f392a1d32bb_a7038927b38c84fc162392f392a1d32bb}{is\+\_\+rhs}})
+\item 
+static \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_aa2cf6fcc0859cd7a78f64f6b576bb93b_aa2cf6fcc0859cd7a78f64f6b576bb93b}{nc\+\_\+stride}} = (\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a563f2a016a0ae4e2934ad25748c87ba5_a563f2a016a0ae4e2934ad25748c87ba5}{is\+\_\+coalesced\+\_\+layout}} ? \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a2f721f8a4d26c833042f5993944603af_a2f721f8a4d26c833042f5993944603af}{elements\+\_\+per\+\_\+access}} \+: 1)
+\item 
+static \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a1d8d0aa45d8c5d1c33acb2c66031a210_a1d8d0aa45d8c5d1c33acb2c66031a210}{c\+\_\+stride}} = (\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a563f2a016a0ae4e2934ad25748c87ba5_a563f2a016a0ae4e2934ad25748c87ba5}{is\+\_\+coalesced\+\_\+layout}} ? 1 \+: \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a2f721f8a4d26c833042f5993944603af_a2f721f8a4d26c833042f5993944603af}{elements\+\_\+per\+\_\+access}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{詳解}
+\subsubsection*{template$<$bool is\+\_\+transposed, bool is\+\_\+rhs\+\_\+, bool packet\+\_\+load\+\_\+, typename \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}}$>$\newline
+struct Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Block\+Properties$<$ is\+\_\+transposed, is\+\_\+rhs\+\_\+, packet\+\_\+load\+\_\+, Packet\+Type $>$}
+\doxylink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties}{Block\+Properties} is a template class that provides different characteristic of a block of each \doxylink{class_eigen_1_1_tensor}{Tensor} processed by each workgroup. 
+
+
+\begin{DoxyTemplParams}{テンプレート引数}
+{\em is\+\_\+transposed} & iff true, determines whether or not the block of the \doxylink{class_eigen_1_1_tensor}{Tensor} is transposed\\
+\hline
+{\em packet\+\_\+load\+\_\+} & determines if the each element of this tensor block should be loaded in a packet mode\\
+\hline
+{\em \doxylink{struct_eigen_1_1_packet_type}{Packet\+Type}} & determines the type of packet\\
+\hline
+{\em Out\+Type} & determines the type of each element for this block of tensor. If packet load is true, it will be packet\+Type; Otherwise it will be scalar Type\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{引数}
+{\em elements\+\_\+per\+\_\+access} & determines the size of each element based on Out\+Type\\
+\hline
+{\em is\+\_\+coalesced\+\_\+layout} & determines whether or not the \doxylink{class_eigen_1_1_tensor}{Tensor} data in a memory can be access coalesced and vectorized when possible. Coalesced memory access is a key factor in Kernel performance. When a tensor is 2d and the contracting dimension is 1, it is always possible to accessed tensor data coalesced and vectorized. This is the case when RHS(right hand side) \doxylink{class_eigen_1_1_tensor}{Tensor} is transposed or when LHS(left hand side) \doxylink{class_eigen_1_1_tensor}{Tensor} is not transposed.\\
+\hline
+{\em nc\+\_\+stride} & determines the stride of non-\/contracting dimension to access the next adjustment element within the \doxylink{class_eigen_1_1_tensor}{Tensor} \doxylink{class_eigen_1_1_block}{Block} for each workgroup\\
+\hline
+{\em c\+\_\+stride} & determines the stride of contracting dimension to access the next adjustment element within the \doxylink{class_eigen_1_1_tensor}{Tensor} \doxylink{class_eigen_1_1_block}{Block} for each workgroup \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{型定義メンバ詳解}
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a027cea2b84fc7063433c4c5ed197448f_a027cea2b84fc7063433c4c5ed197448f}\index{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$@{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$}!OutScalar@{OutScalar}}
+\index{OutScalar@{OutScalar}!Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$@{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$}}
+\doxysubsubsection{\texorpdfstring{OutScalar}{OutScalar}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a027cea2b84fc7063433c4c5ed197448f_a027cea2b84fc7063433c4c5ed197448f} 
+template$<$bool is\+\_\+transposed, bool is\+\_\+rhs\+\_\+, bool packet\+\_\+load\+\_\+, typename \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1unpacket__traits}{Eigen\+::internal\+::unpacket\+\_\+traits}}$<$\mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}}$>$\+::type \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Block\+Properties}}$<$ is\+\_\+transposed, is\+\_\+rhs\+\_\+, packet\+\_\+load\+\_\+, \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} $>$\+::\+Out\+Scalar}
+
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_adfcaa9619b08247bd92020ae5e821588_adfcaa9619b08247bd92020ae5e821588}\index{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$@{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$}!OutType@{OutType}}
+\index{OutType@{OutType}!Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$@{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$}}
+\doxysubsubsection{\texorpdfstring{OutType}{OutType}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_adfcaa9619b08247bd92020ae5e821588_adfcaa9619b08247bd92020ae5e821588} 
+template$<$bool is\+\_\+transposed, bool is\+\_\+rhs\+\_\+, bool packet\+\_\+load\+\_\+, typename \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{Eigen\+::internal\+::conditional}}$<$\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a79ceafcd1a3714747e86bdc32eb44b3b_a79ceafcd1a3714747e86bdc32eb44b3b}{packet\+\_\+load}},\mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}},\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a027cea2b84fc7063433c4c5ed197448f_a027cea2b84fc7063433c4c5ed197448f}{Out\+Scalar}}$>$\+::type \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Block\+Properties}}$<$ is\+\_\+transposed, is\+\_\+rhs\+\_\+, packet\+\_\+load\+\_\+, \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} $>$\+::\+Out\+Type}
+
+
+
+\doxysubsection{メンバ詳解}
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a1d8d0aa45d8c5d1c33acb2c66031a210_a1d8d0aa45d8c5d1c33acb2c66031a210}\index{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$@{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$}!c\_stride@{c\_stride}}
+\index{c\_stride@{c\_stride}!Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$@{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$}}
+\doxysubsubsection{\texorpdfstring{c\_stride}{c\_stride}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a1d8d0aa45d8c5d1c33acb2c66031a210_a1d8d0aa45d8c5d1c33acb2c66031a210} 
+template$<$bool is\+\_\+transposed, bool is\+\_\+rhs\+\_\+, bool packet\+\_\+load\+\_\+, typename \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} $>$ \\
+\mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Block\+Properties}}$<$ is\+\_\+transposed, is\+\_\+rhs\+\_\+, packet\+\_\+load\+\_\+, \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} $>$\+::c\+\_\+stride = (\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a563f2a016a0ae4e2934ad25748c87ba5_a563f2a016a0ae4e2934ad25748c87ba5}{is\+\_\+coalesced\+\_\+layout}} ? 1 \+: \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a2f721f8a4d26c833042f5993944603af_a2f721f8a4d26c833042f5993944603af}{elements\+\_\+per\+\_\+access}})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a2f721f8a4d26c833042f5993944603af_a2f721f8a4d26c833042f5993944603af}\index{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$@{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$}!elements\_per\_access@{elements\_per\_access}}
+\index{elements\_per\_access@{elements\_per\_access}!Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$@{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$}}
+\doxysubsubsection{\texorpdfstring{elements\_per\_access}{elements\_per\_access}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a2f721f8a4d26c833042f5993944603af_a2f721f8a4d26c833042f5993944603af} 
+template$<$bool is\+\_\+transposed, bool is\+\_\+rhs\+\_\+, bool packet\+\_\+load\+\_\+, typename \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} $>$ \\
+\mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Block\+Properties}}$<$ is\+\_\+transposed, is\+\_\+rhs\+\_\+, packet\+\_\+load\+\_\+, \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} $>$\+::elements\+\_\+per\+\_\+access = \mbox{\hyperlink{struct_eigen_1_1internal_1_1unpacket__traits}{Eigen\+::internal\+::unpacket\+\_\+traits}}$<$\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_adfcaa9619b08247bd92020ae5e821588_adfcaa9619b08247bd92020ae5e821588}{Out\+Type}}$>$\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{\+::size}}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a563f2a016a0ae4e2934ad25748c87ba5_a563f2a016a0ae4e2934ad25748c87ba5}\index{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$@{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$}!is\_coalesced\_layout@{is\_coalesced\_layout}}
+\index{is\_coalesced\_layout@{is\_coalesced\_layout}!Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$@{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$}}
+\doxysubsubsection{\texorpdfstring{is\_coalesced\_layout}{is\_coalesced\_layout}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a563f2a016a0ae4e2934ad25748c87ba5_a563f2a016a0ae4e2934ad25748c87ba5} 
+template$<$bool is\+\_\+transposed, bool is\+\_\+rhs\+\_\+, bool packet\+\_\+load\+\_\+, typename \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} $>$ \\
+\mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} bool \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Block\+Properties}}$<$ is\+\_\+transposed, is\+\_\+rhs\+\_\+, packet\+\_\+load\+\_\+, \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} $>$\+::is\+\_\+coalesced\+\_\+layout = !(is\+\_\+transposed \texorpdfstring{$^\wedge$}{\string^} \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a7038927b38c84fc162392f392a1d32bb_a7038927b38c84fc162392f392a1d32bb}{is\+\_\+rhs}})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a7038927b38c84fc162392f392a1d32bb_a7038927b38c84fc162392f392a1d32bb}\index{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$@{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$}!is\_rhs@{is\_rhs}}
+\index{is\_rhs@{is\_rhs}!Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$@{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$}}
+\doxysubsubsection{\texorpdfstring{is\_rhs}{is\_rhs}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a7038927b38c84fc162392f392a1d32bb_a7038927b38c84fc162392f392a1d32bb} 
+template$<$bool is\+\_\+transposed, bool is\+\_\+rhs\+\_\+, bool packet\+\_\+load\+\_\+, typename \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} $>$ \\
+\mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} bool \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Block\+Properties}}$<$ is\+\_\+transposed, is\+\_\+rhs\+\_\+, packet\+\_\+load\+\_\+, \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} $>$\+::is\+\_\+rhs = is\+\_\+rhs\+\_\+\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_aa2cf6fcc0859cd7a78f64f6b576bb93b_aa2cf6fcc0859cd7a78f64f6b576bb93b}\index{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$@{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$}!nc\_stride@{nc\_stride}}
+\index{nc\_stride@{nc\_stride}!Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$@{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$}}
+\doxysubsubsection{\texorpdfstring{nc\_stride}{nc\_stride}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_aa2cf6fcc0859cd7a78f64f6b576bb93b_aa2cf6fcc0859cd7a78f64f6b576bb93b} 
+template$<$bool is\+\_\+transposed, bool is\+\_\+rhs\+\_\+, bool packet\+\_\+load\+\_\+, typename \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} $>$ \\
+\mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Block\+Properties}}$<$ is\+\_\+transposed, is\+\_\+rhs\+\_\+, packet\+\_\+load\+\_\+, \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} $>$\+::nc\+\_\+stride = (\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a563f2a016a0ae4e2934ad25748c87ba5_a563f2a016a0ae4e2934ad25748c87ba5}{is\+\_\+coalesced\+\_\+layout}} ? \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a2f721f8a4d26c833042f5993944603af_a2f721f8a4d26c833042f5993944603af}{elements\+\_\+per\+\_\+access}} \+: 1)\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a79ceafcd1a3714747e86bdc32eb44b3b_a79ceafcd1a3714747e86bdc32eb44b3b}\index{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$@{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$}!packet\_load@{packet\_load}}
+\index{packet\_load@{packet\_load}!Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$@{Eigen::TensorSycl::internal::BlockProperties$<$ is\_transposed, is\_rhs\_, packet\_load\_, PacketType $>$}}
+\doxysubsubsection{\texorpdfstring{packet\_load}{packet\_load}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties_a79ceafcd1a3714747e86bdc32eb44b3b_a79ceafcd1a3714747e86bdc32eb44b3b} 
+template$<$bool is\+\_\+transposed, bool is\+\_\+rhs\+\_\+, bool packet\+\_\+load\+\_\+, typename \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} $>$ \\
+\mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} bool \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Block\+Properties}}$<$ is\+\_\+transposed, is\+\_\+rhs\+\_\+, packet\+\_\+load\+\_\+, \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} $>$\+::packet\+\_\+load = packet\+\_\+load\+\_\+\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+この構造体詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/unsupported/\+Eigen/\+CXX11/src/\+Tensor/\mbox{\hyperlink{_tensor_contraction_sycl_8h}{Tensor\+Contraction\+Sycl.\+h}}\end{DoxyCompactItemize}

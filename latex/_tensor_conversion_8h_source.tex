@@ -1,0 +1,454 @@
+\doxysection{Tensor\+Conversion.\+h}
+\hypertarget{_tensor_conversion_8h_source}{}\label{_tensor_conversion_8h_source}\index{eigen-\/3.4.0/eigen-\/3.4.0/unsupported/Eigen/CXX11/src/Tensor/TensorConversion.h@{eigen-\/3.4.0/eigen-\/3.4.0/unsupported/Eigen/CXX11/src/Tensor/TensorConversion.h}}
+\mbox{\hyperlink{_tensor_conversion_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ Eigen,\ a\ lightweight\ C++\ template\ library}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ for\ linear\ algebra.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (C)\ 2015\ Benoit\ Steiner\ <benoit.steiner.goog@gmail.com>}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ This\ Source\ Code\ Form\ is\ subject\ to\ the\ terms\ of\ the\ Mozilla}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Public\ License\ v.\ 2.0.\ If\ a\ copy\ of\ the\ MPL\ was\ not\ distributed}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ with\ this\ file,\ You\ can\ obtain\ one\ at\ http://mozilla.org/MPL/2.0/.}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_CXX11\_TENSOR\_TENSOR\_CONVERSION\_H}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ EIGEN\_CXX11\_TENSOR\_TENSOR\_CONVERSION\_H}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_eigen}{Eigen}}\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceinternal}{internal}}\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TargetType,\ \textcolor{keyword}{typename}\ XprType>}
+\DoxyCodeLine{00024\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}<\mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op}{TensorConversionOp}}<TargetType,\ \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{XprType}}>\ >}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \ \ \textcolor{comment}{//\ Type\ promotion\ to\ handle\ the\ case\ where\ the\ types\ of\ the\ lhs\ and\ the\ rhs\ are\ different.}}
+\DoxyCodeLine{00027\ \ \ \textcolor{keyword}{typedef}\ TargetType\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits_3_01_tensor_conversion_op_3_01_target_type_00_01_xpr_type_01_4_01_4_a52e8c50e89708a89f82ca940c49af66b_a52e8c50e89708a89f82ca940c49af66b}{Scalar}};}
+\DoxyCodeLine{00028\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits<XprType>::StorageKind}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits_3_01_tensor_conversion_op_3_01_target_type_00_01_xpr_type_01_4_01_4_a9b932f705ed9dc4daabba25653a5b047_a9b932f705ed9dc4daabba25653a5b047}{StorageKind}};}
+\DoxyCodeLine{00029\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits<XprType>::Index}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits_3_01_tensor_conversion_op_3_01_target_type_00_01_xpr_type_01_4_01_4_a1926072a5b82bcf4b027d8530473648b_a1926072a5b82bcf4b027d8530473648b}{Index}};}
+\DoxyCodeLine{00030\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ XprType::Nested\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits_3_01_tensor_conversion_op_3_01_target_type_00_01_xpr_type_01_4_01_4_a1668bf1387ec24da94ae13c8db832fbc_a1668bf1387ec24da94ae13c8db832fbc}{Nested}};}
+\DoxyCodeLine{00031\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{remove\_reference<Nested>::type}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits_3_01_tensor_conversion_op_3_01_target_type_00_01_xpr_type_01_4_01_4_a2bef20af52f00c12d46e0fd55de4ea3a_a2bef20af52f00c12d46e0fd55de4ea3a}{\_Nested}};}
+\DoxyCodeLine{00032\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ NumDimensions\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits<XprType>::NumDimensions}};}
+\DoxyCodeLine{00033\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ Layout\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits<XprType>::Layout}};}
+\DoxyCodeLine{00034\ \ \ \textcolor{keyword}{enum}\ \{\ Flags\ =\ 0\ \};}
+\DoxyCodeLine{00035\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_type_conversion}{TypeConversion<Scalar,\ typename\ traits<XprType>::PointerType}}>::type\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits_3_01_tensor_conversion_op_3_01_target_type_00_01_xpr_type_01_4_01_4_abf3942cecdf7a36c74086fdb6e9a96b7_abf3942cecdf7a36c74086fdb6e9a96b7}{PointerType}};}
+\DoxyCodeLine{00036\ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TargetType,\ \textcolor{keyword}{typename}\ XprType>}
+\DoxyCodeLine{00039\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1eval}{eval}}<\mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op}{TensorConversionOp}}<TargetType,\ \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{XprType}}>,\ \mbox{\hyperlink{namespace_eigen}{Eigen}}::\mbox{\hyperlink{struct_eigen_1_1_dense}{Dense}}>}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op}{TensorConversionOp<TargetType,\ XprType>}}\&\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1eval_3_01_tensor_conversion_op_3_01_target_type_00_01_xpr_type_01_4_00_01_eigen_1_1_dense_01_4_ab37e876ee38c9b73ea07a85f47b43fa6_ab37e876ee38c9b73ea07a85f47b43fa6}{type}};}
+\DoxyCodeLine{00042\ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TargetType,\ \textcolor{keyword}{typename}\ XprType>}
+\DoxyCodeLine{00045\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1nested}{nested}}<\mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op}{TensorConversionOp}}<TargetType,\ \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{XprType}}>,\ 1,\ typename\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1eval}{eval}}<\mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op}{TensorConversionOp}}<TargetType,\ \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{XprType}}>\ >::\mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op}{type}}>}
+\DoxyCodeLine{00046\ \{}
+\DoxyCodeLine{00047\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op}{TensorConversionOp<TargetType,\ XprType>}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1nested_3_01_tensor_conversion_op_3_01_target_type_00_01_xpr_type_01_b83af6d243a47c048dc01ffbe6156814_a0142fdde15fd44b42dc4c36b373b0c3f_a0142fdde15fd44b42dc4c36b373b0c3f}{type}};}
+\DoxyCodeLine{00048\ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \}\ \ \textcolor{comment}{//\ end\ namespace\ internal}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ TensorEvaluator,\ \textcolor{keyword}{typename}\ SrcPacket,\ \textcolor{keyword}{typename}\ TgtPacket,\ \textcolor{keywordtype}{int}\ SrcCoeffRatio,\ \textcolor{keywordtype}{int}\ TgtCoeffRatio>}
+\DoxyCodeLine{00054\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_packet_converter}{PacketConverter}};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ TensorEvaluator,\ \textcolor{keyword}{typename}\ SrcPacket,\ \textcolor{keyword}{typename}\ TgtPacket>}
+\DoxyCodeLine{00057\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_packet_converter}{PacketConverter}}<\mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator}},\ SrcPacket,\ TgtPacket,\ 1,\ 1>\ \{}
+\DoxyCodeLine{00058\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}}
+\DoxyCodeLine{00059\ \ \ \mbox{\hyperlink{struct_eigen_1_1_packet_converter_3_01_tensor_evaluator_00_01_src_packet_00_01_tgt_packet_00_011_00_011_01_4_a23b36400f19ea2b50f998e8272c93104_a23b36400f19ea2b50f998e8272c93104}{PacketConverter}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator}}\&\ impl)}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ :\ m\_impl(impl)\ \{\}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ LoadMode,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00063\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ TgtPacket\ \mbox{\hyperlink{struct_eigen_1_1_packet_converter_3_01_tensor_evaluator_00_01_src_packet_00_01_tgt_packet_00_011_00_011_01_4_a995354ecaafac517508a2666aac7655b_a995354ecaafac517508a2666aac7655b}{packet}}(\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ index)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1internal_a0b3ae9566e84e6f87029390857b5c86a_a0b3ae9566e84e6f87029390857b5c86a}{internal::pcast<SrcPacket,\ TgtPacket>}}(m\_impl.template\ packet<LoadMode>(index));}
+\DoxyCodeLine{00065\ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00068\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator}}\&\ \mbox{\hyperlink{struct_eigen_1_1_packet_converter_3_01_tensor_evaluator_00_01_src_packet_00_01_tgt_packet_00_011_00_011_01_4_a85a1745c68d2ecc413d863c6a739e261_a85a1745c68d2ecc413d863c6a739e261}{m\_impl}};}
+\DoxyCodeLine{00069\ \};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ TensorEvaluator,\ \textcolor{keyword}{typename}\ SrcPacket,\ \textcolor{keyword}{typename}\ TgtPacket>}
+\DoxyCodeLine{00073\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_packet_converter}{PacketConverter}}<\mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator}},\ SrcPacket,\ TgtPacket,\ 2,\ 1>\ \{}
+\DoxyCodeLine{00074\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}}
+\DoxyCodeLine{00075\ \ \ \mbox{\hyperlink{struct_eigen_1_1_packet_converter_3_01_tensor_evaluator_00_01_src_packet_00_01_tgt_packet_00_012_00_011_01_4_aadcfb41e31496221684d5c859bb22e19_aadcfb41e31496221684d5c859bb22e19}{PacketConverter}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator}}\&\ impl)}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ :\ m\_impl(impl)\ \{\}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ LoadMode,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00079\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ TgtPacket\ \mbox{\hyperlink{struct_eigen_1_1_packet_converter_3_01_tensor_evaluator_00_01_src_packet_00_01_tgt_packet_00_012_00_011_01_4_ae15e673427e201f4627002872e0d11db_ae15e673427e201f4627002872e0d11db}{packet}}(\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ index)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ SrcPacketSize\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1unpacket__traits}{internal::unpacket\_traits<SrcPacket>::size}};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ SrcPacket\ src1\ =\ m\_impl.template\ packet<LoadMode>(index);}
+\DoxyCodeLine{00083\ \ \ \ \ SrcPacket\ src2\ =\ m\_impl.template\ packet<LoadMode>(index\ +\ SrcPacketSize);}
+\DoxyCodeLine{00084\ \ \ \ \ TgtPacket\ result\ =\ \mbox{\hyperlink{namespace_eigen_1_1internal_a0b3ae9566e84e6f87029390857b5c86a_a0b3ae9566e84e6f87029390857b5c86a}{internal::pcast<SrcPacket,\ TgtPacket>}}(src1,\ src2);}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00086\ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00089\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator}}\&\ \mbox{\hyperlink{struct_eigen_1_1_packet_converter_3_01_tensor_evaluator_00_01_src_packet_00_01_tgt_packet_00_012_00_011_01_4_ac0176d23e832bac46cfeac8d9c363463_ac0176d23e832bac46cfeac8d9c363463}{m\_impl}};}
+\DoxyCodeLine{00090\ \};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ TensorEvaluator,\ \textcolor{keyword}{typename}\ SrcPacket,\ \textcolor{keyword}{typename}\ TgtPacket>}
+\DoxyCodeLine{00093\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_packet_converter}{PacketConverter}}<\mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator}},\ SrcPacket,\ TgtPacket,\ 4,\ 1>\ \{}
+\DoxyCodeLine{00094\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}}
+\DoxyCodeLine{00095\ \ \ \mbox{\hyperlink{struct_eigen_1_1_packet_converter_3_01_tensor_evaluator_00_01_src_packet_00_01_tgt_packet_00_014_00_011_01_4_a66ded1fe77a76b6af5ac05a6f8cc7539_a66ded1fe77a76b6af5ac05a6f8cc7539}{PacketConverter}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator}}\&\ impl)}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ :\ m\_impl(impl)\ \{\}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ LoadMode,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00099\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ TgtPacket\ \mbox{\hyperlink{struct_eigen_1_1_packet_converter_3_01_tensor_evaluator_00_01_src_packet_00_01_tgt_packet_00_014_00_011_01_4_a0038eb97be8f257744496077743990e7_a0038eb97be8f257744496077743990e7}{packet}}(\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ index)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ SrcPacketSize\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1unpacket__traits}{internal::unpacket\_traits<SrcPacket>::size}};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ SrcPacket\ src1\ =\ m\_impl.template\ packet<LoadMode>(index);}
+\DoxyCodeLine{00103\ \ \ \ \ SrcPacket\ src2\ =\ m\_impl.template\ packet<LoadMode>(index\ +\ SrcPacketSize);}
+\DoxyCodeLine{00104\ \ \ \ \ SrcPacket\ src3\ =\ m\_impl.template\ packet<LoadMode>(index\ +\ 2\ *\ SrcPacketSize);}
+\DoxyCodeLine{00105\ \ \ \ \ SrcPacket\ src4\ =\ m\_impl.template\ packet<LoadMode>(index\ +\ 3\ *\ SrcPacketSize);}
+\DoxyCodeLine{00106\ \ \ \ \ TgtPacket\ result\ =\ \mbox{\hyperlink{namespace_eigen_1_1internal_a0b3ae9566e84e6f87029390857b5c86a_a0b3ae9566e84e6f87029390857b5c86a}{internal::pcast<SrcPacket,\ TgtPacket>}}(src1,\ src2,\ src3,\ src4);}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00108\ \ \ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00111\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator}}\&\ \mbox{\hyperlink{struct_eigen_1_1_packet_converter_3_01_tensor_evaluator_00_01_src_packet_00_01_tgt_packet_00_014_00_011_01_4_a8226c62d8c70073bc38ffe4cd21de2da_a8226c62d8c70073bc38ffe4cd21de2da}{m\_impl}};}
+\DoxyCodeLine{00112\ \};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ TensorEvaluator,\ \textcolor{keyword}{typename}\ SrcPacket,\ \textcolor{keyword}{typename}\ TgtPacket>}
+\DoxyCodeLine{00115\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_packet_converter}{PacketConverter}}<\mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator}},\ SrcPacket,\ TgtPacket,\ 8,\ 1>\ \{}
+\DoxyCodeLine{00116\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}}
+\DoxyCodeLine{00117\ \ \ \mbox{\hyperlink{struct_eigen_1_1_packet_converter_3_01_tensor_evaluator_00_01_src_packet_00_01_tgt_packet_00_018_00_011_01_4_a7411a6ceadc8b00f5afa4722a8057d61_a7411a6ceadc8b00f5afa4722a8057d61}{PacketConverter}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator}}\&\ impl)}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ :\ m\_impl(impl)\ \{\}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ LoadMode,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00121\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ TgtPacket\ \mbox{\hyperlink{struct_eigen_1_1_packet_converter_3_01_tensor_evaluator_00_01_src_packet_00_01_tgt_packet_00_018_00_011_01_4_ac1decfb1770ea5a90abaf25a37b4a040_ac1decfb1770ea5a90abaf25a37b4a040}{packet}}(\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ index)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ SrcPacketSize\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1unpacket__traits}{internal::unpacket\_traits<SrcPacket>::size}};}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ SrcPacket\ src1\ =\ m\_impl.template\ packet<LoadMode>(index);}
+\DoxyCodeLine{00125\ \ \ \ \ SrcPacket\ src2\ =\ m\_impl.template\ packet<LoadMode>(index\ +\ 1\ *\ SrcPacketSize);}
+\DoxyCodeLine{00126\ \ \ \ \ SrcPacket\ src3\ =\ m\_impl.template\ packet<LoadMode>(index\ +\ 2\ *\ SrcPacketSize);}
+\DoxyCodeLine{00127\ \ \ \ \ SrcPacket\ src4\ =\ m\_impl.template\ packet<LoadMode>(index\ +\ 3\ *\ SrcPacketSize);}
+\DoxyCodeLine{00128\ \ \ \ \ SrcPacket\ src5\ =\ m\_impl.template\ packet<LoadMode>(index\ +\ 4\ *\ SrcPacketSize);}
+\DoxyCodeLine{00129\ \ \ \ \ SrcPacket\ src6\ =\ m\_impl.template\ packet<LoadMode>(index\ +\ 5\ *\ SrcPacketSize);}
+\DoxyCodeLine{00130\ \ \ \ \ SrcPacket\ src7\ =\ m\_impl.template\ packet<LoadMode>(index\ +\ 6\ *\ SrcPacketSize);}
+\DoxyCodeLine{00131\ \ \ \ \ SrcPacket\ src8\ =\ m\_impl.template\ packet<LoadMode>(index\ +\ 7\ *\ SrcPacketSize);}
+\DoxyCodeLine{00132\ \ \ \ \ TgtPacket\ result\ =\ \mbox{\hyperlink{namespace_eigen_1_1internal_a0b3ae9566e84e6f87029390857b5c86a_a0b3ae9566e84e6f87029390857b5c86a}{internal::pcast<SrcPacket,\ TgtPacket>}}(src1,\ src2,\ src3,\ src4,\ src5,\ src6,\ src7,\ src8);}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00134\ \ \ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00137\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator}}\&\ \mbox{\hyperlink{struct_eigen_1_1_packet_converter_3_01_tensor_evaluator_00_01_src_packet_00_01_tgt_packet_00_018_00_011_01_4_ab9783254e9ac987902f3f3dd40b7b52e_ab9783254e9ac987902f3f3dd40b7b52e}{m\_impl}};}
+\DoxyCodeLine{00138\ \};}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ TensorEvaluator,\ \textcolor{keyword}{typename}\ SrcPacket,\ \textcolor{keyword}{typename}\ TgtPacket,\ \textcolor{keywordtype}{int}\ TgtCoeffRatio>}
+\DoxyCodeLine{00141\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_packet_converter}{PacketConverter}}<\mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator}},\ SrcPacket,\ TgtPacket,\ 1,\ TgtCoeffRatio>\ \{}
+\DoxyCodeLine{00142\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}}
+\DoxyCodeLine{00143\ \ \ \mbox{\hyperlink{struct_eigen_1_1_packet_converter_3_01_tensor_evaluator_00_01_src_packet_00_01_tgt_packet_00_011_00_01_tgt_coeff_ratio_01_4_abe48b0a99f5d7101425f39ff05467c20_abe48b0a99f5d7101425f39ff05467c20}{PacketConverter}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator}}\&\ impl)}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ :\ m\_impl(impl),\ m\_maxIndex(impl.dimensions().TotalSize())\ \{\}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ LoadMode,\ \textcolor{keyword}{typename}\ Index>}
+\DoxyCodeLine{00147\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ TgtPacket\ \mbox{\hyperlink{struct_eigen_1_1_packet_converter_3_01_tensor_evaluator_00_01_src_packet_00_01_tgt_packet_00_011_00_01_tgt_coeff_ratio_01_4_ada3c4c2fa364afa5fa11910795b8c142_ada3c4c2fa364afa5fa11910795b8c142}{packet}}(\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ index)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ SrcPacketSize\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1unpacket__traits}{internal::unpacket\_traits<SrcPacket>::size}};}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{comment}{//\ Only\ call\ m\_impl.packet()\ when\ we\ have\ direct\ access\ to\ the\ underlying\ data.\ This}}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{comment}{//\ ensures\ that\ we\ don't\ compute\ the\ subexpression\ twice.\ We\ may\ however\ load\ some}}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{comment}{//\ coefficients\ twice,\ but\ in\ practice\ this\ doesn't\ negatively\ impact\ performance.}}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_impl.data()\ \&\&\ (index\ +\ SrcPacketSize\ <\ m\_maxIndex))\ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \textcolor{comment}{//\ Force\ unaligned\ memory\ loads\ since\ we\ can't\ ensure\ alignment\ anymore}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1internal_a0b3ae9566e84e6f87029390857b5c86a_a0b3ae9566e84e6f87029390857b5c86a}{internal::pcast<SrcPacket,\ TgtPacket>}}(m\_impl.template\ packet<Unaligned>(index));}
+\DoxyCodeLine{00155\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ TgtPacketSize\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1unpacket__traits}{internal::unpacket\_traits<TgtPacket>::size}};}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{internal::unpacket\_traits<SrcPacket>::type}}\ SrcType;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{internal::unpacket\_traits<TgtPacket>::type}}\ TgtType;}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__cast__op}{internal::scalar\_cast\_op<SrcType,\ TgtType>}}\ converter;}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \mbox{\hyperlink{_configure_vectorization_8h_a13d55467be312f50f2ae60737f1ed9f3_a13d55467be312f50f2ae60737f1ed9f3}{EIGEN\_ALIGN\_MAX}}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{internal::unpacket\_traits<TgtPacket>::type}}\ values[TgtPacketSize];}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \mbox{\hyperlink{_macros_8h_a3c7e37b5f6cd41e80197523bca19b505_a3c7e37b5f6cd41e80197523bca19b505}{EIGEN\_UNROLL\_LOOP}}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ <\ TgtPacketSize;\ ++\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}})\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ values[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}]\ =\ converter(m\_impl.coeff(index+\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}));}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ TgtPacket\ rslt\ =\ \mbox{\hyperlink{namespace_eigen_1_1internal_ae25c18feab0271a245176a7a3f2dcd3d_ae25c18feab0271a245176a7a3f2dcd3d}{internal::pload<TgtPacket>}}(values);}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ rslt;}
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00171\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator}}\&\ \mbox{\hyperlink{struct_eigen_1_1_packet_converter_3_01_tensor_evaluator_00_01_src_packet_00_01_tgt_packet_00_011_00_01_tgt_coeff_ratio_01_4_a72a8f05fc5e9e196cc89f2487076d478_a72a8f05fc5e9e196cc89f2487076d478}{m\_impl}};}
+\DoxyCodeLine{00172\ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_ab03361de0cb621f807b20cdeb621b807_ab03361de0cb621f807b20cdeb621b807}{TensorEvaluator::Index}}\ \mbox{\hyperlink{struct_eigen_1_1_packet_converter_3_01_tensor_evaluator_00_01_src_packet_00_01_tgt_packet_00_011_00_01_tgt_coeff_ratio_01_4_adef6ac436db21aa34ecbaaa91c07ebae_adef6ac436db21aa34ecbaaa91c07ebae}{m\_maxIndex}};}
+\DoxyCodeLine{00173\ \};}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TargetType,\ \textcolor{keyword}{typename}\ XprType>}
+\DoxyCodeLine{00176\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op}{TensorConversionOp}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_eigen_1_1_tensor_base}{TensorBase}}<TensorConversionOp<TargetType,\ XprType>,\ ReadOnlyAccessors>}
+\DoxyCodeLine{00177\ \{}
+\DoxyCodeLine{00178\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal::traits<TensorConversionOp>::Scalar}}\ \mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op_a8a8dc26c45ea0b745a4f412b60b8d4ae_a8a8dc26c45ea0b745a4f412b60b8d4ae}{Scalar}};}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal::traits<TensorConversionOp>::StorageKind}}\ \mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op_a898d73073725af22d13b97e472758c27_a898d73073725af22d13b97e472758c27}{StorageKind}};}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal::traits<TensorConversionOp>::Index}}\ \mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op_a504d74d90713876afd81059bc5a95e19_a504d74d90713876afd81059bc5a95e19}{Index}};}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_lazy_evaluator_writable}{internal::nested<TensorConversionOp>::type}}\ \mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op_a8058898b3b2f784d1b2f426cefde378c_a8058898b3b2f784d1b2f426cefde378c}{Nested}};}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op_a8a8dc26c45ea0b745a4f412b60b8d4ae_a8a8dc26c45ea0b745a4f412b60b8d4ae}{Scalar}}\ \mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op_a21413f0c0b58ef79f318fefe00f2d00a_a21413f0c0b58ef79f318fefe00f2d00a}{CoeffReturnType}};}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{NumTraits<Scalar>::Real}}\ \mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op_aa1fa1986c4c8cd425072e6c7297b1c24_aa1fa1986c4c8cd425072e6c7297b1c24}{RealScalar}};}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op_a851ec93ca1b52e50c682c9542bc79d6a_a851ec93ca1b52e50c682c9542bc79d6a}{TensorConversionOp}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{XprType}}\&\ xpr)}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op_aaa47abd5b83f631335607d2a0f56d911_aaa47abd5b83f631335607d2a0f56d911}{m\_xpr}}(xpr)\ \{\}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{internal::remove\_all<typename\ XprType::Nested>::type}}\&}
+\DoxyCodeLine{00191\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op_aa9f442be543106230212bd9b575f7ebc_aa9f442be543106230212bd9b575f7ebc}{expression}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op_aaa47abd5b83f631335607d2a0f56d911_aaa47abd5b83f631335607d2a0f56d911}{m\_xpr}};\ \}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keyword}{typename}\ XprType::Nested\ \mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op_aaa47abd5b83f631335607d2a0f56d911_aaa47abd5b83f631335607d2a0f56d911}{m\_xpr}};}
+\DoxyCodeLine{00195\ \};}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{bool}\ SameType,\ \textcolor{keyword}{typename}\ Eval,\ \textcolor{keyword}{typename}\ EvalPo\textcolor{keywordtype}{int}erType>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_conversion_sub_expr_eval}{ConversionSubExprEval}}\ \{}
+\DoxyCodeLine{00198\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_eigen_1_1_conversion_sub_expr_eval_ade8525b51fc3770c4e4feb25fc169821_ade8525b51fc3770c4e4feb25fc169821}{run}}(Eval\&\ impl,\ EvalPointerType)\ \{}
+\DoxyCodeLine{00199\ \ \ \ \ impl.evalSubExprsIfNeeded(NULL);}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00201\ \ \ \}}
+\DoxyCodeLine{00202\ \};}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Eval,\ \textcolor{keyword}{typename}\ EvalPo\textcolor{keywordtype}{int}erType>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_conversion_sub_expr_eval}{ConversionSubExprEval}}<true,\ Eval,\ EvalPointerType>\ \{}
+\DoxyCodeLine{00205\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_eigen_1_1_conversion_sub_expr_eval_3_01true_00_01_eval_00_01_eval_pointer_type_01_4_af05970fb4eb4beaf7d594338fe7fb5f5_af05970fb4eb4beaf7d594338fe7fb5f5}{run}}(Eval\&\ impl,\ EvalPointerType\ \mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}})\ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordflow}{return}\ impl.evalSubExprsIfNeeded(\mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}});}
+\DoxyCodeLine{00207\ \ \ \}}
+\DoxyCodeLine{00208\ \};}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_USE\_THREADS}}
+\DoxyCodeLine{00211\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{bool}\ SameType,\ \textcolor{keyword}{typename}\ Eval,\ \textcolor{keyword}{typename}\ EvalPointerType,}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ EvalSubExprsCallback>}
+\DoxyCodeLine{00213\ \textcolor{keyword}{struct\ }ConversionSubExprEvalAsync\ \{}
+\DoxyCodeLine{00214\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{void}\ run(Eval\&\ impl,\ EvalPointerType,\ EvalSubExprsCallback\ done)\ \{}
+\DoxyCodeLine{00215\ \ \ \ \ impl.evalSubExprsIfNeededAsync(\textcolor{keyword}{nullptr},\ std::move(done));}
+\DoxyCodeLine{00216\ \ \ \}}
+\DoxyCodeLine{00217\ \};}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Eval,\ \textcolor{keyword}{typename}\ EvalPointerType,}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ EvalSubExprsCallback>}
+\DoxyCodeLine{00221\ \textcolor{keyword}{struct\ }ConversionSubExprEvalAsync<true,\ Eval,\ EvalPointerType,}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EvalSubExprsCallback>\ \{}
+\DoxyCodeLine{00223\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{void}\ run(Eval\&\ impl,\ EvalPointerType\ \mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}},\ EvalSubExprsCallback\ done)\ \{}
+\DoxyCodeLine{00224\ \ \ \ \ impl.evalSubExprsIfNeededAsync(\mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}},\ std::move(done));}
+\DoxyCodeLine{00225\ \ \ \}}
+\DoxyCodeLine{00226\ \};}
+\DoxyCodeLine{00227\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceinternal}{internal}}\ \{}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SrcType,\ \textcolor{keyword}{typename}\ TargetType,\ \textcolor{keywordtype}{bool}\ IsSameT>}
+\DoxyCodeLine{00232\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1_coeff_conv}{CoeffConv}}\ \{}
+\DoxyCodeLine{00233\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ArgType,\ \textcolor{keyword}{typename}\ Device>}
+\DoxyCodeLine{00234\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ TargetType\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_coeff_conv_a6e4ec5fc3f79d3a77d7e8a370e2d5ede_a6e4ec5fc3f79d3a77d7e8a370e2d5ede}{run}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator<ArgType,\ Device>}}\&\ impl,\ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ index)\ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__cast__op}{internal::scalar\_cast\_op<SrcType,\ TargetType>}}\ converter;}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordflow}{return}\ converter(impl.\mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_a7747e4223120fe698801fa12c186561d_a7747e4223120fe698801fa12c186561d}{coeff}}(index));}
+\DoxyCodeLine{00237\ \ \ \}}
+\DoxyCodeLine{00238\ \};}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SrcType,\ \textcolor{keyword}{typename}\ TargetType>}
+\DoxyCodeLine{00241\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1_coeff_conv}{CoeffConv}}<SrcType,\ TargetType,\ true>\ \{}
+\DoxyCodeLine{00242\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ArgType,\ \textcolor{keyword}{typename}\ Device>}
+\DoxyCodeLine{00243\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ TargetType\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_coeff_conv_3_01_src_type_00_01_target_type_00_01true_01_4_acb1b64f15998fae3ce1111b561621719_acb1b64f15998fae3ce1111b561621719}{run}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator<ArgType,\ Device>}}\&\ impl,\ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ index)\ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordflow}{return}\ impl.\mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_a7747e4223120fe698801fa12c186561d_a7747e4223120fe698801fa12c186561d}{coeff}}(index);}
+\DoxyCodeLine{00245\ \ \ \}}
+\DoxyCodeLine{00246\ \};}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SrcPacket,\ \textcolor{keyword}{typename}\ TargetPacket,\ \textcolor{keywordtype}{int}\ LoadMode,\ \textcolor{keywordtype}{bool}\ ActuallyVectorize,\ \textcolor{keywordtype}{bool}\ IsSameT>}
+\DoxyCodeLine{00249\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1_packet_conv}{PacketConv}}\ \{}
+\DoxyCodeLine{00250\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{internal::unpacket\_traits<SrcPacket>::type}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_packet_conv_a3e77da322e44c567e8487d356aaadd20_a3e77da322e44c567e8487d356aaadd20}{SrcType}};}
+\DoxyCodeLine{00251\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{internal::unpacket\_traits<TargetPacket>::type}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_packet_conv_a0e138116936ff83e7c21195fa1cefe50_a0e138116936ff83e7c21195fa1cefe50}{TargetType}};}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_packet_conv_a3368a6344dce3b6348a392857156819a_a3368a6344dce3b6348a392857156819a}{PacketSize}}\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1unpacket__traits}{internal::unpacket\_traits<TargetPacket>::size}};}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ArgType,\ \textcolor{keyword}{typename}\ Device>}
+\DoxyCodeLine{00256\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ TargetPacket\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_packet_conv_af2fcee4d893da6830ff598a172883ae0_af2fcee4d893da6830ff598a172883ae0}{run}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator<ArgType,\ Device>}}\&\ impl,\ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ index)\ \{}
+\DoxyCodeLine{00257\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__cast__op}{internal::scalar\_cast\_op<SrcType,\ TargetType>}}\ converter;}
+\DoxyCodeLine{00258\ \ \ \ \ \mbox{\hyperlink{_configure_vectorization_8h_a13d55467be312f50f2ae60737f1ed9f3_a13d55467be312f50f2ae60737f1ed9f3}{EIGEN\_ALIGN\_MAX}}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{internal::remove\_const<TargetType>::type}}\ values[\mbox{\hyperlink{struct_eigen_1_1internal_1_1_packet_conv_a3368a6344dce3b6348a392857156819a_a3368a6344dce3b6348a392857156819a}{PacketSize}}];}
+\DoxyCodeLine{00259\ \ \ \ \ \mbox{\hyperlink{_macros_8h_a3c7e37b5f6cd41e80197523bca19b505_a3c7e37b5f6cd41e80197523bca19b505}{EIGEN\_UNROLL\_LOOP}}}
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ <\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_packet_conv_a3368a6344dce3b6348a392857156819a_a3368a6344dce3b6348a392857156819a}{PacketSize}};\ ++\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}})\ \{}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ values[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}]\ =\ converter(impl.\mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_a7747e4223120fe698801fa12c186561d_a7747e4223120fe698801fa12c186561d}{coeff}}(index+\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}));}
+\DoxyCodeLine{00262\ \ \ \ \ \}}
+\DoxyCodeLine{00263\ \ \ \ \ TargetPacket\ rslt\ =\ \mbox{\hyperlink{namespace_eigen_1_1internal_ae25c18feab0271a245176a7a3f2dcd3d_ae25c18feab0271a245176a7a3f2dcd3d}{internal::pload<TargetPacket>}}(values);}
+\DoxyCodeLine{00264\ \ \ \ \ \textcolor{keywordflow}{return}\ rslt;}
+\DoxyCodeLine{00265\ \ \ \}}
+\DoxyCodeLine{00266\ \};}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SrcPacket,\ \textcolor{keyword}{typename}\ TargetPacket,\ \textcolor{keywordtype}{int}\ LoadMode,\ \textcolor{keywordtype}{bool}\ IsSameT>}
+\DoxyCodeLine{00269\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1_packet_conv}{PacketConv}}<SrcPacket,\ TargetPacket,\ LoadMode,\ true,\ IsSameT>\ \{}
+\DoxyCodeLine{00270\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{internal::unpacket\_traits<SrcPacket>::type}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_packet_conv_3_01_src_packet_00_01_target_packet_00_01_load_mode_00_01true_00_01_is_same_t_01_4_a3b09e54d3e56d804198b93f315e2e153_a3b09e54d3e56d804198b93f315e2e153}{SrcType}};}
+\DoxyCodeLine{00271\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{internal::unpacket\_traits<TargetPacket>::type}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_packet_conv_3_01_src_packet_00_01_target_packet_00_01_load_mode_00_01true_00_01_is_same_t_01_4_ab620add6464ceb8dabd3e039fb329813_ab620add6464ceb8dabd3e039fb329813}{TargetType}};}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ArgType,\ \textcolor{keyword}{typename}\ Device>}
+\DoxyCodeLine{00274\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ TargetPacket\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_packet_conv_3_01_src_packet_00_01_target_packet_00_01_load_mode_00_01true_00_01_is_same_t_01_4_a343a531bdb66e2d50b20d37d12e0a4c7_a343a531bdb66e2d50b20d37d12e0a4c7}{run}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator<ArgType,\ Device>}}\&\ impl,\ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ index)\ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ SrcCoeffRatio\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1type__casting__traits}{internal::type\_casting\_traits<SrcType,\ TargetType>::SrcCoeffRatio}};}
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ TgtCoeffRatio\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1type__casting__traits}{internal::type\_casting\_traits<SrcType,\ TargetType>::TgtCoeffRatio}};}
+\DoxyCodeLine{00277\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_packet_converter}{PacketConverter<TensorEvaluator<ArgType,\ Device>}},\ SrcPacket,\ TargetPacket,}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SrcCoeffRatio,\ TgtCoeffRatio>\ converter(impl);}
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{keywordflow}{return}\ converter.template\ packet<LoadMode>(index);}
+\DoxyCodeLine{00280\ \ \ \}}
+\DoxyCodeLine{00281\ \};}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SrcPacket,\ \textcolor{keyword}{typename}\ TargetPacket,\ \textcolor{keywordtype}{int}\ LoadMode>}
+\DoxyCodeLine{00284\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1_packet_conv}{PacketConv}}<SrcPacket,\ TargetPacket,\ LoadMode,\ \textcolor{comment}{/*ActuallyVectorize=*/}false,\ \textcolor{comment}{/*IsSameT=*/}true>\ \{}
+\DoxyCodeLine{00285\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{internal::unpacket\_traits<TargetPacket>::type}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_packet_conv_3_01_src_packet_00_01_target_packet_00_01_load_mode_00_01false_00_01true_01_4_a1ca51ebbe727a36cc6e588f56f7da387_a1ca51ebbe727a36cc6e588f56f7da387}{TargetType}};}
+\DoxyCodeLine{00286\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_packet_conv_a3368a6344dce3b6348a392857156819a_a3368a6344dce3b6348a392857156819a}{PacketSize}}\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1unpacket__traits}{internal::unpacket\_traits<TargetPacket>::size}};}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ArgType,\ \textcolor{keyword}{typename}\ Device>}
+\DoxyCodeLine{00289\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ TargetPacket\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_packet_conv_3_01_src_packet_00_01_target_packet_00_01_load_mode_00_01false_00_01true_01_4_aeef63ec559c3b1f90e23c64cdc2da544_aeef63ec559c3b1f90e23c64cdc2da544}{run}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator<ArgType,\ Device>}}\&\ impl,\ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ index)\ \{}
+\DoxyCodeLine{00290\ \ \ \ \ \mbox{\hyperlink{_configure_vectorization_8h_a13d55467be312f50f2ae60737f1ed9f3_a13d55467be312f50f2ae60737f1ed9f3}{EIGEN\_ALIGN\_MAX}}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{internal::remove\_const<TargetType>::type}}\ values[\mbox{\hyperlink{struct_eigen_1_1internal_1_1_packet_conv_a3368a6344dce3b6348a392857156819a_a3368a6344dce3b6348a392857156819a}{PacketSize}}];}
+\DoxyCodeLine{00291\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ <\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_packet_conv_a3368a6344dce3b6348a392857156819a_a3368a6344dce3b6348a392857156819a}{PacketSize}};\ ++\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}})\ values[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}]\ =\ impl.\mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_a7747e4223120fe698801fa12c186561d_a7747e4223120fe698801fa12c186561d}{coeff}}(index+\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}});}
+\DoxyCodeLine{00292\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1internal_ae25c18feab0271a245176a7a3f2dcd3d_ae25c18feab0271a245176a7a3f2dcd3d}{internal::pload<TargetPacket>}}(values);}
+\DoxyCodeLine{00293\ \ \ \}}
+\DoxyCodeLine{00294\ \};}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00296\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SrcPacket,\ \textcolor{keyword}{typename}\ TargetPacket,\ \textcolor{keywordtype}{int}\ LoadMode>}
+\DoxyCodeLine{00297\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1_packet_conv}{PacketConv}}<SrcPacket,\ TargetPacket,\ LoadMode,\ \textcolor{comment}{/*ActuallyVectorize=*/}true,\ \textcolor{comment}{/*IsSameT=*/}true>\ \{}
+\DoxyCodeLine{00298\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ArgType,\ \textcolor{keyword}{typename}\ Device>}
+\DoxyCodeLine{00299\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ TargetPacket\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_packet_conv_3_01_src_packet_00_01_target_packet_00_01_load_mode_00_01true_00_01true_01_4_a0c46d6f99f76edad4d1e7aab17a48955_a0c46d6f99f76edad4d1e7aab17a48955}{run}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator<ArgType,\ Device>}}\&\ impl,\ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ index)\ \{}
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keywordflow}{return}\ impl.template\ packet<LoadMode>(index);}
+\DoxyCodeLine{00301\ \ \ \}}
+\DoxyCodeLine{00302\ \};}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \}\ \ \textcolor{comment}{//\ namespace\ internal}}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \textcolor{comment}{//\ Eval\ as\ rvalue}}
+\DoxyCodeLine{00307\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TargetType,\ \textcolor{keyword}{typename}\ ArgType,\ \textcolor{keyword}{typename}\ Device>}
+\DoxyCodeLine{00308\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator}}<const\ \mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op}{TensorConversionOp}}<TargetType,\ ArgType>,\ Device>}
+\DoxyCodeLine{00309\ \{}
+\DoxyCodeLine{00310\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op}{TensorConversionOp<TargetType,\ ArgType>}}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_a900e72a2e5a5a858e92ecd7b0950f4a6_a900e72a2e5a5a858e92ecd7b0950f4a6}{XprType}};}
+\DoxyCodeLine{00311\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op_a504d74d90713876afd81059bc5a95e19_a504d74d90713876afd81059bc5a95e19}{XprType::Index}}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_a83f33f7f0a57e61c520b10a74b92b401_a83f33f7f0a57e61c520b10a74b92b401}{Index}};}
+\DoxyCodeLine{00312\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_aa1d848f55dbb96ee9c789c995624a2cb_aa1d848f55dbb96ee9c789c995624a2cb}{TensorEvaluator<ArgType,\ Device>::Dimensions}}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_a0ece0f8e1b7dbd07d0d23b6cbeb39c74_a0ece0f8e1b7dbd07d0d23b6cbeb39c74}{Dimensions}};}
+\DoxyCodeLine{00313\ \ \ \textcolor{keyword}{typedef}\ TargetType\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_a59f17f43c90c9572af49f7cfad480778_a59f17f43c90c9572af49f7cfad480778}{Scalar}};}
+\DoxyCodeLine{00314\ \ \ \textcolor{keyword}{typedef}\ TargetType\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_aded4ed7b1c1eae1f25fd0486f46eaab7_aded4ed7b1c1eae1f25fd0486f46eaab7}{CoeffReturnType}};}
+\DoxyCodeLine{00315\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal::remove\_all<typename\ internal::traits<ArgType>::Scalar}}>::type\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_a8fd59805395b4e05287402701f88287c_a8fd59805395b4e05287402701f88287c}{SrcType}};}
+\DoxyCodeLine{00316\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{PacketType<CoeffReturnType,\ Device>::type}}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_a45437b9d5d7a09b17e6e9d3251f3a5d6_a45437b9d5d7a09b17e6e9d3251f3a5d6}{PacketReturnType}};}
+\DoxyCodeLine{00317\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{PacketType<SrcType,\ Device>::type}}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_a3350b6a4533ebde5aaeef5cc95e9cc01_a3350b6a4533ebde5aaeef5cc95e9cc01}{PacketSourceType}};}
+\DoxyCodeLine{00318\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_af01d9cb0f9c1d405b9d6a24843936d3f_af01d9cb0f9c1d405b9d6a24843936d3f}{PacketSize}}\ =\ \mbox{\hyperlink{struct_eigen_1_1_packet_type}{PacketType<CoeffReturnType,\ Device>::size}};}
+\DoxyCodeLine{00319\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ IsSameType\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1is__same}{internal::is\_same<TargetType,\ SrcType>::value}};}
+\DoxyCodeLine{00320\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{struct_eigen_1_1_storage_memory}{StorageMemory<CoeffReturnType,\ Device>}}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_acd762504324f8854c66d48e3f32b21c3_acd762504324f8854c66d48e3f32b21c3}{Storage}};}
+\DoxyCodeLine{00321\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{Storage::Type}}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_a17158fa6f4fae7f3862b1946f15604fc_a17158fa6f4fae7f3862b1946f15604fc}{EvaluatorPointerType}};}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00323\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_adcfcc9adb8a5e57451d5429b11ed8e96_adcfcc9adb8a5e57451d5429b11ed8e96af11db1f709324172bf7b0697066c3e32}{IsAligned}}\ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00325\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_adcfcc9adb8a5e57451d5429b11ed8e96_adcfcc9adb8a5e57451d5429b11ed8e96a82e9bfc6394867187050ca7e4619cdf1}{PacketAccess}}\ \ \ \ \ \ =}
+\DoxyCodeLine{00326\ \textcolor{preprocessor}{\ \ \ \ \#ifndef\ EIGEN\_USE\_SYCL}}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{true},}
+\DoxyCodeLine{00328\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator<ArgType,\ Device>::PacketAccess}}\ \&}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1type__casting__traits}{internal::type\_casting\_traits<SrcType,\ TargetType>::VectorizedCast}},}
+\DoxyCodeLine{00331\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00332\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_adcfcc9adb8a5e57451d5429b11ed8e96_adcfcc9adb8a5e57451d5429b11ed8e96a11319c5d2ee534b9aff85a27b4423fe9}{BlockAccess}}\ \ \ \ \ \ \ =\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator<ArgType,\ Device>::BlockAccess}},}
+\DoxyCodeLine{00333\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_adcfcc9adb8a5e57451d5429b11ed8e96_adcfcc9adb8a5e57451d5429b11ed8e96a3fe1a7f25f4c1da95f4f2c08ecb10450}{PreferBlockAccess}}\ =\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator<ArgType,\ Device>::PreferBlockAccess}},}
+\DoxyCodeLine{00334\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_adcfcc9adb8a5e57451d5429b11ed8e96_adcfcc9adb8a5e57451d5429b11ed8e96aaea01fe7598d6c1941853b693ec9f162}{Layout}}\ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator<ArgType,\ Device>::Layout}},}
+\DoxyCodeLine{00335\ \ \ \ \ RawAccess\ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{false}}
+\DoxyCodeLine{00336\ \ \ \};}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00338\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ NumDims\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1array__size}{internal::array\_size<Dimensions>::value}};}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \ \ \textcolor{comment}{//===-\/\ Tensor\ block\ evaluation\ strategy\ (see\ TensorBlock.h)\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/===//}}
+\DoxyCodeLine{00341\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_block_descriptor}{internal::TensorBlockDescriptor<NumDims,\ Index>}}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_a0d398cc6b4fce594aa3a9fee71d14897_a0d398cc6b4fce594aa3a9fee71d14897}{TensorBlockDesc}};}
+\DoxyCodeLine{00342\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_block_scratch_allocator}{internal::TensorBlockScratchAllocator<Device>}}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_a2903d208984fd0b761a8e57436d9b171_a2903d208984fd0b761a8e57436d9b171}{TensorBlockScratch}};}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_materialized_block}{TensorEvaluator<const\ ArgType,\ Device>::TensorBlock}}}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_a0207b6153fd5fa189c59ac595cdbec46_a0207b6153fd5fa189c59ac595cdbec46}{ArgTensorBlock}};}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00347\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_t08b29c807562e4c34fe5790284a475ba}{TensorConversionOpBlockFactory}}\ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ArgXprType>}
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_t528066ace835ed44b3c5775b99cd9b0d}{XprType}}\ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op}{TensorConversionOp<TargetType,\ const\ ArgXprType>}}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_t528066ace835ed44b3c5775b99cd9b0d_a43c5abaf807412321d67cc32381970ac_a43c5abaf807412321d67cc32381970ac}{type}};}
+\DoxyCodeLine{00351\ \ \ \ \ \};}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00353\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ArgXprType>}
+\DoxyCodeLine{00354\ \ \ \ \ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_t528066ace835ed44b3c5775b99cd9b0d}{XprType<ArgXprType>::type}}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_t08b29c807562e4c34fe5790284a475ba_a9ef53ecc53ea7f4d08c92cdb9d7e409d_a9ef53ecc53ea7f4d08c92cdb9d7e409d}{expr}}(\textcolor{keyword}{const}\ ArgXprType\&\ expr)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_t528066ace835ed44b3c5775b99cd9b0d}{XprType<ArgXprType>::type}}(expr);}
+\DoxyCodeLine{00356\ \ \ \ \ \}}
+\DoxyCodeLine{00357\ \ \ \};}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00359\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_unary_expr_block}{internal::TensorUnaryExprBlock}}<TensorConversionOpBlockFactory,}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ArgTensorBlock>}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_acc0cc23cf99ca320d09f84e50bc713c8_acc0cc23cf99ca320d09f84e50bc713c8}{TensorBlock}};}
+\DoxyCodeLine{00362\ \ \ \textcolor{comment}{//===-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/===//}}
+\DoxyCodeLine{00363\ }
+\DoxyCodeLine{00364\ \ \ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_ac176436710723a176cb877b5779067cd_ac176436710723a176cb877b5779067cd}{TensorEvaluator}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op}{XprType}}\&\ op,\ \textcolor{keyword}{const}\ Device\&\ device)}
+\DoxyCodeLine{00365\ \ \ \ \ :\ m\_impl(op.expression(),\ device)}
+\DoxyCodeLine{00366\ \ \ \{}
+\DoxyCodeLine{00367\ \ \ \}}
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00369\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_a0ece0f8e1b7dbd07d0d23b6cbeb39c74_a0ece0f8e1b7dbd07d0d23b6cbeb39c74}{Dimensions}}\&\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_a9af18526ca7a7311dcc45f3d8ae3062c_a9af18526ca7a7311dcc45f3d8ae3062c}{dimensions}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_impl.dimensions();\ \}}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \ \ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_a6f86f8380c824d778947d179e8f3c85a_a6f86f8380c824d778947d179e8f3c85a}{evalSubExprsIfNeeded}}(\mbox{\hyperlink{class_eigen_1_1_triplet}{EvaluatorPointerType}}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_a61c77b3f2d2a7b97a9bcf04f25e5018f_a61c77b3f2d2a7b97a9bcf04f25e5018f}{data}})}
+\DoxyCodeLine{00372\ \ \ \{}
+\DoxyCodeLine{00373\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1_conversion_sub_expr_eval}{ConversionSubExprEval<IsSameType,\ TensorEvaluator<ArgType,\ Device>}},\ \mbox{\hyperlink{class_eigen_1_1_triplet}{EvaluatorPointerType}}>::run(m\_impl,\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_a61c77b3f2d2a7b97a9bcf04f25e5018f_a61c77b3f2d2a7b97a9bcf04f25e5018f}{data}});}
+\DoxyCodeLine{00374\ \ \ \}}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00376\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_USE\_THREADS}}
+\DoxyCodeLine{00377\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ EvalSubExprsCallback>}
+\DoxyCodeLine{00378\ \ \ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{void}\ evalSubExprsIfNeededAsync(}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_a8939492a2914c3876935369a6ba88ec2_a8939492a2914c3876935369a6ba88ec2}{EvaluatorPointerType}}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_a61c77b3f2d2a7b97a9bcf04f25e5018f_a61c77b3f2d2a7b97a9bcf04f25e5018f}{data}},\ EvalSubExprsCallback\ done)\ \{}
+\DoxyCodeLine{00380\ \ \ \ \ ConversionSubExprEvalAsync<IsSameType,\ TensorEvaluator<ArgType,\ Device>,}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_a8939492a2914c3876935369a6ba88ec2_a8939492a2914c3876935369a6ba88ec2}{EvaluatorPointerType}},}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ EvalSubExprsCallback>::run(m\_impl,\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_a61c77b3f2d2a7b97a9bcf04f25e5018f_a61c77b3f2d2a7b97a9bcf04f25e5018f}{data}},\ std::move(done));}
+\DoxyCodeLine{00383\ \ \ \}}
+\DoxyCodeLine{00384\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00386\ \ \ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_a29b2265beda7724332fe059316ab681e_a29b2265beda7724332fe059316ab681e}{cleanup}}()}
+\DoxyCodeLine{00387\ \ \ \{}
+\DoxyCodeLine{00388\ \ \ \ \ m\_impl.cleanup();}
+\DoxyCodeLine{00389\ \ \ \}}
+\DoxyCodeLine{00390\ }
+\DoxyCodeLine{00391\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_aded4ed7b1c1eae1f25fd0486f46eaab7_aded4ed7b1c1eae1f25fd0486f46eaab7}{CoeffReturnType}}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_a4c312a25a0251d33bdbf92388d3e5a4e_a4c312a25a0251d33bdbf92388d3e5a4e}{coeff}}(\mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_a83f33f7f0a57e61c520b10a74b92b401_a83f33f7f0a57e61c520b10a74b92b401}{Index}}\ index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00392\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00393\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_coeff_conv_a6e4ec5fc3f79d3a77d7e8a370e2d5ede_a6e4ec5fc3f79d3a77d7e8a370e2d5ede}{internal::CoeffConv<SrcType,\ TargetType,\ IsSameType>::run}}(m\_impl,index);}
+\DoxyCodeLine{00394\ \ \ \}}
+\DoxyCodeLine{00395\ }
+\DoxyCodeLine{00396\ \ \ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ LoadMode>}
+\DoxyCodeLine{00397\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_a54f8127161abe33ad05c5ce46ebf3c0a_a54f8127161abe33ad05c5ce46ebf3c0a}{PacketReturnType}}}
+\DoxyCodeLine{00398\ \ \ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_ad2dd04aa39295c441bef42aff7822aee_ad2dd04aa39295c441bef42aff7822aee}{packet}}(\mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_a83f33f7f0a57e61c520b10a74b92b401_a83f33f7f0a57e61c520b10a74b92b401}{Index}}\ index)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00399\ \ \ \ \ \textcolor{comment}{//\ If\ we\ are\ not\ going\ to\ do\ the\ cast,\ we\ just\ need\ to\ check\ that\ base}}
+\DoxyCodeLine{00400\ \ \ \ \ \textcolor{comment}{//\ TensorEvaluator\ has\ packet\ access.\ Otherwise\ we\ also\ need\ to\ make\ sure,}}
+\DoxyCodeLine{00401\ \ \ \ \ \textcolor{comment}{//\ that\ we\ have\ an\ implementation\ of\ vectorized\ cast.}}
+\DoxyCodeLine{00402\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ Vectorizable\ =}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ IsSameType}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ ?\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator<ArgType,\ Device>::PacketAccess}}}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}(\mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator<ArgType,\ Device>::PacketAccess}})\ \&}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}(\mbox{\hyperlink{struct_eigen_1_1internal_1_1type__casting__traits}{internal::type\_casting\_traits<SrcType,\ TargetType>::VectorizedCast}});}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00408\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_packet_conv}{internal::PacketConv}}<\mbox{\hyperlink{class_eigen_1_1_triplet}{PacketSourceType}},\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_a54f8127161abe33ad05c5ce46ebf3c0a_a54f8127161abe33ad05c5ce46ebf3c0a}{PacketReturnType}},\ LoadMode,}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vectorizable,\ IsSameType>::run(m\_impl,\ index);}
+\DoxyCodeLine{00410\ \ \ \}}
+\DoxyCodeLine{00411\ }
+\DoxyCodeLine{00412\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_tensor_op_cost}{TensorOpCost}}}
+\DoxyCodeLine{00413\ \ \ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_a088dc8d88e2fe264c77d3ced94774352_a088dc8d88e2fe264c77d3ced94774352}{costPerCoeff}}(\textcolor{keywordtype}{bool}\ vectorized)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00414\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ cast\_cost\ =\ \mbox{\hyperlink{class_eigen_1_1_tensor_op_cost_a8087678093f5133cd7d001e8e4ae5899_a8087678093f5133cd7d001e8e4ae5899}{TensorOpCost::CastCost<SrcType,\ TargetType>}}();}
+\DoxyCodeLine{00415\ \ \ \ \ \textcolor{keywordflow}{if}\ (vectorized)\ \{}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ SrcCoeffRatio\ =}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1type__casting__traits}{internal::type\_casting\_traits<SrcType,\ TargetType>::SrcCoeffRatio}};}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ TgtCoeffRatio\ =}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1type__casting__traits}{internal::type\_casting\_traits<SrcType,\ TargetType>::TgtCoeffRatio}};}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_impl.costPerCoeff(vectorized)\ *\ (SrcCoeffRatio\ /\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_af01d9cb0f9c1d405b9d6a24843936d3f_af01d9cb0f9c1d405b9d6a24843936d3f}{PacketSize}})\ +}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_tensor_op_cost}{TensorOpCost}}(0,\ 0,\ TgtCoeffRatio\ *\ (cast\_cost\ /\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_af01d9cb0f9c1d405b9d6a24843936d3f_af01d9cb0f9c1d405b9d6a24843936d3f}{PacketSize}}));}
+\DoxyCodeLine{00422\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_impl.costPerCoeff(vectorized)\ +\ \mbox{\hyperlink{class_eigen_1_1_tensor_op_cost}{TensorOpCost}}(0,\ 0,\ cast\_cost);}
+\DoxyCodeLine{00424\ \ \ \ \ \}}
+\DoxyCodeLine{00425\ \ \ \}}
+\DoxyCodeLine{00426\ }
+\DoxyCodeLine{00427\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}}
+\DoxyCodeLine{00428\ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_tensor_block_resource_requirements}{internal::TensorBlockResourceRequirements}}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_ac3b4ed2271e03dcece99f2616002894d_ac3b4ed2271e03dcece99f2616002894d}{getResourceRequirements}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00429\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_impl.getResourceRequirements();}
+\DoxyCodeLine{00430\ \ \ \}}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_a9a3b7f52f7c1537feb2f5194ab1af8cf_a9a3b7f52f7c1537feb2f5194ab1af8cf}{TensorBlock}}}
+\DoxyCodeLine{00433\ \ \ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_aeb2ff705f5582911a48491ee3a544dfd_aeb2ff705f5582911a48491ee3a544dfd}{block}}(\mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_block_descriptor}{TensorBlockDesc}}\&\ desc,\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_block_scratch_allocator}{TensorBlockScratch}}\&\ scratch,}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \textcolor{comment}{/*root\_of\_expr\_ast*/}\ =\ \textcolor{keyword}{false})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00435\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_a9a3b7f52f7c1537feb2f5194ab1af8cf_a9a3b7f52f7c1537feb2f5194ab1af8cf}{TensorBlock}}(m\_impl.block(desc,\ scratch),}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_t08b29c807562e4c34fe5790284a475ba}{TensorConversionOpBlockFactory}}());}
+\DoxyCodeLine{00437\ \ \ \}}
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00439\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{EvaluatorPointerType}}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_a7b466c24392c3d73c8a137c262334288_a7b466c24392c3d73c8a137c262334288}{data}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ NULL;\ \}}
+\DoxyCodeLine{00440\ }
+\DoxyCodeLine{00442\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator<ArgType,\ Device>}}\&\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_ab83b2756e35abe49239f199353625a06_ab83b2756e35abe49239f199353625a06}{impl}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_impl;\ \}}
+\DoxyCodeLine{00443\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_USE\_SYCL}}
+\DoxyCodeLine{00444\ \ \ \textcolor{comment}{//\ binding\ placeholder\ accessors\ to\ a\ command\ group\ handler\ for\ SYCL}}
+\DoxyCodeLine{00445\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{void}\ bind(cl::sycl::handler\ \&cgh)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00446\ \ \ \ \ m\_impl.bind(cgh);}
+\DoxyCodeLine{00447\ \ \ \}}
+\DoxyCodeLine{00448\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00449\ }
+\DoxyCodeLine{00450\ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00451\ \ \ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator<ArgType,\ Device>}}\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_conversion_op_3_01_target_type_00_01_arg_type_01_4_00_01_device_01_4_a8ca5b0c194994345facd537e754c145b_a8ca5b0c194994345facd537e754c145b}{m\_impl}};}
+\DoxyCodeLine{00452\ \};}
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00454\ \}\ \textcolor{comment}{//\ end\ namespace\ Eigen}}
+\DoxyCodeLine{00455\ }
+\DoxyCodeLine{00456\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ EIGEN\_CXX11\_TENSOR\_TENSOR\_CONVERSION\_H}}
+
+\end{DoxyCode}

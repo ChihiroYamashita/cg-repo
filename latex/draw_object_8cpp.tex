@@ -1,0 +1,112 @@
+\doxysection{sources/object/draw\+Object.cpp ファイル}
+\hypertarget{draw_object_8cpp}{}\label{draw_object_8cpp}\index{sources/object/drawObject.cpp@{sources/object/drawObject.cpp}}
+{\ttfamily \#include "{}draw\+Object.\+h"{}}\newline
+{\ttfamily \#include $<$QOpen\+GLFunctions$>$}\newline
+{\ttfamily \#include "{}myopenglwidget.\+h"{}}\newline
+{\ttfamily \#include $<$QOpen\+GLWidget$>$}\newline
+{\ttfamily \#include $<$QResize\+Event$>$}\newline
+{\ttfamily \#include $<$QApplication$>$}\newline
+{\ttfamily \#include $<$QSurface\+Format$>$}\newline
+{\ttfamily \#include $<$QMatrix4x4$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Dense$>$}\newline
+{\ttfamily \#include $<$QMouse\+Event$>$}\newline
+{\ttfamily \#include $<$QWheel\+Event$>$}\newline
+{\ttfamily \#include $<$QPush\+Button$>$}\newline
+{\ttfamily \#include $<$Qt\+Svg/\+QSvg\+Renderer$>$}\newline
+{\ttfamily \#include $<$GL/glu.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include "{}Camera.\+h"{}}\newline
+{\ttfamily \#include $<$GL/gl.\+h$>$}\newline
+draw\+Object.\+cpp の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{draw_object_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{draw_object_8cpp_a96733d752f26337e8085e1827258b973_a96733d752f26337e8085e1827258b973}{EIGEN\+\_\+\+DISABLE\+\_\+\+UNALIGNED\+\_\+\+ARRAY\+\_\+\+ASSERT}}
+\item 
+\#define \mbox{\hyperlink{draw_object_8cpp_a4962bceade5775b0464f7b604f886cd4_a4962bceade5775b0464f7b604f886cd4}{EIGEN\+\_\+\+DONT\+\_\+\+VECTORIZE}}
+\item 
+\#define \mbox{\hyperlink{draw_object_8cpp_a525335710b53cb064ca56b936120431e_a525335710b53cb064ca56b936120431e}{\+\_\+\+USE\+\_\+\+MATH\+\_\+\+DEFINES}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{draw_object_8cpp_ac54406f1b30290f7d91a1dcb411810a9_ac54406f1b30290f7d91a1dcb411810a9}{draw\+Floor}} ()
+\item 
+void \mbox{\hyperlink{draw_object_8cpp_ab127d7c13829e0bdce3fc756fc122786_ab127d7c13829e0bdce3fc756fc122786}{drawcube}} ()
+\item 
+void \mbox{\hyperlink{draw_object_8cpp_a01a438ea9dc43dd7f5b7ac2052836be5_a01a438ea9dc43dd7f5b7ac2052836be5}{draw\+XYZAxes}} ()
+\item 
+void \mbox{\hyperlink{draw_object_8cpp_a896d5e8972272a259d7c54eb12ce3c8b_a896d5e8972272a259d7c54eb12ce3c8b}{drawcamera}} (const QVector3D \&eye\+Point, const QVector3D \&look\+At\+Point)
+\item 
+void \mbox{\hyperlink{draw_object_8cpp_a48bbd693cf150e88aeceea5f9d1a8cdd_a48bbd693cf150e88aeceea5f9d1a8cdd}{draw\+Plane\+In\+Camera\+Coords}} (const \mbox{\hyperlink{class_camera}{Camera}} \&camera, float \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}})
+\item 
+void \mbox{\hyperlink{draw_object_8cpp_afdba6981bb29f21dd9c8cbff3865254c_afdba6981bb29f21dd9c8cbff3865254c}{draw\+XYGrid}} (float grid\+Size, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} grid\+Count)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{draw_object_8cpp_a525335710b53cb064ca56b936120431e_a525335710b53cb064ca56b936120431e}\index{drawObject.cpp@{drawObject.cpp}!\_USE\_MATH\_DEFINES@{\_USE\_MATH\_DEFINES}}
+\index{\_USE\_MATH\_DEFINES@{\_USE\_MATH\_DEFINES}!drawObject.cpp@{drawObject.cpp}}
+\doxysubsubsection{\texorpdfstring{\_USE\_MATH\_DEFINES}{\_USE\_MATH\_DEFINES}}
+{\footnotesize\ttfamily \label{draw_object_8cpp_a525335710b53cb064ca56b936120431e_a525335710b53cb064ca56b936120431e} 
+\#define \+\_\+\+USE\+\_\+\+MATH\+\_\+\+DEFINES}
+
+\Hypertarget{draw_object_8cpp_a96733d752f26337e8085e1827258b973_a96733d752f26337e8085e1827258b973}\index{drawObject.cpp@{drawObject.cpp}!EIGEN\_DISABLE\_UNALIGNED\_ARRAY\_ASSERT@{EIGEN\_DISABLE\_UNALIGNED\_ARRAY\_ASSERT}}
+\index{EIGEN\_DISABLE\_UNALIGNED\_ARRAY\_ASSERT@{EIGEN\_DISABLE\_UNALIGNED\_ARRAY\_ASSERT}!drawObject.cpp@{drawObject.cpp}}
+\doxysubsubsection{\texorpdfstring{EIGEN\_DISABLE\_UNALIGNED\_ARRAY\_ASSERT}{EIGEN\_DISABLE\_UNALIGNED\_ARRAY\_ASSERT}}
+{\footnotesize\ttfamily \label{draw_object_8cpp_a96733d752f26337e8085e1827258b973_a96733d752f26337e8085e1827258b973} 
+\#define EIGEN\+\_\+\+DISABLE\+\_\+\+UNALIGNED\+\_\+\+ARRAY\+\_\+\+ASSERT}
+
+\Hypertarget{draw_object_8cpp_a4962bceade5775b0464f7b604f886cd4_a4962bceade5775b0464f7b604f886cd4}\index{drawObject.cpp@{drawObject.cpp}!EIGEN\_DONT\_VECTORIZE@{EIGEN\_DONT\_VECTORIZE}}
+\index{EIGEN\_DONT\_VECTORIZE@{EIGEN\_DONT\_VECTORIZE}!drawObject.cpp@{drawObject.cpp}}
+\doxysubsubsection{\texorpdfstring{EIGEN\_DONT\_VECTORIZE}{EIGEN\_DONT\_VECTORIZE}}
+{\footnotesize\ttfamily \label{draw_object_8cpp_a4962bceade5775b0464f7b604f886cd4_a4962bceade5775b0464f7b604f886cd4} 
+\#define EIGEN\+\_\+\+DONT\+\_\+\+VECTORIZE}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{draw_object_8cpp_a896d5e8972272a259d7c54eb12ce3c8b_a896d5e8972272a259d7c54eb12ce3c8b}\index{drawObject.cpp@{drawObject.cpp}!drawcamera@{drawcamera}}
+\index{drawcamera@{drawcamera}!drawObject.cpp@{drawObject.cpp}}
+\doxysubsubsection{\texorpdfstring{drawcamera()}{drawcamera()}}
+{\footnotesize\ttfamily \label{draw_object_8cpp_a896d5e8972272a259d7c54eb12ce3c8b_a896d5e8972272a259d7c54eb12ce3c8b} 
+void drawcamera (\begin{DoxyParamCaption}\item[{const QVector3D \&}]{eye\+Point}{, }\item[{const QVector3D \&}]{look\+At\+Point}{}\end{DoxyParamCaption})}
+
+\Hypertarget{draw_object_8cpp_ab127d7c13829e0bdce3fc756fc122786_ab127d7c13829e0bdce3fc756fc122786}\index{drawObject.cpp@{drawObject.cpp}!drawcube@{drawcube}}
+\index{drawcube@{drawcube}!drawObject.cpp@{drawObject.cpp}}
+\doxysubsubsection{\texorpdfstring{drawcube()}{drawcube()}}
+{\footnotesize\ttfamily \label{draw_object_8cpp_ab127d7c13829e0bdce3fc756fc122786_ab127d7c13829e0bdce3fc756fc122786} 
+void drawcube (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{draw_object_8cpp_ac54406f1b30290f7d91a1dcb411810a9_ac54406f1b30290f7d91a1dcb411810a9}\index{drawObject.cpp@{drawObject.cpp}!drawFloor@{drawFloor}}
+\index{drawFloor@{drawFloor}!drawObject.cpp@{drawObject.cpp}}
+\doxysubsubsection{\texorpdfstring{drawFloor()}{drawFloor()}}
+{\footnotesize\ttfamily \label{draw_object_8cpp_ac54406f1b30290f7d91a1dcb411810a9_ac54406f1b30290f7d91a1dcb411810a9} 
+void draw\+Floor (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{draw_object_8cpp_a48bbd693cf150e88aeceea5f9d1a8cdd_a48bbd693cf150e88aeceea5f9d1a8cdd}\index{drawObject.cpp@{drawObject.cpp}!drawPlaneInCameraCoords@{drawPlaneInCameraCoords}}
+\index{drawPlaneInCameraCoords@{drawPlaneInCameraCoords}!drawObject.cpp@{drawObject.cpp}}
+\doxysubsubsection{\texorpdfstring{drawPlaneInCameraCoords()}{drawPlaneInCameraCoords()}}
+{\footnotesize\ttfamily \label{draw_object_8cpp_a48bbd693cf150e88aeceea5f9d1a8cdd_a48bbd693cf150e88aeceea5f9d1a8cdd} 
+void draw\+Plane\+In\+Camera\+Coords (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_camera}{Camera}} \&}]{camera}{, }\item[{float}]{size}{}\end{DoxyParamCaption})}
+
+\Hypertarget{draw_object_8cpp_afdba6981bb29f21dd9c8cbff3865254c_afdba6981bb29f21dd9c8cbff3865254c}\index{drawObject.cpp@{drawObject.cpp}!drawXYGrid@{drawXYGrid}}
+\index{drawXYGrid@{drawXYGrid}!drawObject.cpp@{drawObject.cpp}}
+\doxysubsubsection{\texorpdfstring{drawXYGrid()}{drawXYGrid()}}
+{\footnotesize\ttfamily \label{draw_object_8cpp_afdba6981bb29f21dd9c8cbff3865254c_afdba6981bb29f21dd9c8cbff3865254c} 
+void draw\+XYGrid (\begin{DoxyParamCaption}\item[{float}]{grid\+Size}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{grid\+Count}{}\end{DoxyParamCaption})}
+
+\Hypertarget{draw_object_8cpp_a01a438ea9dc43dd7f5b7ac2052836be5_a01a438ea9dc43dd7f5b7ac2052836be5}\index{drawObject.cpp@{drawObject.cpp}!drawXYZAxes@{drawXYZAxes}}
+\index{drawXYZAxes@{drawXYZAxes}!drawObject.cpp@{drawObject.cpp}}
+\doxysubsubsection{\texorpdfstring{drawXYZAxes()}{drawXYZAxes()}}
+{\footnotesize\ttfamily \label{draw_object_8cpp_a01a438ea9dc43dd7f5b7ac2052836be5_a01a438ea9dc43dd7f5b7ac2052836be5} 
+void draw\+XYZAxes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+

@@ -1,0 +1,46 @@
+\doxysection{Eigen\+::internal\+::Expression\+Has\+Tensor\+Broadcasting\+Op\texorpdfstring{$<$}{<} Expression \texorpdfstring{$>$}{>} 構造体テンプレート}
+\hypertarget{struct_eigen_1_1internal_1_1_expression_has_tensor_broadcasting_op}{}\label{struct_eigen_1_1internal_1_1_expression_has_tensor_broadcasting_op}\index{Eigen::internal::ExpressionHasTensorBroadcastingOp$<$ Expression $>$@{Eigen::internal::ExpressionHasTensorBroadcastingOp$<$ Expression $>$}}
+
+
+{\ttfamily \#include $<$Tensor\+Executor.\+h$>$}
+
+
+
+Eigen\+::internal\+::Expression\+Has\+Tensor\+Broadcasting\+Op\texorpdfstring{$<$}{<} Expression \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{struct_eigen_1_1internal_1_1_expression_has_tensor_broadcasting_op__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_expression_has_tensor_broadcasting_op_af76f373218c885516e97bada6d02f464_af76f373218c885516e97bada6d02f464a05b4d64d658032c17578910b17e9c1b6}{value}} = false
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{詳解}
+\subsubsection*{template$<$typename Expression$>$\newline
+struct Eigen\+::internal\+::\+Expression\+Has\+Tensor\+Broadcasting\+Op$<$ Expression $>$}
+Evaluating \doxylink{class_eigen_1_1_tensor_broadcasting_op}{Tensor\+Broadcasting\+Op} via coefficient of packet path is extremely expensive. If expression has at least one broadcast op in it, and it supports block based evaluation, we always prefer it, even for the small tensors. For all other tileable ops, block evaluation overhead for small tensors (fits into L1) is too large, and we fallback on vectorized evaluation. 
+
+\doxysubsection{列挙型メンバ詳解}
+\Hypertarget{struct_eigen_1_1internal_1_1_expression_has_tensor_broadcasting_op_af76f373218c885516e97bada6d02f464_af76f373218c885516e97bada6d02f464}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1_expression_has_tensor_broadcasting_op_af76f373218c885516e97bada6d02f464_af76f373218c885516e97bada6d02f464} 
+template$<$typename Expression $>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{value@{value}!Eigen::internal::ExpressionHasTensorBroadcastingOp$<$ Expression $>$@{Eigen::internal::ExpressionHasTensorBroadcastingOp$<$ Expression $>$}}\index{Eigen::internal::ExpressionHasTensorBroadcastingOp$<$ Expression $>$@{Eigen::internal::ExpressionHasTensorBroadcastingOp$<$ Expression $>$}!value@{value}}}\Hypertarget{struct_eigen_1_1internal_1_1_expression_has_tensor_broadcasting_op_af76f373218c885516e97bada6d02f464_af76f373218c885516e97bada6d02f464a05b4d64d658032c17578910b17e9c1b6}\label{struct_eigen_1_1internal_1_1_expression_has_tensor_broadcasting_op_af76f373218c885516e97bada6d02f464_af76f373218c885516e97bada6d02f464} 
+value&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+この構造体詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/unsupported/\+Eigen/\+CXX11/src/\+Tensor/\mbox{\hyperlink{_tensor_executor_8h}{Tensor\+Executor.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,139 @@
+\doxysection{eigen-\/3.4.0/eigen-\/3.4.0/bench/sparse\+\_\+cholesky.cpp ファイル}
+\hypertarget{sparse__cholesky_8cpp}{}\label{sparse__cholesky_8cpp}\index{eigen-\/3.4.0/eigen-\/3.4.0/bench/sparse\_cholesky.cpp@{eigen-\/3.4.0/eigen-\/3.4.0/bench/sparse\_cholesky.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Sparse$>$}\newline
+{\ttfamily \#include "{}Bench\+Sparse\+Util.\+h"{}}\newline
+{\ttfamily \#include $<$Eigen/\+Cholesky$>$}\newline
+sparse\+\_\+cholesky.\+cpp の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sparse__cholesky_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sparse__cholesky_8cpp_ad0bab6f624ce77f1fc9e30fe985c03e9_ad0bab6f624ce77f1fc9e30fe985c03e9}{NOGMM}}
+\item 
+\#define \mbox{\hyperlink{sparse__cholesky_8cpp_a72946e3eacf12138c66bae67e8525e28_a72946e3eacf12138c66bae67e8525e28}{NOMTL}}
+\item 
+\#define \mbox{\hyperlink{sparse__cholesky_8cpp_a70ed59adcb4159ac551058053e649640_a70ed59adcb4159ac551058053e649640}{SIZE}}~10
+\item 
+\#define \mbox{\hyperlink{sparse__cholesky_8cpp_a8653167a303d0c18dd3260d76c622da4_a8653167a303d0c18dd3260d76c622da4}{DENSITY}}~0.\+01
+\item 
+\#define \mbox{\hyperlink{sparse__cholesky_8cpp_a2c9384c67919c632913b8db2088f8341_a2c9384c67919c632913b8db2088f8341}{REPEAT}}~1
+\item 
+\#define \mbox{\hyperlink{sparse__cholesky_8cpp_a4290054d7292918fb1fcb4c7166eca81_a4290054d7292918fb1fcb4c7166eca81}{MINDENSITY}}~0.\+0004
+\item 
+\#define \mbox{\hyperlink{sparse__cholesky_8cpp_a4ba7e63cc7b53c648c5b2d15a2ee6dba_a4ba7e63cc7b53c648c5b2d15a2ee6dba}{NBTRIES}}~10
+\item 
+\#define \mbox{\hyperlink{sparse__cholesky_8cpp_a5fcf11b9dba96e1e0555440c480f839c_a5fcf11b9dba96e1e0555440c480f839c}{BENCH}}(\mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{型定義}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Self\+Adjoint\texorpdfstring{$\vert$}{|}Lower\+Triangular $>$ \mbox{\hyperlink{sparse__cholesky_8cpp_a669068b2fbd489e4b36afd01e35f9b15_a669068b2fbd489e4b36afd01e35f9b15}{Eigen\+Sparse\+Self\+Adjoint\+Matrix}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{sparse__cholesky_8cpp_a95da6bf20afd55af0a87116357900591_a95da6bf20afd55af0a87116357900591}{fill\+Spd\+Matrix}} (float density, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}}, \mbox{\hyperlink{sparse__cholesky_8cpp_a669068b2fbd489e4b36afd01e35f9b15_a669068b2fbd489e4b36afd01e35f9b15}{Eigen\+Sparse\+Self\+Adjoint\+Matrix}} \&dst)
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Backend$>$ }\\void \mbox{\hyperlink{sparse__cholesky_8cpp_af8063d340986d654f65e5758e9f9e44e_af8063d340986d654f65e5758e9f9e44e}{do\+Eigen}} (const char \texorpdfstring{$\ast$}{*}name, const \mbox{\hyperlink{sparse__cholesky_8cpp_a669068b2fbd489e4b36afd01e35f9b15_a669068b2fbd489e4b36afd01e35f9b15}{Eigen\+Sparse\+Self\+Adjoint\+Matrix}} \&sm1, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} flags=0)
+\item 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{sparse__cholesky_8cpp_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97}{main}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{sparse__cholesky_8cpp_a5fcf11b9dba96e1e0555440c480f839c_a5fcf11b9dba96e1e0555440c480f839c}\index{sparse\_cholesky.cpp@{sparse\_cholesky.cpp}!BENCH@{BENCH}}
+\index{BENCH@{BENCH}!sparse\_cholesky.cpp@{sparse\_cholesky.cpp}}
+\doxysubsubsection{\texorpdfstring{BENCH}{BENCH}}
+{\footnotesize\ttfamily \label{sparse__cholesky_8cpp_a5fcf11b9dba96e1e0555440c480f839c_a5fcf11b9dba96e1e0555440c480f839c} 
+\#define BENCH(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}}}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ timer.reset();\ \(\backslash\)}
+\DoxyCodeLine{\ \ for\ (\textcolor{keywordtype}{int}\ \_j=0;\ \_j<\mbox{\hyperlink{sparse__cholesky_8cpp_a4ba7e63cc7b53c648c5b2d15a2ee6dba_a4ba7e63cc7b53c648c5b2d15a2ee6dba}{NBTRIES}};\ ++\_j)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ timer.start();\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ for\ (\textcolor{keywordtype}{int}\ \_k=0;\ \_k<\mbox{\hyperlink{sparse__cholesky_8cpp_a2c9384c67919c632913b8db2088f8341_a2c9384c67919c632913b8db2088f8341}{REPEAT}};\ ++\_k)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}}\ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \}\ timer.stop();\ \}}
+
+\end{DoxyCode}
+\Hypertarget{sparse__cholesky_8cpp_a8653167a303d0c18dd3260d76c622da4_a8653167a303d0c18dd3260d76c622da4}\index{sparse\_cholesky.cpp@{sparse\_cholesky.cpp}!DENSITY@{DENSITY}}
+\index{DENSITY@{DENSITY}!sparse\_cholesky.cpp@{sparse\_cholesky.cpp}}
+\doxysubsubsection{\texorpdfstring{DENSITY}{DENSITY}}
+{\footnotesize\ttfamily \label{sparse__cholesky_8cpp_a8653167a303d0c18dd3260d76c622da4_a8653167a303d0c18dd3260d76c622da4} 
+\#define DENSITY~0.\+01}
+
+\Hypertarget{sparse__cholesky_8cpp_a4290054d7292918fb1fcb4c7166eca81_a4290054d7292918fb1fcb4c7166eca81}\index{sparse\_cholesky.cpp@{sparse\_cholesky.cpp}!MINDENSITY@{MINDENSITY}}
+\index{MINDENSITY@{MINDENSITY}!sparse\_cholesky.cpp@{sparse\_cholesky.cpp}}
+\doxysubsubsection{\texorpdfstring{MINDENSITY}{MINDENSITY}}
+{\footnotesize\ttfamily \label{sparse__cholesky_8cpp_a4290054d7292918fb1fcb4c7166eca81_a4290054d7292918fb1fcb4c7166eca81} 
+\#define MINDENSITY~0.\+0004}
+
+\Hypertarget{sparse__cholesky_8cpp_a4ba7e63cc7b53c648c5b2d15a2ee6dba_a4ba7e63cc7b53c648c5b2d15a2ee6dba}\index{sparse\_cholesky.cpp@{sparse\_cholesky.cpp}!NBTRIES@{NBTRIES}}
+\index{NBTRIES@{NBTRIES}!sparse\_cholesky.cpp@{sparse\_cholesky.cpp}}
+\doxysubsubsection{\texorpdfstring{NBTRIES}{NBTRIES}}
+{\footnotesize\ttfamily \label{sparse__cholesky_8cpp_a4ba7e63cc7b53c648c5b2d15a2ee6dba_a4ba7e63cc7b53c648c5b2d15a2ee6dba} 
+\#define NBTRIES~10}
+
+\Hypertarget{sparse__cholesky_8cpp_ad0bab6f624ce77f1fc9e30fe985c03e9_ad0bab6f624ce77f1fc9e30fe985c03e9}\index{sparse\_cholesky.cpp@{sparse\_cholesky.cpp}!NOGMM@{NOGMM}}
+\index{NOGMM@{NOGMM}!sparse\_cholesky.cpp@{sparse\_cholesky.cpp}}
+\doxysubsubsection{\texorpdfstring{NOGMM}{NOGMM}}
+{\footnotesize\ttfamily \label{sparse__cholesky_8cpp_ad0bab6f624ce77f1fc9e30fe985c03e9_ad0bab6f624ce77f1fc9e30fe985c03e9} 
+\#define NOGMM}
+
+\Hypertarget{sparse__cholesky_8cpp_a72946e3eacf12138c66bae67e8525e28_a72946e3eacf12138c66bae67e8525e28}\index{sparse\_cholesky.cpp@{sparse\_cholesky.cpp}!NOMTL@{NOMTL}}
+\index{NOMTL@{NOMTL}!sparse\_cholesky.cpp@{sparse\_cholesky.cpp}}
+\doxysubsubsection{\texorpdfstring{NOMTL}{NOMTL}}
+{\footnotesize\ttfamily \label{sparse__cholesky_8cpp_a72946e3eacf12138c66bae67e8525e28_a72946e3eacf12138c66bae67e8525e28} 
+\#define NOMTL}
+
+\Hypertarget{sparse__cholesky_8cpp_a2c9384c67919c632913b8db2088f8341_a2c9384c67919c632913b8db2088f8341}\index{sparse\_cholesky.cpp@{sparse\_cholesky.cpp}!REPEAT@{REPEAT}}
+\index{REPEAT@{REPEAT}!sparse\_cholesky.cpp@{sparse\_cholesky.cpp}}
+\doxysubsubsection{\texorpdfstring{REPEAT}{REPEAT}}
+{\footnotesize\ttfamily \label{sparse__cholesky_8cpp_a2c9384c67919c632913b8db2088f8341_a2c9384c67919c632913b8db2088f8341} 
+\#define REPEAT~1}
+
+\Hypertarget{sparse__cholesky_8cpp_a70ed59adcb4159ac551058053e649640_a70ed59adcb4159ac551058053e649640}\index{sparse\_cholesky.cpp@{sparse\_cholesky.cpp}!SIZE@{SIZE}}
+\index{SIZE@{SIZE}!sparse\_cholesky.cpp@{sparse\_cholesky.cpp}}
+\doxysubsubsection{\texorpdfstring{SIZE}{SIZE}}
+{\footnotesize\ttfamily \label{sparse__cholesky_8cpp_a70ed59adcb4159ac551058053e649640_a70ed59adcb4159ac551058053e649640} 
+\#define SIZE~10}
+
+
+
+\doxysubsection{型定義詳解}
+\Hypertarget{sparse__cholesky_8cpp_a669068b2fbd489e4b36afd01e35f9b15_a669068b2fbd489e4b36afd01e35f9b15}\index{sparse\_cholesky.cpp@{sparse\_cholesky.cpp}!EigenSparseSelfAdjointMatrix@{EigenSparseSelfAdjointMatrix}}
+\index{EigenSparseSelfAdjointMatrix@{EigenSparseSelfAdjointMatrix}!sparse\_cholesky.cpp@{sparse\_cholesky.cpp}}
+\doxysubsubsection{\texorpdfstring{EigenSparseSelfAdjointMatrix}{EigenSparseSelfAdjointMatrix}}
+{\footnotesize\ttfamily \label{sparse__cholesky_8cpp_a669068b2fbd489e4b36afd01e35f9b15_a669068b2fbd489e4b36afd01e35f9b15} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}},Self\+Adjoint\texorpdfstring{$\vert$}{|}Lower\+Triangular$>$ \mbox{\hyperlink{sparse__cholesky_8cpp_a669068b2fbd489e4b36afd01e35f9b15_a669068b2fbd489e4b36afd01e35f9b15}{Eigen\+Sparse\+Self\+Adjoint\+Matrix}}}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{sparse__cholesky_8cpp_af8063d340986d654f65e5758e9f9e44e_af8063d340986d654f65e5758e9f9e44e}\index{sparse\_cholesky.cpp@{sparse\_cholesky.cpp}!doEigen@{doEigen}}
+\index{doEigen@{doEigen}!sparse\_cholesky.cpp@{sparse\_cholesky.cpp}}
+\doxysubsubsection{\texorpdfstring{doEigen()}{doEigen()}}
+{\footnotesize\ttfamily \label{sparse__cholesky_8cpp_af8063d340986d654f65e5758e9f9e44e_af8063d340986d654f65e5758e9f9e44e} 
+template$<$\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Backend$>$ \\
+void do\+Eigen (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{, }\item[{const \mbox{\hyperlink{sparse__cholesky_8cpp_a669068b2fbd489e4b36afd01e35f9b15_a669068b2fbd489e4b36afd01e35f9b15}{Eigen\+Sparse\+Self\+Adjoint\+Matrix}} \&}]{sm1}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{flags}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+\Hypertarget{sparse__cholesky_8cpp_a95da6bf20afd55af0a87116357900591_a95da6bf20afd55af0a87116357900591}\index{sparse\_cholesky.cpp@{sparse\_cholesky.cpp}!fillSpdMatrix@{fillSpdMatrix}}
+\index{fillSpdMatrix@{fillSpdMatrix}!sparse\_cholesky.cpp@{sparse\_cholesky.cpp}}
+\doxysubsubsection{\texorpdfstring{fillSpdMatrix()}{fillSpdMatrix()}}
+{\footnotesize\ttfamily \label{sparse__cholesky_8cpp_a95da6bf20afd55af0a87116357900591_a95da6bf20afd55af0a87116357900591} 
+void fill\+Spd\+Matrix (\begin{DoxyParamCaption}\item[{float}]{density}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{rows}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{cols}{, }\item[{\mbox{\hyperlink{sparse__cholesky_8cpp_a669068b2fbd489e4b36afd01e35f9b15_a669068b2fbd489e4b36afd01e35f9b15}{Eigen\+Sparse\+Self\+Adjoint\+Matrix}} \&}]{dst}{}\end{DoxyParamCaption})}
+
+\Hypertarget{sparse__cholesky_8cpp_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97}\index{sparse\_cholesky.cpp@{sparse\_cholesky.cpp}!main@{main}}
+\index{main@{main}!sparse\_cholesky.cpp@{sparse\_cholesky.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{sparse__cholesky_8cpp_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97} 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} main (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{argv}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+

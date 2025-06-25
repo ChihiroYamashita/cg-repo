@@ -1,0 +1,260 @@
+\doxysection{freeglut-\/2.8.1.tar/freeglut-\/2.8.1/freeglut-\/2.8.1/src/freeglut\+\_\+input\+\_\+devices.c ファイル}
+\hypertarget{freeglut__input__devices_8c}{}\label{freeglut__input__devices_8c}\index{freeglut-\/2.8.1.tar/freeglut-\/2.8.1/freeglut-\/2.8.1/src/freeglut\_input\_devices.c@{freeglut-\/2.8.1.tar/freeglut-\/2.8.1/freeglut-\/2.8.1/src/freeglut\_input\_devices.c}}
+{\ttfamily \#include $<$GL/freeglut.\+h$>$}\newline
+{\ttfamily \#include "{}freeglut\+\_\+internal.\+h"{}}\newline
+freeglut\+\_\+input\+\_\+devices.\+c の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{freeglut__input__devices_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{freeglut__input__devices_8c_ad002f40fcde8ac0f158d5dc11c165686_ad002f40fcde8ac0f158d5dc11c165686}{DIAL\+\_\+\+NUM\+\_\+\+VALUATORS}}~8
+\item 
+\#define \mbox{\hyperlink{freeglut__input__devices_8c_a00de1ce8c79da291a44b1852a45065ff_a00de1ce8c79da291a44b1852a45065ff}{DIAL\+\_\+\+NEW}}~(-\/1)
+\item 
+\#define \mbox{\hyperlink{freeglut__input__devices_8c_a202910e0dd01e448381e558361e61465_a202910e0dd01e448381e558361e61465}{DIAL\+\_\+\+WHICH\+\_\+\+DEVICE}}~0
+\item 
+\#define \mbox{\hyperlink{freeglut__input__devices_8c_a6936b4ffd8c9244cc99cf24a11af4868_a6936b4ffd8c9244cc99cf24a11af4868}{DIAL\+\_\+\+VALUE\+\_\+\+HIGH}}~1
+\item 
+\#define \mbox{\hyperlink{freeglut__input__devices_8c_a2791ea2cfa3f4c1a553ac7f2df464fc0_a2791ea2cfa3f4c1a553ac7f2df464fc0}{DIAL\+\_\+\+VALUE\+\_\+\+LOW}}~2
+\item 
+\#define \mbox{\hyperlink{freeglut__input__devices_8c_a687e08cf825c4f07b972753123a83993_a687e08cf825c4f07b972753123a83993}{DIAL\+\_\+\+INITIALIZE}}~0x20
+\item 
+\#define \mbox{\hyperlink{freeglut__input__devices_8c_ada055ae7089909915bab3ec0250ad1ef_ada055ae7089909915bab3ec0250ad1ef}{DIAL\+\_\+\+SET\+\_\+\+LEDS}}~0x75
+\item 
+\#define \mbox{\hyperlink{freeglut__input__devices_8c_a5f3f654049a2124930979e10dbb60fd1_a5f3f654049a2124930979e10dbb60fd1}{DIAL\+\_\+\+SET\+\_\+\+TEXT}}~0x61
+\item 
+\#define \mbox{\hyperlink{freeglut__input__devices_8c_a39c88fd3518955ba9c5ffb4947eb6818_a39c88fd3518955ba9c5ffb4947eb6818}{DIAL\+\_\+\+SET\+\_\+\+AUTO\+\_\+\+DIALS}}~0x50
+\item 
+\#define \mbox{\hyperlink{freeglut__input__devices_8c_ae9f60499d3c138a354c85099f85fe773_ae9f60499d3c138a354c85099f85fe773}{DIAL\+\_\+\+SET\+\_\+\+AUTO\+\_\+\+DELTA\+\_\+\+DIALS}}~0x51
+\item 
+\#define \mbox{\hyperlink{freeglut__input__devices_8c_aa5acf2458d0290514eb3438cdffedd88_aa5acf2458d0290514eb3438cdffedd88}{DIAL\+\_\+\+SET\+\_\+\+FILTER}}~0x53
+\item 
+\#define \mbox{\hyperlink{freeglut__input__devices_8c_a87707cd8ea791fd52493f0f289937838_a87707cd8ea791fd52493f0f289937838}{DIAL\+\_\+\+SET\+\_\+\+BUTTONS\+\_\+\+MOM\+\_\+\+TYPE}}~0x71
+\item 
+\#define \mbox{\hyperlink{freeglut__input__devices_8c_ac8e7bb98a68f25d1e38f900f60114f57_ac8e7bb98a68f25d1e38f900f60114f57}{DIAL\+\_\+\+SET\+\_\+\+AUTO\+\_\+\+MOM\+\_\+\+BUTTONS}}~0x73
+\item 
+\#define \mbox{\hyperlink{freeglut__input__devices_8c_a3b2700aa9cc642c08d46895e86341597_a3b2700aa9cc642c08d46895e86341597}{DIAL\+\_\+\+SET\+\_\+\+ALL\+\_\+\+LEDS}}~0x4b
+\item 
+\#define \mbox{\hyperlink{freeglut__input__devices_8c_ab49ed36d605a48ee28680a5b392aa7c5_ab49ed36d605a48ee28680a5b392aa7c5}{DIAL\+\_\+\+CLEAR\+\_\+\+ALL\+\_\+\+LEDS}}~0x4c
+\item 
+\#define \mbox{\hyperlink{freeglut__input__devices_8c_a19039dc0cd363ee093f58b2908c3e7e7_a19039dc0cd363ee093f58b2908c3e7e7}{DIAL\+\_\+\+INITIALIZED}}~0x20
+\item 
+\#define \mbox{\hyperlink{freeglut__input__devices_8c_a08b33b62c17debc1f97fef86eb1959c2_a08b33b62c17debc1f97fef86eb1959c2}{DIAL\+\_\+\+BASE}}~0x30
+\item 
+\#define \mbox{\hyperlink{freeglut__input__devices_8c_a55bbfebd63241ae68f95870eaa4de962_a55bbfebd63241ae68f95870eaa4de962}{DIAL\+\_\+\+DELTA\+\_\+\+BASE}}~0x40
+\item 
+\#define \mbox{\hyperlink{freeglut__input__devices_8c_a6189a704409b1af3d882bee75ced810c_a6189a704409b1af3d882bee75ced810c}{DIAL\+\_\+\+PRESS\+\_\+\+BASE}}~0xc0
+\item 
+\#define \mbox{\hyperlink{freeglut__input__devices_8c_aaba5e59da8bda8335a1daa4f6bc48355_aaba5e59da8bda8335a1daa4f6bc48355}{DIAL\+\_\+\+RELEASE\+\_\+\+BASE}}~0xe0
+\item 
+\#define \mbox{\hyperlink{freeglut__input__devices_8c_a2d268ebf1beac68d9ecc40dc60d2c5db_a2d268ebf1beac68d9ecc40dc60d2c5db}{IS\+\_\+\+DIAL\+\_\+\+EVENT}}(ch)
+\item 
+\#define \mbox{\hyperlink{freeglut__input__devices_8c_ab707d8c43140c0103f91347e8eac8f14_ab707d8c43140c0103f91347e8eac8f14}{IS\+\_\+\+KEY\+\_\+\+PRESS}}(ch)
+\item 
+\#define \mbox{\hyperlink{freeglut__input__devices_8c_ab800b8de9f0120f988acfdc31914ee98_ab800b8de9f0120f988acfdc31914ee98}{IS\+\_\+\+KEY\+\_\+\+RELEASE}}(ch)
+\item 
+\#define \mbox{\hyperlink{freeglut__input__devices_8c_a8981b9496a951eff7cf0fe100c0ea573_a8981b9496a951eff7cf0fe100c0ea573}{IS\+\_\+\+INIT\+\_\+\+EVENT}}(ch)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{freeglut__input__devices_8c_ae5763b3f09b159fee8439d23b266d4b4_ae5763b3f09b159fee8439d23b266d4b4}{fg\+Input\+Device\+Detect}} (void)
+\item 
+void \mbox{\hyperlink{freeglut__input__devices_8c_aaf755ccc8026513dd234cd27e0774b46_aaf755ccc8026513dd234cd27e0774b46}{fg\+Initialise\+Input\+Devices}} (void)
+\item 
+void \mbox{\hyperlink{freeglut__input__devices_8c_a393a93b83aff62c28cb5343088563d4c_a393a93b83aff62c28cb5343088563d4c}{fg\+Input\+Device\+Close}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{freeglut__input__devices_8c_a08b33b62c17debc1f97fef86eb1959c2_a08b33b62c17debc1f97fef86eb1959c2}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!DIAL\_BASE@{DIAL\_BASE}}
+\index{DIAL\_BASE@{DIAL\_BASE}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{DIAL\_BASE}{DIAL\_BASE}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_a08b33b62c17debc1f97fef86eb1959c2_a08b33b62c17debc1f97fef86eb1959c2} 
+\#define DIAL\+\_\+\+BASE~0x30}
+
+\Hypertarget{freeglut__input__devices_8c_ab49ed36d605a48ee28680a5b392aa7c5_ab49ed36d605a48ee28680a5b392aa7c5}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!DIAL\_CLEAR\_ALL\_LEDS@{DIAL\_CLEAR\_ALL\_LEDS}}
+\index{DIAL\_CLEAR\_ALL\_LEDS@{DIAL\_CLEAR\_ALL\_LEDS}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{DIAL\_CLEAR\_ALL\_LEDS}{DIAL\_CLEAR\_ALL\_LEDS}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_ab49ed36d605a48ee28680a5b392aa7c5_ab49ed36d605a48ee28680a5b392aa7c5} 
+\#define DIAL\+\_\+\+CLEAR\+\_\+\+ALL\+\_\+\+LEDS~0x4c}
+
+\Hypertarget{freeglut__input__devices_8c_a55bbfebd63241ae68f95870eaa4de962_a55bbfebd63241ae68f95870eaa4de962}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!DIAL\_DELTA\_BASE@{DIAL\_DELTA\_BASE}}
+\index{DIAL\_DELTA\_BASE@{DIAL\_DELTA\_BASE}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{DIAL\_DELTA\_BASE}{DIAL\_DELTA\_BASE}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_a55bbfebd63241ae68f95870eaa4de962_a55bbfebd63241ae68f95870eaa4de962} 
+\#define DIAL\+\_\+\+DELTA\+\_\+\+BASE~0x40}
+
+\Hypertarget{freeglut__input__devices_8c_a687e08cf825c4f07b972753123a83993_a687e08cf825c4f07b972753123a83993}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!DIAL\_INITIALIZE@{DIAL\_INITIALIZE}}
+\index{DIAL\_INITIALIZE@{DIAL\_INITIALIZE}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{DIAL\_INITIALIZE}{DIAL\_INITIALIZE}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_a687e08cf825c4f07b972753123a83993_a687e08cf825c4f07b972753123a83993} 
+\#define DIAL\+\_\+\+INITIALIZE~0x20}
+
+\Hypertarget{freeglut__input__devices_8c_a19039dc0cd363ee093f58b2908c3e7e7_a19039dc0cd363ee093f58b2908c3e7e7}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!DIAL\_INITIALIZED@{DIAL\_INITIALIZED}}
+\index{DIAL\_INITIALIZED@{DIAL\_INITIALIZED}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{DIAL\_INITIALIZED}{DIAL\_INITIALIZED}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_a19039dc0cd363ee093f58b2908c3e7e7_a19039dc0cd363ee093f58b2908c3e7e7} 
+\#define DIAL\+\_\+\+INITIALIZED~0x20}
+
+\Hypertarget{freeglut__input__devices_8c_a00de1ce8c79da291a44b1852a45065ff_a00de1ce8c79da291a44b1852a45065ff}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!DIAL\_NEW@{DIAL\_NEW}}
+\index{DIAL\_NEW@{DIAL\_NEW}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{DIAL\_NEW}{DIAL\_NEW}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_a00de1ce8c79da291a44b1852a45065ff_a00de1ce8c79da291a44b1852a45065ff} 
+\#define DIAL\+\_\+\+NEW~(-\/1)}
+
+\Hypertarget{freeglut__input__devices_8c_ad002f40fcde8ac0f158d5dc11c165686_ad002f40fcde8ac0f158d5dc11c165686}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!DIAL\_NUM\_VALUATORS@{DIAL\_NUM\_VALUATORS}}
+\index{DIAL\_NUM\_VALUATORS@{DIAL\_NUM\_VALUATORS}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{DIAL\_NUM\_VALUATORS}{DIAL\_NUM\_VALUATORS}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_ad002f40fcde8ac0f158d5dc11c165686_ad002f40fcde8ac0f158d5dc11c165686} 
+\#define DIAL\+\_\+\+NUM\+\_\+\+VALUATORS~8}
+
+\Hypertarget{freeglut__input__devices_8c_a6189a704409b1af3d882bee75ced810c_a6189a704409b1af3d882bee75ced810c}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!DIAL\_PRESS\_BASE@{DIAL\_PRESS\_BASE}}
+\index{DIAL\_PRESS\_BASE@{DIAL\_PRESS\_BASE}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{DIAL\_PRESS\_BASE}{DIAL\_PRESS\_BASE}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_a6189a704409b1af3d882bee75ced810c_a6189a704409b1af3d882bee75ced810c} 
+\#define DIAL\+\_\+\+PRESS\+\_\+\+BASE~0xc0}
+
+\Hypertarget{freeglut__input__devices_8c_aaba5e59da8bda8335a1daa4f6bc48355_aaba5e59da8bda8335a1daa4f6bc48355}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!DIAL\_RELEASE\_BASE@{DIAL\_RELEASE\_BASE}}
+\index{DIAL\_RELEASE\_BASE@{DIAL\_RELEASE\_BASE}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{DIAL\_RELEASE\_BASE}{DIAL\_RELEASE\_BASE}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_aaba5e59da8bda8335a1daa4f6bc48355_aaba5e59da8bda8335a1daa4f6bc48355} 
+\#define DIAL\+\_\+\+RELEASE\+\_\+\+BASE~0xe0}
+
+\Hypertarget{freeglut__input__devices_8c_a3b2700aa9cc642c08d46895e86341597_a3b2700aa9cc642c08d46895e86341597}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!DIAL\_SET\_ALL\_LEDS@{DIAL\_SET\_ALL\_LEDS}}
+\index{DIAL\_SET\_ALL\_LEDS@{DIAL\_SET\_ALL\_LEDS}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{DIAL\_SET\_ALL\_LEDS}{DIAL\_SET\_ALL\_LEDS}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_a3b2700aa9cc642c08d46895e86341597_a3b2700aa9cc642c08d46895e86341597} 
+\#define DIAL\+\_\+\+SET\+\_\+\+ALL\+\_\+\+LEDS~0x4b}
+
+\Hypertarget{freeglut__input__devices_8c_ae9f60499d3c138a354c85099f85fe773_ae9f60499d3c138a354c85099f85fe773}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!DIAL\_SET\_AUTO\_DELTA\_DIALS@{DIAL\_SET\_AUTO\_DELTA\_DIALS}}
+\index{DIAL\_SET\_AUTO\_DELTA\_DIALS@{DIAL\_SET\_AUTO\_DELTA\_DIALS}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{DIAL\_SET\_AUTO\_DELTA\_DIALS}{DIAL\_SET\_AUTO\_DELTA\_DIALS}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_ae9f60499d3c138a354c85099f85fe773_ae9f60499d3c138a354c85099f85fe773} 
+\#define DIAL\+\_\+\+SET\+\_\+\+AUTO\+\_\+\+DELTA\+\_\+\+DIALS~0x51}
+
+\Hypertarget{freeglut__input__devices_8c_a39c88fd3518955ba9c5ffb4947eb6818_a39c88fd3518955ba9c5ffb4947eb6818}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!DIAL\_SET\_AUTO\_DIALS@{DIAL\_SET\_AUTO\_DIALS}}
+\index{DIAL\_SET\_AUTO\_DIALS@{DIAL\_SET\_AUTO\_DIALS}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{DIAL\_SET\_AUTO\_DIALS}{DIAL\_SET\_AUTO\_DIALS}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_a39c88fd3518955ba9c5ffb4947eb6818_a39c88fd3518955ba9c5ffb4947eb6818} 
+\#define DIAL\+\_\+\+SET\+\_\+\+AUTO\+\_\+\+DIALS~0x50}
+
+\Hypertarget{freeglut__input__devices_8c_ac8e7bb98a68f25d1e38f900f60114f57_ac8e7bb98a68f25d1e38f900f60114f57}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!DIAL\_SET\_AUTO\_MOM\_BUTTONS@{DIAL\_SET\_AUTO\_MOM\_BUTTONS}}
+\index{DIAL\_SET\_AUTO\_MOM\_BUTTONS@{DIAL\_SET\_AUTO\_MOM\_BUTTONS}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{DIAL\_SET\_AUTO\_MOM\_BUTTONS}{DIAL\_SET\_AUTO\_MOM\_BUTTONS}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_ac8e7bb98a68f25d1e38f900f60114f57_ac8e7bb98a68f25d1e38f900f60114f57} 
+\#define DIAL\+\_\+\+SET\+\_\+\+AUTO\+\_\+\+MOM\+\_\+\+BUTTONS~0x73}
+
+\Hypertarget{freeglut__input__devices_8c_a87707cd8ea791fd52493f0f289937838_a87707cd8ea791fd52493f0f289937838}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!DIAL\_SET\_BUTTONS\_MOM\_TYPE@{DIAL\_SET\_BUTTONS\_MOM\_TYPE}}
+\index{DIAL\_SET\_BUTTONS\_MOM\_TYPE@{DIAL\_SET\_BUTTONS\_MOM\_TYPE}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{DIAL\_SET\_BUTTONS\_MOM\_TYPE}{DIAL\_SET\_BUTTONS\_MOM\_TYPE}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_a87707cd8ea791fd52493f0f289937838_a87707cd8ea791fd52493f0f289937838} 
+\#define DIAL\+\_\+\+SET\+\_\+\+BUTTONS\+\_\+\+MOM\+\_\+\+TYPE~0x71}
+
+\Hypertarget{freeglut__input__devices_8c_aa5acf2458d0290514eb3438cdffedd88_aa5acf2458d0290514eb3438cdffedd88}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!DIAL\_SET\_FILTER@{DIAL\_SET\_FILTER}}
+\index{DIAL\_SET\_FILTER@{DIAL\_SET\_FILTER}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{DIAL\_SET\_FILTER}{DIAL\_SET\_FILTER}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_aa5acf2458d0290514eb3438cdffedd88_aa5acf2458d0290514eb3438cdffedd88} 
+\#define DIAL\+\_\+\+SET\+\_\+\+FILTER~0x53}
+
+\Hypertarget{freeglut__input__devices_8c_ada055ae7089909915bab3ec0250ad1ef_ada055ae7089909915bab3ec0250ad1ef}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!DIAL\_SET\_LEDS@{DIAL\_SET\_LEDS}}
+\index{DIAL\_SET\_LEDS@{DIAL\_SET\_LEDS}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{DIAL\_SET\_LEDS}{DIAL\_SET\_LEDS}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_ada055ae7089909915bab3ec0250ad1ef_ada055ae7089909915bab3ec0250ad1ef} 
+\#define DIAL\+\_\+\+SET\+\_\+\+LEDS~0x75}
+
+\Hypertarget{freeglut__input__devices_8c_a5f3f654049a2124930979e10dbb60fd1_a5f3f654049a2124930979e10dbb60fd1}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!DIAL\_SET\_TEXT@{DIAL\_SET\_TEXT}}
+\index{DIAL\_SET\_TEXT@{DIAL\_SET\_TEXT}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{DIAL\_SET\_TEXT}{DIAL\_SET\_TEXT}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_a5f3f654049a2124930979e10dbb60fd1_a5f3f654049a2124930979e10dbb60fd1} 
+\#define DIAL\+\_\+\+SET\+\_\+\+TEXT~0x61}
+
+\Hypertarget{freeglut__input__devices_8c_a6936b4ffd8c9244cc99cf24a11af4868_a6936b4ffd8c9244cc99cf24a11af4868}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!DIAL\_VALUE\_HIGH@{DIAL\_VALUE\_HIGH}}
+\index{DIAL\_VALUE\_HIGH@{DIAL\_VALUE\_HIGH}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{DIAL\_VALUE\_HIGH}{DIAL\_VALUE\_HIGH}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_a6936b4ffd8c9244cc99cf24a11af4868_a6936b4ffd8c9244cc99cf24a11af4868} 
+\#define DIAL\+\_\+\+VALUE\+\_\+\+HIGH~1}
+
+\Hypertarget{freeglut__input__devices_8c_a2791ea2cfa3f4c1a553ac7f2df464fc0_a2791ea2cfa3f4c1a553ac7f2df464fc0}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!DIAL\_VALUE\_LOW@{DIAL\_VALUE\_LOW}}
+\index{DIAL\_VALUE\_LOW@{DIAL\_VALUE\_LOW}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{DIAL\_VALUE\_LOW}{DIAL\_VALUE\_LOW}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_a2791ea2cfa3f4c1a553ac7f2df464fc0_a2791ea2cfa3f4c1a553ac7f2df464fc0} 
+\#define DIAL\+\_\+\+VALUE\+\_\+\+LOW~2}
+
+\Hypertarget{freeglut__input__devices_8c_a202910e0dd01e448381e558361e61465_a202910e0dd01e448381e558361e61465}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!DIAL\_WHICH\_DEVICE@{DIAL\_WHICH\_DEVICE}}
+\index{DIAL\_WHICH\_DEVICE@{DIAL\_WHICH\_DEVICE}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{DIAL\_WHICH\_DEVICE}{DIAL\_WHICH\_DEVICE}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_a202910e0dd01e448381e558361e61465_a202910e0dd01e448381e558361e61465} 
+\#define DIAL\+\_\+\+WHICH\+\_\+\+DEVICE~0}
+
+\Hypertarget{freeglut__input__devices_8c_a2d268ebf1beac68d9ecc40dc60d2c5db_a2d268ebf1beac68d9ecc40dc60d2c5db}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!IS\_DIAL\_EVENT@{IS\_DIAL\_EVENT}}
+\index{IS\_DIAL\_EVENT@{IS\_DIAL\_EVENT}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{IS\_DIAL\_EVENT}{IS\_DIAL\_EVENT}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_a2d268ebf1beac68d9ecc40dc60d2c5db_a2d268ebf1beac68d9ecc40dc60d2c5db} 
+\#define IS\+\_\+\+DIAL\+\_\+\+EVENT(\begin{DoxyParamCaption}\item[{}]{ch}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(((ch)>=\mbox{\hyperlink{freeglut__input__devices_8c_a08b33b62c17debc1f97fef86eb1959c2_a08b33b62c17debc1f97fef86eb1959c2}{DIAL\_BASE}})\&\&((ch)<\mbox{\hyperlink{freeglut__input__devices_8c_a08b33b62c17debc1f97fef86eb1959c2_a08b33b62c17debc1f97fef86eb1959c2}{DIAL\_BASE}}+\mbox{\hyperlink{freeglut__input__devices_8c_ad002f40fcde8ac0f158d5dc11c165686_ad002f40fcde8ac0f158d5dc11c165686}{DIAL\_NUM\_VALUATORS}}))}
+
+\end{DoxyCode}
+\Hypertarget{freeglut__input__devices_8c_a8981b9496a951eff7cf0fe100c0ea573_a8981b9496a951eff7cf0fe100c0ea573}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!IS\_INIT\_EVENT@{IS\_INIT\_EVENT}}
+\index{IS\_INIT\_EVENT@{IS\_INIT\_EVENT}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{IS\_INIT\_EVENT}{IS\_INIT\_EVENT}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_a8981b9496a951eff7cf0fe100c0ea573_a8981b9496a951eff7cf0fe100c0ea573} 
+\#define IS\+\_\+\+INIT\+\_\+\+EVENT(\begin{DoxyParamCaption}\item[{}]{ch}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((ch)==\mbox{\hyperlink{freeglut__input__devices_8c_a19039dc0cd363ee093f58b2908c3e7e7_a19039dc0cd363ee093f58b2908c3e7e7}{DIAL\_INITIALIZED}})}
+
+\end{DoxyCode}
+\Hypertarget{freeglut__input__devices_8c_ab707d8c43140c0103f91347e8eac8f14_ab707d8c43140c0103f91347e8eac8f14}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!IS\_KEY\_PRESS@{IS\_KEY\_PRESS}}
+\index{IS\_KEY\_PRESS@{IS\_KEY\_PRESS}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{IS\_KEY\_PRESS}{IS\_KEY\_PRESS}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_ab707d8c43140c0103f91347e8eac8f14_ab707d8c43140c0103f91347e8eac8f14} 
+\#define IS\+\_\+\+KEY\+\_\+\+PRESS(\begin{DoxyParamCaption}\item[{}]{ch}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(((ch)>=\mbox{\hyperlink{freeglut__input__devices_8c_a6189a704409b1af3d882bee75ced810c_a6189a704409b1af3d882bee75ced810c}{DIAL\_PRESS\_BASE}})\&\&((ch)<\mbox{\hyperlink{freeglut__input__devices_8c_a6189a704409b1af3d882bee75ced810c_a6189a704409b1af3d882bee75ced810c}{DIAL\_PRESS\_BASE}}+DIAL\_NUM\_BUTTONS))}
+
+\end{DoxyCode}
+\Hypertarget{freeglut__input__devices_8c_ab800b8de9f0120f988acfdc31914ee98_ab800b8de9f0120f988acfdc31914ee98}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!IS\_KEY\_RELEASE@{IS\_KEY\_RELEASE}}
+\index{IS\_KEY\_RELEASE@{IS\_KEY\_RELEASE}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{IS\_KEY\_RELEASE}{IS\_KEY\_RELEASE}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_ab800b8de9f0120f988acfdc31914ee98_ab800b8de9f0120f988acfdc31914ee98} 
+\#define IS\+\_\+\+KEY\+\_\+\+RELEASE(\begin{DoxyParamCaption}\item[{}]{ch}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(((ch)>=\mbox{\hyperlink{freeglut__input__devices_8c_aaba5e59da8bda8335a1daa4f6bc48355_aaba5e59da8bda8335a1daa4f6bc48355}{DIAL\_RELEASE\_BASE}})\&\&((ch)<\mbox{\hyperlink{freeglut__input__devices_8c_aaba5e59da8bda8335a1daa4f6bc48355_aaba5e59da8bda8335a1daa4f6bc48355}{DIAL\_RELEASE\_BASE}}+DIAL\_NUM\_BUTTONS))}
+
+\end{DoxyCode}
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{freeglut__input__devices_8c_aaf755ccc8026513dd234cd27e0774b46_aaf755ccc8026513dd234cd27e0774b46}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!fgInitialiseInputDevices@{fgInitialiseInputDevices}}
+\index{fgInitialiseInputDevices@{fgInitialiseInputDevices}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{fgInitialiseInputDevices()}{fgInitialiseInputDevices()}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_aaf755ccc8026513dd234cd27e0774b46_aaf755ccc8026513dd234cd27e0774b46} 
+void fg\+Initialise\+Input\+Devices (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__input__devices_8c_a393a93b83aff62c28cb5343088563d4c_a393a93b83aff62c28cb5343088563d4c}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!fgInputDeviceClose@{fgInputDeviceClose}}
+\index{fgInputDeviceClose@{fgInputDeviceClose}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{fgInputDeviceClose()}{fgInputDeviceClose()}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_a393a93b83aff62c28cb5343088563d4c_a393a93b83aff62c28cb5343088563d4c} 
+void fg\+Input\+Device\+Close (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__input__devices_8c_ae5763b3f09b159fee8439d23b266d4b4_ae5763b3f09b159fee8439d23b266d4b4}\index{freeglut\_input\_devices.c@{freeglut\_input\_devices.c}!fgInputDeviceDetect@{fgInputDeviceDetect}}
+\index{fgInputDeviceDetect@{fgInputDeviceDetect}!freeglut\_input\_devices.c@{freeglut\_input\_devices.c}}
+\doxysubsubsection{\texorpdfstring{fgInputDeviceDetect()}{fgInputDeviceDetect()}}
+{\footnotesize\ttfamily \label{freeglut__input__devices_8c_ae5763b3f09b159fee8439d23b266d4b4_ae5763b3f09b159fee8439d23b266d4b4} 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} fg\+Input\+Device\+Detect (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+

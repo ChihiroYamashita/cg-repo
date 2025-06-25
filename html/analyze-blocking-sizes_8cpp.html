@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Qt_project: eigen-3.4.0/eigen-3.4.0/bench/analyze-blocking-sizes.cpp ファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Qt_project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_99e749ba05732fec077a2067ee1b1de1.html">eigen-3.4.0</a></li><li class="navelem"><a class="el" href="dir_832c6680bfa915a2d02af8c09c48c55a.html">eigen-3.4.0</a></li><li class="navelem"><a class="el" href="dir_407aff23a74cbc336b72ea015a9d915b.html">bench</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">クラス</a> &#124;
+<a href="#func-members">関数</a> &#124;
+<a href="#var-members">変数</a>  </div>
+  <div class="headertitle"><div class="title">analyze-blocking-sizes.cpp ファイル</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;cstdlib&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;fstream&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;cmath&gt;</code><br />
+<code>#include &lt;cassert&gt;</code><br />
+<code>#include &lt;cstring&gt;</code><br />
+<code>#include &lt;memory&gt;</code><br />
+<code>#include &lt;Eigen/Core&gt;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> analyze-blocking-sizes.cpp の依存先関係図:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="analyze-blocking-sizes_8cpp__incl.png" border="0" usemap="#aeigen-3_84_80_2eigen-3_84_80_2bench_2analyze-blocking-sizes_8cpp" alt=""/></div>
+<map name="aeigen-3_84_80_2eigen-3_84_80_2bench_2analyze-blocking-sizes_8cpp" id="aeigen-3_84_80_2eigen-3_84_80_2bench_2analyze-blocking-sizes_8cpp">
+<area shape="rect" title=" " alt="" coords="440,5,602,64"/>
+<area shape="rect" title=" " alt="" coords="5,112,77,139"/>
+<area shape="poly" title=" " alt="" coords="440,51,283,77,92,114,91,109,282,72,440,46"/>
+<area shape="rect" title=" " alt="" coords="100,112,160,139"/>
+<area shape="poly" title=" " alt="" coords="440,55,176,114,175,109,439,50"/>
+<area shape="rect" title=" " alt="" coords="185,112,244,139"/>
+<area shape="poly" title=" " alt="" coords="440,62,260,114,258,108,439,57"/>
+<area shape="rect" title=" " alt="" coords="268,112,326,139"/>
+<area shape="poly" title=" " alt="" coords="449,67,341,110,339,105,447,62"/>
+<area shape="rect" title=" " alt="" coords="349,112,424,139"/>
+<area shape="poly" title=" " alt="" coords="479,67,419,106,416,101,476,62"/>
+<area shape="rect" title=" " alt="" coords="447,112,512,139"/>
+<area shape="poly" title=" " alt="" coords="510,65,494,99,490,96,505,63"/>
+<area shape="rect" title=" " alt="" coords="537,112,590,139"/>
+<area shape="poly" title=" " alt="" coords="537,63,553,97,549,99,532,65"/>
+<area shape="rect" title=" " alt="" coords="615,112,672,139"/>
+<area shape="poly" title=" " alt="" coords="562,62,615,100,612,105,559,67"/>
+<area shape="rect" title=" " alt="" coords="697,112,761,139"/>
+<area shape="poly" title=" " alt="" coords="590,62,687,103,685,108,587,67"/>
+<area shape="rect" title=" " alt="" coords="786,112,846,139"/>
+<area shape="poly" title=" " alt="" coords="603,58,771,108,770,113,602,63"/>
+<area shape="rect" title=" " alt="" coords="870,112,938,139"/>
+<area shape="poly" title=" " alt="" coords="603,51,855,109,854,114,602,56"/>
+<area shape="rect" title=" " alt="" coords="962,112,1048,139"/>
+<area shape="poly" title=" " alt="" coords="603,47,947,109,946,114,602,52"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+クラス</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsize__triple__t.html">size_triple_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinputfile__entry__t.html">inputfile_entry_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinputfile__t.html">inputfile_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpreprocessed__inputfile__entry__t.html">preprocessed_inputfile_entry_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpreprocessed__inputfile__t.html">preprocessed_inputfile_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaction__t.html">action_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpartition__action__t.html">partition_action_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevaluate__defaults__action__t.html">evaluate_defaults_action_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevaluate__defaults__action__t_1_1results__entry__t.html">evaluate_defaults_action_t::results_entry_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+関数</h2></td></tr>
+<tr class="memitem:afbedf6ed54bf4e5d85ac53e224d6283f" id="r_afbedf6ed54bf4e5d85ac53e224d6283f"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analyze-blocking-sizes_8cpp_afbedf6ed54bf4e5d85ac53e224d6283f.html#afbedf6ed54bf4e5d85ac53e224d6283f">log2_pot</a> (size_t <a class="el" href="gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2.html#a5fd331c99e778f04762be6d8173eb4d2">x</a>)</td></tr>
+<tr class="separator:afbedf6ed54bf4e5d85ac53e224d6283f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06ea40e359ccd57825c2ccf61f086843" id="r_a06ea40e359ccd57825c2ccf61f086843"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analyze-blocking-sizes_8cpp_a06ea40e359ccd57825c2ccf61f086843.html#a06ea40e359ccd57825c2ccf61f086843">compact_size_triple</a> (size_t k, size_t <a class="el" href="_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a.html#ab3cd915d758008bd19d0f2428fbb354a">m</a>, size_t <a class="el" href="_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39.html#a5150192f625f4d7970d61169b9567f39">n</a>)</td></tr>
+<tr class="separator:a06ea40e359ccd57825c2ccf61f086843"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acecb3198c5178ab4b3c44facb68fc4e5" id="r_acecb3198c5178ab4b3c44facb68fc4e5"><td class="memItemLeft" align="right" valign="top">ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analyze-blocking-sizes_8cpp_acecb3198c5178ab4b3c44facb68fc4e5.html#acecb3198c5178ab4b3c44facb68fc4e5">operator&lt;&lt;</a> (ostream &amp;<a class="el" href="level1__cplx__impl_8h_a462761ca92ad97a9a705cb875828b0b8.html#a462761ca92ad97a9a705cb875828b0b8">s</a>, const <a class="el" href="structsize__triple__t.html">size_triple_t</a> &amp;t)</td></tr>
+<tr class="separator:acecb3198c5178ab4b3c44facb68fc4e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a477a14e0a5a984f5cdd8eec7ebae4cba" id="r_a477a14e0a5a984f5cdd8eec7ebae4cba"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analyze-blocking-sizes_8cpp_a477a14e0a5a984f5cdd8eec7ebae4cba.html#a477a14e0a5a984f5cdd8eec7ebae4cba">lower_efficiency</a> (const <a class="el" href="structpreprocessed__inputfile__entry__t.html">preprocessed_inputfile_entry_t</a> &amp;e1, const <a class="el" href="structpreprocessed__inputfile__entry__t.html">preprocessed_inputfile_entry_t</a> &amp;e2)</td></tr>
+<tr class="separator:a477a14e0a5a984f5cdd8eec7ebae4cba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34cc789c61a8174dae38e9be24dd969a" id="r_a34cc789c61a8174dae38e9be24dd969a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analyze-blocking-sizes_8cpp_a34cc789c61a8174dae38e9be24dd969a.html#a34cc789c61a8174dae38e9be24dd969a">check_all_files_in_same_exact_order</a> (const vector&lt; <a class="el" href="structpreprocessed__inputfile__t.html">preprocessed_inputfile_t</a> &gt; &amp;preprocessed_inputfiles)</td></tr>
+<tr class="separator:a34cc789c61a8174dae38e9be24dd969a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34bb78c57cc4a6cf3fea5aca848e7222" id="r_a34bb78c57cc4a6cf3fea5aca848e7222"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analyze-blocking-sizes_8cpp_a34bb78c57cc4a6cf3fea5aca848e7222.html#a34bb78c57cc4a6cf3fea5aca848e7222">efficiency_of_subset</a> (const vector&lt; <a class="el" href="structpreprocessed__inputfile__t.html">preprocessed_inputfile_t</a> &gt; &amp;preprocessed_inputfiles, const vector&lt; size_t &gt; &amp;subset)</td></tr>
+<tr class="separator:a34bb78c57cc4a6cf3fea5aca848e7222"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad9fe69ae63901e8c9db2a0cc1cbc3e0" id="r_aad9fe69ae63901e8c9db2a0cc1cbc3e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analyze-blocking-sizes_8cpp_aad9fe69ae63901e8c9db2a0cc1cbc3e0.html#aad9fe69ae63901e8c9db2a0cc1cbc3e0">dump_table_for_subset</a> (const vector&lt; <a class="el" href="structpreprocessed__inputfile__t.html">preprocessed_inputfile_t</a> &gt; &amp;preprocessed_inputfiles, const vector&lt; size_t &gt; &amp;subset)</td></tr>
+<tr class="separator:aad9fe69ae63901e8c9db2a0cc1cbc3e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b27d0dfb4f8c1e6d1b7752c2a38809a" id="r_a3b27d0dfb4f8c1e6d1b7752c2a38809a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analyze-blocking-sizes_8cpp_a3b27d0dfb4f8c1e6d1b7752c2a38809a.html#a3b27d0dfb4f8c1e6d1b7752c2a38809a">efficiency_of_partition</a> (const vector&lt; <a class="el" href="structpreprocessed__inputfile__t.html">preprocessed_inputfile_t</a> &gt; &amp;preprocessed_inputfiles, const vector&lt; vector&lt; size_t &gt; &gt; &amp;partition)</td></tr>
+<tr class="separator:a3b27d0dfb4f8c1e6d1b7752c2a38809a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf675cb738e426f5430fe8ab2755ef28" id="r_aaf675cb738e426f5430fe8ab2755ef28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analyze-blocking-sizes_8cpp_aaf675cb738e426f5430fe8ab2755ef28.html#aaf675cb738e426f5430fe8ab2755ef28">make_first_subset</a> (size_t subset_size, vector&lt; size_t &gt; &amp;out_subset, size_t set_size)</td></tr>
+<tr class="separator:aaf675cb738e426f5430fe8ab2755ef28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45fda07fdf2d33a6927664e3d3e0ee9c" id="r_a45fda07fdf2d33a6927664e3d3e0ee9c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analyze-blocking-sizes_8cpp_a45fda07fdf2d33a6927664e3d3e0ee9c.html#a45fda07fdf2d33a6927664e3d3e0ee9c">is_last_subset</a> (const vector&lt; size_t &gt; &amp;subset, size_t set_size)</td></tr>
+<tr class="separator:a45fda07fdf2d33a6927664e3d3e0ee9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac79e906c14ff18fd1cdd8d120cbbab46" id="r_ac79e906c14ff18fd1cdd8d120cbbab46"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analyze-blocking-sizes_8cpp_ac79e906c14ff18fd1cdd8d120cbbab46.html#ac79e906c14ff18fd1cdd8d120cbbab46">next_subset</a> (vector&lt; size_t &gt; &amp;inout_subset, size_t set_size)</td></tr>
+<tr class="separator:ac79e906c14ff18fd1cdd8d120cbbab46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78a24b1e64ba97f8a0aa47f671e5d54e" id="r_a78a24b1e64ba97f8a0aa47f671e5d54e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analyze-blocking-sizes_8cpp_a78a24b1e64ba97f8a0aa47f671e5d54e.html#a78a24b1e64ba97f8a0aa47f671e5d54e">is_number_of_subsets_feasible</a> (size_t <a class="el" href="_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39.html#a5150192f625f4d7970d61169b9567f39">n</a>, size_t <a class="el" href="_tutorial___map__using_8cpp_a7fe964f6b1afd4591f637999272ab9a2.html#a7fe964f6b1afd4591f637999272ab9a2">p</a>)</td></tr>
+<tr class="separator:a78a24b1e64ba97f8a0aa47f671e5d54e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74011ac22b26900dd0252ed8ac2f7588" id="r_a74011ac22b26900dd0252ed8ac2f7588"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analyze-blocking-sizes_8cpp_a74011ac22b26900dd0252ed8ac2f7588.html#a74011ac22b26900dd0252ed8ac2f7588">max_feasible_subset_size</a> (size_t <a class="el" href="_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39.html#a5150192f625f4d7970d61169b9567f39">n</a>)</td></tr>
+<tr class="separator:a74011ac22b26900dd0252ed8ac2f7588"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2af209de2ec03fb96902e935bf93b976" id="r_a2af209de2ec03fb96902e935bf93b976"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analyze-blocking-sizes_8cpp_a2af209de2ec03fb96902e935bf93b976.html#a2af209de2ec03fb96902e935bf93b976">find_subset_with_efficiency_higher_than</a> (const vector&lt; <a class="el" href="structpreprocessed__inputfile__t.html">preprocessed_inputfile_t</a> &gt; &amp;preprocessed_inputfiles, float required_efficiency_to_beat, vector&lt; size_t &gt; &amp;inout_remainder, vector&lt; size_t &gt; &amp;out_subset)</td></tr>
+<tr class="separator:a2af209de2ec03fb96902e935bf93b976"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e44cdbfe7ffe37302267ee0e68e833d" id="r_a6e44cdbfe7ffe37302267ee0e68e833d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analyze-blocking-sizes_8cpp_a6e44cdbfe7ffe37302267ee0e68e833d.html#a6e44cdbfe7ffe37302267ee0e68e833d">find_partition_with_efficiency_higher_than</a> (const vector&lt; <a class="el" href="structpreprocessed__inputfile__t.html">preprocessed_inputfile_t</a> &gt; &amp;preprocessed_inputfiles, float required_efficiency_to_beat, vector&lt; vector&lt; size_t &gt; &gt; &amp;out_partition)</td></tr>
+<tr class="separator:a6e44cdbfe7ffe37302267ee0e68e833d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1c066521806cd121139df56179ee128" id="r_ab1c066521806cd121139df56179ee128"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analyze-blocking-sizes_8cpp_ab1c066521806cd121139df56179ee128.html#ab1c066521806cd121139df56179ee128">print_partition</a> (const vector&lt; <a class="el" href="structpreprocessed__inputfile__t.html">preprocessed_inputfile_t</a> &gt; &amp;preprocessed_inputfiles, const vector&lt; vector&lt; size_t &gt; &gt; &amp;partition)</td></tr>
+<tr class="separator:ab1c066521806cd121139df56179ee128"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a387056c4338f8544eff2ecee653bdbaf" id="r_a387056c4338f8544eff2ecee653bdbaf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analyze-blocking-sizes_8cpp_a387056c4338f8544eff2ecee653bdbaf.html#a387056c4338f8544eff2ecee653bdbaf">show_usage_and_exit</a> (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a> argc, char *argv[], const vector&lt; unique_ptr&lt; <a class="el" href="structaction__t.html">action_t</a> &gt; &gt; &amp;available_actions)</td></tr>
+<tr class="separator:a387056c4338f8544eff2ecee653bdbaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97" id="r_a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top"><a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analyze-blocking-sizes_8cpp_a0ddf1224851353fc92bfbff6f499fa97.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (<a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a> argc, char *argv[])</td></tr>
+<tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+変数</h2></td></tr>
+<tr class="memitem:adb809141df433b05c29720fa288a7fa4" id="r_adb809141df433b05c29720fa288a7fa4"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analyze-blocking-sizes_8cpp_adb809141df433b05c29720fa288a7fa4.html#adb809141df433b05c29720fa288a7fa4">default_precision</a> = 4</td></tr>
+<tr class="separator:adb809141df433b05c29720fa288a7fa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae69e6fffa9321d4961cec186c07a1a5" id="r_aae69e6fffa9321d4961cec186c07a1a5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analyze-blocking-sizes_8cpp_aae69e6fffa9321d4961cec186c07a1a5.html#aae69e6fffa9321d4961cec186c07a1a5">only_cubic_sizes</a> = false</td></tr>
+<tr class="separator:aae69e6fffa9321d4961cec186c07a1a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0238dde86591e74dfaf977d829c1496" id="r_ac0238dde86591e74dfaf977d829c1496"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analyze-blocking-sizes_8cpp_ac0238dde86591e74dfaf977d829c1496.html#ac0238dde86591e74dfaf977d829c1496">dump_tables</a> = false</td></tr>
+<tr class="separator:ac0238dde86591e74dfaf977d829c1496"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc92857a70684b5b055529d2e91530f8" id="r_adc92857a70684b5b055529d2e91530f8"><td class="memItemLeft" align="right" valign="top">const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analyze-blocking-sizes_8cpp_adc92857a70684b5b055529d2e91530f8.html#adc92857a70684b5b055529d2e91530f8">number_of_subsets_limit</a> = 100</td></tr>
+<tr class="separator:adc92857a70684b5b055529d2e91530f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12163488c6cb373a41228f5448f16cb0" id="r_a12163488c6cb373a41228f5448f16cb0"><td class="memItemLeft" align="right" valign="top">const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analyze-blocking-sizes_8cpp_a12163488c6cb373a41228f5448f16cb0.html#a12163488c6cb373a41228f5448f16cb0">always_search_subsets_of_size_at_least</a> = 2</td></tr>
+<tr class="separator:a12163488c6cb373a41228f5448f16cb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

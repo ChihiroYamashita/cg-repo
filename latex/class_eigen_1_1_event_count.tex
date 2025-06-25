@@ -1,0 +1,262 @@
+\doxysection{Eigen\+::Event\+Count クラス}
+\hypertarget{class_eigen_1_1_event_count}{}\label{class_eigen_1_1_event_count}\index{Eigen::EventCount@{Eigen::EventCount}}
+
+
+{\ttfamily \#include $<$Event\+Count.\+h$>$}
+
+
+
+Eigen\+::Event\+Count 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_eigen_1_1_event_count__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{クラス}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_eigen_1_1_event_count_1_1_waiter}{Waiter}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_event_count_a0d8e7a05e1e87ca91da77e301947a60c_a0d8e7a05e1e87ca91da77e301947a60c}{Event\+Count}} (\mbox{\hyperlink{class_eigen_1_1_max_size_vector}{Max\+Size\+Vector}}$<$ \mbox{\hyperlink{class_eigen_1_1_event_count_1_1_waiter}{Waiter}} $>$ \&waiters)
+\item 
+\mbox{\hyperlink{class_eigen_1_1_event_count_af7c1192cf7485a5965aa6b9ff44b8fbf_af7c1192cf7485a5965aa6b9ff44b8fbf}{\texorpdfstring{$\sim$}{\string~}\+Event\+Count}} ()
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_event_count_af783653098405a22f54e91d2a51152b1_af783653098405a22f54e91d2a51152b1}{Prewait}} ()
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_event_count_a381300f183b2dc605b8f68b41a96ee90_a381300f183b2dc605b8f68b41a96ee90}{Commit\+Wait}} (\mbox{\hyperlink{class_eigen_1_1_event_count_1_1_waiter}{Waiter}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_matrix__resize__int_8cpp_aab236ce080522c9832217fd5f157541b_aab236ce080522c9832217fd5f157541b}{w}})
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_event_count_a8f69b70f7f0021e5487d710cecda3b57_a8f69b70f7f0021e5487d710cecda3b57}{Cancel\+Wait}} ()
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_event_count_a4e0c3f15c54ef7baa9ff1963f549f73d_a4e0c3f15c54ef7baa9ff1963f549f73d}{Notify}} (bool notify\+All)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{非公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_event_count_ad69702f60fd8176a1c76deb9d95a82bc_ad69702f60fd8176a1c76deb9d95a82bc}{Park}} (\mbox{\hyperlink{class_eigen_1_1_event_count_1_1_waiter}{Waiter}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_matrix__resize__int_8cpp_aab236ce080522c9832217fd5f157541b_aab236ce080522c9832217fd5f157541b}{w}})
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_event_count_a581005f25177d10113bed7d10df5a2e6_a581005f25177d10113bed7d10df5a2e6}{Unpark}} (\mbox{\hyperlink{class_eigen_1_1_event_count_1_1_waiter}{Waiter}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_matrix__resize__int_8cpp_aab236ce080522c9832217fd5f157541b_aab236ce080522c9832217fd5f157541b}{w}})
+\item 
+\mbox{\hyperlink{class_eigen_1_1_event_count_ab41394e8799000f3d5189c5d0ae1dc6a_ab41394e8799000f3d5189c5d0ae1dc6a}{Event\+Count}} (const \mbox{\hyperlink{class_eigen_1_1_event_count}{Event\+Count}} \&)=delete
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_event_count_a4c280473253409adb7be30a3872eda60_a4c280473253409adb7be30a3872eda60}{operator=}} (const \mbox{\hyperlink{class_eigen_1_1_event_count}{Event\+Count}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静的非公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_eigen_1_1_event_count_aa48b6f12cd9c743fdb0abbf23c4cae9b_aa48b6f12cd9c743fdb0abbf23c4cae9b}{Check\+State}} (uint64\+\_\+t state, bool waiter=false)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{非公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+std\+::atomic$<$ uint64\+\_\+t $>$ \mbox{\hyperlink{class_eigen_1_1_event_count_a2334c2d33f3f18e5e3d1f1f0d696bdf2_a2334c2d33f3f18e5e3d1f1f0d696bdf2}{state\+\_\+}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_max_size_vector}{Max\+Size\+Vector}}$<$ \mbox{\hyperlink{class_eigen_1_1_event_count_1_1_waiter}{Waiter}} $>$ \& \mbox{\hyperlink{class_eigen_1_1_event_count_a019b88ac3a727bbb7610f13c9a343c10_a019b88ac3a727bbb7610f13c9a343c10}{waiters\+\_\+}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静的非公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+static const uint64\+\_\+t \mbox{\hyperlink{class_eigen_1_1_event_count_add3334052ca2b3c6998f8eb1e1eaee37_add3334052ca2b3c6998f8eb1e1eaee37}{k\+Waiter\+Bits}} = 14
+\item 
+static const uint64\+\_\+t \mbox{\hyperlink{class_eigen_1_1_event_count_a3287e59c28752e3e376c5f728aedf932_a3287e59c28752e3e376c5f728aedf932}{k\+Stack\+Mask}} = (1ull $<$$<$ \mbox{\hyperlink{class_eigen_1_1_event_count_add3334052ca2b3c6998f8eb1e1eaee37_add3334052ca2b3c6998f8eb1e1eaee37}{k\+Waiter\+Bits}}) -\/ 1
+\item 
+static const uint64\+\_\+t \mbox{\hyperlink{class_eigen_1_1_event_count_a9435d21417b9cd0ae855fecc773d8df2_a9435d21417b9cd0ae855fecc773d8df2}{k\+Waiter\+Shift}} = \mbox{\hyperlink{class_eigen_1_1_event_count_add3334052ca2b3c6998f8eb1e1eaee37_add3334052ca2b3c6998f8eb1e1eaee37}{k\+Waiter\+Bits}}
+\item 
+static const uint64\+\_\+t \mbox{\hyperlink{class_eigen_1_1_event_count_a4bd53192d5d7b56367a3f3aed792512a_a4bd53192d5d7b56367a3f3aed792512a}{k\+Waiter\+Mask}}
+\item 
+static const uint64\+\_\+t \mbox{\hyperlink{class_eigen_1_1_event_count_a68a0eb517b67a96afb638b010f916dad_a68a0eb517b67a96afb638b010f916dad}{k\+Waiter\+Inc}} = 1ull $<$$<$ \mbox{\hyperlink{class_eigen_1_1_event_count_a9435d21417b9cd0ae855fecc773d8df2_a9435d21417b9cd0ae855fecc773d8df2}{k\+Waiter\+Shift}}
+\item 
+static const uint64\+\_\+t \mbox{\hyperlink{class_eigen_1_1_event_count_af6b4eba231198c7b59d02ccda2864ae8_af6b4eba231198c7b59d02ccda2864ae8}{k\+Signal\+Shift}} = 2 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eigen_1_1_event_count_add3334052ca2b3c6998f8eb1e1eaee37_add3334052ca2b3c6998f8eb1e1eaee37}{k\+Waiter\+Bits}}
+\item 
+static const uint64\+\_\+t \mbox{\hyperlink{class_eigen_1_1_event_count_ac2a0ba10593005460e84a676636b50b9_ac2a0ba10593005460e84a676636b50b9}{k\+Signal\+Mask}}
+\item 
+static const uint64\+\_\+t \mbox{\hyperlink{class_eigen_1_1_event_count_a3586cf21155707d8040287ed5fc7ea73_a3586cf21155707d8040287ed5fc7ea73}{k\+Signal\+Inc}} = 1ull $<$$<$ \mbox{\hyperlink{class_eigen_1_1_event_count_af6b4eba231198c7b59d02ccda2864ae8_af6b4eba231198c7b59d02ccda2864ae8}{k\+Signal\+Shift}}
+\item 
+static const uint64\+\_\+t \mbox{\hyperlink{class_eigen_1_1_event_count_a44ebf05f27f5db22c95a8d7d0c8d9d4e_a44ebf05f27f5db22c95a8d7d0c8d9d4e}{k\+Epoch\+Shift}} = 3 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eigen_1_1_event_count_add3334052ca2b3c6998f8eb1e1eaee37_add3334052ca2b3c6998f8eb1e1eaee37}{k\+Waiter\+Bits}}
+\item 
+static const uint64\+\_\+t \mbox{\hyperlink{class_eigen_1_1_event_count_a8f44e6549d51725446063c3a57bd1760_a8f44e6549d51725446063c3a57bd1760}{k\+Epoch\+Bits}} = 64 -\/ \mbox{\hyperlink{class_eigen_1_1_event_count_a44ebf05f27f5db22c95a8d7d0c8d9d4e_a44ebf05f27f5db22c95a8d7d0c8d9d4e}{k\+Epoch\+Shift}}
+\item 
+static const uint64\+\_\+t \mbox{\hyperlink{class_eigen_1_1_event_count_a2564438a556a7ef276bd2297837f92e3_a2564438a556a7ef276bd2297837f92e3}{k\+Epoch\+Mask}} = ((1ull $<$$<$ \mbox{\hyperlink{class_eigen_1_1_event_count_a8f44e6549d51725446063c3a57bd1760_a8f44e6549d51725446063c3a57bd1760}{k\+Epoch\+Bits}}) -\/ 1) $<$$<$ \mbox{\hyperlink{class_eigen_1_1_event_count_a44ebf05f27f5db22c95a8d7d0c8d9d4e_a44ebf05f27f5db22c95a8d7d0c8d9d4e}{k\+Epoch\+Shift}}
+\item 
+static const uint64\+\_\+t \mbox{\hyperlink{class_eigen_1_1_event_count_ac7db7b85346eec2a37868c5fd44bcb1c_ac7db7b85346eec2a37868c5fd44bcb1c}{k\+Epoch\+Inc}} = 1ull $<$$<$ \mbox{\hyperlink{class_eigen_1_1_event_count_a44ebf05f27f5db22c95a8d7d0c8d9d4e_a44ebf05f27f5db22c95a8d7d0c8d9d4e}{k\+Epoch\+Shift}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{構築子と解体子}
+\Hypertarget{class_eigen_1_1_event_count_a0d8e7a05e1e87ca91da77e301947a60c_a0d8e7a05e1e87ca91da77e301947a60c}\index{Eigen::EventCount@{Eigen::EventCount}!EventCount@{EventCount}}
+\index{EventCount@{EventCount}!Eigen::EventCount@{Eigen::EventCount}}
+\doxysubsubsection{\texorpdfstring{EventCount()}{EventCount()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_event_count_a0d8e7a05e1e87ca91da77e301947a60c_a0d8e7a05e1e87ca91da77e301947a60c} 
+Eigen\+::\+Event\+Count\+::\+Event\+Count (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_max_size_vector}{Max\+Size\+Vector}}$<$ \mbox{\hyperlink{class_eigen_1_1_event_count_1_1_waiter}{Waiter}} $>$ \&}]{waiters}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_event_count_af7c1192cf7485a5965aa6b9ff44b8fbf_af7c1192cf7485a5965aa6b9ff44b8fbf}\index{Eigen::EventCount@{Eigen::EventCount}!````~EventCount@{\texorpdfstring{$\sim$}{\string~}EventCount}}
+\index{````~EventCount@{\texorpdfstring{$\sim$}{\string~}EventCount}!Eigen::EventCount@{Eigen::EventCount}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}EventCount()}{\string~EventCount()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_event_count_af7c1192cf7485a5965aa6b9ff44b8fbf_af7c1192cf7485a5965aa6b9ff44b8fbf} 
+Eigen\+::\+Event\+Count\+::\texorpdfstring{$\sim$}{\string~}\+Event\+Count (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_event_count_ab41394e8799000f3d5189c5d0ae1dc6a_ab41394e8799000f3d5189c5d0ae1dc6a}\index{Eigen::EventCount@{Eigen::EventCount}!EventCount@{EventCount}}
+\index{EventCount@{EventCount}!Eigen::EventCount@{Eigen::EventCount}}
+\doxysubsubsection{\texorpdfstring{EventCount()}{EventCount()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_event_count_ab41394e8799000f3d5189c5d0ae1dc6a_ab41394e8799000f3d5189c5d0ae1dc6a} 
+Eigen\+::\+Event\+Count\+::\+Event\+Count (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_event_count}{Event\+Count}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [delete]}}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{class_eigen_1_1_event_count_a8f69b70f7f0021e5487d710cecda3b57_a8f69b70f7f0021e5487d710cecda3b57}\index{Eigen::EventCount@{Eigen::EventCount}!CancelWait@{CancelWait}}
+\index{CancelWait@{CancelWait}!Eigen::EventCount@{Eigen::EventCount}}
+\doxysubsubsection{\texorpdfstring{CancelWait()}{CancelWait()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_event_count_a8f69b70f7f0021e5487d710cecda3b57_a8f69b70f7f0021e5487d710cecda3b57} 
+void Eigen\+::\+Event\+Count\+::\+Cancel\+Wait (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_event_count_aa48b6f12cd9c743fdb0abbf23c4cae9b_aa48b6f12cd9c743fdb0abbf23c4cae9b}\index{Eigen::EventCount@{Eigen::EventCount}!CheckState@{CheckState}}
+\index{CheckState@{CheckState}!Eigen::EventCount@{Eigen::EventCount}}
+\doxysubsubsection{\texorpdfstring{CheckState()}{CheckState()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_event_count_aa48b6f12cd9c743fdb0abbf23c4cae9b_aa48b6f12cd9c743fdb0abbf23c4cae9b} 
+static void Eigen\+::\+Event\+Count\+::\+Check\+State (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{state}{, }\item[{bool}]{waiter}{ = {\ttfamily false}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_eigen_1_1_event_count_a381300f183b2dc605b8f68b41a96ee90_a381300f183b2dc605b8f68b41a96ee90}\index{Eigen::EventCount@{Eigen::EventCount}!CommitWait@{CommitWait}}
+\index{CommitWait@{CommitWait}!Eigen::EventCount@{Eigen::EventCount}}
+\doxysubsubsection{\texorpdfstring{CommitWait()}{CommitWait()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_event_count_a381300f183b2dc605b8f68b41a96ee90_a381300f183b2dc605b8f68b41a96ee90} 
+void Eigen\+::\+Event\+Count\+::\+Commit\+Wait (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_event_count_1_1_waiter}{Waiter}} \texorpdfstring{$\ast$}{*}}]{w}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_event_count_a4e0c3f15c54ef7baa9ff1963f549f73d_a4e0c3f15c54ef7baa9ff1963f549f73d}\index{Eigen::EventCount@{Eigen::EventCount}!Notify@{Notify}}
+\index{Notify@{Notify}!Eigen::EventCount@{Eigen::EventCount}}
+\doxysubsubsection{\texorpdfstring{Notify()}{Notify()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_event_count_a4e0c3f15c54ef7baa9ff1963f549f73d_a4e0c3f15c54ef7baa9ff1963f549f73d} 
+void Eigen\+::\+Event\+Count\+::\+Notify (\begin{DoxyParamCaption}\item[{bool}]{notify\+All}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_event_count_a4c280473253409adb7be30a3872eda60_a4c280473253409adb7be30a3872eda60}\index{Eigen::EventCount@{Eigen::EventCount}!operator=@{operator=}}
+\index{operator=@{operator=}!Eigen::EventCount@{Eigen::EventCount}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_event_count_a4c280473253409adb7be30a3872eda60_a4c280473253409adb7be30a3872eda60} 
+void Eigen\+::\+Event\+Count\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_event_count}{Event\+Count}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [delete]}}
+
+\Hypertarget{class_eigen_1_1_event_count_ad69702f60fd8176a1c76deb9d95a82bc_ad69702f60fd8176a1c76deb9d95a82bc}\index{Eigen::EventCount@{Eigen::EventCount}!Park@{Park}}
+\index{Park@{Park}!Eigen::EventCount@{Eigen::EventCount}}
+\doxysubsubsection{\texorpdfstring{Park()}{Park()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_event_count_ad69702f60fd8176a1c76deb9d95a82bc_ad69702f60fd8176a1c76deb9d95a82bc} 
+void Eigen\+::\+Event\+Count\+::\+Park (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_event_count_1_1_waiter}{Waiter}} \texorpdfstring{$\ast$}{*}}]{w}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_eigen_1_1_event_count_af783653098405a22f54e91d2a51152b1_af783653098405a22f54e91d2a51152b1}\index{Eigen::EventCount@{Eigen::EventCount}!Prewait@{Prewait}}
+\index{Prewait@{Prewait}!Eigen::EventCount@{Eigen::EventCount}}
+\doxysubsubsection{\texorpdfstring{Prewait()}{Prewait()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_event_count_af783653098405a22f54e91d2a51152b1_af783653098405a22f54e91d2a51152b1} 
+void Eigen\+::\+Event\+Count\+::\+Prewait (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_event_count_a581005f25177d10113bed7d10df5a2e6_a581005f25177d10113bed7d10df5a2e6}\index{Eigen::EventCount@{Eigen::EventCount}!Unpark@{Unpark}}
+\index{Unpark@{Unpark}!Eigen::EventCount@{Eigen::EventCount}}
+\doxysubsubsection{\texorpdfstring{Unpark()}{Unpark()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_event_count_a581005f25177d10113bed7d10df5a2e6_a581005f25177d10113bed7d10df5a2e6} 
+void Eigen\+::\+Event\+Count\+::\+Unpark (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_event_count_1_1_waiter}{Waiter}} \texorpdfstring{$\ast$}{*}}]{w}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+\doxysubsection{メンバ詳解}
+\Hypertarget{class_eigen_1_1_event_count_a8f44e6549d51725446063c3a57bd1760_a8f44e6549d51725446063c3a57bd1760}\index{Eigen::EventCount@{Eigen::EventCount}!kEpochBits@{kEpochBits}}
+\index{kEpochBits@{kEpochBits}!Eigen::EventCount@{Eigen::EventCount}}
+\doxysubsubsection{\texorpdfstring{kEpochBits}{kEpochBits}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_event_count_a8f44e6549d51725446063c3a57bd1760_a8f44e6549d51725446063c3a57bd1760} 
+const uint64\+\_\+t Eigen\+::\+Event\+Count\+::k\+Epoch\+Bits = 64 -\/ \mbox{\hyperlink{class_eigen_1_1_event_count_a44ebf05f27f5db22c95a8d7d0c8d9d4e_a44ebf05f27f5db22c95a8d7d0c8d9d4e}{k\+Epoch\+Shift}}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_eigen_1_1_event_count_ac7db7b85346eec2a37868c5fd44bcb1c_ac7db7b85346eec2a37868c5fd44bcb1c}\index{Eigen::EventCount@{Eigen::EventCount}!kEpochInc@{kEpochInc}}
+\index{kEpochInc@{kEpochInc}!Eigen::EventCount@{Eigen::EventCount}}
+\doxysubsubsection{\texorpdfstring{kEpochInc}{kEpochInc}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_event_count_ac7db7b85346eec2a37868c5fd44bcb1c_ac7db7b85346eec2a37868c5fd44bcb1c} 
+const uint64\+\_\+t Eigen\+::\+Event\+Count\+::k\+Epoch\+Inc = 1ull $<$$<$ \mbox{\hyperlink{class_eigen_1_1_event_count_a44ebf05f27f5db22c95a8d7d0c8d9d4e_a44ebf05f27f5db22c95a8d7d0c8d9d4e}{k\+Epoch\+Shift}}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_eigen_1_1_event_count_a2564438a556a7ef276bd2297837f92e3_a2564438a556a7ef276bd2297837f92e3}\index{Eigen::EventCount@{Eigen::EventCount}!kEpochMask@{kEpochMask}}
+\index{kEpochMask@{kEpochMask}!Eigen::EventCount@{Eigen::EventCount}}
+\doxysubsubsection{\texorpdfstring{kEpochMask}{kEpochMask}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_event_count_a2564438a556a7ef276bd2297837f92e3_a2564438a556a7ef276bd2297837f92e3} 
+const uint64\+\_\+t Eigen\+::\+Event\+Count\+::k\+Epoch\+Mask = ((1ull $<$$<$ \mbox{\hyperlink{class_eigen_1_1_event_count_a8f44e6549d51725446063c3a57bd1760_a8f44e6549d51725446063c3a57bd1760}{k\+Epoch\+Bits}}) -\/ 1) $<$$<$ \mbox{\hyperlink{class_eigen_1_1_event_count_a44ebf05f27f5db22c95a8d7d0c8d9d4e_a44ebf05f27f5db22c95a8d7d0c8d9d4e}{k\+Epoch\+Shift}}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_eigen_1_1_event_count_a44ebf05f27f5db22c95a8d7d0c8d9d4e_a44ebf05f27f5db22c95a8d7d0c8d9d4e}\index{Eigen::EventCount@{Eigen::EventCount}!kEpochShift@{kEpochShift}}
+\index{kEpochShift@{kEpochShift}!Eigen::EventCount@{Eigen::EventCount}}
+\doxysubsubsection{\texorpdfstring{kEpochShift}{kEpochShift}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_event_count_a44ebf05f27f5db22c95a8d7d0c8d9d4e_a44ebf05f27f5db22c95a8d7d0c8d9d4e} 
+const uint64\+\_\+t Eigen\+::\+Event\+Count\+::k\+Epoch\+Shift = 3 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eigen_1_1_event_count_add3334052ca2b3c6998f8eb1e1eaee37_add3334052ca2b3c6998f8eb1e1eaee37}{k\+Waiter\+Bits}}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_eigen_1_1_event_count_a3586cf21155707d8040287ed5fc7ea73_a3586cf21155707d8040287ed5fc7ea73}\index{Eigen::EventCount@{Eigen::EventCount}!kSignalInc@{kSignalInc}}
+\index{kSignalInc@{kSignalInc}!Eigen::EventCount@{Eigen::EventCount}}
+\doxysubsubsection{\texorpdfstring{kSignalInc}{kSignalInc}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_event_count_a3586cf21155707d8040287ed5fc7ea73_a3586cf21155707d8040287ed5fc7ea73} 
+const uint64\+\_\+t Eigen\+::\+Event\+Count\+::k\+Signal\+Inc = 1ull $<$$<$ \mbox{\hyperlink{class_eigen_1_1_event_count_af6b4eba231198c7b59d02ccda2864ae8_af6b4eba231198c7b59d02ccda2864ae8}{k\+Signal\+Shift}}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_eigen_1_1_event_count_ac2a0ba10593005460e84a676636b50b9_ac2a0ba10593005460e84a676636b50b9}\index{Eigen::EventCount@{Eigen::EventCount}!kSignalMask@{kSignalMask}}
+\index{kSignalMask@{kSignalMask}!Eigen::EventCount@{Eigen::EventCount}}
+\doxysubsubsection{\texorpdfstring{kSignalMask}{kSignalMask}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_event_count_ac2a0ba10593005460e84a676636b50b9_ac2a0ba10593005460e84a676636b50b9} 
+const uint64\+\_\+t Eigen\+::\+Event\+Count\+::k\+Signal\+Mask\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+{\bfseries 初期値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ ((1ull\ <<\ \mbox{\hyperlink{class_eigen_1_1_event_count_add3334052ca2b3c6998f8eb1e1eaee37_add3334052ca2b3c6998f8eb1e1eaee37}{kWaiterBits}})\ -\/\ 1)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \mbox{\hyperlink{class_eigen_1_1_event_count_af6b4eba231198c7b59d02ccda2864ae8_af6b4eba231198c7b59d02ccda2864ae8}{kSignalShift}}}
+
+\end{DoxyCode}
+\Hypertarget{class_eigen_1_1_event_count_af6b4eba231198c7b59d02ccda2864ae8_af6b4eba231198c7b59d02ccda2864ae8}\index{Eigen::EventCount@{Eigen::EventCount}!kSignalShift@{kSignalShift}}
+\index{kSignalShift@{kSignalShift}!Eigen::EventCount@{Eigen::EventCount}}
+\doxysubsubsection{\texorpdfstring{kSignalShift}{kSignalShift}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_event_count_af6b4eba231198c7b59d02ccda2864ae8_af6b4eba231198c7b59d02ccda2864ae8} 
+const uint64\+\_\+t Eigen\+::\+Event\+Count\+::k\+Signal\+Shift = 2 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eigen_1_1_event_count_add3334052ca2b3c6998f8eb1e1eaee37_add3334052ca2b3c6998f8eb1e1eaee37}{k\+Waiter\+Bits}}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_eigen_1_1_event_count_a3287e59c28752e3e376c5f728aedf932_a3287e59c28752e3e376c5f728aedf932}\index{Eigen::EventCount@{Eigen::EventCount}!kStackMask@{kStackMask}}
+\index{kStackMask@{kStackMask}!Eigen::EventCount@{Eigen::EventCount}}
+\doxysubsubsection{\texorpdfstring{kStackMask}{kStackMask}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_event_count_a3287e59c28752e3e376c5f728aedf932_a3287e59c28752e3e376c5f728aedf932} 
+const uint64\+\_\+t Eigen\+::\+Event\+Count\+::k\+Stack\+Mask = (1ull $<$$<$ \mbox{\hyperlink{class_eigen_1_1_event_count_add3334052ca2b3c6998f8eb1e1eaee37_add3334052ca2b3c6998f8eb1e1eaee37}{k\+Waiter\+Bits}}) -\/ 1\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_eigen_1_1_event_count_add3334052ca2b3c6998f8eb1e1eaee37_add3334052ca2b3c6998f8eb1e1eaee37}\index{Eigen::EventCount@{Eigen::EventCount}!kWaiterBits@{kWaiterBits}}
+\index{kWaiterBits@{kWaiterBits}!Eigen::EventCount@{Eigen::EventCount}}
+\doxysubsubsection{\texorpdfstring{kWaiterBits}{kWaiterBits}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_event_count_add3334052ca2b3c6998f8eb1e1eaee37_add3334052ca2b3c6998f8eb1e1eaee37} 
+const uint64\+\_\+t Eigen\+::\+Event\+Count\+::k\+Waiter\+Bits = 14\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_eigen_1_1_event_count_a68a0eb517b67a96afb638b010f916dad_a68a0eb517b67a96afb638b010f916dad}\index{Eigen::EventCount@{Eigen::EventCount}!kWaiterInc@{kWaiterInc}}
+\index{kWaiterInc@{kWaiterInc}!Eigen::EventCount@{Eigen::EventCount}}
+\doxysubsubsection{\texorpdfstring{kWaiterInc}{kWaiterInc}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_event_count_a68a0eb517b67a96afb638b010f916dad_a68a0eb517b67a96afb638b010f916dad} 
+const uint64\+\_\+t Eigen\+::\+Event\+Count\+::k\+Waiter\+Inc = 1ull $<$$<$ \mbox{\hyperlink{class_eigen_1_1_event_count_a9435d21417b9cd0ae855fecc773d8df2_a9435d21417b9cd0ae855fecc773d8df2}{k\+Waiter\+Shift}}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_eigen_1_1_event_count_a4bd53192d5d7b56367a3f3aed792512a_a4bd53192d5d7b56367a3f3aed792512a}\index{Eigen::EventCount@{Eigen::EventCount}!kWaiterMask@{kWaiterMask}}
+\index{kWaiterMask@{kWaiterMask}!Eigen::EventCount@{Eigen::EventCount}}
+\doxysubsubsection{\texorpdfstring{kWaiterMask}{kWaiterMask}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_event_count_a4bd53192d5d7b56367a3f3aed792512a_a4bd53192d5d7b56367a3f3aed792512a} 
+const uint64\+\_\+t Eigen\+::\+Event\+Count\+::k\+Waiter\+Mask\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+{\bfseries 初期値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ ((1ull\ <<\ \mbox{\hyperlink{class_eigen_1_1_event_count_add3334052ca2b3c6998f8eb1e1eaee37_add3334052ca2b3c6998f8eb1e1eaee37}{kWaiterBits}})\ -\/\ 1)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \mbox{\hyperlink{class_eigen_1_1_event_count_a9435d21417b9cd0ae855fecc773d8df2_a9435d21417b9cd0ae855fecc773d8df2}{kWaiterShift}}}
+
+\end{DoxyCode}
+\Hypertarget{class_eigen_1_1_event_count_a9435d21417b9cd0ae855fecc773d8df2_a9435d21417b9cd0ae855fecc773d8df2}\index{Eigen::EventCount@{Eigen::EventCount}!kWaiterShift@{kWaiterShift}}
+\index{kWaiterShift@{kWaiterShift}!Eigen::EventCount@{Eigen::EventCount}}
+\doxysubsubsection{\texorpdfstring{kWaiterShift}{kWaiterShift}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_event_count_a9435d21417b9cd0ae855fecc773d8df2_a9435d21417b9cd0ae855fecc773d8df2} 
+const uint64\+\_\+t Eigen\+::\+Event\+Count\+::k\+Waiter\+Shift = \mbox{\hyperlink{class_eigen_1_1_event_count_add3334052ca2b3c6998f8eb1e1eaee37_add3334052ca2b3c6998f8eb1e1eaee37}{k\+Waiter\+Bits}}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_eigen_1_1_event_count_a2334c2d33f3f18e5e3d1f1f0d696bdf2_a2334c2d33f3f18e5e3d1f1f0d696bdf2}\index{Eigen::EventCount@{Eigen::EventCount}!state\_@{state\_}}
+\index{state\_@{state\_}!Eigen::EventCount@{Eigen::EventCount}}
+\doxysubsubsection{\texorpdfstring{state\_}{state\_}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_event_count_a2334c2d33f3f18e5e3d1f1f0d696bdf2_a2334c2d33f3f18e5e3d1f1f0d696bdf2} 
+std\+::atomic$<$uint64\+\_\+t$>$ Eigen\+::\+Event\+Count\+::state\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eigen_1_1_event_count_a019b88ac3a727bbb7610f13c9a343c10_a019b88ac3a727bbb7610f13c9a343c10}\index{Eigen::EventCount@{Eigen::EventCount}!waiters\_@{waiters\_}}
+\index{waiters\_@{waiters\_}!Eigen::EventCount@{Eigen::EventCount}}
+\doxysubsubsection{\texorpdfstring{waiters\_}{waiters\_}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_event_count_a019b88ac3a727bbb7610f13c9a343c10_a019b88ac3a727bbb7610f13c9a343c10} 
+\mbox{\hyperlink{class_eigen_1_1_max_size_vector}{Max\+Size\+Vector}}$<$\mbox{\hyperlink{class_eigen_1_1_event_count_1_1_waiter}{Waiter}}$>$\& Eigen\+::\+Event\+Count\+::waiters\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/unsupported/\+Eigen/\+CXX11/src/\+Thread\+Pool/\mbox{\hyperlink{_event_count_8h}{Event\+Count.\+h}}\end{DoxyCompactItemize}

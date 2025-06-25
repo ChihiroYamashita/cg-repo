@@ -1,0 +1,114 @@
+\doxysection{Auto\+Diff\+Jacobian.\+h}
+\hypertarget{_auto_diff_jacobian_8h_source}{}\label{_auto_diff_jacobian_8h_source}\index{eigen-\/3.4.0/eigen-\/3.4.0/unsupported/Eigen/src/AutoDiff/AutoDiffJacobian.h@{eigen-\/3.4.0/eigen-\/3.4.0/unsupported/Eigen/src/AutoDiff/AutoDiffJacobian.h}}
+\mbox{\hyperlink{_auto_diff_jacobian_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ Eigen,\ a\ lightweight\ C++\ template\ library}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ for\ linear\ algebra.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (C)\ 2009\ Gael\ Guennebaud\ <gael.guennebaud@inria.fr>}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ This\ Source\ Code\ Form\ is\ subject\ to\ the\ terms\ of\ the\ Mozilla}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Public\ License\ v.\ 2.0.\ If\ a\ copy\ of\ the\ MPL\ was\ not\ distributed}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ with\ this\ file,\ You\ can\ obtain\ one\ at\ http://mozilla.org/MPL/2.0/.}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_AUTODIFF\_JACOBIAN\_H}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ EIGEN\_AUTODIFF\_JACOBIAN\_H}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_eigen}{Eigen}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Functor>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian}{AutoDiffJacobian}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{struct_functor}{Functor}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_a55ffbe3bb27227e7c8d423aeecc0aada_a55ffbe3bb27227e7c8d423aeecc0aada}{AutoDiffJacobian}}()\ :\ \mbox{\hyperlink{struct_functor}{Functor}}()\ \{\}}
+\DoxyCodeLine{00020\ \ \ \mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_af28bf6fab1a0dafe1429d6d04acfe396_af28bf6fab1a0dafe1429d6d04acfe396}{AutoDiffJacobian}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_functor}{Functor}}\&\ f)\ :\ \mbox{\hyperlink{struct_functor}{Functor}}(f)\ \{\}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \textcolor{comment}{//\ forward\ constructors}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#if\ EIGEN\_HAS\_VARIADIC\_TEMPLATES}}
+\DoxyCodeLine{00024\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}>}
+\DoxyCodeLine{00025\ \ \ \mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_a55ffbe3bb27227e7c8d423aeecc0aada_a55ffbe3bb27227e7c8d423aeecc0aada}{AutoDiffJacobian}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\&\ ...\mbox{\hyperlink{sparse__setter_8cpp_a7c28d0550a40521b5d19a8a7bc029cd1_a7c28d0550a40521b5d19a8a7bc029cd1}{Values}})\ :\ \mbox{\hyperlink{struct_functor}{Functor}}(\mbox{\hyperlink{sparse__setter_8cpp_a7c28d0550a40521b5d19a8a7bc029cd1_a7c28d0550a40521b5d19a8a7bc029cd1}{Values}}...)\ \{\}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00027\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T0>}
+\DoxyCodeLine{00028\ \ \ \mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_a8e78187ab2df1d09395c9910e182b305_a8e78187ab2df1d09395c9910e182b305}{AutoDiffJacobian}}(\textcolor{keyword}{const}\ T0\&\ a0)\ :\ \mbox{\hyperlink{struct_functor}{Functor}}(a0)\ \{\}}
+\DoxyCodeLine{00029\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T0,\ \textcolor{keyword}{typename}\ T1>}
+\DoxyCodeLine{00030\ \ \ \mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_a459df1c8203bd0aef5ea3ed964d6e8f1_a459df1c8203bd0aef5ea3ed964d6e8f1}{AutoDiffJacobian}}(\textcolor{keyword}{const}\ T0\&\ a0,\ \textcolor{keyword}{const}\ T1\&\ a1)\ :\ \mbox{\hyperlink{struct_functor}{Functor}}(a0,\ a1)\ \{\}}
+\DoxyCodeLine{00031\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T0,\ \textcolor{keyword}{typename}\ T1,\ \textcolor{keyword}{typename}\ T2>}
+\DoxyCodeLine{00032\ \ \ \mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_abcc3d282a198c67c3c0b15ee81763f5c_abcc3d282a198c67c3c0b15ee81763f5c}{AutoDiffJacobian}}(\textcolor{keyword}{const}\ T0\&\ a0,\ \textcolor{keyword}{const}\ T1\&\ a1,\ \textcolor{keyword}{const}\ T2\&\ a2)\ :\ \mbox{\hyperlink{struct_functor}{Functor}}(a0,\ a1,\ a2)\ \{\}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Functor::InputType}}\ \mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_a7282c8b0f70c6c8d069f83ad86848e1d_a7282c8b0f70c6c8d069f83ad86848e1d}{InputType}};}
+\DoxyCodeLine{00036\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Functor::ValueType}}\ \mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_a83305b473ebc8fada0f16fecfc4721e6_a83305b473ebc8fada0f16fecfc4721e6}{ValueType}};}
+\DoxyCodeLine{00037\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_plain_object_base_ab6f2af41301117f8e71219a95754eed9_ab6f2af41301117f8e71219a95754eed9}{ValueType::Scalar}}\ \mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_aff998340df663b10061d6e0369d6533e_aff998340df663b10061d6e0369d6533e}{Scalar}};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_a2df5ee953add92d6848f44c2bd9603ff_a2df5ee953add92d6848f44c2bd9603ffae02a3d830389641660d0a3d110a054fc}{InputsAtCompileTime}}\ =\ InputType::RowsAtCompileTime,}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_a2df5ee953add92d6848f44c2bd9603ff_a2df5ee953add92d6848f44c2bd9603ffa43c41fef1343e47f18f0d1ca728e2237}{ValuesAtCompileTime}}\ =\ ValueType::RowsAtCompileTime}
+\DoxyCodeLine{00042\ \ \ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<Scalar,\ ValuesAtCompileTime,\ InputsAtCompileTime>}}\ \mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_a8dc313141cad24b59d881fcc2925693a_a8dc313141cad24b59d881fcc2925693a}{JacobianType}};}
+\DoxyCodeLine{00045\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ JacobianType::Index\ \mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_a6cb03386a42add2b72ed9bd3bf80ea48_a6cb03386a42add2b72ed9bd3bf80ea48}{Index}};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<Scalar,\ InputsAtCompileTime,\ 1>}}\ \mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_ae4acf94c53752db8a734ed4428028ed1_ae4acf94c53752db8a734ed4428028ed1}{DerivativeType}};}
+\DoxyCodeLine{00048\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_auto_diff_scalar}{AutoDiffScalar<DerivativeType>}}\ \mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_accd9c2875d2805ad36085cf7826e44a9_accd9c2875d2805ad36085cf7826e44a9}{ActiveScalar}};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<ActiveScalar,\ InputsAtCompileTime,\ 1>}}\ \mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_a9160f8e4b732fdb6ef5d82ebb354ebe8_a9160f8e4b732fdb6ef5d82ebb354ebe8}{ActiveInput}};}
+\DoxyCodeLine{00051\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<ActiveScalar,\ ValuesAtCompileTime,\ 1>}}\ \mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_a036c9cb38d64b6fa6bac84d1f80df8ec_a036c9cb38d64b6fa6bac84d1f80df8ec}{ActiveValue}};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#if\ EIGEN\_HAS\_VARIADIC\_TEMPLATES}}
+\DoxyCodeLine{00054\ \ \ \textcolor{comment}{//\ Some\ compilers\ don't\ accept\ variadic\ parameters\ after\ a\ default\ parameter,}}
+\DoxyCodeLine{00055\ \ \ \textcolor{comment}{//\ i.e.,\ we\ can't\ just\ write\ \_jac=0\ but\ we\ need\ to\ overload\ operator():}}
+\DoxyCodeLine{00056\ \ \ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}}
+\DoxyCodeLine{00057\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_a7e9380a43f2f256ad3f00d683a943f1e_a7e9380a43f2f256ad3f00d683a943f1e}{operator()\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{InputType}}\&\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{ValueType}}*\ \mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00058\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_a7e9380a43f2f256ad3f00d683a943f1e_a7e9380a43f2f256ad3f00d683a943f1e}{operator()}}(x,\ \mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}},\ 0);}
+\DoxyCodeLine{00060\ \ \ \}}
+\DoxyCodeLine{00061\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ ParamsType>}
+\DoxyCodeLine{00062\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_a7e9380a43f2f256ad3f00d683a943f1e_a7e9380a43f2f256ad3f00d683a943f1e}{operator()\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_a7282c8b0f70c6c8d069f83ad86848e1d_a7282c8b0f70c6c8d069f83ad86848e1d}{InputType}}\&\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}},\ \mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_a83305b473ebc8fada0f16fecfc4721e6_a83305b473ebc8fada0f16fecfc4721e6}{ValueType}}*\ \mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}},\ \mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_a8dc313141cad24b59d881fcc2925693a_a8dc313141cad24b59d881fcc2925693a}{JacobianType}}*\ \_jac,}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ ParamsType\&...\ Params)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00065\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_a7e9380a43f2f256ad3f00d683a943f1e_a7e9380a43f2f256ad3f00d683a943f1e}{operator()\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{InputType}}\&\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{ValueType}}*\ \mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{JacobianType}}*\ \_jac=0)\ const}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00067\ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{_macros_8h_acaa7ba89800cfe18d5fd6eed620aea9c_acaa7ba89800cfe18d5fd6eed620aea9c}{eigen\_assert}}(\mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}}!=0);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\_jac)}
+\DoxyCodeLine{00071\ \ \ \ \ \{}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#if\ EIGEN\_HAS\_VARIADIC\_TEMPLATES}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ Functor::operator()(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}},\ \mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}},\ Params...);}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ Functor::operator()(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}},\ \mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}});}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{JacobianType}}\&\ jac\ =\ *\_jac;}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{ActiveInput}}\ ax\ =\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.template\ \mbox{\hyperlink{_common_cwise_unary_ops_8h_aa89d007196125d10fa7d6e19811aca05_aa89d007196125d10fa7d6e19811aca05}{cast<ActiveScalar>}}();}
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{ActiveValue}}\ av(jac.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_afbc668abdcb3bda3bc4c58c4d88e9603_afbc668abdcb3bda3bc4c58c4d88e9603}{rows}}());}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_a2df5ee953add92d6848f44c2bd9603ff_a2df5ee953add92d6848f44c2bd9603ffae02a3d830389641660d0a3d110a054fc}{InputsAtCompileTime}}==\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}})}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_a6cb03386a42add2b72ed9bd3bf80ea48_a6cb03386a42add2b72ed9bd3bf80ea48}{Index}}\ \mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}}=0;\ \mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}}<jac.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_afbc668abdcb3bda3bc4c58c4d88e9603_afbc668abdcb3bda3bc4c58c4d88e9603}{rows}}();\ \mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}}++)}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ av[\mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}}].derivatives().\mbox{\hyperlink{class_eigen_1_1_plain_object_base_a99d9054ee2d5a40c6e00ded0265e9cea_a99d9054ee2d5a40c6e00ded0265e9cea}{resize}}(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.rows());}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_a6cb03386a42add2b72ed9bd3bf80ea48_a6cb03386a42add2b72ed9bd3bf80ea48}{Index}}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}=0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}<jac.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_a74176163ce10338f1ea1f3bda5afd78c_a74176163ce10338f1ea1f3bda5afd78c}{cols}}();\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}++)}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ ax[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}].derivatives()\ =\ DerivativeType::Unit(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.rows(),\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}});}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#if\ EIGEN\_HAS\_VARIADIC\_TEMPLATES}}
+\DoxyCodeLine{00093\ \ \ \ \ Functor::operator()(ax,\ \&av,\ Params...);}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00095\ \ \ \ \ Functor::operator()(ax,\ \&av);}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{class_eigen_1_1_auto_diff_jacobian_a6cb03386a42add2b72ed9bd3bf80ea48_a6cb03386a42add2b72ed9bd3bf80ea48}{Index}}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}=0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}<jac.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_afbc668abdcb3bda3bc4c58c4d88e9603_afbc668abdcb3bda3bc4c58c4d88e9603}{rows}}();\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}++)}
+\DoxyCodeLine{00099\ \ \ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ (*v)[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}]\ =\ av[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}].value();}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ jac.row(\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}})\ =\ av[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}].derivatives();}
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \}}
+\DoxyCodeLine{00104\ \};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ EIGEN\_AUTODIFF\_JACOBIAN\_H}}
+
+\end{DoxyCode}

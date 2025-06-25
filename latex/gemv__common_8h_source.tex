@@ -1,0 +1,75 @@
+\doxysection{gemv\+\_\+common.\+h}
+\hypertarget{gemv__common_8h_source}{}\label{gemv__common_8h_source}\index{eigen-\/3.4.0/eigen-\/3.4.0/bench/perf\_monitoring/gemv\_common.h@{eigen-\/3.4.0/eigen-\/3.4.0/bench/perf\_monitoring/gemv\_common.h}}
+\mbox{\hyperlink{gemv__common_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}eigen\_src/Eigen/Core"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_bench_timer_8h}{../BenchTimer.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespace_eigen}{Eigen}};}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ SCALAR}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#error\ SCALAR\ must\ be\ defined}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{bench__gemm_8cpp_aae7e5362e39df9265f4fd78ffa61660a_aae7e5362e39df9265f4fd78ffa61660a}{SCALAR}}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<Scalar,Dynamic,Dynamic>}}\ \mbox{\hyperlink{gemv__common_8h_af8aa4e04fe5d1aa229a8909d0c412986_af8aa4e04fe5d1aa229a8909d0c412986}{Mat}};}
+\DoxyCodeLine{00017\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<Scalar,Dynamic,1>}}\ \ \ \ \ \ \ \mbox{\hyperlink{gemv__common_8h_afd70ceda093f45d1ddb772f42682248c_afd70ceda093f45d1ddb772f42682248c}{Vec}};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func>}
+\DoxyCodeLine{00020\ \mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\_DONT\_INLINE}}}
+\DoxyCodeLine{00021\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{lazy__gemm_8cpp_a1e5149b63cd4e88c140cfd628c6038fc_a1e5149b63cd4e88c140cfd628c6038fc}{bench}}(\textcolor{keywordtype}{long}\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}},\ Func\ \&f)}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{Mat}}\ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}});}
+\DoxyCodeLine{00024\ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{Vec}}\ \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}});}
+\DoxyCodeLine{00025\ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{Vec}}\ \mbox{\hyperlink{bench__gemm_8cpp_aaee470c3acb6b181fd804d072284fbaa_aaee470c3acb6b181fd804d072284fbaa}{C}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}});}
+\DoxyCodeLine{00026\ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_af0e576a0e1aefc9ee346de44cc352ba3_af0e576a0e1aefc9ee346de44cc352ba3}{setRandom}}();}
+\DoxyCodeLine{00027\ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_af0e576a0e1aefc9ee346de44cc352ba3_af0e576a0e1aefc9ee346de44cc352ba3}{setRandom}}();}
+\DoxyCodeLine{00028\ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_af0e576a0e1aefc9ee346de44cc352ba3_af0e576a0e1aefc9ee346de44cc352ba3}{setRandom}}();}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \mbox{\hyperlink{class_eigen_1_1_bench_timer}{BenchTimer}}\ t;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \textcolor{keywordtype}{double}\ up\ =\ 1e8/\textcolor{keyword}{sizeof}(\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}});}
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordtype}{double}\ tm0\ =\ 4,\ tm1\ =\ 10;}
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<Scalar>::IsComplex}})}
+\DoxyCodeLine{00035\ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ up\ /=\ 4;}
+\DoxyCodeLine{00037\ \ \ \ \ tm0\ =\ 2;}
+\DoxyCodeLine{00038\ \ \ \ \ tm1\ =\ 4;}
+\DoxyCodeLine{00039\ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordtype}{double}\ flops\ =\ 2.\ *\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}\ *\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}};}
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordtype}{long}\ rep\ =\ std::max(1.,\ std::min(100.,\ up/flops)\ );}
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordtype}{long}\ tries\ =\ std::max(tm0,\ std::min(tm1,\ up/flops)\ );}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \mbox{\hyperlink{_bench_timer_8h_ae76a6d67b16f030630408dd13a1c6e56_ae76a6d67b16f030630408dd13a1c6e56}{BENCH}}(t,\ tries,\ rep,\ f(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\mbox{\hyperlink{class_eigen_1_1_matrix}{B}},\mbox{\hyperlink{class_eigen_1_1_matrix}{C}}));}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \textcolor{keywordflow}{return}\ 1\mbox{\hyperlink{_cwise__array__power__array_8cpp_a9cb86ff854760bf91a154f2724a9101d_a9cb86ff854760bf91a154f2724a9101d}{e}}-\/9\ *\ rep\ *\ flops\ /\ t.\mbox{\hyperlink{class_eigen_1_1_bench_timer_ae8b673b0fa356d3432c7a65c79e8af0e_ae8b673b0fa356d3432c7a65c79e8af0e}{best}}();}
+\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func>}
+\DoxyCodeLine{00051\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gemv__common_8h_ad1c242175cba92f823630580e60dcc0c_ad1c242175cba92f823630580e60dcc0c}{main\_gemv}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv,\ Func\&\ f)}
+\DoxyCodeLine{00052\ \{}
+\DoxyCodeLine{00053\ \ \ std::vector<double>\ \mbox{\hyperlink{dense__solvers_8cpp_aca3207197454d3587952bfb490eecbf2_aca3207197454d3587952bfb490eecbf2}{results}};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ std::string\ filename\ =\ std::string(\textcolor{stringliteral}{"{}gemv\_settings.txt"{}});}
+\DoxyCodeLine{00056\ \ \ \textcolor{keywordflow}{if}(argc>1)}
+\DoxyCodeLine{00057\ \ \ \ \ filename\ =\ std::string(argv[1]);}
+\DoxyCodeLine{00058\ \ \ std::ifstream\ settings(filename);}
+\DoxyCodeLine{00059\ \ \ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}};}
+\DoxyCodeLine{00060\ \ \ \textcolor{keywordflow}{while}(settings\ >>\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}\ >>\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}})}
+\DoxyCodeLine{00061\ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//std::cerr\ <<\ "{}\ \ Testing\ "{}\ <<\ m\ <<\ "{}\ "{}\ <<\ n\ <<\ std::endl;}}
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{dense__solvers_8cpp_aca3207197454d3587952bfb490eecbf2_aca3207197454d3587952bfb490eecbf2}{results}}.push\_back(\ \mbox{\hyperlink{lazy__gemm_8cpp_a1e5149b63cd4e88c140cfd628c6038fc_a1e5149b63cd4e88c140cfd628c6038fc}{bench}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}},\ f)\ );}
+\DoxyCodeLine{00064\ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ std::cout\ <<\ RowVectorXd::Map(\mbox{\hyperlink{dense__solvers_8cpp_aca3207197454d3587952bfb490eecbf2_aca3207197454d3587952bfb490eecbf2}{results}}.data(),\ \mbox{\hyperlink{dense__solvers_8cpp_aca3207197454d3587952bfb490eecbf2_aca3207197454d3587952bfb490eecbf2}{results}}.size());}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00069\ \}}
+
+\end{DoxyCode}

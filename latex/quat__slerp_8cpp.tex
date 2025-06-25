@@ -1,0 +1,118 @@
+\doxysection{eigen-\/3.4.0/eigen-\/3.4.0/bench/quat\+\_\+slerp.cpp ファイル}
+\hypertarget{quat__slerp_8cpp}{}\label{quat__slerp_8cpp}\index{eigen-\/3.4.0/eigen-\/3.4.0/bench/quat\_slerp.cpp@{eigen-\/3.4.0/eigen-\/3.4.0/bench/quat\_slerp.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Geometry$>$}\newline
+{\ttfamily \#include $<$bench/\+Bench\+Timer.\+h$>$}\newline
+quat\+\_\+slerp.\+cpp の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{quat__slerp_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{quat__slerp_8cpp_a56ab6875e1391dc0994b8a1b2cb40862_a56ab6875e1391dc0994b8a1b2cb40862}{BENCH}}(FUNC)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} $>$ }\\\mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\+\_\+\+DONT\+\_\+\+INLINE}} \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \mbox{\hyperlink{quat__slerp_8cpp_acc9c4a1effdd82608cc89212d1998a96_acc9c4a1effdd82608cc89212d1998a96}{nlerp}} (const \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}, const \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Q\+::\+Scalar}} t)
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} $>$ }\\\mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\+\_\+\+DONT\+\_\+\+INLINE}} \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \mbox{\hyperlink{quat__slerp_8cpp_ae62f56f07b194bff3338229918d65e05_ae62f56f07b194bff3338229918d65e05}{slerp\+\_\+eigen}} (const \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}, const \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Q\+::\+Scalar}} t)
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} $>$ }\\\mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\+\_\+\+DONT\+\_\+\+INLINE}} \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \mbox{\hyperlink{quat__slerp_8cpp_aa3373bbc165a4c459aa7fea6fa952887_aa3373bbc165a4c459aa7fea6fa952887}{slerp\+\_\+legacy}} (const \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}, const \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Q\+::\+Scalar}} t)
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} $>$ }\\\mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\+\_\+\+DONT\+\_\+\+INLINE}} \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \mbox{\hyperlink{quat__slerp_8cpp_acf44c96dda048e6ce4d8a946ff989902_acf44c96dda048e6ce4d8a946ff989902}{slerp\+\_\+legacy\+\_\+nlerp}} (const \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}, const \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Q\+::\+Scalar}} t)
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} $>$ }\\\mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} \mbox{\hyperlink{quat__slerp_8cpp_aa7a205dd0924af4d71bbc3e552b87fc1_aa7a205dd0924af4d71bbc3e552b87fc1}{sin\+\_\+over\+\_\+x}} (\mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}})
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} $>$ }\\\mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\+\_\+\+DONT\+\_\+\+INLINE}} \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \mbox{\hyperlink{quat__slerp_8cpp_ad725b03ab5d421a4c5fe6cc70bd5cb68_ad725b03ab5d421a4c5fe6cc70bd5cb68}{slerp\+\_\+rw}} (const \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}, const \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Q\+::\+Scalar}} t)
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} $>$ }\\\mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\+\_\+\+DONT\+\_\+\+INLINE}} \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \mbox{\hyperlink{quat__slerp_8cpp_ad679b8a6d98a19aaf6147f6019734eb6_ad679b8a6d98a19aaf6147f6019734eb6}{slerp\+\_\+gael}} (const \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}, const \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Q\+::\+Scalar}} t)
+\item 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{quat__slerp_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{quat__slerp_8cpp_a56ab6875e1391dc0994b8a1b2cb40862_a56ab6875e1391dc0994b8a1b2cb40862}\index{quat\_slerp.cpp@{quat\_slerp.cpp}!BENCH@{BENCH}}
+\index{BENCH@{BENCH}!quat\_slerp.cpp@{quat\_slerp.cpp}}
+\doxysubsubsection{\texorpdfstring{BENCH}{BENCH}}
+{\footnotesize\ttfamily \label{quat__slerp_8cpp_a56ab6875e1391dc0994b8a1b2cb40862_a56ab6875e1391dc0994b8a1b2cb40862} 
+\#define BENCH(\begin{DoxyParamCaption}\item[{}]{FUNC}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_eigen_1_1_bench_timer}{BenchTimer}}\ t;\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ for(\textcolor{keywordtype}{int}\ k=0;\ k<2;\ ++k)\ \{\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ t.\mbox{\hyperlink{class_eigen_1_1_bench_timer_a6b01cc1c0408353022174b867ab29dc9_a6b01cc1c0408353022174b867ab29dc9}{start}}();\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ for(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}=0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}<1000000;\ ++\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}})\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ FUNC(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\mbox{\hyperlink{level1__cplx__impl_8h_a462761ca92ad97a9a705cb875828b0b8_a462761ca92ad97a9a705cb875828b0b8}{s}});\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ t.\mbox{\hyperlink{class_eigen_1_1_bench_timer_a367e14b2e9c1ab6d3f0ff7bcfcd5ee37_a367e14b2e9c1ab6d3f0ff7bcfcd5ee37}{stop}}();\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ "{}}\ <<\ \#FUNC\ <<\ \textcolor{stringliteral}{"{}\ =>\ \(\backslash\)t\ "{}}\ <<\ t.\mbox{\hyperlink{class_eigen_1_1_bench_timer_a26760f963ed8b64c126159bfea57735e_a26760f963ed8b64c126159bfea57735e}{value}}()\ <<\ \textcolor{stringliteral}{"{}s\(\backslash\)n"{}};\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{quat__slerp_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{quat\_slerp.cpp@{quat\_slerp.cpp}!main@{main}}
+\index{main@{main}!quat\_slerp.cpp@{quat\_slerp.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{quat__slerp_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} main (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{quat__slerp_8cpp_acc9c4a1effdd82608cc89212d1998a96_acc9c4a1effdd82608cc89212d1998a96}\index{quat\_slerp.cpp@{quat\_slerp.cpp}!nlerp@{nlerp}}
+\index{nlerp@{nlerp}!quat\_slerp.cpp@{quat\_slerp.cpp}}
+\doxysubsubsection{\texorpdfstring{nlerp()}{nlerp()}}
+{\footnotesize\ttfamily \label{quat__slerp_8cpp_acc9c4a1effdd82608cc89212d1998a96_acc9c4a1effdd82608cc89212d1998a96} 
+template$<$typename \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} $>$ \\
+\mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\+\_\+\+DONT\+\_\+\+INLINE}} \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} nlerp (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \&}]{a}{, }\item[{const \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \&}]{b}{, }\item[{typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Q\+::\+Scalar}}}]{t}{}\end{DoxyParamCaption})}
+
+\Hypertarget{quat__slerp_8cpp_aa7a205dd0924af4d71bbc3e552b87fc1_aa7a205dd0924af4d71bbc3e552b87fc1}\index{quat\_slerp.cpp@{quat\_slerp.cpp}!sin\_over\_x@{sin\_over\_x}}
+\index{sin\_over\_x@{sin\_over\_x}!quat\_slerp.cpp@{quat\_slerp.cpp}}
+\doxysubsubsection{\texorpdfstring{sin\_over\_x()}{sin\_over\_x()}}
+{\footnotesize\ttfamily \label{quat__slerp_8cpp_aa7a205dd0924af4d71bbc3e552b87fc1_aa7a205dd0924af4d71bbc3e552b87fc1} 
+template$<$typename \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} $>$ \\
+\mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} sin\+\_\+over\+\_\+x (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}}}]{x}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{quat__slerp_8cpp_ae62f56f07b194bff3338229918d65e05_ae62f56f07b194bff3338229918d65e05}\index{quat\_slerp.cpp@{quat\_slerp.cpp}!slerp\_eigen@{slerp\_eigen}}
+\index{slerp\_eigen@{slerp\_eigen}!quat\_slerp.cpp@{quat\_slerp.cpp}}
+\doxysubsubsection{\texorpdfstring{slerp\_eigen()}{slerp\_eigen()}}
+{\footnotesize\ttfamily \label{quat__slerp_8cpp_ae62f56f07b194bff3338229918d65e05_ae62f56f07b194bff3338229918d65e05} 
+template$<$typename \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} $>$ \\
+\mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\+\_\+\+DONT\+\_\+\+INLINE}} \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} slerp\+\_\+eigen (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \&}]{a}{, }\item[{const \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \&}]{b}{, }\item[{typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Q\+::\+Scalar}}}]{t}{}\end{DoxyParamCaption})}
+
+\Hypertarget{quat__slerp_8cpp_ad679b8a6d98a19aaf6147f6019734eb6_ad679b8a6d98a19aaf6147f6019734eb6}\index{quat\_slerp.cpp@{quat\_slerp.cpp}!slerp\_gael@{slerp\_gael}}
+\index{slerp\_gael@{slerp\_gael}!quat\_slerp.cpp@{quat\_slerp.cpp}}
+\doxysubsubsection{\texorpdfstring{slerp\_gael()}{slerp\_gael()}}
+{\footnotesize\ttfamily \label{quat__slerp_8cpp_ad679b8a6d98a19aaf6147f6019734eb6_ad679b8a6d98a19aaf6147f6019734eb6} 
+template$<$typename \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} $>$ \\
+\mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\+\_\+\+DONT\+\_\+\+INLINE}} \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} slerp\+\_\+gael (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \&}]{a}{, }\item[{const \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \&}]{b}{, }\item[{typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Q\+::\+Scalar}}}]{t}{}\end{DoxyParamCaption})}
+
+\Hypertarget{quat__slerp_8cpp_aa3373bbc165a4c459aa7fea6fa952887_aa3373bbc165a4c459aa7fea6fa952887}\index{quat\_slerp.cpp@{quat\_slerp.cpp}!slerp\_legacy@{slerp\_legacy}}
+\index{slerp\_legacy@{slerp\_legacy}!quat\_slerp.cpp@{quat\_slerp.cpp}}
+\doxysubsubsection{\texorpdfstring{slerp\_legacy()}{slerp\_legacy()}}
+{\footnotesize\ttfamily \label{quat__slerp_8cpp_aa3373bbc165a4c459aa7fea6fa952887_aa3373bbc165a4c459aa7fea6fa952887} 
+template$<$typename \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} $>$ \\
+\mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\+\_\+\+DONT\+\_\+\+INLINE}} \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} slerp\+\_\+legacy (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \&}]{a}{, }\item[{const \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \&}]{b}{, }\item[{typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Q\+::\+Scalar}}}]{t}{}\end{DoxyParamCaption})}
+
+\Hypertarget{quat__slerp_8cpp_acf44c96dda048e6ce4d8a946ff989902_acf44c96dda048e6ce4d8a946ff989902}\index{quat\_slerp.cpp@{quat\_slerp.cpp}!slerp\_legacy\_nlerp@{slerp\_legacy\_nlerp}}
+\index{slerp\_legacy\_nlerp@{slerp\_legacy\_nlerp}!quat\_slerp.cpp@{quat\_slerp.cpp}}
+\doxysubsubsection{\texorpdfstring{slerp\_legacy\_nlerp()}{slerp\_legacy\_nlerp()}}
+{\footnotesize\ttfamily \label{quat__slerp_8cpp_acf44c96dda048e6ce4d8a946ff989902_acf44c96dda048e6ce4d8a946ff989902} 
+template$<$typename \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} $>$ \\
+\mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\+\_\+\+DONT\+\_\+\+INLINE}} \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} slerp\+\_\+legacy\+\_\+nlerp (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \&}]{a}{, }\item[{const \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \&}]{b}{, }\item[{typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Q\+::\+Scalar}}}]{t}{}\end{DoxyParamCaption})}
+
+\Hypertarget{quat__slerp_8cpp_ad725b03ab5d421a4c5fe6cc70bd5cb68_ad725b03ab5d421a4c5fe6cc70bd5cb68}\index{quat\_slerp.cpp@{quat\_slerp.cpp}!slerp\_rw@{slerp\_rw}}
+\index{slerp\_rw@{slerp\_rw}!quat\_slerp.cpp@{quat\_slerp.cpp}}
+\doxysubsubsection{\texorpdfstring{slerp\_rw()}{slerp\_rw()}}
+{\footnotesize\ttfamily \label{quat__slerp_8cpp_ad725b03ab5d421a4c5fe6cc70bd5cb68_ad725b03ab5d421a4c5fe6cc70bd5cb68} 
+template$<$typename \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} $>$ \\
+\mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\+\_\+\+DONT\+\_\+\+INLINE}} \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} slerp\+\_\+rw (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \&}]{a}{, }\item[{const \mbox{\hyperlink{_householder_q_r__householder_q_8cpp_a7e56035a736d269ad670f312496a0846_a7e56035a736d269ad670f312496a0846}{Q}} \&}]{b}{, }\item[{typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Q\+::\+Scalar}}}]{t}{}\end{DoxyParamCaption})}
+

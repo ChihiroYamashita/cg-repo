@@ -1,0 +1,63 @@
+\doxysection{eigen-\/3.4.0/eigen-\/3.4.0/test/exceptions.cpp ファイル}
+\hypertarget{exceptions_8cpp}{}\label{exceptions_8cpp}\index{eigen-\/3.4.0/eigen-\/3.4.0/test/exceptions.cpp@{eigen-\/3.4.0/eigen-\/3.4.0/test/exceptions.cpp}}
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}Annoying\+Scalar.\+h"{}}\newline
+exceptions.\+cpp の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{exceptions_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{exceptions_8cpp_aa69893f50bcb8cec4064f6bc1017497f_aa69893f50bcb8cec4064f6bc1017497f}{EIGEN\+\_\+\+STACK\+\_\+\+ALLOCATION\+\_\+\+LIMIT}}~100000000
+\item 
+\#define \mbox{\hyperlink{exceptions_8cpp_a7c9d84769d58f117205f87cdc1741507_a7c9d84769d58f117205f87cdc1741507}{CHECK\+\_\+\+MEMLEAK}}(\mbox{\hyperlink{common_8h_a63a3664cbdee9b346c8d91509aa829f7_a63a3664cbdee9b346c8d91509aa829f7}{OP}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{exceptions_8cpp_a6a383119cfd4e8343650362661553e76_a6a383119cfd4e8343650362661553e76}{EIGEN\+\_\+\+DECLARE\+\_\+\+TEST}} (exceptions)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{exceptions_8cpp_a7c9d84769d58f117205f87cdc1741507_a7c9d84769d58f117205f87cdc1741507}\index{exceptions.cpp@{exceptions.cpp}!CHECK\_MEMLEAK@{CHECK\_MEMLEAK}}
+\index{CHECK\_MEMLEAK@{CHECK\_MEMLEAK}!exceptions.cpp@{exceptions.cpp}}
+\doxysubsubsection{\texorpdfstring{CHECK\_MEMLEAK}{CHECK\_MEMLEAK}}
+{\footnotesize\ttfamily \label{exceptions_8cpp_a7c9d84769d58f117205f87cdc1741507_a7c9d84769d58f117205f87cdc1741507} 
+\#define CHECK\+\_\+\+MEMLEAK(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{common_8h_a63a3664cbdee9b346c8d91509aa829f7_a63a3664cbdee9b346c8d91509aa829f7}{OP}}}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_annoying_scalar_a99572a41c5cfe30690e7e2a62f849923_a99572a41c5cfe30690e7e2a62f849923}{AnnoyingScalar::countdown}}\ =\ 100;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ before\ =\ \mbox{\hyperlink{class_annoying_scalar_a0745cc911ee1526ac864e27327ad5c33_a0745cc911ee1526ac864e27327ad5c33}{AnnoyingScalar::instances}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{bool}\ exception\_thrown\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{try}\ \{\ \mbox{\hyperlink{common_8h_a63a3664cbdee9b346c8d91509aa829f7_a63a3664cbdee9b346c8d91509aa829f7}{OP}};\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ catch\ (\mbox{\hyperlink{structmy__exception}{my\_exception}})\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ exception\_thrown\ =\ \textcolor{keyword}{true};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ VERIFY(\mbox{\hyperlink{class_annoying_scalar_a0745cc911ee1526ac864e27327ad5c33_a0745cc911ee1526ac864e27327ad5c33}{AnnoyingScalar::instances}}==before\ \&\&\ \textcolor{stringliteral}{"{}memory\ leak\ detected\ in\ "{}}\ \&\&\ \mbox{\hyperlink{_macros_8h_aaacc0c90f30fcba4a88132d7f2c5c934_aaacc0c90f30fcba4a88132d7f2c5c934}{EIGEN\_MAKESTRING}}(\mbox{\hyperlink{common_8h_a63a3664cbdee9b346c8d91509aa829f7_a63a3664cbdee9b346c8d91509aa829f7}{OP}}));\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ VERIFY(\ (\mbox{\hyperlink{class_annoying_scalar_ad71a43e2174e0758cc5c81b59307fe17_ad71a43e2174e0758cc5c81b59307fe17}{AnnoyingScalar::dont\_throw}})\ ||\ (exception\_thrown\ \&\&\ \textcolor{stringliteral}{"{}\ no\ exception\ thrown\ in\ "{}}\ \&\&\ \mbox{\hyperlink{_macros_8h_aaacc0c90f30fcba4a88132d7f2c5c934_aaacc0c90f30fcba4a88132d7f2c5c934}{EIGEN\_MAKESTRING}}(\mbox{\hyperlink{common_8h_a63a3664cbdee9b346c8d91509aa829f7_a63a3664cbdee9b346c8d91509aa829f7}{OP}}))\ );\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{exceptions_8cpp_aa69893f50bcb8cec4064f6bc1017497f_aa69893f50bcb8cec4064f6bc1017497f}\index{exceptions.cpp@{exceptions.cpp}!EIGEN\_STACK\_ALLOCATION\_LIMIT@{EIGEN\_STACK\_ALLOCATION\_LIMIT}}
+\index{EIGEN\_STACK\_ALLOCATION\_LIMIT@{EIGEN\_STACK\_ALLOCATION\_LIMIT}!exceptions.cpp@{exceptions.cpp}}
+\doxysubsubsection{\texorpdfstring{EIGEN\_STACK\_ALLOCATION\_LIMIT}{EIGEN\_STACK\_ALLOCATION\_LIMIT}}
+{\footnotesize\ttfamily \label{exceptions_8cpp_aa69893f50bcb8cec4064f6bc1017497f_aa69893f50bcb8cec4064f6bc1017497f} 
+\#define EIGEN\+\_\+\+STACK\+\_\+\+ALLOCATION\+\_\+\+LIMIT~100000000}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{exceptions_8cpp_a6a383119cfd4e8343650362661553e76_a6a383119cfd4e8343650362661553e76}\index{exceptions.cpp@{exceptions.cpp}!EIGEN\_DECLARE\_TEST@{EIGEN\_DECLARE\_TEST}}
+\index{EIGEN\_DECLARE\_TEST@{EIGEN\_DECLARE\_TEST}!exceptions.cpp@{exceptions.cpp}}
+\doxysubsubsection{\texorpdfstring{EIGEN\_DECLARE\_TEST()}{EIGEN\_DECLARE\_TEST()}}
+{\footnotesize\ttfamily \label{exceptions_8cpp_a6a383119cfd4e8343650362661553e76_a6a383119cfd4e8343650362661553e76} 
+EIGEN\+\_\+\+DECLARE\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{exceptions}]{}{}\end{DoxyParamCaption})}
+

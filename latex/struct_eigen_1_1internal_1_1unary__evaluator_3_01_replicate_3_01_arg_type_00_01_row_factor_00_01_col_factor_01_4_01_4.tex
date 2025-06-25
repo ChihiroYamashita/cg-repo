@@ -1,0 +1,231 @@
+\doxysection{Eigen\+::internal\+::unary\+\_\+evaluator\texorpdfstring{$<$}{<} Replicate\texorpdfstring{$<$}{<} Arg\+Type, Row\+Factor, Col\+Factor \texorpdfstring{$>$}{>} \texorpdfstring{$>$}{>} 構造体テンプレート}
+\hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4}{}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4}\index{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}}
+
+
+{\ttfamily \#include $<$Core\+Evaluators.\+h$>$}
+
+
+
+Eigen\+::internal\+::unary\+\_\+evaluator\texorpdfstring{$<$}{<} Replicate\texorpdfstring{$<$}{<} Arg\+Type, Row\+Factor, Col\+Factor \texorpdfstring{$>$}{>} \texorpdfstring{$>$}{>} の継承関係図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_018b46ce35eb540bc9e34a3c9e9ad7a34c}
+\end{center}
+\end{figure}
+
+
+Eigen\+::internal\+::unary\+\_\+evaluator\texorpdfstring{$<$}{<} Replicate\texorpdfstring{$<$}{<} Arg\+Type, Row\+Factor, Col\+Factor \texorpdfstring{$>$}{>} \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_010bd291fb359bc02e4c09ba3c90a7012c}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a117fc011fa3f82d5ed26c13dcfa12e56_a117fc011fa3f82d5ed26c13dcfa12e56aabc890afeeab2e082e241c695c94b08f}{Factor}} = (Row\+Factor==Dynamic \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} Col\+Factor==Dynamic) ? Dynamic \+: Row\+Factor\texorpdfstring{$\ast$}{*}\+Col\+Factor
+ \}
+\item 
+enum \{ \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a95524e39c2bba09bf858f9b935f8e236_a95524e39c2bba09bf858f9b935f8e236a0b1f6a5ecbe2a78dc57a4335cfc5cb22}{Coeff\+Read\+Cost}} = evaluator\texorpdfstring{$<$}{<}Arg\+Type\+Nested\+Cleaned\texorpdfstring{$>$}{>}\+::Coeff\+Read\+Cost
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a95524e39c2bba09bf858f9b935f8e236_a95524e39c2bba09bf858f9b935f8e236ae846418ce61a65bdd4b9c24439ab260d}{Linear\+Access\+Mask}} = Xpr\+Type\+::Is\+Vector\+At\+Compile\+Time ? Linear\+Access\+Bit \+: 0
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a95524e39c2bba09bf858f9b935f8e236_a95524e39c2bba09bf858f9b935f8e236ab16be9b7da1654bfbcfd30299d5fb945}{Flags}} = (evaluator\texorpdfstring{$<$}{<}Arg\+Type\+Nested\+Cleaned\texorpdfstring{$>$}{>}\+::Flags \& (Hereditary\+Bits\texorpdfstring{$\vert$}{|}\+Linear\+Access\+Mask) \& \texorpdfstring{$\sim$}{\string~}\+Row\+Major\+Bit) \texorpdfstring{$\vert$}{|} (traits\texorpdfstring{$<$}{<}Xpr\+Type\texorpdfstring{$>$}{>}\+::Flags \& Row\+Major\+Bit)
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a95524e39c2bba09bf858f9b935f8e236_a95524e39c2bba09bf858f9b935f8e236a0dc869d87fc4b2758ea234d3fd3bc658}{Alignment}} = evaluator\texorpdfstring{$<$}{<}Arg\+Type\+Nested\+Cleaned\texorpdfstring{$>$}{>}\+::Alignment
+ \}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}}$<$ Arg\+Type, Row\+Factor, Col\+Factor $>$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a5fab7cfca781c0cc6bee8d3ab669e97a_a5fab7cfca781c0cc6bee8d3ab669e97a}{Xpr\+Type}}
+\item 
+typedef Xpr\+Type\+::\+Coeff\+Return\+Type \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a96664ebd89ef3d83c96a7c547bf34e54_a96664ebd89ef3d83c96a7c547bf34e54}{Coeff\+Return\+Type}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1nested__eval}{internal\+::nested\+\_\+eval}}$<$ Arg\+Type, \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a117fc011fa3f82d5ed26c13dcfa12e56_a117fc011fa3f82d5ed26c13dcfa12e56aabc890afeeab2e082e241c695c94b08f}{Factor}} $>$\+::type \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a01e2baea168f2dc2f51805197d32be1b_a01e2baea168f2dc2f51805197d32be1b}{Arg\+Type\+Nested}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a01e2baea168f2dc2f51805197d32be1b_a01e2baea168f2dc2f51805197d32be1b}{Arg\+Type\+Nested}} $>$\+::type \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_ada3009964bcee5c0b5a4c2c7ed247303_ada3009964bcee5c0b5a4c2c7ed247303}{Arg\+Type\+Nested\+Cleaned}}
+\end{DoxyCompactItemize}
+\doxysubsection*{基底クラス \mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator__base}{Eigen\+::internal\+::evaluator\+\_\+base$<$ Replicate$<$ Arg\+Type, Row\+Factor, Col\+Factor $>$ $>$}} に属する継承公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum 
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}}$<$ Arg\+Type, Row\+Factor, Col\+Factor $>$ $>$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator__base_a7e1096961eddec792ea733511068c406_a7e1096961eddec792ea733511068c406}{Expression\+Traits}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a201b1db1838360fad1e62fe918d63be8_a201b1db1838360fad1e62fe918d63be8}{unary\+\_\+evaluator}} (const \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a5fab7cfca781c0cc6bee8d3ab669e97a_a5fab7cfca781c0cc6bee8d3ab669e97a}{Xpr\+Type}} \&\mbox{\hyperlink{array__replicate_8cpp_ae5c42a5b3544325a1f936c973c834660_ae5c42a5b3544325a1f936c973c834660}{replicate}})
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a96664ebd89ef3d83c96a7c547bf34e54_a96664ebd89ef3d83c96a7c547bf34e54}{Coeff\+Return\+Type}} \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a1d7cfcb24f404ce54f84516c3e3edfe0_a1d7cfcb24f404ce54f84516c3e3edfe0}{coeff}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_matrix_base__row_8cpp_a64ef8efef59f875033a27e7cbbc879ec_a64ef8efef59f875033a27e7cbbc879ec}{row}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_matrix_base__col_8cpp_aa168d9544aa6d49fce0cbfc0bec849b0_aa168d9544aa6d49fce0cbfc0bec849b0}{col}}) const
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a96664ebd89ef3d83c96a7c547bf34e54_a96664ebd89ef3d83c96a7c547bf34e54}{Coeff\+Return\+Type}} \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a785a88469c65e80ed0edcacff52de5d2_a785a88469c65e80ed0edcacff52de5d2}{coeff}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index) const
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Load\+Mode, typename \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} $>$ }\\\mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_ab204763236c75b105b51d03e6afc748c_ab204763236c75b105b51d03e6afc748c}{packet}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_matrix_base__row_8cpp_a64ef8efef59f875033a27e7cbbc879ec_a64ef8efef59f875033a27e7cbbc879ec}{row}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_matrix_base__col_8cpp_aa168d9544aa6d49fce0cbfc0bec849b0_aa168d9544aa6d49fce0cbfc0bec849b0}{col}}) const
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Load\+Mode, typename \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} $>$ }\\\mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a7132e798ac3753d1d0c4cee1c2832026_a7132e798ac3753d1d0c4cee1c2832026}{packet}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index) const
+\end{DoxyCompactItemize}
+\doxysubsection*{基底クラス \mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator__base}{Eigen\+::internal\+::evaluator\+\_\+base$<$ Replicate$<$ Arg\+Type, Row\+Factor, Col\+Factor $>$ $>$}} に属する継承公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} \mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator__base_a26c25d4a1802679adf490c557b96ffe1_a26c25d4a1802679adf490c557b96ffe1}{evaluator\+\_\+base}} ()
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} \mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator__base_a46b0f9991979438b4a1f07ed77293f8f_a46b0f9991979438b4a1f07ed77293f8f}{\texorpdfstring{$\sim$}{\string~}evaluator\+\_\+base}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{限定公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a01e2baea168f2dc2f51805197d32be1b_a01e2baea168f2dc2f51805197d32be1b}{Arg\+Type\+Nested}} \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a3bef0170821ffca1eeac2e571984e618_a3bef0170821ffca1eeac2e571984e618}{m\+\_\+arg}}
+\item 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{evaluator}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_ada3009964bcee5c0b5a4c2c7ed247303_ada3009964bcee5c0b5a4c2c7ed247303}{Arg\+Type\+Nested\+Cleaned}} $>$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a9dc15ac07a776d20a9612c2d04e766f2_a9dc15ac07a776d20a9612c2d04e766f2}{m\+\_\+arg\+Impl}}
+\item 
+const \mbox{\hyperlink{class_eigen_1_1internal_1_1variable__if__dynamic}{variable\+\_\+if\+\_\+dynamic}}$<$ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}, Arg\+Type\+::\+Rows\+At\+Compile\+Time $>$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_ac6ec2960821d55102ef914c1e5372fed_ac6ec2960821d55102ef914c1e5372fed}{m\+\_\+rows}}
+\item 
+const \mbox{\hyperlink{class_eigen_1_1internal_1_1variable__if__dynamic}{variable\+\_\+if\+\_\+dynamic}}$<$ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}, Arg\+Type\+::\+Cols\+At\+Compile\+Time $>$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a6eb87502cae049d11d68481851d36604_a6eb87502cae049d11d68481851d36604}{m\+\_\+cols}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{型定義メンバ詳解}
+\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a01e2baea168f2dc2f51805197d32be1b_a01e2baea168f2dc2f51805197d32be1b}\index{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}!ArgTypeNested@{ArgTypeNested}}
+\index{ArgTypeNested@{ArgTypeNested}!Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{ArgTypeNested}{ArgTypeNested}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a01e2baea168f2dc2f51805197d32be1b_a01e2baea168f2dc2f51805197d32be1b} 
+template$<$typename Arg\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Row\+Factor, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Col\+Factor$>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1nested__eval}{internal\+::nested\+\_\+eval}}$<$Arg\+Type,\mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a117fc011fa3f82d5ed26c13dcfa12e56_a117fc011fa3f82d5ed26c13dcfa12e56aabc890afeeab2e082e241c695c94b08f}{Factor}}$>$\+::type \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator}{Eigen\+::internal\+::unary\+\_\+evaluator}}$<$ \mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}}$<$ Arg\+Type, Row\+Factor, Col\+Factor $>$ $>$\+::\+Arg\+Type\+Nested}
+
+\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_ada3009964bcee5c0b5a4c2c7ed247303_ada3009964bcee5c0b5a4c2c7ed247303}\index{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}!ArgTypeNestedCleaned@{ArgTypeNestedCleaned}}
+\index{ArgTypeNestedCleaned@{ArgTypeNestedCleaned}!Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{ArgTypeNestedCleaned}{ArgTypeNestedCleaned}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_ada3009964bcee5c0b5a4c2c7ed247303_ada3009964bcee5c0b5a4c2c7ed247303} 
+template$<$typename Arg\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Row\+Factor, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Col\+Factor$>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$\mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a01e2baea168f2dc2f51805197d32be1b_a01e2baea168f2dc2f51805197d32be1b}{Arg\+Type\+Nested}}$>$\+::type \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator}{Eigen\+::internal\+::unary\+\_\+evaluator}}$<$ \mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}}$<$ Arg\+Type, Row\+Factor, Col\+Factor $>$ $>$\+::\+Arg\+Type\+Nested\+Cleaned}
+
+\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a96664ebd89ef3d83c96a7c547bf34e54_a96664ebd89ef3d83c96a7c547bf34e54}\index{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}!CoeffReturnType@{CoeffReturnType}}
+\index{CoeffReturnType@{CoeffReturnType}!Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{CoeffReturnType}{CoeffReturnType}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a96664ebd89ef3d83c96a7c547bf34e54_a96664ebd89ef3d83c96a7c547bf34e54} 
+template$<$typename Arg\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Row\+Factor, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Col\+Factor$>$ \\
+Xpr\+Type\+::\+Coeff\+Return\+Type \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator}{Eigen\+::internal\+::unary\+\_\+evaluator}}$<$ \mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}}$<$ Arg\+Type, Row\+Factor, Col\+Factor $>$ $>$\+::\+Coeff\+Return\+Type}
+
+\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a5fab7cfca781c0cc6bee8d3ab669e97a_a5fab7cfca781c0cc6bee8d3ab669e97a}\index{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}!XprType@{XprType}}
+\index{XprType@{XprType}!Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{XprType}{XprType}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a5fab7cfca781c0cc6bee8d3ab669e97a_a5fab7cfca781c0cc6bee8d3ab669e97a} 
+template$<$typename Arg\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Row\+Factor, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Col\+Factor$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}}$<$Arg\+Type, Row\+Factor, Col\+Factor$>$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator}{Eigen\+::internal\+::unary\+\_\+evaluator}}$<$ \mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}}$<$ Arg\+Type, Row\+Factor, Col\+Factor $>$ $>$\mbox{\hyperlink{nestbyvalue_8cpp_a5aefae852e88ada71d9dfc8da1fc33bf_a5aefae852e88ada71d9dfc8da1fc33bf}{\+::\+Xpr\+Type}}}
+
+
+
+\doxysubsection{列挙型メンバ詳解}
+\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a117fc011fa3f82d5ed26c13dcfa12e56_a117fc011fa3f82d5ed26c13dcfa12e56}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a117fc011fa3f82d5ed26c13dcfa12e56_a117fc011fa3f82d5ed26c13dcfa12e56} 
+template$<$typename Arg\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Row\+Factor, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Col\+Factor$>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Factor@{Factor}!Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}}\index{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}!Factor@{Factor}}}\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a117fc011fa3f82d5ed26c13dcfa12e56_a117fc011fa3f82d5ed26c13dcfa12e56aabc890afeeab2e082e241c695c94b08f}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a117fc011fa3f82d5ed26c13dcfa12e56_a117fc011fa3f82d5ed26c13dcfa12e56} 
+Factor&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a95524e39c2bba09bf858f9b935f8e236_a95524e39c2bba09bf858f9b935f8e236}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a95524e39c2bba09bf858f9b935f8e236_a95524e39c2bba09bf858f9b935f8e236} 
+template$<$typename Arg\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Row\+Factor, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Col\+Factor$>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CoeffReadCost@{CoeffReadCost}!Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}}\index{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}!CoeffReadCost@{CoeffReadCost}}}\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a95524e39c2bba09bf858f9b935f8e236_a95524e39c2bba09bf858f9b935f8e236a0b1f6a5ecbe2a78dc57a4335cfc5cb22}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a95524e39c2bba09bf858f9b935f8e236_a95524e39c2bba09bf858f9b935f8e236} 
+Coeff\+Read\+Cost&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LinearAccessMask@{LinearAccessMask}!Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}}\index{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}!LinearAccessMask@{LinearAccessMask}}}\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a95524e39c2bba09bf858f9b935f8e236_a95524e39c2bba09bf858f9b935f8e236ae846418ce61a65bdd4b9c24439ab260d}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a95524e39c2bba09bf858f9b935f8e236_a95524e39c2bba09bf858f9b935f8e236} 
+Linear\+Access\+Mask&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Flags@{Flags}!Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}}\index{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}!Flags@{Flags}}}\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a95524e39c2bba09bf858f9b935f8e236_a95524e39c2bba09bf858f9b935f8e236ab16be9b7da1654bfbcfd30299d5fb945}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a95524e39c2bba09bf858f9b935f8e236_a95524e39c2bba09bf858f9b935f8e236} 
+Flags&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Alignment@{Alignment}!Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}}\index{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}!Alignment@{Alignment}}}\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a95524e39c2bba09bf858f9b935f8e236_a95524e39c2bba09bf858f9b935f8e236a0dc869d87fc4b2758ea234d3fd3bc658}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a95524e39c2bba09bf858f9b935f8e236_a95524e39c2bba09bf858f9b935f8e236} 
+Alignment&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{構築子と解体子}
+\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a201b1db1838360fad1e62fe918d63be8_a201b1db1838360fad1e62fe918d63be8}\index{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}!unary\_evaluator@{unary\_evaluator}}
+\index{unary\_evaluator@{unary\_evaluator}!Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{unary\_evaluator()}{unary\_evaluator()}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a201b1db1838360fad1e62fe918d63be8_a201b1db1838360fad1e62fe918d63be8} 
+template$<$typename Arg\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Row\+Factor, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Col\+Factor$>$ \\
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator}{Eigen\+::internal\+::unary\+\_\+evaluator}}$<$ \mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}}$<$ Arg\+Type, Row\+Factor, Col\+Factor $>$ $>$\+::unary\+\_\+evaluator (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a5fab7cfca781c0cc6bee8d3ab669e97a_a5fab7cfca781c0cc6bee8d3ab669e97a}{Xpr\+Type}} \&}]{replicate}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a785a88469c65e80ed0edcacff52de5d2_a785a88469c65e80ed0edcacff52de5d2}\index{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}!coeff@{coeff}}
+\index{coeff@{coeff}!Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{coeff()}{coeff()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a785a88469c65e80ed0edcacff52de5d2_a785a88469c65e80ed0edcacff52de5d2} 
+template$<$typename Arg\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Row\+Factor, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Col\+Factor$>$ \\
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a96664ebd89ef3d83c96a7c547bf34e54_a96664ebd89ef3d83c96a7c547bf34e54}{Coeff\+Return\+Type}} \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator}{Eigen\+::internal\+::unary\+\_\+evaluator}}$<$ \mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}}$<$ Arg\+Type, Row\+Factor, Col\+Factor $>$ $>$\+::coeff (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{index}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a1d7cfcb24f404ce54f84516c3e3edfe0_a1d7cfcb24f404ce54f84516c3e3edfe0}\index{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}!coeff@{coeff}}
+\index{coeff@{coeff}!Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{coeff()}{coeff()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a1d7cfcb24f404ce54f84516c3e3edfe0_a1d7cfcb24f404ce54f84516c3e3edfe0} 
+template$<$typename Arg\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Row\+Factor, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Col\+Factor$>$ \\
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a96664ebd89ef3d83c96a7c547bf34e54_a96664ebd89ef3d83c96a7c547bf34e54}{Coeff\+Return\+Type}} \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator}{Eigen\+::internal\+::unary\+\_\+evaluator}}$<$ \mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}}$<$ Arg\+Type, Row\+Factor, Col\+Factor $>$ $>$\+::coeff (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{row}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{col}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a7132e798ac3753d1d0c4cee1c2832026_a7132e798ac3753d1d0c4cee1c2832026}\index{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}!packet@{packet}}
+\index{packet@{packet}!Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{packet()}{packet()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a7132e798ac3753d1d0c4cee1c2832026_a7132e798ac3753d1d0c4cee1c2832026} 
+template$<$typename Arg\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Row\+Factor, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Col\+Factor$>$ \\
+template$<$\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Load\+Mode, typename \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} $>$ \\
+\mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator}{Eigen\+::internal\+::unary\+\_\+evaluator}}$<$ \mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}}$<$ Arg\+Type, Row\+Factor, Col\+Factor $>$ $>$\+::packet (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{index}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_ab204763236c75b105b51d03e6afc748c_ab204763236c75b105b51d03e6afc748c}\index{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}!packet@{packet}}
+\index{packet@{packet}!Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{packet()}{packet()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_ab204763236c75b105b51d03e6afc748c_ab204763236c75b105b51d03e6afc748c} 
+template$<$typename Arg\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Row\+Factor, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Col\+Factor$>$ \\
+template$<$\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Load\+Mode, typename \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} $>$ \\
+\mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator}{Eigen\+::internal\+::unary\+\_\+evaluator}}$<$ \mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}}$<$ Arg\+Type, Row\+Factor, Col\+Factor $>$ $>$\+::packet (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{row}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{col}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{メンバ詳解}
+\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a3bef0170821ffca1eeac2e571984e618_a3bef0170821ffca1eeac2e571984e618}\index{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}!m\_arg@{m\_arg}}
+\index{m\_arg@{m\_arg}!Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{m\_arg}{m\_arg}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a3bef0170821ffca1eeac2e571984e618_a3bef0170821ffca1eeac2e571984e618} 
+template$<$typename Arg\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Row\+Factor, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Col\+Factor$>$ \\
+const \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a01e2baea168f2dc2f51805197d32be1b_a01e2baea168f2dc2f51805197d32be1b}{Arg\+Type\+Nested}} \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator}{Eigen\+::internal\+::unary\+\_\+evaluator}}$<$ \mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}}$<$ Arg\+Type, Row\+Factor, Col\+Factor $>$ $>$\+::m\+\_\+arg\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a9dc15ac07a776d20a9612c2d04e766f2_a9dc15ac07a776d20a9612c2d04e766f2}\index{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}!m\_argImpl@{m\_argImpl}}
+\index{m\_argImpl@{m\_argImpl}!Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{m\_argImpl}{m\_argImpl}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a9dc15ac07a776d20a9612c2d04e766f2_a9dc15ac07a776d20a9612c2d04e766f2} 
+template$<$typename Arg\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Row\+Factor, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Col\+Factor$>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{evaluator}}$<$\mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_ada3009964bcee5c0b5a4c2c7ed247303_ada3009964bcee5c0b5a4c2c7ed247303}{Arg\+Type\+Nested\+Cleaned}}$>$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator}{Eigen\+::internal\+::unary\+\_\+evaluator}}$<$ \mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}}$<$ Arg\+Type, Row\+Factor, Col\+Factor $>$ $>$\+::m\+\_\+arg\+Impl\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a6eb87502cae049d11d68481851d36604_a6eb87502cae049d11d68481851d36604}\index{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}!m\_cols@{m\_cols}}
+\index{m\_cols@{m\_cols}!Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{m\_cols}{m\_cols}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a6eb87502cae049d11d68481851d36604_a6eb87502cae049d11d68481851d36604} 
+template$<$typename Arg\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Row\+Factor, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Col\+Factor$>$ \\
+const \mbox{\hyperlink{class_eigen_1_1internal_1_1variable__if__dynamic}{variable\+\_\+if\+\_\+dynamic}}$<$\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}, Arg\+Type\+::\+Cols\+At\+Compile\+Time$>$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator}{Eigen\+::internal\+::unary\+\_\+evaluator}}$<$ \mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}}$<$ Arg\+Type, Row\+Factor, Col\+Factor $>$ $>$\+::m\+\_\+cols\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_ac6ec2960821d55102ef914c1e5372fed_ac6ec2960821d55102ef914c1e5372fed}\index{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}!m\_rows@{m\_rows}}
+\index{m\_rows@{m\_rows}!Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}}
+\doxysubsubsection{\texorpdfstring{m\_rows}{m\_rows}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_ac6ec2960821d55102ef914c1e5372fed_ac6ec2960821d55102ef914c1e5372fed} 
+template$<$typename Arg\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Row\+Factor, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Col\+Factor$>$ \\
+const \mbox{\hyperlink{class_eigen_1_1internal_1_1variable__if__dynamic}{variable\+\_\+if\+\_\+dynamic}}$<$\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}, Arg\+Type\+::\+Rows\+At\+Compile\+Time$>$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1unary__evaluator}{Eigen\+::internal\+::unary\+\_\+evaluator}}$<$ \mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}}$<$ Arg\+Type, Row\+Factor, Col\+Factor $>$ $>$\+::m\+\_\+rows\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+この構造体詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Core/\mbox{\hyperlink{_core_evaluators_8h}{Core\+Evaluators.\+h}}\end{DoxyCompactItemize}

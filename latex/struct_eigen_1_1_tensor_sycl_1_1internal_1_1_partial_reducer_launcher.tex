@@ -1,0 +1,96 @@
+\doxysection{Eigen\+::Tensor\+Sycl\+::internal\+::Partial\+Reducer\+Launcher\texorpdfstring{$<$}{<} Self, Op, rt \texorpdfstring{$>$}{>} 構造体テンプレート}
+\hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher}{}\label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher}\index{Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$@{Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$}}
+
+
+{\ttfamily \#include $<$Tensor\+Reduction\+Sycl.\+h$>$}
+
+
+
+Eigen\+::Tensor\+Sycl\+::internal\+::Partial\+Reducer\+Launcher\texorpdfstring{$<$}{<} Self, Op, rt \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+typedef Self\+::\+Evaluator\+Pointer\+Type \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_ad85c20cf7ad219e201640cea6d35fa5d_ad85c20cf7ad219e201640cea6d35fa5d}{Evaluator\+Pointer\+Type}}
+\item 
+typedef Self\+::\+Coeff\+Return\+Type \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_a75b5c6ba34f7d6870f5f613aa86a8434_a75b5c6ba34f7d6870f5f613aa86a8434}{Coeff\+Return\+Type}}
+\item 
+typedef Self\+::\+Storage \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_a6dea6df914c8c18e9cc39c121f8ccc26_a6dea6df914c8c18e9cc39c121f8ccc26}{Storage}}
+\item 
+typedef Self\+::\+Index \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_adfe9b8d5947c9e38ccf58ef3491c8b98_adfe9b8d5947c9e38ccf58ef3491c8b98}{Index}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_reduction_pannel}{Reduction\+Pannel}}$<$ typename Self\+::\+Index, EIGEN\+\_\+\+SYCL\+\_\+\+LOCAL\+\_\+\+THREAD\+\_\+\+DIM0, EIGEN\+\_\+\+SYCL\+\_\+\+LOCAL\+\_\+\+THREAD\+\_\+\+DIM1, true $>$ \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_a2de9072e9fffd74066c349299b0e5291_a2de9072e9fffd74066c349299b0e5291}{Pannel\+Parameters}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reduction_kernel}{Partial\+Reduction\+Kernel}}$<$ Self, Op, \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_a2de9072e9fffd74066c349299b0e5291_a2de9072e9fffd74066c349299b0e5291}{Pannel\+Parameters}}, rt $>$ \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_aa0e7e0c5b2ffbd7d6742e3a67b22a6b8_aa0e7e0c5b2ffbd7d6742e3a67b22a6b8}{Sycl\+Reducer\+Kerne\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_a0fe1c8d60b85490dfabde2b076dd15aa_a0fe1c8d60b85490dfabde2b076dd15aa}{run}} (const Self \&self, const Op \&reducer, const Eigen\+::\+Sycl\+Device \&dev, \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_ad85c20cf7ad219e201640cea6d35fa5d_ad85c20cf7ad219e201640cea6d35fa5d}{Evaluator\+Pointer\+Type}} output, \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_adfe9b8d5947c9e38ccf58ef3491c8b98_adfe9b8d5947c9e38ccf58ef3491c8b98}{Index}} num\+\_\+coeffs\+\_\+to\+\_\+reduce, \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_adfe9b8d5947c9e38ccf58ef3491c8b98_adfe9b8d5947c9e38ccf58ef3491c8b98}{Index}} num\+\_\+coeffs\+\_\+to\+\_\+preserve)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{型定義メンバ詳解}
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_a75b5c6ba34f7d6870f5f613aa86a8434_a75b5c6ba34f7d6870f5f613aa86a8434}\index{Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$@{Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$}!CoeffReturnType@{CoeffReturnType}}
+\index{CoeffReturnType@{CoeffReturnType}!Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$@{Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$}}
+\doxysubsubsection{\texorpdfstring{CoeffReturnType}{CoeffReturnType}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_a75b5c6ba34f7d6870f5f613aa86a8434_a75b5c6ba34f7d6870f5f613aa86a8434} 
+template$<$typename Self , typename Op , \mbox{\hyperlink{namespace_eigen_1_1_tensor_sycl_1_1internal_a230968b9a376611c2a54e3d2e9c04f09_a230968b9a376611c2a54e3d2e9c04f09}{Tensor\+Sycl\+::internal\+::reduction\+\_\+dim}} rt$>$ \\
+Self\+::\+Coeff\+Return\+Type \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Partial\+Reducer\+Launcher}}$<$ Self, Op, rt $>$\+::\+Coeff\+Return\+Type}
+
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_ad85c20cf7ad219e201640cea6d35fa5d_ad85c20cf7ad219e201640cea6d35fa5d}\index{Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$@{Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$}!EvaluatorPointerType@{EvaluatorPointerType}}
+\index{EvaluatorPointerType@{EvaluatorPointerType}!Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$@{Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$}}
+\doxysubsubsection{\texorpdfstring{EvaluatorPointerType}{EvaluatorPointerType}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_ad85c20cf7ad219e201640cea6d35fa5d_ad85c20cf7ad219e201640cea6d35fa5d} 
+template$<$typename Self , typename Op , \mbox{\hyperlink{namespace_eigen_1_1_tensor_sycl_1_1internal_a230968b9a376611c2a54e3d2e9c04f09_a230968b9a376611c2a54e3d2e9c04f09}{Tensor\+Sycl\+::internal\+::reduction\+\_\+dim}} rt$>$ \\
+Self\+::\+Evaluator\+Pointer\+Type \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Partial\+Reducer\+Launcher}}$<$ Self, Op, rt $>$\+::\+Evaluator\+Pointer\+Type}
+
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_adfe9b8d5947c9e38ccf58ef3491c8b98_adfe9b8d5947c9e38ccf58ef3491c8b98}\index{Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$@{Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$}!Index@{Index}}
+\index{Index@{Index}!Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$@{Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$}}
+\doxysubsubsection{\texorpdfstring{Index}{Index}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_adfe9b8d5947c9e38ccf58ef3491c8b98_adfe9b8d5947c9e38ccf58ef3491c8b98} 
+template$<$typename Self , typename Op , \mbox{\hyperlink{namespace_eigen_1_1_tensor_sycl_1_1internal_a230968b9a376611c2a54e3d2e9c04f09_a230968b9a376611c2a54e3d2e9c04f09}{Tensor\+Sycl\+::internal\+::reduction\+\_\+dim}} rt$>$ \\
+Self\+::\+Index \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Partial\+Reducer\+Launcher}}$<$ Self, Op, rt $>$\+::\+Index}
+
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_a2de9072e9fffd74066c349299b0e5291_a2de9072e9fffd74066c349299b0e5291}\index{Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$@{Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$}!PannelParameters@{PannelParameters}}
+\index{PannelParameters@{PannelParameters}!Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$@{Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$}}
+\doxysubsubsection{\texorpdfstring{PannelParameters}{PannelParameters}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_a2de9072e9fffd74066c349299b0e5291_a2de9072e9fffd74066c349299b0e5291} 
+template$<$typename Self , typename Op , \mbox{\hyperlink{namespace_eigen_1_1_tensor_sycl_1_1internal_a230968b9a376611c2a54e3d2e9c04f09_a230968b9a376611c2a54e3d2e9c04f09}{Tensor\+Sycl\+::internal\+::reduction\+\_\+dim}} rt$>$ \\
+\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_reduction_pannel}{Reduction\+Pannel}}$<$typename Self\+::\+Index, EIGEN\+\_\+\+SYCL\+\_\+\+LOCAL\+\_\+\+THREAD\+\_\+\+DIM0, EIGEN\+\_\+\+SYCL\+\_\+\+LOCAL\+\_\+\+THREAD\+\_\+\+DIM1, true$>$ \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Partial\+Reducer\+Launcher}}$<$ Self, Op, rt $>$\+::\+Pannel\+Parameters}
+
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_a6dea6df914c8c18e9cc39c121f8ccc26_a6dea6df914c8c18e9cc39c121f8ccc26}\index{Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$@{Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$}!Storage@{Storage}}
+\index{Storage@{Storage}!Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$@{Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$}}
+\doxysubsubsection{\texorpdfstring{Storage}{Storage}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_a6dea6df914c8c18e9cc39c121f8ccc26_a6dea6df914c8c18e9cc39c121f8ccc26} 
+template$<$typename Self , typename Op , \mbox{\hyperlink{namespace_eigen_1_1_tensor_sycl_1_1internal_a230968b9a376611c2a54e3d2e9c04f09_a230968b9a376611c2a54e3d2e9c04f09}{Tensor\+Sycl\+::internal\+::reduction\+\_\+dim}} rt$>$ \\
+Self\+::\+Storage \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Partial\+Reducer\+Launcher}}$<$ Self, Op, rt $>$\+::\+Storage}
+
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_aa0e7e0c5b2ffbd7d6742e3a67b22a6b8_aa0e7e0c5b2ffbd7d6742e3a67b22a6b8}\index{Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$@{Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$}!SyclReducerKerneType@{SyclReducerKerneType}}
+\index{SyclReducerKerneType@{SyclReducerKerneType}!Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$@{Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$}}
+\doxysubsubsection{\texorpdfstring{SyclReducerKerneType}{SyclReducerKerneType}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_aa0e7e0c5b2ffbd7d6742e3a67b22a6b8_aa0e7e0c5b2ffbd7d6742e3a67b22a6b8} 
+template$<$typename Self , typename Op , \mbox{\hyperlink{namespace_eigen_1_1_tensor_sycl_1_1internal_a230968b9a376611c2a54e3d2e9c04f09_a230968b9a376611c2a54e3d2e9c04f09}{Tensor\+Sycl\+::internal\+::reduction\+\_\+dim}} rt$>$ \\
+\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reduction_kernel}{Partial\+Reduction\+Kernel}}$<$Self, Op, \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_a2de9072e9fffd74066c349299b0e5291_a2de9072e9fffd74066c349299b0e5291}{Pannel\+Parameters}}, rt$>$ \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Partial\+Reducer\+Launcher}}$<$ Self, Op, rt $>$\+::\+Sycl\+Reducer\+Kerne\+Type}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_a0fe1c8d60b85490dfabde2b076dd15aa_a0fe1c8d60b85490dfabde2b076dd15aa}\index{Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$@{Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$}!run@{run}}
+\index{run@{run}!Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$@{Eigen::TensorSycl::internal::PartialReducerLauncher$<$ Self, Op, rt $>$}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_a0fe1c8d60b85490dfabde2b076dd15aa_a0fe1c8d60b85490dfabde2b076dd15aa} 
+template$<$typename Self , typename Op , \mbox{\hyperlink{namespace_eigen_1_1_tensor_sycl_1_1internal_a230968b9a376611c2a54e3d2e9c04f09_a230968b9a376611c2a54e3d2e9c04f09}{Tensor\+Sycl\+::internal\+::reduction\+\_\+dim}} rt$>$ \\
+static bool \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Partial\+Reducer\+Launcher}}$<$ Self, Op, rt $>$\+::run (\begin{DoxyParamCaption}\item[{const Self \&}]{self}{, }\item[{const Op \&}]{reducer}{, }\item[{const Eigen\+::\+Sycl\+Device \&}]{dev}{, }\item[{\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_ad85c20cf7ad219e201640cea6d35fa5d_ad85c20cf7ad219e201640cea6d35fa5d}{Evaluator\+Pointer\+Type}}}]{output}{, }\item[{\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_adfe9b8d5947c9e38ccf58ef3491c8b98_adfe9b8d5947c9e38ccf58ef3491c8b98}{Index}}}]{num\+\_\+coeffs\+\_\+to\+\_\+reduce}{, }\item[{\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_partial_reducer_launcher_adfe9b8d5947c9e38ccf58ef3491c8b98_adfe9b8d5947c9e38ccf58ef3491c8b98}{Index}}}]{num\+\_\+coeffs\+\_\+to\+\_\+preserve}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+この構造体詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/unsupported/\+Eigen/\+CXX11/src/\+Tensor/\mbox{\hyperlink{_tensor_reduction_sycl_8h}{Tensor\+Reduction\+Sycl.\+h}}\end{DoxyCompactItemize}

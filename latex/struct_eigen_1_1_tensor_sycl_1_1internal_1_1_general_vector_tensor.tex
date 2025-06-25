@@ -1,0 +1,258 @@
+\doxysection{Eigen\+::Tensor\+Sycl\+::internal\+::General\+Vector\+Tensor\texorpdfstring{$<$}{<} Out\+Scalar, Out\+Accessor, Vector\+Mapper, Tensor\+Mapper, Storage\+Index, Properties, KFactor, Vectorizable, is\+\_\+lhs\+\_\+vec, Is\+Final \texorpdfstring{$>$}{>} 構造体テンプレート}
+\hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor}{}\label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor}\index{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}}
+
+
+\doxylink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor}{General\+Vector\+Tensor} is a template class that provides \doxylink{class_eigen_1_1_tensor}{Tensor} -\/vector contraction operation, which is a special case of \doxylink{class_eigen_1_1_tensor}{Tensor} \doxylink{class_eigen_1_1_tensor}{Tensor} contraction.  
+
+
+
+
+{\ttfamily \#include $<$Tensor\+Contraction\+Sycl.\+h$>$}
+
+
+
+Eigen\+::Tensor\+Sycl\+::internal\+::General\+Vector\+Tensor\texorpdfstring{$<$}{<} Out\+Scalar, Out\+Accessor, Vector\+Mapper, Tensor\+Mapper, Storage\+Index, Properties, KFactor, Vectorizable, is\+\_\+lhs\+\_\+vec, Is\+Final \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=243pt]{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+typedef Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Vectorise$<$ Out\+Scalar, Eigen\+::\+Sycl\+Device, Vectorizable $>$\+::\+Packet\+Return\+Type \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a6f4d1f38cf16897f85ac0d4588319926_a6f4d1f38cf16897f85ac0d4588319926}{Packet\+Return\+Type}}
+\item 
+typedef cl\+::sycl\+::accessor$<$ Out\+Scalar, 1, cl\+::sycl\+::access\+::mode\+::read\+\_\+write, cl\+::sycl\+::access\+::target\+::local $>$ \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a2d9df832b08a2aee08e1eada66947dbe_a2d9df832b08a2aee08e1eada66947dbe}{Scratch}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties}{Block\+Properties}}$<$ is\+\_\+lhs\+\_\+vec ? false \+:true, is\+\_\+lhs\+\_\+vec ? false \+:true, Vectorizable, \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a6f4d1f38cf16897f85ac0d4588319926_a6f4d1f38cf16897f85ac0d4588319926}{Packet\+Return\+Type}} $>$ \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_aced096f918b9965cda8e227ab480cd04_aced096f918b9965cda8e227ab480cd04}{Vec\+Block\+Properties}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a4935d692e607509a13fd1fbee37c3934_a4935d692e607509a13fd1fbee37c3934}{General\+Vector\+Tensor}} (\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a2d9df832b08a2aee08e1eada66947dbe_a2d9df832b08a2aee08e1eada66947dbe}{Scratch}} scratch\+\_\+, const Vector\+Mapper vec\+\_\+, const Tensor\+Mapper mat\+\_\+, Out\+Accessor out\+\_\+res\+\_\+, const Storage\+Index non\+Contract\+Group\+Size\+\_\+, const Storage\+Index non\+Contract\+Dim\+\_\+, const Storage\+Index contract\+Dim\+\_\+)
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} void \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a2015f075597b5b5e5855dc7db2cb3f50_a2015f075597b5b5e5855dc7db2cb3f50}{operator()}} (cl\+::sycl\+::nd\+\_\+item$<$ 1 $>$ item\+ID)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$bool is\+\_\+internal\+\_\+block, typename Out\+Ptr $>$ }\\static \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} void \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a2a8439d4ef9c109a6d1d06b23b824a33_a2a8439d4ef9c109a6d1d06b23b824a33}{compute\+\_\+panel}} (const cl\+::sycl\+::nd\+\_\+item$<$ 1 $>$ \&item\+ID, const Vector\+Mapper \&\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_af8a38775dbc86b7c0937825bde1b7745_af8a38775dbc86b7c0937825bde1b7745}{vec}}, const Tensor\+Mapper \&\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a6210a1865d7843176d6ad982f2ebdd25_a6210a1865d7843176d6ad982f2ebdd25}{mat}}, Out\+Scalar \texorpdfstring{$\ast$}{*}local\+\_\+output, Out\+Ptr out\+\_\+ptr, const Storage\+Index non\+Contract\+Group\+Offset, const Storage\+Index linear\+Local\+Thread\+Id, Storage\+Index \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_aa6eaeac749e4429aba20d52004d8ec49_aa6eaeac749e4429aba20d52004d8ec49}{contract\+Dim}}, Storage\+Index \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a8c98567493c58c6ab60dd4eef39d195b_a8c98567493c58c6ab60dd4eef39d195b}{non\+Contract\+Dim}}, Storage\+Index contract\+Id, Storage\+Index non\+Contract\+Id, Storage\+Index global\+Contract\+Dim\+Offset, Storage\+Index global\+Non\+Contract\+Dim\+Offset, Storage\+Index out\+Scratch\+Index)
+\item 
+{\footnotesize template$<$typename Input\+Block\+Properties , bool is\+\_\+internal\+\_\+block, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} CFactor, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Group\+Size, typename Input , typename Local $>$ }\\static \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} void \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a62faa97772c77ede92af4848ab5a0765_a62faa97772c77ede92af4848ab5a0765}{extract\+\_\+block}} (const Input \&inpt, Local \texorpdfstring{$\ast$}{*}local\+\_\+ptr, const Storage\+Index \&linear\+Local\+Thread\+Id, const Storage\+Index \&c\+Offset, const Storage\+Index \&\mbox{\hyperlink{bench__gemm_8cpp_aaee470c3acb6b181fd804d072284fbaa_aaee470c3acb6b181fd804d072284fbaa}{C}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a2d9df832b08a2aee08e1eada66947dbe_a2d9df832b08a2aee08e1eada66947dbe}{Scratch}} \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a05c3357d6d4bdbbd83d72eb67d23d0fd_a05c3357d6d4bdbbd83d72eb67d23d0fd}{scratch}}
+\item 
+const Vector\+Mapper \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_af8a38775dbc86b7c0937825bde1b7745_af8a38775dbc86b7c0937825bde1b7745}{vec}}
+\item 
+const Tensor\+Mapper \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a6210a1865d7843176d6ad982f2ebdd25_a6210a1865d7843176d6ad982f2ebdd25}{mat}}
+\item 
+Out\+Accessor \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_ab63a9b9da2e948f73f891619619b0560_ab63a9b9da2e948f73f891619619b0560}{out\+\_\+res}}
+\item 
+const Storage\+Index \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a97fd09801e9b4e02285011345bb019fd_a97fd09801e9b4e02285011345bb019fd}{non\+Contract\+Group\+Size}}
+\item 
+const Storage\+Index \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a8c98567493c58c6ab60dd4eef39d195b_a8c98567493c58c6ab60dd4eef39d195b}{non\+Contract\+Dim}}
+\item 
+const Storage\+Index \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_aa6eaeac749e4429aba20d52004d8ec49_aa6eaeac749e4429aba20d52004d8ec49}{contract\+Dim}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静的公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_ac1373ce463b4fb0b24a055792d7ff4e3_ac1373ce463b4fb0b24a055792d7ff4e3}{Packet\+Size}}
+\item 
+static \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} Storage\+Index \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_ad99918120d8f3e72277845da62ca0c20_ad99918120d8f3e72277845da62ca0c20}{Out\+Scratch\+Offset}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{詳解}
+\subsubsection*{template$<$typename Out\+Scalar, typename Out\+Accessor, typename Vector\+Mapper, typename Tensor\+Mapper, typename Storage\+Index, typename Properties, Storage\+Index KFactor, bool Vectorizable, bool is\+\_\+lhs\+\_\+vec, bool Is\+Final$>$\newline
+struct Eigen\+::\+Tensor\+Sycl\+::internal\+::\+General\+Vector\+Tensor$<$ Out\+Scalar, Out\+Accessor, Vector\+Mapper, Tensor\+Mapper, Storage\+Index, Properties, KFactor, Vectorizable, is\+\_\+lhs\+\_\+vec, Is\+Final $>$}
+\doxylink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor}{General\+Vector\+Tensor} is a template class that provides \doxylink{class_eigen_1_1_tensor}{Tensor} -\/vector contraction operation, which is a special case of \doxylink{class_eigen_1_1_tensor}{Tensor} \doxylink{class_eigen_1_1_tensor}{Tensor} contraction. 
+
+
+\begin{DoxyTemplParams}{テンプレート引数}
+{\em Out\+Scalar} & determines the output scalar type\\
+\hline
+{\em Out\+Accessor} & determines the sycl accessor type for out put (please see the sycl-\/1.\+2.\+1 specification (\href{https://www.khronos.org/registry/SYCL/specs/sycl-1.2.1.pdf}{\texttt{ https\+://www.\+khronos.\+org/registry/\+SYCL/specs/sycl-\/1.\+2.\+1.\+pdf}}) for accessor definition)\\
+\hline
+{\em Vector\+Mapper} & determines the tensor contraction mapper for the vector input (can be lhs or rhs)\\
+\hline
+{\em Tensor\+Mapper} & determines the tensor contraction mapper for the tensor input (can be lhs or rhs)\\
+\hline
+{\em Storage\+Index} & determines the Storage\+Index Type\\
+\hline
+{\em Properties} & determines the Contraction Panel properties\\
+\hline
+{\em KFactor} & determines the number of elements in K dimension in a Tile\\
+\hline
+{\em Vectorizable} & determines whether or not the vectorization is enabled for the \doxylink{namespace_eigen}{Eigen} expression.\\
+\hline
+{\em is\+\_\+lhs\+\_\+vec} & determines whether lhs is a vector or rhs is a vector\\
+\hline
+{\em Is\+Final} & determine if this is the final kernel. If so, the result will be written in a final output. Otherwise, the result of contraction will be written iin a temporary buffer.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{引数}
+{\em scratch} & determines the local memory containing the vector block for each work-\/group\\
+\hline
+{\em vec} & determines the vector input (tensor mapper)\\
+\hline
+{\em mat} & determines the tensor input (tensor mapper)\\
+\hline
+{\em out\+\_\+res} & determines the output vector containing the contraction result\\
+\hline
+{\em non\+Contract\+Group\+Size} & a logical number determining the number of work-\/group for non-\/contracting dimension\\
+\hline
+{\em non\+Contract\+Dim} & determines the size of non contracting dimension for the flattened tensor\\
+\hline
+{\em contract\+Dim} & determines the size of non contracting dimension for the flattened tensor \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{型定義メンバ詳解}
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a6f4d1f38cf16897f85ac0d4588319926_a6f4d1f38cf16897f85ac0d4588319926}\index{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}!PacketReturnType@{PacketReturnType}}
+\index{PacketReturnType@{PacketReturnType}!Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}}
+\doxysubsubsection{\texorpdfstring{PacketReturnType}{PacketReturnType}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a6f4d1f38cf16897f85ac0d4588319926_a6f4d1f38cf16897f85ac0d4588319926} 
+template$<$typename Out\+Scalar , typename Out\+Accessor , typename Vector\+Mapper , typename Tensor\+Mapper , typename Storage\+Index , typename Properties , Storage\+Index KFactor, bool Vectorizable, bool is\+\_\+lhs\+\_\+vec, bool Is\+Final$>$ \\
+Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Vectorise$<$Out\+Scalar,Eigen\+::\+Sycl\+Device,Vectorizable$>$\+::\+Packet\+Return\+Type \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+General\+Vector\+Tensor}}$<$ Out\+Scalar, Out\+Accessor, Vector\+Mapper, Tensor\+Mapper, Storage\+Index, Properties, KFactor, Vectorizable, is\+\_\+lhs\+\_\+vec, Is\+Final $>$\+::\+Packet\+Return\+Type}
+
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a2d9df832b08a2aee08e1eada66947dbe_a2d9df832b08a2aee08e1eada66947dbe}\index{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}!Scratch@{Scratch}}
+\index{Scratch@{Scratch}!Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}}
+\doxysubsubsection{\texorpdfstring{Scratch}{Scratch}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a2d9df832b08a2aee08e1eada66947dbe_a2d9df832b08a2aee08e1eada66947dbe} 
+template$<$typename Out\+Scalar , typename Out\+Accessor , typename Vector\+Mapper , typename Tensor\+Mapper , typename Storage\+Index , typename Properties , Storage\+Index KFactor, bool Vectorizable, bool is\+\_\+lhs\+\_\+vec, bool Is\+Final$>$ \\
+cl\+::sycl\+::accessor$<$Out\+Scalar, 1, cl\+::sycl\+::access\+::mode\+::read\+\_\+write, cl\+::sycl\+::access\+::target\+::local$>$ \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+General\+Vector\+Tensor}}$<$ Out\+Scalar, Out\+Accessor, Vector\+Mapper, Tensor\+Mapper, Storage\+Index, Properties, KFactor, Vectorizable, is\+\_\+lhs\+\_\+vec, Is\+Final $>$\+::\+Scratch}
+
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_aced096f918b9965cda8e227ab480cd04_aced096f918b9965cda8e227ab480cd04}\index{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}!VecBlockProperties@{VecBlockProperties}}
+\index{VecBlockProperties@{VecBlockProperties}!Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}}
+\doxysubsubsection{\texorpdfstring{VecBlockProperties}{VecBlockProperties}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_aced096f918b9965cda8e227ab480cd04_aced096f918b9965cda8e227ab480cd04} 
+template$<$typename Out\+Scalar , typename Out\+Accessor , typename Vector\+Mapper , typename Tensor\+Mapper , typename Storage\+Index , typename Properties , Storage\+Index KFactor, bool Vectorizable, bool is\+\_\+lhs\+\_\+vec, bool Is\+Final$>$ \\
+\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties}{Block\+Properties}}$<$is\+\_\+lhs\+\_\+vec ? false \+: true, is\+\_\+lhs\+\_\+vec ? false \+: true, Vectorizable, \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a6f4d1f38cf16897f85ac0d4588319926_a6f4d1f38cf16897f85ac0d4588319926}{Packet\+Return\+Type}}$>$ \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+General\+Vector\+Tensor}}$<$ Out\+Scalar, Out\+Accessor, Vector\+Mapper, Tensor\+Mapper, Storage\+Index, Properties, KFactor, Vectorizable, is\+\_\+lhs\+\_\+vec, Is\+Final $>$\+::\+Vec\+Block\+Properties}
+
+
+
+\doxysubsection{構築子と解体子}
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a4935d692e607509a13fd1fbee37c3934_a4935d692e607509a13fd1fbee37c3934}\index{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}!GeneralVectorTensor@{GeneralVectorTensor}}
+\index{GeneralVectorTensor@{GeneralVectorTensor}!Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}}
+\doxysubsubsection{\texorpdfstring{GeneralVectorTensor()}{GeneralVectorTensor()}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a4935d692e607509a13fd1fbee37c3934_a4935d692e607509a13fd1fbee37c3934} 
+template$<$typename Out\+Scalar , typename Out\+Accessor , typename Vector\+Mapper , typename Tensor\+Mapper , typename Storage\+Index , typename Properties , Storage\+Index KFactor, bool Vectorizable, bool is\+\_\+lhs\+\_\+vec, bool Is\+Final$>$ \\
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+General\+Vector\+Tensor}}$<$ Out\+Scalar, Out\+Accessor, Vector\+Mapper, Tensor\+Mapper, Storage\+Index, Properties, KFactor, Vectorizable, is\+\_\+lhs\+\_\+vec, Is\+Final $>$\+::\+General\+Vector\+Tensor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a2d9df832b08a2aee08e1eada66947dbe_a2d9df832b08a2aee08e1eada66947dbe}{Scratch}}}]{scratch\+\_\+}{, }\item[{const Vector\+Mapper}]{vec\+\_\+}{, }\item[{const Tensor\+Mapper}]{mat\+\_\+}{, }\item[{Out\+Accessor}]{out\+\_\+res\+\_\+}{, }\item[{const Storage\+Index}]{non\+Contract\+Group\+Size\+\_\+}{, }\item[{const Storage\+Index}]{non\+Contract\+Dim\+\_\+}{, }\item[{const Storage\+Index}]{contract\+Dim\+\_\+}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a2a8439d4ef9c109a6d1d06b23b824a33_a2a8439d4ef9c109a6d1d06b23b824a33}\index{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}!compute\_panel@{compute\_panel}}
+\index{compute\_panel@{compute\_panel}!Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}}
+\doxysubsubsection{\texorpdfstring{compute\_panel()}{compute\_panel()}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a2a8439d4ef9c109a6d1d06b23b824a33_a2a8439d4ef9c109a6d1d06b23b824a33} 
+template$<$typename Out\+Scalar , typename Out\+Accessor , typename Vector\+Mapper , typename Tensor\+Mapper , typename Storage\+Index , typename Properties , Storage\+Index KFactor, bool Vectorizable, bool is\+\_\+lhs\+\_\+vec, bool Is\+Final$>$ \\
+template$<$bool is\+\_\+internal\+\_\+block, typename Out\+Ptr $>$ \\
+static \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} void \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+General\+Vector\+Tensor}}$<$ Out\+Scalar, Out\+Accessor, Vector\+Mapper, Tensor\+Mapper, Storage\+Index, Properties, KFactor, Vectorizable, is\+\_\+lhs\+\_\+vec, Is\+Final $>$\+::compute\+\_\+panel (\begin{DoxyParamCaption}\item[{const cl\+::sycl\+::nd\+\_\+item$<$ 1 $>$ \&}]{item\+ID}{, }\item[{const Vector\+Mapper \&}]{vec}{, }\item[{const Tensor\+Mapper \&}]{mat}{, }\item[{Out\+Scalar \texorpdfstring{$\ast$}{*}}]{local\+\_\+output}{, }\item[{Out\+Ptr}]{out\+\_\+ptr}{, }\item[{const Storage\+Index}]{non\+Contract\+Group\+Offset}{, }\item[{const Storage\+Index}]{linear\+Local\+Thread\+Id}{, }\item[{Storage\+Index}]{contract\+Dim}{, }\item[{Storage\+Index}]{non\+Contract\+Dim}{, }\item[{Storage\+Index}]{contract\+Id}{, }\item[{Storage\+Index}]{non\+Contract\+Id}{, }\item[{Storage\+Index}]{global\+Contract\+Dim\+Offset}{, }\item[{Storage\+Index}]{global\+Non\+Contract\+Dim\+Offset}{, }\item[{Storage\+Index}]{out\+Scratch\+Index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a62faa97772c77ede92af4848ab5a0765_a62faa97772c77ede92af4848ab5a0765}\index{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}!extract\_block@{extract\_block}}
+\index{extract\_block@{extract\_block}!Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}}
+\doxysubsubsection{\texorpdfstring{extract\_block()}{extract\_block()}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a62faa97772c77ede92af4848ab5a0765_a62faa97772c77ede92af4848ab5a0765} 
+template$<$typename Out\+Scalar , typename Out\+Accessor , typename Vector\+Mapper , typename Tensor\+Mapper , typename Storage\+Index , typename Properties , Storage\+Index KFactor, bool Vectorizable, bool is\+\_\+lhs\+\_\+vec, bool Is\+Final$>$ \\
+template$<$typename Input\+Block\+Properties , bool is\+\_\+internal\+\_\+block, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} CFactor, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Group\+Size, typename Input , typename Local $>$ \\
+static \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} void \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+General\+Vector\+Tensor}}$<$ Out\+Scalar, Out\+Accessor, Vector\+Mapper, Tensor\+Mapper, Storage\+Index, Properties, KFactor, Vectorizable, is\+\_\+lhs\+\_\+vec, Is\+Final $>$\+::extract\+\_\+block (\begin{DoxyParamCaption}\item[{const Input \&}]{inpt}{, }\item[{Local \texorpdfstring{$\ast$}{*}}]{local\+\_\+ptr}{, }\item[{const Storage\+Index \&}]{linear\+Local\+Thread\+Id}{, }\item[{const Storage\+Index \&}]{c\+Offset}{, }\item[{const Storage\+Index \&}]{C}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a2015f075597b5b5e5855dc7db2cb3f50_a2015f075597b5b5e5855dc7db2cb3f50}\index{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a2015f075597b5b5e5855dc7db2cb3f50_a2015f075597b5b5e5855dc7db2cb3f50} 
+template$<$typename Out\+Scalar , typename Out\+Accessor , typename Vector\+Mapper , typename Tensor\+Mapper , typename Storage\+Index , typename Properties , Storage\+Index KFactor, bool Vectorizable, bool is\+\_\+lhs\+\_\+vec, bool Is\+Final$>$ \\
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} void \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+General\+Vector\+Tensor}}$<$ Out\+Scalar, Out\+Accessor, Vector\+Mapper, Tensor\+Mapper, Storage\+Index, Properties, KFactor, Vectorizable, is\+\_\+lhs\+\_\+vec, Is\+Final $>$\+::operator() (\begin{DoxyParamCaption}\item[{cl\+::sycl\+::nd\+\_\+item$<$ 1 $>$}]{item\+ID}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{メンバ詳解}
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_aa6eaeac749e4429aba20d52004d8ec49_aa6eaeac749e4429aba20d52004d8ec49}\index{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}!contractDim@{contractDim}}
+\index{contractDim@{contractDim}!Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}}
+\doxysubsubsection{\texorpdfstring{contractDim}{contractDim}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_aa6eaeac749e4429aba20d52004d8ec49_aa6eaeac749e4429aba20d52004d8ec49} 
+template$<$typename Out\+Scalar , typename Out\+Accessor , typename Vector\+Mapper , typename Tensor\+Mapper , typename Storage\+Index , typename Properties , Storage\+Index KFactor, bool Vectorizable, bool is\+\_\+lhs\+\_\+vec, bool Is\+Final$>$ \\
+const Storage\+Index \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+General\+Vector\+Tensor}}$<$ Out\+Scalar, Out\+Accessor, Vector\+Mapper, Tensor\+Mapper, Storage\+Index, Properties, KFactor, Vectorizable, is\+\_\+lhs\+\_\+vec, Is\+Final $>$\+::contract\+Dim}
+
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a6210a1865d7843176d6ad982f2ebdd25_a6210a1865d7843176d6ad982f2ebdd25}\index{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}!mat@{mat}}
+\index{mat@{mat}!Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}}
+\doxysubsubsection{\texorpdfstring{mat}{mat}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a6210a1865d7843176d6ad982f2ebdd25_a6210a1865d7843176d6ad982f2ebdd25} 
+template$<$typename Out\+Scalar , typename Out\+Accessor , typename Vector\+Mapper , typename Tensor\+Mapper , typename Storage\+Index , typename Properties , Storage\+Index KFactor, bool Vectorizable, bool is\+\_\+lhs\+\_\+vec, bool Is\+Final$>$ \\
+const Tensor\+Mapper \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+General\+Vector\+Tensor}}$<$ Out\+Scalar, Out\+Accessor, Vector\+Mapper, Tensor\+Mapper, Storage\+Index, Properties, KFactor, Vectorizable, is\+\_\+lhs\+\_\+vec, Is\+Final $>$\+::mat}
+
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a8c98567493c58c6ab60dd4eef39d195b_a8c98567493c58c6ab60dd4eef39d195b}\index{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}!nonContractDim@{nonContractDim}}
+\index{nonContractDim@{nonContractDim}!Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}}
+\doxysubsubsection{\texorpdfstring{nonContractDim}{nonContractDim}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a8c98567493c58c6ab60dd4eef39d195b_a8c98567493c58c6ab60dd4eef39d195b} 
+template$<$typename Out\+Scalar , typename Out\+Accessor , typename Vector\+Mapper , typename Tensor\+Mapper , typename Storage\+Index , typename Properties , Storage\+Index KFactor, bool Vectorizable, bool is\+\_\+lhs\+\_\+vec, bool Is\+Final$>$ \\
+const Storage\+Index \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+General\+Vector\+Tensor}}$<$ Out\+Scalar, Out\+Accessor, Vector\+Mapper, Tensor\+Mapper, Storage\+Index, Properties, KFactor, Vectorizable, is\+\_\+lhs\+\_\+vec, Is\+Final $>$\+::non\+Contract\+Dim}
+
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a97fd09801e9b4e02285011345bb019fd_a97fd09801e9b4e02285011345bb019fd}\index{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}!nonContractGroupSize@{nonContractGroupSize}}
+\index{nonContractGroupSize@{nonContractGroupSize}!Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}}
+\doxysubsubsection{\texorpdfstring{nonContractGroupSize}{nonContractGroupSize}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a97fd09801e9b4e02285011345bb019fd_a97fd09801e9b4e02285011345bb019fd} 
+template$<$typename Out\+Scalar , typename Out\+Accessor , typename Vector\+Mapper , typename Tensor\+Mapper , typename Storage\+Index , typename Properties , Storage\+Index KFactor, bool Vectorizable, bool is\+\_\+lhs\+\_\+vec, bool Is\+Final$>$ \\
+const Storage\+Index \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+General\+Vector\+Tensor}}$<$ Out\+Scalar, Out\+Accessor, Vector\+Mapper, Tensor\+Mapper, Storage\+Index, Properties, KFactor, Vectorizable, is\+\_\+lhs\+\_\+vec, Is\+Final $>$\+::non\+Contract\+Group\+Size}
+
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_ab63a9b9da2e948f73f891619619b0560_ab63a9b9da2e948f73f891619619b0560}\index{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}!out\_res@{out\_res}}
+\index{out\_res@{out\_res}!Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}}
+\doxysubsubsection{\texorpdfstring{out\_res}{out\_res}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_ab63a9b9da2e948f73f891619619b0560_ab63a9b9da2e948f73f891619619b0560} 
+template$<$typename Out\+Scalar , typename Out\+Accessor , typename Vector\+Mapper , typename Tensor\+Mapper , typename Storage\+Index , typename Properties , Storage\+Index KFactor, bool Vectorizable, bool is\+\_\+lhs\+\_\+vec, bool Is\+Final$>$ \\
+Out\+Accessor \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+General\+Vector\+Tensor}}$<$ Out\+Scalar, Out\+Accessor, Vector\+Mapper, Tensor\+Mapper, Storage\+Index, Properties, KFactor, Vectorizable, is\+\_\+lhs\+\_\+vec, Is\+Final $>$\+::out\+\_\+res}
+
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_ad99918120d8f3e72277845da62ca0c20_ad99918120d8f3e72277845da62ca0c20}\index{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}!OutScratchOffset@{OutScratchOffset}}
+\index{OutScratchOffset@{OutScratchOffset}!Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}}
+\doxysubsubsection{\texorpdfstring{OutScratchOffset}{OutScratchOffset}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_ad99918120d8f3e72277845da62ca0c20_ad99918120d8f3e72277845da62ca0c20} 
+template$<$typename Out\+Scalar , typename Out\+Accessor , typename Vector\+Mapper , typename Tensor\+Mapper , typename Storage\+Index , typename Properties , Storage\+Index KFactor, bool Vectorizable, bool is\+\_\+lhs\+\_\+vec, bool Is\+Final$>$ \\
+\mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} Storage\+Index \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+General\+Vector\+Tensor}}$<$ Out\+Scalar, Out\+Accessor, Vector\+Mapper, Tensor\+Mapper, Storage\+Index, Properties, KFactor, Vectorizable, is\+\_\+lhs\+\_\+vec, Is\+Final $>$\+::\+Out\+Scratch\+Offset\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries 初期値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\ \ \ \ \ \ KFactor\ *\ Properties::LocalThreadSizeC\ *\ Properties::LocalThreadSizeNC}
+
+\end{DoxyCode}
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_ac1373ce463b4fb0b24a055792d7ff4e3_ac1373ce463b4fb0b24a055792d7ff4e3}\index{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}!PacketSize@{PacketSize}}
+\index{PacketSize@{PacketSize}!Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}}
+\doxysubsubsection{\texorpdfstring{PacketSize}{PacketSize}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_ac1373ce463b4fb0b24a055792d7ff4e3_ac1373ce463b4fb0b24a055792d7ff4e3} 
+template$<$typename Out\+Scalar , typename Out\+Accessor , typename Vector\+Mapper , typename Tensor\+Mapper , typename Storage\+Index , typename Properties , Storage\+Index KFactor, bool Vectorizable, bool is\+\_\+lhs\+\_\+vec, bool Is\+Final$>$ \\
+\mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+General\+Vector\+Tensor}}$<$ Out\+Scalar, Out\+Accessor, Vector\+Mapper, Tensor\+Mapper, Storage\+Index, Properties, KFactor, Vectorizable, is\+\_\+lhs\+\_\+vec, Is\+Final $>$\+::\+Packet\+Size\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries 初期値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\ \ \ \ \ \ Eigen::TensorSycl::internal::Vectorise<OutScalar,\ Eigen::SyclDevice,\ Vectorizable>::PacketSize}
+
+\end{DoxyCode}
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a05c3357d6d4bdbbd83d72eb67d23d0fd_a05c3357d6d4bdbbd83d72eb67d23d0fd}\index{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}!scratch@{scratch}}
+\index{scratch@{scratch}!Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}}
+\doxysubsubsection{\texorpdfstring{scratch}{scratch}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a05c3357d6d4bdbbd83d72eb67d23d0fd_a05c3357d6d4bdbbd83d72eb67d23d0fd} 
+template$<$typename Out\+Scalar , typename Out\+Accessor , typename Vector\+Mapper , typename Tensor\+Mapper , typename Storage\+Index , typename Properties , Storage\+Index KFactor, bool Vectorizable, bool is\+\_\+lhs\+\_\+vec, bool Is\+Final$>$ \\
+\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_a2d9df832b08a2aee08e1eada66947dbe_a2d9df832b08a2aee08e1eada66947dbe}{Scratch}} \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+General\+Vector\+Tensor}}$<$ Out\+Scalar, Out\+Accessor, Vector\+Mapper, Tensor\+Mapper, Storage\+Index, Properties, KFactor, Vectorizable, is\+\_\+lhs\+\_\+vec, Is\+Final $>$\+::scratch}
+
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_af8a38775dbc86b7c0937825bde1b7745_af8a38775dbc86b7c0937825bde1b7745}\index{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}!vec@{vec}}
+\index{vec@{vec}!Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$@{Eigen::TensorSycl::internal::GeneralVectorTensor$<$ OutScalar, OutAccessor, VectorMapper, TensorMapper, StorageIndex, Properties, KFactor, Vectorizable, is\_lhs\_vec, IsFinal $>$}}
+\doxysubsubsection{\texorpdfstring{vec}{vec}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor_af8a38775dbc86b7c0937825bde1b7745_af8a38775dbc86b7c0937825bde1b7745} 
+template$<$typename Out\+Scalar , typename Out\+Accessor , typename Vector\+Mapper , typename Tensor\+Mapper , typename Storage\+Index , typename Properties , Storage\+Index KFactor, bool Vectorizable, bool is\+\_\+lhs\+\_\+vec, bool Is\+Final$>$ \\
+const Vector\+Mapper \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_general_vector_tensor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+General\+Vector\+Tensor}}$<$ Out\+Scalar, Out\+Accessor, Vector\+Mapper, Tensor\+Mapper, Storage\+Index, Properties, KFactor, Vectorizable, is\+\_\+lhs\+\_\+vec, Is\+Final $>$\+::vec}
+
+
+
+この構造体詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/unsupported/\+Eigen/\+CXX11/src/\+Tensor/\mbox{\hyperlink{_tensor_contraction_sycl_8h}{Tensor\+Contraction\+Sycl.\+h}}\end{DoxyCompactItemize}

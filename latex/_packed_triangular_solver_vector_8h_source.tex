@@ -1,0 +1,94 @@
+\doxysection{Packed\+Triangular\+Solver\+Vector.\+h}
+\hypertarget{_packed_triangular_solver_vector_8h_source}{}\label{_packed_triangular_solver_vector_8h_source}\index{eigen-\/3.4.0/eigen-\/3.4.0/blas/PackedTriangularSolverVector.h@{eigen-\/3.4.0/eigen-\/3.4.0/blas/PackedTriangularSolverVector.h}}
+\mbox{\hyperlink{_packed_triangular_solver_vector_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ Eigen,\ a\ lightweight\ C++\ template\ library}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ for\ linear\ algebra.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (C)\ 2012\ Chen-\/Pang\ He\ <jdh8@ms63.hinet.net>}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ This\ Source\ Code\ Form\ is\ subject\ to\ the\ terms\ of\ the\ Mozilla}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Public\ License\ v.\ 2.0.\ If\ a\ copy\ of\ the\ MPL\ was\ not\ distributed}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ with\ this\ file,\ You\ can\ obtain\ one\ at\ http://mozilla.org/MPL/2.0/.}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_PACKED\_TRIANGULAR\_SOLVER\_VECTOR\_H}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ EIGEN\_PACKED\_TRIANGULAR\_SOLVER\_VECTOR\_H}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceinternal}{internal}}\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ LhsScalar,\ \textcolor{keyword}{typename}\ RhsScalar,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{int}\ S\textcolor{keywordtype}{id}e,\ \textcolor{keywordtype}{int}\ Mode,\ \textcolor{keywordtype}{bool}\ Conjugate,\ \textcolor{keywordtype}{int}\ StorageOrder>}
+\DoxyCodeLine{00016\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinternal_1_1packed__triangular__solve__vector}{packed\_triangular\_solve\_vector}};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ forward\ and\ backward\ substitution,\ row-\/major,\ rhs\ is\ a\ vector}}
+\DoxyCodeLine{00019\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ LhsScalar,\ \textcolor{keyword}{typename}\ RhsScalar,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{int}\ Mode,\ \textcolor{keywordtype}{bool}\ Conjugate>}
+\DoxyCodeLine{00020\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinternal_1_1packed__triangular__solve__vector}{packed\_triangular\_solve\_vector}}<LhsScalar,\ RhsScalar,\ Index,\ OnTheLeft,\ Mode,\ Conjugate,\ RowMajor>}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ IsLower\ =\ (Mode\&Lower)==Lower}
+\DoxyCodeLine{00024\ \ \ \};}
+\DoxyCodeLine{00025\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structinternal_1_1packed__triangular__solve__vector_3_01_lhs_scalar_00_01_rhs_scalar_00_01_indexc5a73935a3beb9907eb3aa30bec77d7b_a1f4ef79683075f1d2bea057c14a5f5b1_a1f4ef79683075f1d2bea057c14a5f5b1}{run}}(Index\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},\ \textcolor{keyword}{const}\ LhsScalar*\ lhs,\ RhsScalar*\ rhs)}
+\DoxyCodeLine{00026\ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ internal::conj\_if<Conjugate>\ cj;}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{typedef}\ Map<const\ Matrix<LhsScalar,Dynamic,1>\ >\ LhsMap;}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ conj\_expr\_if<Conjugate,LhsMap>::type\ ConjLhsType;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ lhs\ +=\ IsLower\ ?\ 0\ :\ (\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}*(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}+1)>>1)-\/1;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{for}(Index\ pi=0;\ pi<\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}};\ ++pi)}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ Index\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ IsLower\ ?\ pi\ :\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}-\/pi-\/1;}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ Index\ \mbox{\hyperlink{level1__cplx__impl_8h_a462761ca92ad97a9a705cb875828b0b8_a462761ca92ad97a9a705cb875828b0b8}{s}}\ =\ IsLower\ ?\ 0\ :\ 1;}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pi>0)}
+\DoxyCodeLine{00037\ \ \ \ \ rhs[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}]\ -\/=\ (ConjLhsType(LhsMap(lhs+\mbox{\hyperlink{level1__cplx__impl_8h_a462761ca92ad97a9a705cb875828b0b8_a462761ca92ad97a9a705cb875828b0b8}{s}},pi))}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ .cwiseProduct(Map<\textcolor{keyword}{const}\ Matrix<RhsScalar,Dynamic,1>\ >(rhs+(IsLower\ ?\ 0\ :\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}+1),pi))).sum();}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(Mode\ \&\ UnitDiag))}
+\DoxyCodeLine{00040\ \ \ \ \ rhs[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}]\ /=\ cj(lhs[IsLower\ ?\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ :\ 0]);}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ IsLower\ ?\ lhs\ +=\ pi+1\ :\ lhs\ -\/=\ pi+2;}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \ \ \}}
+\DoxyCodeLine{00044\ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ forward\ and\ backward\ substitution,\ column-\/major,\ rhs\ is\ a\ vector}}
+\DoxyCodeLine{00047\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ LhsScalar,\ \textcolor{keyword}{typename}\ RhsScalar,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{int}\ Mode,\ \textcolor{keywordtype}{bool}\ Conjugate>}
+\DoxyCodeLine{00048\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinternal_1_1packed__triangular__solve__vector}{packed\_triangular\_solve\_vector}}<LhsScalar,\ RhsScalar,\ Index,\ OnTheLeft,\ Mode,\ Conjugate,\ ColMajor>}
+\DoxyCodeLine{00049\ \{}
+\DoxyCodeLine{00050\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ IsLower\ =\ (Mode\&Lower)==Lower}
+\DoxyCodeLine{00052\ \ \ \};}
+\DoxyCodeLine{00053\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structinternal_1_1packed__triangular__solve__vector_3_01_lhs_scalar_00_01_rhs_scalar_00_01_index28b9bd679eec74694b1e600413bff835_ae15bb9e68ea29715d12bc0273e5fc3f3_ae15bb9e68ea29715d12bc0273e5fc3f3}{run}}(Index\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},\ \textcolor{keyword}{const}\ LhsScalar*\ lhs,\ RhsScalar*\ rhs)}
+\DoxyCodeLine{00054\ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ internal::conj\_if<Conjugate>\ cj;}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{typedef}\ Map<const\ Matrix<LhsScalar,Dynamic,1>\ >\ LhsMap;}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ conj\_expr\_if<Conjugate,LhsMap>::type\ ConjLhsType;}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ lhs\ +=\ IsLower\ ?\ 0\ :\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}*(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}-\/1)>>1;}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{for}(Index\ pi=0;\ pi<\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}};\ ++pi)}
+\DoxyCodeLine{00061\ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ Index\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ IsLower\ ?\ pi\ :\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}-\/pi-\/1;}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ Index\ \mbox{\hyperlink{lorenz_8c_a880a49112fedae68e714341a9a082fb6_a880a49112fedae68e714341a9a082fb6}{r}}\ =\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}\ -\/\ pi\ -\/\ 1;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(Mode\ \&\ UnitDiag))}
+\DoxyCodeLine{00065\ \ \ \ \ rhs[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}]\ /=\ cj(lhs[IsLower\ ?\ 0\ :\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}]);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{lorenz_8c_a880a49112fedae68e714341a9a082fb6_a880a49112fedae68e714341a9a082fb6}{r}}>0)}
+\DoxyCodeLine{00067\ \ \ \ \ Map<Matrix<RhsScalar,Dynamic,1>\ >(rhs+(IsLower?\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}+1\ :\ 0),\mbox{\hyperlink{lorenz_8c_a880a49112fedae68e714341a9a082fb6_a880a49112fedae68e714341a9a082fb6}{r}})\ -\/=}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ rhs[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}]\ *\ ConjLhsType(LhsMap(lhs+(IsLower?\ 1\ :\ 0),\mbox{\hyperlink{lorenz_8c_a880a49112fedae68e714341a9a082fb6_a880a49112fedae68e714341a9a082fb6}{r}}));}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ IsLower\ ?\ lhs\ +=\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}-\/pi\ :\ lhs\ -\/=\ \mbox{\hyperlink{lorenz_8c_a880a49112fedae68e714341a9a082fb6_a880a49112fedae68e714341a9a082fb6}{r}};}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \}}
+\DoxyCodeLine{00072\ \};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ LhsScalar,\ \textcolor{keyword}{typename}\ RhsScalar,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{int}\ Mode,\ \textcolor{keywordtype}{bool}\ Conjugate,\ \textcolor{keywordtype}{int}\ StorageOrder>}
+\DoxyCodeLine{00075\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinternal_1_1packed__triangular__solve__vector}{packed\_triangular\_solve\_vector}}<LhsScalar,\ RhsScalar,\ Index,\ OnTheRight,\ Mode,\ Conjugate,\ StorageOrder>}
+\DoxyCodeLine{00076\ \{}
+\DoxyCodeLine{00077\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structinternal_1_1packed__triangular__solve__vector_3_01_lhs_scalar_00_01_rhs_scalar_00_01_indexbdf75792bc56c9c47813436504c36746_a453073b02ec8a717f090dffc05e388a0_a453073b02ec8a717f090dffc05e388a0}{run}}(Index\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},\ \textcolor{keyword}{const}\ LhsScalar*\ lhs,\ RhsScalar*\ rhs)}
+\DoxyCodeLine{00078\ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{structinternal_1_1packed__triangular__solve__vector}{packed\_triangular\_solve\_vector}}<LhsScalar,RhsScalar,Index,OnTheLeft,}
+\DoxyCodeLine{00080\ \ \ \ \ ((Mode\&Upper)==Upper\ ?\ Lower\ :\ Upper)\ |\ (Mode\&UnitDiag),}
+\DoxyCodeLine{00081\ \ \ \ \ Conjugate,StorageOrder==RowMajor?ColMajor:RowMajor}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ >::run(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},\ lhs,\ rhs);}
+\DoxyCodeLine{00083\ \ \ \}}
+\DoxyCodeLine{00084\ \};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \}\ \textcolor{comment}{//\ end\ namespace\ internal}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ EIGEN\_PACKED\_TRIANGULAR\_SOLVER\_VECTOR\_H}}
+
+\end{DoxyCode}

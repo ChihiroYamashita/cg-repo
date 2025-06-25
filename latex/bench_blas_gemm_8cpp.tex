@@ -1,0 +1,112 @@
+\doxysection{eigen-\/3.4.0/eigen-\/3.4.0/bench/bench\+Blas\+Gemm.cpp ファイル}
+\hypertarget{bench_blas_gemm_8cpp}{}\label{bench_blas_gemm_8cpp}\index{eigen-\/3.4.0/eigen-\/3.4.0/bench/benchBlasGemm.cpp@{eigen-\/3.4.0/eigen-\/3.4.0/bench/benchBlasGemm.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Core$>$}\newline
+{\ttfamily \#include "{}Bench\+Timer.\+h"{}}\newline
+{\ttfamily \#include $<$cblas.\+h$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+bench\+Blas\+Gemm.\+cpp の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bench_blas_gemm_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{bench_blas_gemm_8cpp_a8c7ac1bc0a788cca6911b3833e6fbff6_a8c7ac1bc0a788cca6911b3833e6fbff6}{\+\_\+\+FLOAT}}
+\item 
+\#define \mbox{\hyperlink{bench_blas_gemm_8cpp_aea84bbfa49110a0d98992a50fce02fa9_aea84bbfa49110a0d98992a50fce02fa9}{CBLAS\+\_\+\+GEMM}}~cblas\+\_\+sgemm
+\item 
+\#define \mbox{\hyperlink{bench_blas_gemm_8cpp_ab5b7e06a480648c6b05106c17a1edf7e_ab5b7e06a480648c6b05106c17a1edf7e}{MYVERIFY}}(\mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}},  \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{型定義}
+\begin{DoxyCompactItemize}
+\item 
+typedef float \mbox{\hyperlink{bench_blas_gemm_8cpp_aacf5954d048aaaaef04620896706921d_aacf5954d048aaaaef04620896706921d}{Scalar}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Eigen\+::\+Matrix}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Eigen\+::\+Dynamic}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Eigen\+::\+Dynamic}} $>$ \mbox{\hyperlink{bench_blas_gemm_8cpp_ae5984095475bc354217088bc6d3d05bd_ae5984095475bc354217088bc6d3d05bd}{My\+Matrix}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{bench_blas_gemm_8cpp_addc8f991503c7d043fad85b4c962a694_addc8f991503c7d043fad85b4c962a694}{bench\+\_\+eigengemm}} (\mbox{\hyperlink{bench_blas_gemm_8cpp_ae5984095475bc354217088bc6d3d05bd_ae5984095475bc354217088bc6d3d05bd}{My\+Matrix}} \&mc, const \mbox{\hyperlink{bench_blas_gemm_8cpp_ae5984095475bc354217088bc6d3d05bd_ae5984095475bc354217088bc6d3d05bd}{My\+Matrix}} \&ma, const \mbox{\hyperlink{bench_blas_gemm_8cpp_ae5984095475bc354217088bc6d3d05bd_ae5984095475bc354217088bc6d3d05bd}{My\+Matrix}} \&mb, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} nbloops)
+\item 
+void \mbox{\hyperlink{bench_blas_gemm_8cpp_a62329e02c866f05da1d5bcf807e45780_a62329e02c866f05da1d5bcf807e45780}{check\+\_\+product}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{freeglut__geometry_8c_a171232fbfaa696c3994c87eedd320363_a171232fbfaa696c3994c87eedd320363}{N}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} K)
+\item 
+void \mbox{\hyperlink{bench_blas_gemm_8cpp_a2662eea21279bd90ac616d362677a772_a2662eea21279bd90ac616d362677a772}{check\+\_\+product}} (void)
+\item 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{bench_blas_gemm_8cpp_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97}{main}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{bench_blas_gemm_8cpp_a8c7ac1bc0a788cca6911b3833e6fbff6_a8c7ac1bc0a788cca6911b3833e6fbff6}\index{benchBlasGemm.cpp@{benchBlasGemm.cpp}!\_FLOAT@{\_FLOAT}}
+\index{\_FLOAT@{\_FLOAT}!benchBlasGemm.cpp@{benchBlasGemm.cpp}}
+\doxysubsubsection{\texorpdfstring{\_FLOAT}{\_FLOAT}}
+{\footnotesize\ttfamily \label{bench_blas_gemm_8cpp_a8c7ac1bc0a788cca6911b3833e6fbff6_a8c7ac1bc0a788cca6911b3833e6fbff6} 
+\#define \+\_\+\+FLOAT}
+
+\Hypertarget{bench_blas_gemm_8cpp_aea84bbfa49110a0d98992a50fce02fa9_aea84bbfa49110a0d98992a50fce02fa9}\index{benchBlasGemm.cpp@{benchBlasGemm.cpp}!CBLAS\_GEMM@{CBLAS\_GEMM}}
+\index{CBLAS\_GEMM@{CBLAS\_GEMM}!benchBlasGemm.cpp@{benchBlasGemm.cpp}}
+\doxysubsubsection{\texorpdfstring{CBLAS\_GEMM}{CBLAS\_GEMM}}
+{\footnotesize\ttfamily \label{bench_blas_gemm_8cpp_aea84bbfa49110a0d98992a50fce02fa9_aea84bbfa49110a0d98992a50fce02fa9} 
+\#define CBLAS\+\_\+\+GEMM~cblas\+\_\+sgemm}
+
+\Hypertarget{bench_blas_gemm_8cpp_ab5b7e06a480648c6b05106c17a1edf7e_ab5b7e06a480648c6b05106c17a1edf7e}\index{benchBlasGemm.cpp@{benchBlasGemm.cpp}!MYVERIFY@{MYVERIFY}}
+\index{MYVERIFY@{MYVERIFY}!benchBlasGemm.cpp@{benchBlasGemm.cpp}}
+\doxysubsubsection{\texorpdfstring{MYVERIFY}{MYVERIFY}}
+{\footnotesize\ttfamily \label{bench_blas_gemm_8cpp_ab5b7e06a480648c6b05106c17a1edf7e_ab5b7e06a480648c6b05106c17a1edf7e} 
+\#define MYVERIFY(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}}{, }\item[{}]{\mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}}}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (!(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}))\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}FAIL:\ "{}}\ <<\ \mbox{\hyperlink{class_eigen_1_1_matrix}{M}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{型定義詳解}
+\Hypertarget{bench_blas_gemm_8cpp_ae5984095475bc354217088bc6d3d05bd_ae5984095475bc354217088bc6d3d05bd}\index{benchBlasGemm.cpp@{benchBlasGemm.cpp}!MyMatrix@{MyMatrix}}
+\index{MyMatrix@{MyMatrix}!benchBlasGemm.cpp@{benchBlasGemm.cpp}}
+\doxysubsubsection{\texorpdfstring{MyMatrix}{MyMatrix}}
+{\footnotesize\ttfamily \label{bench_blas_gemm_8cpp_ae5984095475bc354217088bc6d3d05bd_ae5984095475bc354217088bc6d3d05bd} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Eigen\+::\+Matrix}}$<$\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}},\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Eigen\+::\+Dynamic}},\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Eigen\+::\+Dynamic}}$>$ \mbox{\hyperlink{bench_blas_gemm_8cpp_ae5984095475bc354217088bc6d3d05bd_ae5984095475bc354217088bc6d3d05bd}{My\+Matrix}}}
+
+\Hypertarget{bench_blas_gemm_8cpp_aacf5954d048aaaaef04620896706921d_aacf5954d048aaaaef04620896706921d}\index{benchBlasGemm.cpp@{benchBlasGemm.cpp}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!benchBlasGemm.cpp@{benchBlasGemm.cpp}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily \label{bench_blas_gemm_8cpp_aacf5954d048aaaaef04620896706921d_aacf5954d048aaaaef04620896706921d} 
+typedef float \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{bench_blas_gemm_8cpp_addc8f991503c7d043fad85b4c962a694_addc8f991503c7d043fad85b4c962a694}\index{benchBlasGemm.cpp@{benchBlasGemm.cpp}!bench\_eigengemm@{bench\_eigengemm}}
+\index{bench\_eigengemm@{bench\_eigengemm}!benchBlasGemm.cpp@{benchBlasGemm.cpp}}
+\doxysubsubsection{\texorpdfstring{bench\_eigengemm()}{bench\_eigengemm()}}
+{\footnotesize\ttfamily \label{bench_blas_gemm_8cpp_addc8f991503c7d043fad85b4c962a694_addc8f991503c7d043fad85b4c962a694} 
+void bench\+\_\+eigengemm (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bench_blas_gemm_8cpp_ae5984095475bc354217088bc6d3d05bd_ae5984095475bc354217088bc6d3d05bd}{My\+Matrix}} \&}]{mc}{, }\item[{const \mbox{\hyperlink{bench_blas_gemm_8cpp_ae5984095475bc354217088bc6d3d05bd_ae5984095475bc354217088bc6d3d05bd}{My\+Matrix}} \&}]{ma}{, }\item[{const \mbox{\hyperlink{bench_blas_gemm_8cpp_ae5984095475bc354217088bc6d3d05bd_ae5984095475bc354217088bc6d3d05bd}{My\+Matrix}} \&}]{mb}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{nbloops}{}\end{DoxyParamCaption})}
+
+\Hypertarget{bench_blas_gemm_8cpp_a62329e02c866f05da1d5bcf807e45780_a62329e02c866f05da1d5bcf807e45780}\index{benchBlasGemm.cpp@{benchBlasGemm.cpp}!check\_product@{check\_product}}
+\index{check\_product@{check\_product}!benchBlasGemm.cpp@{benchBlasGemm.cpp}}
+\doxysubsubsection{\texorpdfstring{check\_product()}{check\_product()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{bench_blas_gemm_8cpp_a62329e02c866f05da1d5bcf807e45780_a62329e02c866f05da1d5bcf807e45780} 
+void check\+\_\+product (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{M}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{N}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{K}{}\end{DoxyParamCaption})}
+
+\Hypertarget{bench_blas_gemm_8cpp_a2662eea21279bd90ac616d362677a772_a2662eea21279bd90ac616d362677a772}\index{benchBlasGemm.cpp@{benchBlasGemm.cpp}!check\_product@{check\_product}}
+\index{check\_product@{check\_product}!benchBlasGemm.cpp@{benchBlasGemm.cpp}}
+\doxysubsubsection{\texorpdfstring{check\_product()}{check\_product()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{bench_blas_gemm_8cpp_a2662eea21279bd90ac616d362677a772_a2662eea21279bd90ac616d362677a772} 
+void check\+\_\+product (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{bench_blas_gemm_8cpp_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97}\index{benchBlasGemm.cpp@{benchBlasGemm.cpp}!main@{main}}
+\index{main@{main}!benchBlasGemm.cpp@{benchBlasGemm.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{bench_blas_gemm_8cpp_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97} 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} main (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{argv}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+

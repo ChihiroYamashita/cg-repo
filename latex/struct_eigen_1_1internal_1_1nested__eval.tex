@@ -1,0 +1,80 @@
+\doxysection{Eigen\+::internal\+::nested\+\_\+eval\texorpdfstring{$<$}{<} T, n, Plain\+Object \texorpdfstring{$>$}{>} 構造体テンプレート}
+\hypertarget{struct_eigen_1_1internal_1_1nested__eval}{}\label{struct_eigen_1_1internal_1_1nested__eval}\index{Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$@{Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$}}
+
+
+{\ttfamily \#include $<$Xpr\+Helper.\+h$>$}
+
+
+
+Eigen\+::internal\+::nested\+\_\+eval\texorpdfstring{$<$}{<} T, n, Plain\+Object \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=201pt]{struct_eigen_1_1internal_1_1nested__eval__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \newline
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1nested__eval_a85f3330ece7137beb3ff6cdba7a93cc7_a85f3330ece7137beb3ff6cdba7a93cc7a9890ef7124d41e698600a5d16f8638d6}{Scalar\+Read\+Cost}} = Num\+Traits\texorpdfstring{$<$}{<}typename traits\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}\+::Scalar\texorpdfstring{$>$}{>}\+::Read\+Cost
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1nested__eval_a85f3330ece7137beb3ff6cdba7a93cc7_a85f3330ece7137beb3ff6cdba7a93cc7a49cff2e44edf50377a97ef7a6795a18d}{Coeff\+Read\+Cost}} = evaluator\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}\+::Coeff\+Read\+Cost
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1nested__eval_a85f3330ece7137beb3ff6cdba7a93cc7_a85f3330ece7137beb3ff6cdba7a93cc7a850220718686d5f060e3351dbb87cf51}{NAs\+Integer}} = n == Dynamic ? Huge\+Cost \+: n
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1nested__eval_a85f3330ece7137beb3ff6cdba7a93cc7_a85f3330ece7137beb3ff6cdba7a93cc7aa67e6956b21f3e478767bc56441f0c5d}{Cost\+Eval}} = (NAs\+Integer+1) \texorpdfstring{$\ast$}{*} Scalar\+Read\+Cost + Coeff\+Read\+Cost
+, \newline
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1nested__eval_a85f3330ece7137beb3ff6cdba7a93cc7_a85f3330ece7137beb3ff6cdba7a93cc7a586d977872077a9a628547587bbbfc87}{Cost\+No\+Eval}} = NAs\+Integer \texorpdfstring{$\ast$}{*} Coeff\+Read\+Cost
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1nested__eval_a85f3330ece7137beb3ff6cdba7a93cc7_a85f3330ece7137beb3ff6cdba7a93cc7aa1f3d1cb5e715314885deb4c16950dfe}{Evaluate}} = (int(evaluator\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}\+::Flags) \& Eval\+Before\+Nesting\+Bit) \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} (int(Cost\+Eval) \texorpdfstring{$<$}{<} int(Cost\+No\+Eval))
+ \}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{conditional}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1nested__eval_a85f3330ece7137beb3ff6cdba7a93cc7_a85f3330ece7137beb3ff6cdba7a93cc7aa1f3d1cb5e715314885deb4c16950dfe}{Evaluate}}, Plain\+Object, typenameref\+\_\+selector$<$ \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} $>$\+::type $>$\+::type \mbox{\hyperlink{struct_eigen_1_1internal_1_1nested__eval_a85364bb661ba482d8fd82a65d8355428_a85364bb661ba482d8fd82a65d8355428}{type}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{型定義メンバ詳解}
+\Hypertarget{struct_eigen_1_1internal_1_1nested__eval_a85364bb661ba482d8fd82a65d8355428_a85364bb661ba482d8fd82a65d8355428}\index{Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$@{Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$}!type@{type}}
+\index{type@{type}!Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$@{Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1nested__eval_a85364bb661ba482d8fd82a65d8355428_a85364bb661ba482d8fd82a65d8355428} 
+template$<$typename \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} n, typename Plain\+Object  = typename plain\+\_\+object\+\_\+eval$<$\+T$>$\+::type$>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{conditional}}$<$\mbox{\hyperlink{struct_eigen_1_1internal_1_1nested__eval_a85f3330ece7137beb3ff6cdba7a93cc7_a85f3330ece7137beb3ff6cdba7a93cc7aa1f3d1cb5e715314885deb4c16950dfe}{Evaluate}},Plain\+Object,typenameref\+\_\+selector$<$\mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}}$>$\+::type$>$\+::type \mbox{\hyperlink{struct_eigen_1_1internal_1_1nested__eval}{Eigen\+::internal\+::nested\+\_\+eval}}$<$ \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}}, \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}, Plain\+Object $>$\+::type}
+
+
+
+\doxysubsection{列挙型メンバ詳解}
+\Hypertarget{struct_eigen_1_1internal_1_1nested__eval_a85f3330ece7137beb3ff6cdba7a93cc7_a85f3330ece7137beb3ff6cdba7a93cc7}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1nested__eval_a85f3330ece7137beb3ff6cdba7a93cc7_a85f3330ece7137beb3ff6cdba7a93cc7} 
+template$<$typename \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} n, typename Plain\+Object  = typename plain\+\_\+object\+\_\+eval$<$\+T$>$\+::type$>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ScalarReadCost@{ScalarReadCost}!Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$@{Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$}}\index{Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$@{Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$}!ScalarReadCost@{ScalarReadCost}}}\Hypertarget{struct_eigen_1_1internal_1_1nested__eval_a85f3330ece7137beb3ff6cdba7a93cc7_a85f3330ece7137beb3ff6cdba7a93cc7a9890ef7124d41e698600a5d16f8638d6}\label{struct_eigen_1_1internal_1_1nested__eval_a85f3330ece7137beb3ff6cdba7a93cc7_a85f3330ece7137beb3ff6cdba7a93cc7} 
+Scalar\+Read\+Cost&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CoeffReadCost@{CoeffReadCost}!Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$@{Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$}}\index{Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$@{Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$}!CoeffReadCost@{CoeffReadCost}}}\Hypertarget{struct_eigen_1_1internal_1_1nested__eval_a85f3330ece7137beb3ff6cdba7a93cc7_a85f3330ece7137beb3ff6cdba7a93cc7a49cff2e44edf50377a97ef7a6795a18d}\label{struct_eigen_1_1internal_1_1nested__eval_a85f3330ece7137beb3ff6cdba7a93cc7_a85f3330ece7137beb3ff6cdba7a93cc7} 
+Coeff\+Read\+Cost&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NAsInteger@{NAsInteger}!Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$@{Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$}}\index{Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$@{Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$}!NAsInteger@{NAsInteger}}}\Hypertarget{struct_eigen_1_1internal_1_1nested__eval_a85f3330ece7137beb3ff6cdba7a93cc7_a85f3330ece7137beb3ff6cdba7a93cc7a850220718686d5f060e3351dbb87cf51}\label{struct_eigen_1_1internal_1_1nested__eval_a85f3330ece7137beb3ff6cdba7a93cc7_a85f3330ece7137beb3ff6cdba7a93cc7} 
+NAs\+Integer&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CostEval@{CostEval}!Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$@{Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$}}\index{Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$@{Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$}!CostEval@{CostEval}}}\Hypertarget{struct_eigen_1_1internal_1_1nested__eval_a85f3330ece7137beb3ff6cdba7a93cc7_a85f3330ece7137beb3ff6cdba7a93cc7aa67e6956b21f3e478767bc56441f0c5d}\label{struct_eigen_1_1internal_1_1nested__eval_a85f3330ece7137beb3ff6cdba7a93cc7_a85f3330ece7137beb3ff6cdba7a93cc7} 
+Cost\+Eval&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CostNoEval@{CostNoEval}!Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$@{Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$}}\index{Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$@{Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$}!CostNoEval@{CostNoEval}}}\Hypertarget{struct_eigen_1_1internal_1_1nested__eval_a85f3330ece7137beb3ff6cdba7a93cc7_a85f3330ece7137beb3ff6cdba7a93cc7a586d977872077a9a628547587bbbfc87}\label{struct_eigen_1_1internal_1_1nested__eval_a85f3330ece7137beb3ff6cdba7a93cc7_a85f3330ece7137beb3ff6cdba7a93cc7} 
+Cost\+No\+Eval&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Evaluate@{Evaluate}!Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$@{Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$}}\index{Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$@{Eigen::internal::nested\_eval$<$ T, n, PlainObject $>$}!Evaluate@{Evaluate}}}\Hypertarget{struct_eigen_1_1internal_1_1nested__eval_a85f3330ece7137beb3ff6cdba7a93cc7_a85f3330ece7137beb3ff6cdba7a93cc7aa1f3d1cb5e715314885deb4c16950dfe}\label{struct_eigen_1_1internal_1_1nested__eval_a85f3330ece7137beb3ff6cdba7a93cc7_a85f3330ece7137beb3ff6cdba7a93cc7} 
+Evaluate&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+この構造体詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Core/util/\mbox{\hyperlink{_xpr_helper_8h}{Xpr\+Helper.\+h}}\end{DoxyCompactItemize}

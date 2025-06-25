@@ -1,0 +1,1038 @@
+\doxysection{freeglut\+\_\+internal.\+h}
+\hypertarget{freeglut__internal_8h_source}{}\label{freeglut__internal_8h_source}\index{freeglut-\/2.8.1.tar/freeglut-\/2.8.1/freeglut-\/2.8.1/src/freeglut\_internal.h@{freeglut-\/2.8.1.tar/freeglut-\/2.8.1/freeglut-\/2.8.1/src/freeglut\_internal.h}}
+\mbox{\hyperlink{freeglut__internal_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ freeglut\_internal.h}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ The\ freeglut\ library\ private\ include\ file.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ Copyright\ (c)\ 1999-\/2000\ Pawel\ W.\ Olszta.\ All\ Rights\ Reserved.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ Written\ by\ Pawel\ W.\ Olszta,\ <olszta@sourceforge.net>}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ Creation\ date:\ Thu\ Dec\ 2\ 1999}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ copy\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ to\ deal\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ the\ rights\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ and/or\ sell\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ Software\ is\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ in\ all\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ *\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ OR\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ \ IN\ NO\ EVENT\ SHALL}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *\ PAWEL\ W.\ OLSZTA\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER\ LIABILITY,\ WHETHER}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ *\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,\ OUT\ OF\ OR\ IN}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE\ SOFTWARE.}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#ifndef\ \ FREEGLUT\_INTERNAL\_H}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ \ FREEGLUT\_INTERNAL\_H}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#ifdef\ HAVE\_CONFIG\_H}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#\ \ \ \ include\ "{}config.h"{}}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{/*\ XXX\ Update\ these\ for\ each\ release!\ */}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ \ VERSION\_MAJOR\ 2}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ \ VERSION\_MINOR\ 8}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ \ VERSION\_PATCH\ 1}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{comment}{/*\ Freeglut\ is\ intended\ to\ function\ under\ all\ Unix/X11\ and\ Win32\ platforms.\ */}}
+\DoxyCodeLine{00041\ \textcolor{comment}{/*\ XXX:\ Don't\ all\ MS-\/Windows\ compilers\ (except\ Cygwin)\ have\ \_WIN32\ defined?}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ *\ XXX:\ If\ so,\ remove\ the\ first\ set\ of\ defined()'s\ below.}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#if\ !defined(TARGET\_HOST\_POSIX\_X11)\ \&\&\ !defined(TARGET\_HOST\_MS\_WINDOWS)\ \&\&\ !defined(TARGET\_HOST\_MAC\_OSX)\ \&\&\ !defined(TARGET\_HOST\_SOLARIS)}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ ||\ defined(\_\_WATCOMC\_\_)\ ||\ defined(\_\_MINGW32\_\_)\ \(\backslash\)}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\ \ \ \ ||\ defined(\_WIN32)\ ||\ defined(\_WIN32\_WCE)\ \(\backslash\)}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\ \ \ \ ||\ (\ defined(\_\_CYGWIN\_\_)\ \&\&\ defined(X\_DISPLAY\_MISSING)\ )}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#\ \ \ define\ \ TARGET\_HOST\_MS\_WINDOWS\ 1}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#elif\ defined(\_\_posix\_\_)\ ||\ defined(\_\_unix\_\_)\ ||\ defined(\_\_linux\_\_)\ ||\ defined(\_\_sun)}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#\ \ \ define\ \ TARGET\_HOST\_POSIX\_X11\ \ 1}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#elif\ defined(\_\_APPLE\_\_)}}
+\DoxyCodeLine{00054\ \textcolor{comment}{/*\ This\ is\ a\ placeholder\ until\ we\ get\ native\ OSX\ support\ ironed\ out\ -\/-\/\ JFF\ 11/18/09\ */}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#\ \ \ define\ \ TARGET\_HOST\_POSIX\_X11\ \ 1}}
+\DoxyCodeLine{00056\ \textcolor{comment}{/*\ \#\ \ \ define\ \ TARGET\_HOST\_MAC\_OSX\ \ \ \ 1\ */}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#\ \ \ error\ "{}Unrecognized\ target\ host!"{}}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{comment}{/*\ Detect\ both\ SunPro\ and\ gcc\ compilers\ on\ Sun\ Solaris\ */}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#if\ defined\ (\_\_SVR4)\ \&\&\ defined\ (\_\_sun)}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#\ \ \ define\ TARGET\_HOST\_SOLARIS\ 1}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#ifndef\ TARGET\_HOST\_MS\_WINDOWS}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#\ \ \ define\ \ TARGET\_HOST\_MS\_WINDOWS\ 0}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#ifndef\ \ TARGET\_HOST\_POSIX\_X11}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#\ \ \ define\ \ TARGET\_HOST\_POSIX\_X11\ \ 0}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#ifndef\ \ TARGET\_HOST\_MAC\_OSX}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#\ \ \ define\ \ TARGET\_HOST\_MAC\_OSX\ \ \ \ 0}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#ifndef\ \ TARGET\_HOST\_SOLARIS}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#\ \ \ define\ \ TARGET\_HOST\_SOLARIS\ \ \ \ 0}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{comment}{/*\ -\/-\/\ FIXED\ CONFIGURATION\ LIMITS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ \ FREEGLUT\_MAX\_MENUS\ \ \ \ \ \ \ \ \ 3}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{comment}{/*\ -\/-\/\ PLATFORM-\/SPECIFIC\ INCLUDES\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{comment}{/*\ All\ Win32\ headers\ depend\ on\ the\ huge\ windows.h\ recursive\ include.}}
+\DoxyCodeLine{00092\ \textcolor{comment}{\ *\ Note:\ Lower-\/case\ header\ names\ are\ used,\ for\ best\ cross-\/platform}}
+\DoxyCodeLine{00093\ \textcolor{comment}{\ *\ compatibility.}}
+\DoxyCodeLine{00094\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#if\ TARGET\_HOST\_MS\_WINDOWS\ \&\&\ !defined(\_WIN32\_WCE)}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#\ \ \ \ include\ <windows.h>}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#\ \ \ \ include\ <windowsx.h>}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#\ \ \ \ include\ <mmsystem.h>}}
+\DoxyCodeLine{00099\ \textcolor{comment}{/*\ CYGWIN\ does\ not\ have\ tchar.h,\ but\ has\ TEXT(x),\ defined\ in\ winnt.h.\ */}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#\ \ \ \ ifndef\ \_\_CYGWIN\_\_}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#\ \ \ \ \ \ include\ <tchar.h>}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#\ \ \ \ else}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#\ \ \ \ \ \ define\ \_TEXT(x)\ TEXT(x)}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#\ \ \ \ \ \ define\ \_T(x)\ \ \ \ TEXT(x)}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#\ \ \ \ endif}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#elif\ TARGET\_HOST\_POSIX\_X11}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#\ \ \ \ include\ <GL/glx.h>}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#\ \ \ \ include\ <X11/Xlib.h>}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#\ \ \ \ include\ <X11/Xatom.h>}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#\ \ \ \ include\ <X11/keysym.h>}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#\ \ \ \ include\ <X11/extensions/XInput.h>}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#\ \ \ \ ifdef\ HAVE\_X11\_EXTENSIONS\_XF86VMODE\_H}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ include\ <X11/extensions/xf86vmode.h>}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#\ \ \ \ endif}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#\ \ \ \ ifdef\ HAVE\_X11\_EXTENSIONS\_XRANDR\_H}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ include\ <X11/extensions/Xrandr.h>}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#\ \ \ \ endif}}
+\DoxyCodeLine{00119\ \textcolor{comment}{/*\ If\ GLX\ is\ too\ old,\ we\ will\ fail\ during\ runtime\ when\ multisampling}}
+\DoxyCodeLine{00120\ \textcolor{comment}{\ \ \ is\ requested,\ but\ at\ least\ freeglut\ compiles.\ */}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#\ \ \ \ ifndef\ GLX\_SAMPLE\_BUFFERS}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ define\ GLX\_SAMPLE\_BUFFERS\ 0x80A8}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#\ \ \ \ endif}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#\ \ \ \ ifndef\ GLX\_SAMPLES}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ define\ GLX\_SAMPLES\ 0x80A9}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#\ \ \ \ endif}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{comment}{/*\ These\ files\ should\ be\ available\ on\ every\ platform.\ */}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#include\ <stdarg.h>}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{comment}{/*\ These\ are\ included\ based\ on\ autoconf\ directives.\ */}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#ifdef\ HAVE\_SYS\_TYPES\_H}}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#\ \ \ \ include\ <sys/types.h>}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#ifdef\ HAVE\_UNISTD\_H}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#\ \ \ \ include\ <unistd.h>}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#ifdef\ TIME\_WITH\_SYS\_TIME}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#\ \ \ \ include\ <sys/time.h>}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#\ \ \ \ include\ <time.h>}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#elif\ defined(HAVE\_SYS\_TIME\_H)}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#\ \ \ \ include\ <sys/time.h>}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#\ \ \ \ include\ <time.h>}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \textcolor{comment}{/*\ -\/-\/\ AUTOCONF\ HACKS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \textcolor{comment}{/*\ XXX:\ Update\ autoconf\ to\ avoid\ these.}}
+\DoxyCodeLine{00156\ \textcolor{comment}{\ *\ XXX:\ Are\ non-\/POSIX\ platforms\ intended\ not\ to\ use\ autoconf?}}
+\DoxyCodeLine{00157\ \textcolor{comment}{\ *\ If\ so,\ perhaps\ there\ should\ be\ a\ config\_guess.h\ for\ them.\ Alternatively,}}
+\DoxyCodeLine{00158\ \textcolor{comment}{\ *\ config\ guesses\ could\ be\ placed\ above,\ just\ after\ the\ config.h\ exclusion.}}
+\DoxyCodeLine{00159\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\#if\ defined(\_\_FreeBSD\_\_)\ ||\ defined(\_\_NetBSD\_\_)}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#\ \ \ \ define\ HAVE\_USB\_JS\ 1}}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\#\ \ \ \ if\ defined(\_\_NetBSD\_\_)\ ||\ (\ defined(\_\_FreeBSD\_\_)\ \&\&\ \_\_FreeBSD\_version\ >=\ 500000)}}
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ define\ HAVE\_USBHID\_H\ 1}}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#\ \ \ \ endif}}
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{preprocessor}{\#if\ TARGET\_HOST\_MS\_WINDOWS}}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#\ \ \ \ define\ \ HAVE\_VFPRINTF\ 1}}
+\DoxyCodeLine{00169\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \textcolor{comment}{/*\ MinGW\ may\ lack\ a\ prototype\ for\ ChangeDisplaySettingsEx()\ (depending\ on\ the\ version?)\ */}}
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\#if\ TARGET\_HOST\_MS\_WINDOWS\ \&\&\ !defined(ChangeDisplaySettingsEx)}}
+\DoxyCodeLine{00173\ LONG\ WINAPI\ ChangeDisplaySettingsExA(LPCSTR,LPDEVMODEA,HWND,DWORD,LPVOID);}
+\DoxyCodeLine{00174\ LONG\ WINAPI\ ChangeDisplaySettingsExW(LPCWSTR,LPDEVMODEW,HWND,DWORD,LPVOID);}
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\#\ \ \ \ ifdef\ UNICODE}}
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ define\ ChangeDisplaySettingsEx\ ChangeDisplaySettingsExW}}
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\#\ \ \ \ else}}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ define\ ChangeDisplaySettingsEx\ ChangeDisplaySettingsExA}}
+\DoxyCodeLine{00179\ \textcolor{preprocessor}{\#\ \ \ \ endif}}
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ ||\ defined(\_\_WATCOMC\_\_)}}
+\DoxyCodeLine{00183\ \textcolor{comment}{/*\ strdup()\ is\ non-\/standard,\ for\ all\ but\ POSIX-\/2001\ */}}
+\DoxyCodeLine{00184\ \textcolor{preprocessor}{\#define\ strdup\ \ \ \_strdup}}
+\DoxyCodeLine{00185\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \textcolor{comment}{/*\ M\_PI\ is\ non-\/standard\ (defined\ by\ BSD,\ not\ ISO-\/C)\ */}}
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\#ifndef\ M\_PI}}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#\ \ \ \ define\ \ M\_PI\ \ 3.14159265358979323846}}
+\DoxyCodeLine{00190\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\#ifdef\ HAVE\_STDBOOL\_H}}
+\DoxyCodeLine{00193\ \textcolor{preprocessor}{\#\ \ \ \ include\ <stdbool.h>}}
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\#\ \ \ \ ifndef\ TRUE}}
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ define\ TRUE\ true}}
+\DoxyCodeLine{00196\ \textcolor{preprocessor}{\#\ \ \ \ endif}}
+\DoxyCodeLine{00197\ \textcolor{preprocessor}{\#\ \ \ \ ifndef\ FALSE}}
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ define\ FALSE\ false}}
+\DoxyCodeLine{00199\ \textcolor{preprocessor}{\#\ \ \ \ endif}}
+\DoxyCodeLine{00200\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00201\ \textcolor{preprocessor}{\#\ \ \ \ ifndef\ TRUE}}
+\DoxyCodeLine{00202\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ define\ \ TRUE\ \ 1}}
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\#\ \ \ \ endif}}
+\DoxyCodeLine{00204\ \textcolor{preprocessor}{\#\ \ \ \ ifndef\ FALSE}}
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ define\ \ FALSE\ \ 0}}
+\DoxyCodeLine{00206\ \textcolor{preprocessor}{\#\ \ \ \ endif}}
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \textcolor{comment}{/*\ General\ defines\ */}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \textcolor{preprocessor}{\#define\ INVALID\_MODIFIERS\ 0xffffffff}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \textcolor{comment}{/*\ -\/-\/\ GLOBAL\ TYPE\ DEFINITIONS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \textcolor{comment}{/*\ Freeglut\ callbacks\ type\ definitions\ */}}
+\DoxyCodeLine{00216\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_a53dd017af3bc5b1498bbf1c3b92566eb_a53dd017af3bc5b1498bbf1c3b92566eb}{FGCBDisplay}}\ \ \ \ \ \ \ )(\ void\ );}
+\DoxyCodeLine{00217\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_a14993d254cf6906e67a11886a69c83b0_a14993d254cf6906e67a11886a69c83b0}{FGCBReshape}}\ \ \ \ \ \ \ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00218\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_a2f87ccf9c4d2d67491674b5c36d4d9df_a2f87ccf9c4d2d67491674b5c36d4d9df}{FGCBVisibility}}\ \ \ \ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00219\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_af22eebf340e8a50b5566bd7072ec1232_af22eebf340e8a50b5566bd7072ec1232}{FGCBKeyboard}}\ \ \ \ \ \ )(\ \textcolor{keywordtype}{unsigned}\ char,\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00220\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_a314f55aa0ffdc0167b153636a3260160_a314f55aa0ffdc0167b153636a3260160}{FGCBSpecial}}\ \ \ \ \ \ \ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00221\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_a4727838f0df23206f86a0bbc1957104b_a4727838f0df23206f86a0bbc1957104b}{FGCBMouse}}\ \ \ \ \ \ \ \ \ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00222\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_abbcf12d7f8f2e4077230532d897b1546_abbcf12d7f8f2e4077230532d897b1546}{FGCBMouseWheel}}\ \ \ \ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00223\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_ac476dfd0d4e084d0cf1c242c92746288_ac476dfd0d4e084d0cf1c242c92746288}{FGCBMotion}}\ \ \ \ \ \ \ \ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00224\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_af71e087fb19c5f1fae8562c14178ec0c_af71e087fb19c5f1fae8562c14178ec0c}{FGCBPassive}}\ \ \ \ \ \ \ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00225\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_af45609fa70491dfea9aa261cb98e15f8_af45609fa70491dfea9aa261cb98e15f8}{FGCBEntry}}\ \ \ \ \ \ \ \ \ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00226\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_af3d04bd73d440cdef2ce27ac9bbf0d77_af3d04bd73d440cdef2ce27ac9bbf0d77}{FGCBWindowStatus}}\ \ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00227\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_a1be1c73c25d827a7980503317d4f1b24_a1be1c73c25d827a7980503317d4f1b24}{FGCBSelect}}\ \ \ \ \ \ \ \ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00228\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_a850d19b9f05b584e2b4d0b487da63fb0_a850d19b9f05b584e2b4d0b487da63fb0}{FGCBJoystick}}\ \ \ \ \ \ )(\ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00229\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_a7d727fb6299e165446dfd6e37bf2f7cf_a7d727fb6299e165446dfd6e37bf2f7cf}{FGCBKeyboardUp}}\ \ \ \ )(\ \textcolor{keywordtype}{unsigned}\ char,\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00230\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_a07bf48b71b059fafb4fc85cd5f521611_a07bf48b71b059fafb4fc85cd5f521611}{FGCBSpecialUp}}\ \ \ \ \ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00231\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_a60bc0ee94793ab6ec3b3f52fd9661e9f_a60bc0ee94793ab6ec3b3f52fd9661e9f}{FGCBOverlayDisplay}})(\ void\ );}
+\DoxyCodeLine{00232\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_afd1ea49b962c2dd216415657cd0c941c_afd1ea49b962c2dd216415657cd0c941c}{FGCBSpaceMotion}}\ \ \ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00233\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_a5fa659c631d33a7e965d8a3a67982007_a5fa659c631d33a7e965d8a3a67982007}{FGCBSpaceRotation}}\ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00234\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_a922ab6f14e713f1aef360a53a1ffac6a_a922ab6f14e713f1aef360a53a1ffac6a}{FGCBSpaceButton}}\ \ \ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00235\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_ad9a4bbaa720c689c0c244d66759cc052_ad9a4bbaa720c689c0c244d66759cc052}{FGCBDials}}\ \ \ \ \ \ \ \ \ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00236\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_ac875a7f49d077fbcfe1dfbff6d83bf8f_ac875a7f49d077fbcfe1dfbff6d83bf8f}{FGCBButtonBox}}\ \ \ \ \ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00237\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_a4ac270d9cca5c9a53608b28db5bf08c2_a4ac270d9cca5c9a53608b28db5bf08c2}{FGCBTabletMotion}}\ \ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00238\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_aaf3c79b47b0cc61fe6530f73d01a46a9_aaf3c79b47b0cc61fe6530f73d01a46a9}{FGCBTabletButton}}\ \ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00239\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_a2f1cffd302ecb6039ad71582f87c1e9f_a2f1cffd302ecb6039ad71582f87c1e9f}{FGCBDestroy}}\ \ \ \ \ \ \ )(\ void\ );}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_ae77a0ff547d03dbc565f534136ed69bc_ae77a0ff547d03dbc565f534136ed69bc}{FGCBMultiEntry}}\ \ \ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00242\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_a1822c9b4a41f7a2acbccca0726e3f423_a1822c9b4a41f7a2acbccca0726e3f423}{FGCBMultiButton}}\ \ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00243\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_a39335304ad195e8ddf92ce4f49da0f07_a39335304ad195e8ddf92ce4f49da0f07}{FGCBMultiMotion}}\ \ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00244\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_a9e4f8f24028f7509e98c08baefb7546e_a9e4f8f24028f7509e98c08baefb7546e}{FGCBMultiPassive}}\ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \textcolor{comment}{/*\ The\ global\ callbacks\ type\ definitions\ */}}
+\DoxyCodeLine{00247\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_aa5af6472b8327df452e5096432b71616_aa5af6472b8327df452e5096432b71616}{FGCBIdle}}\ \ \ \ \ \ \ \ \ \ )(\ void\ );}
+\DoxyCodeLine{00248\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_a21c6976e35f002b03014c75d51d68b20_a21c6976e35f002b03014c75d51d68b20}{FGCBTimer}}\ \ \ \ \ \ \ \ \ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00249\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_ac288427105487dcecfe807c3ee2471b6_ac288427105487dcecfe807c3ee2471b6}{FGCBMenuState}}\ \ \ \ \ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00250\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_a6781c5b61e284a7a8b9a69a4c432862d_a6781c5b61e284a7a8b9a69a4c432862d}{FGCBMenuStatus}}\ \ \ \ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}},\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \textcolor{comment}{/*\ The\ callback\ used\ when\ creating/using\ menus\ */}}
+\DoxyCodeLine{00253\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_aa55885854b676e2a366fee3f02d37119_aa55885854b676e2a366fee3f02d37119}{FGCBMenu}}\ \ \ \ \ \ \ \ \ \ )(\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\ );}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \textcolor{comment}{/*\ The\ FreeGLUT\ error/warning\ handler\ type\ definition\ */}}
+\DoxyCodeLine{00256\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_a1f827ac6fd5e0f43fb4bed2686055332_a1f827ac6fd5e0f43fb4bed2686055332}{FGError}}\ \ \ \ \ \ \ \ \ \ \ )\ (\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *fmt,\ va\_list\ ap);}
+\DoxyCodeLine{00257\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_a76352799248c9a90550cf4ec55e0982e_a76352799248c9a90550cf4ec55e0982e}{FGWarning}}\ \ \ \ \ \ \ \ \ )\ (\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *fmt,\ va\_list\ ap);}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \textcolor{comment}{/*\ A\ list\ structure\ */}}
+\DoxyCodeLine{00261\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___list}{tagSFG\_List}}\ \mbox{\hyperlink{structtag_s_f_g___list}{SFG\_List}};}
+\DoxyCodeLine{00262\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___list}{tagSFG\_List}}}
+\DoxyCodeLine{00263\ \{}
+\DoxyCodeLine{00264\ \ \ \ \ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{structtag_s_f_g___list_a3674656933639d5ab8ce2eceb38e2378_a3674656933639d5ab8ce2eceb38e2378}{First}};}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{structtag_s_f_g___list_afbc088eaa22b0777903f6f81dbd497dc_afbc088eaa22b0777903f6f81dbd497dc}{Last}};}
+\DoxyCodeLine{00266\ \};}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \textcolor{comment}{/*\ A\ list\ node\ structure\ */}}
+\DoxyCodeLine{00269\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___node}{tagSFG\_Node}}\ \mbox{\hyperlink{structtag_s_f_g___node}{SFG\_Node}};}
+\DoxyCodeLine{00270\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___node}{tagSFG\_Node}}}
+\DoxyCodeLine{00271\ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{structtag_s_f_g___node_ac8ccc632c2bc34290745a14d4199b3bd_ac8ccc632c2bc34290745a14d4199b3bd}{Next}};}
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{structtag_s_f_g___node_a01c54cdb93da241f7f72608e91c95a82_a01c54cdb93da241f7f72608e91c95a82}{Prev}};}
+\DoxyCodeLine{00274\ \};}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \textcolor{comment}{/*\ A\ helper\ structure\ holding\ two\ ints\ and\ a\ boolean\ */}}
+\DoxyCodeLine{00277\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___x_y_use}{tagSFG\_XYUse}}\ \mbox{\hyperlink{structtag_s_f_g___x_y_use}{SFG\_XYUse}};}
+\DoxyCodeLine{00278\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___x_y_use}{tagSFG\_XYUse}}}
+\DoxyCodeLine{00279\ \{}
+\DoxyCodeLine{00280\ \ \ \ \ GLint\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___x_y_use_a28b477243fec705bf73f533a2b22666a_a28b477243fec705bf73f533a2b22666a}{X}},\ \mbox{\hyperlink{structtag_s_f_g___x_y_use_a027d624f76701b43bbaf2d9fbeee5405_a027d624f76701b43bbaf2d9fbeee5405}{Y}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ two\ integers...\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00281\ \ \ \ \ GLboolean\ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___x_y_use_ae39c8826313d0a01453f2a0255fae31b_ae39c8826313d0a01453f2a0255fae31b}{Use}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ ...and\ a\ single\ boolean.\ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00282\ \};}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00285\ \textcolor{comment}{\ *\ An\ enumeration\ containing\ the\ state\ of\ the\ GLUT\ execution:}}
+\DoxyCodeLine{00286\ \textcolor{comment}{\ *\ initializing,\ running,\ or\ stopping}}
+\DoxyCodeLine{00287\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00288\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00289\ \{}
+\DoxyCodeLine{00290\ \ \ \mbox{\hyperlink{freeglut__internal_8h_a0b94e201a762721ac32f8b985cf3d1ea_a0b94e201a762721ac32f8b985cf3d1eaa632b4cbb10683b44b15452e0ec941093}{GLUT\_EXEC\_STATE\_INIT}},}
+\DoxyCodeLine{00291\ \ \ \mbox{\hyperlink{freeglut__internal_8h_a0b94e201a762721ac32f8b985cf3d1ea_a0b94e201a762721ac32f8b985cf3d1eaa651298b35aede18af767103c2cde35c4}{GLUT\_EXEC\_STATE\_RUNNING}},}
+\DoxyCodeLine{00292\ \ \ \mbox{\hyperlink{freeglut__internal_8h_a0b94e201a762721ac32f8b985cf3d1ea_a0b94e201a762721ac32f8b985cf3d1eaa831c9030f6c0332971345741daf0d859}{GLUT\_EXEC\_STATE\_STOP}}}
+\DoxyCodeLine{00293\ \}\ \mbox{\hyperlink{freeglut__internal_8h_a0b94e201a762721ac32f8b985cf3d1ea_a0b94e201a762721ac32f8b985cf3d1ea}{fgExecutionState}}\ ;}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \textcolor{comment}{/*\ This\ structure\ holds\ different\ freeglut\ settings\ */}}
+\DoxyCodeLine{00296\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___state}{tagSFG\_State}}\ \mbox{\hyperlink{structtag_s_f_g___state}{SFG\_State}};}
+\DoxyCodeLine{00297\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___state}{tagSFG\_State}}}
+\DoxyCodeLine{00298\ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___x_y_use}{SFG\_XYUse}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a22581b5b976b2df32dd90213eb3bd673_a22581b5b976b2df32dd90213eb3bd673}{Position}};\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ default\ windows'\ position\ \ */}}
+\DoxyCodeLine{00300\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___x_y_use}{SFG\_XYUse}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a74f5f46ca3f850b42d5f189689cb6151_a74f5f46ca3f850b42d5f189689cb6151}{Size}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ default\ windows'\ size\ \ \ \ \ \ */}}
+\DoxyCodeLine{00301\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a40b7bb0b081398bbbbf93b58407ad7e3_a40b7bb0b081398bbbbf93b58407ad7e3}{DisplayMode}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Display\ mode\ for\ new\ windows\ \ \ */}}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \ \ \ \ GLboolean\ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a1e2673037c080a1cf5bc3fd75dc83ee4_a1e2673037c080a1cf5bc3fd75dc83ee4}{Initialised}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ freeglut\ has\ been\ initialised\ \ */}}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a750e2add46cce1023d371385673e9f30_a750e2add46cce1023d371385673e9f30}{DirectContext}};\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Direct\ rendering\ state\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \ \ \ \ GLboolean\ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a68242b8f6bec9273b1b99e503c4f4ff6_a68242b8f6bec9273b1b99e503c4f4ff6}{ForceIconic}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ New\ top\ windows\ are\ iconified\ \ */}}
+\DoxyCodeLine{00308\ \ \ \ \ GLboolean\ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a76603af510923eca689412c75280c1f1_a76603af510923eca689412c75280c1f1}{UseCurrentContext}};\ \ \ \ \textcolor{comment}{/*\ New\ windows\ share\ with\ current\ */}}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \ \ \ \ GLboolean\ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_af1fa657185d5d3e7a898ce52ff60426e_af1fa657185d5d3e7a898ce52ff60426e}{GLDebugSwitch}};\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ OpenGL\ state\ debugging\ switch\ \ */}}
+\DoxyCodeLine{00311\ \ \ \ \ GLboolean\ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a143cb4d7d8ac947889cead299392c6b4_a143cb4d7d8ac947889cead299392c6b4}{XSyncSwitch}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ X11\ sync\ protocol\ switch\ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a8bccd030cda4fc8e005cb8b870de886d_a8bccd030cda4fc8e005cb8b870de886d}{KeyRepeat}};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Global\ key\ repeat\ mode.\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00314\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a5c5703f119e6b810621d462c85b1491e_a5c5703f119e6b810621d462c85b1491e}{Modifiers}};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Current\ ALT/SHIFT/CTRL\ state\ \ \ */}}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \ \ \ \ GLuint\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_aa1b256ffde831e669a1e79764f699673_aa1b256ffde831e669a1e79764f699673}{FPSInterval}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Interval\ between\ FPS\ printfs\ \ \ */}}
+\DoxyCodeLine{00317\ \ \ \ \ GLuint\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a35828b21c3e5a30d592eb5d179596423_a35828b21c3e5a30d592eb5d179596423}{SwapCount}};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Count\ of\ glutSwapBuffer\ calls\ \ */}}
+\DoxyCodeLine{00318\ \ \ \ \ GLuint\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a14799e1d52c68b6ee0238266bd17cc95_a14799e1d52c68b6ee0238266bd17cc95}{SwapTime}};\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Time\ of\ last\ SwapBuffers\ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_adcab836531c0aec838f9f9a8b1d758ab_adcab836531c0aec838f9f9a8b1d758ab}{Time}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Time\ that\ glutInit\ was\ called\ \ */}}
+\DoxyCodeLine{00321\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___list}{SFG\_List}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_ae41cd599e16ff1ba0ffffc92fb6df704_ae41cd599e16ff1ba0ffffc92fb6df704}{Timers}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ freeglut\ timer\ hooks\ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00322\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___list}{SFG\_List}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a63b484835d95c345032f8f3c4b2368b9_a63b484835d95c345032f8f3c4b2368b9}{FreeTimers}};\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ unused\ timer\ hooks\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_aa5af6472b8327df452e5096432b71616_aa5af6472b8327df452e5096432b71616}{FGCBIdle}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_aa81724bd13339f157b4f12a39eb03a6a_aa81724bd13339f157b4f12a39eb03a6a}{IdleCallback}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ global\ idle\ callback\ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a3837224a467817219a423c6045c279fe_a3837224a467817219a423c6045c279fe}{ActiveMenus}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Num.\ of\ currently\ active\ menus\ */}}
+\DoxyCodeLine{00327\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_ac288427105487dcecfe807c3ee2471b6_ac288427105487dcecfe807c3ee2471b6}{FGCBMenuState}}\ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a74140b0835aa76f3a84d8e1b4d5bc53d_a74140b0835aa76f3a84d8e1b4d5bc53d}{MenuStateCallback}};\ \ \ \ \textcolor{comment}{/*\ Menu\ callbacks\ are\ global\ \ \ \ \ \ */}}
+\DoxyCodeLine{00328\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a6781c5b61e284a7a8b9a69a4c432862d_a6781c5b61e284a7a8b9a69a4c432862d}{FGCBMenuStatus}}\ \ \ \mbox{\hyperlink{structtag_s_f_g___state_ad04a78903fd255a0f012cff8b0bcdd6e_ad04a78903fd255a0f012cff8b0bcdd6e}{MenuStatusCallback}};}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___x_y_use}{SFG\_XYUse}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a71c1402607fec5e29c12da6629c54cae_a71c1402607fec5e29c12da6629c54cae}{GameModeSize}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Game\ mode\ screen's\ dimensions\ \ */}}
+\DoxyCodeLine{00331\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_af95957c9746829def1b300ed7e152599_af95957c9746829def1b300ed7e152599}{GameModeDepth}};\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ pixel\ depth\ for\ game\ mode\ \ */}}
+\DoxyCodeLine{00332\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a9bb84fbb8a1c421e9f175c9316763f6d_a9bb84fbb8a1c421e9f175c9316763f6d}{GameModeRefresh}};\ \ \ \ \ \ \textcolor{comment}{/*\ The\ refresh\ rate\ for\ game\ mode\ */}}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a9ac19e6ffb05caaf214f2c61ab0f22d8_a9ac19e6ffb05caaf214f2c61ab0f22d8}{ActionOnWindowClose}};\ \textcolor{comment}{/*\ Action\ when\ user\ closes\ window\ \ */}}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00336\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a0b94e201a762721ac32f8b985cf3d1ea_a0b94e201a762721ac32f8b985cf3d1ea}{fgExecutionState}}\ \mbox{\hyperlink{structtag_s_f_g___state_af4e3d26ce6b14f6137ece543d024810b_af4e3d26ce6b14f6137ece543d024810b}{ExecState}};\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Used\ for\ GLUT\ termination\ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00337\ \ \ \ \ \textcolor{keywordtype}{char}\ \ \ \ \ \ \ \ \ \ \ \ *\mbox{\hyperlink{structtag_s_f_g___state_aeb3896aad9ee048d461ebfda0e30b685_aeb3896aad9ee048d461ebfda0e30b685}{ProgramName}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Name\ of\ the\ invoking\ program\ \ \ \ */}}
+\DoxyCodeLine{00338\ \ \ \ \ GLboolean\ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a9878439af3feb233e66cc917a8354455_a9878439af3feb233e66cc917a8354455}{JoysticksInitialised}};\ \ \textcolor{comment}{/*\ Only\ initialize\ if\ application\ calls\ for\ them\ */}}
+\DoxyCodeLine{00339\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a1590b05e3816180afbd8314bc4dcac5a_a1590b05e3816180afbd8314bc4dcac5a}{NumActiveJoysticks}};\ \ \ \ \textcolor{comment}{/*\ Number\ of\ active\ joysticks\ -\/-\/\ if\ zero,\ don't\ poll\ joysticks\ */}}
+\DoxyCodeLine{00340\ \ \ \ \ GLboolean\ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_ad37d0414dac96bb886f2ec133c22d68f_ad37d0414dac96bb886f2ec133c22d68f}{InputDevsInitialised}};\ \ \textcolor{comment}{/*\ Only\ initialize\ if\ application\ calls\ for\ them\ */}}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_aee7e93897a17cac809fa498007fccc63_aee7e93897a17cac809fa498007fccc63}{MouseWheelTicks}};\ \ \ \ \ \ \textcolor{comment}{/*\ Number\ of\ ticks\ the\ mouse\ wheel\ has\ turned\ */}}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a107f4b02c185ebd25cfad562d8548101_a107f4b02c185ebd25cfad562d8548101}{AuxiliaryBufferNumber}};\ \ \textcolor{comment}{/*\ Number\ of\ auxiliary\ buffers\ */}}
+\DoxyCodeLine{00345\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a97dc1e80320f3b020e569a14bfe1ff22_a97dc1e80320f3b020e569a14bfe1ff22}{SampleNumber}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ \ Number\ of\ samples\ per\ pixel\ \ */}}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00347\ \ \ \ \ GLboolean\ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a7b1a8ba89b3070f4918133296d0a7fd3_a7b1a8ba89b3070f4918133296d0a7fd3}{SkipStaleMotion}};\ \ \ \ \ \ \textcolor{comment}{/*\ skip\ stale\ motion\ events\ */}}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a7af40e72c7e5848d0a99f4982a1ed966_a7af40e72c7e5848d0a99f4982a1ed966}{MajorVersion}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Major\ OpenGL\ context\ version\ \ */}}
+\DoxyCodeLine{00350\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a8af102e81f3e51d27b8e442d059d9b07_a8af102e81f3e51d27b8e442d059d9b07}{MinorVersion}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Minor\ OpenGL\ context\ version\ \ */}}
+\DoxyCodeLine{00351\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a9d95a5560bc8f07cb8315e8c3763e744_a9d95a5560bc8f07cb8315e8c3763e744}{ContextFlags}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ OpenGL\ context\ flags\ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_af4a4d11de3572970e19eff87d410737e_af4a4d11de3572970e19eff87d410737e}{ContextProfile}};\ \ \ \ \ \ \ \textcolor{comment}{/*\ OpenGL\ context\ profile\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00353\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a1f827ac6fd5e0f43fb4bed2686055332_a1f827ac6fd5e0f43fb4bed2686055332}{FGError}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a64e320c26e2d9e17fb40f940b4f7016c_a64e320c26e2d9e17fb40f940b4f7016c}{ErrorFunc}};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ User\ defined\ error\ handler\ \ \ \ */}}
+\DoxyCodeLine{00354\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a76352799248c9a90550cf4ec55e0982e_a76352799248c9a90550cf4ec55e0982e}{FGWarning}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___state_a0465918fa493a9ef8b7265562f23eca2_a0465918fa493a9ef8b7265562f23eca2}{WarningFunc}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ User\ defined\ warning\ handler\ \ */}}
+\DoxyCodeLine{00355\ \};}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00357\ \textcolor{comment}{/*\ The\ structure\ used\ by\ display\ initialization\ in\ freeglut\_init.c\ */}}
+\DoxyCodeLine{00358\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___display}{tagSFG\_Display}}\ \mbox{\hyperlink{structtag_s_f_g___display}{SFG\_Display}};}
+\DoxyCodeLine{00359\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___display}{tagSFG\_Display}}}
+\DoxyCodeLine{00360\ \{}
+\DoxyCodeLine{00361\ \textcolor{preprocessor}{\#if\ TARGET\_HOST\_POSIX\_X11}}
+\DoxyCodeLine{00362\ \ \ \ \ Display*\ \ \ \ \ \ \ \ Display;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ display\ we\ are\ being\ run\ in.\ \ */}}
+\DoxyCodeLine{00363\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ Screen;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ screen\ we\ are\ about\ to\ use.\ \ \ */}}
+\DoxyCodeLine{00364\ \ \ \ \ Window\ \ \ \ \ \ \ \ \ \ RootWindow;\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ screen's\ root\ window.\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00365\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ Connection;\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ display's\ connection\ number\ \ \ */}}
+\DoxyCodeLine{00366\ \ \ \ \ Atom\ \ \ \ \ \ \ \ \ \ \ \ DeleteWindow;\ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ window\ deletion\ atom\ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00367\ \ \ \ \ Atom\ \ \ \ \ \ \ \ \ \ \ \ State;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ state\ atom\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00368\ \ \ \ \ Atom\ \ \ \ \ \ \ \ \ \ \ \ StateFullScreen;\ \ \ \ \textcolor{comment}{/*\ The\ full\ screen\ atom\ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00369\ }
+\DoxyCodeLine{00370\ \textcolor{preprocessor}{\#ifdef\ HAVE\_X11\_EXTENSIONS\_XRANDR\_H}}
+\DoxyCodeLine{00371\ \ \ \ \ \textcolor{keywordtype}{int}\ prev\_xsz,\ prev\_ysz;}
+\DoxyCodeLine{00372\ \ \ \ \ \textcolor{keywordtype}{int}\ prev\_refresh;}
+\DoxyCodeLine{00373\ \ \ \ \ \textcolor{keywordtype}{int}\ prev\_size\_valid;}
+\DoxyCodeLine{00374\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*\ HAVE\_X11\_EXTENSIONS\_XRANDR\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00376\ \textcolor{preprocessor}{\#ifdef\ HAVE\_X11\_EXTENSIONS\_XF86VMODE\_H}}
+\DoxyCodeLine{00377\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00378\ \textcolor{comment}{\ \ \ \ \ *\ XF86VidMode\ may\ be\ compilable\ even\ if\ it\ fails\ at\ runtime.\ \ Therefore,}}
+\DoxyCodeLine{00379\ \textcolor{comment}{\ \ \ \ \ *\ the\ validity\ of\ the\ VidMode\ has\ to\ be\ tracked}}
+\DoxyCodeLine{00380\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00381\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ DisplayModeValid;\ \ \ \textcolor{comment}{/*\ Flag\ that\ indicates\ runtime\ status*/}}
+\DoxyCodeLine{00382\ \ \ \ \ XF86VidModeModeLine\ DisplayMode;\ \ \ \ \textcolor{comment}{/*\ Current\ screen's\ display\ settings\ */}}
+\DoxyCodeLine{00383\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ DisplayModeClock;\ \ \ \textcolor{comment}{/*\ The\ display\ mode's\ refresh\ rate\ \ \ */}}
+\DoxyCodeLine{00384\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ DisplayViewPortX;\ \ \ \textcolor{comment}{/*\ saved\ X\ location\ of\ the\ viewport\ \ */}}
+\DoxyCodeLine{00385\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ DisplayViewPortY;\ \ \ \textcolor{comment}{/*\ saved\ Y\ location\ of\ the\ viewport\ \ */}}
+\DoxyCodeLine{00386\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ HAVE\_X11\_EXTENSIONS\_XF86VMODE\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ DisplayPointerX;\ \ \ \ \textcolor{comment}{/*\ saved\ X\ location\ of\ the\ pointer\ \ \ */}}
+\DoxyCodeLine{00389\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ DisplayPointerY;\ \ \ \ \textcolor{comment}{/*\ saved\ Y\ location\ of\ the\ pointer\ \ \ */}}
+\DoxyCodeLine{00390\ }
+\DoxyCodeLine{00391\ \textcolor{preprocessor}{\#elif\ TARGET\_HOST\_MS\_WINDOWS}}
+\DoxyCodeLine{00392\ \ \ \ \ HINSTANCE\ \ \ \ \ \ \ Instance;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ application's\ instance\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00393\ \ \ \ \ DEVMODE\ \ \ \ \ \ \ \ \ DisplayMode;\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Desktop's\ display\ settings\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00394\ \ \ \ \ \textcolor{keywordtype}{char}\ \ \ \ \ \ \ \ \ \ \ *DisplayName;\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Display\ name\ for\ multi\ display\ support*/}\ }
+\DoxyCodeLine{00395\ }
+\DoxyCodeLine{00396\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00398\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___display_afcb8f49d104b6eaf8c15d949ec9aeb09_afcb8f49d104b6eaf8c15d949ec9aeb09}{ScreenWidth}};\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ screen's\ width\ in\ pixels\ \ \ \ \ \ */}}
+\DoxyCodeLine{00399\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___display_a76c0f9c86cad5a3160e87707934e2392_a76c0f9c86cad5a3160e87707934e2392}{ScreenHeight}};\ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ screen's\ height\ in\ pixels\ \ \ \ \ */}}
+\DoxyCodeLine{00400\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___display_afe00cd0b779e649422435b3bede6d9b6_afe00cd0b779e649422435b3bede6d9b6}{ScreenWidthMM}};\ \ \ \ \ \ \textcolor{comment}{/*\ The\ screen's\ width\ in\ milimeters\ \ */}}
+\DoxyCodeLine{00401\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___display_ae937d28dd23eec85badebd78bfc8fcbf_ae937d28dd23eec85badebd78bfc8fcbf}{ScreenHeightMM}};\ \ \ \ \ \textcolor{comment}{/*\ The\ screen's\ height\ in\ milimeters\ */}}
+\DoxyCodeLine{00402\ \};}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00405\ \textcolor{comment}{/*\ The\ user\ can\ create\ any\ number\ of\ timer\ hooks\ */}}
+\DoxyCodeLine{00406\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___timer}{tagSFG\_Timer}}\ \mbox{\hyperlink{structtag_s_f_g___timer}{SFG\_Timer}};}
+\DoxyCodeLine{00407\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___timer}{tagSFG\_Timer}}}
+\DoxyCodeLine{00408\ \{}
+\DoxyCodeLine{00409\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___node}{SFG\_Node}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___timer_a6e7e5a2bf21a1f0f539991047eac9f9c_a6e7e5a2bf21a1f0f539991047eac9f9c}{Node}};}
+\DoxyCodeLine{00410\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___timer_af8c0dbe9372e0a780ddbc145de06081a_af8c0dbe9372e0a780ddbc145de06081a}{ID}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ timer\ ID\ integer\ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00411\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a21c6976e35f002b03014c75d51d68b20_a21c6976e35f002b03014c75d51d68b20}{FGCBTimer}}\ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___timer_a31af9e92ea395bf269828a639680f201_a31af9e92ea395bf269828a639680f201}{Callback}};\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ timer\ callback\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00412\ \ \ \ \ \textcolor{keywordtype}{long}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___timer_a1cde95add84adbbd5803d6238945407b_a1cde95add84adbbd5803d6238945407b}{TriggerTime}};\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ timer\ trigger\ time\ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00413\ \};}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00415\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00416\ \textcolor{comment}{\ *\ Make\ "{}freeglut"{}\ window\ handle\ and\ context\ types\ so\ that\ we\ don't\ need\ so}}
+\DoxyCodeLine{00417\ \textcolor{comment}{\ *\ much\ conditionally-\/compiled\ code\ later\ in\ the\ library.}}
+\DoxyCodeLine{00418\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00419\ \textcolor{preprocessor}{\#if\ TARGET\_HOST\_POSIX\_X11}}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00421\ \textcolor{keyword}{typedef}\ Window\ \ \ \ \ SFG\_WindowHandleType\ ;}
+\DoxyCodeLine{00422\ \textcolor{keyword}{typedef}\ GLXContext\ SFG\_WindowContextType\ ;}
+\DoxyCodeLine{00423\ }
+\DoxyCodeLine{00424\ \textcolor{preprocessor}{\#elif\ TARGET\_HOST\_MS\_WINDOWS}}
+\DoxyCodeLine{00425\ }
+\DoxyCodeLine{00426\ \textcolor{keyword}{typedef}\ HWND\ \ \ \ SFG\_WindowHandleType\ ;}
+\DoxyCodeLine{00427\ \textcolor{keyword}{typedef}\ HGLRC\ \ \ SFG\_WindowContextType\ ;}
+\DoxyCodeLine{00428\ }
+\DoxyCodeLine{00429\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00431\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00432\ \textcolor{comment}{\ *\ A\ window\ and\ its\ OpenGL\ context.\ The\ contents\ of\ this\ structure}}
+\DoxyCodeLine{00433\ \textcolor{comment}{\ *\ are\ highly\ dependant\ on\ the\ target\ operating\ system\ we\ aim\ at...}}
+\DoxyCodeLine{00434\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00435\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___context}{tagSFG\_Context}}\ \mbox{\hyperlink{structtag_s_f_g___context}{SFG\_Context}};}
+\DoxyCodeLine{00436\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___context}{tagSFG\_Context}}}
+\DoxyCodeLine{00437\ \{}
+\DoxyCodeLine{00438\ \ \ \ \ SFG\_WindowHandleType\ \ \mbox{\hyperlink{structtag_s_f_g___context_a6936c3fdb2f357804d9fa4517587a876_a6936c3fdb2f357804d9fa4517587a876}{Handle}};\ \ \ \ \textcolor{comment}{/*\ The\ window's\ handle\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00439\ \ \ \ \ SFG\_WindowContextType\ \mbox{\hyperlink{structtag_s_f_g___context_af9a5542536b66c0ed5e4410270457995_af9a5542536b66c0ed5e4410270457995}{Context}};\ \ \ \textcolor{comment}{/*\ The\ window's\ OpenGL/WGL\ context\ \ \ \ \ */}}
+\DoxyCodeLine{00440\ }
+\DoxyCodeLine{00441\ \textcolor{preprocessor}{\#if\ TARGET\_HOST\_POSIX\_X11}}
+\DoxyCodeLine{00442\ \ \ \ \ GLXFBConfig*\ \ \ \ FBConfig;\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ window's\ FBConfig\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00443\ \textcolor{preprocessor}{\#elif\ TARGET\_HOST\_MS\_WINDOWS}}
+\DoxyCodeLine{00444\ \ \ \ \ HDC\ \ \ \ \ \ \ \ \ \ \ \ \ Device;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ window's\ device\ context\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00445\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00446\ }
+\DoxyCodeLine{00447\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___context_ae6c431fff9065c70c60cad2676ea61b0_ae6c431fff9065c70c60cad2676ea61b0}{DoubleBuffered}};\ \ \textcolor{comment}{/*\ Treat\ the\ window\ as\ double-\/buffered\ */}}
+\DoxyCodeLine{00448\ \};}
+\DoxyCodeLine{00449\ }
+\DoxyCodeLine{00450\ \textcolor{comment}{/*\ Window's\ state\ description.\ This\ structure\ should\ be\ kept\ portable.\ */}}
+\DoxyCodeLine{00451\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___window_state}{tagSFG\_WindowState}}\ \mbox{\hyperlink{structtag_s_f_g___window_state}{SFG\_WindowState}};}
+\DoxyCodeLine{00452\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___window_state}{tagSFG\_WindowState}}}
+\DoxyCodeLine{00453\ \{}
+\DoxyCodeLine{00454\ \ \ \ \ \textcolor{comment}{/*\ Note\ that\ on\ Windows,\ sizes\ always\ refer\ to\ the\ client\ area,\ thus\ without\ the\ window\ decorations\ */}}
+\DoxyCodeLine{00455\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window_state_a5c93c4c8cddfe095eea8fd8f02b2b667_a5c93c4c8cddfe095eea8fd8f02b2b667}{Width}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Window's\ width\ in\ pixels\ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00456\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window_state_a5006040469f77f91509969510f920d9c_a5006040469f77f91509969510f920d9c}{Height}};\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ same\ about\ the\ height\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00457\ \textcolor{preprocessor}{\#if\ TARGET\_HOST\_POSIX\_X11}}
+\DoxyCodeLine{00458\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ OldWidth;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Window\ width\ from\ before\ a\ resize\ */}}
+\DoxyCodeLine{00459\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ OldHeight;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ \ \ "{}\ \ \ \ height\ \ "{}\ \ \ \ "{}\ \ \ \ "{}\ \ \ "{}\ \ \ \ */}}
+\DoxyCodeLine{00460\ \textcolor{preprocessor}{\#elif\ TARGET\_HOST\_MS\_WINDOWS}}
+\DoxyCodeLine{00461\ \ \ \ \ RECT\ \ \ \ \ \ \ \ \ \ \ \ OldRect;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ window\ rect\ -\/\ stored\ before\ the\ window\ is\ made\ fullscreen\ */}}
+\DoxyCodeLine{00462\ \ \ \ \ DWORD\ \ \ \ \ \ \ \ \ \ \ OldStyle;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ window\ style\ -\/\ stored\ before\ the\ window\ is\ made\ fullscreen\ */}}
+\DoxyCodeLine{00463\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00464\ }
+\DoxyCodeLine{00465\ \ \ \ \ GLboolean\ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window_state_a8c299bc2c70825b1389b560877246f07_a8c299bc2c70825b1389b560877246f07}{Redisplay}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Do\ we\ have\ to\ redisplay?\ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00466\ \ \ \ \ GLboolean\ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window_state_aaabb9cb0f5d8ef0972c222b4bc5f4e1c_aaabb9cb0f5d8ef0972c222b4bc5f4e1c}{Visible}};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Is\ the\ window\ visible\ now\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00468\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window_state_abdb8344dec997a246512128c9d334b90_abdb8344dec997a246512128c9d334b90}{Cursor}};\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ currently\ selected\ cursor\ \ \ \ \ */}}
+\DoxyCodeLine{00469\ }
+\DoxyCodeLine{00470\ \ \ \ \ \textcolor{keywordtype}{long}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window_state_a77db81848982950fa6040212771c8b16_a77db81848982950fa6040212771c8b16}{JoystickPollRate}};\ \ \ \textcolor{comment}{/*\ The\ joystick\ polling\ rate\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00471\ \ \ \ \ \textcolor{keywordtype}{long}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window_state_ac8452664a5c4f8000e874e9396e9c5f8_ac8452664a5c4f8000e874e9396e9c5f8}{JoystickLastPoll}};\ \ \ \textcolor{comment}{/*\ When\ the\ last\ poll\ happened\ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00472\ }
+\DoxyCodeLine{00473\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window_state_ac8a6cc2538f770200f89676bb7ce354f_ac8a6cc2538f770200f89676bb7ce354f}{MouseX}},\ \mbox{\hyperlink{structtag_s_f_g___window_state_a27b44bc192bb3baecfbb1b29b57617f7_a27b44bc192bb3baecfbb1b29b57617f7}{MouseY}};\ \ \ \ \ \textcolor{comment}{/*\ The\ most\ recent\ mouse\ position\ \ \ \ */}}
+\DoxyCodeLine{00474\ }
+\DoxyCodeLine{00475\ \ \ \ \ GLboolean\ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window_state_a0b01d7a5017a25538d4a9b136e74166b_a0b01d7a5017a25538d4a9b136e74166b}{IgnoreKeyRepeat}};\ \ \ \ \textcolor{comment}{/*\ Whether\ to\ ignore\ key\ repeat.\ \ \ \ \ */}}
+\DoxyCodeLine{00476\ \ \ \ \ GLboolean\ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window_state_a398b741a72eb5e61756feb09da77ac1f_a398b741a72eb5e61756feb09da77ac1f}{KeyRepeating}};\ \ \ \ \ \ \ \textcolor{comment}{/*\ Currently\ in\ repeat\ mode\ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00477\ }
+\DoxyCodeLine{00478\ \ \ \ \ GLboolean\ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window_state_a4a2338c7311395f4833300006f973f5b_a4a2338c7311395f4833300006f973f5b}{NeedToResize}};\ \ \ \ \ \ \ \textcolor{comment}{/*\ Do\ we\ need\ to\ resize\ the\ window?\ \ */}}
+\DoxyCodeLine{00479\ }
+\DoxyCodeLine{00480\ \ \ \ \ GLboolean\ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window_state_a494dee3b7019bf61d5c3f477fddeb37d_a494dee3b7019bf61d5c3f477fddeb37d}{IsFullscreen}};\ \ \ \ \ \ \ \textcolor{comment}{/*\ is\ the\ window\ fullscreen?\ */}}
+\DoxyCodeLine{00481\ \};}
+\DoxyCodeLine{00482\ }
+\DoxyCodeLine{00483\ }
+\DoxyCodeLine{00484\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00485\ \textcolor{comment}{\ *\ A\ generic\ function\ pointer.\ \ We\ should\ really\ use\ the\ GLUTproc\ type}}
+\DoxyCodeLine{00486\ \textcolor{comment}{\ *\ defined\ in\ freeglut\_ext.h,\ but\ if\ we\ include\ that\ header\ in\ this\ file}}
+\DoxyCodeLine{00487\ \textcolor{comment}{\ *\ a\ bunch\ of\ other\ stuff\ (font-\/related)\ blows\ up!}}
+\DoxyCodeLine{00488\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00489\ \textcolor{keyword}{typedef}\ void\ (*\mbox{\hyperlink{freeglut__internal_8h_a4a9d998eb263a52483cd3f5ff9070b4f_a4a9d998eb263a52483cd3f5ff9070b4f}{SFG\_Proc}})();}
+\DoxyCodeLine{00490\ }
+\DoxyCodeLine{00491\ }
+\DoxyCodeLine{00492\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00493\ \textcolor{comment}{\ *\ SET\_WCB()\ is\ used\ as:}}
+\DoxyCodeLine{00494\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00495\ \textcolor{comment}{\ *\ \ \ \ \ SET\_WCB(\ window,\ cbname,\ func\ );}}
+\DoxyCodeLine{00496\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00497\ \textcolor{comment}{\ *\ ...where\ \{window\}\ is\ the\ freeglut\ window\ to\ set\ the\ callback,}}
+\DoxyCodeLine{00498\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \{cbname\}\ is\ the\ window-\/specific\ callback\ to\ set,}}
+\DoxyCodeLine{00499\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \{func\}\ is\ a\ function-\/pointer.}}
+\DoxyCodeLine{00500\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00501\ \textcolor{comment}{\ *\ Originally,\ \{FETCH\_WCB(\ ...\ )\ =\ func\}\ was\ rather\ sloppily\ used,}}
+\DoxyCodeLine{00502\ \textcolor{comment}{\ *\ but\ this\ can\ cause\ warnings\ because\ the\ FETCH\_WCB()\ macro\ type-\/}}
+\DoxyCodeLine{00503\ \textcolor{comment}{\ *\ casts\ its\ result,\ and\ a\ type-\/cast\ value\ shouldn't\ be\ an\ lvalue.}}
+\DoxyCodeLine{00504\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00505\ \textcolor{comment}{\ *\ The\ \{if(\ FETCH\_WCB(\ ...\ )\ !=\ func\ )\}\ test\ is\ to\ do\ type-\/checking}}
+\DoxyCodeLine{00506\ \textcolor{comment}{\ *\ and\ for\ no\ other\ reason.\ \ Since\ it's\ hidden\ in\ the\ macro,\ the}}
+\DoxyCodeLine{00507\ \textcolor{comment}{\ *\ ugliness\ is\ felt\ to\ be\ rather\ benign.}}
+\DoxyCodeLine{00508\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00509\ \textcolor{preprocessor}{\#define\ SET\_WCB(window,cbname,func)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00510\ \textcolor{preprocessor}{do\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00511\ \textcolor{preprocessor}{\{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00512\ \textcolor{preprocessor}{\ \ \ \ if(\ FETCH\_WCB(\ window,\ cbname\ )\ !=\ (SFG\_Proc)(func)\ )\ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00513\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ (((window).CallBacks[CB\_\ \#\#\ cbname])\ =\ (SFG\_Proc)(func));\ \(\backslash\)}}
+\DoxyCodeLine{00514\ \textcolor{preprocessor}{\}\ while(\ 0\ )}}
+\DoxyCodeLine{00515\ }
+\DoxyCodeLine{00516\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00517\ \textcolor{comment}{\ *\ FETCH\_WCB()\ is\ used\ as:}}
+\DoxyCodeLine{00518\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00519\ \textcolor{comment}{\ *\ \ \ \ \ FETCH\_WCB(\ window,\ cbname\ );}}
+\DoxyCodeLine{00520\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00521\ \textcolor{comment}{\ *\ ...where\ \{window\}\ is\ the\ freeglut\ window\ to\ fetch\ the\ callback\ from,}}
+\DoxyCodeLine{00522\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \{cbname\}\ is\ the\ window-\/specific\ callback\ to\ fetch.}}
+\DoxyCodeLine{00523\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00524\ \textcolor{comment}{\ *\ The\ result\ is\ correctly\ type-\/cast\ to\ the\ callback\ function\ pointer}}
+\DoxyCodeLine{00525\ \textcolor{comment}{\ *\ type.}}
+\DoxyCodeLine{00526\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00527\ \textcolor{preprocessor}{\#define\ FETCH\_WCB(window,cbname)\ \(\backslash\)}}
+\DoxyCodeLine{00528\ \textcolor{preprocessor}{\ \ \ \ ((window).CallBacks[CB\_\ \#\#\ cbname])}}
+\DoxyCodeLine{00529\ }
+\DoxyCodeLine{00530\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00531\ \textcolor{comment}{\ *\ INVOKE\_WCB()\ is\ used\ as:}}
+\DoxyCodeLine{00532\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00533\ \textcolor{comment}{\ *\ \ \ \ \ INVOKE\_WCB(\ window,\ cbname,\ (\ arg\_list\ )\ );}}
+\DoxyCodeLine{00534\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00535\ \textcolor{comment}{\ *\ ...where\ \{window\}\ is\ the\ freeglut\ window,}}
+\DoxyCodeLine{00536\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \{cbname\}\ is\ the\ window-\/specific\ callback\ to\ be\ invoked,}}
+\DoxyCodeLine{00537\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \{(arg\_list)\}\ is\ the\ parameter\ list.}}
+\DoxyCodeLine{00538\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00539\ \textcolor{comment}{\ *\ The\ callback\ is\ invoked\ as:}}
+\DoxyCodeLine{00540\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00541\ \textcolor{comment}{\ *\ \ \ \ callback(\ arg\_list\ );}}
+\DoxyCodeLine{00542\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00543\ \textcolor{comment}{\ *\ ...so\ the\ parentheses\ are\ REQUIRED\ in\ the\ \{arg\_list\}.}}
+\DoxyCodeLine{00544\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00545\ \textcolor{comment}{\ *\ NOTE\ that\ it\ does\ a\ sanity-\/check\ and\ also\ sets\ the}}
+\DoxyCodeLine{00546\ \textcolor{comment}{\ *\ current\ window.}}
+\DoxyCodeLine{00547\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00548\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00549\ \textcolor{preprocessor}{\#if\ TARGET\_HOST\_MS\_WINDOWS\ \&\&\ !defined(\_WIN32\_WCE)\ }\textcolor{comment}{/*\ FIXME:\ also\ WinCE?\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00550\ \textcolor{preprocessor}{\#define\ INVOKE\_WCB(window,cbname,arg\_list)\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00551\ \textcolor{preprocessor}{do\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00552\ \textcolor{preprocessor}{\{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00553\ \textcolor{preprocessor}{\ \ \ \ if(\ FETCH\_WCB(\ window,\ cbname\ )\ )\ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00554\ \textcolor{preprocessor}{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00555\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ FGCB\ \#\#\ cbname\ func\ =\ (FGCB\ \#\#\ cbname)(FETCH\_WCB(\ window,\ cbname\ ));\ \(\backslash\)}}
+\DoxyCodeLine{00556\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ fgSetWindow(\ \&window\ );\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00557\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ func\ arg\_list;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00558\ \textcolor{preprocessor}{\ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00559\ \textcolor{preprocessor}{\}\ while(\ 0\ )}}
+\DoxyCodeLine{00560\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00561\ \textcolor{preprocessor}{\#define\ INVOKE\_WCB(window,cbname,arg\_list)\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00562\ \textcolor{preprocessor}{do\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00563\ \textcolor{preprocessor}{\{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00564\ \textcolor{preprocessor}{\ \ \ \ if(\ FETCH\_WCB(\ window,\ cbname\ )\ )\ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00565\ \textcolor{preprocessor}{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00566\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ fgSetWindow(\ \&window\ );\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00567\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ ((FGCB\ \#\#\ cbname)FETCH\_WCB(\ window,\ cbname\ ))\ arg\_list;\ \(\backslash\)}}
+\DoxyCodeLine{00568\ \textcolor{preprocessor}{\ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00569\ \textcolor{preprocessor}{\}\ while(\ 0\ )}}
+\DoxyCodeLine{00570\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00571\ }
+\DoxyCodeLine{00572\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00573\ \textcolor{comment}{\ *\ The\ window\ callbacks\ the\ user\ can\ supply\ us\ with.\ Should\ be\ kept\ portable.}}
+\DoxyCodeLine{00574\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00575\ \textcolor{comment}{\ *\ This\ enumeration\ provides\ the\ freeglut\ CallBack\ numbers.}}
+\DoxyCodeLine{00576\ \textcolor{comment}{\ *\ The\ symbolic\ constants\ are\ indices\ into\ a\ window's\ array\ of}}
+\DoxyCodeLine{00577\ \textcolor{comment}{\ *\ function\ callbacks.\ \ The\ names\ are\ formed\ by\ splicing\ a\ common}}
+\DoxyCodeLine{00578\ \textcolor{comment}{\ *\ prefix\ onto\ the\ callback's\ base\ name.\ \ (This\ was\ originally}}
+\DoxyCodeLine{00579\ \textcolor{comment}{\ *\ done\ so\ that\ an\ early\ stage\ of\ development\ could\ live\ side-\/by-\/}}
+\DoxyCodeLine{00580\ \textcolor{comment}{\ *\ side\ with\ the\ old\ callback\ code.\ \ The\ old\ callback\ code\ used}}
+\DoxyCodeLine{00581\ \textcolor{comment}{\ *\ the\ bare\ callback's\ name\ as\ a\ structure\ member,\ so\ I\ used\ a}}
+\DoxyCodeLine{00582\ \textcolor{comment}{\ *\ prefix\ for\ the\ array\ index\ name.)}}
+\DoxyCodeLine{00583\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00584\ \textcolor{comment}{\ *\ XXX\ For\ consistancy,\ perhaps\ the\ prefix\ should\ match\ the}}
+\DoxyCodeLine{00585\ \textcolor{comment}{\ *\ XXX\ FETCH*\ and\ INVOKE*\ macro\ suffices.\ \ I.e.,\ WCB\_,\ rather\ than}}
+\DoxyCodeLine{00586\ \textcolor{comment}{\ *\ XXX\ CB\_.}}
+\DoxyCodeLine{00587\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00588\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00589\ \{}
+\DoxyCodeLine{00590\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2a0c71b13da5ccf6ed7b79933176e1d3e3}{CB\_Display}},}
+\DoxyCodeLine{00591\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2afbf723e0eff50a2ccc29065c2c48a711}{CB\_Reshape}},}
+\DoxyCodeLine{00592\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2af03cc63971c3607ee5269df87ddd2035}{CB\_Keyboard}},}
+\DoxyCodeLine{00593\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2ae1e9d3e5a2be9f8bb6ef8936ce72dbf4}{CB\_KeyboardUp}},}
+\DoxyCodeLine{00594\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2afa4fc05892723d8229518ab6ccf558ec}{CB\_Special}},}
+\DoxyCodeLine{00595\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2a4d0267d6d17eebb61d665ccc7e39843d}{CB\_SpecialUp}},}
+\DoxyCodeLine{00596\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2a5c5bc911748023f46b41ba3249ad2de4}{CB\_Mouse}},}
+\DoxyCodeLine{00597\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2ac1532eadd005121d35c5b97586aaf02d}{CB\_MouseWheel}},}
+\DoxyCodeLine{00598\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2abc7d191edd656389f3590e621f40f037}{CB\_Motion}},}
+\DoxyCodeLine{00599\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2a1ee1197a779bde1e0155aa537ada079b}{CB\_Passive}},}
+\DoxyCodeLine{00600\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2a5f7d37754bb760600e1b3e24a3afa957}{CB\_Entry}},}
+\DoxyCodeLine{00601\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2adb6d546d58ef656e86e8ae9956e964bc}{CB\_Visibility}},}
+\DoxyCodeLine{00602\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2af3bd62df53f366f9f1d5ba85ddfd707e}{CB\_WindowStatus}},}
+\DoxyCodeLine{00603\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2a9102deb66a8d83a91d4340f6880868ea}{CB\_Joystick}},}
+\DoxyCodeLine{00604\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2ad2a4c60efbf068b86b568e04b728ab30}{CB\_Destroy}},}
+\DoxyCodeLine{00605\ }
+\DoxyCodeLine{00606\ \ \ \ \ \textcolor{comment}{/*\ MPX-\/related\ */}}
+\DoxyCodeLine{00607\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2a577620a5d9ddb8c15e12f491907a1dbd}{CB\_MultiEntry}},}
+\DoxyCodeLine{00608\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2a29c3f0250057dc5eb6181b07486c3037}{CB\_MultiButton}},}
+\DoxyCodeLine{00609\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2a5a2b91241702534a96810a01da65eddf}{CB\_MultiMotion}},}
+\DoxyCodeLine{00610\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2aab9b3f36ec36e2af5b8c09e59a494e06}{CB\_MultiPassive}},}
+\DoxyCodeLine{00611\ }
+\DoxyCodeLine{00612\ \ \ \ \ \textcolor{comment}{/*\ Presently\ ignored\ */}}
+\DoxyCodeLine{00613\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2ab059409afcc2d910fc1664cf11d95f01}{CB\_Select}},}
+\DoxyCodeLine{00614\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2a3ab8ff59b961a9432f498826ddc02c37}{CB\_OverlayDisplay}},}
+\DoxyCodeLine{00615\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2aec6b3f0c1c79323fe96637a19a359738}{CB\_SpaceMotion}},\ \ \ \ \ \textcolor{comment}{/*\ presently\ implemented\ only\ on\ UNIX/X11\ */}}
+\DoxyCodeLine{00616\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2a16e5c44227c6a17ad294200a0d680469}{CB\_SpaceRotation}},\ \ \ \textcolor{comment}{/*\ presently\ implemented\ only\ on\ UNIX/X11\ */}}
+\DoxyCodeLine{00617\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2a7e8473fab9c33c78e98dc2f325ccaaee}{CB\_SpaceButton}},\ \ \ \ \ \textcolor{comment}{/*\ presently\ implemented\ only\ on\ UNIX/X11\ */}}
+\DoxyCodeLine{00618\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2abcf62c5424dd16bb67d2c09395d1fe87}{CB\_Dials}},}
+\DoxyCodeLine{00619\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2a24c319493a1c9a6ec5e8a3fcb94f085f}{CB\_ButtonBox}},}
+\DoxyCodeLine{00620\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2a70a795c54eaa634d5ccd8280787cdb2b}{CB\_TabletMotion}},}
+\DoxyCodeLine{00621\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2a61ab4b271ea992acf7d59167777d8b5b}{CB\_TabletButton}},}
+\DoxyCodeLine{00622\ }
+\DoxyCodeLine{00623\ \ \ \ \ \textcolor{comment}{/*\ Always\ make\ this\ the\ LAST\ one\ */}}
+\DoxyCodeLine{00624\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2a458163f2e5541babcf543ec51307e35e}{TOTAL\_CALLBACKS}}}
+\DoxyCodeLine{00625\ \};}
+\DoxyCodeLine{00626\ }
+\DoxyCodeLine{00627\ }
+\DoxyCodeLine{00628\ \textcolor{comment}{/*\ This\ structure\ holds\ the\ OpenGL\ rendering\ context\ for\ all\ the\ menu\ windows\ */}}
+\DoxyCodeLine{00629\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___menu_context}{tagSFG\_MenuContext}}\ \mbox{\hyperlink{structtag_s_f_g___menu_context}{SFG\_MenuContext}};}
+\DoxyCodeLine{00630\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___menu_context}{tagSFG\_MenuContext}}}
+\DoxyCodeLine{00631\ \{}
+\DoxyCodeLine{00632\ \ \ \ \ SFG\_WindowContextType\ \mbox{\hyperlink{structtag_s_f_g___menu_context_a463a2d14e50c4e984182afc7a9c75e65_a463a2d14e50c4e984182afc7a9c75e65}{MContext}};\ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ menu\ window's\ WGL\ context\ \ \ */}}
+\DoxyCodeLine{00633\ \};}
+\DoxyCodeLine{00634\ }
+\DoxyCodeLine{00635\ \textcolor{comment}{/*\ This\ structure\ describes\ a\ menu\ */}}
+\DoxyCodeLine{00636\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___window}{tagSFG\_Window}}\ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}};}
+\DoxyCodeLine{00637\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___menu_entry}{tagSFG\_MenuEntry}}\ \mbox{\hyperlink{structtag_s_f_g___menu_entry}{SFG\_MenuEntry}};}
+\DoxyCodeLine{00638\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___menu}{tagSFG\_Menu}}\ \mbox{\hyperlink{structtag_s_f_g___menu}{SFG\_Menu}};}
+\DoxyCodeLine{00639\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___menu}{tagSFG\_Menu}}}
+\DoxyCodeLine{00640\ \{}
+\DoxyCodeLine{00641\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___node}{SFG\_Node}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___menu_ae350b9c5639a605e292a5cca57f89c5b_ae350b9c5639a605e292a5cca57f89c5b}{Node}};}
+\DoxyCodeLine{00642\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\mbox{\hyperlink{structtag_s_f_g___menu_a84f7b0fda1e3221cf320fecb30676fc7_a84f7b0fda1e3221cf320fecb30676fc7}{UserData}};\ \ \ \ \ \textcolor{comment}{/*\ User\ data\ passed\ back\ at\ callback\ \ \ */}}
+\DoxyCodeLine{00643\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___menu_ae393dd53a1dbc222785a84e6df269612_ae393dd53a1dbc222785a84e6df269612}{ID}};\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ global\ menu\ ID\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00644\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___list}{SFG\_List}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___menu_a5fda89a85780d62e522bfa2e3167c22c_a5fda89a85780d62e522bfa2e3167c22c}{Entries}};\ \ \ \ \ \ \textcolor{comment}{/*\ The\ menu\ entries\ list\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00645\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_aa55885854b676e2a366fee3f02d37119_aa55885854b676e2a366fee3f02d37119}{FGCBMenu}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___menu_a3fac68e24afab540483df694e7d5cea9_a3fac68e24afab540483df694e7d5cea9}{Callback}};\ \ \ \ \ \textcolor{comment}{/*\ The\ menu\ callback\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00646\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a2f1cffd302ecb6039ad71582f87c1e9f_a2f1cffd302ecb6039ad71582f87c1e9f}{FGCBDestroy}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___menu_ab421a820ebf9f7bdbbd22abe8e1a9aec_ab421a820ebf9f7bdbbd22abe8e1a9aec}{Destroy}};\ \ \ \ \ \ \textcolor{comment}{/*\ Destruction\ callback\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00647\ \ \ \ \ GLboolean\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___menu_a87cd03ad984d40be1f5afe86a28afb07_a87cd03ad984d40be1f5afe86a28afb07}{IsActive}};\ \ \ \ \ \textcolor{comment}{/*\ Is\ the\ menu\ selected?\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00648\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___menu_a8a0f656e2b2d8ccccbc52b334ce19132_a8a0f656e2b2d8ccccbc52b334ce19132}{Width}};\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Menu\ box\ width\ in\ pixels\ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00649\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___menu_a7992cd7e1feb9e9f70364543cb30e744_a7992cd7e1feb9e9f70364543cb30e744}{Height}};\ \ \ \ \ \ \ \textcolor{comment}{/*\ Menu\ box\ height\ in\ pixels\ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00650\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___menu_ab4e9eece2d160f5947b550387f3e39a8_ab4e9eece2d160f5947b550387f3e39a8}{X}},\ \mbox{\hyperlink{structtag_s_f_g___menu_afb0c69c79153b0624f183a917654b892_afb0c69c79153b0624f183a917654b892}{Y}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Menu\ box\ raster\ position\ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00651\ }
+\DoxyCodeLine{00652\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___menu_entry}{SFG\_MenuEntry}}\ \ \ \ \ \ *\mbox{\hyperlink{structtag_s_f_g___menu_a7a68164b52f66d3dabfcf9c864853ac5_a7a68164b52f66d3dabfcf9c864853ac5}{ActiveEntry}};\ \ \textcolor{comment}{/*\ Currently\ active\ entry\ in\ the\ menu\ \ */}}
+\DoxyCodeLine{00653\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}\ \ \ \ \ \ \ \ \ *\mbox{\hyperlink{structtag_s_f_g___menu_ae8697a875e322abcbbeeaaeec38a9ba4_ae8697a875e322abcbbeeaaeec38a9ba4}{Window}};\ \ \ \ \ \ \ \textcolor{comment}{/*\ Window\ for\ menu\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00654\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}\ \ \ \ \ \ \ \ \ *\mbox{\hyperlink{structtag_s_f_g___menu_ab60114425eb28e25f7ecb87078f9f5e5_ab60114425eb28e25f7ecb87078f9f5e5}{ParentWindow}};\ \textcolor{comment}{/*\ Window\ in\ which\ the\ menu\ is\ invoked\ */}}
+\DoxyCodeLine{00655\ \};}
+\DoxyCodeLine{00656\ }
+\DoxyCodeLine{00657\ \textcolor{comment}{/*\ This\ is\ a\ menu\ entry\ */}}
+\DoxyCodeLine{00658\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___menu_entry}{tagSFG\_MenuEntry}}}
+\DoxyCodeLine{00659\ \{}
+\DoxyCodeLine{00660\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___node}{SFG\_Node}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___menu_entry_a52f441c4279791f897a74b3a0d0ab75f_a52f441c4279791f897a74b3a0d0ab75f}{Node}};}
+\DoxyCodeLine{00661\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___menu_entry_a8b7775e0cc478b3a28580b4ac3ef9d47_a8b7775e0cc478b3a28580b4ac3ef9d47}{ID}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ menu\ entry\ ID\ (local)\ */}}
+\DoxyCodeLine{00662\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___menu_entry_a1d44f214ef51a363751bb5c06d627360_a1d44f214ef51a363751bb5c06d627360}{Ordinal}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ menu's\ ordinal\ number\ */}}
+\DoxyCodeLine{00663\ \ \ \ \ \textcolor{keywordtype}{char}*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___menu_entry_a7db692ea4092deaa966b974b85dd078a_a7db692ea4092deaa966b974b85dd078a}{Text}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ text\ to\ be\ displayed\ \ */}}
+\DoxyCodeLine{00664\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___menu}{SFG\_Menu}}*\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___menu_entry_a49a462aef5fda0726f9342e35812d8d6_a49a462aef5fda0726f9342e35812d8d6}{SubMenu}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Optional\ sub-\/menu\ tree\ \ \ \ */}}
+\DoxyCodeLine{00665\ \ \ \ \ GLboolean\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___menu_entry_af808c1b9e6a27def415f32450bc19f8e_af808c1b9e6a27def415f32450bc19f8e}{IsActive}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Is\ the\ entry\ highlighted?\ */}}
+\DoxyCodeLine{00666\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___menu_entry_a704ec8c9592875c7a41b74d58ece35b0_a704ec8c9592875c7a41b74d58ece35b0}{Width}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Label's\ width\ in\ pixels\ \ \ */}}
+\DoxyCodeLine{00667\ \};}
+\DoxyCodeLine{00668\ }
+\DoxyCodeLine{00669\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00670\ \textcolor{comment}{\ *\ A\ window,\ making\ part\ of\ freeglut\ windows\ hierarchy.}}
+\DoxyCodeLine{00671\ \textcolor{comment}{\ *\ Should\ be\ kept\ portable.}}
+\DoxyCodeLine{00672\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00673\ \textcolor{comment}{\ *\ NOTE\ that\ ActiveMenu\ is\ set\ to\ menu\ itself\ if\ the\ window\ is\ a\ menu.}}
+\DoxyCodeLine{00674\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00675\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___window}{tagSFG\_Window}}}
+\DoxyCodeLine{00676\ \{}
+\DoxyCodeLine{00677\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___node}{SFG\_Node}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window_adc4ddf7a822ba1c8a70d8d40294e980d_adc4ddf7a822ba1c8a70d8d40294e980d}{Node}};}
+\DoxyCodeLine{00678\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window_a077ee8456067e0dedb24c3c386b0cf01_a077ee8456067e0dedb24c3c386b0cf01}{ID}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Window's\ ID\ number\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00679\ }
+\DoxyCodeLine{00680\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___context}{SFG\_Context}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window_a7412006027fca6391514cba2ff4f2d50_a7412006027fca6391514cba2ff4f2d50}{Window}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Window\ and\ OpenGL\ context\ */}}
+\DoxyCodeLine{00681\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window_state}{SFG\_WindowState}}\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window_ae267d48b0d06a0345124a846c0beba99_ae267d48b0d06a0345124a846c0beba99}{State}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ window\ state\ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00682\ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a4a9d998eb263a52483cd3f5ff9070b4f_a4a9d998eb263a52483cd3f5ff9070b4f}{SFG\_Proc}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window_a03e03fc725bcefaa4b95d938c38b966a_a03e03fc725bcefaa4b95d938c38b966a}{CallBacks}}[\ \mbox{\hyperlink{freeglut__internal_8h_a133aac90e230290fa8087f8b6cd16fd2_a133aac90e230290fa8087f8b6cd16fd2a458163f2e5541babcf543ec51307e35e}{TOTAL\_CALLBACKS}}\ ];\ \textcolor{comment}{/*\ Array\ of\ window\ callbacks\ */}}
+\DoxyCodeLine{00683\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\mbox{\hyperlink{structtag_s_f_g___window_aeae44952457c44d83aa4d50b9c90e88d_aeae44952457c44d83aa4d50b9c90e88d}{UserData}}\ ;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ For\ use\ by\ user\ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00684\ }
+\DoxyCodeLine{00685\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___menu}{SFG\_Menu}}*\ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window_a78c0830a23cb7f5851801e65e1693f2d_a78c0830a23cb7f5851801e65e1693f2d}{Menu}}[\ \mbox{\hyperlink{freeglut__internal_8h_aa043a37a250dbf46addc5d99e91c6f34_aa043a37a250dbf46addc5d99e91c6f34}{FREEGLUT\_MAX\_MENUS}}\ ];\ \textcolor{comment}{/*\ Menus\ appended\ to\ window\ \ */}}
+\DoxyCodeLine{00686\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___menu}{SFG\_Menu}}*\ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window_a4ea3b941e4795d70ffa8cd6c345c5743_a4ea3b941e4795d70ffa8cd6c345c5743}{ActiveMenu}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ window's\ active\ menu\ \ */}}
+\DoxyCodeLine{00687\ }
+\DoxyCodeLine{00688\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}*\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window_a4eacb33b5c31442ba9e12eb55effadf4_a4eacb33b5c31442ba9e12eb55effadf4}{Parent}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ parent\ to\ this\ window\ */}}
+\DoxyCodeLine{00689\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___list}{SFG\_List}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window_a09949beb74c370588f827a0ea3ce5270_a09949beb74c370588f827a0ea3ce5270}{Children}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ subwindows\ d.l.\ list\ \ */}}
+\DoxyCodeLine{00690\ }
+\DoxyCodeLine{00691\ \ \ \ \ GLboolean\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window_aaaff2f620d9c72bb5d16d7ac14d594c8_aaaff2f620d9c72bb5d16d7ac14d594c8}{IsMenu}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Set\ to\ 1\ if\ we\ are\ a\ menu\ */}}
+\DoxyCodeLine{00692\ \};}
+\DoxyCodeLine{00693\ }
+\DoxyCodeLine{00694\ }
+\DoxyCodeLine{00695\ \textcolor{comment}{/*\ A\ linked\ list\ structure\ of\ windows\ */}}
+\DoxyCodeLine{00696\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___window_list}{tagSFG\_WindowList}}\ \mbox{\hyperlink{structtag_s_f_g___window_list}{SFG\_WindowList}}\ ;}
+\DoxyCodeLine{00697\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___window_list}{tagSFG\_WindowList}}}
+\DoxyCodeLine{00698\ \{}
+\DoxyCodeLine{00699\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___node}{SFG\_Node}}\ \mbox{\hyperlink{structtag_s_f_g___window_list_a39fbea46c53b50c972d3e6dd8423001c_a39fbea46c53b50c972d3e6dd8423001c}{node}};}
+\DoxyCodeLine{00700\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}\ *\mbox{\hyperlink{structtag_s_f_g___window_list_a29be4f8f539653d5c91d2fed411ed950_a29be4f8f539653d5c91d2fed411ed950}{window}}\ ;}
+\DoxyCodeLine{00701\ \};}
+\DoxyCodeLine{00702\ }
+\DoxyCodeLine{00703\ \textcolor{comment}{/*\ This\ holds\ information\ about\ all\ the\ windows,\ menus\ etc.\ */}}
+\DoxyCodeLine{00704\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___structure}{tagSFG\_Structure}}\ \mbox{\hyperlink{structtag_s_f_g___structure}{SFG\_Structure}};}
+\DoxyCodeLine{00705\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___structure}{tagSFG\_Structure}}}
+\DoxyCodeLine{00706\ \{}
+\DoxyCodeLine{00707\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___list}{SFG\_List}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___structure_a9ce7ad887ddced3f4041855f0ee59e31_a9ce7ad887ddced3f4041855f0ee59e31}{Windows}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ global\ windows\ list\ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00708\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___list}{SFG\_List}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___structure_a7627e41fb13a98233dee296089d3cabd_a7627e41fb13a98233dee296089d3cabd}{Menus}};\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ global\ menus\ list\ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00709\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___list}{SFG\_List}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___structure_afdbf8d1236b91cdd06fbd14eabd65143_afdbf8d1236b91cdd06fbd14eabd65143}{WindowsToDestroy}};}
+\DoxyCodeLine{00710\ }
+\DoxyCodeLine{00711\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}*\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___structure_ab3d72742bdf10e75c276a6f8ff53fe1a_ab3d72742bdf10e75c276a6f8ff53fe1a}{CurrentWindow}};\ \ \ \textcolor{comment}{/*\ The\ currently\ set\ window\ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00712\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___menu}{SFG\_Menu}}*\ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___structure_aa7ecdd0b0550b0366344228b0f8b2f31_aa7ecdd0b0550b0366344228b0f8b2f31}{CurrentMenu}};\ \ \ \ \ \textcolor{comment}{/*\ Same,\ but\ menu...\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00713\ }
+\DoxyCodeLine{00714\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___menu_context}{SFG\_MenuContext}}*\ \mbox{\hyperlink{structtag_s_f_g___structure_ae6b830e12a1151c3d1f675b9eff2c1b5_ae6b830e12a1151c3d1f675b9eff2c1b5}{MenuContext}};\ \ \ \ \textcolor{comment}{/*\ OpenGL\ rendering\ context\ for\ menus\ */}}
+\DoxyCodeLine{00715\ }
+\DoxyCodeLine{00716\ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}*\ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___structure_a130660eb385235ca2f9567d58dd72714_a130660eb385235ca2f9567d58dd72714}{GameModeWindow}};\ \textcolor{comment}{/*\ The\ game\ mode\ window\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00717\ }
+\DoxyCodeLine{00718\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___structure_a845c15290ad69251123391d42db3ace2_a845c15290ad69251123391d42db3ace2}{WindowID}};\ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ new\ current\ window\ ID\ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00719\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___structure_a5ebcb137c87d1a7118d503c8675e34b3_a5ebcb137c87d1a7118d503c8675e34b3}{MenuID}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ new\ current\ menu\ ID\ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00720\ \};}
+\DoxyCodeLine{00721\ }
+\DoxyCodeLine{00722\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00723\ \textcolor{comment}{\ *\ This\ structure\ is\ used\ for\ the\ enumeration\ purposes.}}
+\DoxyCodeLine{00724\ \textcolor{comment}{\ *\ You\ can\ easily\ extend\ its\ functionalities\ by\ declaring}}
+\DoxyCodeLine{00725\ \textcolor{comment}{\ *\ a\ structure\ containing\ enumerator's\ contents\ and\ custom}}
+\DoxyCodeLine{00726\ \textcolor{comment}{\ *\ data,\ then\ casting\ its\ pointer\ to\ (SFG\_Enumerator\ *).}}
+\DoxyCodeLine{00727\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00728\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___enumerator}{tagSFG\_Enumerator}}\ \mbox{\hyperlink{structtag_s_f_g___enumerator}{SFG\_Enumerator}};}
+\DoxyCodeLine{00729\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___enumerator}{tagSFG\_Enumerator}}}
+\DoxyCodeLine{00730\ \{}
+\DoxyCodeLine{00731\ \ \ \ \ GLboolean\ \ \ \mbox{\hyperlink{structtag_s_f_g___enumerator_ac679682bf62faeb4acb687c6403fc9fb_ac679682bf62faeb4acb687c6403fc9fb}{found}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Used\ to\ terminate\ search\ \ */}}
+\DoxyCodeLine{00732\ \ \ \ \ \textcolor{keywordtype}{void}*\ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___enumerator_a2d32f0afef44072c131b2cb3d8f9a4a5_a2d32f0afef44072c131b2cb3d8f9a4a5}{data}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Custom\ data\ pointer\ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00733\ \};}
+\DoxyCodeLine{00734\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_ad4394b615e3eec0f466317dd6c4a9c5a_ad4394b615e3eec0f466317dd6c4a9c5a}{FGCBWindowEnumerator}}\ \ )(\ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}\ *,\ \mbox{\hyperlink{structtag_s_f_g___enumerator}{SFG\_Enumerator}}\ *\ );}
+\DoxyCodeLine{00735\ \textcolor{keyword}{typedef}\ void\ (*\ \mbox{\hyperlink{freeglut__internal_8h_abd7c989104920721343e3723a00b5e99_abd7c989104920721343e3723a00b5e99}{FGCBMenuEnumerator}}\ \ )(\ \mbox{\hyperlink{structtag_s_f_g___menu}{SFG\_Menu}}\ *,\ \mbox{\hyperlink{structtag_s_f_g___enumerator}{SFG\_Enumerator}}\ *\ );}
+\DoxyCodeLine{00736\ }
+\DoxyCodeLine{00737\ \textcolor{comment}{/*\ The\ bitmap\ font\ structure\ */}}
+\DoxyCodeLine{00738\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___font}{tagSFG\_Font}}\ \mbox{\hyperlink{structtag_s_f_g___font}{SFG\_Font}};}
+\DoxyCodeLine{00739\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___font}{tagSFG\_Font}}}
+\DoxyCodeLine{00740\ \{}
+\DoxyCodeLine{00741\ \ \ \ \ \textcolor{keywordtype}{char}*\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___font_a88a2ffc4e1720d38006875b602589cee_a88a2ffc4e1720d38006875b602589cee}{Name}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ source\ font\ name\ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00742\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___font_a4aa7a1492baddea769b34d0d413f2a09_a4aa7a1492baddea769b34d0d413f2a09}{Quantity}};\ \ \ \ \ \textcolor{comment}{/*\ Number\ of\ chars\ in\ font\ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00743\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___font_adff4b313d038eb7e0bbad46cfa33b97e_adff4b313d038eb7e0bbad46cfa33b97e}{Height}};\ \ \ \ \ \ \ \textcolor{comment}{/*\ Height\ of\ the\ characters\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00744\ \ \ \ \ \textcolor{keyword}{const}\ GLubyte**\ \mbox{\hyperlink{structtag_s_f_g___font_af4f579a5ff5dbd3a7b67b7375a4fbda9_af4f579a5ff5dbd3a7b67b7375a4fbda9}{Characters}};\ \ \ \textcolor{comment}{/*\ The\ characters\ mapping\ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00745\ }
+\DoxyCodeLine{00746\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___font_a71263b8516cb324c1a62e3826eff5ee4_a71263b8516cb324c1a62e3826eff5ee4}{xorig}},\ \mbox{\hyperlink{structtag_s_f_g___font_ae63c2e777542c60ab7f98fc595e4bb51_ae63c2e777542c60ab7f98fc595e4bb51}{yorig}};\ \textcolor{comment}{/*\ Relative\ origin\ of\ the\ character\ */}}
+\DoxyCodeLine{00747\ \};}
+\DoxyCodeLine{00748\ }
+\DoxyCodeLine{00749\ \textcolor{comment}{/*\ The\ stroke\ font\ structures\ */}}
+\DoxyCodeLine{00750\ }
+\DoxyCodeLine{00751\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___stroke_vertex}{tagSFG\_StrokeVertex}}\ \mbox{\hyperlink{structtag_s_f_g___stroke_vertex}{SFG\_StrokeVertex}};}
+\DoxyCodeLine{00752\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___stroke_vertex}{tagSFG\_StrokeVertex}}}
+\DoxyCodeLine{00753\ \{}
+\DoxyCodeLine{00754\ \ \ \ \ GLfloat\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___stroke_vertex_ab47fef053eced8f9cd564b48513ae1c6_ab47fef053eced8f9cd564b48513ae1c6}{X}},\ \mbox{\hyperlink{structtag_s_f_g___stroke_vertex_af942a1c90d00b490bab872913e3c4add_af942a1c90d00b490bab872913e3c4add}{Y}};}
+\DoxyCodeLine{00755\ \};}
+\DoxyCodeLine{00756\ }
+\DoxyCodeLine{00757\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___stroke_strip}{tagSFG\_StrokeStrip}}\ \mbox{\hyperlink{structtag_s_f_g___stroke_strip}{SFG\_StrokeStrip}};}
+\DoxyCodeLine{00758\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___stroke_strip}{tagSFG\_StrokeStrip}}}
+\DoxyCodeLine{00759\ \{}
+\DoxyCodeLine{00760\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___stroke_strip_abab1787c8e9e1681037a5c9a2303f141_abab1787c8e9e1681037a5c9a2303f141}{Number}};}
+\DoxyCodeLine{00761\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structtag_s_f_g___stroke_vertex}{SFG\_StrokeVertex}}*\ \mbox{\hyperlink{structtag_s_f_g___stroke_strip_a96936c057c1e3bb71fb98159fa6a1b12_a96936c057c1e3bb71fb98159fa6a1b12}{Vertices}};}
+\DoxyCodeLine{00762\ \};}
+\DoxyCodeLine{00763\ }
+\DoxyCodeLine{00764\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___stroke_char}{tagSFG\_StrokeChar}}\ \mbox{\hyperlink{structtag_s_f_g___stroke_char}{SFG\_StrokeChar}};}
+\DoxyCodeLine{00765\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___stroke_char}{tagSFG\_StrokeChar}}}
+\DoxyCodeLine{00766\ \{}
+\DoxyCodeLine{00767\ \ \ \ \ GLfloat\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___stroke_char_a93df6844f67afa1828be18cef1b33504_a93df6844f67afa1828be18cef1b33504}{Right}};}
+\DoxyCodeLine{00768\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___stroke_char_a7642fe272407651529ba89f58ec5046a_a7642fe272407651529ba89f58ec5046a}{Number}};}
+\DoxyCodeLine{00769\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structtag_s_f_g___stroke_strip}{SFG\_StrokeStrip}}*\ \mbox{\hyperlink{structtag_s_f_g___stroke_char_aa9d18f84df71cc9fea3cf5ebe3d72091_aa9d18f84df71cc9fea3cf5ebe3d72091}{Strips}};}
+\DoxyCodeLine{00770\ \};}
+\DoxyCodeLine{00771\ }
+\DoxyCodeLine{00772\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___stroke_font}{tagSFG\_StrokeFont}}\ \mbox{\hyperlink{structtag_s_f_g___stroke_font}{SFG\_StrokeFont}};}
+\DoxyCodeLine{00773\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtag_s_f_g___stroke_font}{tagSFG\_StrokeFont}}}
+\DoxyCodeLine{00774\ \{}
+\DoxyCodeLine{00775\ \ \ \ \ \textcolor{keywordtype}{char}*\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___stroke_font_a58ce3fd72340e4d477816ad751e6fe22_a58ce3fd72340e4d477816ad751e6fe22}{Name}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ source\ font\ name\ \ \ \ \ \ */}}
+\DoxyCodeLine{00776\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___stroke_font_ade6f3c880043b67cb6e8075bb2c29b09_ade6f3c880043b67cb6e8075bb2c29b09}{Quantity}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Number\ of\ chars\ in\ font\ \ \ */}}
+\DoxyCodeLine{00777\ \ \ \ \ GLfloat\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___stroke_font_aafaad7b646988a4e8f0d0f5408c6b6de_aafaad7b646988a4e8f0d0f5408c6b6de}{Height}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Height\ of\ the\ characters\ \ */}}
+\DoxyCodeLine{00778\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structtag_s_f_g___stroke_char}{SFG\_StrokeChar}}**\ \mbox{\hyperlink{structtag_s_f_g___stroke_font_a9c9f31c70ea2b8a55649ab5393efa0a0_a9c9f31c70ea2b8a55649ab5393efa0a0}{Characters}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ characters\ mapping\ \ \ \ */}}
+\DoxyCodeLine{00779\ \};}
+\DoxyCodeLine{00780\ }
+\DoxyCodeLine{00781\ \textcolor{comment}{/*\ -\/-\/\ GLOBAL\ VARIABLES\ EXPORTS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00782\ }
+\DoxyCodeLine{00783\ \textcolor{comment}{/*\ Freeglut\ display\ related\ stuff\ (initialized\ once\ per\ session)\ */}}
+\DoxyCodeLine{00784\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structtag_s_f_g___display}{SFG\_Display}}\ \mbox{\hyperlink{freeglut__internal_8h_a76fec867b1da5a2da5e66c0301bdf89a_a76fec867b1da5a2da5e66c0301bdf89a}{fgDisplay}};}
+\DoxyCodeLine{00785\ }
+\DoxyCodeLine{00786\ \textcolor{comment}{/*\ Freeglut\ internal\ structure\ */}}
+\DoxyCodeLine{00787\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structtag_s_f_g___structure}{SFG\_Structure}}\ \mbox{\hyperlink{freeglut__internal_8h_a2080ddc364d4d07b4f3352f353e10a7a_a2080ddc364d4d07b4f3352f353e10a7a}{fgStructure}};}
+\DoxyCodeLine{00788\ }
+\DoxyCodeLine{00789\ \textcolor{comment}{/*\ The\ current\ freeglut\ settings\ */}}
+\DoxyCodeLine{00790\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structtag_s_f_g___state}{SFG\_State}}\ \mbox{\hyperlink{freeglut__internal_8h_a60e848bebe3ba247ac42fe5d54f32e4e_a60e848bebe3ba247ac42fe5d54f32e4e}{fgState}};}
+\DoxyCodeLine{00791\ }
+\DoxyCodeLine{00792\ }
+\DoxyCodeLine{00793\ \textcolor{comment}{/*\ -\/-\/\ PRIVATE\ FUNCTION\ DECLARATIONS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00794\ }
+\DoxyCodeLine{00795\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00796\ \textcolor{comment}{\ *\ A\ call\ to\ this\ function\ makes\ us\ sure\ that\ the\ Display\ and\ Structure}}
+\DoxyCodeLine{00797\ \textcolor{comment}{\ *\ subsystems\ have\ been\ properly\ initialized\ and\ are\ ready\ to\ be\ used}}
+\DoxyCodeLine{00798\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00799\ \textcolor{preprocessor}{\#define\ \ FREEGLUT\_EXIT\_IF\_NOT\_INITIALISED(\ string\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00800\ \textcolor{preprocessor}{\ \ if\ (\ !\ fgState.Initialised\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00801\ \textcolor{preprocessor}{\ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00802\ \textcolor{preprocessor}{\ \ \ \ fgError\ (\ "{}\ ERROR:\ \ Function\ <\%s>\ called"{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00803\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}\ without\ first\ calling\ 'glutInit'."{},\ (string)\ )\ ;\ \ \(\backslash\)}}
+\DoxyCodeLine{00804\ \textcolor{preprocessor}{\ \ \}}}
+\DoxyCodeLine{00805\ }
+\DoxyCodeLine{00806\ \textcolor{preprocessor}{\#define\ \ FREEGLUT\_INTERNAL\_ERROR\_EXIT\_IF\_NOT\_INITIALISED(\ string\ )\ \ \(\backslash\)}}
+\DoxyCodeLine{00807\ \textcolor{preprocessor}{\ \ if\ (\ !\ fgState.Initialised\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00808\ \textcolor{preprocessor}{\ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00809\ \textcolor{preprocessor}{\ \ \ \ fgError\ (\ "{}\ ERROR:\ \ Internal\ <\%s>\ function\ called"{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00810\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}\ without\ first\ calling\ 'glutInit'."{},\ (string)\ )\ ;\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00811\ \textcolor{preprocessor}{\ \ \}}}
+\DoxyCodeLine{00812\ }
+\DoxyCodeLine{00813\ \textcolor{preprocessor}{\#define\ \ FREEGLUT\_INTERNAL\_ERROR\_EXIT(\ cond,\ string,\ function\ )\ \ \(\backslash\)}}
+\DoxyCodeLine{00814\ \textcolor{preprocessor}{\ \ if\ (\ !\ (\ cond\ )\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00815\ \textcolor{preprocessor}{\ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00816\ \textcolor{preprocessor}{\ \ \ \ fgError\ (\ "{}\ ERROR:\ \ Internal\ error\ <\%s>\ in\ function\ \%s"{},\ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00817\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ (string),\ (function)\ )\ ;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00818\ \textcolor{preprocessor}{\ \ \}}}
+\DoxyCodeLine{00819\ }
+\DoxyCodeLine{00820\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00821\ \textcolor{comment}{\ *\ Following\ definitions\ are\ somewhat\ similiar\ to\ GLib's,}}
+\DoxyCodeLine{00822\ \textcolor{comment}{\ *\ but\ do\ not\ generate\ any\ log\ messages:}}
+\DoxyCodeLine{00823\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00824\ \textcolor{preprocessor}{\#define\ \ freeglut\_return\_if\_fail(\ expr\ )\ \(\backslash\)}}
+\DoxyCodeLine{00825\ \textcolor{preprocessor}{\ \ \ \ if(\ !(expr)\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00826\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ return;}}
+\DoxyCodeLine{00827\ \textcolor{preprocessor}{\#define\ \ freeglut\_return\_val\_if\_fail(\ expr,\ val\ )\ \(\backslash\)}}
+\DoxyCodeLine{00828\ \textcolor{preprocessor}{\ \ \ \ if(\ !(expr)\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00829\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ return\ val\ ;}}
+\DoxyCodeLine{00830\ }
+\DoxyCodeLine{00831\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00832\ \textcolor{comment}{\ *\ A\ call\ to\ those\ macros\ assures\ us\ that\ there\ is\ a\ current}}
+\DoxyCodeLine{00833\ \textcolor{comment}{\ *\ window\ set,\ respectively:}}
+\DoxyCodeLine{00834\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00835\ \textcolor{preprocessor}{\#define\ \ FREEGLUT\_EXIT\_IF\_NO\_WINDOW(\ string\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00836\ \textcolor{preprocessor}{\ \ if\ (\ !\ fgStructure.CurrentWindow\ \&\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00837\ \textcolor{preprocessor}{\ \ \ \ \ \ \ (\ fgState.ActionOnWindowClose\ !=\ GLUT\_ACTION\_CONTINUE\_EXECUTION\ )\ )\ \ \(\backslash\)}}
+\DoxyCodeLine{00838\ \textcolor{preprocessor}{\ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00839\ \textcolor{preprocessor}{\ \ \ \ fgError\ (\ "{}\ ERROR:\ \ Function\ <\%s>\ called"{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00840\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}\ with\ no\ current\ window\ defined."{},\ (string)\ )\ ;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00841\ \textcolor{preprocessor}{\ \ \}}}
+\DoxyCodeLine{00842\ }
+\DoxyCodeLine{00843\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00844\ \textcolor{comment}{\ *\ The\ deinitialize\ function\ gets\ called\ on\ glutMainLoop()\ end.\ It\ should\ clean\ up}}
+\DoxyCodeLine{00845\ \textcolor{comment}{\ *\ everything\ inside\ of\ the\ freeglut}}
+\DoxyCodeLine{00846\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00847\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{freeglut__internal_8h_a71a4beeb540e45f1e9d6428046ab7a0e_a71a4beeb540e45f1e9d6428046ab7a0e}{fgDeinitialize}}(\ \textcolor{keywordtype}{void}\ );}
+\DoxyCodeLine{00848\ }
+\DoxyCodeLine{00849\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00850\ \textcolor{comment}{\ *\ Those\ two\ functions\ are\ used\ to\ create/destroy\ the\ freeglut\ internal}}
+\DoxyCodeLine{00851\ \textcolor{comment}{\ *\ structures.\ This\ actually\ happens\ when\ calling\ glutInit()\ and\ when}}
+\DoxyCodeLine{00852\ \textcolor{comment}{\ *\ quitting\ the\ glutMainLoop()\ (which\ actually\ happens,\ when\ all\ windows}}
+\DoxyCodeLine{00853\ \textcolor{comment}{\ *\ have\ been\ closed).}}
+\DoxyCodeLine{00854\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00855\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{freeglut__internal_8h_af1263d6168add0909cefdf6cf41bab6a_af1263d6168add0909cefdf6cf41bab6a}{fgCreateStructure}}(\ \textcolor{keywordtype}{void}\ );}
+\DoxyCodeLine{00856\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{freeglut__internal_8h_aff7b59fbd01e4cfc53b837e8f55139d8_aff7b59fbd01e4cfc53b837e8f55139d8}{fgDestroyStructure}}(\ \textcolor{keywordtype}{void}\ );}
+\DoxyCodeLine{00857\ }
+\DoxyCodeLine{00858\ \textcolor{comment}{/*\ A\ helper\ function\ to\ check\ if\ a\ display\ mode\ is\ possible\ to\ use\ */}}
+\DoxyCodeLine{00859\ \textcolor{preprocessor}{\#if\ TARGET\_HOST\_POSIX\_X11}}
+\DoxyCodeLine{00860\ GLXFBConfig*\ fgChooseFBConfig(\ \textcolor{keywordtype}{int}*\ numcfgs\ );}
+\DoxyCodeLine{00861\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00862\ }
+\DoxyCodeLine{00863\ \textcolor{comment}{/*\ The\ window\ procedure\ for\ Win32\ events\ handling\ */}}
+\DoxyCodeLine{00864\ \textcolor{preprocessor}{\#if\ TARGET\_HOST\_MS\_WINDOWS}}
+\DoxyCodeLine{00865\ LRESULT\ CALLBACK\ fgWindowProc(\ HWND\ hWnd,\ UINT\ uMsg,}
+\DoxyCodeLine{00866\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WPARAM\ wParam,\ LPARAM\ lParam\ );}
+\DoxyCodeLine{00867\ \textcolor{keywordtype}{void}\ fgNewWGLCreateContext(\ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}*\ window\ );}
+\DoxyCodeLine{00868\ GLboolean\ fgSetupPixelFormat(\ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}*\ window,\ GLboolean\ checkOnly,}
+\DoxyCodeLine{00869\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ layer\_type\ );}
+\DoxyCodeLine{00870\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00871\ }
+\DoxyCodeLine{00872\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00873\ \textcolor{comment}{\ *\ Window\ creation,\ opening,\ closing\ and\ destruction.}}
+\DoxyCodeLine{00874\ \textcolor{comment}{\ *\ Also\ CallBack\ clearing/initialization.}}
+\DoxyCodeLine{00875\ \textcolor{comment}{\ *\ Defined\ in\ freeglut\_structure.c,\ freeglut\_window.c.}}
+\DoxyCodeLine{00876\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00877\ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}*\ \mbox{\hyperlink{freeglut__internal_8h_aa7347af76b0e5101d635ae193947f100_aa7347af76b0e5101d635ae193947f100}{fgCreateWindow}}(\ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}*\ parent,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ title,}
+\DoxyCodeLine{00878\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GLboolean\ positionUse,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{level1__cplx__impl_8h_a792f7d150beb978a4945c84df6867679_a792f7d150beb978a4945c84df6867679}{y}},}
+\DoxyCodeLine{00879\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GLboolean\ sizeUse,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_matrix__resize__int_8cpp_aab236ce080522c9832217fd5f157541b_aab236ce080522c9832217fd5f157541b}{w}},\ \textcolor{keywordtype}{int}\ h,}
+\DoxyCodeLine{00880\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GLboolean\ gameMode,\ GLboolean\ isMenu\ );}
+\DoxyCodeLine{00881\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_aa4b4e832b57a381025f4f1c895fbaa34_aa4b4e832b57a381025f4f1c895fbaa34}{fgSetWindow}}\ (\ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}\ *window\ );}
+\DoxyCodeLine{00882\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_af39750e625fca76299d108f4a9a108ad_af39750e625fca76299d108f4a9a108ad}{fgOpenWindow}}(\ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}*\ window,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ title,}
+\DoxyCodeLine{00883\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GLboolean\ positionUse,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{level1__cplx__impl_8h_a792f7d150beb978a4945c84df6867679_a792f7d150beb978a4945c84df6867679}{y}},}
+\DoxyCodeLine{00884\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GLboolean\ sizeUse,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_matrix__resize__int_8cpp_aab236ce080522c9832217fd5f157541b_aab236ce080522c9832217fd5f157541b}{w}},\ \textcolor{keywordtype}{int}\ h,}
+\DoxyCodeLine{00885\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GLboolean\ gameMode,\ GLboolean\ isSubWindow\ );}
+\DoxyCodeLine{00886\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a421239c4568200f572099198c5ca66dd_a421239c4568200f572099198c5ca66dd}{fgCloseWindow}}(\ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}*\ window\ );}
+\DoxyCodeLine{00887\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a516cdde49c2590b112f15beca9839f90_a516cdde49c2590b112f15beca9839f90}{fgAddToWindowDestroyList}}\ (\ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}*\ window\ );}
+\DoxyCodeLine{00888\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a0a85fa772c55521e65fe517de27557e6_a0a85fa772c55521e65fe517de27557e6}{fgCloseWindows}}\ ();}
+\DoxyCodeLine{00889\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_ac144f2434f2c498ccfb0cc00c47748b7_ac144f2434f2c498ccfb0cc00c47748b7}{fgDestroyWindow}}(\ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}*\ window\ );}
+\DoxyCodeLine{00890\ }
+\DoxyCodeLine{00891\ \textcolor{comment}{/*\ Menu\ creation\ and\ destruction.\ Defined\ in\ freeglut\_structure.c\ */}}
+\DoxyCodeLine{00892\ \mbox{\hyperlink{structtag_s_f_g___menu}{SFG\_Menu}}*\ \ \ \mbox{\hyperlink{freeglut__internal_8h_ac3e45a28e826ca80c90d907a20ca0495_ac3e45a28e826ca80c90d907a20ca0495}{fgCreateMenu}}(\ \mbox{\hyperlink{freeglut__internal_8h_aa55885854b676e2a366fee3f02d37119_aa55885854b676e2a366fee3f02d37119}{FGCBMenu}}\ menuCallback\ );}
+\DoxyCodeLine{00893\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a4c22157a4b6a8b0313b472c4189cb0f3_a4c22157a4b6a8b0313b472c4189cb0f3}{fgDestroyMenu}}(\ \mbox{\hyperlink{structtag_s_f_g___menu}{SFG\_Menu}}*\ menu\ );}
+\DoxyCodeLine{00894\ }
+\DoxyCodeLine{00895\ \textcolor{comment}{/*\ Joystick\ device\ management\ functions,\ defined\ in\ freeglut\_joystick.c\ */}}
+\DoxyCodeLine{00896\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a8cba6fec39cdde281ff25072bed9e6c6_a8cba6fec39cdde281ff25072bed9e6c6}{fgJoystickDetect}}(\ \textcolor{keywordtype}{void}\ );}
+\DoxyCodeLine{00897\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a590d2a21656f502499bfc18a69c4d9e5_a590d2a21656f502499bfc18a69c4d9e5}{fgInitialiseJoysticks}}(\ \textcolor{keywordtype}{void}\ );}
+\DoxyCodeLine{00898\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a97b2085ddc4a5e0d42da8686412df830_a97b2085ddc4a5e0d42da8686412df830}{fgJoystickClose}}(\ \textcolor{keywordtype}{void}\ );}
+\DoxyCodeLine{00899\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a920dcd3c6eab47a5e120ea0e561287fa_a920dcd3c6eab47a5e120ea0e561287fa}{fgJoystickPollWindow}}(\ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}*\ window\ );}
+\DoxyCodeLine{00900\ }
+\DoxyCodeLine{00901\ \textcolor{comment}{/*\ InputDevice\ Initialisation\ and\ Closure\ */}}
+\DoxyCodeLine{00902\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_ae5763b3f09b159fee8439d23b266d4b4_ae5763b3f09b159fee8439d23b266d4b4}{fgInputDeviceDetect}}(\ \textcolor{keywordtype}{void}\ );}
+\DoxyCodeLine{00903\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_aaf755ccc8026513dd234cd27e0774b46_aaf755ccc8026513dd234cd27e0774b46}{fgInitialiseInputDevices}}(\ \textcolor{keywordtype}{void}\ );}
+\DoxyCodeLine{00904\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a393a93b83aff62c28cb5343088563d4c_a393a93b83aff62c28cb5343088563d4c}{fgInputDeviceClose}}(\ \textcolor{keywordtype}{void}\ );}
+\DoxyCodeLine{00905\ }
+\DoxyCodeLine{00906\ \textcolor{comment}{/*\ spaceball\ device\ functions,\ defined\ in\ freeglut\_spaceball.c\ */}}
+\DoxyCodeLine{00907\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_ad9d76282d97f48242d767a43a6e589bc_ad9d76282d97f48242d767a43a6e589bc}{fgInitialiseSpaceball}}(\ \textcolor{keywordtype}{void}\ );}
+\DoxyCodeLine{00908\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a42e36354f89d28f8f4d2c08c72a3ec70_a42e36354f89d28f8f4d2c08c72a3ec70}{fgSpaceballClose}}(\ \textcolor{keywordtype}{void}\ );}
+\DoxyCodeLine{00909\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a9b0e650516401ca01dccbc800d5d05a7_a9b0e650516401ca01dccbc800d5d05a7}{fgSpaceballSetWindow}}(\ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}\ *window\ );}
+\DoxyCodeLine{00910\ }
+\DoxyCodeLine{00911\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a9b69a40ccbd18df91525aff7313be56b_a9b69a40ccbd18df91525aff7313be56b}{fgHasSpaceball}}(\ \textcolor{keywordtype}{void}\ );}
+\DoxyCodeLine{00912\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{freeglut__internal_8h_a5f00020da3bc9107038da724b59bb2a7_a5f00020da3bc9107038da724b59bb2a7}{fgSpaceballNumButtons}}(\ \textcolor{keywordtype}{void}\ );}
+\DoxyCodeLine{00913\ }
+\DoxyCodeLine{00914\ \textcolor{preprocessor}{\#if\ TARGET\_HOST\_POSIX\_X11}}
+\DoxyCodeLine{00915\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ fgIsSpaceballXEvent(\ \textcolor{keyword}{const}\ XEvent\ *ev\ );}
+\DoxyCodeLine{00916\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ fgSpaceballHandleXEvent(\ \textcolor{keyword}{const}\ XEvent\ *ev\ );}
+\DoxyCodeLine{00917\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00918\ }
+\DoxyCodeLine{00919\ \textcolor{comment}{/*\ Setting\ the\ cursor\ for\ a\ given\ window\ */}}
+\DoxyCodeLine{00920\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{freeglut__internal_8h_af60ff218acd32919f10baaadd47a1fa5_af60ff218acd32919f10baaadd47a1fa5}{fgSetCursor}}\ (\ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}\ *window,\ \textcolor{keywordtype}{int}\ cursorID\ );}
+\DoxyCodeLine{00921\ }
+\DoxyCodeLine{00922\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00923\ \textcolor{comment}{\ *\ Helper\ function\ to\ enumerate\ through\ all\ registered\ windows}}
+\DoxyCodeLine{00924\ \textcolor{comment}{\ *\ and\ one\ to\ enumerate\ all\ of\ a\ window's\ subwindows...}}
+\DoxyCodeLine{00925\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00926\ \textcolor{comment}{\ *\ The\ GFunc\ callback\ for\ those\ functions\ will\ be\ defined\ as:}}
+\DoxyCodeLine{00927\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00928\ \textcolor{comment}{\ *\ \ \ \ \ \ void\ enumCallback(\ gpointer\ window,\ gpointer\ enumerator\ );}}
+\DoxyCodeLine{00929\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00930\ \textcolor{comment}{\ *\ where\ window\ is\ the\ enumerated\ (sub)window\ pointer\ (SFG\_Window\ *),}}
+\DoxyCodeLine{00931\ \textcolor{comment}{\ *\ and\ userData\ is\ the\ a\ custom\ user-\/supplied\ pointer.\ Functions}}
+\DoxyCodeLine{00932\ \textcolor{comment}{\ *\ are\ defined\ and\ exported\ from\ freeglut\_structure.c\ file.}}
+\DoxyCodeLine{00933\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00934\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{freeglut__internal_8h_ae5e0984977f49f6054c8b2aaa5317914_ae5e0984977f49f6054c8b2aaa5317914}{fgEnumWindows}}(\ \mbox{\hyperlink{freeglut__internal_8h_ad4394b615e3eec0f466317dd6c4a9c5a_ad4394b615e3eec0f466317dd6c4a9c5a}{FGCBWindowEnumerator}}\ enumCallback,\ \mbox{\hyperlink{structtag_s_f_g___enumerator}{SFG\_Enumerator}}*\ enumerator\ );}
+\DoxyCodeLine{00935\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{freeglut__internal_8h_ad5153c96f02172ba091c4c432a04c5f9_ad5153c96f02172ba091c4c432a04c5f9}{fgEnumSubWindows}}(\ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}*\ window,\ \mbox{\hyperlink{freeglut__internal_8h_ad4394b615e3eec0f466317dd6c4a9c5a_ad4394b615e3eec0f466317dd6c4a9c5a}{FGCBWindowEnumerator}}\ enumCallback,}
+\DoxyCodeLine{00936\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_f_g___enumerator}{SFG\_Enumerator}}*\ enumerator\ );}
+\DoxyCodeLine{00937\ }
+\DoxyCodeLine{00938\ \textcolor{preprocessor}{\#if\ TARGET\_HOST\_MS\_WINDOWS}}
+\DoxyCodeLine{00939\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{00940\ \textcolor{comment}{\ *\ Helper\ functions\ for\ getting\ client\ area\ from\ the\ window\ rect}}
+\DoxyCodeLine{00941\ \textcolor{comment}{\ *\ and\ the\ window\ rect\ from\ the\ client\ area\ given\ the\ style\ of\ the\ window}}
+\DoxyCodeLine{00942\ \textcolor{comment}{\ *\ (or\ a\ valid\ window\ pointer\ from\ which\ the\ style\ can\ be\ queried).}}
+\DoxyCodeLine{00943\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00944\ \textcolor{keywordtype}{void}\ fghGetDefaultWindowStyle(DWORD\ *flags);}
+\DoxyCodeLine{00945\ \textcolor{keywordtype}{void}\ fghGetStyleFromWindow(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}\ *window,\ DWORD\ *windowStyle,\ DWORD\ *windowExStyle\ );}
+\DoxyCodeLine{00946\ \textcolor{keywordtype}{void}\ fghComputeWindowRectFromClientArea\_UseStyle(\ RECT\ *clientRect,\ \textcolor{keyword}{const}\ DWORD\ windowStyle,\ \textcolor{keyword}{const}\ DWORD\ windowExStyle,\ BOOL\ posIsOutside\ );}
+\DoxyCodeLine{00947\ \textcolor{keywordtype}{void}\ fghComputeWindowRectFromClientArea\_QueryWindow(\ RECT\ *clientRect,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}\ *window,\ BOOL\ posIsOutside\ );}
+\DoxyCodeLine{00948\ \textcolor{keywordtype}{void}\ fghGetClientArea(\ RECT\ *clientRect,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}\ *window,\ BOOL\ wantPosOutside\ );}
+\DoxyCodeLine{00949\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00950\ }
+\DoxyCodeLine{00951\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00952\ \textcolor{comment}{\ *\ fgWindowByHandle\ returns\ a\ (SFG\_Window\ *)\ value\ pointing\ to\ the}}
+\DoxyCodeLine{00953\ \textcolor{comment}{\ *\ first\ window\ in\ the\ queue\ matching\ the\ specified\ window\ handle.}}
+\DoxyCodeLine{00954\ \textcolor{comment}{\ *\ The\ function\ is\ defined\ in\ freeglut\_structure.c\ file.}}
+\DoxyCodeLine{00955\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00956\ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}*\ \mbox{\hyperlink{freeglut__internal_8h_a30c55e66f8f92d2a7a8aa6798a1a9f87_a30c55e66f8f92d2a7a8aa6798a1a9f87}{fgWindowByHandle}}(\ SFG\_WindowHandleType\ hWindow\ );}
+\DoxyCodeLine{00957\ }
+\DoxyCodeLine{00958\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00959\ \textcolor{comment}{\ *\ This\ function\ is\ similiar\ to\ the\ previous\ one,\ except\ it\ is}}
+\DoxyCodeLine{00960\ \textcolor{comment}{\ *\ looking\ for\ a\ specified\ (sub)window\ identifier.\ The\ function}}
+\DoxyCodeLine{00961\ \textcolor{comment}{\ *\ is\ defined\ in\ freeglut\_structure.c\ file.}}
+\DoxyCodeLine{00962\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00963\ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}*\ \mbox{\hyperlink{freeglut__internal_8h_ac2ef47af37580d4df7c956fbb4d27b48_ac2ef47af37580d4df7c956fbb4d27b48}{fgWindowByID}}(\ \textcolor{keywordtype}{int}\ windowID\ );}
+\DoxyCodeLine{00964\ }
+\DoxyCodeLine{00965\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00966\ \textcolor{comment}{\ *\ Looks\ up\ a\ menu\ given\ its\ ID.\ This\ is\ easier\ than\ fgWindowByXXX}}
+\DoxyCodeLine{00967\ \textcolor{comment}{\ *\ as\ all\ menus\ are\ placed\ in\ a\ single\ doubly\ linked\ list...}}
+\DoxyCodeLine{00968\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00969\ \mbox{\hyperlink{structtag_s_f_g___menu}{SFG\_Menu}}*\ \mbox{\hyperlink{freeglut__internal_8h_ab125cfeda83b44b17888377bebb373e5_ab125cfeda83b44b17888377bebb373e5}{fgMenuByID}}(\ \textcolor{keywordtype}{int}\ menuID\ );}
+\DoxyCodeLine{00970\ }
+\DoxyCodeLine{00971\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00972\ \textcolor{comment}{\ *\ Returns\ active\ menu,\ if\ any.\ Assumption:\ only\ one\ menu\ active\ throughout\ application\ at\ any\ one\ time.}}
+\DoxyCodeLine{00973\ \textcolor{comment}{\ *\ This\ is\ easier\ than\ fgWindowByXXX\ as\ all\ menus\ are\ placed\ in\ one\ doubly\ linked\ list...}}
+\DoxyCodeLine{00974\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00975\ \mbox{\hyperlink{structtag_s_f_g___menu}{SFG\_Menu}}*\ \mbox{\hyperlink{freeglut__internal_8h_a61397e768f8fa64f26ef4baafc47304a_a61397e768f8fa64f26ef4baafc47304a}{fgGetActiveMenu}}(\ );}
+\DoxyCodeLine{00976\ }
+\DoxyCodeLine{00977\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00978\ \textcolor{comment}{\ *\ The\ menu\ activation\ and\ deactivation\ the\ code.\ This\ is\ the\ meat}}
+\DoxyCodeLine{00979\ \textcolor{comment}{\ *\ of\ the\ menu\ user\ interface\ handling\ code...}}
+\DoxyCodeLine{00980\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00981\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{freeglut__internal_8h_a19f5c16408e1b100bf3b18f3e1d104e1_a19f5c16408e1b100bf3b18f3e1d104e1}{fgUpdateMenuHighlight}}\ (\ \mbox{\hyperlink{structtag_s_f_g___menu}{SFG\_Menu}}\ *menu\ );}
+\DoxyCodeLine{00982\ GLboolean\ \mbox{\hyperlink{freeglut__internal_8h_ae3897f3120822098f558958d1efd3e02_ae3897f3120822098f558958d1efd3e02}{fgCheckActiveMenu}}\ (\ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}\ *window,\ \textcolor{keywordtype}{int}\ button,\ GLboolean\ pressed,}
+\DoxyCodeLine{00983\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_callback_maker_8c_a6c59af730728bf5260ef828aea2eebee_a6c59af730728bf5260ef828aea2eebee}{mouse\_x}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_callback_maker_8c_ab21653e455bbca86826aa5f628a5fdb2_ab21653e455bbca86826aa5f628a5fdb2}{mouse\_y}}\ );}
+\DoxyCodeLine{00984\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{freeglut__internal_8h_a41bcc928f3a3811b3f506dc620f8ff09_a41bcc928f3a3811b3f506dc620f8ff09}{fgDeactivateMenu}}(\ \mbox{\hyperlink{structtag_s_f_g___window}{SFG\_Window}}\ *window\ );}
+\DoxyCodeLine{00985\ }
+\DoxyCodeLine{00986\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00987\ \textcolor{comment}{\ *\ This\ function\ gets\ called\ just\ before\ the\ buffers\ swap,\ so\ that}}
+\DoxyCodeLine{00988\ \textcolor{comment}{\ *\ freeglut\ can\ display\ the\ pull-\/down\ menus\ via\ OpenGL.\ The\ function}}
+\DoxyCodeLine{00989\ \textcolor{comment}{\ *\ is\ defined\ in\ freeglut\_menu.c\ file.}}
+\DoxyCodeLine{00990\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00991\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{freeglut__internal_8h_a252b706419e6377b9d5f6da31eab402c_a252b706419e6377b9d5f6da31eab402c}{fgDisplayMenu}}(\ \textcolor{keywordtype}{void}\ );}
+\DoxyCodeLine{00992\ }
+\DoxyCodeLine{00993\ \textcolor{comment}{/*\ Elapsed\ time\ as\ per\ glutGet(GLUT\_ELAPSED\_TIME).\ */}}
+\DoxyCodeLine{00994\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{freeglut__internal_8h_aac7c16f0f6ef90e294811953c1f606d5_aac7c16f0f6ef90e294811953c1f606d5}{fgElapsedTime}}(\ \textcolor{keywordtype}{void}\ );}
+\DoxyCodeLine{00995\ }
+\DoxyCodeLine{00996\ \textcolor{comment}{/*\ System\ time\ in\ milliseconds\ */}}
+\DoxyCodeLine{00997\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{freeglut__internal_8h_a5d4b6c275d59c80d93912404c5fcd178_a5d4b6c275d59c80d93912404c5fcd178}{fgSystemTime}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00998\ }
+\DoxyCodeLine{00999\ \textcolor{comment}{/*\ List\ functions\ */}}
+\DoxyCodeLine{01000\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{freeglut__internal_8h_a2779420295cc9028b24018cc8f1d2363_a2779420295cc9028b24018cc8f1d2363}{fgListInit}}(\mbox{\hyperlink{structtag_s_f_g___list}{SFG\_List}}\ *list);}
+\DoxyCodeLine{01001\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{freeglut__internal_8h_ae46e564c10c98a1e8384e995af24cf0c_ae46e564c10c98a1e8384e995af24cf0c}{fgListAppend}}(\mbox{\hyperlink{structtag_s_f_g___list}{SFG\_List}}\ *list,\ \mbox{\hyperlink{structtag_s_f_g___node}{SFG\_Node}}\ *node);}
+\DoxyCodeLine{01002\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{freeglut__internal_8h_a1839846f37383d3f97256e1da53240e4_a1839846f37383d3f97256e1da53240e4}{fgListRemove}}(\mbox{\hyperlink{structtag_s_f_g___list}{SFG\_List}}\ *list,\ \mbox{\hyperlink{structtag_s_f_g___node}{SFG\_Node}}\ *node);}
+\DoxyCodeLine{01003\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{freeglut__internal_8h_a98771d3e035d6d3468dcd19f0c274461_a98771d3e035d6d3468dcd19f0c274461}{fgListLength}}(\mbox{\hyperlink{structtag_s_f_g___list}{SFG\_List}}\ *list);}
+\DoxyCodeLine{01004\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{freeglut__internal_8h_a7450e6f59bd72cf0ee45d5b9f6718fdf_a7450e6f59bd72cf0ee45d5b9f6718fdf}{fgListInsert}}(\mbox{\hyperlink{structtag_s_f_g___list}{SFG\_List}}\ *list,\ \mbox{\hyperlink{structtag_s_f_g___node}{SFG\_Node}}\ *next,\ \mbox{\hyperlink{structtag_s_f_g___node}{SFG\_Node}}\ *node);}
+\DoxyCodeLine{01005\ }
+\DoxyCodeLine{01006\ \textcolor{comment}{/*\ Error\ Message\ functions\ */}}
+\DoxyCodeLine{01007\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{freeglut__internal_8h_a5ef268b003c06fa96a2e5c883c0b7c14_a5ef268b003c06fa96a2e5c883c0b7c14}{fgError}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *fmt,\ ...\ );}
+\DoxyCodeLine{01008\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{freeglut__internal_8h_ab7e4d70aeadd52d31dc7fde493218963_ab7e4d70aeadd52d31dc7fde493218963}{fgWarning}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *fmt,\ ...\ );}
+\DoxyCodeLine{01009\ }
+\DoxyCodeLine{01010\ \textcolor{comment}{/*}}
+\DoxyCodeLine{01011\ \textcolor{comment}{\ *\ Check\ if\ "{}hint"{}\ is\ present\ in\ "{}property"{}\ for\ "{}window"{}.\ \ See\ freeglut\_init.c}}
+\DoxyCodeLine{01012\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{01013\ \textcolor{preprocessor}{\#if\ TARGET\_HOST\_POSIX\_X11}}
+\DoxyCodeLine{01014\ \textcolor{keywordtype}{int}\ fgHintPresent(Window\ window,\ Atom\ property,\ Atom\ hint);}
+\DoxyCodeLine{01015\ }
+\DoxyCodeLine{01016\ \textcolor{comment}{/*\ Handler\ for\ X\ extension\ Events\ */}}
+\DoxyCodeLine{01017\ \textcolor{preprocessor}{\#ifdef\ HAVE\_X11\_EXTENSIONS\_XINPUT2\_H}}
+\DoxyCodeLine{01018\ \ \ \textcolor{keywordtype}{void}\ fgHandleExtensionEvents(\ XEvent\ *\ ev\ );}
+\DoxyCodeLine{01019\ \ \ \textcolor{keywordtype}{void}\ fgRegisterDevices(\ Display*\ dpy,\ Window*\ win\ );}
+\DoxyCodeLine{01020\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{01021\ }
+\DoxyCodeLine{01022\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{01023\ }
+\DoxyCodeLine{01024\ \mbox{\hyperlink{freeglut__internal_8h_a4a9d998eb263a52483cd3f5ff9070b4f_a4a9d998eb263a52483cd3f5ff9070b4f}{SFG\_Proc}}\ \mbox{\hyperlink{freeglut__internal_8h_a54d0f4ceb19fe3aafee6501b87f597d8_a54d0f4ceb19fe3aafee6501b87f597d8}{fghGetProcAddress}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *procName\ );}
+\DoxyCodeLine{01025\ }
+\DoxyCodeLine{01026\ \textcolor{preprocessor}{\#if\ TARGET\_HOST\_MS\_WINDOWS}}
+\DoxyCodeLine{01027\ \textcolor{keyword}{extern}\ void\ (\_\_cdecl\ *\_\_glutExitFunc)(\ \textcolor{keywordtype}{int}\ return\_value\ );}
+\DoxyCodeLine{01028\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{01029\ }
+\DoxyCodeLine{01030\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ FREEGLUT\_INTERNAL\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01031\ }
+\DoxyCodeLine{01032\ \textcolor{comment}{/***\ END\ OF\ FILE\ ***/}}
+
+\end{DoxyCode}

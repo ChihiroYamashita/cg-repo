@@ -1,0 +1,103 @@
+\doxysubsubsection{Lazy Evaluation and Aliasing}
+\hypertarget{_topic_lazy_evaluation}{}\label{_topic_lazy_evaluation}\index{Lazy Evaluation and Aliasing@{Lazy Evaluation and Aliasing}}
+Executive summary\+: Eigen has intelligent compile-\/time mechanisms to enable lazy evaluation and removing temporaries where appropriate. It will handle aliasing automatically in most cases, for example with matrix products. The automatic behavior can be overridden manually by using the \doxylink{class_eigen_1_1_matrix_base_a5df64c66228ba75bbc66db2584185527_a5df64c66228ba75bbc66db2584185527}{Matrix\+Base\+::eval()} and \doxylink{class_eigen_1_1_matrix_base_a7f15120bb9c88c30aa5d993bd6d138e1_a7f15120bb9c88c30aa5d993bd6d138e1}{Matrix\+Base\+::noalias()} methods.
+
+When you write a line of code involving a complex expression such as
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_tutorial___advanced_initialization___three_ways_8cpp_a41fdd9e057fe4da2425ee385b574be93_a41fdd9e057fe4da2425ee385b574be93}{mat1}}\ =\ mat2\ +\ mat3\ *\ (mat4\ +\ mat5);}
+
+\end{DoxyCode}
+
+
+Eigen determines automatically, for each sub-\/expression, whether to evaluate it into a temporary variable. Indeed, in certain cases it is better to evaluate a sub-\/expression into a temporary variable, while in other cases it is better to avoid that.
+
+A traditional math library without expression templates always evaluates all sub-\/expressions into temporaries. So with this code,
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_tutorial___advanced_initialization___join_8cpp_ae3b9306aa56cdc4c0a85e6bc98ecdeef_ae3b9306aa56cdc4c0a85e6bc98ecdeef}{vec1}}\ =\ vec2\ +\ vec3;}
+
+\end{DoxyCode}
+
+
+a traditional library would evaluate {\ttfamily vec2} + vec3 into a temporary {\ttfamily vec4} and then copy {\ttfamily vec4} into {\ttfamily vec1}. This is of course inefficient\+: the arrays are traversed twice, so there are a lot of useless load/store operations.
+
+Expression-\/templates-\/based libraries can avoid evaluating sub-\/expressions into temporaries, which in many cases results in large speed improvements. This is called {\itshape lazy evaluation} as an expression is getting evaluated as late as possible. In Eigen {\bfseries{all expressions are lazy-\/evaluated}}. More precisely, an expression starts to be evaluated once it is assigned to a matrix. Until then nothing happens beyond constructing the abstract expression tree. In contrast to most other expression-\/templates-\/based libraries, however, {\bfseries{Eigen might choose to evaluate some sub-\/expressions into temporaries}}. There are two reasons for that\+: first, pure lazy evaluation is not always a good choice for performance; second, pure lazy evaluation can be very dangerous, for example with matrix products\+: doing {\ttfamily mat = mat\texorpdfstring{$\ast$}{*}mat} gives a wrong result if the matrix product is directly evaluated within the destination matrix, because of the way matrix product works.
+
+For these reasons, Eigen has intelligent compile-\/time mechanisms to determine automatically which sub-\/expression should be evaluated into a temporary variable.
+
+So in the basic example,
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_tutorial___advanced_initialization___three_ways_8cpp_a41fdd9e057fe4da2425ee385b574be93_a41fdd9e057fe4da2425ee385b574be93}{mat1}}\ =\ mat2\ +\ mat3;}
+
+\end{DoxyCode}
+
+
+Eigen chooses not to introduce any temporary. Thus the arrays are traversed only once, producing optimized code. If you really want to force immediate evaluation, use \doxylink{class_eigen_1_1_matrix_base_a5df64c66228ba75bbc66db2584185527_a5df64c66228ba75bbc66db2584185527}{eval()}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_tutorial___advanced_initialization___three_ways_8cpp_a41fdd9e057fe4da2425ee385b574be93_a41fdd9e057fe4da2425ee385b574be93}{mat1}}\ =\ (mat2\ +\ mat3).\mbox{\hyperlink{sparse__permutations_8cpp_abf03ad46cd5db5b4eabad69a86a13a6c_abf03ad46cd5db5b4eabad69a86a13a6c}{eval}}();}
+
+\end{DoxyCode}
+
+
+Here is now a more involved example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_tutorial___advanced_initialization___three_ways_8cpp_a41fdd9e057fe4da2425ee385b574be93_a41fdd9e057fe4da2425ee385b574be93}{mat1}}\ =\ -\/mat2\ +\ mat3\ +\ 5\ *\ mat4;}
+
+\end{DoxyCode}
+
+
+Here again Eigen won\textquotesingle{}t introduce any temporary, thus producing a single {\bfseries{fused}} evaluation loop, which is clearly the correct choice.\hypertarget{_topic_lazy_evaluation_TopicLazyEvaluationWhichExpr}{}\doxysubsubsubsection{\texorpdfstring{Which sub-\/expressions are evaluated into temporaries?}{Which sub-\/expressions are evaluated into temporaries?}}\label{_topic_lazy_evaluation_TopicLazyEvaluationWhichExpr}
+The default evaluation strategy is to fuse the operations in a single loop, and Eigen will choose it except in a few circumstances.
+
+{\bfseries{The first circumstance}} in which Eigen chooses to evaluate a sub-\/expression is when it sees an assignment {\ttfamily a = b;} and the expression {\ttfamily b} has the evaluate-\/before-\/assigning \doxylink{group__flags}{flag}. The most important example of such an expression is the \doxylink{class_eigen_1_1_product}{matrix product expression}. For example, when you do
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_tutorial___advanced_initialization___comma_temporary_8cpp_a5d2ded7a4c8830608d7b218f5f27c0a0_a5d2ded7a4c8830608d7b218f5f27c0a0}{mat}}\ =\ \mbox{\hyperlink{_tutorial___advanced_initialization___comma_temporary_8cpp_a5d2ded7a4c8830608d7b218f5f27c0a0_a5d2ded7a4c8830608d7b218f5f27c0a0}{mat}}\ *\ \mbox{\hyperlink{_tutorial___advanced_initialization___comma_temporary_8cpp_a5d2ded7a4c8830608d7b218f5f27c0a0_a5d2ded7a4c8830608d7b218f5f27c0a0}{mat}};}
+
+\end{DoxyCode}
+
+
+Eigen will evaluate {\ttfamily mat \texorpdfstring{$\ast$}{*} mat} into a temporary matrix, and then copies it into the original {\ttfamily mat}. This guarantees a correct result as we saw above that lazy evaluation gives wrong results with matrix products. It also doesn\textquotesingle{}t cost much, as the cost of the matrix product itself is much higher. Note that this temporary is introduced at evaluation time only, that is, within operator= in this example. The expression {\ttfamily mat \texorpdfstring{$\ast$}{*} mat} still return a abstract product type.
+
+What if you know that the result does no alias the operand of the product and want to force lazy evaluation? Then use \doxylink{class_eigen_1_1_matrix_base_a7f15120bb9c88c30aa5d993bd6d138e1_a7f15120bb9c88c30aa5d993bd6d138e1}{.noalias()} instead. Here is an example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_tutorial___advanced_initialization___three_ways_8cpp_a41fdd9e057fe4da2425ee385b574be93_a41fdd9e057fe4da2425ee385b574be93}{mat1}}.noalias()\ =\ mat2\ *\ mat2;}
+
+\end{DoxyCode}
+
+
+Here, since we know that mat2 is not the same matrix as mat1, we know that lazy evaluation is not dangerous, so we may force lazy evaluation. Concretely, the effect of noalias() here is to bypass the evaluate-\/before-\/assigning \doxylink{group__flags}{flag}.
+
+{\bfseries{The second circumstance}} in which Eigen chooses to evaluate a sub-\/expression, is when it sees a nested expression such as {\ttfamily a + b} where {\ttfamily b} is already an expression having the evaluate-\/before-\/nesting \doxylink{group__flags}{flag}. Again, the most important example of such an expression is the \doxylink{class_eigen_1_1_product}{matrix product expression}. For example, when you do
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_tutorial___advanced_initialization___three_ways_8cpp_a41fdd9e057fe4da2425ee385b574be93_a41fdd9e057fe4da2425ee385b574be93}{mat1}}\ =\ mat2\ *\ mat3\ +\ mat4\ *\ mat5;}
+
+\end{DoxyCode}
+
+
+the products {\ttfamily mat2 \texorpdfstring{$\ast$}{*} mat3} and {\ttfamily mat4 \texorpdfstring{$\ast$}{*} mat5} gets evaluated separately into temporary matrices before being summed up in {\ttfamily mat1}. Indeed, to be efficient matrix products need to be evaluated within a destination matrix at hand, and not as simple "{}dot products"{}. For small matrices, however, you might want to enforce a "{}dot-\/product"{} based lazy evaluation with lazy\+Product(). Again, it is important to understand that those temporaries are created at evaluation time only, that is in operator =. See Topic\+Pitfalls\+\_\+auto\+\_\+keyword for common pitfalls regarding this remark.
+
+{\bfseries{The third circumstance}} in which Eigen chooses to evaluate a sub-\/expression, is when its cost model shows that the total cost of an operation is reduced if a sub-\/expression gets evaluated into a temporary. Indeed, in certain cases, an intermediate result is sufficiently costly to compute and is reused sufficiently many times, that is worth "{}caching"{}. Here is an example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_tutorial___advanced_initialization___three_ways_8cpp_a41fdd9e057fe4da2425ee385b574be93_a41fdd9e057fe4da2425ee385b574be93}{mat1}}\ =\ mat2\ *\ (mat3\ +\ mat4);}
+
+\end{DoxyCode}
+
+
+Here, provided the matrices have at least 2 rows and 2 columns, each coefficient of the expression {\ttfamily mat3 + mat4} is going to be used several times in the matrix product. Instead of computing the sum every time, it is much better to compute it once and store it in a temporary variable. Eigen understands this and evaluates {\ttfamily mat3 + mat4} into a temporary variable before evaluating the product. 

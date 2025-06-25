@@ -1,0 +1,197 @@
+\doxysection{Eigen\+::Tensor\+Sycl\+::internal\+::Full\+Reduction\+Kernel\+Functor\texorpdfstring{$<$}{<} Evaluator, Op\+Type, local\+\_\+range \texorpdfstring{$>$}{>} クラステンプレート}
+\hypertarget{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor}{}\label{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor}\index{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}}
+
+
+{\ttfamily \#include $<$Tensor\+Reduction\+Sycl.\+h$>$}
+
+
+
+Eigen\+::Tensor\+Sycl\+::internal\+::Full\+Reduction\+Kernel\+Functor\texorpdfstring{$<$}{<} Evaluator, Op\+Type, local\+\_\+range \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=225pt]{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+typedef Evaluator\+::\+Coeff\+Return\+Type \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a28ecb65f9871dd04e7a9ef9bd6c7b48c_a28ecb65f9871dd04e7a9ef9bd6c7b48c}{Coeff\+Return\+Type}}
+\item 
+typedef Evaluator\+::\+Index \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_aaa4cddf8182b4bacb244e3c293ac355a_aaa4cddf8182b4bacb244e3c293ac355a}{Index}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_op_definer}{Op\+Definer}}$<$ Op\+Type, typename Evaluator\+::\+Coeff\+Return\+Type, \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_aaa4cddf8182b4bacb244e3c293ac355a_aaa4cddf8182b4bacb244e3c293ac355a}{Index}},(Evaluator\+::\+Reducer\+Traits\+::\+Packet\+Access \&Evaluator\+::\+Input\+Packet\+Access)$>$ \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a7ed8be1bdeef05967ebc037c417b1325_a7ed8be1bdeef05967ebc037c417b1325}{Op\+Def}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_op_definer_aa32c5b62dfedb49bb1983fa0bb641c51_aa32c5b62dfedb49bb1983fa0bb641c51}{Op\+Def\+::type}} \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a2fd5eff6901ad1e6ca9cf7dae7555623_a2fd5eff6901ad1e6ca9cf7dae7555623}{Op}}
+\item 
+typedef Evaluator\+::\+Evaluator\+Pointer\+Type \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a3761a4b3cb21ccb36114d2b9da6eb240_a3761a4b3cb21ccb36114d2b9da6eb240}{Evaluator\+Pointer\+Type}}
+\item 
+typedef Evaluator\+::\+Packet\+Return\+Type \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_ad425d5915991ae48165b3d12e805f018_ad425d5915991ae48165b3d12e805f018}{Packet\+Return\+Type}}
+\item 
+typedef typename\+::\+Eigen\+::internal\+::conditional$<$(Evaluator\+::\+Reducer\+Traits\+::\+Packet\+Access \&Evaluator\+::\+Input\+Packet\+Access), \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_ad425d5915991ae48165b3d12e805f018_ad425d5915991ae48165b3d12e805f018}{Packet\+Return\+Type}}, \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a28ecb65f9871dd04e7a9ef9bd6c7b48c_a28ecb65f9871dd04e7a9ef9bd6c7b48c}{Coeff\+Return\+Type}} $>$\+::type \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a76fb0672d830f8e207a688f0f9d017b8_a76fb0672d830f8e207a688f0f9d017b8}{Out\+Type}}
+\item 
+typedef cl\+::sycl\+::accessor$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a76fb0672d830f8e207a688f0f9d017b8_a76fb0672d830f8e207a688f0f9d017b8}{Out\+Type}}, 1, cl\+::sycl\+::access\+::mode\+::read\+\_\+write, cl\+::sycl\+::access\+::target\+::local $>$ \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_ae674d4699ce23fb1acf11c64c608ff73_ae674d4699ce23fb1acf11c64c608ff73}{Local\+Accessor}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a1a9040aee6c96d656b9e7affbd6522e2_a1a9040aee6c96d656b9e7affbd6522e2}{Full\+Reduction\+Kernel\+Functor}} (\mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_ae674d4699ce23fb1acf11c64c608ff73_ae674d4699ce23fb1acf11c64c608ff73}{Local\+Accessor}} scratch\+\_\+, Evaluator evaluator\+\_\+, \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a3761a4b3cb21ccb36114d2b9da6eb240_a3761a4b3cb21ccb36114d2b9da6eb240}{Evaluator\+Pointer\+Type}} final\+\_\+output\+\_\+, \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_aaa4cddf8182b4bacb244e3c293ac355a_aaa4cddf8182b4bacb244e3c293ac355a}{Index}} rng\+\_\+, Op\+Type op\+\_\+)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_acc5daa4e1042a8f9fe0e83fe94d500d6_acc5daa4e1042a8f9fe0e83fe94d500d6}{operator()}} (cl\+::sycl\+::nd\+\_\+item$<$ 1 $>$ item\+ID)
+\item 
+{\footnotesize template$<$bool Vect = (\+Evaluator\+::\+Reducer\+Traits\+::\+Packet\+Access \& Evaluator\+::\+Input\+Packet\+Access)$>$ }\\\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} \mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{\+::\+Eigen\+::internal\+::enable\+\_\+if}}$<$ Vect $>$\+::type \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_af9eea9d6ffc799571bbaca592f33281f_af9eea9d6ffc799571bbaca592f33281f}{compute\+\_\+reduction}} (const cl\+::sycl\+::nd\+\_\+item$<$ 1 $>$ \&item\+ID)
+\item 
+{\footnotesize template$<$bool Vect = (\+Evaluator\+::\+Reducer\+Traits\+::\+Packet\+Access \& Evaluator\+::\+Input\+Packet\+Access)$>$ }\\\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} \mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{\+::\+Eigen\+::internal\+::enable\+\_\+if}}$<$!Vect $>$\+::type \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_ab221a78ba1b4296cc744d631ea51a17d_ab221a78ba1b4296cc744d631ea51a17d}{compute\+\_\+reduction}} (const cl\+::sycl\+::nd\+\_\+item$<$ 1 $>$ \&item\+ID)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_ae674d4699ce23fb1acf11c64c608ff73_ae674d4699ce23fb1acf11c64c608ff73}{Local\+Accessor}} \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_ac316951f6bd1ac8773d36128878b816a_ac316951f6bd1ac8773d36128878b816a}{scratch}}
+\item 
+Evaluator \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a56b8b4aa4bb45ee186034c85515acb34_a56b8b4aa4bb45ee186034c85515acb34}{evaluator}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a3761a4b3cb21ccb36114d2b9da6eb240_a3761a4b3cb21ccb36114d2b9da6eb240}{Evaluator\+Pointer\+Type}} \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a1da4a9c5581418c9bf4b1b8c36a27972_a1da4a9c5581418c9bf4b1b8c36a27972}{final\+\_\+output}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_aaa4cddf8182b4bacb244e3c293ac355a_aaa4cddf8182b4bacb244e3c293ac355a}{Index}} \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a65d3a2a8c7d2656e81c21c7da5d6874c_a65d3a2a8c7d2656e81c21c7da5d6874c}{rng}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a2fd5eff6901ad1e6ca9cf7dae7555623_a2fd5eff6901ad1e6ca9cf7dae7555623}{Op}} \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_ada0a8aa06a8b5eaeedd43fa920bfd39c_ada0a8aa06a8b5eaeedd43fa920bfd39c}{op}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{型定義メンバ詳解}
+\Hypertarget{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a28ecb65f9871dd04e7a9ef9bd6c7b48c_a28ecb65f9871dd04e7a9ef9bd6c7b48c}\index{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}!CoeffReturnType@{CoeffReturnType}}
+\index{CoeffReturnType@{CoeffReturnType}!Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}}
+\doxysubsubsection{\texorpdfstring{CoeffReturnType}{CoeffReturnType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a28ecb65f9871dd04e7a9ef9bd6c7b48c_a28ecb65f9871dd04e7a9ef9bd6c7b48c} 
+template$<$typename Evaluator , typename Op\+Type , typename Evaluator\+::\+Index local\+\_\+range$>$ \\
+Evaluator\+::\+Coeff\+Return\+Type \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Full\+Reduction\+Kernel\+Functor}}$<$ Evaluator, Op\+Type, local\+\_\+range $>$\+::\+Coeff\+Return\+Type}
+
+\Hypertarget{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a3761a4b3cb21ccb36114d2b9da6eb240_a3761a4b3cb21ccb36114d2b9da6eb240}\index{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}!EvaluatorPointerType@{EvaluatorPointerType}}
+\index{EvaluatorPointerType@{EvaluatorPointerType}!Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}}
+\doxysubsubsection{\texorpdfstring{EvaluatorPointerType}{EvaluatorPointerType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a3761a4b3cb21ccb36114d2b9da6eb240_a3761a4b3cb21ccb36114d2b9da6eb240} 
+template$<$typename Evaluator , typename Op\+Type , typename Evaluator\+::\+Index local\+\_\+range$>$ \\
+Evaluator\+::\+Evaluator\+Pointer\+Type \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Full\+Reduction\+Kernel\+Functor}}$<$ Evaluator, Op\+Type, local\+\_\+range $>$\+::\+Evaluator\+Pointer\+Type}
+
+\Hypertarget{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_aaa4cddf8182b4bacb244e3c293ac355a_aaa4cddf8182b4bacb244e3c293ac355a}\index{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}!Index@{Index}}
+\index{Index@{Index}!Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}}
+\doxysubsubsection{\texorpdfstring{Index}{Index}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_aaa4cddf8182b4bacb244e3c293ac355a_aaa4cddf8182b4bacb244e3c293ac355a} 
+template$<$typename Evaluator , typename Op\+Type , typename Evaluator\+::\+Index local\+\_\+range$>$ \\
+Evaluator\+::\+Index \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Full\+Reduction\+Kernel\+Functor}}$<$ Evaluator, Op\+Type, local\+\_\+range $>$\+::\+Index}
+
+\Hypertarget{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_ae674d4699ce23fb1acf11c64c608ff73_ae674d4699ce23fb1acf11c64c608ff73}\index{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}!LocalAccessor@{LocalAccessor}}
+\index{LocalAccessor@{LocalAccessor}!Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}}
+\doxysubsubsection{\texorpdfstring{LocalAccessor}{LocalAccessor}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_ae674d4699ce23fb1acf11c64c608ff73_ae674d4699ce23fb1acf11c64c608ff73} 
+template$<$typename Evaluator , typename Op\+Type , typename Evaluator\+::\+Index local\+\_\+range$>$ \\
+cl\+::sycl\+::accessor$<$\mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a76fb0672d830f8e207a688f0f9d017b8_a76fb0672d830f8e207a688f0f9d017b8}{Out\+Type}}, 1, cl\+::sycl\+::access\+::mode\+::read\+\_\+write, cl\+::sycl\+::access\+::target\+::local$>$ \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Full\+Reduction\+Kernel\+Functor}}$<$ Evaluator, Op\+Type, local\+\_\+range $>$\+::\+Local\+Accessor}
+
+\Hypertarget{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a2fd5eff6901ad1e6ca9cf7dae7555623_a2fd5eff6901ad1e6ca9cf7dae7555623}\index{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}!Op@{Op}}
+\index{Op@{Op}!Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}}
+\doxysubsubsection{\texorpdfstring{Op}{Op}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a2fd5eff6901ad1e6ca9cf7dae7555623_a2fd5eff6901ad1e6ca9cf7dae7555623} 
+template$<$typename Evaluator , typename Op\+Type , typename Evaluator\+::\+Index local\+\_\+range$>$ \\
+\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_op_definer_aa32c5b62dfedb49bb1983fa0bb641c51_aa32c5b62dfedb49bb1983fa0bb641c51}{Op\+Def\+::type}} \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Full\+Reduction\+Kernel\+Functor}}$<$ Evaluator, Op\+Type, local\+\_\+range $>$\+::\+Op}
+
+\Hypertarget{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a7ed8be1bdeef05967ebc037c417b1325_a7ed8be1bdeef05967ebc037c417b1325}\index{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}!OpDef@{OpDef}}
+\index{OpDef@{OpDef}!Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}}
+\doxysubsubsection{\texorpdfstring{OpDef}{OpDef}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a7ed8be1bdeef05967ebc037c417b1325_a7ed8be1bdeef05967ebc037c417b1325} 
+template$<$typename Evaluator , typename Op\+Type , typename Evaluator\+::\+Index local\+\_\+range$>$ \\
+\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_op_definer}{Op\+Definer}}$<$Op\+Type, typename Evaluator\+::\+Coeff\+Return\+Type, \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_aaa4cddf8182b4bacb244e3c293ac355a_aaa4cddf8182b4bacb244e3c293ac355a}{Index}}, (Evaluator\+::\+Reducer\+Traits\+::\+Packet\+Access \& Evaluator\+::\+Input\+Packet\+Access)$>$ \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Full\+Reduction\+Kernel\+Functor}}$<$ Evaluator, Op\+Type, local\+\_\+range $>$\+::\+Op\+Def}
+
+\Hypertarget{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a76fb0672d830f8e207a688f0f9d017b8_a76fb0672d830f8e207a688f0f9d017b8}\index{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}!OutType@{OutType}}
+\index{OutType@{OutType}!Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}}
+\doxysubsubsection{\texorpdfstring{OutType}{OutType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a76fb0672d830f8e207a688f0f9d017b8_a76fb0672d830f8e207a688f0f9d017b8} 
+template$<$typename Evaluator , typename Op\+Type , typename Evaluator\+::\+Index local\+\_\+range$>$ \\
+typename\+::\+Eigen\+::internal\+::conditional$<$(Evaluator\+::\+Reducer\+Traits\+::\+Packet\+Access\&Evaluator\+::\+Input\+Packet\+Access),\mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_ad425d5915991ae48165b3d12e805f018_ad425d5915991ae48165b3d12e805f018}{Packet\+Return\+Type}},\mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a28ecb65f9871dd04e7a9ef9bd6c7b48c_a28ecb65f9871dd04e7a9ef9bd6c7b48c}{Coeff\+Return\+Type}}$>$\+::type \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Full\+Reduction\+Kernel\+Functor}}$<$ Evaluator, Op\+Type, local\+\_\+range $>$\+::\+Out\+Type}
+
+\Hypertarget{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_ad425d5915991ae48165b3d12e805f018_ad425d5915991ae48165b3d12e805f018}\index{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}!PacketReturnType@{PacketReturnType}}
+\index{PacketReturnType@{PacketReturnType}!Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}}
+\doxysubsubsection{\texorpdfstring{PacketReturnType}{PacketReturnType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_ad425d5915991ae48165b3d12e805f018_ad425d5915991ae48165b3d12e805f018} 
+template$<$typename Evaluator , typename Op\+Type , typename Evaluator\+::\+Index local\+\_\+range$>$ \\
+Evaluator\+::\+Packet\+Return\+Type \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Full\+Reduction\+Kernel\+Functor}}$<$ Evaluator, Op\+Type, local\+\_\+range $>$\+::\+Packet\+Return\+Type}
+
+
+
+\doxysubsection{構築子と解体子}
+\Hypertarget{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a1a9040aee6c96d656b9e7affbd6522e2_a1a9040aee6c96d656b9e7affbd6522e2}\index{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}!FullReductionKernelFunctor@{FullReductionKernelFunctor}}
+\index{FullReductionKernelFunctor@{FullReductionKernelFunctor}!Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}}
+\doxysubsubsection{\texorpdfstring{FullReductionKernelFunctor()}{FullReductionKernelFunctor()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a1a9040aee6c96d656b9e7affbd6522e2_a1a9040aee6c96d656b9e7affbd6522e2} 
+template$<$typename Evaluator , typename Op\+Type , typename Evaluator\+::\+Index local\+\_\+range$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Full\+Reduction\+Kernel\+Functor}}$<$ Evaluator, Op\+Type, local\+\_\+range $>$\+::\+Full\+Reduction\+Kernel\+Functor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_ae674d4699ce23fb1acf11c64c608ff73_ae674d4699ce23fb1acf11c64c608ff73}{Local\+Accessor}}}]{scratch\+\_\+}{, }\item[{Evaluator}]{evaluator\+\_\+}{, }\item[{\mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a3761a4b3cb21ccb36114d2b9da6eb240_a3761a4b3cb21ccb36114d2b9da6eb240}{Evaluator\+Pointer\+Type}}}]{final\+\_\+output\+\_\+}{, }\item[{\mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_aaa4cddf8182b4bacb244e3c293ac355a_aaa4cddf8182b4bacb244e3c293ac355a}{Index}}}]{rng\+\_\+}{, }\item[{Op\+Type}]{op\+\_\+}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_af9eea9d6ffc799571bbaca592f33281f_af9eea9d6ffc799571bbaca592f33281f}\index{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}!compute\_reduction@{compute\_reduction}}
+\index{compute\_reduction@{compute\_reduction}!Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}}
+\doxysubsubsection{\texorpdfstring{compute\_reduction()}{compute\_reduction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_af9eea9d6ffc799571bbaca592f33281f_af9eea9d6ffc799571bbaca592f33281f} 
+template$<$typename Evaluator , typename Op\+Type , typename Evaluator\+::\+Index local\+\_\+range$>$ \\
+template$<$bool Vect = (\+Evaluator\+::\+Reducer\+Traits\+::\+Packet\+Access \& Evaluator\+::\+Input\+Packet\+Access)$>$ \\
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} \mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{\+::\+Eigen\+::internal\+::enable\+\_\+if}}$<$ Vect $>$\+::type \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Full\+Reduction\+Kernel\+Functor}}$<$ Evaluator, Op\+Type, local\+\_\+range $>$\+::compute\+\_\+reduction (\begin{DoxyParamCaption}\item[{const cl\+::sycl\+::nd\+\_\+item$<$ 1 $>$ \&}]{item\+ID}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_ab221a78ba1b4296cc744d631ea51a17d_ab221a78ba1b4296cc744d631ea51a17d}\index{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}!compute\_reduction@{compute\_reduction}}
+\index{compute\_reduction@{compute\_reduction}!Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}}
+\doxysubsubsection{\texorpdfstring{compute\_reduction()}{compute\_reduction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_ab221a78ba1b4296cc744d631ea51a17d_ab221a78ba1b4296cc744d631ea51a17d} 
+template$<$typename Evaluator , typename Op\+Type , typename Evaluator\+::\+Index local\+\_\+range$>$ \\
+template$<$bool Vect = (\+Evaluator\+::\+Reducer\+Traits\+::\+Packet\+Access \& Evaluator\+::\+Input\+Packet\+Access)$>$ \\
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} \mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{\+::\+Eigen\+::internal\+::enable\+\_\+if}}$<$!Vect $>$\+::type \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Full\+Reduction\+Kernel\+Functor}}$<$ Evaluator, Op\+Type, local\+\_\+range $>$\+::compute\+\_\+reduction (\begin{DoxyParamCaption}\item[{const cl\+::sycl\+::nd\+\_\+item$<$ 1 $>$ \&}]{item\+ID}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_acc5daa4e1042a8f9fe0e83fe94d500d6_acc5daa4e1042a8f9fe0e83fe94d500d6}\index{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_acc5daa4e1042a8f9fe0e83fe94d500d6_acc5daa4e1042a8f9fe0e83fe94d500d6} 
+template$<$typename Evaluator , typename Op\+Type , typename Evaluator\+::\+Index local\+\_\+range$>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Full\+Reduction\+Kernel\+Functor}}$<$ Evaluator, Op\+Type, local\+\_\+range $>$\+::operator() (\begin{DoxyParamCaption}\item[{cl\+::sycl\+::nd\+\_\+item$<$ 1 $>$}]{item\+ID}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{メンバ詳解}
+\Hypertarget{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a56b8b4aa4bb45ee186034c85515acb34_a56b8b4aa4bb45ee186034c85515acb34}\index{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}!evaluator@{evaluator}}
+\index{evaluator@{evaluator}!Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}}
+\doxysubsubsection{\texorpdfstring{evaluator}{evaluator}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a56b8b4aa4bb45ee186034c85515acb34_a56b8b4aa4bb45ee186034c85515acb34} 
+template$<$typename Evaluator , typename Op\+Type , typename Evaluator\+::\+Index local\+\_\+range$>$ \\
+Evaluator \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Full\+Reduction\+Kernel\+Functor}}$<$ Evaluator, Op\+Type, local\+\_\+range $>$\+::evaluator}
+
+\Hypertarget{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a1da4a9c5581418c9bf4b1b8c36a27972_a1da4a9c5581418c9bf4b1b8c36a27972}\index{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}!final\_output@{final\_output}}
+\index{final\_output@{final\_output}!Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}}
+\doxysubsubsection{\texorpdfstring{final\_output}{final\_output}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a1da4a9c5581418c9bf4b1b8c36a27972_a1da4a9c5581418c9bf4b1b8c36a27972} 
+template$<$typename Evaluator , typename Op\+Type , typename Evaluator\+::\+Index local\+\_\+range$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a3761a4b3cb21ccb36114d2b9da6eb240_a3761a4b3cb21ccb36114d2b9da6eb240}{Evaluator\+Pointer\+Type}} \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Full\+Reduction\+Kernel\+Functor}}$<$ Evaluator, Op\+Type, local\+\_\+range $>$\+::final\+\_\+output}
+
+\Hypertarget{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_ada0a8aa06a8b5eaeedd43fa920bfd39c_ada0a8aa06a8b5eaeedd43fa920bfd39c}\index{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}!op@{op}}
+\index{op@{op}!Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}}
+\doxysubsubsection{\texorpdfstring{op}{op}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_ada0a8aa06a8b5eaeedd43fa920bfd39c_ada0a8aa06a8b5eaeedd43fa920bfd39c} 
+template$<$typename Evaluator , typename Op\+Type , typename Evaluator\+::\+Index local\+\_\+range$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a2fd5eff6901ad1e6ca9cf7dae7555623_a2fd5eff6901ad1e6ca9cf7dae7555623}{Op}} \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Full\+Reduction\+Kernel\+Functor}}$<$ Evaluator, Op\+Type, local\+\_\+range $>$\+::op}
+
+\Hypertarget{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a65d3a2a8c7d2656e81c21c7da5d6874c_a65d3a2a8c7d2656e81c21c7da5d6874c}\index{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}!rng@{rng}}
+\index{rng@{rng}!Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}}
+\doxysubsubsection{\texorpdfstring{rng}{rng}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_a65d3a2a8c7d2656e81c21c7da5d6874c_a65d3a2a8c7d2656e81c21c7da5d6874c} 
+template$<$typename Evaluator , typename Op\+Type , typename Evaluator\+::\+Index local\+\_\+range$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_aaa4cddf8182b4bacb244e3c293ac355a_aaa4cddf8182b4bacb244e3c293ac355a}{Index}} \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Full\+Reduction\+Kernel\+Functor}}$<$ Evaluator, Op\+Type, local\+\_\+range $>$\+::rng}
+
+\Hypertarget{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_ac316951f6bd1ac8773d36128878b816a_ac316951f6bd1ac8773d36128878b816a}\index{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}!scratch@{scratch}}
+\index{scratch@{scratch}!Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$@{Eigen::TensorSycl::internal::FullReductionKernelFunctor$<$ Evaluator, OpType, local\_range $>$}}
+\doxysubsubsection{\texorpdfstring{scratch}{scratch}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_ac316951f6bd1ac8773d36128878b816a_ac316951f6bd1ac8773d36128878b816a} 
+template$<$typename Evaluator , typename Op\+Type , typename Evaluator\+::\+Index local\+\_\+range$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor_ae674d4699ce23fb1acf11c64c608ff73_ae674d4699ce23fb1acf11c64c608ff73}{Local\+Accessor}} \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_full_reduction_kernel_functor}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Full\+Reduction\+Kernel\+Functor}}$<$ Evaluator, Op\+Type, local\+\_\+range $>$\+::scratch}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/unsupported/\+Eigen/\+CXX11/src/\+Tensor/\mbox{\hyperlink{_tensor_reduction_sycl_8h}{Tensor\+Reduction\+Sycl.\+h}}\end{DoxyCompactItemize}

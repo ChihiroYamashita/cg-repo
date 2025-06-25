@@ -1,0 +1,172 @@
+\doxysection{Cwise\+Ternary\+Op.\+h}
+\hypertarget{_cwise_ternary_op_8h_source}{}\label{_cwise_ternary_op_8h_source}\index{eigen-\/3.4.0/eigen-\/3.4.0/Eigen/src/Core/CwiseTernaryOp.h@{eigen-\/3.4.0/eigen-\/3.4.0/Eigen/src/Core/CwiseTernaryOp.h}}
+\mbox{\hyperlink{_cwise_ternary_op_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ Eigen,\ a\ lightweight\ C++\ template\ library}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ for\ linear\ algebra.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (C)\ 2008-\/2014\ Gael\ Guennebaud\ <gael.guennebaud@inria.fr>}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Copyright\ (C)\ 2006-\/2008\ Benoit\ Jacob\ <jacob.benoit.1@gmail.com>}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ Copyright\ (C)\ 2016\ Eugene\ Brevdo\ <ebrevdo@gmail.com>}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ This\ Source\ Code\ Form\ is\ subject\ to\ the\ terms\ of\ the\ Mozilla}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ Public\ License\ v.\ 2.0.\ If\ a\ copy\ of\ the\ MPL\ was\ not\ distributed}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ with\ this\ file,\ You\ can\ obtain\ one\ at\ http://mozilla.org/MPL/2.0/.}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_CWISE\_TERNARY\_OP\_H}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ EIGEN\_CWISE\_TERNARY\_OP\_H}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_eigen}{Eigen}}\ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceinternal}{internal}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ TernaryOp,\ \textcolor{keyword}{typename}\ Arg1,\ \textcolor{keyword}{typename}\ Arg2,\ \textcolor{keyword}{typename}\ Arg3>}
+\DoxyCodeLine{00019\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}<\mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op}{CwiseTernaryOp}}<TernaryOp,\ Arg1,\ Arg2,\ Arg3>\ >\ \{}
+\DoxyCodeLine{00020\ \ \ \textcolor{comment}{//\ we\ must\ not\ inherit\ from\ traits<Arg1>\ since\ it\ has}}
+\DoxyCodeLine{00021\ \ \ \textcolor{comment}{//\ the\ potential\ to\ cause\ problems\ with\ MSVC}}
+\DoxyCodeLine{00022\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{remove\_all<Arg1>::type}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits_3_01_cwise_ternary_op_3_01_ternary_op_00_01_arg1_00_01_arg2_00_01_arg3_01_4_01_4_adbd68bf30d1d44ab386b563539d6d324_adbd68bf30d1d44ab386b563539d6d324}{Ancestor}};}
+\DoxyCodeLine{00023\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits<Ancestor>::XprKind}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits_3_01_cwise_ternary_op_3_01_ternary_op_00_01_arg1_00_01_arg2_00_01_arg3_01_4_01_4_a971f7c42f3a52d68732b439e88f23aea_a971f7c42f3a52d68732b439e88f23aea}{XprKind}};}
+\DoxyCodeLine{00024\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ RowsAtCompileTime\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits<Ancestor>::RowsAtCompileTime}},}
+\DoxyCodeLine{00026\ \ \ \ \ ColsAtCompileTime\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits<Ancestor>::ColsAtCompileTime}},}
+\DoxyCodeLine{00027\ \ \ \ \ MaxRowsAtCompileTime\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits<Ancestor>::MaxRowsAtCompileTime}},}
+\DoxyCodeLine{00028\ \ \ \ \ MaxColsAtCompileTime\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits<Ancestor>::MaxColsAtCompileTime}}}
+\DoxyCodeLine{00029\ \ \ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \textcolor{comment}{//\ even\ though\ we\ require\ Arg1,\ Arg2,\ and\ Arg3\ to\ have\ the\ same\ scalar\ type}}
+\DoxyCodeLine{00032\ \ \ \textcolor{comment}{//\ (see\ CwiseTernaryOp\ constructor),}}
+\DoxyCodeLine{00033\ \ \ \textcolor{comment}{//\ we\ still\ want\ to\ handle\ the\ case\ when\ the\ result\ type\ is\ different.}}
+\DoxyCodeLine{00034\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1result__of}{result\_of}}<TernaryOp(}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ Arg1::Scalar\&,\ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ Arg2::Scalar\&,}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ Arg3::Scalar\&)>::type\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits_3_01_cwise_ternary_op_3_01_ternary_op_00_01_arg1_00_01_arg2_00_01_arg3_01_4_01_4_a23e31b1d897d4272bae5adac27b358d3_a23e31b1d897d4272bae5adac27b358d3}{Scalar}};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal::traits<Arg1>::StorageKind}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits_3_01_cwise_ternary_op_3_01_ternary_op_00_01_arg1_00_01_arg2_00_01_arg3_01_4_01_4_ad3712a6683f9a103e3734d2c77b5f3d6_ad3712a6683f9a103e3734d2c77b5f3d6}{StorageKind}};}
+\DoxyCodeLine{00039\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal::traits<Arg1>::StorageIndex}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits_3_01_cwise_ternary_op_3_01_ternary_op_00_01_arg1_00_01_arg2_00_01_arg3_01_4_01_4_ae3af734596b4981518285de576217f07_ae3af734596b4981518285de576217f07}{StorageIndex}};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ Arg1::Nested\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits_3_01_cwise_ternary_op_3_01_ternary_op_00_01_arg1_00_01_arg2_00_01_arg3_01_4_01_4_a554713f25637583f2500dc64872b7dc2_a554713f25637583f2500dc64872b7dc2}{Arg1Nested}};}
+\DoxyCodeLine{00042\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ Arg2::Nested\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits_3_01_cwise_ternary_op_3_01_ternary_op_00_01_arg1_00_01_arg2_00_01_arg3_01_4_01_4_af425e3afbdd82f3a40436edadd358e2a_af425e3afbdd82f3a40436edadd358e2a}{Arg2Nested}};}
+\DoxyCodeLine{00043\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ Arg3::Nested\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits_3_01_cwise_ternary_op_3_01_ternary_op_00_01_arg1_00_01_arg2_00_01_arg3_01_4_01_4_accf26655893a2d006732e32ed8f54a19_accf26655893a2d006732e32ed8f54a19}{Arg3Nested}};}
+\DoxyCodeLine{00044\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{remove\_reference<Arg1Nested>::type}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits_3_01_cwise_ternary_op_3_01_ternary_op_00_01_arg1_00_01_arg2_00_01_arg3_01_4_01_4_ad835a33be61e35ef294409839ca2b72b_ad835a33be61e35ef294409839ca2b72b}{\_Arg1Nested}};}
+\DoxyCodeLine{00045\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{remove\_reference<Arg2Nested>::type}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits_3_01_cwise_ternary_op_3_01_ternary_op_00_01_arg1_00_01_arg2_00_01_arg3_01_4_01_4_ad311220a46497acd53b2f2fa8f33271d_ad311220a46497acd53b2f2fa8f33271d}{\_Arg2Nested}};}
+\DoxyCodeLine{00046\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{remove\_reference<Arg3Nested>::type}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits_3_01_cwise_ternary_op_3_01_ternary_op_00_01_arg1_00_01_arg2_00_01_arg3_01_4_01_4_af1719dd95c654a7612fc5f01a074001b_af1719dd95c654a7612fc5f01a074001b}{\_Arg3Nested}};}
+\DoxyCodeLine{00047\ \ \ \textcolor{keyword}{enum}\ \{\ Flags\ =\ \_Arg1Nested::Flags\ \&\ \mbox{\hyperlink{group__flags_gae4f56c2a60bbe4bd2e44c5b19cbe8762_gae4f56c2a60bbe4bd2e44c5b19cbe8762}{RowMajorBit}}\ \};}
+\DoxyCodeLine{00048\ \};}
+\DoxyCodeLine{00049\ \}\ \ \textcolor{comment}{//\ end\ namespace\ internal}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ TernaryOp,\ \textcolor{keyword}{typename}\ Arg1,\ \textcolor{keyword}{typename}\ Arg2,\ \textcolor{keyword}{typename}\ Arg3,}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ StorageKind>}
+\DoxyCodeLine{00053\ \textcolor{keyword}{class\ }CwiseTernaryOpImpl;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ TernaryOp,\ \textcolor{keyword}{typename}\ Arg1Type,\ \textcolor{keyword}{typename}\ Arg2Type,}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ Arg3Type>}
+\DoxyCodeLine{00084\ \textcolor{keyword}{class\ }CwiseTernaryOp\ :\ \textcolor{keyword}{public}\ CwiseTernaryOpImpl<}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TernaryOp,\ Arg1Type,\ Arg2Type,\ Arg3Type,}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ typename\ internal::traits<Arg1Type>::StorageKind>,}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ internal::no\_assignment\_operator}
+\DoxyCodeLine{00088\ \{}
+\DoxyCodeLine{00089\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00090\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{internal::remove\_all<Arg1Type>::type}}\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_a457b8db6a0d5cfc847d46a3e9ad1fb0c_a457b8db6a0d5cfc847d46a3e9ad1fb0c}{Arg1}};}
+\DoxyCodeLine{00091\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{internal::remove\_all<Arg2Type>::type}}\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_a2b95066939db044d47c81b7a5a858e77_a2b95066939db044d47c81b7a5a858e77}{Arg2}};}
+\DoxyCodeLine{00092\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{internal::remove\_all<Arg3Type>::type}}\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_a5b5c2517af1188173cc8e99c9055d413_a5b5c2517af1188173cc8e99c9055d413}{Arg3}};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_impl}{CwiseTernaryOpImpl}}<}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ TernaryOp,\ Arg1Type,\ Arg2Type,\ Arg3Type,}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal::traits<Arg1Type>::StorageKind}}>\mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_ad3e38426d0b1ca5374ecce3e10f2280b_ad3e38426d0b1ca5374ecce3e10f2280b}{::Base}}\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_ad3e38426d0b1ca5374ecce3e10f2280b_ad3e38426d0b1ca5374ecce3e10f2280b}{Base}};}
+\DoxyCodeLine{00097\ \ \ \mbox{\hyperlink{_macros_8h_a2e5d5054c3dfcf7642af8bf98e917d67_a2e5d5054c3dfcf7642af8bf98e917d67}{EIGEN\_GENERIC\_PUBLIC\_INTERFACE}}(\mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op}{CwiseTernaryOp}})}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ typedef\ typename\ \mbox{\hyperlink{namespaceinternal}{internal}}::ref\_selector<Arg1Type>::type\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_lazy_evaluator_writable}{Arg1Nested}};}
+\DoxyCodeLine{00100\ \ \ typedef\ typename\ \mbox{\hyperlink{namespaceinternal}{internal}}::ref\_selector<Arg2Type>::type\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_lazy_evaluator_writable}{Arg2Nested}};}
+\DoxyCodeLine{00101\ \ \ typedef\ typename\ \mbox{\hyperlink{namespaceinternal}{internal}}::ref\_selector<Arg3Type>::type\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_lazy_evaluator_writable}{Arg3Nested}};}
+\DoxyCodeLine{00102\ \ \ typedef\ typename\ \mbox{\hyperlink{namespaceinternal}{internal}}::remove\_reference<\mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_lazy_evaluator_writable}{Arg1Nested}}>::type\ \mbox{\hyperlink{class_eigen_1_1_triplet}{\_Arg1Nested}};}
+\DoxyCodeLine{00103\ \ \ typedef\ typename\ \mbox{\hyperlink{namespaceinternal}{internal}}::remove\_reference<\mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_lazy_evaluator_writable}{Arg2Nested}}>::type\ \mbox{\hyperlink{class_eigen_1_1_triplet}{\_Arg2Nested}};}
+\DoxyCodeLine{00104\ \ \ typedef\ typename\ \mbox{\hyperlink{namespaceinternal}{internal}}::remove\_reference<\mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_lazy_evaluator_writable}{Arg3Nested}}>::type\ \mbox{\hyperlink{class_eigen_1_1_triplet}{\_Arg3Nested}};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}}
+\DoxyCodeLine{00107\ \ \ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op}{CwiseTernaryOp}}(const\ \mbox{\hyperlink{class_eigen_1_1_triplet}{Arg1}}\&\ a1,\ const\ \mbox{\hyperlink{class_eigen_1_1_triplet}{Arg2}}\&\ a2,}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ \mbox{\hyperlink{class_eigen_1_1_triplet}{Arg3}}\&\ a3,}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ TernaryOp\&\ \mbox{\hyperlink{structfunc}{func}}\ =\ TernaryOp())}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ :\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_af86386882f85fb70e0d5744159dd35a2_af86386882f85fb70e0d5744159dd35a2}{m\_arg1}}(a1),\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_a08d6b0555e64f89483d570398c3c2d5e_a08d6b0555e64f89483d570398c3c2d5e}{m\_arg2}}(a2),\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_a06113f612c7b927725a89a91720c26f3_a06113f612c7b927725a89a91720c26f3}{m\_arg3}}(a3),\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_a52ccd2cbc772b7fa63a5032b74573e55_a52ccd2cbc772b7fa63a5032b74573e55}{m\_functor}}(\mbox{\hyperlink{structfunc}{func}})\ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{//\ require\ the\ sizes\ to\ match}}
+\DoxyCodeLine{00112\ \ \ \ \ \mbox{\hyperlink{_static_assert_8h_ab247f0d0f9226fe72bb02adefde6361d_ab247f0d0f9226fe72bb02adefde6361d}{EIGEN\_STATIC\_ASSERT\_SAME\_MATRIX\_SIZE}}(\mbox{\hyperlink{class_eigen_1_1_triplet}{Arg1}},\ \mbox{\hyperlink{class_eigen_1_1_triplet}{Arg2}})}
+\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{_static_assert_8h_ab247f0d0f9226fe72bb02adefde6361d_ab247f0d0f9226fe72bb02adefde6361d}{EIGEN\_STATIC\_ASSERT\_SAME\_MATRIX\_SIZE}}(\mbox{\hyperlink{class_eigen_1_1_triplet}{Arg1}},\ \mbox{\hyperlink{class_eigen_1_1_triplet}{Arg3}})}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{comment}{//\ The\ index\ types\ should\ match}}
+\DoxyCodeLine{00116\ \ \ \ \ \mbox{\hyperlink{_static_assert_8h_ac95cf960f4a8395b28af90edfda755f0_ac95cf960f4a8395b28af90edfda755f0}{EIGEN\_STATIC\_ASSERT}}((\mbox{\hyperlink{struct_eigen_1_1internal_1_1is__same}{internal::is\_same}}<}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal::traits<Arg1Type>::StorageKind}},}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal::traits<Arg2Type>::StorageKind}}>::value),}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ STORAGE\_KIND\_MUST\_MATCH)}
+\DoxyCodeLine{00120\ \ \ \ \ \mbox{\hyperlink{_static_assert_8h_ac95cf960f4a8395b28af90edfda755f0_ac95cf960f4a8395b28af90edfda755f0}{EIGEN\_STATIC\_ASSERT}}((\mbox{\hyperlink{struct_eigen_1_1internal_1_1is__same}{internal::is\_same}}<}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal::traits<Arg1Type>::StorageKind}},}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal::traits<Arg3Type>::StorageKind}}>::value),}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ STORAGE\_KIND\_MUST\_MATCH)}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \mbox{\hyperlink{_macros_8h_acaa7ba89800cfe18d5fd6eed620aea9c_acaa7ba89800cfe18d5fd6eed620aea9c}{eigen\_assert}}(a1.rows()\ ==\ a2.rows()\ \&\&\ a1.cols()\ ==\ a2.cols()\ \&\&}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a1.rows()\ ==\ a3.rows()\ \&\&\ a1.cols()\ ==\ a3.cols());}
+\DoxyCodeLine{00127\ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}}
+\DoxyCodeLine{00130\ \ \ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_a86d04bc0d674e47682416c256c6f7523_a86d04bc0d674e47682416c256c6f7523}{rows}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{comment}{//\ return\ the\ fixed\ size\ type\ if\ available\ to\ enable\ compile\ time}}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{comment}{//\ optimizations}}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal::traits}}<\textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{internal::remove\_all<Arg1Nested>::type}}>::}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RowsAtCompileTime\ ==\ \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}\ \&\&}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal::traits}}<\textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{internal::remove\_all<Arg2Nested>::type}}>::}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RowsAtCompileTime\ ==\ \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}})}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_a06113f612c7b927725a89a91720c26f3_a06113f612c7b927725a89a91720c26f3}{m\_arg3}}.rows();}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal::traits}}<\textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{internal::remove\_all<Arg1Nested>::type}}>::}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RowsAtCompileTime\ ==\ \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}\ \&\&}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal::traits}}<\textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{internal::remove\_all<Arg3Nested>::type}}>::}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RowsAtCompileTime\ ==\ \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}})}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_a08d6b0555e64f89483d570398c3c2d5e_a08d6b0555e64f89483d570398c3c2d5e}{m\_arg2}}.rows();}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_af86386882f85fb70e0d5744159dd35a2_af86386882f85fb70e0d5744159dd35a2}{m\_arg1}}.rows();}
+\DoxyCodeLine{00145\ \ \ \}}
+\DoxyCodeLine{00146\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}}
+\DoxyCodeLine{00147\ \ \ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_a837a6a654ef2d214d5a2eae11921b828_a837a6a654ef2d214d5a2eae11921b828}{cols}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{comment}{//\ return\ the\ fixed\ size\ type\ if\ available\ to\ enable\ compile\ time}}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{comment}{//\ optimizations}}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal::traits}}<\textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{internal::remove\_all<Arg1Nested>::type}}>::}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ColsAtCompileTime\ ==\ \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}\ \&\&}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal::traits}}<\textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{internal::remove\_all<Arg2Nested>::type}}>::}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ColsAtCompileTime\ ==\ \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}})}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_a06113f612c7b927725a89a91720c26f3_a06113f612c7b927725a89a91720c26f3}{m\_arg3}}.cols();}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal::traits}}<\textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{internal::remove\_all<Arg1Nested>::type}}>::}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ColsAtCompileTime\ ==\ \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}\ \&\&}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal::traits}}<\textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{internal::remove\_all<Arg3Nested>::type}}>::}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ColsAtCompileTime\ ==\ \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}})}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_a08d6b0555e64f89483d570398c3c2d5e_a08d6b0555e64f89483d570398c3c2d5e}{m\_arg2}}.cols();}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_af86386882f85fb70e0d5744159dd35a2_af86386882f85fb70e0d5744159dd35a2}{m\_arg1}}.cols();}
+\DoxyCodeLine{00162\ \ \ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00165\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}}
+\DoxyCodeLine{00166\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{\_Arg1Nested}}\&\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_a26fac2d5c98110f09e0f4b4ad3e5caa5_a26fac2d5c98110f09e0f4b4ad3e5caa5}{arg1}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_af86386882f85fb70e0d5744159dd35a2_af86386882f85fb70e0d5744159dd35a2}{m\_arg1}};\ \}}
+\DoxyCodeLine{00168\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}}
+\DoxyCodeLine{00169\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{\_Arg2Nested}}\&\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_aa0b783c4d11a7a1c4efe69fcb1d42cb2_aa0b783c4d11a7a1c4efe69fcb1d42cb2}{arg2}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_a08d6b0555e64f89483d570398c3c2d5e_a08d6b0555e64f89483d570398c3c2d5e}{m\_arg2}};\ \}}
+\DoxyCodeLine{00171\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}}
+\DoxyCodeLine{00172\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{\_Arg3Nested}}\&\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_a4cbac18c8810cafbbd102a47a0351c2e_a4cbac18c8810cafbbd102a47a0351c2e}{arg3}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_a06113f612c7b927725a89a91720c26f3_a06113f612c7b927725a89a91720c26f3}{m\_arg3}};\ \}}
+\DoxyCodeLine{00174\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}}
+\DoxyCodeLine{00175\ \ \ \textcolor{keyword}{const}\ TernaryOp\&\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_a380ea9d70b9cb6f2ddc0442205830140_a380ea9d70b9cb6f2ddc0442205830140}{functor}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_a52ccd2cbc772b7fa63a5032b74573e55_a52ccd2cbc772b7fa63a5032b74573e55}{m\_functor}};\ \}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00178\ \ \ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_lazy_evaluator_writable}{Arg1Nested}}\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_af86386882f85fb70e0d5744159dd35a2_af86386882f85fb70e0d5744159dd35a2}{m\_arg1}};}
+\DoxyCodeLine{00179\ \ \ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_lazy_evaluator_writable}{Arg2Nested}}\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_a08d6b0555e64f89483d570398c3c2d5e_a08d6b0555e64f89483d570398c3c2d5e}{m\_arg2}};}
+\DoxyCodeLine{00180\ \ \ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_lazy_evaluator_writable}{Arg3Nested}}\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_a06113f612c7b927725a89a91720c26f3_a06113f612c7b927725a89a91720c26f3}{m\_arg3}};}
+\DoxyCodeLine{00181\ \ \ \textcolor{keyword}{const}\ TernaryOp\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_a52ccd2cbc772b7fa63a5032b74573e55_a52ccd2cbc772b7fa63a5032b74573e55}{m\_functor}};}
+\DoxyCodeLine{00182\ \};}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \textcolor{comment}{//\ Generic\ API\ dispatcher}}
+\DoxyCodeLine{00185\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ TernaryOp,\ \textcolor{keyword}{typename}\ Arg1,\ \textcolor{keyword}{typename}\ Arg2,\ \textcolor{keyword}{typename}\ Arg3,}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ StorageKind>}
+\DoxyCodeLine{00187\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_impl}{CwiseTernaryOpImpl}}}
+\DoxyCodeLine{00188\ \ \ \ \ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1generic__xpr__base}{internal::generic\_xpr\_base}}<}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ CwiseTernaryOp<TernaryOp,\ Arg1,\ Arg2,\ Arg3>\ >::type\ \{}
+\DoxyCodeLine{00190\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00191\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1generic__xpr__base}{internal::generic\_xpr\_base}}<}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op}{CwiseTernaryOp<TernaryOp,\ Arg1,\ Arg2,\ Arg3>}}\ >::type\ \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_impl_a573d11ae960717ec1de2ac5295deeebf_a573d11ae960717ec1de2ac5295deeebf}{Base}};}
+\DoxyCodeLine{00193\ \};}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \}\ \ \textcolor{comment}{//\ end\ namespace\ Eigen}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ EIGEN\_CWISE\_TERNARY\_OP\_H}}
+
+\end{DoxyCode}

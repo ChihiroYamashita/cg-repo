@@ -1,0 +1,139 @@
+\doxysection{Eigen\+::internal\+::redux\+\_\+traits\texorpdfstring{$<$}{<} Func, Evaluator \texorpdfstring{$>$}{>} 構造体テンプレート}
+\hypertarget{struct_eigen_1_1internal_1_1redux__traits}{}\label{struct_eigen_1_1internal_1_1redux__traits}\index{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$@{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$}}
+
+
+{\ttfamily \#include $<$Redux.\+h$>$}
+
+
+
+Eigen\+::internal\+::redux\+\_\+traits\texorpdfstring{$<$}{<} Func, Evaluator \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{struct_eigen_1_1internal_1_1redux__traits__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{struct_eigen_1_1internal_1_1redux__traits_aca755394b7927072cffccb6d22c63541_aca755394b7927072cffccb6d22c63541accbb80ac2c9edd5b15449a047087421a}{Packet\+Size}} = unpacket\+\_\+traits\texorpdfstring{$<$}{<}Packet\+Type\texorpdfstring{$>$}{>}\+::size
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1redux__traits_aca755394b7927072cffccb6d22c63541_aca755394b7927072cffccb6d22c63541abf26aba4ca9f1180732c9290f7f0d347}{Inner\+Max\+Size}}
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1redux__traits_aca755394b7927072cffccb6d22c63541_aca755394b7927072cffccb6d22c63541ad5eb070f26a07fe1aba8dddf7054fa93}{Outer\+Max\+Size}}
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1redux__traits_aca755394b7927072cffccb6d22c63541_aca755394b7927072cffccb6d22c63541a821db4b5fe84004cab8388812ea7ba36}{Slice\+Vectorized\+Work}}
+ \}
+\item 
+enum \{ \mbox{\hyperlink{struct_eigen_1_1internal_1_1redux__traits_a99718229d5208414a90218300939ae82_a99718229d5208414a90218300939ae82ae649a0d425530e310b776f7a185c193c}{Might\+Vectorize}}
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1redux__traits_a99718229d5208414a90218300939ae82_a99718229d5208414a90218300939ae82a48f20186c779abb3bf9702974b3b5bdb}{May\+Linear\+Vectorize}} = bool(Might\+Vectorize) \&\& (int(Evaluator\+::Flags)\&Linear\+Access\+Bit)
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1redux__traits_a99718229d5208414a90218300939ae82_a99718229d5208414a90218300939ae82a4933c2e2924bf74ee0d847af2fd55984}{May\+Slice\+Vectorize}} = bool(Might\+Vectorize) \&\& (int(Slice\+Vectorized\+Work)==Dynamic \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} int(Slice\+Vectorized\+Work)\texorpdfstring{$>$}{>}=3)
+ \}
+\item 
+enum \{ \mbox{\hyperlink{struct_eigen_1_1internal_1_1redux__traits_a960d22ac2806039b32935e7b7ac54764_a960d22ac2806039b32935e7b7ac54764ab1fdab364d83124755b01f4a7cd1c5d2}{Traversal}}
+ \}
+\item 
+enum \{ \mbox{\hyperlink{struct_eigen_1_1internal_1_1redux__traits_ad294056f5c4d554be426d1a45bedd714_ad294056f5c4d554be426d1a45bedd714aff369a9dffbca5e507712fb884bc10ce}{Cost}}
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1redux__traits_ad294056f5c4d554be426d1a45bedd714_ad294056f5c4d554be426d1a45bedd714ab77c34de158a02239d627f4c26dbc862}{Unrolling\+Limit}} = EIGEN\+\_\+\+UNROLLING\+\_\+\+LIMIT \texorpdfstring{$\ast$}{*} (int(Traversal) == int(Default\+Traversal) ? 1 \+: int(Packet\+Size))
+ \}
+\item 
+enum \{ \mbox{\hyperlink{struct_eigen_1_1internal_1_1redux__traits_acddd1707af2aa10dc0a29a91ceb893cb_acddd1707af2aa10dc0a29a91ceb893cba9bb12db995697e3ccb96022ea54e17bb}{Unrolling}} = Cost \texorpdfstring{$<$}{<}= Unrolling\+Limit ? Complete\+Unrolling \+: No\+Unrolling
+ \}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1find__best__packet}{find\+\_\+best\+\_\+packet}}$<$ typename\+Evaluator\+::\+Scalar, Evaluator\+::\+Size\+At\+Compile\+Time $>$\+::type \mbox{\hyperlink{struct_eigen_1_1internal_1_1redux__traits_ae6809b93cd74a51d4a7bebd4c36f07f3_ae6809b93cd74a51d4a7bebd4c36f07f3}{Packet\+Type}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{型定義メンバ詳解}
+\Hypertarget{struct_eigen_1_1internal_1_1redux__traits_ae6809b93cd74a51d4a7bebd4c36f07f3_ae6809b93cd74a51d4a7bebd4c36f07f3}\index{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$@{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$}!PacketType@{PacketType}}
+\index{PacketType@{PacketType}!Eigen::internal::redux\_traits$<$ Func, Evaluator $>$@{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$}}
+\doxysubsubsection{\texorpdfstring{PacketType}{PacketType}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1redux__traits_ae6809b93cd74a51d4a7bebd4c36f07f3_ae6809b93cd74a51d4a7bebd4c36f07f3} 
+template$<$typename Func , typename Evaluator $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1find__best__packet}{find\+\_\+best\+\_\+packet}}$<$typename\+Evaluator\+::\+Scalar,Evaluator\+::\+Size\+At\+Compile\+Time$>$\+::type \mbox{\hyperlink{struct_eigen_1_1internal_1_1redux__traits}{Eigen\+::internal\+::redux\+\_\+traits}}$<$ Func, Evaluator $>$\+::\+Packet\+Type}
+
+
+
+\doxysubsection{列挙型メンバ詳解}
+\Hypertarget{struct_eigen_1_1internal_1_1redux__traits_aca755394b7927072cffccb6d22c63541_aca755394b7927072cffccb6d22c63541}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1redux__traits_aca755394b7927072cffccb6d22c63541_aca755394b7927072cffccb6d22c63541} 
+template$<$typename Func , typename Evaluator $>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PacketSize@{PacketSize}!Eigen::internal::redux\_traits$<$ Func, Evaluator $>$@{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$}}\index{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$@{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$}!PacketSize@{PacketSize}}}\Hypertarget{struct_eigen_1_1internal_1_1redux__traits_aca755394b7927072cffccb6d22c63541_aca755394b7927072cffccb6d22c63541accbb80ac2c9edd5b15449a047087421a}\label{struct_eigen_1_1internal_1_1redux__traits_aca755394b7927072cffccb6d22c63541_aca755394b7927072cffccb6d22c63541} 
+Packet\+Size&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{InnerMaxSize@{InnerMaxSize}!Eigen::internal::redux\_traits$<$ Func, Evaluator $>$@{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$}}\index{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$@{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$}!InnerMaxSize@{InnerMaxSize}}}\Hypertarget{struct_eigen_1_1internal_1_1redux__traits_aca755394b7927072cffccb6d22c63541_aca755394b7927072cffccb6d22c63541abf26aba4ca9f1180732c9290f7f0d347}\label{struct_eigen_1_1internal_1_1redux__traits_aca755394b7927072cffccb6d22c63541_aca755394b7927072cffccb6d22c63541} 
+Inner\+Max\+Size&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OuterMaxSize@{OuterMaxSize}!Eigen::internal::redux\_traits$<$ Func, Evaluator $>$@{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$}}\index{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$@{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$}!OuterMaxSize@{OuterMaxSize}}}\Hypertarget{struct_eigen_1_1internal_1_1redux__traits_aca755394b7927072cffccb6d22c63541_aca755394b7927072cffccb6d22c63541ad5eb070f26a07fe1aba8dddf7054fa93}\label{struct_eigen_1_1internal_1_1redux__traits_aca755394b7927072cffccb6d22c63541_aca755394b7927072cffccb6d22c63541} 
+Outer\+Max\+Size&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SliceVectorizedWork@{SliceVectorizedWork}!Eigen::internal::redux\_traits$<$ Func, Evaluator $>$@{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$}}\index{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$@{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$}!SliceVectorizedWork@{SliceVectorizedWork}}}\Hypertarget{struct_eigen_1_1internal_1_1redux__traits_aca755394b7927072cffccb6d22c63541_aca755394b7927072cffccb6d22c63541a821db4b5fe84004cab8388812ea7ba36}\label{struct_eigen_1_1internal_1_1redux__traits_aca755394b7927072cffccb6d22c63541_aca755394b7927072cffccb6d22c63541} 
+Slice\+Vectorized\+Work&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{struct_eigen_1_1internal_1_1redux__traits_a99718229d5208414a90218300939ae82_a99718229d5208414a90218300939ae82}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1redux__traits_a99718229d5208414a90218300939ae82_a99718229d5208414a90218300939ae82} 
+template$<$typename Func , typename Evaluator $>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MightVectorize@{MightVectorize}!Eigen::internal::redux\_traits$<$ Func, Evaluator $>$@{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$}}\index{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$@{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$}!MightVectorize@{MightVectorize}}}\Hypertarget{struct_eigen_1_1internal_1_1redux__traits_a99718229d5208414a90218300939ae82_a99718229d5208414a90218300939ae82ae649a0d425530e310b776f7a185c193c}\label{struct_eigen_1_1internal_1_1redux__traits_a99718229d5208414a90218300939ae82_a99718229d5208414a90218300939ae82} 
+Might\+Vectorize&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MayLinearVectorize@{MayLinearVectorize}!Eigen::internal::redux\_traits$<$ Func, Evaluator $>$@{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$}}\index{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$@{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$}!MayLinearVectorize@{MayLinearVectorize}}}\Hypertarget{struct_eigen_1_1internal_1_1redux__traits_a99718229d5208414a90218300939ae82_a99718229d5208414a90218300939ae82a48f20186c779abb3bf9702974b3b5bdb}\label{struct_eigen_1_1internal_1_1redux__traits_a99718229d5208414a90218300939ae82_a99718229d5208414a90218300939ae82} 
+May\+Linear\+Vectorize&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MaySliceVectorize@{MaySliceVectorize}!Eigen::internal::redux\_traits$<$ Func, Evaluator $>$@{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$}}\index{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$@{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$}!MaySliceVectorize@{MaySliceVectorize}}}\Hypertarget{struct_eigen_1_1internal_1_1redux__traits_a99718229d5208414a90218300939ae82_a99718229d5208414a90218300939ae82a4933c2e2924bf74ee0d847af2fd55984}\label{struct_eigen_1_1internal_1_1redux__traits_a99718229d5208414a90218300939ae82_a99718229d5208414a90218300939ae82} 
+May\+Slice\+Vectorize&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{struct_eigen_1_1internal_1_1redux__traits_a960d22ac2806039b32935e7b7ac54764_a960d22ac2806039b32935e7b7ac54764}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1redux__traits_a960d22ac2806039b32935e7b7ac54764_a960d22ac2806039b32935e7b7ac54764} 
+template$<$typename Func , typename Evaluator $>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Traversal@{Traversal}!Eigen::internal::redux\_traits$<$ Func, Evaluator $>$@{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$}}\index{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$@{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$}!Traversal@{Traversal}}}\Hypertarget{struct_eigen_1_1internal_1_1redux__traits_a960d22ac2806039b32935e7b7ac54764_a960d22ac2806039b32935e7b7ac54764ab1fdab364d83124755b01f4a7cd1c5d2}\label{struct_eigen_1_1internal_1_1redux__traits_a960d22ac2806039b32935e7b7ac54764_a960d22ac2806039b32935e7b7ac54764} 
+Traversal&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{struct_eigen_1_1internal_1_1redux__traits_ad294056f5c4d554be426d1a45bedd714_ad294056f5c4d554be426d1a45bedd714}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1redux__traits_ad294056f5c4d554be426d1a45bedd714_ad294056f5c4d554be426d1a45bedd714} 
+template$<$typename Func , typename Evaluator $>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Cost@{Cost}!Eigen::internal::redux\_traits$<$ Func, Evaluator $>$@{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$}}\index{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$@{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$}!Cost@{Cost}}}\Hypertarget{struct_eigen_1_1internal_1_1redux__traits_ad294056f5c4d554be426d1a45bedd714_ad294056f5c4d554be426d1a45bedd714aff369a9dffbca5e507712fb884bc10ce}\label{struct_eigen_1_1internal_1_1redux__traits_ad294056f5c4d554be426d1a45bedd714_ad294056f5c4d554be426d1a45bedd714} 
+Cost&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UnrollingLimit@{UnrollingLimit}!Eigen::internal::redux\_traits$<$ Func, Evaluator $>$@{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$}}\index{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$@{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$}!UnrollingLimit@{UnrollingLimit}}}\Hypertarget{struct_eigen_1_1internal_1_1redux__traits_ad294056f5c4d554be426d1a45bedd714_ad294056f5c4d554be426d1a45bedd714ab77c34de158a02239d627f4c26dbc862}\label{struct_eigen_1_1internal_1_1redux__traits_ad294056f5c4d554be426d1a45bedd714_ad294056f5c4d554be426d1a45bedd714} 
+Unrolling\+Limit&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{struct_eigen_1_1internal_1_1redux__traits_acddd1707af2aa10dc0a29a91ceb893cb_acddd1707af2aa10dc0a29a91ceb893cb}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1redux__traits_acddd1707af2aa10dc0a29a91ceb893cb_acddd1707af2aa10dc0a29a91ceb893cb} 
+template$<$typename Func , typename Evaluator $>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Unrolling@{Unrolling}!Eigen::internal::redux\_traits$<$ Func, Evaluator $>$@{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$}}\index{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$@{Eigen::internal::redux\_traits$<$ Func, Evaluator $>$}!Unrolling@{Unrolling}}}\Hypertarget{struct_eigen_1_1internal_1_1redux__traits_acddd1707af2aa10dc0a29a91ceb893cb_acddd1707af2aa10dc0a29a91ceb893cba9bb12db995697e3ccb96022ea54e17bb}\label{struct_eigen_1_1internal_1_1redux__traits_acddd1707af2aa10dc0a29a91ceb893cb_acddd1707af2aa10dc0a29a91ceb893cb} 
+Unrolling&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+この構造体詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Core/\mbox{\hyperlink{_redux_8h}{Redux.\+h}}\end{DoxyCompactItemize}

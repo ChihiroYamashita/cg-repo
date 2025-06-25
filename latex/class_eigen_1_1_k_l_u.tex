@@ -1,0 +1,483 @@
+\doxysection{Eigen\+::KLU\texorpdfstring{$<$}{<} \+\_\+\+Matrix\+Type \texorpdfstring{$>$}{>} クラステンプレート}
+\hypertarget{class_eigen_1_1_k_l_u}{}\label{class_eigen_1_1_k_l_u}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+
+
+{\ttfamily \#include $<$KLUSupport.\+h$>$}
+
+
+
+Eigen\+::KLU\texorpdfstring{$<$}{<} \+\_\+\+Matrix\+Type \texorpdfstring{$>$}{>} の継承関係図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_eigen_1_1_k_l_u__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Eigen\+::KLU\texorpdfstring{$<$}{<} \+\_\+\+Matrix\+Type \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_eigen_1_1_k_l_u__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{class_eigen_1_1_k_l_u_ab60e6a4a2f80477c9e952e4d749b02f7_ab60e6a4a2f80477c9e952e4d749b02f7ad025caba92dd0788f4c37bc29dff96ea}{Cols\+At\+Compile\+Time}} = Matrix\+Type\+::Cols\+At\+Compile\+Time
+, \mbox{\hyperlink{class_eigen_1_1_k_l_u_ab60e6a4a2f80477c9e952e4d749b02f7_ab60e6a4a2f80477c9e952e4d749b02f7a6b196e5e64249328800c9770bfdc7fa6}{Max\+Cols\+At\+Compile\+Time}} = Matrix\+Type\+::Max\+Cols\+At\+Compile\+Time
+ \}
+\item 
+typedef \+\_\+\+Matrix\+Type \mbox{\hyperlink{class_eigen_1_1_k_l_u_a51be28c9c66e82e6331f68d28258397d_a51be28c9c66e82e6331f68d28258397d}{Matrix\+Type}}
+\item 
+typedef Matrix\+Type\+::\+Scalar \mbox{\hyperlink{class_eigen_1_1_k_l_u_aadd98f1986999a50fb9514b364c366c9_aadd98f1986999a50fb9514b364c366c9}{Scalar}}
+\item 
+typedef Matrix\+Type\+::\+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_k_l_u_a3678db0442c81e353aa409745acb4d7d_a3678db0442c81e353aa409745acb4d7d}{Real\+Scalar}}
+\item 
+typedef Matrix\+Type\+::\+Storage\+Index \mbox{\hyperlink{class_eigen_1_1_k_l_u_a69fe1c448c75ca8b1e6ddeafe1cb3724_a69fe1c448c75ca8b1e6ddeafe1cb3724}{Storage\+Index}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_k_l_u_aadd98f1986999a50fb9514b364c366c9_aadd98f1986999a50fb9514b364c366c9}{Scalar}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, 1 $>$ \mbox{\hyperlink{class_eigen_1_1_k_l_u_a54569609a1d9eeea3addc024bee2702c_a54569609a1d9eeea3addc024bee2702c}{Vector}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, 1, Matrix\+Type\+::\+Cols\+At\+Compile\+Time $>$ \mbox{\hyperlink{class_eigen_1_1_k_l_u_afc18fa8155ab9938906acb1ae681b3b2_afc18fa8155ab9938906acb1ae681b3b2}{Int\+Row\+Vector\+Type}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, Matrix\+Type\+::\+Rows\+At\+Compile\+Time, 1 $>$ \mbox{\hyperlink{class_eigen_1_1_k_l_u_a30fb4821ffc9abfe27861b2fde1eed4b_a30fb4821ffc9abfe27861b2fde1eed4b}{Int\+Col\+Vector\+Type}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_k_l_u_aadd98f1986999a50fb9514b364c366c9_aadd98f1986999a50fb9514b364c366c9}{Scalar}} $>$ \mbox{\hyperlink{class_eigen_1_1_k_l_u_ac5fbab0f687cfbbfd10ae4d4e86fda58_ac5fbab0f687cfbbfd10ae4d4e86fda58}{LUMatrix\+Type}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_k_l_u_aadd98f1986999a50fb9514b364c366c9_aadd98f1986999a50fb9514b364c366c9}{Scalar}}, \mbox{\hyperlink{group__enums_gaacded1a18ae58b0f554751f6cdf9eb13_ggaacded1a18ae58b0f554751f6cdf9eb13a0103672ae41005ab03b4176c765afd62}{Col\+Major}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} $>$ \mbox{\hyperlink{class_eigen_1_1_k_l_u_a6b74a7692ee4e99a5490adcb36b5d679_a6b74a7692ee4e99a5490adcb36b5d679}{KLUMatrix\+Type}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_ref}{Ref}}$<$ const \mbox{\hyperlink{class_eigen_1_1_k_l_u_a6b74a7692ee4e99a5490adcb36b5d679_a6b74a7692ee4e99a5490adcb36b5d679}{KLUMatrix\+Type}}, \mbox{\hyperlink{namespace_eigen_ab4800a341811b9df27a829567d3f9b90_ab4800a341811b9df27a829567d3f9b90abd3632507a3697fb48c77eff79851a74}{Standard\+Compressed\+Format}} $>$ \mbox{\hyperlink{class_eigen_1_1_k_l_u_a52f9a18026820be7a9c5641c55f0ffa5_a52f9a18026820be7a9c5641c55f0ffa5}{KLUMatrix\+Ref}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_k_l_u_a84ccadf7475b43b7796aef353e9ae345_a84ccadf7475b43b7796aef353e9ae345}{KLU}} ()
+\item 
+{\footnotesize template$<$typename Input\+Matrix\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_k_l_u_ab7cc613e25ddb391aaa65fc4b629aa35_ab7cc613e25ddb391aaa65fc4b629aa35}{KLU}} (const Input\+Matrix\+Type \&\mbox{\hyperlink{common_8h_a2c4e93d1f3604b217c5d0e211def96fb_a2c4e93d1f3604b217c5d0e211def96fb}{matrix}})
+\item 
+\mbox{\hyperlink{class_eigen_1_1_k_l_u_a0afc539edcc57506d2a3229773af5767_a0afc539edcc57506d2a3229773af5767}{\texorpdfstring{$\sim$}{\string~}\+KLU}} ()
+\item 
+\mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_k_l_u_a5b38f16650121f962834ff6051be26c0_a5b38f16650121f962834ff6051be26c0}{rows}} () const \mbox{\hyperlink{_macros_8h_a532c42c61426cc18d84097e29577acf8_a532c42c61426cc18d84097e29577acf8}{EIGEN\+\_\+\+NOEXCEPT}}
+\item 
+\mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_k_l_u_a9419f902d405e4b8cd81696d17f97693_a9419f902d405e4b8cd81696d17f97693}{cols}} () const \mbox{\hyperlink{_macros_8h_a532c42c61426cc18d84097e29577acf8_a532c42c61426cc18d84097e29577acf8}{EIGEN\+\_\+\+NOEXCEPT}}
+\item 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_k_l_u_af3d2cc4cdf3891a71df8539d6d800a6d_af3d2cc4cdf3891a71df8539d6d800a6d}{info}} () const
+\begin{DoxyCompactList}\small\item\em Reports whether previous computation was successful. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Input\+Matrix\+Type $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_k_l_u_a22edf232a9b7fc5cdc4f8d1e9d55f6bf_a22edf232a9b7fc5cdc4f8d1e9d55f6bf}{compute}} (const Input\+Matrix\+Type \&\mbox{\hyperlink{common_8h_a2c4e93d1f3604b217c5d0e211def96fb_a2c4e93d1f3604b217c5d0e211def96fb}{matrix}})
+\item 
+{\footnotesize template$<$typename Input\+Matrix\+Type $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_k_l_u_a9a215290008c8f34fd4b470f91b93c0c_a9a215290008c8f34fd4b470f91b93c0c}{analyze\+Pattern}} (const Input\+Matrix\+Type \&\mbox{\hyperlink{common_8h_a2c4e93d1f3604b217c5d0e211def96fb_a2c4e93d1f3604b217c5d0e211def96fb}{matrix}})
+\item 
+const klu\+\_\+common \& \mbox{\hyperlink{class_eigen_1_1_k_l_u_aea88000799a110281f408f95a3212587_aea88000799a110281f408f95a3212587}{klu\+Common}} () const
+\item 
+klu\+\_\+common \& \mbox{\hyperlink{class_eigen_1_1_k_l_u_a2bbcba08151f46990d50616d3049f047_a2bbcba08151f46990d50616d3049f047}{klu\+Common}} ()
+\item 
+{\footnotesize template$<$typename Input\+Matrix\+Type $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_k_l_u_a652687225319909ffd0d7a2068fc797e_a652687225319909ffd0d7a2068fc797e}{factorize}} (const Input\+Matrix\+Type \&\mbox{\hyperlink{common_8h_a2c4e93d1f3604b217c5d0e211def96fb_a2c4e93d1f3604b217c5d0e211def96fb}{matrix}})
+\item 
+{\footnotesize template$<$typename BDerived , typename XDerived $>$ }\\bool \mbox{\hyperlink{class_eigen_1_1_k_l_u_aa9fc463e26ab05d4037675a85d2b313b_aa9fc463e26ab05d4037675a85d2b313b}{\+\_\+solve\+\_\+impl}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ BDerived $>$ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ XDerived $>$ \&\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}) const
+\end{DoxyCompactItemize}
+\doxysubsection*{基底クラス \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Eigen\+::\+Sparse\+Solver\+Base$<$ KLU$<$ \+\_\+\+Matrix\+Type $>$ $>$}} に属する継承公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_aacd99fa17db475e74d3834767f392f33_aacd99fa17db475e74d3834767f392f33}{Sparse\+Solver\+Base}} ()
+\item 
+\mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_ac48acdbbbbe58e6ceb0d48566aa5b398_ac48acdbbbbe58e6ceb0d48566aa5b398}{\texorpdfstring{$\sim$}{\string~}\+Sparse\+Solver\+Base}} ()
+\item 
+\mbox{\hyperlink{class_eigen_1_1_k_l_u}{KLU}}$<$ \+\_\+\+Matrix\+Type $>$ \& \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_ac8c149c121511c2f7e00a4b83d8b6791_ac8c149c121511c2f7e00a4b83d8b6791}{derived}} ()
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_k_l_u}{KLU}}$<$ \+\_\+\+Matrix\+Type $>$ \& \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_acd39421d74cb05d9413904c0d2596533_acd39421d74cb05d9413904c0d2596533}{derived}} () const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$ \mbox{\hyperlink{class_eigen_1_1_k_l_u}{KLU}}$<$ \+\_\+\+Matrix\+Type $>$, Rhs $>$ \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_a57c5b7f5e35274b55b5d57e8c88cc4a6_a57c5b7f5e35274b55b5d57e8c88cc4a6}{solve}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}) const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$ \mbox{\hyperlink{class_eigen_1_1_k_l_u}{KLU}}$<$ \+\_\+\+Matrix\+Type $>$, Rhs $>$ \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_aa525407e654603e8275cefeda32054c9_aa525407e654603e8275cefeda32054c9}{solve}} (const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Rhs $>$ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}) const
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_a886c757fea6fe1d992a66524213f14fb_a886c757fea6fe1d992a66524213f14fb}{\+\_\+solve\+\_\+impl}} (const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Rhs $>$ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Dest $>$ \&dest) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{限定公開型}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Sparse\+Solver\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_k_l_u}{KLU}}$<$ \+\_\+\+Matrix\+Type $>$ $>$ \mbox{\hyperlink{class_eigen_1_1_k_l_u_a1ee691155e07b4eddc3a7e0775a982eb_a1ee691155e07b4eddc3a7e0775a982eb}{Base}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{限定公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_k_l_u_aee879b2fe483e8197eb9f1bae0f40cfa_aee879b2fe483e8197eb9f1bae0f40cfa}{init}} ()
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_k_l_u_a3256e8a7bcc145ac33aa7b6fe643d05c_a3256e8a7bcc145ac33aa7b6fe643d05c}{analyze\+Pattern\+\_\+impl}} ()
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_k_l_u_a11756c83c398229fdbe2ee739413334a_a11756c83c398229fdbe2ee739413334a}{factorize\+\_\+impl}} ()
+\item 
+{\footnotesize template$<$typename Matrix\+Derived $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_k_l_u_a62650bf69aea7b36e3a3f76662dd598e_a62650bf69aea7b36e3a3f76662dd598e}{grab}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Matrix\+Derived $>$ \&\mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}})
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_k_l_u_a35e5b4282e2c47d0921122540a1c17d6_a35e5b4282e2c47d0921122540a1c17d6}{grab}} (const \mbox{\hyperlink{class_eigen_1_1_k_l_u_a52f9a18026820be7a9c5641c55f0ffa5_a52f9a18026820be7a9c5641c55f0ffa5}{KLUMatrix\+Ref}} \&\mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{限定公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_k_l_u_a6b74a7692ee4e99a5490adcb36b5d679_a6b74a7692ee4e99a5490adcb36b5d679}{KLUMatrix\+Type}} \mbox{\hyperlink{class_eigen_1_1_k_l_u_ade452d30f8df8c049f6038a4c7259cc4_ade452d30f8df8c049f6038a4c7259cc4}{m\+\_\+dummy}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_k_l_u_a52f9a18026820be7a9c5641c55f0ffa5_a52f9a18026820be7a9c5641c55f0ffa5}{KLUMatrix\+Ref}} \mbox{\hyperlink{class_eigen_1_1_k_l_u_a0a2a98795483f2779ca3f216a9fe7d27_a0a2a98795483f2779ca3f216a9fe7d27}{mp\+\_\+matrix}}
+\item 
+klu\+\_\+numeric \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eigen_1_1_k_l_u_a46f493bc07c33de650902e5a441fe73e_a46f493bc07c33de650902e5a441fe73e}{m\+\_\+numeric}}
+\item 
+klu\+\_\+symbolic \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eigen_1_1_k_l_u_aa1a8894d755b532046215b672444d589_aa1a8894d755b532046215b672444d589}{m\+\_\+symbolic}}
+\item 
+klu\+\_\+common \mbox{\hyperlink{class_eigen_1_1_k_l_u_a8f77e9608de8f9e1af14bc879fb1b51f_a8f77e9608de8f9e1af14bc879fb1b51f}{m\+\_\+common}}
+\item 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_k_l_u_a77fa5d0448431891029d01653ba03201_a77fa5d0448431891029d01653ba03201}{m\+\_\+info}}
+\item 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{class_eigen_1_1_k_l_u_a648c6da6bed91caf17a6406ca5d8af90_a648c6da6bed91caf17a6406ca5d8af90}{m\+\_\+factorization\+Is\+Ok}}
+\item 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{class_eigen_1_1_k_l_u_ae5247a64454bf7e031ba20cae2b33249_ae5247a64454bf7e031ba20cae2b33249}{m\+\_\+analysis\+Is\+Ok}}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_k_l_u_a8272c9763405ac002395d7e525381c19_a8272c9763405ac002395d7e525381c19}{m\+\_\+extracted\+Data\+Are\+Dirty}}
+\end{DoxyCompactItemize}
+\doxysubsection*{基底クラス \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Eigen\+::\+Sparse\+Solver\+Base$<$ KLU$<$ \+\_\+\+Matrix\+Type $>$ $>$}} に属する継承限定公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_ac52101f69d048d5c4b036eadf1f13673_ac52101f69d048d5c4b036eadf1f13673}{m\+\_\+is\+Initialized}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{非公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_k_l_u_aa967edbfa16b4ccf7eb1690a7adcda31_aa967edbfa16b4ccf7eb1690a7adcda31}{KLU}} (const \mbox{\hyperlink{class_eigen_1_1_k_l_u}{KLU}} \&)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{型定義メンバ詳解}
+\Hypertarget{class_eigen_1_1_k_l_u_a1ee691155e07b4eddc3a7e0775a982eb_a1ee691155e07b4eddc3a7e0775a982eb}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!Base@{Base}}
+\index{Base@{Base}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{Base}{Base}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a1ee691155e07b4eddc3a7e0775a982eb_a1ee691155e07b4eddc3a7e0775a982eb} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Sparse\+Solver\+Base}}$<$\mbox{\hyperlink{class_eigen_1_1_k_l_u}{KLU}}$<$\+\_\+\+Matrix\+Type$>$ $>$ \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Base\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_k_l_u_a30fb4821ffc9abfe27861b2fde1eed4b_a30fb4821ffc9abfe27861b2fde1eed4b}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!IntColVectorType@{IntColVectorType}}
+\index{IntColVectorType@{IntColVectorType}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{IntColVectorType}{IntColVectorType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a30fb4821ffc9abfe27861b2fde1eed4b_a30fb4821ffc9abfe27861b2fde1eed4b} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, Matrix\+Type\+::\+Rows\+At\+Compile\+Time, 1$>$ \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Int\+Col\+Vector\+Type}
+
+\Hypertarget{class_eigen_1_1_k_l_u_afc18fa8155ab9938906acb1ae681b3b2_afc18fa8155ab9938906acb1ae681b3b2}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!IntRowVectorType@{IntRowVectorType}}
+\index{IntRowVectorType@{IntRowVectorType}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{IntRowVectorType}{IntRowVectorType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_afc18fa8155ab9938906acb1ae681b3b2_afc18fa8155ab9938906acb1ae681b3b2} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, 1, Matrix\+Type\+::\+Cols\+At\+Compile\+Time$>$ \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Int\+Row\+Vector\+Type}
+
+\Hypertarget{class_eigen_1_1_k_l_u_a52f9a18026820be7a9c5641c55f0ffa5_a52f9a18026820be7a9c5641c55f0ffa5}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!KLUMatrixRef@{KLUMatrixRef}}
+\index{KLUMatrixRef@{KLUMatrixRef}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{KLUMatrixRef}{KLUMatrixRef}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a52f9a18026820be7a9c5641c55f0ffa5_a52f9a18026820be7a9c5641c55f0ffa5} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_ref}{Ref}}$<$const \mbox{\hyperlink{class_eigen_1_1_k_l_u_a6b74a7692ee4e99a5490adcb36b5d679_a6b74a7692ee4e99a5490adcb36b5d679}{KLUMatrix\+Type}}, \mbox{\hyperlink{namespace_eigen_ab4800a341811b9df27a829567d3f9b90_ab4800a341811b9df27a829567d3f9b90abd3632507a3697fb48c77eff79851a74}{Standard\+Compressed\+Format}}$>$ \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+KLUMatrix\+Ref}
+
+\Hypertarget{class_eigen_1_1_k_l_u_a6b74a7692ee4e99a5490adcb36b5d679_a6b74a7692ee4e99a5490adcb36b5d679}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!KLUMatrixType@{KLUMatrixType}}
+\index{KLUMatrixType@{KLUMatrixType}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{KLUMatrixType}{KLUMatrixType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a6b74a7692ee4e99a5490adcb36b5d679_a6b74a7692ee4e99a5490adcb36b5d679} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1_k_l_u_aadd98f1986999a50fb9514b364c366c9_aadd98f1986999a50fb9514b364c366c9}{Scalar}},\mbox{\hyperlink{group__enums_gaacded1a18ae58b0f554751f6cdf9eb13_ggaacded1a18ae58b0f554751f6cdf9eb13a0103672ae41005ab03b4176c765afd62}{Col\+Major}},\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}$>$ \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+KLUMatrix\+Type}
+
+\Hypertarget{class_eigen_1_1_k_l_u_ac5fbab0f687cfbbfd10ae4d4e86fda58_ac5fbab0f687cfbbfd10ae4d4e86fda58}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!LUMatrixType@{LUMatrixType}}
+\index{LUMatrixType@{LUMatrixType}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{LUMatrixType}{LUMatrixType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_ac5fbab0f687cfbbfd10ae4d4e86fda58_ac5fbab0f687cfbbfd10ae4d4e86fda58} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1_k_l_u_aadd98f1986999a50fb9514b364c366c9_aadd98f1986999a50fb9514b364c366c9}{Scalar}}$>$ \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+LUMatrix\+Type}
+
+\Hypertarget{class_eigen_1_1_k_l_u_a51be28c9c66e82e6331f68d28258397d_a51be28c9c66e82e6331f68d28258397d}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!MatrixType@{MatrixType}}
+\index{MatrixType@{MatrixType}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{MatrixType}{MatrixType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a51be28c9c66e82e6331f68d28258397d_a51be28c9c66e82e6331f68d28258397d} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\+\_\+\+Matrix\+Type \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{\+::\+Matrix\+Type}}}
+
+\Hypertarget{class_eigen_1_1_k_l_u_a3678db0442c81e353aa409745acb4d7d_a3678db0442c81e353aa409745acb4d7d}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!RealScalar@{RealScalar}}
+\index{RealScalar@{RealScalar}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{RealScalar}{RealScalar}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a3678db0442c81e353aa409745acb4d7d_a3678db0442c81e353aa409745acb4d7d} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+Matrix\+Type\+::\+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{\+::\+Real\+Scalar}}}
+
+\Hypertarget{class_eigen_1_1_k_l_u_aadd98f1986999a50fb9514b364c366c9_aadd98f1986999a50fb9514b364c366c9}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_aadd98f1986999a50fb9514b364c366c9_aadd98f1986999a50fb9514b364c366c9} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+Matrix\+Type\+::\+Scalar \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{\+::\+Scalar}}}
+
+\Hypertarget{class_eigen_1_1_k_l_u_a69fe1c448c75ca8b1e6ddeafe1cb3724_a69fe1c448c75ca8b1e6ddeafe1cb3724}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!StorageIndex@{StorageIndex}}
+\index{StorageIndex@{StorageIndex}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{StorageIndex}{StorageIndex}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a69fe1c448c75ca8b1e6ddeafe1cb3724_a69fe1c448c75ca8b1e6ddeafe1cb3724} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+Matrix\+Type\+::\+Storage\+Index \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Storage\+Index}
+
+\Hypertarget{class_eigen_1_1_k_l_u_a54569609a1d9eeea3addc024bee2702c_a54569609a1d9eeea3addc024bee2702c}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!Vector@{Vector}}
+\index{Vector@{Vector}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{Vector}{Vector}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a54569609a1d9eeea3addc024bee2702c_a54569609a1d9eeea3addc024bee2702c} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1_k_l_u_aadd98f1986999a50fb9514b364c366c9_aadd98f1986999a50fb9514b364c366c9}{Scalar}},\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}},1$>$ \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Vector}
+
+
+
+\doxysubsection{列挙型メンバ詳解}
+\Hypertarget{class_eigen_1_1_k_l_u_ab60e6a4a2f80477c9e952e4d749b02f7_ab60e6a4a2f80477c9e952e4d749b02f7}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_ab60e6a4a2f80477c9e952e4d749b02f7_ab60e6a4a2f80477c9e952e4d749b02f7} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ColsAtCompileTime@{ColsAtCompileTime}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!ColsAtCompileTime@{ColsAtCompileTime}}}\Hypertarget{class_eigen_1_1_k_l_u_ab60e6a4a2f80477c9e952e4d749b02f7_ab60e6a4a2f80477c9e952e4d749b02f7ad025caba92dd0788f4c37bc29dff96ea}\label{class_eigen_1_1_k_l_u_ab60e6a4a2f80477c9e952e4d749b02f7_ab60e6a4a2f80477c9e952e4d749b02f7} 
+Cols\+At\+Compile\+Time&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MaxColsAtCompileTime@{MaxColsAtCompileTime}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!MaxColsAtCompileTime@{MaxColsAtCompileTime}}}\Hypertarget{class_eigen_1_1_k_l_u_ab60e6a4a2f80477c9e952e4d749b02f7_ab60e6a4a2f80477c9e952e4d749b02f7a6b196e5e64249328800c9770bfdc7fa6}\label{class_eigen_1_1_k_l_u_ab60e6a4a2f80477c9e952e4d749b02f7_ab60e6a4a2f80477c9e952e4d749b02f7} 
+Max\+Cols\+At\+Compile\+Time&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{構築子と解体子}
+\Hypertarget{class_eigen_1_1_k_l_u_a84ccadf7475b43b7796aef353e9ae345_a84ccadf7475b43b7796aef353e9ae345}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!KLU@{KLU}}
+\index{KLU@{KLU}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{KLU()}{KLU()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a84ccadf7475b43b7796aef353e9ae345_a84ccadf7475b43b7796aef353e9ae345} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+KLU (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_k_l_u_ab7cc613e25ddb391aaa65fc4b629aa35_ab7cc613e25ddb391aaa65fc4b629aa35}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!KLU@{KLU}}
+\index{KLU@{KLU}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{KLU()}{KLU()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_ab7cc613e25ddb391aaa65fc4b629aa35_ab7cc613e25ddb391aaa65fc4b629aa35} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+template$<$typename Input\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+KLU (\begin{DoxyParamCaption}\item[{const Input\+Matrix\+Type \&}]{matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+\Hypertarget{class_eigen_1_1_k_l_u_a0afc539edcc57506d2a3229773af5767_a0afc539edcc57506d2a3229773af5767}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!````~KLU@{\texorpdfstring{$\sim$}{\string~}KLU}}
+\index{````~KLU@{\texorpdfstring{$\sim$}{\string~}KLU}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}KLU()}{\string~KLU()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a0afc539edcc57506d2a3229773af5767_a0afc539edcc57506d2a3229773af5767} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::\texorpdfstring{$\sim$}{\string~}\mbox{\hyperlink{class_eigen_1_1_k_l_u}{KLU}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_k_l_u_aa967edbfa16b4ccf7eb1690a7adcda31_aa967edbfa16b4ccf7eb1690a7adcda31}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!KLU@{KLU}}
+\index{KLU@{KLU}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{KLU()}{KLU()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_aa967edbfa16b4ccf7eb1690a7adcda31_aa967edbfa16b4ccf7eb1690a7adcda31} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+KLU (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_k_l_u}{KLU}}$<$ \+\_\+\+Matrix\+Type $>$ \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{class_eigen_1_1_k_l_u_aa9fc463e26ab05d4037675a85d2b313b_aa9fc463e26ab05d4037675a85d2b313b}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!\_solve\_impl@{\_solve\_impl}}
+\index{\_solve\_impl@{\_solve\_impl}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{\_solve\_impl()}{\_solve\_impl()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_aa9fc463e26ab05d4037675a85d2b313b_aa9fc463e26ab05d4037675a85d2b313b} 
+template$<$typename \mbox{\hyperlink{class_eigen_1_1_k_l_u_a51be28c9c66e82e6331f68d28258397d_a51be28c9c66e82e6331f68d28258397d}{Matrix\+Type}} $>$ \\
+template$<$typename BDerived , typename XDerived $>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \mbox{\hyperlink{class_eigen_1_1_k_l_u_a51be28c9c66e82e6331f68d28258397d_a51be28c9c66e82e6331f68d28258397d}{Matrix\+Type}} $>$\+::\+\_\+solve\+\_\+impl (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ BDerived $>$ \&}]{b}{, }\item[{\mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ XDerived $>$ \&}]{x}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_eigen_1_1_k_l_u_a9a215290008c8f34fd4b470f91b93c0c_a9a215290008c8f34fd4b470f91b93c0c}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!analyzePattern@{analyzePattern}}
+\index{analyzePattern@{analyzePattern}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{analyzePattern()}{analyzePattern()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a9a215290008c8f34fd4b470f91b93c0c_a9a215290008c8f34fd4b470f91b93c0c} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+template$<$typename Input\+Matrix\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::analyze\+Pattern (\begin{DoxyParamCaption}\item[{const Input\+Matrix\+Type \&}]{matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Performs a symbolic decomposition on the sparcity of {\itshape matrix}.
+
+This function is particularly useful when solving for several problems having the same structure.
+
+\begin{DoxySeeAlso}{参照}
+\doxylink{class_eigen_1_1_k_l_u_a652687225319909ffd0d7a2068fc797e_a652687225319909ffd0d7a2068fc797e}{factorize()}, \doxylink{class_eigen_1_1_k_l_u_a22edf232a9b7fc5cdc4f8d1e9d55f6bf_a22edf232a9b7fc5cdc4f8d1e9d55f6bf}{compute()} 
+\end{DoxySeeAlso}
+\Hypertarget{class_eigen_1_1_k_l_u_a3256e8a7bcc145ac33aa7b6fe643d05c_a3256e8a7bcc145ac33aa7b6fe643d05c}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!analyzePattern\_impl@{analyzePattern\_impl}}
+\index{analyzePattern\_impl@{analyzePattern\_impl}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{analyzePattern\_impl()}{analyzePattern\_impl()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a3256e8a7bcc145ac33aa7b6fe643d05c_a3256e8a7bcc145ac33aa7b6fe643d05c} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::analyze\+Pattern\+\_\+impl (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_k_l_u_a9419f902d405e4b8cd81696d17f97693_a9419f902d405e4b8cd81696d17f97693}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!cols@{cols}}
+\index{cols@{cols}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{cols()}{cols()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a9419f902d405e4b8cd81696d17f97693_a9419f902d405e4b8cd81696d17f97693} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::cols (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_k_l_u_a22edf232a9b7fc5cdc4f8d1e9d55f6bf_a22edf232a9b7fc5cdc4f8d1e9d55f6bf}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!compute@{compute}}
+\index{compute@{compute}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a22edf232a9b7fc5cdc4f8d1e9d55f6bf_a22edf232a9b7fc5cdc4f8d1e9d55f6bf} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+template$<$typename Input\+Matrix\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::compute (\begin{DoxyParamCaption}\item[{const Input\+Matrix\+Type \&}]{matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Computes the sparse Cholesky decomposition of {\itshape matrix} Note that the matrix should be column-\/major, and in compressed format for best performance. \begin{DoxySeeAlso}{参照}
+\doxylink{class_eigen_1_1_sparse_matrix_af23f8852f7e0dadd28886a31dfa7e25f_af23f8852f7e0dadd28886a31dfa7e25f}{Sparse\+Matrix\+::make\+Compressed()}. 
+\end{DoxySeeAlso}
+\Hypertarget{class_eigen_1_1_k_l_u_a652687225319909ffd0d7a2068fc797e_a652687225319909ffd0d7a2068fc797e}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!factorize@{factorize}}
+\index{factorize@{factorize}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{factorize()}{factorize()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a652687225319909ffd0d7a2068fc797e_a652687225319909ffd0d7a2068fc797e} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+template$<$typename Input\+Matrix\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::factorize (\begin{DoxyParamCaption}\item[{const Input\+Matrix\+Type \&}]{matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Performs a numeric decomposition of {\itshape matrix} 
+
+The given matrix must has the same sparcity than the matrix on which the pattern anylysis has been performed.
+
+\begin{DoxySeeAlso}{参照}
+\doxylink{class_eigen_1_1_k_l_u_a9a215290008c8f34fd4b470f91b93c0c_a9a215290008c8f34fd4b470f91b93c0c}{analyze\+Pattern()}, \doxylink{class_eigen_1_1_k_l_u_a22edf232a9b7fc5cdc4f8d1e9d55f6bf_a22edf232a9b7fc5cdc4f8d1e9d55f6bf}{compute()} 
+\end{DoxySeeAlso}
+\Hypertarget{class_eigen_1_1_k_l_u_a11756c83c398229fdbe2ee739413334a_a11756c83c398229fdbe2ee739413334a}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!factorize\_impl@{factorize\_impl}}
+\index{factorize\_impl@{factorize\_impl}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{factorize\_impl()}{factorize\_impl()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a11756c83c398229fdbe2ee739413334a_a11756c83c398229fdbe2ee739413334a} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::factorize\+\_\+impl (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_k_l_u_a62650bf69aea7b36e3a3f76662dd598e_a62650bf69aea7b36e3a3f76662dd598e}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!grab@{grab}}
+\index{grab@{grab}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{grab()}{grab()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a62650bf69aea7b36e3a3f76662dd598e_a62650bf69aea7b36e3a3f76662dd598e} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+template$<$typename Matrix\+Derived $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::grab (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Matrix\+Derived $>$ \&}]{A}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_k_l_u_a35e5b4282e2c47d0921122540a1c17d6_a35e5b4282e2c47d0921122540a1c17d6}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!grab@{grab}}
+\index{grab@{grab}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{grab()}{grab()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a35e5b4282e2c47d0921122540a1c17d6_a35e5b4282e2c47d0921122540a1c17d6} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::grab (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_k_l_u_a52f9a18026820be7a9c5641c55f0ffa5_a52f9a18026820be7a9c5641c55f0ffa5}{KLUMatrix\+Ref}} \&}]{A}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_k_l_u_af3d2cc4cdf3891a71df8539d6d800a6d_af3d2cc4cdf3891a71df8539d6d800a6d}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!info@{info}}
+\index{info@{info}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_af3d2cc4cdf3891a71df8539d6d800a6d_af3d2cc4cdf3891a71df8539d6d800a6d} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::info (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reports whether previous computation was successful. 
+
+\begin{DoxyReturn}{戻り値}
+{\ttfamily Success} if computation was successful, {\ttfamily Numerical\+Issue} if the matrix.\+appears to be negative. 
+\end{DoxyReturn}
+\Hypertarget{class_eigen_1_1_k_l_u_aee879b2fe483e8197eb9f1bae0f40cfa_aee879b2fe483e8197eb9f1bae0f40cfa}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!init@{init}}
+\index{init@{init}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_aee879b2fe483e8197eb9f1bae0f40cfa_aee879b2fe483e8197eb9f1bae0f40cfa} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\mbox{\hyperlink{structinit}{\+::init}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_k_l_u_a2bbcba08151f46990d50616d3049f047_a2bbcba08151f46990d50616d3049f047}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!kluCommon@{kluCommon}}
+\index{kluCommon@{kluCommon}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{kluCommon()}{kluCommon()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a2bbcba08151f46990d50616d3049f047_a2bbcba08151f46990d50616d3049f047} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+klu\+\_\+common \& \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::klu\+Common (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Provides access to the control settings array used by Umf\+Pack.
+
+If this array contains NaN\textquotesingle{}s, the default values are used.
+
+See \doxylink{class_eigen_1_1_k_l_u}{KLU} documentation for details. \Hypertarget{class_eigen_1_1_k_l_u_aea88000799a110281f408f95a3212587_aea88000799a110281f408f95a3212587}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!kluCommon@{kluCommon}}
+\index{kluCommon@{kluCommon}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{kluCommon()}{kluCommon()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_aea88000799a110281f408f95a3212587_aea88000799a110281f408f95a3212587} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+const klu\+\_\+common \& \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::klu\+Common (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Provides access to the control settings array used by \doxylink{class_eigen_1_1_k_l_u}{KLU}.
+
+See \doxylink{class_eigen_1_1_k_l_u}{KLU} documentation for details. \Hypertarget{class_eigen_1_1_k_l_u_a5b38f16650121f962834ff6051be26c0_a5b38f16650121f962834ff6051be26c0}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!rows@{rows}}
+\index{rows@{rows}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{rows()}{rows()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a5b38f16650121f962834ff6051be26c0_a5b38f16650121f962834ff6051be26c0} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::rows (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{メンバ詳解}
+\Hypertarget{class_eigen_1_1_k_l_u_ae5247a64454bf7e031ba20cae2b33249_ae5247a64454bf7e031ba20cae2b33249}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!m\_analysisIsOk@{m\_analysisIsOk}}
+\index{m\_analysisIsOk@{m\_analysisIsOk}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{m\_analysisIsOk}{m\_analysisIsOk}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_ae5247a64454bf7e031ba20cae2b33249_ae5247a64454bf7e031ba20cae2b33249} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::m\+\_\+analysis\+Is\+Ok\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_k_l_u_a8f77e9608de8f9e1af14bc879fb1b51f_a8f77e9608de8f9e1af14bc879fb1b51f}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!m\_common@{m\_common}}
+\index{m\_common@{m\_common}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{m\_common}{m\_common}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a8f77e9608de8f9e1af14bc879fb1b51f_a8f77e9608de8f9e1af14bc879fb1b51f} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+klu\+\_\+common \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::m\+\_\+common\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_k_l_u_ade452d30f8df8c049f6038a4c7259cc4_ade452d30f8df8c049f6038a4c7259cc4}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!m\_dummy@{m\_dummy}}
+\index{m\_dummy@{m\_dummy}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{m\_dummy}{m\_dummy}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_ade452d30f8df8c049f6038a4c7259cc4_ade452d30f8df8c049f6038a4c7259cc4} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_k_l_u_a6b74a7692ee4e99a5490adcb36b5d679_a6b74a7692ee4e99a5490adcb36b5d679}{KLUMatrix\+Type}} \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::m\+\_\+dummy\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_k_l_u_a8272c9763405ac002395d7e525381c19_a8272c9763405ac002395d7e525381c19}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!m\_extractedDataAreDirty@{m\_extractedDataAreDirty}}
+\index{m\_extractedDataAreDirty@{m\_extractedDataAreDirty}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{m\_extractedDataAreDirty}{m\_extractedDataAreDirty}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a8272c9763405ac002395d7e525381c19_a8272c9763405ac002395d7e525381c19} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::m\+\_\+extracted\+Data\+Are\+Dirty\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_k_l_u_a648c6da6bed91caf17a6406ca5d8af90_a648c6da6bed91caf17a6406ca5d8af90}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!m\_factorizationIsOk@{m\_factorizationIsOk}}
+\index{m\_factorizationIsOk@{m\_factorizationIsOk}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{m\_factorizationIsOk}{m\_factorizationIsOk}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a648c6da6bed91caf17a6406ca5d8af90_a648c6da6bed91caf17a6406ca5d8af90} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::m\+\_\+factorization\+Is\+Ok\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_k_l_u_a77fa5d0448431891029d01653ba03201_a77fa5d0448431891029d01653ba03201}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!m\_info@{m\_info}}
+\index{m\_info@{m\_info}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{m\_info}{m\_info}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a77fa5d0448431891029d01653ba03201_a77fa5d0448431891029d01653ba03201} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::m\+\_\+info\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_k_l_u_a46f493bc07c33de650902e5a441fe73e_a46f493bc07c33de650902e5a441fe73e}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!m\_numeric@{m\_numeric}}
+\index{m\_numeric@{m\_numeric}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{m\_numeric}{m\_numeric}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a46f493bc07c33de650902e5a441fe73e_a46f493bc07c33de650902e5a441fe73e} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+klu\+\_\+numeric\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::m\+\_\+numeric\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_k_l_u_aa1a8894d755b532046215b672444d589_aa1a8894d755b532046215b672444d589}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!m\_symbolic@{m\_symbolic}}
+\index{m\_symbolic@{m\_symbolic}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{m\_symbolic}{m\_symbolic}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_aa1a8894d755b532046215b672444d589_aa1a8894d755b532046215b672444d589} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+klu\+\_\+symbolic\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::m\+\_\+symbolic\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_k_l_u_a0a2a98795483f2779ca3f216a9fe7d27_a0a2a98795483f2779ca3f216a9fe7d27}\index{Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}!mp\_matrix@{mp\_matrix}}
+\index{mp\_matrix@{mp\_matrix}!Eigen::KLU$<$ \_MatrixType $>$@{Eigen::KLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{mp\_matrix}{mp\_matrix}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_k_l_u_a0a2a98795483f2779ca3f216a9fe7d27_a0a2a98795483f2779ca3f216a9fe7d27} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_k_l_u_a52f9a18026820be7a9c5641c55f0ffa5_a52f9a18026820be7a9c5641c55f0ffa5}{KLUMatrix\+Ref}} \mbox{\hyperlink{class_eigen_1_1_k_l_u}{Eigen\+::\+KLU}}$<$ \+\_\+\+Matrix\+Type $>$\+::mp\+\_\+matrix\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+KLUSupport/\mbox{\hyperlink{_k_l_u_support_8h}{KLUSupport.\+h}}\end{DoxyCompactItemize}

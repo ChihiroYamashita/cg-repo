@@ -1,0 +1,318 @@
+\doxysection{Eigen\+::internal\+::copy\+\_\+using\+\_\+evaluator\+\_\+traits\texorpdfstring{$<$}{<} Dst\+Evaluator, Src\+Evaluator, Assign\+Func, Max\+Packet\+Size \texorpdfstring{$>$}{>} 構造体テンプレート}
+\hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits}{}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}
+
+
+{\ttfamily \#include $<$Assign\+Evaluator.\+h$>$}
+
+
+
+Eigen\+::internal\+::copy\+\_\+using\+\_\+evaluator\+\_\+traits\texorpdfstring{$<$}{<} Dst\+Evaluator, Src\+Evaluator, Assign\+Func, Max\+Packet\+Size \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{struct_eigen_1_1internal_1_1copy__using__evaluator__traits__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_abd042f32fac0fc758177b1fec69f7710_abd042f32fac0fc758177b1fec69f7710afc92a87ce9e6a7634c068a17104b4ba2}{Dst\+Flags}} = Dst\+Evaluator\+::Flags
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_abd042f32fac0fc758177b1fec69f7710_abd042f32fac0fc758177b1fec69f7710a1bbbacbed6d20f61318d908ab5aa1b04}{Src\+Flags}} = Src\+Evaluator\+::Flags
+ \}
+\item 
+enum \{ \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a2fcfe9d51bc654d326231781e6815622_a2fcfe9d51bc654d326231781e6815622ad7f25174c7a116018dbd3f0763c9a221}{Dst\+Alignment}} = Dst\+Evaluator\+::Alignment
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a2fcfe9d51bc654d326231781e6815622_a2fcfe9d51bc654d326231781e6815622a183b5b64e6d90928ac7bd4d7bb5abe54}{Src\+Alignment}} = Src\+Evaluator\+::Alignment
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a2fcfe9d51bc654d326231781e6815622_a2fcfe9d51bc654d326231781e6815622af17ec527880827e2b6f7dceeeb9c3c42}{Dst\+Has\+Direct\+Access}} = (Dst\+Flags \& Direct\+Access\+Bit) == Direct\+Access\+Bit
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a2fcfe9d51bc654d326231781e6815622_a2fcfe9d51bc654d326231781e6815622aa2ad39f87fd4a2b8e94178bfb05afd09}{Joint\+Alignment}} = EIGEN\+\_\+\+PLAIN\+\_\+\+ENUM\+\_\+\+MIN(Dst\+Alignment,Src\+Alignment)
+ \}
+\item 
+enum \{ \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a9297a1b01e75ed99475db994313c9b2d_a9297a1b01e75ed99475db994313c9b2dafcaf83b9c1e24b74cdef00eb886e3825}{Linear\+Required\+Alignment}} = unpacket\+\_\+traits\texorpdfstring{$<$}{<}Linear\+Packet\+Type\texorpdfstring{$>$}{>}\+::alignment
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a9297a1b01e75ed99475db994313c9b2d_a9297a1b01e75ed99475db994313c9b2da09cf9d67809b903978ad6676c00d6997}{Inner\+Required\+Alignment}} = unpacket\+\_\+traits\texorpdfstring{$<$}{<}Inner\+Packet\+Type\texorpdfstring{$>$}{>}\+::alignment
+ \}
+\item 
+enum \{ \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ac54857ffe370a8982a1185ab40fd6752_ac54857ffe370a8982a1185ab40fd6752a20364bc89e1f4aa43a9b4b9d36ffc0f1}{Traversal}}
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ac54857ffe370a8982a1185ab40fd6752_ac54857ffe370a8982a1185ab40fd6752a10f1e0166ec05ca8af1f12d3f455aecd}{Vectorized}}
+ \}
+\item 
+enum \{ \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a71ca4c09edc2851ef4f2c07573ee49b7_a71ca4c09edc2851ef4f2c07573ee49b7afb07e8a47fe431a5f0d543a6d0a381ba}{Unrolling}}
+ \}
+\item 
+typedef Dst\+Evaluator\+::\+Xpr\+Type \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_aa2666bad27bc3ca316572573c2a82075_aa2666bad27bc3ca316572573c2a82075}{Dst}}
+\item 
+typedef Dst\+::\+Scalar \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ac45e98390e42d906fd48183c71ec4cbd_ac45e98390e42d906fd48183c71ec4cbd}{Dst\+Scalar}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{conditional}}$<$ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}(\mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ac54857ffe370a8982a1185ab40fd6752_ac54857ffe370a8982a1185ab40fd6752a20364bc89e1f4aa43a9b4b9d36ffc0f1}{Traversal}})==\mbox{\hyperlink{namespace_eigen_a3d2409f30bc18e288e66de7ac53f71e5_a3d2409f30bc18e288e66de7ac53f71e5a4dc2f614cc1a36cc7e57be77d881d0b2}{Linear\+Vectorized\+Traversal}}, \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a21fb1f9520d4832df32c6d9507c9fb46_a21fb1f9520d4832df32c6d9507c9fb46}{Linear\+Packet\+Type}}, \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a7dda3a44a0ea38152ce4f4728a4f71ee_a7dda3a44a0ea38152ce4f4728a4f71ee}{Inner\+Packet\+Type}} $>$\+::type \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a8b683691f84425965903bed42a138fa4_a8b683691f84425965903bed42a138fa4}{Packet\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{非公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \newline
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a748b02b7baf86b7bfafaa118b8099d2e_a748b02b7baf86b7bfafaa118b8099d2ea0968b7d712eb0701a747a8807c02e936}{Inner\+Size}}
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a748b02b7baf86b7bfafaa118b8099d2e_a748b02b7baf86b7bfafaa118b8099d2ea38a6a292ead11b5ac9e8e017437530a7}{Inner\+Max\+Size}}
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a748b02b7baf86b7bfafaa118b8099d2e_a748b02b7baf86b7bfafaa118b8099d2eab3d25213f25cc7130dedc11441388ec0}{Restricted\+Inner\+Size}} = EIGEN\+\_\+\+SIZE\+\_\+\+MIN\+\_\+\+PREFER\+\_\+\+FIXED(Inner\+Size,Max\+Packet\+Size)
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a748b02b7baf86b7bfafaa118b8099d2e_a748b02b7baf86b7bfafaa118b8099d2ea7faca4d88df16502fa66184618d6e889}{Restricted\+Linear\+Size}} = EIGEN\+\_\+\+SIZE\+\_\+\+MIN\+\_\+\+PREFER\+\_\+\+FIXED(Dst\+::Size\+At\+Compile\+Time,Max\+Packet\+Size)
+, \newline
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a748b02b7baf86b7bfafaa118b8099d2e_a748b02b7baf86b7bfafaa118b8099d2ea610533b471377d52fc9a2ee778c4013f}{Outer\+Stride}} = int(outer\+\_\+stride\+\_\+at\+\_\+compile\+\_\+time\texorpdfstring{$<$}{<}Dst\texorpdfstring{$>$}{>}\+::ret)
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a748b02b7baf86b7bfafaa118b8099d2e_a748b02b7baf86b7bfafaa118b8099d2ea2aca24221a9c09060ce3457aa254a36f}{Max\+Size\+At\+Compile\+Time}} = Dst\+::Size\+At\+Compile\+Time
+ \}
+\item 
+enum \{ \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ae8e8b4681c8bc63a3349c5697829bc04_ae8e8b4681c8bc63a3349c5697829bc04a99c5338bf9a090b87f0f1a974304d606}{Linear\+Packet\+Size}} = unpacket\+\_\+traits\texorpdfstring{$<$}{<}Linear\+Packet\+Type\texorpdfstring{$>$}{>}\+::size
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ae8e8b4681c8bc63a3349c5697829bc04_ae8e8b4681c8bc63a3349c5697829bc04a0fe5e3ef7fb9d85faa2f435ad4da05dc}{Inner\+Packet\+Size}} = unpacket\+\_\+traits\texorpdfstring{$<$}{<}Inner\+Packet\+Type\texorpdfstring{$>$}{>}\+::size
+ \}
+\item 
+enum \{ \newline
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1da92c8af5ad12f29f0b1f221981e435b03}{Dst\+Is\+Row\+Major}} = Dst\+Flags\&Row\+Major\+Bit
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1da35f9de8a34fee34bffe2d62ed3254d00}{Src\+Is\+Row\+Major}} = Src\+Flags\&Row\+Major\+Bit
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1daf97400e573dee118e08aa6bc641c04d7}{Storage\+Orders\+Agree}} = (int(Dst\+Is\+Row\+Major) == int(Src\+Is\+Row\+Major))
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1da012e7a8872f3a7cbac2b0d53bbaf0077}{Might\+Vectorize}}
+, \newline
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1da2215bef6a2986ff4aa804a08851a93ec}{May\+Inner\+Vectorize}}
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1da1d720441e05dade5b84f949373e34720}{May\+Linearize}} = bool(Storage\+Orders\+Agree) \&\& (int(Dst\+Flags) \& int(Src\+Flags) \& Linear\+Access\+Bit)
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1da106231c686fcd3d25d05c801e737d26c}{May\+Linear\+Vectorize}}
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1da56ea8d14f257c70119dc67eaba53eeea}{May\+Slice\+Vectorize}}
+ \}
+\item 
+enum \{ \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a1e4d5edfb0ad7d14cf0d09ee5a235104_a1e4d5edfb0ad7d14cf0d09ee5a235104a370466f5b64871ee6dd0d97b6e899f5f}{Actual\+Packet\+Size}}
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a1e4d5edfb0ad7d14cf0d09ee5a235104_a1e4d5edfb0ad7d14cf0d09ee5a235104adbe24ef4b9ced5f9e532513303120453}{Unrolling\+Limit}} = EIGEN\+\_\+\+UNROLLING\+\_\+\+LIMIT \texorpdfstring{$\ast$}{*} Actual\+Packet\+Size
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a1e4d5edfb0ad7d14cf0d09ee5a235104_a1e4d5edfb0ad7d14cf0d09ee5a235104a413fb9c4c89ffeb7ccf6259e586cae15}{May\+Unroll\+Completely}}
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a1e4d5edfb0ad7d14cf0d09ee5a235104_a1e4d5edfb0ad7d14cf0d09ee5a235104a059c57d183256becbe6cecc85ac1fc7c}{May\+Unroll\+Inner}}
+ \}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1find__best__packet}{find\+\_\+best\+\_\+packet}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ac45e98390e42d906fd48183c71ec4cbd_ac45e98390e42d906fd48183c71ec4cbd}{Dst\+Scalar}}, \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a748b02b7baf86b7bfafaa118b8099d2e_a748b02b7baf86b7bfafaa118b8099d2ea7faca4d88df16502fa66184618d6e889}{Restricted\+Linear\+Size}} $>$\+::type \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a21fb1f9520d4832df32c6d9507c9fb46_a21fb1f9520d4832df32c6d9507c9fb46}{Linear\+Packet\+Type}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1find__best__packet}{find\+\_\+best\+\_\+packet}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ac45e98390e42d906fd48183c71ec4cbd_ac45e98390e42d906fd48183c71ec4cbd}{Dst\+Scalar}}, \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a748b02b7baf86b7bfafaa118b8099d2e_a748b02b7baf86b7bfafaa118b8099d2eab3d25213f25cc7130dedc11441388ec0}{Restricted\+Inner\+Size}} $>$\+::type \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a7dda3a44a0ea38152ce4f4728a4f71ee_a7dda3a44a0ea38152ce4f4728a4f71ee}{Inner\+Packet\+Type}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{型定義メンバ詳解}
+\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_aa2666bad27bc3ca316572573c2a82075_aa2666bad27bc3ca316572573c2a82075}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!Dst@{Dst}}
+\index{Dst@{Dst}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}
+\doxysubsubsection{\texorpdfstring{Dst}{Dst}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_aa2666bad27bc3ca316572573c2a82075_aa2666bad27bc3ca316572573c2a82075} 
+template$<$typename Dst\+Evaluator , typename Src\+Evaluator , typename Assign\+Func , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Max\+Packet\+Size = -\/1$>$ \\
+Dst\+Evaluator\+::\+Xpr\+Type \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits}{Eigen\+::internal\+::copy\+\_\+using\+\_\+evaluator\+\_\+traits}}$<$ Dst\+Evaluator, Src\+Evaluator, Assign\+Func, Max\+Packet\+Size $>$\+::\+Dst}
+
+\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ac45e98390e42d906fd48183c71ec4cbd_ac45e98390e42d906fd48183c71ec4cbd}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!DstScalar@{DstScalar}}
+\index{DstScalar@{DstScalar}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}
+\doxysubsubsection{\texorpdfstring{DstScalar}{DstScalar}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ac45e98390e42d906fd48183c71ec4cbd_ac45e98390e42d906fd48183c71ec4cbd} 
+template$<$typename Dst\+Evaluator , typename Src\+Evaluator , typename Assign\+Func , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Max\+Packet\+Size = -\/1$>$ \\
+Dst\+::\+Scalar \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits}{Eigen\+::internal\+::copy\+\_\+using\+\_\+evaluator\+\_\+traits}}$<$ Dst\+Evaluator, Src\+Evaluator, Assign\+Func, Max\+Packet\+Size $>$\+::\+Dst\+Scalar}
+
+\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a7dda3a44a0ea38152ce4f4728a4f71ee_a7dda3a44a0ea38152ce4f4728a4f71ee}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!InnerPacketType@{InnerPacketType}}
+\index{InnerPacketType@{InnerPacketType}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}
+\doxysubsubsection{\texorpdfstring{InnerPacketType}{InnerPacketType}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a7dda3a44a0ea38152ce4f4728a4f71ee_a7dda3a44a0ea38152ce4f4728a4f71ee} 
+template$<$typename Dst\+Evaluator , typename Src\+Evaluator , typename Assign\+Func , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Max\+Packet\+Size = -\/1$>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1find__best__packet}{find\+\_\+best\+\_\+packet}}$<$\mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ac45e98390e42d906fd48183c71ec4cbd_ac45e98390e42d906fd48183c71ec4cbd}{Dst\+Scalar}},\mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a748b02b7baf86b7bfafaa118b8099d2e_a748b02b7baf86b7bfafaa118b8099d2eab3d25213f25cc7130dedc11441388ec0}{Restricted\+Inner\+Size}}$>$\+::type \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits}{Eigen\+::internal\+::copy\+\_\+using\+\_\+evaluator\+\_\+traits}}$<$ Dst\+Evaluator, Src\+Evaluator, Assign\+Func, Max\+Packet\+Size $>$\+::\+Inner\+Packet\+Type\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a21fb1f9520d4832df32c6d9507c9fb46_a21fb1f9520d4832df32c6d9507c9fb46}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!LinearPacketType@{LinearPacketType}}
+\index{LinearPacketType@{LinearPacketType}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}
+\doxysubsubsection{\texorpdfstring{LinearPacketType}{LinearPacketType}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a21fb1f9520d4832df32c6d9507c9fb46_a21fb1f9520d4832df32c6d9507c9fb46} 
+template$<$typename Dst\+Evaluator , typename Src\+Evaluator , typename Assign\+Func , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Max\+Packet\+Size = -\/1$>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1find__best__packet}{find\+\_\+best\+\_\+packet}}$<$\mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ac45e98390e42d906fd48183c71ec4cbd_ac45e98390e42d906fd48183c71ec4cbd}{Dst\+Scalar}},\mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a748b02b7baf86b7bfafaa118b8099d2e_a748b02b7baf86b7bfafaa118b8099d2ea7faca4d88df16502fa66184618d6e889}{Restricted\+Linear\+Size}}$>$\+::type \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits}{Eigen\+::internal\+::copy\+\_\+using\+\_\+evaluator\+\_\+traits}}$<$ Dst\+Evaluator, Src\+Evaluator, Assign\+Func, Max\+Packet\+Size $>$\+::\+Linear\+Packet\+Type\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a8b683691f84425965903bed42a138fa4_a8b683691f84425965903bed42a138fa4}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!PacketType@{PacketType}}
+\index{PacketType@{PacketType}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}
+\doxysubsubsection{\texorpdfstring{PacketType}{PacketType}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a8b683691f84425965903bed42a138fa4_a8b683691f84425965903bed42a138fa4} 
+template$<$typename Dst\+Evaluator , typename Src\+Evaluator , typename Assign\+Func , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Max\+Packet\+Size = -\/1$>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{conditional}}$<$\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}(\mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ac54857ffe370a8982a1185ab40fd6752_ac54857ffe370a8982a1185ab40fd6752a20364bc89e1f4aa43a9b4b9d36ffc0f1}{Traversal}})==\mbox{\hyperlink{namespace_eigen_a3d2409f30bc18e288e66de7ac53f71e5_a3d2409f30bc18e288e66de7ac53f71e5a4dc2f614cc1a36cc7e57be77d881d0b2}{Linear\+Vectorized\+Traversal}},\mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a21fb1f9520d4832df32c6d9507c9fb46_a21fb1f9520d4832df32c6d9507c9fb46}{Linear\+Packet\+Type}},\mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a7dda3a44a0ea38152ce4f4728a4f71ee_a7dda3a44a0ea38152ce4f4728a4f71ee}{Inner\+Packet\+Type}}$>$\+::type \mbox{\hyperlink{struct_eigen_1_1internal_1_1copy__using__evaluator__traits}{Eigen\+::internal\+::copy\+\_\+using\+\_\+evaluator\+\_\+traits}}$<$ Dst\+Evaluator, Src\+Evaluator, Assign\+Func, Max\+Packet\+Size $>$\+::\+Packet\+Type}
+
+
+
+\doxysubsection{列挙型メンバ詳解}
+\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_abd042f32fac0fc758177b1fec69f7710_abd042f32fac0fc758177b1fec69f7710}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_abd042f32fac0fc758177b1fec69f7710_abd042f32fac0fc758177b1fec69f7710} 
+template$<$typename Dst\+Evaluator , typename Src\+Evaluator , typename Assign\+Func , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Max\+Packet\+Size = -\/1$>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DstFlags@{DstFlags}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!DstFlags@{DstFlags}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_abd042f32fac0fc758177b1fec69f7710_abd042f32fac0fc758177b1fec69f7710afc92a87ce9e6a7634c068a17104b4ba2}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_abd042f32fac0fc758177b1fec69f7710_abd042f32fac0fc758177b1fec69f7710} 
+Dst\+Flags&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SrcFlags@{SrcFlags}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!SrcFlags@{SrcFlags}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_abd042f32fac0fc758177b1fec69f7710_abd042f32fac0fc758177b1fec69f7710a1bbbacbed6d20f61318d908ab5aa1b04}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_abd042f32fac0fc758177b1fec69f7710_abd042f32fac0fc758177b1fec69f7710} 
+Src\+Flags&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a2fcfe9d51bc654d326231781e6815622_a2fcfe9d51bc654d326231781e6815622}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a2fcfe9d51bc654d326231781e6815622_a2fcfe9d51bc654d326231781e6815622} 
+template$<$typename Dst\+Evaluator , typename Src\+Evaluator , typename Assign\+Func , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Max\+Packet\+Size = -\/1$>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DstAlignment@{DstAlignment}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!DstAlignment@{DstAlignment}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a2fcfe9d51bc654d326231781e6815622_a2fcfe9d51bc654d326231781e6815622ad7f25174c7a116018dbd3f0763c9a221}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a2fcfe9d51bc654d326231781e6815622_a2fcfe9d51bc654d326231781e6815622} 
+Dst\+Alignment&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SrcAlignment@{SrcAlignment}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!SrcAlignment@{SrcAlignment}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a2fcfe9d51bc654d326231781e6815622_a2fcfe9d51bc654d326231781e6815622a183b5b64e6d90928ac7bd4d7bb5abe54}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a2fcfe9d51bc654d326231781e6815622_a2fcfe9d51bc654d326231781e6815622} 
+Src\+Alignment&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DstHasDirectAccess@{DstHasDirectAccess}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!DstHasDirectAccess@{DstHasDirectAccess}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a2fcfe9d51bc654d326231781e6815622_a2fcfe9d51bc654d326231781e6815622af17ec527880827e2b6f7dceeeb9c3c42}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a2fcfe9d51bc654d326231781e6815622_a2fcfe9d51bc654d326231781e6815622} 
+Dst\+Has\+Direct\+Access&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{JointAlignment@{JointAlignment}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!JointAlignment@{JointAlignment}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a2fcfe9d51bc654d326231781e6815622_a2fcfe9d51bc654d326231781e6815622aa2ad39f87fd4a2b8e94178bfb05afd09}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a2fcfe9d51bc654d326231781e6815622_a2fcfe9d51bc654d326231781e6815622} 
+Joint\+Alignment&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a748b02b7baf86b7bfafaa118b8099d2e_a748b02b7baf86b7bfafaa118b8099d2e}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a748b02b7baf86b7bfafaa118b8099d2e_a748b02b7baf86b7bfafaa118b8099d2e} 
+template$<$typename Dst\+Evaluator , typename Src\+Evaluator , typename Assign\+Func , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Max\+Packet\+Size = -\/1$>$ \\
+anonymous enum\hspace{0.3cm}{\ttfamily [private]}}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{InnerSize@{InnerSize}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!InnerSize@{InnerSize}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a748b02b7baf86b7bfafaa118b8099d2e_a748b02b7baf86b7bfafaa118b8099d2ea0968b7d712eb0701a747a8807c02e936}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a748b02b7baf86b7bfafaa118b8099d2e_a748b02b7baf86b7bfafaa118b8099d2e} 
+Inner\+Size&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{InnerMaxSize@{InnerMaxSize}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!InnerMaxSize@{InnerMaxSize}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a748b02b7baf86b7bfafaa118b8099d2e_a748b02b7baf86b7bfafaa118b8099d2ea38a6a292ead11b5ac9e8e017437530a7}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a748b02b7baf86b7bfafaa118b8099d2e_a748b02b7baf86b7bfafaa118b8099d2e} 
+Inner\+Max\+Size&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RestrictedInnerSize@{RestrictedInnerSize}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!RestrictedInnerSize@{RestrictedInnerSize}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a748b02b7baf86b7bfafaa118b8099d2e_a748b02b7baf86b7bfafaa118b8099d2eab3d25213f25cc7130dedc11441388ec0}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a748b02b7baf86b7bfafaa118b8099d2e_a748b02b7baf86b7bfafaa118b8099d2e} 
+Restricted\+Inner\+Size&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RestrictedLinearSize@{RestrictedLinearSize}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!RestrictedLinearSize@{RestrictedLinearSize}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a748b02b7baf86b7bfafaa118b8099d2e_a748b02b7baf86b7bfafaa118b8099d2ea7faca4d88df16502fa66184618d6e889}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a748b02b7baf86b7bfafaa118b8099d2e_a748b02b7baf86b7bfafaa118b8099d2e} 
+Restricted\+Linear\+Size&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OuterStride@{OuterStride}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!OuterStride@{OuterStride}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a748b02b7baf86b7bfafaa118b8099d2e_a748b02b7baf86b7bfafaa118b8099d2ea610533b471377d52fc9a2ee778c4013f}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a748b02b7baf86b7bfafaa118b8099d2e_a748b02b7baf86b7bfafaa118b8099d2e} 
+Outer\+Stride&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MaxSizeAtCompileTime@{MaxSizeAtCompileTime}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!MaxSizeAtCompileTime@{MaxSizeAtCompileTime}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a748b02b7baf86b7bfafaa118b8099d2e_a748b02b7baf86b7bfafaa118b8099d2ea2aca24221a9c09060ce3457aa254a36f}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a748b02b7baf86b7bfafaa118b8099d2e_a748b02b7baf86b7bfafaa118b8099d2e} 
+Max\+Size\+At\+Compile\+Time&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ae8e8b4681c8bc63a3349c5697829bc04_ae8e8b4681c8bc63a3349c5697829bc04}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ae8e8b4681c8bc63a3349c5697829bc04_ae8e8b4681c8bc63a3349c5697829bc04} 
+template$<$typename Dst\+Evaluator , typename Src\+Evaluator , typename Assign\+Func , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Max\+Packet\+Size = -\/1$>$ \\
+anonymous enum\hspace{0.3cm}{\ttfamily [private]}}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LinearPacketSize@{LinearPacketSize}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!LinearPacketSize@{LinearPacketSize}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ae8e8b4681c8bc63a3349c5697829bc04_ae8e8b4681c8bc63a3349c5697829bc04a99c5338bf9a090b87f0f1a974304d606}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ae8e8b4681c8bc63a3349c5697829bc04_ae8e8b4681c8bc63a3349c5697829bc04} 
+Linear\+Packet\+Size&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{InnerPacketSize@{InnerPacketSize}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!InnerPacketSize@{InnerPacketSize}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ae8e8b4681c8bc63a3349c5697829bc04_ae8e8b4681c8bc63a3349c5697829bc04a0fe5e3ef7fb9d85faa2f435ad4da05dc}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ae8e8b4681c8bc63a3349c5697829bc04_ae8e8b4681c8bc63a3349c5697829bc04} 
+Inner\+Packet\+Size&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a9297a1b01e75ed99475db994313c9b2d_a9297a1b01e75ed99475db994313c9b2d}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a9297a1b01e75ed99475db994313c9b2d_a9297a1b01e75ed99475db994313c9b2d} 
+template$<$typename Dst\+Evaluator , typename Src\+Evaluator , typename Assign\+Func , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Max\+Packet\+Size = -\/1$>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LinearRequiredAlignment@{LinearRequiredAlignment}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!LinearRequiredAlignment@{LinearRequiredAlignment}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a9297a1b01e75ed99475db994313c9b2d_a9297a1b01e75ed99475db994313c9b2dafcaf83b9c1e24b74cdef00eb886e3825}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a9297a1b01e75ed99475db994313c9b2d_a9297a1b01e75ed99475db994313c9b2d} 
+Linear\+Required\+Alignment&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{InnerRequiredAlignment@{InnerRequiredAlignment}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!InnerRequiredAlignment@{InnerRequiredAlignment}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a9297a1b01e75ed99475db994313c9b2d_a9297a1b01e75ed99475db994313c9b2da09cf9d67809b903978ad6676c00d6997}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a9297a1b01e75ed99475db994313c9b2d_a9297a1b01e75ed99475db994313c9b2d} 
+Inner\+Required\+Alignment&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1d}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1d} 
+template$<$typename Dst\+Evaluator , typename Src\+Evaluator , typename Assign\+Func , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Max\+Packet\+Size = -\/1$>$ \\
+anonymous enum\hspace{0.3cm}{\ttfamily [private]}}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DstIsRowMajor@{DstIsRowMajor}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!DstIsRowMajor@{DstIsRowMajor}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1da92c8af5ad12f29f0b1f221981e435b03}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1d} 
+Dst\+Is\+Row\+Major&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SrcIsRowMajor@{SrcIsRowMajor}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!SrcIsRowMajor@{SrcIsRowMajor}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1da35f9de8a34fee34bffe2d62ed3254d00}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1d} 
+Src\+Is\+Row\+Major&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{StorageOrdersAgree@{StorageOrdersAgree}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!StorageOrdersAgree@{StorageOrdersAgree}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1daf97400e573dee118e08aa6bc641c04d7}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1d} 
+Storage\+Orders\+Agree&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MightVectorize@{MightVectorize}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!MightVectorize@{MightVectorize}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1da012e7a8872f3a7cbac2b0d53bbaf0077}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1d} 
+Might\+Vectorize&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MayInnerVectorize@{MayInnerVectorize}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!MayInnerVectorize@{MayInnerVectorize}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1da2215bef6a2986ff4aa804a08851a93ec}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1d} 
+May\+Inner\+Vectorize&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MayLinearize@{MayLinearize}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!MayLinearize@{MayLinearize}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1da1d720441e05dade5b84f949373e34720}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1d} 
+May\+Linearize&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MayLinearVectorize@{MayLinearVectorize}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!MayLinearVectorize@{MayLinearVectorize}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1da106231c686fcd3d25d05c801e737d26c}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1d} 
+May\+Linear\+Vectorize&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MaySliceVectorize@{MaySliceVectorize}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!MaySliceVectorize@{MaySliceVectorize}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1da56ea8d14f257c70119dc67eaba53eeea}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ab60e57f8a19d6eaf939006e3c743de1d_ab60e57f8a19d6eaf939006e3c743de1d} 
+May\+Slice\+Vectorize&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ac54857ffe370a8982a1185ab40fd6752_ac54857ffe370a8982a1185ab40fd6752}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ac54857ffe370a8982a1185ab40fd6752_ac54857ffe370a8982a1185ab40fd6752} 
+template$<$typename Dst\+Evaluator , typename Src\+Evaluator , typename Assign\+Func , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Max\+Packet\+Size = -\/1$>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Traversal@{Traversal}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!Traversal@{Traversal}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ac54857ffe370a8982a1185ab40fd6752_ac54857ffe370a8982a1185ab40fd6752a20364bc89e1f4aa43a9b4b9d36ffc0f1}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ac54857ffe370a8982a1185ab40fd6752_ac54857ffe370a8982a1185ab40fd6752} 
+Traversal&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Vectorized@{Vectorized}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!Vectorized@{Vectorized}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ac54857ffe370a8982a1185ab40fd6752_ac54857ffe370a8982a1185ab40fd6752a10f1e0166ec05ca8af1f12d3f455aecd}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_ac54857ffe370a8982a1185ab40fd6752_ac54857ffe370a8982a1185ab40fd6752} 
+Vectorized&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a1e4d5edfb0ad7d14cf0d09ee5a235104_a1e4d5edfb0ad7d14cf0d09ee5a235104}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a1e4d5edfb0ad7d14cf0d09ee5a235104_a1e4d5edfb0ad7d14cf0d09ee5a235104} 
+template$<$typename Dst\+Evaluator , typename Src\+Evaluator , typename Assign\+Func , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Max\+Packet\+Size = -\/1$>$ \\
+anonymous enum\hspace{0.3cm}{\ttfamily [private]}}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ActualPacketSize@{ActualPacketSize}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!ActualPacketSize@{ActualPacketSize}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a1e4d5edfb0ad7d14cf0d09ee5a235104_a1e4d5edfb0ad7d14cf0d09ee5a235104a370466f5b64871ee6dd0d97b6e899f5f}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a1e4d5edfb0ad7d14cf0d09ee5a235104_a1e4d5edfb0ad7d14cf0d09ee5a235104} 
+Actual\+Packet\+Size&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UnrollingLimit@{UnrollingLimit}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!UnrollingLimit@{UnrollingLimit}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a1e4d5edfb0ad7d14cf0d09ee5a235104_a1e4d5edfb0ad7d14cf0d09ee5a235104adbe24ef4b9ced5f9e532513303120453}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a1e4d5edfb0ad7d14cf0d09ee5a235104_a1e4d5edfb0ad7d14cf0d09ee5a235104} 
+Unrolling\+Limit&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MayUnrollCompletely@{MayUnrollCompletely}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!MayUnrollCompletely@{MayUnrollCompletely}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a1e4d5edfb0ad7d14cf0d09ee5a235104_a1e4d5edfb0ad7d14cf0d09ee5a235104a413fb9c4c89ffeb7ccf6259e586cae15}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a1e4d5edfb0ad7d14cf0d09ee5a235104_a1e4d5edfb0ad7d14cf0d09ee5a235104} 
+May\+Unroll\+Completely&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MayUnrollInner@{MayUnrollInner}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!MayUnrollInner@{MayUnrollInner}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a1e4d5edfb0ad7d14cf0d09ee5a235104_a1e4d5edfb0ad7d14cf0d09ee5a235104a059c57d183256becbe6cecc85ac1fc7c}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a1e4d5edfb0ad7d14cf0d09ee5a235104_a1e4d5edfb0ad7d14cf0d09ee5a235104} 
+May\+Unroll\+Inner&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a71ca4c09edc2851ef4f2c07573ee49b7_a71ca4c09edc2851ef4f2c07573ee49b7}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a71ca4c09edc2851ef4f2c07573ee49b7_a71ca4c09edc2851ef4f2c07573ee49b7} 
+template$<$typename Dst\+Evaluator , typename Src\+Evaluator , typename Assign\+Func , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} Max\+Packet\+Size = -\/1$>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Unrolling@{Unrolling}!Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}}\index{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$@{Eigen::internal::copy\_using\_evaluator\_traits$<$ DstEvaluator, SrcEvaluator, AssignFunc, MaxPacketSize $>$}!Unrolling@{Unrolling}}}\Hypertarget{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a71ca4c09edc2851ef4f2c07573ee49b7_a71ca4c09edc2851ef4f2c07573ee49b7afb07e8a47fe431a5f0d543a6d0a381ba}\label{struct_eigen_1_1internal_1_1copy__using__evaluator__traits_a71ca4c09edc2851ef4f2c07573ee49b7_a71ca4c09edc2851ef4f2c07573ee49b7} 
+Unrolling&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+この構造体詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Core/\mbox{\hyperlink{_assign_evaluator_8h}{Assign\+Evaluator.\+h}}\end{DoxyCompactItemize}

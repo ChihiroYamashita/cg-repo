@@ -1,0 +1,62 @@
+\doxysection{eigen-\/3.4.0/eigen-\/3.4.0/doc/snippets/\+Eigen\+Solver\+\_\+\+Eigen\+Solver\+\_\+\+Matrix\+Type.cpp ファイル}
+\hypertarget{_eigen_solver___eigen_solver___matrix_type_8cpp}{}\label{_eigen_solver___eigen_solver___matrix_type_8cpp}\index{eigen-\/3.4.0/eigen-\/3.4.0/doc/snippets/EigenSolver\_EigenSolver\_MatrixType.cpp@{eigen-\/3.4.0/eigen-\/3.4.0/doc/snippets/EigenSolver\_EigenSolver\_MatrixType.cpp}}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+cout$<$$<$ "{}Here is \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}} random 6x6 \mbox{\hyperlink{common_8h_a2c4e93d1f3604b217c5d0e211def96fb_a2c4e93d1f3604b217c5d0e211def96fb}{matrix}}, A\+:"{}$<$$<$ endl$<$$<$ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}$<$$<$ endl$<$$<$ endl;Eigen\+Solver$<$ Matrix\+Xd $>$ \mbox{\hyperlink{_eigen_solver___eigen_solver___matrix_type_8cpp_a153f202e2ddb77199bd3fa1eaa7e1433_a153f202e2ddb77199bd3fa1eaa7e1433}{es}} (\mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}})
+\item 
+\mbox{\hyperlink{_eigen_solver___eigen_solver___matrix_type_8cpp_ac0de4ba2b07b2b6b617b924f6054475d_ac0de4ba2b07b2b6b617b924f6054475d}{cout$<$$<$ "{}\+Consider the first eigenvalue, lambda = "{}$<$$<$ lambda$<$$<$ endl;\+Vector\+Xcd v=es.\+eigenvectors().\+col(0);cout$<$$<$ "{}\+If v is the corresponding eigenvector, then lambda \texorpdfstring{$\ast$}{*} v = "{}$<$$<$ endl$<$$<$ lambda \texorpdfstring{$\ast$}{*}v$<$$<$ endl;cout$<$$<$ "{}... and A \texorpdfstring{$\ast$}{*} v = "{}$<$$<$ endl$<$$<$ A.\+cast$<$ complex$<$ double $>$ $>$}} () \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}}$<$$<$ endl$<$$<$ endl
+\end{DoxyCompactItemize}
+\doxysubsubsection*{変数}
+\begin{DoxyCompactItemize}
+\item 
+Matrix\+Xd \mbox{\hyperlink{_eigen_solver___eigen_solver___matrix_type_8cpp_aecf4c9066c7d04086229f6a75c094121_aecf4c9066c7d04086229f6a75c094121}{A}} = Matrix\+Xd\+::\+Random(6,6)
+\item 
+cout$<$$<$ "{}The eigenvalues of \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}} are\+:"{}$<$$<$ endl$<$$<$ es.\+eigenvalues()$<$$<$ endl;cout$<$$<$ "{}The \mbox{\hyperlink{common_8h_a2c4e93d1f3604b217c5d0e211def96fb_a2c4e93d1f3604b217c5d0e211def96fb}{matrix}} of eigenvectors, \mbox{\hyperlink{freeglut__geometry_8c_a0372b3ee8076c76ae46501c2ebbb9250_a0372b3ee8076c76ae46501c2ebbb9250}{V}}, is\+:"{}$<$$<$ endl$<$$<$ es.\+eigenvectors()$<$$<$ endl$<$$<$ endl;\mbox{\hyperlink{structcomplex}{complex}}$<$ double $>$ \mbox{\hyperlink{_eigen_solver___eigen_solver___matrix_type_8cpp_a33aa7f8e323a00a5f56a32cb4ab03561_a33aa7f8e323a00a5f56a32cb4ab03561}{lambda}} = es.\+eigenvalues()\mbox{[}0\mbox{]}
+\item 
+Matrix\+Xcd \mbox{\hyperlink{_eigen_solver___eigen_solver___matrix_type_8cpp_a925331f9b6e4844293d36a8df2256d38_a925331f9b6e4844293d36a8df2256d38}{D}} = es.\+eigenvalues().as\+Diagonal()
+\item 
+Matrix\+Xcd \mbox{\hyperlink{_eigen_solver___eigen_solver___matrix_type_8cpp_a77c224aa52b434918ce65c33175aa8ad_a77c224aa52b434918ce65c33175aa8ad}{V}} = es.\+eigenvectors()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{_eigen_solver___eigen_solver___matrix_type_8cpp_ac0de4ba2b07b2b6b617b924f6054475d_ac0de4ba2b07b2b6b617b924f6054475d}\index{EigenSolver\_EigenSolver\_MatrixType.cpp@{EigenSolver\_EigenSolver\_MatrixType.cpp}!cout$<$$<$ "{}Consider the first eigenvalue, lambda = "{}$<$$<$ lambda$<$$<$ endl;VectorXcd v=es.eigenvectors().col(0);cout$<$$<$ "{}If v is the corresponding eigenvector, then lambda \texorpdfstring{$\ast$}{*} v = "{}$<$$<$ endl$<$$<$ lambda \texorpdfstring{$\ast$}{*}v$<$$<$ endl;cout$<$$<$ "{}... and A \texorpdfstring{$\ast$}{*} v = "{}$<$$<$ endl$<$$<$ A.cast$<$ complex$<$ double $>$ $>$@{cout$<$$<$ ""Consider the first eigenvalue, lambda = ""$<$$<$ lambda$<$$<$ endl;VectorXcd v=es.eigenvectors().col(0);cout$<$$<$ ""If v is the corresponding eigenvector, then lambda \texorpdfstring{$\ast$}{*} v = ""$<$$<$ endl$<$$<$ lambda \texorpdfstring{$\ast$}{*}v$<$$<$ endl;cout$<$$<$ ""... and A \texorpdfstring{$\ast$}{*} v = ""$<$$<$ endl$<$$<$ A.cast$<$ complex$<$ double $>$ $>$}}
+\index{cout$<$$<$ "{}Consider the first eigenvalue, lambda = "{}$<$$<$ lambda$<$$<$ endl;VectorXcd v=es.eigenvectors().col(0);cout$<$$<$ "{}If v is the corresponding eigenvector, then lambda \texorpdfstring{$\ast$}{*} v = "{}$<$$<$ endl$<$$<$ lambda \texorpdfstring{$\ast$}{*}v$<$$<$ endl;cout$<$$<$ "{}... and A \texorpdfstring{$\ast$}{*} v = "{}$<$$<$ endl$<$$<$ A.cast$<$ complex$<$ double $>$ $>$@{cout$<$$<$ ""Consider the first eigenvalue, lambda = ""$<$$<$ lambda$<$$<$ endl;VectorXcd v=es.eigenvectors().col(0);cout$<$$<$ ""If v is the corresponding eigenvector, then lambda \texorpdfstring{$\ast$}{*} v = ""$<$$<$ endl$<$$<$ lambda \texorpdfstring{$\ast$}{*}v$<$$<$ endl;cout$<$$<$ ""... and A \texorpdfstring{$\ast$}{*} v = ""$<$$<$ endl$<$$<$ A.cast$<$ complex$<$ double $>$ $>$}!EigenSolver\_EigenSolver\_MatrixType.cpp@{EigenSolver\_EigenSolver\_MatrixType.cpp}}
+\doxysubsubsection{\texorpdfstring{cout$<$$<$ ""Consider the first eigenvalue, lambda = ""$<$$<$ lambda$<$$<$ endl;VectorXcd v=es.eigenvectors().col(0);cout$<$$<$ ""If v is the corresponding eigenvector, then lambda \texorpdfstring{$\ast$}{*} v = ""$<$$<$ endl$<$$<$ lambda \texorpdfstring{$\ast$}{*}v$<$$<$ endl;cout$<$$<$ ""... and A \texorpdfstring{$\ast$}{*} v = ""$<$$<$ endl$<$$<$ A.cast$<$ complex$<$ double $>$ $>$()}{cout<< "Consider the first eigenvalue, lambda = "<< lambda<< endl;VectorXcd v=es.eigenvectors().col(0);cout<< "If v is the corresponding eigenvector, then lambda * v = "<< endl<< lambda *v<< endl;cout<< "... and A * v = "<< endl<< A.cast< complex< double > >()}}
+{\footnotesize\ttfamily \label{_eigen_solver___eigen_solver___matrix_type_8cpp_ac0de4ba2b07b2b6b617b924f6054475d_ac0de4ba2b07b2b6b617b924f6054475d} 
+cout$<$$<$ "{}Consider the first eigenvalue, \mbox{\hyperlink{_complex_eigen_solver__compute_8cpp_a8a21c18d4aa23228bc1b89f9b12182be_a8a21c18d4aa23228bc1b89f9b12182be}{lambda}} = "{}$<$$<$ lambda$<$$<$ endl;Vector\+Xcd \mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}}=es.\+eigenvectors().\mbox{\hyperlink{_matrix_base__col_8cpp_aa168d9544aa6d49fce0cbfc0bec849b0_aa168d9544aa6d49fce0cbfc0bec849b0}{col}}(0);cout$<$$<$ "{}If \mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}} is the corresponding eigenvector, then \mbox{\hyperlink{_complex_eigen_solver__compute_8cpp_a8a21c18d4aa23228bc1b89f9b12182be_a8a21c18d4aa23228bc1b89f9b12182be}{lambda}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}} = "{}$<$$<$ endl$<$$<$ \mbox{\hyperlink{_complex_eigen_solver__compute_8cpp_a8a21c18d4aa23228bc1b89f9b12182be_a8a21c18d4aa23228bc1b89f9b12182be}{lambda}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}}$<$$<$ endl;cout$<$$<$ "{}... and \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}} = "{}$<$$<$ endl$<$$<$ \mbox{\hyperlink{_common_cwise_unary_ops_8h_aa89d007196125d10fa7d6e19811aca05_aa89d007196125d10fa7d6e19811aca05}{A.\+cast}}$<$ \mbox{\hyperlink{structcomplex}{complex}}$<$ double $>$ $>$ (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_eigen_solver___eigen_solver___matrix_type_8cpp_a153f202e2ddb77199bd3fa1eaa7e1433_a153f202e2ddb77199bd3fa1eaa7e1433}\index{EigenSolver\_EigenSolver\_MatrixType.cpp@{EigenSolver\_EigenSolver\_MatrixType.cpp}!es@{es}}
+\index{es@{es}!EigenSolver\_EigenSolver\_MatrixType.cpp@{EigenSolver\_EigenSolver\_MatrixType.cpp}}
+\doxysubsubsection{\texorpdfstring{es()}{es()}}
+{\footnotesize\ttfamily \label{_eigen_solver___eigen_solver___matrix_type_8cpp_a153f202e2ddb77199bd3fa1eaa7e1433_a153f202e2ddb77199bd3fa1eaa7e1433} 
+cout$<$$<$ "{}Here is \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}} random 6x6 \mbox{\hyperlink{common_8h_a2c4e93d1f3604b217c5d0e211def96fb_a2c4e93d1f3604b217c5d0e211def96fb}{matrix}}, A\+:"{}$<$$<$ endl$<$$<$ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}$<$$<$ endl$<$$<$ endl;Eigen\+Solver$<$ Matrix\+Xd $>$ es (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}}]{}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{変数詳解}
+\Hypertarget{_eigen_solver___eigen_solver___matrix_type_8cpp_aecf4c9066c7d04086229f6a75c094121_aecf4c9066c7d04086229f6a75c094121}\index{EigenSolver\_EigenSolver\_MatrixType.cpp@{EigenSolver\_EigenSolver\_MatrixType.cpp}!A@{A}}
+\index{A@{A}!EigenSolver\_EigenSolver\_MatrixType.cpp@{EigenSolver\_EigenSolver\_MatrixType.cpp}}
+\doxysubsubsection{\texorpdfstring{A}{A}}
+{\footnotesize\ttfamily \label{_eigen_solver___eigen_solver___matrix_type_8cpp_aecf4c9066c7d04086229f6a75c094121_aecf4c9066c7d04086229f6a75c094121} 
+Matrix\+Xd \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}} = Matrix\+Xd\+::\+Random(6,6)}
+
+\Hypertarget{_eigen_solver___eigen_solver___matrix_type_8cpp_a925331f9b6e4844293d36a8df2256d38_a925331f9b6e4844293d36a8df2256d38}\index{EigenSolver\_EigenSolver\_MatrixType.cpp@{EigenSolver\_EigenSolver\_MatrixType.cpp}!D@{D}}
+\index{D@{D}!EigenSolver\_EigenSolver\_MatrixType.cpp@{EigenSolver\_EigenSolver\_MatrixType.cpp}}
+\doxysubsubsection{\texorpdfstring{D}{D}}
+{\footnotesize\ttfamily \label{_eigen_solver___eigen_solver___matrix_type_8cpp_a925331f9b6e4844293d36a8df2256d38_a925331f9b6e4844293d36a8df2256d38} 
+Matrix\+Xcd D = es.\+eigenvalues().as\+Diagonal()}
+
+\Hypertarget{_eigen_solver___eigen_solver___matrix_type_8cpp_a33aa7f8e323a00a5f56a32cb4ab03561_a33aa7f8e323a00a5f56a32cb4ab03561}\index{EigenSolver\_EigenSolver\_MatrixType.cpp@{EigenSolver\_EigenSolver\_MatrixType.cpp}!lambda@{lambda}}
+\index{lambda@{lambda}!EigenSolver\_EigenSolver\_MatrixType.cpp@{EigenSolver\_EigenSolver\_MatrixType.cpp}}
+\doxysubsubsection{\texorpdfstring{lambda}{lambda}}
+{\footnotesize\ttfamily \label{_eigen_solver___eigen_solver___matrix_type_8cpp_a33aa7f8e323a00a5f56a32cb4ab03561_a33aa7f8e323a00a5f56a32cb4ab03561} 
+cout$<$$<$ "{}The eigenvalues of \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}} are\+:"{} $<$$<$ endl $<$$<$ es.\+eigenvalues() $<$$<$ endl;cout $<$$<$ "{}The \mbox{\hyperlink{common_8h_a2c4e93d1f3604b217c5d0e211def96fb_a2c4e93d1f3604b217c5d0e211def96fb}{matrix}} of eigenvectors, \mbox{\hyperlink{freeglut__geometry_8c_a0372b3ee8076c76ae46501c2ebbb9250_a0372b3ee8076c76ae46501c2ebbb9250}{V}}, is\+:"{} $<$$<$ endl $<$$<$ es.\+eigenvectors() $<$$<$ endl $<$$<$ endl;\mbox{\hyperlink{structcomplex}{complex}}$<$double$>$ lambda = es.\+eigenvalues()\mbox{[}0\mbox{]}}
+
+\Hypertarget{_eigen_solver___eigen_solver___matrix_type_8cpp_a77c224aa52b434918ce65c33175aa8ad_a77c224aa52b434918ce65c33175aa8ad}\index{EigenSolver\_EigenSolver\_MatrixType.cpp@{EigenSolver\_EigenSolver\_MatrixType.cpp}!V@{V}}
+\index{V@{V}!EigenSolver\_EigenSolver\_MatrixType.cpp@{EigenSolver\_EigenSolver\_MatrixType.cpp}}
+\doxysubsubsection{\texorpdfstring{V}{V}}
+{\footnotesize\ttfamily \label{_eigen_solver___eigen_solver___matrix_type_8cpp_a77c224aa52b434918ce65c33175aa8ad_a77c224aa52b434918ce65c33175aa8ad} 
+Matrix\+Xcd V = es.\+eigenvectors()}
+

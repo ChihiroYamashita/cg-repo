@@ -1,0 +1,95 @@
+\doxysection{eigen-\/3.4.0/eigen-\/3.4.0/doc/snippets/\+Bi\+CGSTAB\+\_\+step\+\_\+by\+\_\+step.cpp ファイル}
+\hypertarget{_bi_c_g_s_t_a_b__step__by__step_8cpp}{}\label{_bi_c_g_s_t_a_b__step__by__step_8cpp}\index{eigen-\/3.4.0/eigen-\/3.4.0/doc/snippets/BiCGSTAB\_step\_by\_step.cpp@{eigen-\/3.4.0/eigen-\/3.4.0/doc/snippets/BiCGSTAB\_step\_by\_step.cpp}}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+Vector\+Xd \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_a459f507baec3f31ef5081cc0e495cc38_a459f507baec3f31ef5081cc0e495cc38}{x}} (\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}})
+\item 
+Vector\+Xd \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_a9d82f3af1459c1efc910b77f3ccd3180_a9d82f3af1459c1efc910b77f3ccd3180}{b}} (\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}})
+\item 
+Sparse\+Matrix$<$ double $>$ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_a5a172f3aa05073dcf671bdd88cf6e8f1_a5a172f3aa05073dcf671bdd88cf6e8f1}{A}} (\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}, \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}})
+\item 
+Bi\+CGSTAB$<$ Sparse\+Matrix$<$ double $>$ $>$ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_a38c8b0d76879b4a2b7297417c0a078a4_a38c8b0d76879b4a2b7297417c0a078a4}{solver}} (\mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}})
+\item 
+\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}} \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_a681a0c70c22aa099565455a6c725962f_a681a0c70c22aa099565455a6c725962f}{set\+Max\+Iterations}} (1)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{変数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_a76f11d9a0a47b94f72c2d0e77fb32240_a76f11d9a0a47b94f72c2d0e77fb32240}{n}} = 10000
+\item 
+\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_a9336ebf25087d91c818ee6e9ec29f8c1_a9336ebf25087d91c818ee6e9ec29f8c1}{x}} = Vector\+Xd\+::\+Random(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}})
+\item 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}} = 0
+\item 
+\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_a721c6ff80a6d3e4ad4ffa52a04c60085_a721c6ff80a6d3e4ad4ffa52a04c60085}{do}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{_bi_c_g_s_t_a_b__step__by__step_8cpp_a5a172f3aa05073dcf671bdd88cf6e8f1_a5a172f3aa05073dcf671bdd88cf6e8f1}\index{BiCGSTAB\_step\_by\_step.cpp@{BiCGSTAB\_step\_by\_step.cpp}!A@{A}}
+\index{A@{A}!BiCGSTAB\_step\_by\_step.cpp@{BiCGSTAB\_step\_by\_step.cpp}}
+\doxysubsubsection{\texorpdfstring{A()}{A()}}
+{\footnotesize\ttfamily \label{_bi_c_g_s_t_a_b__step__by__step_8cpp_a5a172f3aa05073dcf671bdd88cf6e8f1_a5a172f3aa05073dcf671bdd88cf6e8f1} 
+Sparse\+Matrix$<$ double $>$ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}}]{}{, }\item[{\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_bi_c_g_s_t_a_b__step__by__step_8cpp_a9d82f3af1459c1efc910b77f3ccd3180_a9d82f3af1459c1efc910b77f3ccd3180}\index{BiCGSTAB\_step\_by\_step.cpp@{BiCGSTAB\_step\_by\_step.cpp}!b@{b}}
+\index{b@{b}!BiCGSTAB\_step\_by\_step.cpp@{BiCGSTAB\_step\_by\_step.cpp}}
+\doxysubsubsection{\texorpdfstring{b()}{b()}}
+{\footnotesize\ttfamily \label{_bi_c_g_s_t_a_b__step__by__step_8cpp_a9d82f3af1459c1efc910b77f3ccd3180_a9d82f3af1459c1efc910b77f3ccd3180} 
+Vector\+Xd b (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_bi_c_g_s_t_a_b__step__by__step_8cpp_a681a0c70c22aa099565455a6c725962f_a681a0c70c22aa099565455a6c725962f}\index{BiCGSTAB\_step\_by\_step.cpp@{BiCGSTAB\_step\_by\_step.cpp}!setMaxIterations@{setMaxIterations}}
+\index{setMaxIterations@{setMaxIterations}!BiCGSTAB\_step\_by\_step.cpp@{BiCGSTAB\_step\_by\_step.cpp}}
+\doxysubsubsection{\texorpdfstring{setMaxIterations()}{setMaxIterations()}}
+{\footnotesize\ttfamily \label{_bi_c_g_s_t_a_b__step__by__step_8cpp_a681a0c70c22aa099565455a6c725962f_a681a0c70c22aa099565455a6c725962f} 
+\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}} set\+Max\+Iterations (\begin{DoxyParamCaption}\item[{1}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_bi_c_g_s_t_a_b__step__by__step_8cpp_a38c8b0d76879b4a2b7297417c0a078a4_a38c8b0d76879b4a2b7297417c0a078a4}\index{BiCGSTAB\_step\_by\_step.cpp@{BiCGSTAB\_step\_by\_step.cpp}!solver@{solver}}
+\index{solver@{solver}!BiCGSTAB\_step\_by\_step.cpp@{BiCGSTAB\_step\_by\_step.cpp}}
+\doxysubsubsection{\texorpdfstring{solver()}{solver()}}
+{\footnotesize\ttfamily \label{_bi_c_g_s_t_a_b__step__by__step_8cpp_a38c8b0d76879b4a2b7297417c0a078a4_a38c8b0d76879b4a2b7297417c0a078a4} 
+Bi\+CGSTAB$<$ Sparse\+Matrix$<$ double $>$ $>$ solver (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_bi_c_g_s_t_a_b__step__by__step_8cpp_a459f507baec3f31ef5081cc0e495cc38_a459f507baec3f31ef5081cc0e495cc38}\index{BiCGSTAB\_step\_by\_step.cpp@{BiCGSTAB\_step\_by\_step.cpp}!x@{x}}
+\index{x@{x}!BiCGSTAB\_step\_by\_step.cpp@{BiCGSTAB\_step\_by\_step.cpp}}
+\doxysubsubsection{\texorpdfstring{x()}{x()}}
+{\footnotesize\ttfamily \label{_bi_c_g_s_t_a_b__step__by__step_8cpp_a459f507baec3f31ef5081cc0e495cc38_a459f507baec3f31ef5081cc0e495cc38} 
+Vector\+Xd x (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}}]{}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{変数詳解}
+\Hypertarget{_bi_c_g_s_t_a_b__step__by__step_8cpp_a721c6ff80a6d3e4ad4ffa52a04c60085_a721c6ff80a6d3e4ad4ffa52a04c60085}\index{BiCGSTAB\_step\_by\_step.cpp@{BiCGSTAB\_step\_by\_step.cpp}!do@{do}}
+\index{do@{do}!BiCGSTAB\_step\_by\_step.cpp@{BiCGSTAB\_step\_by\_step.cpp}}
+\doxysubsubsection{\texorpdfstring{do}{do}}
+{\footnotesize\ttfamily \label{_bi_c_g_s_t_a_b__step__by__step_8cpp_a721c6ff80a6d3e4ad4ffa52a04c60085_a721c6ff80a6d3e4ad4ffa52a04c60085} 
+do}
+
+{\bfseries 初期値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_a9336ebf25087d91c818ee6e9ec29f8c1_a9336ebf25087d91c818ee6e9ec29f8c1}{x}}\ =\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.solveWithGuess(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_a9336ebf25087d91c818ee6e9ec29f8c1_a9336ebf25087d91c818ee6e9ec29f8c1}{x}})}
+
+\end{DoxyCode}
+\Hypertarget{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}\index{BiCGSTAB\_step\_by\_step.cpp@{BiCGSTAB\_step\_by\_step.cpp}!i@{i}}
+\index{i@{i}!BiCGSTAB\_step\_by\_step.cpp@{BiCGSTAB\_step\_by\_step.cpp}}
+\doxysubsubsection{\texorpdfstring{i}{i}}
+{\footnotesize\ttfamily \label{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392} 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} i = 0}
+
+\begin{Desc}
+\item[各種例]\par
+\mbox{\hyperlink{_d_1_2_one_drive_2_2_one_drive_2_c_g_programings_2qt3_2eigen-3_84_80_2eigen-3_84_80_2unsupported76d02eba95f5406375bb5d515cfbb965}{D\+:/\+One\+Drive\+\_\+2/\+One\+Drive/\+CGProgramings/qt3/eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/unsupported/\+Eigen/\+CXX11/src/\+Tensor/\+Tensor\+Layout\+Swap.\+h}}.\end{Desc}
+\Hypertarget{_bi_c_g_s_t_a_b__step__by__step_8cpp_a76f11d9a0a47b94f72c2d0e77fb32240_a76f11d9a0a47b94f72c2d0e77fb32240}\index{BiCGSTAB\_step\_by\_step.cpp@{BiCGSTAB\_step\_by\_step.cpp}!n@{n}}
+\index{n@{n}!BiCGSTAB\_step\_by\_step.cpp@{BiCGSTAB\_step\_by\_step.cpp}}
+\doxysubsubsection{\texorpdfstring{n}{n}}
+{\footnotesize\ttfamily \label{_bi_c_g_s_t_a_b__step__by__step_8cpp_a76f11d9a0a47b94f72c2d0e77fb32240_a76f11d9a0a47b94f72c2d0e77fb32240} 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} n = 10000}
+
+\Hypertarget{_bi_c_g_s_t_a_b__step__by__step_8cpp_a9336ebf25087d91c818ee6e9ec29f8c1_a9336ebf25087d91c818ee6e9ec29f8c1}\index{BiCGSTAB\_step\_by\_step.cpp@{BiCGSTAB\_step\_by\_step.cpp}!x@{x}}
+\index{x@{x}!BiCGSTAB\_step\_by\_step.cpp@{BiCGSTAB\_step\_by\_step.cpp}}
+\doxysubsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily \label{_bi_c_g_s_t_a_b__step__by__step_8cpp_a9336ebf25087d91c818ee6e9ec29f8c1_a9336ebf25087d91c818ee6e9ec29f8c1} 
+x = Vector\+Xd\+::\+Random(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}})}
+

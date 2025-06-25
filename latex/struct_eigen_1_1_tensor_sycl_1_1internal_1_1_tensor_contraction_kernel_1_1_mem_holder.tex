@@ -1,0 +1,78 @@
+\doxysection{Eigen\+::Tensor\+Sycl\+::internal\+::Tensor\+Contraction\+Kernel\texorpdfstring{$<$}{<} Out\+Scalar, Lhs\+Scalar, Rhs\+Scalar, Out\+Accessor, Lhs\+Mapper, Rhs\+Mapper, Storage\+Index, Properties, Triple\+Dim, Vectorizable, input\+\_\+mapper\+\_\+properties, Is\+Final, contraction\+\_\+tp \texorpdfstring{$>$}{>}\+::Mem\+Holder\texorpdfstring{$<$}{<} contraction\+\_\+type, Storage\+Index \texorpdfstring{$>$}{>} 構造体テンプレート}
+\hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_mem_holder}{}\label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_mem_holder}\index{Eigen::TensorSycl::internal::TensorContractionKernel$<$ OutScalar, LhsScalar, RhsScalar, OutAccessor, LhsMapper, RhsMapper, StorageIndex, Properties, TripleDim, Vectorizable, input\_mapper\_properties, IsFinal, contraction\_tp $>$::MemHolder$<$ contraction\_type, StorageIndex $>$@{Eigen::TensorSycl::internal::TensorContractionKernel$<$ OutScalar, LhsScalar, RhsScalar, OutAccessor, LhsMapper, RhsMapper, StorageIndex, Properties, TripleDim, Vectorizable, input\_mapper\_properties, IsFinal, contraction\_tp $>$::MemHolder$<$ contraction\_type, StorageIndex $>$}}
+
+
+\doxylink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_mem_holder}{Mem\+Holder} this is a place holder struct for creating memory hierarchy in SYCL. Inside SYCL kernel it is not allowed to have dynamic memory allocation. While the local memory is created outside of the kernel and passed to the kernel as an accessor, the private memory can only allowed to be allocated statically. Since we are abstracting the \doxylink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_tiled_memory}{Tiled\+Memory} for both local and private memory, the \doxylink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_mem_holder}{Mem\+Holder} structs is used as a helper to abstract out different type of memory needed when local/no\+\_\+local memory computation is called.  
+
+
+
+
+{\ttfamily \#include $<$Tensor\+Contraction\+Sycl.\+h$>$}
+
+
+
+Eigen\+::Tensor\+Sycl\+::internal\+::Tensor\+Contraction\+Kernel\texorpdfstring{$<$}{<} Out\+Scalar, Lhs\+Scalar, Rhs\+Scalar, Out\+Accessor, Lhs\+Mapper, Rhs\+Mapper, Storage\+Index, Properties, Triple\+Dim, Vectorizable, input\+\_\+mapper\+\_\+properties, Is\+Final, contraction\+\_\+tp \texorpdfstring{$>$}{>}\+::Mem\+Holder\texorpdfstring{$<$}{<} contraction\+\_\+type, Storage\+Index \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_mem_holder__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_mem_holder_accd33003b9ee0aa9cc315f845ed01861_accd33003b9ee0aa9cc315f845ed01861}{Mem\+Holder}} (\mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_aee03d8d8d2ef55f23ca86c7f1e1d77bf_aee03d8d8d2ef55f23ca86c7f1e1d77bf}{local\+\_\+ptr}} block\+\_\+start\+\_\+ptr)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a01cf4983047cdc7e5537e3c4260a44b0_a01cf4983047cdc7e5537e3c4260a44b0}{tile\+\_\+ptr}} \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_mem_holder_ab9f1f63870157558467c0b1cda92e64f_ab9f1f63870157558467c0b1cda92e64f}{ptr}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{詳解}
+\subsubsection*{template$<$typename Out\+Scalar, typename Lhs\+Scalar, typename Rhs\+Scalar, typename Out\+Accessor, typename Lhs\+Mapper, typename Rhs\+Mapper, typename Storage\+Index, typename Properties, typename Triple\+Dim, bool Vectorizable, typename input\+\_\+mapper\+\_\+properties, bool Is\+Final, \mbox{\hyperlink{namespace_eigen_1_1_tensor_sycl_1_1internal_ae779b94e3f0127525eda5ff1db87719d_ae779b94e3f0127525eda5ff1db87719d}{contraction\+\_\+type}} contraction\+\_\+tp$>$\newline
+template$<$\mbox{\hyperlink{namespace_eigen_1_1_tensor_sycl_1_1internal_ae779b94e3f0127525eda5ff1db87719d_ae779b94e3f0127525eda5ff1db87719d}{contraction\+\_\+type}}, Storage\+Index$>$\newline
+struct Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Tensor\+Contraction\+Kernel$<$ Out\+Scalar, Lhs\+Scalar, Rhs\+Scalar, Out\+Accessor, Lhs\+Mapper, Rhs\+Mapper, Storage\+Index, Properties, Triple\+Dim, Vectorizable, input\+\_\+mapper\+\_\+properties, Is\+Final, contraction\+\_\+tp $>$\+::\+Mem\+Holder$<$ contraction\+\_\+type, Storage\+Index $>$}
+\doxylink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_mem_holder}{Mem\+Holder} this is a place holder struct for creating memory hierarchy in SYCL. Inside SYCL kernel it is not allowed to have dynamic memory allocation. While the local memory is created outside of the kernel and passed to the kernel as an accessor, the private memory can only allowed to be allocated statically. Since we are abstracting the \doxylink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_tiled_memory}{Tiled\+Memory} for both local and private memory, the \doxylink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_mem_holder}{Mem\+Holder} structs is used as a helper to abstract out different type of memory needed when local/no\+\_\+local memory computation is called. 
+
+
+\begin{DoxyTemplParams}{テンプレート引数}
+{\em contraction\+\_\+type} & it is an enum value representing whether the local memroy/no local memory implementation of the algorithm to be used \\
+\hline
+{\em the} & private memory size \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{引数}
+{\em ptr} & the tile memory pointer type \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{構築子と解体子}
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_mem_holder_accd33003b9ee0aa9cc315f845ed01861_accd33003b9ee0aa9cc315f845ed01861}\index{Eigen::TensorSycl::internal::TensorContractionKernel$<$ OutScalar, LhsScalar, RhsScalar, OutAccessor, LhsMapper, RhsMapper, StorageIndex, Properties, TripleDim, Vectorizable, input\_mapper\_properties, IsFinal, contraction\_tp $>$::MemHolder$<$ contraction\_type, StorageIndex $>$@{Eigen::TensorSycl::internal::TensorContractionKernel$<$ OutScalar, LhsScalar, RhsScalar, OutAccessor, LhsMapper, RhsMapper, StorageIndex, Properties, TripleDim, Vectorizable, input\_mapper\_properties, IsFinal, contraction\_tp $>$::MemHolder$<$ contraction\_type, StorageIndex $>$}!MemHolder@{MemHolder}}
+\index{MemHolder@{MemHolder}!Eigen::TensorSycl::internal::TensorContractionKernel$<$ OutScalar, LhsScalar, RhsScalar, OutAccessor, LhsMapper, RhsMapper, StorageIndex, Properties, TripleDim, Vectorizable, input\_mapper\_properties, IsFinal, contraction\_tp $>$::MemHolder$<$ contraction\_type, StorageIndex $>$@{Eigen::TensorSycl::internal::TensorContractionKernel$<$ OutScalar, LhsScalar, RhsScalar, OutAccessor, LhsMapper, RhsMapper, StorageIndex, Properties, TripleDim, Vectorizable, input\_mapper\_properties, IsFinal, contraction\_tp $>$::MemHolder$<$ contraction\_type, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{MemHolder()}{MemHolder()}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_mem_holder_accd33003b9ee0aa9cc315f845ed01861_accd33003b9ee0aa9cc315f845ed01861} 
+template$<$typename Out\+Scalar , typename Lhs\+Scalar , typename Rhs\+Scalar , typename Out\+Accessor , typename Lhs\+Mapper , typename Rhs\+Mapper , typename Storage\+Index , typename Properties , typename Triple\+Dim , bool Vectorizable, typename input\+\_\+mapper\+\_\+properties , bool Is\+Final, \mbox{\hyperlink{namespace_eigen_1_1_tensor_sycl_1_1internal_ae779b94e3f0127525eda5ff1db87719d_ae779b94e3f0127525eda5ff1db87719d}{contraction\+\_\+type}} contraction\+\_\+tp$>$ \\
+template$<$\mbox{\hyperlink{namespace_eigen_1_1_tensor_sycl_1_1internal_ae779b94e3f0127525eda5ff1db87719d_ae779b94e3f0127525eda5ff1db87719d}{contraction\+\_\+type}} , Storage\+Index $>$ \\
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Tensor\+Contraction\+Kernel}}$<$ Out\+Scalar, Lhs\+Scalar, Rhs\+Scalar, Out\+Accessor, Lhs\+Mapper, Rhs\+Mapper, Storage\+Index, Properties, Triple\+Dim, Vectorizable, input\+\_\+mapper\+\_\+properties, Is\+Final, contraction\+\_\+tp $>$\+::\+Mem\+Holder$<$ \mbox{\hyperlink{namespace_eigen_1_1_tensor_sycl_1_1internal_ae779b94e3f0127525eda5ff1db87719d_ae779b94e3f0127525eda5ff1db87719d}{contraction\+\_\+type}}, Storage\+Index $>$\+::\+Mem\+Holder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_aee03d8d8d2ef55f23ca86c7f1e1d77bf_aee03d8d8d2ef55f23ca86c7f1e1d77bf}{local\+\_\+ptr}}}]{block\+\_\+start\+\_\+ptr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{メンバ詳解}
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_mem_holder_ab9f1f63870157558467c0b1cda92e64f_ab9f1f63870157558467c0b1cda92e64f}\index{Eigen::TensorSycl::internal::TensorContractionKernel$<$ OutScalar, LhsScalar, RhsScalar, OutAccessor, LhsMapper, RhsMapper, StorageIndex, Properties, TripleDim, Vectorizable, input\_mapper\_properties, IsFinal, contraction\_tp $>$::MemHolder$<$ contraction\_type, StorageIndex $>$@{Eigen::TensorSycl::internal::TensorContractionKernel$<$ OutScalar, LhsScalar, RhsScalar, OutAccessor, LhsMapper, RhsMapper, StorageIndex, Properties, TripleDim, Vectorizable, input\_mapper\_properties, IsFinal, contraction\_tp $>$::MemHolder$<$ contraction\_type, StorageIndex $>$}!ptr@{ptr}}
+\index{ptr@{ptr}!Eigen::TensorSycl::internal::TensorContractionKernel$<$ OutScalar, LhsScalar, RhsScalar, OutAccessor, LhsMapper, RhsMapper, StorageIndex, Properties, TripleDim, Vectorizable, input\_mapper\_properties, IsFinal, contraction\_tp $>$::MemHolder$<$ contraction\_type, StorageIndex $>$@{Eigen::TensorSycl::internal::TensorContractionKernel$<$ OutScalar, LhsScalar, RhsScalar, OutAccessor, LhsMapper, RhsMapper, StorageIndex, Properties, TripleDim, Vectorizable, input\_mapper\_properties, IsFinal, contraction\_tp $>$::MemHolder$<$ contraction\_type, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{ptr}{ptr}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_mem_holder_ab9f1f63870157558467c0b1cda92e64f_ab9f1f63870157558467c0b1cda92e64f} 
+template$<$typename Out\+Scalar , typename Lhs\+Scalar , typename Rhs\+Scalar , typename Out\+Accessor , typename Lhs\+Mapper , typename Rhs\+Mapper , typename Storage\+Index , typename Properties , typename Triple\+Dim , bool Vectorizable, typename input\+\_\+mapper\+\_\+properties , bool Is\+Final, \mbox{\hyperlink{namespace_eigen_1_1_tensor_sycl_1_1internal_ae779b94e3f0127525eda5ff1db87719d_ae779b94e3f0127525eda5ff1db87719d}{contraction\+\_\+type}} contraction\+\_\+tp$>$ \\
+template$<$\mbox{\hyperlink{namespace_eigen_1_1_tensor_sycl_1_1internal_ae779b94e3f0127525eda5ff1db87719d_ae779b94e3f0127525eda5ff1db87719d}{contraction\+\_\+type}} , Storage\+Index $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a01cf4983047cdc7e5537e3c4260a44b0_a01cf4983047cdc7e5537e3c4260a44b0}{tile\+\_\+ptr}} \mbox{\hyperlink{class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Tensor\+Contraction\+Kernel}}$<$ Out\+Scalar, Lhs\+Scalar, Rhs\+Scalar, Out\+Accessor, Lhs\+Mapper, Rhs\+Mapper, Storage\+Index, Properties, Triple\+Dim, Vectorizable, input\+\_\+mapper\+\_\+properties, Is\+Final, contraction\+\_\+tp $>$\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_mem_holder_accd33003b9ee0aa9cc315f845ed01861_accd33003b9ee0aa9cc315f845ed01861}{\+::\+Mem\+Holder}}$<$ \mbox{\hyperlink{namespace_eigen_1_1_tensor_sycl_1_1internal_ae779b94e3f0127525eda5ff1db87719d_ae779b94e3f0127525eda5ff1db87719d}{contraction\+\_\+type}}, Storage\+Index $>$\+::ptr}
+
+
+
+この構造体詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/unsupported/\+Eigen/\+CXX11/src/\+Tensor/\mbox{\hyperlink{_tensor_contraction_sycl_8h}{Tensor\+Contraction\+Sycl.\+h}}\end{DoxyCompactItemize}

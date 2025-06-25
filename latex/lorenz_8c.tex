@@ -1,0 +1,298 @@
+\doxysection{freeglut-\/2.8.1.tar/freeglut-\/2.8.1/freeglut-\/2.8.1/progs/demos/\+Lorenz/lorenz.c ファイル}
+\hypertarget{lorenz_8c}{}\label{lorenz_8c}\index{freeglut-\/2.8.1.tar/freeglut-\/2.8.1/freeglut-\/2.8.1/progs/demos/Lorenz/lorenz.c@{freeglut-\/2.8.1.tar/freeglut-\/2.8.1/freeglut-\/2.8.1/progs/demos/Lorenz/lorenz.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$GL/freeglut.\+h$>$}\newline
+lorenz.\+c の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{lorenz_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{lorenz_8c_a20ce4e87e306bf09c2421b0979b92b9e_a20ce4e87e306bf09c2421b0979b92b9e}{NUM\+\_\+\+POINTS}}~512
+\item 
+\#define \mbox{\hyperlink{lorenz_8c_a265e60a40d4e4e68cecaa31f4ce73b89_a265e60a40d4e4e68cecaa31f4ce73b89}{ROTATION\+\_\+\+ANGLE}}~5.\+0
+\item 
+\#define \mbox{\hyperlink{lorenz_8c_adb1f1d5b685f5a444190abe4ac18d972_adb1f1d5b685f5a444190abe4ac18d972}{SCALE\+\_\+\+FACTOR}}~0.\+8
+\item 
+\#define \mbox{\hyperlink{lorenz_8c_a371b47fa8104d06c5fd01eae1f278309_a371b47fa8104d06c5fd01eae1f278309}{INPUT\+\_\+\+LINE\+\_\+\+LENGTH}}~80
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{lorenz_8c_a7c9b64545dbd4d46b37834be20a4d44b_a7c9b64545dbd4d46b37834be20a4d44b}{calc\+\_\+deriv}} (double position\mbox{[}3\mbox{]}, double deriv\mbox{[}3\mbox{]})
+\item 
+void \mbox{\hyperlink{lorenz_8c_a5524ad27c14015297e214236a7a2fe16_a5524ad27c14015297e214236a7a2fe16}{advance\+\_\+in\+\_\+time}} (double \mbox{\hyperlink{lorenz_8c_aa216048ea5d8bbcef641752b6d744ba8_aa216048ea5d8bbcef641752b6d744ba8}{time\+\_\+step}}, double position\mbox{[}3\mbox{]}, double new\+\_\+position\mbox{[}3\mbox{]})
+\item 
+void \mbox{\hyperlink{lorenz_8c_a98e6e1c6f268d21cb22d1153480087bd_a98e6e1c6f268d21cb22d1153480087bd}{key\+\_\+cb}} (unsigned char key, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{level1__cplx__impl_8h_a792f7d150beb978a4945c84df6867679_a792f7d150beb978a4945c84df6867679}{y}})
+\item 
+void \mbox{\hyperlink{lorenz_8c_ae11b54b5b41d53c4e27d6fee21f3ba9f_ae11b54b5b41d53c4e27d6fee21f3ba9f}{special\+\_\+cb}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} key, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{level1__cplx__impl_8h_a792f7d150beb978a4945c84df6867679_a792f7d150beb978a4945c84df6867679}{y}})
+\item 
+void \mbox{\hyperlink{lorenz_8c_a1b5e48ccb5419eface9de91872b453de_a1b5e48ccb5419eface9de91872b453de}{mouse\+\_\+cb}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} button, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} updown, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{level1__cplx__impl_8h_a792f7d150beb978a4945c84df6867679_a792f7d150beb978a4945c84df6867679}{y}})
+\item 
+void \mbox{\hyperlink{lorenz_8c_a789963d5808a134d46f59d4d029b0cef_a789963d5808a134d46f59d4d029b0cef}{draw\+\_\+curve}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} index, double position\mbox{[}\mbox{\hyperlink{lorenz_8c_a20ce4e87e306bf09c2421b0979b92b9e_a20ce4e87e306bf09c2421b0979b92b9e}{NUM\+\_\+\+POINTS}}\mbox{]}\mbox{[}3\mbox{]})
+\item 
+void \mbox{\hyperlink{lorenz_8c_a58a62dde7d0db61a233af98f6dde40c2_a58a62dde7d0db61a233af98f6dde40c2}{bitmap\+Printf}} (const char \texorpdfstring{$\ast$}{*}fmt,...)
+\item 
+void \mbox{\hyperlink{lorenz_8c_ad952a519cd11748f9e4337e709196000_ad952a519cd11748f9e4337e709196000}{display\+\_\+cb}} (void)
+\item 
+void \mbox{\hyperlink{lorenz_8c_a83ec90f759095d5cc990f98e99dcb546_a83ec90f759095d5cc990f98e99dcb546}{reshape\+\_\+cb}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{myopenglwidget_8cpp_a2474a5474cbff19523a51eb1de01cda4_a2474a5474cbff19523a51eb1de01cda4}{width}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{myopenglwidget_8cpp_ad12fc34ce789bce6c8a05d8a17138534_ad12fc34ce789bce6c8a05d8a17138534}{height}})
+\item 
+void \mbox{\hyperlink{lorenz_8c_af3999b017c438a569468d9ceb0040ef0_af3999b017c438a569468d9ceb0040ef0}{timer\+\_\+cb}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} value)
+\item 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{lorenz_8c_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97}{main}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{変数}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{lorenz_8c_aa857ed5c081381af534715a410da6fa3_aa857ed5c081381af534715a410da6fa3}{s0}} = 10.\+0
+\item 
+double \mbox{\hyperlink{lorenz_8c_a841f345f68027c3c53125c1d848ad1f8_a841f345f68027c3c53125c1d848ad1f8}{r0}} = 28.\+0
+\item 
+double \mbox{\hyperlink{lorenz_8c_a798947bd96f7e2615d107b383cc4b9c6_a798947bd96f7e2615d107b383cc4b9c6}{b0}} = 8.\+0/3.\+0
+\item 
+double \mbox{\hyperlink{lorenz_8c_aa216048ea5d8bbcef641752b6d744ba8_aa216048ea5d8bbcef641752b6d744ba8}{time\+\_\+step}} = 0.\+03
+\item 
+double \mbox{\hyperlink{lorenz_8c_a4ef930be9d7ab47d59cc0668d0d1fac8_a4ef930be9d7ab47d59cc0668d0d1fac8}{sigma}} = 10.\+0
+\item 
+double \mbox{\hyperlink{lorenz_8c_a880a49112fedae68e714341a9a082fb6_a880a49112fedae68e714341a9a082fb6}{r}} = 28.\+0
+\item 
+double \mbox{\hyperlink{lorenz_8c_a1510a66dacf9cf3586de5fc89ae2a073_a1510a66dacf9cf3586de5fc89ae2a073}{b}} = 8.\+0/3.\+0
+\item 
+double \mbox{\hyperlink{lorenz_8c_ad8d45827db0e30a579c257ff6c301751_ad8d45827db0e30a579c257ff6c301751}{red\+\_\+position}} \mbox{[}\mbox{\hyperlink{lorenz_8c_a20ce4e87e306bf09c2421b0979b92b9e_a20ce4e87e306bf09c2421b0979b92b9e}{NUM\+\_\+\+POINTS}}\mbox{]}\mbox{[}3\mbox{]}
+\item 
+double \mbox{\hyperlink{lorenz_8c_a408a4f996fc4c39c4c28b9aaca4775ea_a408a4f996fc4c39c4c28b9aaca4775ea}{grn\+\_\+position}} \mbox{[}\mbox{\hyperlink{lorenz_8c_a20ce4e87e306bf09c2421b0979b92b9e_a20ce4e87e306bf09c2421b0979b92b9e}{NUM\+\_\+\+POINTS}}\mbox{]}\mbox{[}3\mbox{]}
+\item 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{lorenz_8c_af908e5ed3f6b7cf346cd1548579a512f_af908e5ed3f6b7cf346cd1548579a512f}{array\+\_\+index}}
+\item 
+double \mbox{\hyperlink{lorenz_8c_a79b8e036dca6911e3295a47d99f21f43_a79b8e036dca6911e3295a47d99f21f43}{distance}} = 0.\+0
+\item 
+double \mbox{\hyperlink{lorenz_8c_a21cd490f6191f66678f55b4c242a10cf_a21cd490f6191f66678f55b4c242a10cf}{yaw}} = 0.\+0
+\item 
+double \mbox{\hyperlink{lorenz_8c_a49b122bb07451821759a7fc0509603c3_a49b122bb07451821759a7fc0509603c3}{pit}} = 0.\+0
+\item 
+double \mbox{\hyperlink{lorenz_8c_a80d402d10e8341004c0caf10133b80ab_a80d402d10e8341004c0caf10133b80ab}{scale}} = 1.\+0
+\item 
+double \mbox{\hyperlink{lorenz_8c_a8a996e83a519ba2ec7ff60e81391e966_a8a996e83a519ba2ec7ff60e81391e966}{xcen}} = 0.\+0
+\item 
+double \mbox{\hyperlink{lorenz_8c_a6efb8d0bf95b9428652e58b96b2ad786_a6efb8d0bf95b9428652e58b96b2ad786}{ycen}} = 0.\+0
+\item 
+double \mbox{\hyperlink{lorenz_8c_a84b546490a625c6e23024fe6ab95d50b_a84b546490a625c6e23024fe6ab95d50b}{zcen}} = 0.\+0
+\item 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{lorenz_8c_ab43e58066d586c2e680f31914968bbed_ab43e58066d586c2e680f31914968bbed}{animate}} = 1
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{lorenz_8c_a371b47fa8104d06c5fd01eae1f278309_a371b47fa8104d06c5fd01eae1f278309}\index{lorenz.c@{lorenz.c}!INPUT\_LINE\_LENGTH@{INPUT\_LINE\_LENGTH}}
+\index{INPUT\_LINE\_LENGTH@{INPUT\_LINE\_LENGTH}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{INPUT\_LINE\_LENGTH}{INPUT\_LINE\_LENGTH}}
+{\footnotesize\ttfamily \label{lorenz_8c_a371b47fa8104d06c5fd01eae1f278309_a371b47fa8104d06c5fd01eae1f278309} 
+\#define INPUT\+\_\+\+LINE\+\_\+\+LENGTH~80}
+
+\Hypertarget{lorenz_8c_a20ce4e87e306bf09c2421b0979b92b9e_a20ce4e87e306bf09c2421b0979b92b9e}\index{lorenz.c@{lorenz.c}!NUM\_POINTS@{NUM\_POINTS}}
+\index{NUM\_POINTS@{NUM\_POINTS}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{NUM\_POINTS}{NUM\_POINTS}}
+{\footnotesize\ttfamily \label{lorenz_8c_a20ce4e87e306bf09c2421b0979b92b9e_a20ce4e87e306bf09c2421b0979b92b9e} 
+\#define NUM\+\_\+\+POINTS~512}
+
+\Hypertarget{lorenz_8c_a265e60a40d4e4e68cecaa31f4ce73b89_a265e60a40d4e4e68cecaa31f4ce73b89}\index{lorenz.c@{lorenz.c}!ROTATION\_ANGLE@{ROTATION\_ANGLE}}
+\index{ROTATION\_ANGLE@{ROTATION\_ANGLE}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{ROTATION\_ANGLE}{ROTATION\_ANGLE}}
+{\footnotesize\ttfamily \label{lorenz_8c_a265e60a40d4e4e68cecaa31f4ce73b89_a265e60a40d4e4e68cecaa31f4ce73b89} 
+\#define ROTATION\+\_\+\+ANGLE~5.\+0}
+
+\Hypertarget{lorenz_8c_adb1f1d5b685f5a444190abe4ac18d972_adb1f1d5b685f5a444190abe4ac18d972}\index{lorenz.c@{lorenz.c}!SCALE\_FACTOR@{SCALE\_FACTOR}}
+\index{SCALE\_FACTOR@{SCALE\_FACTOR}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{SCALE\_FACTOR}{SCALE\_FACTOR}}
+{\footnotesize\ttfamily \label{lorenz_8c_adb1f1d5b685f5a444190abe4ac18d972_adb1f1d5b685f5a444190abe4ac18d972} 
+\#define SCALE\+\_\+\+FACTOR~0.\+8}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{lorenz_8c_a5524ad27c14015297e214236a7a2fe16_a5524ad27c14015297e214236a7a2fe16}\index{lorenz.c@{lorenz.c}!advance\_in\_time@{advance\_in\_time}}
+\index{advance\_in\_time@{advance\_in\_time}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{advance\_in\_time()}{advance\_in\_time()}}
+{\footnotesize\ttfamily \label{lorenz_8c_a5524ad27c14015297e214236a7a2fe16_a5524ad27c14015297e214236a7a2fe16} 
+void advance\+\_\+in\+\_\+time (\begin{DoxyParamCaption}\item[{double}]{time\+\_\+step}{, }\item[{double}]{position}{\mbox{[}3\mbox{]}, }\item[{double}]{new\+\_\+position}{\mbox{[}3\mbox{]}}\end{DoxyParamCaption})}
+
+\Hypertarget{lorenz_8c_a58a62dde7d0db61a233af98f6dde40c2_a58a62dde7d0db61a233af98f6dde40c2}\index{lorenz.c@{lorenz.c}!bitmapPrintf@{bitmapPrintf}}
+\index{bitmapPrintf@{bitmapPrintf}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{bitmapPrintf()}{bitmapPrintf()}}
+{\footnotesize\ttfamily \label{lorenz_8c_a58a62dde7d0db61a233af98f6dde40c2_a58a62dde7d0db61a233af98f6dde40c2} 
+void bitmap\+Printf (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{fmt}{, }\item[{}]{...}{}\end{DoxyParamCaption})}
+
+\Hypertarget{lorenz_8c_a7c9b64545dbd4d46b37834be20a4d44b_a7c9b64545dbd4d46b37834be20a4d44b}\index{lorenz.c@{lorenz.c}!calc\_deriv@{calc\_deriv}}
+\index{calc\_deriv@{calc\_deriv}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{calc\_deriv()}{calc\_deriv()}}
+{\footnotesize\ttfamily \label{lorenz_8c_a7c9b64545dbd4d46b37834be20a4d44b_a7c9b64545dbd4d46b37834be20a4d44b} 
+void calc\+\_\+deriv (\begin{DoxyParamCaption}\item[{double}]{position}{\mbox{[}3\mbox{]}, }\item[{double}]{deriv}{\mbox{[}3\mbox{]}}\end{DoxyParamCaption})}
+
+\Hypertarget{lorenz_8c_ad952a519cd11748f9e4337e709196000_ad952a519cd11748f9e4337e709196000}\index{lorenz.c@{lorenz.c}!display\_cb@{display\_cb}}
+\index{display\_cb@{display\_cb}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{display\_cb()}{display\_cb()}}
+{\footnotesize\ttfamily \label{lorenz_8c_ad952a519cd11748f9e4337e709196000_ad952a519cd11748f9e4337e709196000} 
+void display\+\_\+cb (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{lorenz_8c_a789963d5808a134d46f59d4d029b0cef_a789963d5808a134d46f59d4d029b0cef}\index{lorenz.c@{lorenz.c}!draw\_curve@{draw\_curve}}
+\index{draw\_curve@{draw\_curve}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{draw\_curve()}{draw\_curve()}}
+{\footnotesize\ttfamily \label{lorenz_8c_a789963d5808a134d46f59d4d029b0cef_a789963d5808a134d46f59d4d029b0cef} 
+void draw\+\_\+curve (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{index}{, }\item[{double}]{position}{\mbox{[}\+NUM\+\_\+\+POINTS\mbox{]}\mbox{[}3\mbox{]}}\end{DoxyParamCaption})}
+
+\Hypertarget{lorenz_8c_a98e6e1c6f268d21cb22d1153480087bd_a98e6e1c6f268d21cb22d1153480087bd}\index{lorenz.c@{lorenz.c}!key\_cb@{key\_cb}}
+\index{key\_cb@{key\_cb}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{key\_cb()}{key\_cb()}}
+{\footnotesize\ttfamily \label{lorenz_8c_a98e6e1c6f268d21cb22d1153480087bd_a98e6e1c6f268d21cb22d1153480087bd} 
+void key\+\_\+cb (\begin{DoxyParamCaption}\item[{unsigned char}]{key}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{x}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{y}{}\end{DoxyParamCaption})}
+
+\Hypertarget{lorenz_8c_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97}\index{lorenz.c@{lorenz.c}!main@{main}}
+\index{main@{main}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{lorenz_8c_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97} 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} main (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{argv}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+
+\Hypertarget{lorenz_8c_a1b5e48ccb5419eface9de91872b453de_a1b5e48ccb5419eface9de91872b453de}\index{lorenz.c@{lorenz.c}!mouse\_cb@{mouse\_cb}}
+\index{mouse\_cb@{mouse\_cb}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{mouse\_cb()}{mouse\_cb()}}
+{\footnotesize\ttfamily \label{lorenz_8c_a1b5e48ccb5419eface9de91872b453de_a1b5e48ccb5419eface9de91872b453de} 
+void mouse\+\_\+cb (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{button}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{updown}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{x}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{y}{}\end{DoxyParamCaption})}
+
+\Hypertarget{lorenz_8c_a83ec90f759095d5cc990f98e99dcb546_a83ec90f759095d5cc990f98e99dcb546}\index{lorenz.c@{lorenz.c}!reshape\_cb@{reshape\_cb}}
+\index{reshape\_cb@{reshape\_cb}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{reshape\_cb()}{reshape\_cb()}}
+{\footnotesize\ttfamily \label{lorenz_8c_a83ec90f759095d5cc990f98e99dcb546_a83ec90f759095d5cc990f98e99dcb546} 
+void reshape\+\_\+cb (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{width}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{height}{}\end{DoxyParamCaption})}
+
+\Hypertarget{lorenz_8c_ae11b54b5b41d53c4e27d6fee21f3ba9f_ae11b54b5b41d53c4e27d6fee21f3ba9f}\index{lorenz.c@{lorenz.c}!special\_cb@{special\_cb}}
+\index{special\_cb@{special\_cb}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{special\_cb()}{special\_cb()}}
+{\footnotesize\ttfamily \label{lorenz_8c_ae11b54b5b41d53c4e27d6fee21f3ba9f_ae11b54b5b41d53c4e27d6fee21f3ba9f} 
+void special\+\_\+cb (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{key}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{x}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{y}{}\end{DoxyParamCaption})}
+
+\Hypertarget{lorenz_8c_af3999b017c438a569468d9ceb0040ef0_af3999b017c438a569468d9ceb0040ef0}\index{lorenz.c@{lorenz.c}!timer\_cb@{timer\_cb}}
+\index{timer\_cb@{timer\_cb}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{timer\_cb()}{timer\_cb()}}
+{\footnotesize\ttfamily \label{lorenz_8c_af3999b017c438a569468d9ceb0040ef0_af3999b017c438a569468d9ceb0040ef0} 
+void timer\+\_\+cb (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{value}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{変数詳解}
+\Hypertarget{lorenz_8c_ab43e58066d586c2e680f31914968bbed_ab43e58066d586c2e680f31914968bbed}\index{lorenz.c@{lorenz.c}!animate@{animate}}
+\index{animate@{animate}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{animate}{animate}}
+{\footnotesize\ttfamily \label{lorenz_8c_ab43e58066d586c2e680f31914968bbed_ab43e58066d586c2e680f31914968bbed} 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} animate = 1}
+
+\Hypertarget{lorenz_8c_af908e5ed3f6b7cf346cd1548579a512f_af908e5ed3f6b7cf346cd1548579a512f}\index{lorenz.c@{lorenz.c}!array\_index@{array\_index}}
+\index{array\_index@{array\_index}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{array\_index}{array\_index}}
+{\footnotesize\ttfamily \label{lorenz_8c_af908e5ed3f6b7cf346cd1548579a512f_af908e5ed3f6b7cf346cd1548579a512f} 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} array\+\_\+index}
+
+\Hypertarget{lorenz_8c_a1510a66dacf9cf3586de5fc89ae2a073_a1510a66dacf9cf3586de5fc89ae2a073}\index{lorenz.c@{lorenz.c}!b@{b}}
+\index{b@{b}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{b}{b}}
+{\footnotesize\ttfamily \label{lorenz_8c_a1510a66dacf9cf3586de5fc89ae2a073_a1510a66dacf9cf3586de5fc89ae2a073} 
+double b = 8.\+0/3.\+0}
+
+\Hypertarget{lorenz_8c_a798947bd96f7e2615d107b383cc4b9c6_a798947bd96f7e2615d107b383cc4b9c6}\index{lorenz.c@{lorenz.c}!b0@{b0}}
+\index{b0@{b0}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{b0}{b0}}
+{\footnotesize\ttfamily \label{lorenz_8c_a798947bd96f7e2615d107b383cc4b9c6_a798947bd96f7e2615d107b383cc4b9c6} 
+double b0 = 8.\+0/3.\+0}
+
+\Hypertarget{lorenz_8c_a79b8e036dca6911e3295a47d99f21f43_a79b8e036dca6911e3295a47d99f21f43}\index{lorenz.c@{lorenz.c}!distance@{distance}}
+\index{distance@{distance}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{distance}{distance}}
+{\footnotesize\ttfamily \label{lorenz_8c_a79b8e036dca6911e3295a47d99f21f43_a79b8e036dca6911e3295a47d99f21f43} 
+double distance = 0.\+0}
+
+\Hypertarget{lorenz_8c_a408a4f996fc4c39c4c28b9aaca4775ea_a408a4f996fc4c39c4c28b9aaca4775ea}\index{lorenz.c@{lorenz.c}!grn\_position@{grn\_position}}
+\index{grn\_position@{grn\_position}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{grn\_position}{grn\_position}}
+{\footnotesize\ttfamily \label{lorenz_8c_a408a4f996fc4c39c4c28b9aaca4775ea_a408a4f996fc4c39c4c28b9aaca4775ea} 
+double grn\+\_\+position\mbox{[}\mbox{\hyperlink{lorenz_8c_a20ce4e87e306bf09c2421b0979b92b9e_a20ce4e87e306bf09c2421b0979b92b9e}{NUM\+\_\+\+POINTS}}\mbox{]}\mbox{[}3\mbox{]}}
+
+\Hypertarget{lorenz_8c_a49b122bb07451821759a7fc0509603c3_a49b122bb07451821759a7fc0509603c3}\index{lorenz.c@{lorenz.c}!pit@{pit}}
+\index{pit@{pit}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{pit}{pit}}
+{\footnotesize\ttfamily \label{lorenz_8c_a49b122bb07451821759a7fc0509603c3_a49b122bb07451821759a7fc0509603c3} 
+double pit = 0.\+0}
+
+\Hypertarget{lorenz_8c_a880a49112fedae68e714341a9a082fb6_a880a49112fedae68e714341a9a082fb6}\index{lorenz.c@{lorenz.c}!r@{r}}
+\index{r@{r}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{r}{r}}
+{\footnotesize\ttfamily \label{lorenz_8c_a880a49112fedae68e714341a9a082fb6_a880a49112fedae68e714341a9a082fb6} 
+double r = 28.\+0}
+
+\Hypertarget{lorenz_8c_a841f345f68027c3c53125c1d848ad1f8_a841f345f68027c3c53125c1d848ad1f8}\index{lorenz.c@{lorenz.c}!r0@{r0}}
+\index{r0@{r0}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{r0}{r0}}
+{\footnotesize\ttfamily \label{lorenz_8c_a841f345f68027c3c53125c1d848ad1f8_a841f345f68027c3c53125c1d848ad1f8} 
+double r0 = 28.\+0}
+
+\Hypertarget{lorenz_8c_ad8d45827db0e30a579c257ff6c301751_ad8d45827db0e30a579c257ff6c301751}\index{lorenz.c@{lorenz.c}!red\_position@{red\_position}}
+\index{red\_position@{red\_position}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{red\_position}{red\_position}}
+{\footnotesize\ttfamily \label{lorenz_8c_ad8d45827db0e30a579c257ff6c301751_ad8d45827db0e30a579c257ff6c301751} 
+double red\+\_\+position\mbox{[}\mbox{\hyperlink{lorenz_8c_a20ce4e87e306bf09c2421b0979b92b9e_a20ce4e87e306bf09c2421b0979b92b9e}{NUM\+\_\+\+POINTS}}\mbox{]}\mbox{[}3\mbox{]}}
+
+\Hypertarget{lorenz_8c_aa857ed5c081381af534715a410da6fa3_aa857ed5c081381af534715a410da6fa3}\index{lorenz.c@{lorenz.c}!s0@{s0}}
+\index{s0@{s0}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{s0}{s0}}
+{\footnotesize\ttfamily \label{lorenz_8c_aa857ed5c081381af534715a410da6fa3_aa857ed5c081381af534715a410da6fa3} 
+double s0 = 10.\+0}
+
+\Hypertarget{lorenz_8c_a80d402d10e8341004c0caf10133b80ab_a80d402d10e8341004c0caf10133b80ab}\index{lorenz.c@{lorenz.c}!scale@{scale}}
+\index{scale@{scale}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{scale}{scale}}
+{\footnotesize\ttfamily \label{lorenz_8c_a80d402d10e8341004c0caf10133b80ab_a80d402d10e8341004c0caf10133b80ab} 
+double scale = 1.\+0}
+
+\Hypertarget{lorenz_8c_a4ef930be9d7ab47d59cc0668d0d1fac8_a4ef930be9d7ab47d59cc0668d0d1fac8}\index{lorenz.c@{lorenz.c}!sigma@{sigma}}
+\index{sigma@{sigma}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{sigma}{sigma}}
+{\footnotesize\ttfamily \label{lorenz_8c_a4ef930be9d7ab47d59cc0668d0d1fac8_a4ef930be9d7ab47d59cc0668d0d1fac8} 
+double sigma = 10.\+0}
+
+\Hypertarget{lorenz_8c_aa216048ea5d8bbcef641752b6d744ba8_aa216048ea5d8bbcef641752b6d744ba8}\index{lorenz.c@{lorenz.c}!time\_step@{time\_step}}
+\index{time\_step@{time\_step}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{time\_step}{time\_step}}
+{\footnotesize\ttfamily \label{lorenz_8c_aa216048ea5d8bbcef641752b6d744ba8_aa216048ea5d8bbcef641752b6d744ba8} 
+double time\+\_\+step = 0.\+03}
+
+\Hypertarget{lorenz_8c_a8a996e83a519ba2ec7ff60e81391e966_a8a996e83a519ba2ec7ff60e81391e966}\index{lorenz.c@{lorenz.c}!xcen@{xcen}}
+\index{xcen@{xcen}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{xcen}{xcen}}
+{\footnotesize\ttfamily \label{lorenz_8c_a8a996e83a519ba2ec7ff60e81391e966_a8a996e83a519ba2ec7ff60e81391e966} 
+double xcen = 0.\+0}
+
+\Hypertarget{lorenz_8c_a21cd490f6191f66678f55b4c242a10cf_a21cd490f6191f66678f55b4c242a10cf}\index{lorenz.c@{lorenz.c}!yaw@{yaw}}
+\index{yaw@{yaw}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{yaw}{yaw}}
+{\footnotesize\ttfamily \label{lorenz_8c_a21cd490f6191f66678f55b4c242a10cf_a21cd490f6191f66678f55b4c242a10cf} 
+double yaw = 0.\+0}
+
+\Hypertarget{lorenz_8c_a6efb8d0bf95b9428652e58b96b2ad786_a6efb8d0bf95b9428652e58b96b2ad786}\index{lorenz.c@{lorenz.c}!ycen@{ycen}}
+\index{ycen@{ycen}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{ycen}{ycen}}
+{\footnotesize\ttfamily \label{lorenz_8c_a6efb8d0bf95b9428652e58b96b2ad786_a6efb8d0bf95b9428652e58b96b2ad786} 
+double ycen = 0.\+0}
+
+\Hypertarget{lorenz_8c_a84b546490a625c6e23024fe6ab95d50b_a84b546490a625c6e23024fe6ab95d50b}\index{lorenz.c@{lorenz.c}!zcen@{zcen}}
+\index{zcen@{zcen}!lorenz.c@{lorenz.c}}
+\doxysubsubsection{\texorpdfstring{zcen}{zcen}}
+{\footnotesize\ttfamily \label{lorenz_8c_a84b546490a625c6e23024fe6ab95d50b_a84b546490a625c6e23024fe6ab95d50b} 
+double zcen = 0.\+0}
+

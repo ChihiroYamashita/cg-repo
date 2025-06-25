@@ -1,0 +1,129 @@
+\doxysection{freeglut-\/2.8.1.tar/freeglut-\/2.8.1/freeglut-\/2.8.1/progs/demos/spaceball/spaceball.c ファイル}
+\hypertarget{spaceball_8c}{}\label{spaceball_8c}\index{freeglut-\/2.8.1.tar/freeglut-\/2.8.1/freeglut-\/2.8.1/progs/demos/spaceball/spaceball.c@{freeglut-\/2.8.1.tar/freeglut-\/2.8.1/freeglut-\/2.8.1/progs/demos/spaceball/spaceball.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$GL/freeglut.\+h$>$}\newline
+{\ttfamily \#include "{}vmath.\+h"{}}\newline
+spaceball.\+c の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{spaceball_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{spaceball_8c_ae71449b1cc6e6250b91f539153a7a0d3_ae71449b1cc6e6250b91f539153a7a0d3}{M\+\_\+\+PI}}~3.\+14159265358979323846264338327950
+\item 
+\#define \mbox{\hyperlink{spaceball_8c_afab1d6380725d86a389fb84b888b091d_afab1d6380725d86a389fb84b888b091d}{FOV}}~(\mbox{\hyperlink{main_8h_ae71449b1cc6e6250b91f539153a7a0d3_ae71449b1cc6e6250b91f539153a7a0d3}{M\+\_\+\+PI}} / 4.\+0)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{spaceball_8c_a36d79a9b603a9579fab0cd4d949382b3_a36d79a9b603a9579fab0cd4d949382b3}{draw\+\_\+cube}} (void)
+\item 
+void \mbox{\hyperlink{spaceball_8c_a7b90cb3be1a003bfbd63720cfce6a038_a7b90cb3be1a003bfbd63720cfce6a038}{disp}} (void)
+\item 
+void \mbox{\hyperlink{spaceball_8c_a9c6a000bb585e5a23a3d829dae9d1358_a9c6a000bb585e5a23a3d829dae9d1358}{reshape}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{level1__cplx__impl_8h_a792f7d150beb978a4945c84df6867679_a792f7d150beb978a4945c84df6867679}{y}})
+\item 
+void \mbox{\hyperlink{spaceball_8c_a1f6c0d9b267bde79eb5b036abd17f6af_a1f6c0d9b267bde79eb5b036abd17f6af}{keyb}} (unsigned char key, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{level1__cplx__impl_8h_a792f7d150beb978a4945c84df6867679_a792f7d150beb978a4945c84df6867679}{y}})
+\item 
+void \mbox{\hyperlink{spaceball_8c_a7b3ddc40544156c0e7c9292f4376d0d4_a7b3ddc40544156c0e7c9292f4376d0d4}{sbmot}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{level1__cplx__impl_8h_a792f7d150beb978a4945c84df6867679_a792f7d150beb978a4945c84df6867679}{y}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} z)
+\item 
+void \mbox{\hyperlink{spaceball_8c_a013091b203fdb816d919eecef7818f15_a013091b203fdb816d919eecef7818f15}{sbrot}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{level1__cplx__impl_8h_a792f7d150beb978a4945c84df6867679_a792f7d150beb978a4945c84df6867679}{y}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} z)
+\item 
+void \mbox{\hyperlink{spaceball_8c_a94d8e5ed00c1282abe8a2f5101b31adc_a94d8e5ed00c1282abe8a2f5101b31adc}{sbbut}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} bn, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} state)
+\item 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{spaceball_8c_a3c04138a5bfe5d72780bb7e82a18e627_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{変数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structvec3__t}{vec3\+\_\+t}} \mbox{\hyperlink{spaceball_8c_a81150a53dd49f693e71a6d68b213d99c_a81150a53dd49f693e71a6d68b213d99c}{pos}} = \{0, 0, -\/6\}
+\item 
+\mbox{\hyperlink{vmath_8h_a873b8a184319307b75379b8574169cb9_a873b8a184319307b75379b8574169cb9}{quat\+\_\+t}} \mbox{\hyperlink{spaceball_8c_acd0a0d3f34e48a74d89b39e8d717cf78_acd0a0d3f34e48a74d89b39e8d717cf78}{rot}} = \{0, 0, 0, 1\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{spaceball_8c_afab1d6380725d86a389fb84b888b091d_afab1d6380725d86a389fb84b888b091d}\index{spaceball.c@{spaceball.c}!FOV@{FOV}}
+\index{FOV@{FOV}!spaceball.c@{spaceball.c}}
+\doxysubsubsection{\texorpdfstring{FOV}{FOV}}
+{\footnotesize\ttfamily \label{spaceball_8c_afab1d6380725d86a389fb84b888b091d_afab1d6380725d86a389fb84b888b091d} 
+\#define FOV~(\mbox{\hyperlink{main_8h_ae71449b1cc6e6250b91f539153a7a0d3_ae71449b1cc6e6250b91f539153a7a0d3}{M\+\_\+\+PI}} / 4.\+0)}
+
+\Hypertarget{spaceball_8c_ae71449b1cc6e6250b91f539153a7a0d3_ae71449b1cc6e6250b91f539153a7a0d3}\index{spaceball.c@{spaceball.c}!M\_PI@{M\_PI}}
+\index{M\_PI@{M\_PI}!spaceball.c@{spaceball.c}}
+\doxysubsubsection{\texorpdfstring{M\_PI}{M\_PI}}
+{\footnotesize\ttfamily \label{spaceball_8c_ae71449b1cc6e6250b91f539153a7a0d3_ae71449b1cc6e6250b91f539153a7a0d3} 
+\#define M\+\_\+\+PI~3.\+14159265358979323846264338327950}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{spaceball_8c_a7b90cb3be1a003bfbd63720cfce6a038_a7b90cb3be1a003bfbd63720cfce6a038}\index{spaceball.c@{spaceball.c}!disp@{disp}}
+\index{disp@{disp}!spaceball.c@{spaceball.c}}
+\doxysubsubsection{\texorpdfstring{disp()}{disp()}}
+{\footnotesize\ttfamily \label{spaceball_8c_a7b90cb3be1a003bfbd63720cfce6a038_a7b90cb3be1a003bfbd63720cfce6a038} 
+void disp (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{spaceball_8c_a36d79a9b603a9579fab0cd4d949382b3_a36d79a9b603a9579fab0cd4d949382b3}\index{spaceball.c@{spaceball.c}!draw\_cube@{draw\_cube}}
+\index{draw\_cube@{draw\_cube}!spaceball.c@{spaceball.c}}
+\doxysubsubsection{\texorpdfstring{draw\_cube()}{draw\_cube()}}
+{\footnotesize\ttfamily \label{spaceball_8c_a36d79a9b603a9579fab0cd4d949382b3_a36d79a9b603a9579fab0cd4d949382b3} 
+void draw\+\_\+cube (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{spaceball_8c_a1f6c0d9b267bde79eb5b036abd17f6af_a1f6c0d9b267bde79eb5b036abd17f6af}\index{spaceball.c@{spaceball.c}!keyb@{keyb}}
+\index{keyb@{keyb}!spaceball.c@{spaceball.c}}
+\doxysubsubsection{\texorpdfstring{keyb()}{keyb()}}
+{\footnotesize\ttfamily \label{spaceball_8c_a1f6c0d9b267bde79eb5b036abd17f6af_a1f6c0d9b267bde79eb5b036abd17f6af} 
+void keyb (\begin{DoxyParamCaption}\item[{unsigned char}]{key}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{x}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{y}{}\end{DoxyParamCaption})}
+
+\Hypertarget{spaceball_8c_a3c04138a5bfe5d72780bb7e82a18e627_a3c04138a5bfe5d72780bb7e82a18e627}\index{spaceball.c@{spaceball.c}!main@{main}}
+\index{main@{main}!spaceball.c@{spaceball.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{spaceball_8c_a3c04138a5bfe5d72780bb7e82a18e627_a3c04138a5bfe5d72780bb7e82a18e627} 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} main (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv}{}\end{DoxyParamCaption})}
+
+\Hypertarget{spaceball_8c_a9c6a000bb585e5a23a3d829dae9d1358_a9c6a000bb585e5a23a3d829dae9d1358}\index{spaceball.c@{spaceball.c}!reshape@{reshape}}
+\index{reshape@{reshape}!spaceball.c@{spaceball.c}}
+\doxysubsubsection{\texorpdfstring{reshape()}{reshape()}}
+{\footnotesize\ttfamily \label{spaceball_8c_a9c6a000bb585e5a23a3d829dae9d1358_a9c6a000bb585e5a23a3d829dae9d1358} 
+void reshape (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{x}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{y}{}\end{DoxyParamCaption})}
+
+\Hypertarget{spaceball_8c_a94d8e5ed00c1282abe8a2f5101b31adc_a94d8e5ed00c1282abe8a2f5101b31adc}\index{spaceball.c@{spaceball.c}!sbbut@{sbbut}}
+\index{sbbut@{sbbut}!spaceball.c@{spaceball.c}}
+\doxysubsubsection{\texorpdfstring{sbbut()}{sbbut()}}
+{\footnotesize\ttfamily \label{spaceball_8c_a94d8e5ed00c1282abe8a2f5101b31adc_a94d8e5ed00c1282abe8a2f5101b31adc} 
+void sbbut (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{bn}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{state}{}\end{DoxyParamCaption})}
+
+\Hypertarget{spaceball_8c_a7b3ddc40544156c0e7c9292f4376d0d4_a7b3ddc40544156c0e7c9292f4376d0d4}\index{spaceball.c@{spaceball.c}!sbmot@{sbmot}}
+\index{sbmot@{sbmot}!spaceball.c@{spaceball.c}}
+\doxysubsubsection{\texorpdfstring{sbmot()}{sbmot()}}
+{\footnotesize\ttfamily \label{spaceball_8c_a7b3ddc40544156c0e7c9292f4376d0d4_a7b3ddc40544156c0e7c9292f4376d0d4} 
+void sbmot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{x}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{y}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{z}{}\end{DoxyParamCaption})}
+
+\Hypertarget{spaceball_8c_a013091b203fdb816d919eecef7818f15_a013091b203fdb816d919eecef7818f15}\index{spaceball.c@{spaceball.c}!sbrot@{sbrot}}
+\index{sbrot@{sbrot}!spaceball.c@{spaceball.c}}
+\doxysubsubsection{\texorpdfstring{sbrot()}{sbrot()}}
+{\footnotesize\ttfamily \label{spaceball_8c_a013091b203fdb816d919eecef7818f15_a013091b203fdb816d919eecef7818f15} 
+void sbrot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{x}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{y}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{z}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{変数詳解}
+\Hypertarget{spaceball_8c_a81150a53dd49f693e71a6d68b213d99c_a81150a53dd49f693e71a6d68b213d99c}\index{spaceball.c@{spaceball.c}!pos@{pos}}
+\index{pos@{pos}!spaceball.c@{spaceball.c}}
+\doxysubsubsection{\texorpdfstring{pos}{pos}}
+{\footnotesize\ttfamily \label{spaceball_8c_a81150a53dd49f693e71a6d68b213d99c_a81150a53dd49f693e71a6d68b213d99c} 
+\mbox{\hyperlink{structvec3__t}{vec3\+\_\+t}} pos = \{0, 0, -\/6\}}
+
+\Hypertarget{spaceball_8c_acd0a0d3f34e48a74d89b39e8d717cf78_acd0a0d3f34e48a74d89b39e8d717cf78}\index{spaceball.c@{spaceball.c}!rot@{rot}}
+\index{rot@{rot}!spaceball.c@{spaceball.c}}
+\doxysubsubsection{\texorpdfstring{rot}{rot}}
+{\footnotesize\ttfamily \label{spaceball_8c_acd0a0d3f34e48a74d89b39e8d717cf78_acd0a0d3f34e48a74d89b39e8d717cf78} 
+\mbox{\hyperlink{vmath_8h_a873b8a184319307b75379b8574169cb9_a873b8a184319307b75379b8574169cb9}{quat\+\_\+t}} rot = \{0, 0, 0, 1\}}
+

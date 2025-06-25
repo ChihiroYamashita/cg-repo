@@ -1,0 +1,24 @@
+var searchData=
+[
+  ['b0_0',['B0',['../main_8h_a8a03ef52aa4926d1d75cb647ac768622.html#a8a03ef52aa4926d1d75cb647ac768622',1,'main.h']]],
+  ['begin_5fof_1',['BEGIN_OF',['../utilities_8h_ab3a87b21189ee2e3a88a9b6a561dc8c3.html#ab3a87b21189ee2e3a88a9b6a561dc8c3',1,'utilities.h']]],
+  ['bench_2',['BENCH',['../_bench_timer_8h_ae76a6d67b16f030630408dd13a1c6e56.html#ae76a6d67b16f030630408dd13a1c6e56',1,'BENCH:&#160;BenchTimer.h'],['../quat__slerp_8cpp_a56ab6875e1391dc0994b8a1b2cb40862.html#a56ab6875e1391dc0994b8a1b2cb40862',1,'BENCH:&#160;quat_slerp.cpp'],['../sparse__cholesky_8cpp_a5fcf11b9dba96e1e0555440c480f839c.html#a5fcf11b9dba96e1e0555440c480f839c',1,'BENCH:&#160;sparse_cholesky.cpp'],['../sparse__dense__product_8cpp_a5fcf11b9dba96e1e0555440c480f839c.html#a5fcf11b9dba96e1e0555440c480f839c',1,'BENCH:&#160;sparse_dense_product.cpp'],['../sparse__lu_8cpp_a5fcf11b9dba96e1e0555440c480f839c.html#a5fcf11b9dba96e1e0555440c480f839c',1,'BENCH:&#160;sparse_lu.cpp'],['../bench_2sparse__product_8cpp_a5fcf11b9dba96e1e0555440c480f839c.html#a5fcf11b9dba96e1e0555440c480f839c',1,'BENCH:&#160;sparse_product.cpp'],['../sparse__randomsetter_8cpp_a5fcf11b9dba96e1e0555440c480f839c.html#a5fcf11b9dba96e1e0555440c480f839c',1,'BENCH:&#160;sparse_randomsetter.cpp'],['../sparse__setter_8cpp_a5fcf11b9dba96e1e0555440c480f839c.html#a5fcf11b9dba96e1e0555440c480f839c',1,'BENCH:&#160;sparse_setter.cpp'],['../sparse__transpose_8cpp_a5fcf11b9dba96e1e0555440c480f839c.html#a5fcf11b9dba96e1e0555440c480f839c',1,'BENCH:&#160;sparse_transpose.cpp'],['../sparse__trisolver_8cpp_a5fcf11b9dba96e1e0555440c480f839c.html#a5fcf11b9dba96e1e0555440c480f839c',1,'BENCH:&#160;sparse_trisolver.cpp']]],
+  ['bench_5fperf_3',['BENCH_PERF',['../bench__norm_8cpp_a0ff51fa17d44bbc581c01026585c6d84.html#a0ff51fa17d44bbc581c01026585c6d84',1,'bench_norm.cpp']]],
+  ['benchmark_4',['BENCHMARK',['../benchmark_8h_abd4949b3a3d378df616789b0cc0b6ddd.html#abd4949b3a3d378df616789b0cc0b6ddd',1,'benchmark.h']]],
+  ['benchmark_5frange_5',['BENCHMARK_RANGE',['../tensor__benchmarks_8h_a6aa5954039d61d291aedff49c4b0a491.html#a6aa5954039d61d291aedff49c4b0a491',1,'tensor_benchmarks.h']]],
+  ['bf16_5fpacket_5ffunction_6',['BF16_PACKET_FUNCTION',['../_b_float16_8h_ad923620544f9ce521ef582e6b4e88f77.html#ad923620544f9ce521ef582e6b4e88f77',1,'BFloat16.h']]],
+  ['bf16_5fto_5ff32_5fbinary_5fop_5fwrapper_7',['BF16_TO_F32_BINARY_OP_WRAPPER',['../_alti_vec_2_packet_math_8h_af09fca156501a1ba40fbe50ea351e350.html#af09fca156501a1ba40fbe50ea351e350',1,'PacketMath.h']]],
+  ['bf16_5fto_5ff32_5fbinary_5fop_5fwrapper_5fbool_8',['BF16_TO_F32_BINARY_OP_WRAPPER_BOOL',['../_alti_vec_2_packet_math_8h_ad9546a645e19f322a555ade0da78b941.html#ad9546a645e19f322a555ade0da78b941',1,'PacketMath.h']]],
+  ['bf16_5fto_5ff32_5funary_5fop_5fwrapper_9',['BF16_TO_F32_UNARY_OP_WRAPPER',['../_alti_vec_2_packet_math_8h_a89e6916b67e0ab50bea8d0b5eaa767e2.html#a89e6916b67e0ab50bea8d0b5eaa767e2',1,'PacketMath.h']]],
+  ['blas_5ffunc_10',['BLAS_FUNC',['../blas__interface__impl_8hh_ab8379e0d6777a53062a06ff918b33806.html#ab8379e0d6777a53062a06ff918b33806',1,'blas_interface_impl.hh']]],
+  ['blasfunc_11',['BLASFUNC',['../bench_2btl_2libs_2_b_l_a_s_2blas_8h_a0688b81352a2d915602ab637fea62f8c.html#a0688b81352a2d915602ab637fea62f8c',1,'BLASFUNC:&#160;blas.h'],['../_eigen_2src_2misc_2blas_8h_a0688b81352a2d915602ab637fea62f8c.html#a0688b81352a2d915602ab637fea62f8c',1,'BLASFUNC:&#160;blas.h']]],
+  ['bm_5fcontractioncpu_12',['BM_ContractionCPU',['../contraction__benchmarks__cpu_8cc_a3651ac7a926e24cd77d72d288b30f59d.html#a3651ac7a926e24cd77d72d288b30f59d',1,'contraction_benchmarks_cpu.cc']]],
+  ['bm_5ffunccpu_13',['BM_FuncCPU',['../tensor__benchmarks__cpu_8cc_ae6f18bbed08ebf1a67e50c97944163e2.html#ae6f18bbed08ebf1a67e50c97944163e2',1,'tensor_benchmarks_cpu.cc']]],
+  ['bm_5ffuncwithinputdimscpu_14',['BM_FuncWithInputDimsCPU',['../tensor__benchmarks__cpu_8cc_a0dafbca79e6f68756a263ca06b369228.html#a0dafbca79e6f68756a263ca06b369228',1,'tensor_benchmarks_cpu.cc']]],
+  ['bm_5ffuncwithkerneldimscpu_15',['BM_FuncWithKernelDimsCPU',['../tensor__benchmarks__cpu_8cc_a6275ffa823d1e4ffa28b6221ac56f27b.html#a6275ffa823d1e4ffa28b6221ac56f27b',1,'tensor_benchmarks_cpu.cc']]],
+  ['btl_5falways_5finline_16',['BTL_ALWAYS_INLINE',['../btl_8hh_a516e52a1b3f50f6a07bcb7aabb058ef0.html#a516e52a1b3f50f6a07bcb7aabb058ef0',1,'btl.hh']]],
+  ['btl_5fasm_5fcomment_17',['BTL_ASM_COMMENT',['../btl_8hh_a3361a813e04a9e66d7833e804cf11579.html#a3361a813e04a9e66d7833e804cf11579',1,'btl.hh']]],
+  ['btl_5fdisable_5fsse_5fexceptions_18',['BTL_DISABLE_SSE_EXCEPTIONS',['../btl_8hh_a1ea666dfed19d73820686f30f79e5ab0.html#a1ea666dfed19d73820686f30f79e5ab0',1,'btl.hh']]],
+  ['btl_5fdont_5finline_19',['BTL_DONT_INLINE',['../btl_8hh_ae6c9d753850ceed00be0040f4f5337f4.html#ae6c9d753850ceed00be0040f4f5337f4',1,'btl.hh']]],
+  ['btl_5fmain_20',['BTL_MAIN',['../btl_8hh_a1b15c896d61bf404b5803fe2d57f9876.html#a1b15c896d61bf404b5803fe2d57f9876',1,'btl.hh']]]
+];

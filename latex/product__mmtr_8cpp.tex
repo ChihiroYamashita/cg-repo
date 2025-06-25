@@ -1,0 +1,67 @@
+\doxysection{eigen-\/3.4.0/eigen-\/3.4.0/test/product\+\_\+mmtr.cpp ファイル}
+\hypertarget{product__mmtr_8cpp}{}\label{product__mmtr_8cpp}\index{eigen-\/3.4.0/eigen-\/3.4.0/test/product\_mmtr.cpp@{eigen-\/3.4.0/eigen-\/3.4.0/test/product\_mmtr.cpp}}
+{\ttfamily \#include "{}main.\+h"{}}\newline
+product\+\_\+mmtr.\+cpp の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{product__mmtr_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{product__mmtr_8cpp_a0fb78d20bedc1b2cd30fd5aaa80fea4b_a0fb78d20bedc1b2cd30fd5aaa80fea4b}{CHECK\+\_\+\+MMTR}}(DEST,  TRI,  \mbox{\hyperlink{common_8h_a63a3664cbdee9b346c8d91509aa829f7_a63a3664cbdee9b346c8d91509aa829f7}{OP}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} $>$ }\\void \mbox{\hyperlink{product__mmtr_8cpp_a3e9a41c6ca250d9082477e3e404dbe31_a3e9a41c6ca250d9082477e3e404dbe31}{mmtr}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}})
+\item 
+\mbox{\hyperlink{product__mmtr_8cpp_af4dcf55bd00d38c8923900da10a4ef18_af4dcf55bd00d38c8923900da10a4ef18}{EIGEN\+\_\+\+DECLARE\+\_\+\+TEST}} (product\+\_\+mmtr)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{product__mmtr_8cpp_a0fb78d20bedc1b2cd30fd5aaa80fea4b_a0fb78d20bedc1b2cd30fd5aaa80fea4b}\index{product\_mmtr.cpp@{product\_mmtr.cpp}!CHECK\_MMTR@{CHECK\_MMTR}}
+\index{CHECK\_MMTR@{CHECK\_MMTR}!product\_mmtr.cpp@{product\_mmtr.cpp}}
+\doxysubsubsection{\texorpdfstring{CHECK\_MMTR}{CHECK\_MMTR}}
+{\footnotesize\ttfamily \label{product__mmtr_8cpp_a0fb78d20bedc1b2cd30fd5aaa80fea4b_a0fb78d20bedc1b2cd30fd5aaa80fea4b} 
+\#define CHECK\+\_\+\+MMTR(\begin{DoxyParamCaption}\item[{}]{DEST}{, }\item[{}]{TRI}{, }\item[{}]{\mbox{\hyperlink{common_8h_a63a3664cbdee9b346c8d91509aa829f7_a63a3664cbdee9b346c8d91509aa829f7}{OP}}}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ ref3\ =\ DEST;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ ref2\ =\ ref1\ =\ DEST;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ DEST.template\ triangularView<TRI>()\ \mbox{\hyperlink{common_8h_a63a3664cbdee9b346c8d91509aa829f7_a63a3664cbdee9b346c8d91509aa829f7}{OP}};\ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ ref1\ \mbox{\hyperlink{common_8h_a63a3664cbdee9b346c8d91509aa829f7_a63a3664cbdee9b346c8d91509aa829f7}{OP}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ ref2.template\ triangularView<TRI>()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ =\ ref1.template\ triangularView<TRI>();\ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(DEST,ref2);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ DEST\ =\ ref3;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ ref3\ =\ ref2;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ ref3.\mbox{\hyperlink{diagonal_8cpp_a92340af6dbaaba622e275be130b27f4b_a92340af6dbaaba622e275be130b27f4b}{diagonal}}()\ =\ DEST.\mbox{\hyperlink{diagonal_8cpp_a92340af6dbaaba622e275be130b27f4b_a92340af6dbaaba622e275be130b27f4b}{diagonal}}();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ DEST.template\ triangularView<TRI|\mbox{\hyperlink{group__enums_ga39e3366ff5554d731e7dc8bb642f83cd_gga39e3366ff5554d731e7dc8bb642f83cdac4dc554a61510151ddd5bafaf6040223}{ZeroDiag}}>()\ \mbox{\hyperlink{common_8h_a63a3664cbdee9b346c8d91509aa829f7_a63a3664cbdee9b346c8d91509aa829f7}{OP}};\ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(DEST,ref3);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{product__mmtr_8cpp_af4dcf55bd00d38c8923900da10a4ef18_af4dcf55bd00d38c8923900da10a4ef18}\index{product\_mmtr.cpp@{product\_mmtr.cpp}!EIGEN\_DECLARE\_TEST@{EIGEN\_DECLARE\_TEST}}
+\index{EIGEN\_DECLARE\_TEST@{EIGEN\_DECLARE\_TEST}!product\_mmtr.cpp@{product\_mmtr.cpp}}
+\doxysubsubsection{\texorpdfstring{EIGEN\_DECLARE\_TEST()}{EIGEN\_DECLARE\_TEST()}}
+{\footnotesize\ttfamily \label{product__mmtr_8cpp_af4dcf55bd00d38c8923900da10a4ef18_af4dcf55bd00d38c8923900da10a4ef18} 
+EIGEN\+\_\+\+DECLARE\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{product\+\_\+mmtr}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{product__mmtr_8cpp_a3e9a41c6ca250d9082477e3e404dbe31_a3e9a41c6ca250d9082477e3e404dbe31}\index{product\_mmtr.cpp@{product\_mmtr.cpp}!mmtr@{mmtr}}
+\index{mmtr@{mmtr}!product\_mmtr.cpp@{product\_mmtr.cpp}}
+\doxysubsubsection{\texorpdfstring{mmtr()}{mmtr()}}
+{\footnotesize\ttfamily \label{product__mmtr_8cpp_a3e9a41c6ca250d9082477e3e404dbe31_a3e9a41c6ca250d9082477e3e404dbe31} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} $>$ \\
+void mmtr (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{size}{}\end{DoxyParamCaption})}
+

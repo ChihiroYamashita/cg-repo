@@ -1,0 +1,119 @@
+\doxysection{eigen-\/3.4.0/eigen-\/3.4.0/bench/sparse\+\_\+trisolver.cpp ファイル}
+\hypertarget{sparse__trisolver_8cpp}{}\label{sparse__trisolver_8cpp}\index{eigen-\/3.4.0/eigen-\/3.4.0/bench/sparse\_trisolver.cpp@{eigen-\/3.4.0/eigen-\/3.4.0/bench/sparse\_trisolver.cpp}}
+{\ttfamily \#include "{}Bench\+Sparse\+Util.\+h"{}}\newline
+sparse\+\_\+trisolver.\+cpp の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sparse__trisolver_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sparse__trisolver_8cpp_a70ed59adcb4159ac551058053e649640_a70ed59adcb4159ac551058053e649640}{SIZE}}~10000
+\item 
+\#define \mbox{\hyperlink{sparse__trisolver_8cpp_a8653167a303d0c18dd3260d76c622da4_a8653167a303d0c18dd3260d76c622da4}{DENSITY}}~0.\+01
+\item 
+\#define \mbox{\hyperlink{sparse__trisolver_8cpp_a2c9384c67919c632913b8db2088f8341_a2c9384c67919c632913b8db2088f8341}{REPEAT}}~1
+\item 
+\#define \mbox{\hyperlink{sparse__trisolver_8cpp_a4290054d7292918fb1fcb4c7166eca81_a4290054d7292918fb1fcb4c7166eca81}{MINDENSITY}}~0.\+0004
+\item 
+\#define \mbox{\hyperlink{sparse__trisolver_8cpp_a4ba7e63cc7b53c648c5b2d15a2ee6dba_a4ba7e63cc7b53c648c5b2d15a2ee6dba}{NBTRIES}}~10
+\item 
+\#define \mbox{\hyperlink{sparse__trisolver_8cpp_a5fcf11b9dba96e1e0555440c480f839c_a5fcf11b9dba96e1e0555440c480f839c}{BENCH}}(\mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{型定義}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Upper\+Triangular $>$ \mbox{\hyperlink{sparse__trisolver_8cpp_aaf1794fd117347fd7138a21427e72d27_aaf1794fd117347fd7138a21427e72d27}{Eigen\+Sparse\+Tri\+Matrix}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Row\+Major\+Bit\texorpdfstring{$\vert$}{|}Upper\+Triangular $>$ \mbox{\hyperlink{sparse__trisolver_8cpp_aee50e5a860e4ca7315781034a933d342_aee50e5a860e4ca7315781034a933d342}{Eigen\+Sparse\+Tri\+Matrix\+Row}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{sparse__trisolver_8cpp_a5e03836aa3a43d0fc2d367ee4b51dd6b_a5e03836aa3a43d0fc2d367ee4b51dd6b}{fill\+Matrix}} (float density, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}}, \mbox{\hyperlink{sparse__trisolver_8cpp_aaf1794fd117347fd7138a21427e72d27_aaf1794fd117347fd7138a21427e72d27}{Eigen\+Sparse\+Tri\+Matrix}} \&dst)
+\item 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{sparse__trisolver_8cpp_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97}{main}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{sparse__trisolver_8cpp_a5fcf11b9dba96e1e0555440c480f839c_a5fcf11b9dba96e1e0555440c480f839c}\index{sparse\_trisolver.cpp@{sparse\_trisolver.cpp}!BENCH@{BENCH}}
+\index{BENCH@{BENCH}!sparse\_trisolver.cpp@{sparse\_trisolver.cpp}}
+\doxysubsubsection{\texorpdfstring{BENCH}{BENCH}}
+{\footnotesize\ttfamily \label{sparse__trisolver_8cpp_a5fcf11b9dba96e1e0555440c480f839c_a5fcf11b9dba96e1e0555440c480f839c} 
+\#define BENCH(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}}}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ timer.reset();\ \(\backslash\)}
+\DoxyCodeLine{\ \ for\ (\textcolor{keywordtype}{int}\ \_j=0;\ \_j<\mbox{\hyperlink{sparse__trisolver_8cpp_a4ba7e63cc7b53c648c5b2d15a2ee6dba_a4ba7e63cc7b53c648c5b2d15a2ee6dba}{NBTRIES}};\ ++\_j)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ timer.start();\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ for\ (\textcolor{keywordtype}{int}\ \_k=0;\ \_k<\mbox{\hyperlink{sparse__trisolver_8cpp_a2c9384c67919c632913b8db2088f8341_a2c9384c67919c632913b8db2088f8341}{REPEAT}};\ ++\_k)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}}\ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \}\ timer.stop();\ \}}
+
+\end{DoxyCode}
+\Hypertarget{sparse__trisolver_8cpp_a8653167a303d0c18dd3260d76c622da4_a8653167a303d0c18dd3260d76c622da4}\index{sparse\_trisolver.cpp@{sparse\_trisolver.cpp}!DENSITY@{DENSITY}}
+\index{DENSITY@{DENSITY}!sparse\_trisolver.cpp@{sparse\_trisolver.cpp}}
+\doxysubsubsection{\texorpdfstring{DENSITY}{DENSITY}}
+{\footnotesize\ttfamily \label{sparse__trisolver_8cpp_a8653167a303d0c18dd3260d76c622da4_a8653167a303d0c18dd3260d76c622da4} 
+\#define DENSITY~0.\+01}
+
+\Hypertarget{sparse__trisolver_8cpp_a4290054d7292918fb1fcb4c7166eca81_a4290054d7292918fb1fcb4c7166eca81}\index{sparse\_trisolver.cpp@{sparse\_trisolver.cpp}!MINDENSITY@{MINDENSITY}}
+\index{MINDENSITY@{MINDENSITY}!sparse\_trisolver.cpp@{sparse\_trisolver.cpp}}
+\doxysubsubsection{\texorpdfstring{MINDENSITY}{MINDENSITY}}
+{\footnotesize\ttfamily \label{sparse__trisolver_8cpp_a4290054d7292918fb1fcb4c7166eca81_a4290054d7292918fb1fcb4c7166eca81} 
+\#define MINDENSITY~0.\+0004}
+
+\Hypertarget{sparse__trisolver_8cpp_a4ba7e63cc7b53c648c5b2d15a2ee6dba_a4ba7e63cc7b53c648c5b2d15a2ee6dba}\index{sparse\_trisolver.cpp@{sparse\_trisolver.cpp}!NBTRIES@{NBTRIES}}
+\index{NBTRIES@{NBTRIES}!sparse\_trisolver.cpp@{sparse\_trisolver.cpp}}
+\doxysubsubsection{\texorpdfstring{NBTRIES}{NBTRIES}}
+{\footnotesize\ttfamily \label{sparse__trisolver_8cpp_a4ba7e63cc7b53c648c5b2d15a2ee6dba_a4ba7e63cc7b53c648c5b2d15a2ee6dba} 
+\#define NBTRIES~10}
+
+\Hypertarget{sparse__trisolver_8cpp_a2c9384c67919c632913b8db2088f8341_a2c9384c67919c632913b8db2088f8341}\index{sparse\_trisolver.cpp@{sparse\_trisolver.cpp}!REPEAT@{REPEAT}}
+\index{REPEAT@{REPEAT}!sparse\_trisolver.cpp@{sparse\_trisolver.cpp}}
+\doxysubsubsection{\texorpdfstring{REPEAT}{REPEAT}}
+{\footnotesize\ttfamily \label{sparse__trisolver_8cpp_a2c9384c67919c632913b8db2088f8341_a2c9384c67919c632913b8db2088f8341} 
+\#define REPEAT~1}
+
+\Hypertarget{sparse__trisolver_8cpp_a70ed59adcb4159ac551058053e649640_a70ed59adcb4159ac551058053e649640}\index{sparse\_trisolver.cpp@{sparse\_trisolver.cpp}!SIZE@{SIZE}}
+\index{SIZE@{SIZE}!sparse\_trisolver.cpp@{sparse\_trisolver.cpp}}
+\doxysubsubsection{\texorpdfstring{SIZE}{SIZE}}
+{\footnotesize\ttfamily \label{sparse__trisolver_8cpp_a70ed59adcb4159ac551058053e649640_a70ed59adcb4159ac551058053e649640} 
+\#define SIZE~10000}
+
+
+
+\doxysubsection{型定義詳解}
+\Hypertarget{sparse__trisolver_8cpp_aaf1794fd117347fd7138a21427e72d27_aaf1794fd117347fd7138a21427e72d27}\index{sparse\_trisolver.cpp@{sparse\_trisolver.cpp}!EigenSparseTriMatrix@{EigenSparseTriMatrix}}
+\index{EigenSparseTriMatrix@{EigenSparseTriMatrix}!sparse\_trisolver.cpp@{sparse\_trisolver.cpp}}
+\doxysubsubsection{\texorpdfstring{EigenSparseTriMatrix}{EigenSparseTriMatrix}}
+{\footnotesize\ttfamily \label{sparse__trisolver_8cpp_aaf1794fd117347fd7138a21427e72d27_aaf1794fd117347fd7138a21427e72d27} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}},Upper\+Triangular$>$ \mbox{\hyperlink{sparse__trisolver_8cpp_aaf1794fd117347fd7138a21427e72d27_aaf1794fd117347fd7138a21427e72d27}{Eigen\+Sparse\+Tri\+Matrix}}}
+
+\Hypertarget{sparse__trisolver_8cpp_aee50e5a860e4ca7315781034a933d342_aee50e5a860e4ca7315781034a933d342}\index{sparse\_trisolver.cpp@{sparse\_trisolver.cpp}!EigenSparseTriMatrixRow@{EigenSparseTriMatrixRow}}
+\index{EigenSparseTriMatrixRow@{EigenSparseTriMatrixRow}!sparse\_trisolver.cpp@{sparse\_trisolver.cpp}}
+\doxysubsubsection{\texorpdfstring{EigenSparseTriMatrixRow}{EigenSparseTriMatrixRow}}
+{\footnotesize\ttfamily \label{sparse__trisolver_8cpp_aee50e5a860e4ca7315781034a933d342_aee50e5a860e4ca7315781034a933d342} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}},Row\+Major\+Bit\texorpdfstring{$\vert$}{|}Upper\+Triangular$>$ \mbox{\hyperlink{sparse__trisolver_8cpp_aee50e5a860e4ca7315781034a933d342_aee50e5a860e4ca7315781034a933d342}{Eigen\+Sparse\+Tri\+Matrix\+Row}}}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{sparse__trisolver_8cpp_a5e03836aa3a43d0fc2d367ee4b51dd6b_a5e03836aa3a43d0fc2d367ee4b51dd6b}\index{sparse\_trisolver.cpp@{sparse\_trisolver.cpp}!fillMatrix@{fillMatrix}}
+\index{fillMatrix@{fillMatrix}!sparse\_trisolver.cpp@{sparse\_trisolver.cpp}}
+\doxysubsubsection{\texorpdfstring{fillMatrix()}{fillMatrix()}}
+{\footnotesize\ttfamily \label{sparse__trisolver_8cpp_a5e03836aa3a43d0fc2d367ee4b51dd6b_a5e03836aa3a43d0fc2d367ee4b51dd6b} 
+void fill\+Matrix (\begin{DoxyParamCaption}\item[{float}]{density}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{rows}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{cols}{, }\item[{\mbox{\hyperlink{sparse__trisolver_8cpp_aaf1794fd117347fd7138a21427e72d27_aaf1794fd117347fd7138a21427e72d27}{Eigen\+Sparse\+Tri\+Matrix}} \&}]{dst}{}\end{DoxyParamCaption})}
+
+\Hypertarget{sparse__trisolver_8cpp_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97}\index{sparse\_trisolver.cpp@{sparse\_trisolver.cpp}!main@{main}}
+\index{main@{main}!sparse\_trisolver.cpp@{sparse\_trisolver.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{sparse__trisolver_8cpp_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97} 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} main (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{argv}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+

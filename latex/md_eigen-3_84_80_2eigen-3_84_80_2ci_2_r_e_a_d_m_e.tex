@@ -1,0 +1,69 @@
+\chapter{Eigen CI infrastructure}
+\hypertarget{md_eigen-3_84_80_2eigen-3_84_80_2ci_2_r_e_a_d_m_e}{}\label{md_eigen-3_84_80_2eigen-3_84_80_2ci_2_r_e_a_d_m_e}\index{Eigen CI infrastructure@{Eigen CI infrastructure}}
+\label{md_eigen-3_84_80_2eigen-3_84_80_2ci_2_r_e_a_d_m_e_autotoc_md91}%
+\Hypertarget{md_eigen-3_84_80_2eigen-3_84_80_2ci_2_r_e_a_d_m_e_autotoc_md91}%
+
+
+\doxylink{namespace_eigen}{Eigen}\textquotesingle{}s CI infrastructure uses two stages\+: A {\ttfamily build} stage to build the unit-\/test suite and a {\ttfamily test} stage to run the unit-\/tests.\hypertarget{md_eigen-3_84_80_2eigen-3_84_80_2ci_2_r_e_a_d_m_e_autotoc_md92}{}\doxysubsection{\texorpdfstring{Build Stage}{Build Stage}}\label{md_eigen-3_84_80_2eigen-3_84_80_2ci_2_r_e_a_d_m_e_autotoc_md92}
+The build stage consists of the following jobs\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Job Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Arch   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ OS   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Compiler   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ C++11    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Job Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Arch   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ OS   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Compiler   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ C++11    }\\\cline{1-5}
+\endhead
+{\ttfamily build\+:x86-\/64\+:linux\+:gcc-\/4.\+8\+:cxx11-\/off}   &{\ttfamily x86-\/64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily GCC-\/4.\+8}   &{\ttfamily Off}    \\\cline{1-5}
+{\ttfamily build\+:x86-\/64\+:linux\+:gcc-\/4.\+8\+:cxx11-\/on}   &{\ttfamily x86-\/64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily GCC-\/4.\+8}   &{\ttfamily On}    \\\cline{1-5}
+{\ttfamily build\+:x86-\/64\+:linux\+:gcc-\/9\+:cxx11-\/off}   &{\ttfamily x86-\/64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily GCC-\/9}   &{\ttfamily Off}    \\\cline{1-5}
+{\ttfamily build\+:x86-\/64\+:linux\+:gcc-\/9\+:cxx11-\/on}   &{\ttfamily x86-\/64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily GCC-\/9}   &{\ttfamily On}    \\\cline{1-5}
+{\ttfamily build\+:x86-\/64\+:linux\+:gcc-\/10\+:cxx11-\/off}   &{\ttfamily x86-\/64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily GCC-\/10}   &{\ttfamily Off}    \\\cline{1-5}
+{\ttfamily build\+:x86-\/64\+:linux\+:gcc-\/10\+:cxx11-\/on}   &{\ttfamily x86-\/64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily GCC-\/10}   &{\ttfamily On}    \\\cline{1-5}
+{\ttfamily build\+:x86-\/64\+:linux\+:clang-\/10\+:cxx11-\/off}   &{\ttfamily x86-\/64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily Clang-\/10}   &{\ttfamily Off}    \\\cline{1-5}
+{\ttfamily build\+:x86-\/64\+:linux\+:clang-\/10\+:cxx11-\/on}   &{\ttfamily x86-\/64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily Clang-\/10}   &{\ttfamily On}    \\\cline{1-5}
+{\ttfamily build\+:aarch64\+:linux\+:gcc-\/10\+:cxx11-\/off}   &{\ttfamily AArch64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily GCC-\/10}   &{\ttfamily Off}    \\\cline{1-5}
+{\ttfamily build\+:aarch64\+:linux\+:gcc-\/10\+:cxx11-\/on}   &{\ttfamily AArch64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily GCC-\/10}   &{\ttfamily On}    \\\cline{1-5}
+{\ttfamily build\+:aarch64\+:linux\+:clang-\/10\+:cxx11-\/off}   &{\ttfamily AArch64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily Clang-\/10}   &{\ttfamily Off}    \\\cline{1-5}
+{\ttfamily build\+:aarch64\+:linux\+:clang-\/10\+:cxx11-\/on}   &{\ttfamily AArch64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily Clang-\/10}   &{\ttfamily On}   \\\cline{1-5}
+\end{longtabu}
+\hypertarget{md_eigen-3_84_80_2eigen-3_84_80_2ci_2_r_e_a_d_m_e_autotoc_md93}{}\doxysubsection{\texorpdfstring{Test stage}{Test stage}}\label{md_eigen-3_84_80_2eigen-3_84_80_2ci_2_r_e_a_d_m_e_autotoc_md93}
+In principle every build-\/job has a corresponding test-\/job, however testing supported and unsupported modules is divided into separate jobs. The test jobs in detail\+:\hypertarget{md_eigen-3_84_80_2eigen-3_84_80_2ci_2_r_e_a_d_m_e_autotoc_md94}{}\doxysubsection{\texorpdfstring{Job dependecies}{Job dependecies}}\label{md_eigen-3_84_80_2eigen-3_84_80_2ci_2_r_e_a_d_m_e_autotoc_md94}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{6}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Job Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Arch   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ OS   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Compiler   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ C++11   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Module    }\\\cline{1-6}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Job Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Arch   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ OS   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Compiler   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ C++11   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Module    }\\\cline{1-6}
+\endhead
+{\ttfamily test\+:x86-\/64\+:linux\+:gcc-\/4.\+8\+:cxx11-\/off\+:official}   &{\ttfamily x86-\/64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily GCC-\/4.\+8}   &{\ttfamily Off}   &{\ttfamily Official}    \\\cline{1-6}
+{\ttfamily test\+:x86-\/64\+:linux\+:gcc-\/4.\+8\+:cxx11-\/off\+:unsupported}   &{\ttfamily x86-\/64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily GCC-\/4.\+8}   &{\ttfamily Off}   &{\ttfamily Unsupported}    \\\cline{1-6}
+{\ttfamily test\+:x86-\/64\+:linux\+:gcc-\/4.\+8\+:cxx11-\/on\+:official}   &{\ttfamily x86-\/64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily GCC-\/4.\+8}   &{\ttfamily On}   &{\ttfamily Official}    \\\cline{1-6}
+{\ttfamily test\+:x86-\/64\+:linux\+:gcc-\/4.\+8\+:cxx11-\/on\+:unsupported}   &{\ttfamily x86-\/64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily GCC-\/4.\+8}   &{\ttfamily On}   &{\ttfamily Unsupported}    \\\cline{1-6}
+{\ttfamily test\+:x86-\/64\+:linux\+:gcc-\/9\+:cxx11-\/off\+:official}   &{\ttfamily x86-\/64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily GCC-\/9}   &{\ttfamily Off}   &{\ttfamily Official}    \\\cline{1-6}
+{\ttfamily test\+:x86-\/64\+:linux\+:gcc-\/9\+:cxx11-\/off\+:unsupported}   &{\ttfamily x86-\/64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily GCC-\/9}   &{\ttfamily Off}   &{\ttfamily Unsupported}    \\\cline{1-6}
+{\ttfamily test\+:x86-\/64\+:linux\+:gcc-\/9\+:cxx11-\/on\+:official}   &{\ttfamily x86-\/64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily GCC-\/9}   &{\ttfamily On}   &{\ttfamily Official}    \\\cline{1-6}
+{\ttfamily test\+:x86-\/64\+:linux\+:gcc-\/9\+:cxx11-\/on\+:unsupported}   &{\ttfamily x86-\/64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily GCC-\/9}   &{\ttfamily On}   &{\ttfamily Unsupported}    \\\cline{1-6}
+{\ttfamily test\+:x86-\/64\+:linux\+:gcc-\/10\+:cxx11-\/off\+:official}   &{\ttfamily x86-\/64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily GCC-\/10}   &{\ttfamily Off}   &{\ttfamily Official}    \\\cline{1-6}
+{\ttfamily test\+:x86-\/64\+:linux\+:gcc-\/10\+:cxx11-\/off\+:unsupported}   &{\ttfamily x86-\/64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily GCC-\/10}   &{\ttfamily Off}   &{\ttfamily Unsupported}    \\\cline{1-6}
+{\ttfamily test\+:x86-\/64\+:linux\+:gcc-\/10\+:cxx11-\/on\+:official}   &{\ttfamily x86-\/64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily GCC-\/10}   &{\ttfamily On}   &{\ttfamily Official}    \\\cline{1-6}
+{\ttfamily test\+:x86-\/64\+:linux\+:gcc-\/10\+:cxx11-\/on\+:unsupported}   &{\ttfamily x86-\/64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily GCC-\/10}   &{\ttfamily On}   &{\ttfamily Unsupported}    \\\cline{1-6}
+{\ttfamily test\+:x86-\/64\+:linux\+:clang-\/10\+:cxx11-\/off\+:official}   &{\ttfamily x86-\/64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily Clang-\/10}   &{\ttfamily Off}   &{\ttfamily Official}    \\\cline{1-6}
+{\ttfamily test\+:x86-\/64\+:linux\+:clang-\/10\+:cxx11-\/off\+:unsupported}   &{\ttfamily x86-\/64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily Clang-\/10}   &{\ttfamily Off}   &{\ttfamily Unsupported}    \\\cline{1-6}
+{\ttfamily test\+:x86-\/64\+:linux\+:clang-\/10\+:cxx11-\/on\+:official}   &{\ttfamily x86-\/64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily Clang-\/10}   &{\ttfamily On}   &{\ttfamily Official}    \\\cline{1-6}
+{\ttfamily test\+:x86-\/64\+:linux\+:clang-\/10\+:cxx11-\/on\+:unsupported}   &{\ttfamily x86-\/64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily Clang-\/10}   &{\ttfamily On}   &{\ttfamily Unsupported}    \\\cline{1-6}
+{\ttfamily test\+:aarch64\+:linux\+:gcc-\/10\+:cxx11-\/off\+:official}   &{\ttfamily AArch64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily GCC-\/10}   &{\ttfamily Off}   &{\ttfamily Official}    \\\cline{1-6}
+{\ttfamily test\+:aarch64\+:linux\+:gcc-\/10\+:cxx11-\/off\+:unsupported}   &{\ttfamily AArch64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily GCC-\/10}   &{\ttfamily Off}   &{\ttfamily Unsupported}    \\\cline{1-6}
+{\ttfamily test\+:aarch64\+:linux\+:gcc-\/10\+:cxx11-\/on\+:official}   &{\ttfamily AArch64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily GCC-\/10}   &{\ttfamily On}   &{\ttfamily Official}    \\\cline{1-6}
+{\ttfamily test\+:aarch64\+:linux\+:gcc-\/10\+:cxx11-\/on\+:unsupported}   &{\ttfamily AArch64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily GCC-\/10}   &{\ttfamily On}   &{\ttfamily Unsupported}    \\\cline{1-6}
+{\ttfamily test\+:aarch64\+:linux\+:clang-\/10\+:cxx11-\/off\+:official}   &{\ttfamily AArch64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily Clang-\/10}   &{\ttfamily Off}   &{\ttfamily Official}    \\\cline{1-6}
+{\ttfamily test\+:aarch64\+:linux\+:clang-\/10\+:cxx11-\/off\+:unsupported}   &{\ttfamily AArch64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily Clang-\/10}   &{\ttfamily Off}   &{\ttfamily Unsupported}    \\\cline{1-6}
+{\ttfamily test\+:aarch64\+:linux\+:clang-\/10\+:cxx11-\/on\+:official}   &{\ttfamily AArch64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily Clang-\/10}   &{\ttfamily On}   &{\ttfamily Official}    \\\cline{1-6}
+{\ttfamily test\+:aarch64\+:linux\+:clang-\/10\+:cxx11-\/on\+:unsupported}   &{\ttfamily AArch64}   &{\ttfamily Ubuntu 18.\+04}   &{\ttfamily Clang-\/10}   &{\ttfamily On}   &{\ttfamily Unsupported}   \\\cline{1-6}
+\end{longtabu}

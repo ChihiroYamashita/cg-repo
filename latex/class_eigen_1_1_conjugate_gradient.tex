@@ -1,0 +1,386 @@
+\doxysection{Eigen\+::Conjugate\+Gradient\texorpdfstring{$<$}{<} \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner \texorpdfstring{$>$}{>} クラステンプレート}
+\hypertarget{class_eigen_1_1_conjugate_gradient}{}\label{class_eigen_1_1_conjugate_gradient}\index{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}}
+
+
+A conjugate gradient solver for sparse (or dense) self-\/adjoint problems  
+
+
+
+
+{\ttfamily \#include $<$Conjugate\+Gradient.\+h$>$}
+
+
+
+Eigen\+::Conjugate\+Gradient\texorpdfstring{$<$}{<} \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner \texorpdfstring{$>$}{>} の継承関係図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_eigen_1_1_conjugate_gradient__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Eigen\+::Conjugate\+Gradient\texorpdfstring{$<$}{<} \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_eigen_1_1_conjugate_gradient__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient_afd126c60a6099ecdff61709703b0a9f5_afd126c60a6099ecdff61709703b0a9f5a4a8e0eab77daad2f99dbcab7a83f2117}{Up\+Lo}} = \+\_\+\+Up\+Lo
+ \}
+\item 
+typedef \+\_\+\+Matrix\+Type \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient_a370cf0e8784995c5ce6c5cfe57f9f8e9_a370cf0e8784995c5ce6c5cfe57f9f8e9}{Matrix\+Type}}
+\item 
+typedef Matrix\+Type\+::\+Scalar \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient_a810d60b8d66d4573d42dbd8c90c18110_a810d60b8d66d4573d42dbd8c90c18110}{Scalar}}
+\item 
+typedef Matrix\+Type\+::\+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient_a94493af3f4fcbd0a850d6e25b8626ebf_a94493af3f4fcbd0a850d6e25b8626ebf}{Real\+Scalar}}
+\item 
+typedef \+\_\+\+Preconditioner \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient_acad0688f79114f86ffe2e294bf537e62_acad0688f79114f86ffe2e294bf537e62}{Preconditioner}}
+\end{DoxyCompactItemize}
+\doxysubsection*{基底クラス \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base$<$ Conjugate\+Gradient$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$ $>$}} に属する継承公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum 
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Conjugate\+Gradient}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$ $>$\mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{\+::\+Matrix\+Type}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ac3c4db3ee580cfb0b77e7cfa3834a6c0_ac3c4db3ee580cfb0b77e7cfa3834a6c0}{Matrix\+Type}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Conjugate\+Gradient}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$ $>$\+::\+Preconditioner \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a7353e13772e925d2eca72dc6f843b75d_a7353e13772e925d2eca72dc6f843b75d}{Preconditioner}}
+\item 
+typedef Matrix\+Type\+::\+Scalar \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a0858c6906bf3e84d6085e6d353158c2c_a0858c6906bf3e84d6085e6d353158c2c}{Scalar}}
+\item 
+typedef Matrix\+Type\+::\+Storage\+Index \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a6b5f4d476b5533681aa1c4f119358176_a6b5f4d476b5533681aa1c4f119358176}{Storage\+Index}}
+\item 
+typedef Matrix\+Type\+::\+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a25f79b6bae22e2bef46d865b7917bf7b_a25f79b6bae22e2bef46d865b7917bf7b}{Real\+Scalar}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_conjugate_gradient_a92a9656ca9fa4da240194f89229255eb_a92a9656ca9fa4da240194f89229255eb}{Conjugate\+Gradient}} ()
+\item 
+{\footnotesize template$<$typename Matrix\+Derived $>$ }\\\mbox{\hyperlink{class_eigen_1_1_conjugate_gradient_ac10f778fcd137eca1f6057c8ddd3d644_ac10f778fcd137eca1f6057c8ddd3d644}{Conjugate\+Gradient}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Matrix\+Derived $>$ \&\mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}})
+\item 
+\mbox{\hyperlink{class_eigen_1_1_conjugate_gradient_a9c1c5dc0312d20074ecf1fb3874bd1ff_a9c1c5dc0312d20074ecf1fb3874bd1ff}{\texorpdfstring{$\sim$}{\string~}\+Conjugate\+Gradient}} ()
+\item 
+{\footnotesize template$<$typename Rhs , typename Dest $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient_a8567a9ef1f9b2c4ed182e0e0c16d90f2_a8567a9ef1f9b2c4ed182e0e0c16d90f2}{\+\_\+solve\+\_\+vector\+\_\+with\+\_\+guess\+\_\+impl}} (const Rhs \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, Dest \&\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}) const
+\end{DoxyCompactItemize}
+\doxysubsection*{基底クラス \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base$<$ Conjugate\+Gradient$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$ $>$}} に属する継承公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a0922f2be45082690d7734aa6732fc493_a0922f2be45082690d7734aa6732fc493}{Iterative\+Solver\+Base}} ()
+\item 
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a3c68fe3cd929ea1ff8a0d4cbcd65ebad_a3c68fe3cd929ea1ff8a0d4cbcd65ebad}{Iterative\+Solver\+Base}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Matrix\+Derived $>$ \&\mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}})
+\item 
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_aa09ca3c6944b3efb69a9e47f4fa69857_aa09ca3c6944b3efb69a9e47f4fa69857}{\texorpdfstring{$\sim$}{\string~}\+Iterative\+Solver\+Base}} ()
+\item 
+\mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Conjugate\+Gradient}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$ \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a7490c6531b523f768c0fb3b44f251dad_a7490c6531b523f768c0fb3b44f251dad}{analyze\+Pattern}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Matrix\+Derived $>$ \&\mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}})
+\item 
+\mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Conjugate\+Gradient}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$ \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a86f8f9865bedacfdf2322f52dde78e23_a86f8f9865bedacfdf2322f52dde78e23}{factorize}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Matrix\+Derived $>$ \&\mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}})
+\item 
+\mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Conjugate\+Gradient}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$ \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a3b0d9691964793bd55937666426fefbf_a3b0d9691964793bd55937666426fefbf}{compute}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Matrix\+Derived $>$ \&\mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}})
+\item 
+\mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a3f172c95041d588715d7193f528f43a0_a3f172c95041d588715d7193f528f43a0}{rows}} () const \mbox{\hyperlink{_macros_8h_a532c42c61426cc18d84097e29577acf8_a532c42c61426cc18d84097e29577acf8}{EIGEN\+\_\+\+NOEXCEPT}}
+\item 
+\mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a78efb7c93b11421a0e30edc235cdfcb5_a78efb7c93b11421a0e30edc235cdfcb5}{cols}} () const \mbox{\hyperlink{_macros_8h_a532c42c61426cc18d84097e29577acf8_a532c42c61426cc18d84097e29577acf8}{EIGEN\+\_\+\+NOEXCEPT}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a25f79b6bae22e2bef46d865b7917bf7b_a25f79b6bae22e2bef46d865b7917bf7b}{Real\+Scalar}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_acb442c19b5858d6b9be813dd7d36cc62_acb442c19b5858d6b9be813dd7d36cc62}{tolerance}} () const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Conjugate\+Gradient}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$ \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ac43c50c69a5b621cb5a9991a1005750d_ac43c50c69a5b621cb5a9991a1005750d}{set\+Tolerance}} (const \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a25f79b6bae22e2bef46d865b7917bf7b_a25f79b6bae22e2bef46d865b7917bf7b}{Real\+Scalar}} \&\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_acb442c19b5858d6b9be813dd7d36cc62_acb442c19b5858d6b9be813dd7d36cc62}{tolerance}})
+\item 
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a7353e13772e925d2eca72dc6f843b75d_a7353e13772e925d2eca72dc6f843b75d}{Preconditioner}} \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ab30e1bca8ebbd91d977306bb94e093b9_ab30e1bca8ebbd91d977306bb94e093b9}{preconditioner}} ()
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a7353e13772e925d2eca72dc6f843b75d_a7353e13772e925d2eca72dc6f843b75d}{Preconditioner}} \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a640bfaf268c64f35ac3996beece46021_a640bfaf268c64f35ac3996beece46021}{preconditioner}} () const
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a168a74c8dceb6233b220031fdd756ba0_a168a74c8dceb6233b220031fdd756ba0}{max\+Iterations}} () const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Conjugate\+Gradient}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$ \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a1bbaf86b7df6d54e78ced4da6ed2dac1_a1bbaf86b7df6d54e78ced4da6ed2dac1}{set\+Max\+Iterations}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} max\+Iters)
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ae778dd098bd5e6655625b20b1e9f15da_ae778dd098bd5e6655625b20b1e9f15da}{iterations}} () const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a25f79b6bae22e2bef46d865b7917bf7b_a25f79b6bae22e2bef46d865b7917bf7b}{Real\+Scalar}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a117c241af3fb1141ad0916a3cf3157ec_a117c241af3fb1141ad0916a3cf3157ec}{error}} () const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_solve_with_guess}{Solve\+With\+Guess}}$<$ \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Conjugate\+Gradient}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$, Rhs, Guess $>$ \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ad8b889910ed260591652f22c640d6a20_ad8b889910ed260591652f22c640d6a20}{solve\+With\+Guess}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, const Guess \&x0) const
+\item 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a0d6b459433a316b4f12d48e5c80d61fe_a0d6b459433a316b4f12d48e5c80d61fe}{info}} () const
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a9f2403e90106dcff20966cbc54ea38ff_a9f2403e90106dcff20966cbc54ea38ff}{\+\_\+solve\+\_\+with\+\_\+guess\+\_\+impl}} (const Rhs \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Dest\+Derived $>$ \&a\+Dest) const
+\item 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{internal\+::enable\+\_\+if}}$<$ Rhs\+::\+Cols\+At\+Compile\+Time!=1 \&\&Dest\+Derived\+::\+Cols\+At\+Compile\+Time!=1 $>$\+::type \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ab8a10c52be0bf7437a163a742b89b5c6_ab8a10c52be0bf7437a163a742b89b5c6}{\+\_\+solve\+\_\+with\+\_\+guess\+\_\+impl}} (const Rhs \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Dest\+Derived $>$ \&a\+Dest) const
+\item 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{internal\+::enable\+\_\+if}}$<$ Rhs\+::\+Cols\+At\+Compile\+Time==1\texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|}Dest\+Derived\+::\+Cols\+At\+Compile\+Time==1 $>$\+::type \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a3d877ee6f90593ed9fbd1eeba11aba6f_a3d877ee6f90593ed9fbd1eeba11aba6f}{\+\_\+solve\+\_\+with\+\_\+guess\+\_\+impl}} (const Rhs \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Dest\+Derived $>$ \&dest) const
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a946a3c9598afbc6f93fbd4ac2742f6e2_a946a3c9598afbc6f93fbd4ac2742f6e2}{\+\_\+solve\+\_\+impl}} (const Rhs \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, Dest \&\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}) const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Conjugate\+Gradient}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$ \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ac8c149c121511c2f7e00a4b83d8b6791_ac8c149c121511c2f7e00a4b83d8b6791}{derived}} ()
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Conjugate\+Gradient}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$ \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_acd39421d74cb05d9413904c0d2596533_acd39421d74cb05d9413904c0d2596533}{derived}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{基底クラス \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Eigen\+::\+Sparse\+Solver\+Base$<$ Conjugate\+Gradient$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$ $>$}} に属する継承公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_aacd99fa17db475e74d3834767f392f33_aacd99fa17db475e74d3834767f392f33}{Sparse\+Solver\+Base}} ()
+\item 
+\mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_ac48acdbbbbe58e6ceb0d48566aa5b398_ac48acdbbbbe58e6ceb0d48566aa5b398}{\texorpdfstring{$\sim$}{\string~}\+Sparse\+Solver\+Base}} ()
+\item 
+\mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Conjugate\+Gradient}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$ \& \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_ac8c149c121511c2f7e00a4b83d8b6791_ac8c149c121511c2f7e00a4b83d8b6791}{derived}} ()
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Conjugate\+Gradient}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$ \& \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_acd39421d74cb05d9413904c0d2596533_acd39421d74cb05d9413904c0d2596533}{derived}} () const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$ \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Conjugate\+Gradient}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$, Rhs $>$ \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_a57c5b7f5e35274b55b5d57e8c88cc4a6_a57c5b7f5e35274b55b5d57e8c88cc4a6}{solve}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}) const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$ \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Conjugate\+Gradient}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$, Rhs $>$ \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_aa525407e654603e8275cefeda32054c9_aa525407e654603e8275cefeda32054c9}{solve}} (const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Rhs $>$ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}) const
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_a886c757fea6fe1d992a66524213f14fb_a886c757fea6fe1d992a66524213f14fb}{\+\_\+solve\+\_\+impl}} (const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Rhs $>$ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Dest $>$ \&dest) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{非公開型}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Iterative\+Solver\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Conjugate\+Gradient}} $>$ \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient_a0ca12272c828f671d28151e49437e639_a0ca12272c828f671d28151e49437e639}{Base}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{非公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ae81615068fa9dba95b8329fb30b14afe_ae81615068fa9dba95b8329fb30b14afe}{Actual\+Matrix\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient_af24f53813d56a98491957dabc1d2f7eb_af24f53813d56a98491957dabc1d2f7eb}{matrix}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{非公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_conjugate_gradient_a94493af3f4fcbd0a850d6e25b8626ebf_a94493af3f4fcbd0a850d6e25b8626ebf}{Real\+Scalar}} \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient_a9140af00eb517cb5677dd6e1a60fab80_a9140af00eb517cb5677dd6e1a60fab80}{m\+\_\+error}}
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient_aa1e43c88482d7d73394ec3229f6e8a4a_aa1e43c88482d7d73394ec3229f6e8a4a}{m\+\_\+iterations}}
+\item 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient_a283a3c6136f76e77ac29184352c3e940_a283a3c6136f76e77ac29184352c3e940}{m\+\_\+info}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{その他の継承メンバ}
+\doxysubsection*{基底クラス \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base$<$ Conjugate\+Gradient$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$ $>$}} に属する継承限定公開型}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Sparse\+Solver\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Conjugate\+Gradient}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$ $>$ \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a5b8654f08dd37b0622034ea0afb0d9dd_a5b8654f08dd37b0622034ea0afb0d9dd}{Base}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1internal_1_1generic__matrix__wrapper}{internal\+::generic\+\_\+matrix\+\_\+wrapper}}$<$ \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ac3c4db3ee580cfb0b77e7cfa3834a6c0_ac3c4db3ee580cfb0b77e7cfa3834a6c0}{Matrix\+Type}} $>$ \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a563a330953073333a64152842be50f0b_a563a330953073333a64152842be50f0b}{Matrix\+Wrapper}}
+\item 
+typedef Matrix\+Wrapper\+::\+Actual\+Matrix\+Type \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ae81615068fa9dba95b8329fb30b14afe_ae81615068fa9dba95b8329fb30b14afe}{Actual\+Matrix\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsection*{基底クラス \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base$<$ Conjugate\+Gradient$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$ $>$}} に属する継承限定公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a838f657cbd7a4e1e33941f386a4b4350_a838f657cbd7a4e1e33941f386a4b4350}{init}} ()
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ae81615068fa9dba95b8329fb30b14afe_ae81615068fa9dba95b8329fb30b14afe}{Actual\+Matrix\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_af24f53813d56a98491957dabc1d2f7eb_af24f53813d56a98491957dabc1d2f7eb}{matrix}} () const
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a5cc46e289554db119b042bd610e6cac0_a5cc46e289554db119b042bd610e6cac0}{grab}} (const Input\+Type \&\mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}})
+\end{DoxyCompactItemize}
+\doxysubsection*{基底クラス \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base$<$ Conjugate\+Gradient$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$ $>$}} に属する継承限定公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a563a330953073333a64152842be50f0b_a563a330953073333a64152842be50f0b}{Matrix\+Wrapper}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a6cecc757c4503912b48b86db453ec011_a6cecc757c4503912b48b86db453ec011}{m\+\_\+matrix\+Wrapper}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a7353e13772e925d2eca72dc6f843b75d_a7353e13772e925d2eca72dc6f843b75d}{Preconditioner}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a965e3600bc2a59bc24af0bdf8e7f4dd4_a965e3600bc2a59bc24af0bdf8e7f4dd4}{m\+\_\+preconditioner}}
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ab7278684bb9385aa785a29f8cb29e6dc_ab7278684bb9385aa785a29f8cb29e6dc}{m\+\_\+max\+Iterations}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a25f79b6bae22e2bef46d865b7917bf7b_a25f79b6bae22e2bef46d865b7917bf7b}{Real\+Scalar}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_acf34fdb3eb17a876810b9d6c5031e175_acf34fdb3eb17a876810b9d6c5031e175}{m\+\_\+tolerance}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a25f79b6bae22e2bef46d865b7917bf7b_a25f79b6bae22e2bef46d865b7917bf7b}{Real\+Scalar}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a9140af00eb517cb5677dd6e1a60fab80_a9140af00eb517cb5677dd6e1a60fab80}{m\+\_\+error}}
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_aa1e43c88482d7d73394ec3229f6e8a4a_aa1e43c88482d7d73394ec3229f6e8a4a}{m\+\_\+iterations}}
+\item 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a283a3c6136f76e77ac29184352c3e940_a283a3c6136f76e77ac29184352c3e940}{m\+\_\+info}}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a05ff023a1206fd498d72e38d3bc8c9ef_a05ff023a1206fd498d72e38d3bc8c9ef}{m\+\_\+analysis\+Is\+Ok}}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_a0e6d2376994c72cc75f571de2b1e76bc_a0e6d2376994c72cc75f571de2b1e76bc}{m\+\_\+factorization\+Is\+Ok}}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ac52101f69d048d5c4b036eadf1f13673_ac52101f69d048d5c4b036eadf1f13673}{m\+\_\+is\+Initialized}}
+\end{DoxyCompactItemize}
+\doxysubsection*{基底クラス \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Eigen\+::\+Sparse\+Solver\+Base$<$ Conjugate\+Gradient$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$ $>$}} に属する継承限定公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_ac52101f69d048d5c4b036eadf1f13673_ac52101f69d048d5c4b036eadf1f13673}{m\+\_\+is\+Initialized}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{詳解}
+\subsubsection*{template$<$typename \+\_\+\+Matrix\+Type, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Up\+Lo, typename \+\_\+\+Preconditioner$>$\newline
+class Eigen\+::\+Conjugate\+Gradient$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$}
+A conjugate gradient solver for sparse (or dense) self-\/adjoint problems 
+
+This class allows to solve for A.\+x = b linear problems using an iterative conjugate gradient algorithm. The matrix A must be selfadjoint. The matrix A and the vectors x and b can be either dense or sparse.
+
+
+\begin{DoxyTemplParams}{テンプレート引数}
+{\em \+\_\+\+Matrix\+Type} & the type of the matrix A, can be a dense or a sparse matrix. \\
+\hline
+{\em \+\_\+\+Up\+Lo} & the triangular part that will be used for the computations. It can be Lower, {\ttfamily Upper}, or {\ttfamily Lower\texorpdfstring{$\vert$}{|}\+Upper} in which the full matrix entries will be considered. Default is {\ttfamily Lower}, best performance is {\ttfamily Lower\texorpdfstring{$\vert$}{|}\+Upper}. \\
+\hline
+{\em \+\_\+\+Preconditioner} & the type of the preconditioner. Default is \doxylink{class_eigen_1_1_diagonal_preconditioner}{Diagonal\+Preconditioner}\\
+\hline
+\end{DoxyTemplParams}
+\textbackslash{}implsparsesolverconcept
+
+The maximal number of iterations and tolerance value can be controlled via the \doxylink{class_eigen_1_1_iterative_solver_base_a1bbaf86b7df6d54e78ced4da6ed2dac1_a1bbaf86b7df6d54e78ced4da6ed2dac1}{set\+Max\+Iterations()} and \doxylink{class_eigen_1_1_iterative_solver_base_ac43c50c69a5b621cb5a9991a1005750d_ac43c50c69a5b621cb5a9991a1005750d}{set\+Tolerance()} methods. The defaults are the size of the problem for the maximal number of iterations and \doxylink{struct_eigen_1_1_generic_num_traits_a3a573c69713fbb143fb49af7db463cee_a3a573c69713fbb143fb49af7db463cee}{Num\+Traits$<$\+Scalar$>$\+::epsilon()} for the tolerance.
+
+The tolerance corresponds to the relative residual error\+: \texorpdfstring{$\vert$}{|}\+Ax-\/b\texorpdfstring{$\vert$}{|}/\texorpdfstring{$\vert$}{|}b\texorpdfstring{$\vert$}{|}
+
+{\bfseries{Performance\+:}} Even though the default value of {\ttfamily \+\_\+\+Up\+Lo} is {\ttfamily Lower}, significantly higher performance is achieved when using a complete matrix and {\bfseries{Lower\texorpdfstring{$\vert$}{|}\+Upper}} as the {\itshape \+\_\+\+Up\+Lo} template parameter. Moreover, in this case multi-\/threading can be exploited if the user code is compiled with Open\+MP enabled. See \doxylink{TopicMultiThreading}{Eigen and multi-\/threading} for details.
+
+This class can be used as the direct solver classes. Here is a typical usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}\ =\ 10000;}
+\DoxyCodeLine{VectorXd\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}),\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}});}
+\DoxyCodeLine{SparseMatrix<double>\ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}},\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}});}
+\DoxyCodeLine{\textcolor{comment}{//\ fill\ A\ and\ b}}
+\DoxyCodeLine{\mbox{\hyperlink{class_eigen_1_1_conjugate_gradient_a92a9656ca9fa4da240194f89229255eb_a92a9656ca9fa4da240194f89229255eb}{ConjugateGradient<SparseMatrix<double>}},\ \mbox{\hyperlink{group__enums_ga39e3366ff5554d731e7dc8bb642f83cd_gga39e3366ff5554d731e7dc8bb642f83cdaf581029282d421eee5aae14238c6f749}{Lower}}|\mbox{\hyperlink{group__enums_ga39e3366ff5554d731e7dc8bb642f83cd_gga39e3366ff5554d731e7dc8bb642f83cdafca2ccebb604f171656deb53e8c083c1}{Upper}}>\ cg;}
+\DoxyCodeLine{cg.compute(\mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}});}
+\DoxyCodeLine{\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}\ =\ cg.solve(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{std::cout\ <<\ \textcolor{stringliteral}{"{}\#iterations:\ \ \ \ \ "{}}\ <<\ cg.iterations()\ <<\ std::endl;}
+\DoxyCodeLine{std::cout\ <<\ \textcolor{stringliteral}{"{}estimated\ error:\ "{}}\ <<\ cg.error()\ \ \ \ \ \ <<\ std::endl;}
+\DoxyCodeLine{\textcolor{comment}{//\ update\ b,\ and\ solve\ again}}
+\DoxyCodeLine{\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}\ =\ cg.solve(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+
+\end{DoxyCode}
+
+
+By default the iterations start with x=0 as an initial guess of the solution. One can control the start using the \doxylink{class_eigen_1_1_iterative_solver_base_ad8b889910ed260591652f22c640d6a20_ad8b889910ed260591652f22c640d6a20}{solve\+With\+Guess()} method.
+
+\doxylink{class_eigen_1_1_conjugate_gradient}{Conjugate\+Gradient} can also be used in a matrix-\/free context, see the following \doxylink{group___matrixfree_solver_example}{example }.
+
+\begin{DoxySeeAlso}{参照}
+class \doxylink{class_eigen_1_1_least_squares_conjugate_gradient}{Least\+Squares\+Conjugate\+Gradient}, class \doxylink{class_eigen_1_1_simplicial_cholesky}{Simplicial\+Cholesky}, \doxylink{class_eigen_1_1_diagonal_preconditioner}{Diagonal\+Preconditioner}, \doxylink{class_eigen_1_1_identity_preconditioner}{Identity\+Preconditioner} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{型定義メンバ詳解}
+\Hypertarget{class_eigen_1_1_conjugate_gradient_a0ca12272c828f671d28151e49437e639_a0ca12272c828f671d28151e49437e639}\index{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}!Base@{Base}}
+\index{Base@{Base}!Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}}
+\doxysubsubsection{\texorpdfstring{Base}{Base}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_conjugate_gradient_a0ca12272c828f671d28151e49437e639_a0ca12272c828f671d28151e49437e639} 
+template$<$typename \+\_\+\+Matrix\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Up\+Lo, typename \+\_\+\+Preconditioner $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Iterative\+Solver\+Base}}$<$\mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Conjugate\+Gradient}}$>$ \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Eigen\+::\+Conjugate\+Gradient}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$\+::\+Base\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eigen_1_1_conjugate_gradient_a370cf0e8784995c5ce6c5cfe57f9f8e9_a370cf0e8784995c5ce6c5cfe57f9f8e9}\index{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}!MatrixType@{MatrixType}}
+\index{MatrixType@{MatrixType}!Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}}
+\doxysubsubsection{\texorpdfstring{MatrixType}{MatrixType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_conjugate_gradient_a370cf0e8784995c5ce6c5cfe57f9f8e9_a370cf0e8784995c5ce6c5cfe57f9f8e9} 
+template$<$typename \+\_\+\+Matrix\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Up\+Lo, typename \+\_\+\+Preconditioner $>$ \\
+\+\_\+\+Matrix\+Type \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Eigen\+::\+Conjugate\+Gradient}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$\mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{\+::\+Matrix\+Type}}}
+
+\Hypertarget{class_eigen_1_1_conjugate_gradient_acad0688f79114f86ffe2e294bf537e62_acad0688f79114f86ffe2e294bf537e62}\index{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}!Preconditioner@{Preconditioner}}
+\index{Preconditioner@{Preconditioner}!Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}}
+\doxysubsubsection{\texorpdfstring{Preconditioner}{Preconditioner}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_conjugate_gradient_acad0688f79114f86ffe2e294bf537e62_acad0688f79114f86ffe2e294bf537e62} 
+template$<$typename \+\_\+\+Matrix\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Up\+Lo, typename \+\_\+\+Preconditioner $>$ \\
+\+\_\+\+Preconditioner \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Eigen\+::\+Conjugate\+Gradient}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$\+::\+Preconditioner}
+
+\Hypertarget{class_eigen_1_1_conjugate_gradient_a94493af3f4fcbd0a850d6e25b8626ebf_a94493af3f4fcbd0a850d6e25b8626ebf}\index{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}!RealScalar@{RealScalar}}
+\index{RealScalar@{RealScalar}!Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}}
+\doxysubsubsection{\texorpdfstring{RealScalar}{RealScalar}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_conjugate_gradient_a94493af3f4fcbd0a850d6e25b8626ebf_a94493af3f4fcbd0a850d6e25b8626ebf} 
+template$<$typename \+\_\+\+Matrix\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Up\+Lo, typename \+\_\+\+Preconditioner $>$ \\
+Matrix\+Type\+::\+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Eigen\+::\+Conjugate\+Gradient}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$\mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{\+::\+Real\+Scalar}}}
+
+\Hypertarget{class_eigen_1_1_conjugate_gradient_a810d60b8d66d4573d42dbd8c90c18110_a810d60b8d66d4573d42dbd8c90c18110}\index{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_conjugate_gradient_a810d60b8d66d4573d42dbd8c90c18110_a810d60b8d66d4573d42dbd8c90c18110} 
+template$<$typename \+\_\+\+Matrix\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Up\+Lo, typename \+\_\+\+Preconditioner $>$ \\
+Matrix\+Type\+::\+Scalar \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Eigen\+::\+Conjugate\+Gradient}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{\+::\+Scalar}}}
+
+
+
+\doxysubsection{列挙型メンバ詳解}
+\Hypertarget{class_eigen_1_1_conjugate_gradient_afd126c60a6099ecdff61709703b0a9f5_afd126c60a6099ecdff61709703b0a9f5}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_conjugate_gradient_afd126c60a6099ecdff61709703b0a9f5_afd126c60a6099ecdff61709703b0a9f5} 
+template$<$typename \+\_\+\+Matrix\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Up\+Lo, typename \+\_\+\+Preconditioner $>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UpLo@{UpLo}!Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}}\index{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}!UpLo@{UpLo}}}\Hypertarget{class_eigen_1_1_conjugate_gradient_afd126c60a6099ecdff61709703b0a9f5_afd126c60a6099ecdff61709703b0a9f5a4a8e0eab77daad2f99dbcab7a83f2117}\label{class_eigen_1_1_conjugate_gradient_afd126c60a6099ecdff61709703b0a9f5_afd126c60a6099ecdff61709703b0a9f5} 
+Up\+Lo&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{構築子と解体子}
+\Hypertarget{class_eigen_1_1_conjugate_gradient_a92a9656ca9fa4da240194f89229255eb_a92a9656ca9fa4da240194f89229255eb}\index{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}!ConjugateGradient@{ConjugateGradient}}
+\index{ConjugateGradient@{ConjugateGradient}!Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}}
+\doxysubsubsection{\texorpdfstring{ConjugateGradient()}{ConjugateGradient()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_conjugate_gradient_a92a9656ca9fa4da240194f89229255eb_a92a9656ca9fa4da240194f89229255eb} 
+template$<$typename \+\_\+\+Matrix\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Up\+Lo, typename \+\_\+\+Preconditioner $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Eigen\+::\+Conjugate\+Gradient}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$\+::\+Conjugate\+Gradient (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor. \Hypertarget{class_eigen_1_1_conjugate_gradient_ac10f778fcd137eca1f6057c8ddd3d644_ac10f778fcd137eca1f6057c8ddd3d644}\index{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}!ConjugateGradient@{ConjugateGradient}}
+\index{ConjugateGradient@{ConjugateGradient}!Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}}
+\doxysubsubsection{\texorpdfstring{ConjugateGradient()}{ConjugateGradient()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_conjugate_gradient_ac10f778fcd137eca1f6057c8ddd3d644_ac10f778fcd137eca1f6057c8ddd3d644} 
+template$<$typename \+\_\+\+Matrix\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Up\+Lo, typename \+\_\+\+Preconditioner $>$ \\
+template$<$typename Matrix\+Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Eigen\+::\+Conjugate\+Gradient}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$\+::\+Conjugate\+Gradient (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Matrix\+Derived $>$ \&}]{A}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Initialize the solver with matrix {\itshape A} for further {\ttfamily Ax=b} solving.
+
+This constructor is a shortcut for the default constructor followed by a call to \doxylink{class_eigen_1_1_iterative_solver_base_a3b0d9691964793bd55937666426fefbf_a3b0d9691964793bd55937666426fefbf}{compute()}.
+
+\begin{DoxyWarning}{警告}
+this class stores a reference to the matrix A as well as some precomputed values that depend on it. Therefore, if {\itshape A} is changed this class becomes invalid. Call \doxylink{class_eigen_1_1_iterative_solver_base_a3b0d9691964793bd55937666426fefbf_a3b0d9691964793bd55937666426fefbf}{compute()} to update it with the new matrix A, or modify a copy of A. 
+\end{DoxyWarning}
+\Hypertarget{class_eigen_1_1_conjugate_gradient_a9c1c5dc0312d20074ecf1fb3874bd1ff_a9c1c5dc0312d20074ecf1fb3874bd1ff}\index{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}!````~ConjugateGradient@{\texorpdfstring{$\sim$}{\string~}ConjugateGradient}}
+\index{````~ConjugateGradient@{\texorpdfstring{$\sim$}{\string~}ConjugateGradient}!Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}ConjugateGradient()}{\string~ConjugateGradient()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_conjugate_gradient_a9c1c5dc0312d20074ecf1fb3874bd1ff_a9c1c5dc0312d20074ecf1fb3874bd1ff} 
+template$<$typename \+\_\+\+Matrix\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Up\+Lo, typename \+\_\+\+Preconditioner $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Eigen\+::\+Conjugate\+Gradient}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$\+::\texorpdfstring{$\sim$}{\string~}\mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Conjugate\+Gradient}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{class_eigen_1_1_conjugate_gradient_a8567a9ef1f9b2c4ed182e0e0c16d90f2_a8567a9ef1f9b2c4ed182e0e0c16d90f2}\index{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}!\_solve\_vector\_with\_guess\_impl@{\_solve\_vector\_with\_guess\_impl}}
+\index{\_solve\_vector\_with\_guess\_impl@{\_solve\_vector\_with\_guess\_impl}!Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}}
+\doxysubsubsection{\texorpdfstring{\_solve\_vector\_with\_guess\_impl()}{\_solve\_vector\_with\_guess\_impl()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_conjugate_gradient_a8567a9ef1f9b2c4ed182e0e0c16d90f2_a8567a9ef1f9b2c4ed182e0e0c16d90f2} 
+template$<$typename \+\_\+\+Matrix\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Up\+Lo, typename \+\_\+\+Preconditioner $>$ \\
+template$<$typename Rhs , typename Dest $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Eigen\+::\+Conjugate\+Gradient}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Preconditioner $>$\+::\+\_\+solve\+\_\+vector\+\_\+with\+\_\+guess\+\_\+impl (\begin{DoxyParamCaption}\item[{const Rhs \&}]{b}{, }\item[{Dest \&}]{x}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_conjugate_gradient_af24f53813d56a98491957dabc1d2f7eb_af24f53813d56a98491957dabc1d2f7eb}\index{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}!matrix@{matrix}}
+\index{matrix@{matrix}!Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}}
+\doxysubsubsection{\texorpdfstring{matrix()}{matrix()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_conjugate_gradient_af24f53813d56a98491957dabc1d2f7eb_af24f53813d56a98491957dabc1d2f7eb} 
+template$<$typename \+\_\+\+Matrix\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Up\+Lo, typename \+\_\+\+Preconditioner $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base_ae81615068fa9dba95b8329fb30b14afe_ae81615068fa9dba95b8329fb30b14afe}{Actual\+Matrix\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::matrix (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+\doxysubsection{メンバ詳解}
+\Hypertarget{class_eigen_1_1_conjugate_gradient_a9140af00eb517cb5677dd6e1a60fab80_a9140af00eb517cb5677dd6e1a60fab80}\index{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}!m\_error@{m\_error}}
+\index{m\_error@{m\_error}!Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}}
+\doxysubsubsection{\texorpdfstring{m\_error}{m\_error}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_conjugate_gradient_a9140af00eb517cb5677dd6e1a60fab80_a9140af00eb517cb5677dd6e1a60fab80} 
+template$<$typename \+\_\+\+Matrix\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Up\+Lo, typename \+\_\+\+Preconditioner $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_conjugate_gradient_a94493af3f4fcbd0a850d6e25b8626ebf_a94493af3f4fcbd0a850d6e25b8626ebf}{Real\+Scalar}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::m\+\_\+error\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [private]}}
+
+\Hypertarget{class_eigen_1_1_conjugate_gradient_a283a3c6136f76e77ac29184352c3e940_a283a3c6136f76e77ac29184352c3e940}\index{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}!m\_info@{m\_info}}
+\index{m\_info@{m\_info}!Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}}
+\doxysubsubsection{\texorpdfstring{m\_info}{m\_info}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_conjugate_gradient_a283a3c6136f76e77ac29184352c3e940_a283a3c6136f76e77ac29184352c3e940} 
+template$<$typename \+\_\+\+Matrix\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Up\+Lo, typename \+\_\+\+Preconditioner $>$ \\
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::m\+\_\+info\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [private]}}
+
+\Hypertarget{class_eigen_1_1_conjugate_gradient_aa1e43c88482d7d73394ec3229f6e8a4a_aa1e43c88482d7d73394ec3229f6e8a4a}\index{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}!m\_iterations@{m\_iterations}}
+\index{m\_iterations@{m\_iterations}!Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$@{Eigen::ConjugateGradient$<$ \_MatrixType, \_UpLo, \_Preconditioner $>$}}
+\doxysubsubsection{\texorpdfstring{m\_iterations}{m\_iterations}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_conjugate_gradient_aa1e43c88482d7d73394ec3229f6e8a4a_aa1e43c88482d7d73394ec3229f6e8a4a} 
+template$<$typename \+\_\+\+Matrix\+Type , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Up\+Lo, typename \+\_\+\+Preconditioner $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{Eigen\+::\+Iterative\+Solver\+Base}}$<$ Derived $>$\+::m\+\_\+iterations\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [private]}}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Iterative\+Linear\+Solvers/\mbox{\hyperlink{_conjugate_gradient_8h}{Conjugate\+Gradient.\+h}}\end{DoxyCompactItemize}

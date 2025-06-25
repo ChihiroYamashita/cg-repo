@@ -1,0 +1,169 @@
+\doxysection{eigen-\/3.4.0/eigen-\/3.4.0/bench/bench\+\_\+gemm.cpp ファイル}
+\hypertarget{bench__gemm_8cpp}{}\label{bench__gemm_8cpp}\index{eigen-\/3.4.0/eigen-\/3.4.0/bench/bench\_gemm.cpp@{eigen-\/3.4.0/eigen-\/3.4.0/bench/bench\_gemm.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$bench/\+Bench\+Timer.\+h$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Core$>$}\newline
+bench\+\_\+gemm.\+cpp の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{bench__gemm_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{bench__gemm_8cpp_aae7e5362e39df9265f4fd78ffa61660a_aae7e5362e39df9265f4fd78ffa61660a}{SCALAR}}~float
+\item 
+\#define \mbox{\hyperlink{bench__gemm_8cpp_ae9474e4988b28b326f4814400e289aea_ae9474e4988b28b326f4814400e289aea}{SCALARA}}~\mbox{\hyperlink{bench__gemm_8cpp_aae7e5362e39df9265f4fd78ffa61660a_aae7e5362e39df9265f4fd78ffa61660a}{SCALAR}}
+\item 
+\#define \mbox{\hyperlink{bench__gemm_8cpp_a6ae276e9d1b5a6ad9a925bd5054c1df8_a6ae276e9d1b5a6ad9a925bd5054c1df8}{SCALARB}}~\mbox{\hyperlink{bench__gemm_8cpp_aae7e5362e39df9265f4fd78ffa61660a_aae7e5362e39df9265f4fd78ffa61660a}{SCALAR}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{型定義}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{bench__gemm_8cpp_aae7e5362e39df9265f4fd78ffa61660a_aae7e5362e39df9265f4fd78ffa61660a}{SCALAR}} \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} $>$\mbox{\hyperlink{boostmultiprec_8cpp_ad5abe8020ead32dcab5e3c15d6d7c30e_ad5abe8020ead32dcab5e3c15d6d7c30e}{\+::\+Real}} \mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{Real\+Scalar}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_ae9474e4988b28b326f4814400e289aea_ae9474e4988b28b326f4814400e289aea}{SCALARA}}, Dynamic, Dynamic, \mbox{\hyperlink{bench__gemm_8cpp_a3cc402186a4d2070dfcf0581ee22ea49_a3cc402186a4d2070dfcf0581ee22ea49}{opt\+\_\+A}} $>$ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a6ae276e9d1b5a6ad9a925bd5054c1df8_a6ae276e9d1b5a6ad9a925bd5054c1df8}{SCALARB}}, Dynamic, Dynamic, \mbox{\hyperlink{bench__gemm_8cpp_a63aca6103595640fc977951df5ea8464_a63aca6103595640fc977951df5ea8464}{opt\+\_\+B}} $>$ \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Dynamic, Dynamic $>$ \mbox{\hyperlink{bench__gemm_8cpp_aaee470c3acb6b181fd804d072284fbaa_aaee470c3acb6b181fd804d072284fbaa}{C}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{Real\+Scalar}}, Dynamic, Dynamic $>$ \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{bench__gemm_8cpp_ac3f72509b5738db82641c3b82fbb924b_ac3f72509b5738db82641c3b82fbb924b}{matlab\+\_\+cplx\+\_\+cplx}} (const \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&ar, const \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&ai, const \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&br, const \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&bi, \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&cr, \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&ci)
+\item 
+void \mbox{\hyperlink{bench__gemm_8cpp_a180c37ca9b882eaf80eac1e257f2a8c0_a180c37ca9b882eaf80eac1e257f2a8c0}{matlab\+\_\+real\+\_\+cplx}} (const \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}, const \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&br, const \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&bi, \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&cr, \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&ci)
+\item 
+void \mbox{\hyperlink{bench__gemm_8cpp_a9e2d9ccfcb712b16c104621540a1119e_a9e2d9ccfcb712b16c104621540a1119e}{matlab\+\_\+cplx\+\_\+real}} (const \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&ar, const \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&ai, const \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&cr, \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&ci)
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}} , typename \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}} , typename \mbox{\hyperlink{bench__gemm_8cpp_aaee470c3acb6b181fd804d072284fbaa_aaee470c3acb6b181fd804d072284fbaa}{C}} $>$ }\\\mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\+\_\+\+DONT\+\_\+\+INLINE}} void \mbox{\hyperlink{bench__gemm_8cpp_a4e3341ba4cc101e5c46e8d6f201b21f9_a4e3341ba4cc101e5c46e8d6f201b21f9}{gemm}} (const \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}} \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}, const \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}} \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, \mbox{\hyperlink{bench__gemm_8cpp_aaee470c3acb6b181fd804d072284fbaa_aaee470c3acb6b181fd804d072284fbaa}{C}} \&\mbox{\hyperlink{bench_vec_add_8cpp_a41689956983587b085f9da3e48f31d99_a41689956983587b085f9da3e48f31d99}{c}})
+\item 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{bench__gemm_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{変数}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{bench__gemm_8cpp_a3cc402186a4d2070dfcf0581ee22ea49_a3cc402186a4d2070dfcf0581ee22ea49}{opt\+\_\+A}} = Col\+Major
+\item 
+const \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{bench__gemm_8cpp_a63aca6103595640fc977951df5ea8464_a63aca6103595640fc977951df5ea8464}{opt\+\_\+B}} = Col\+Major
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{bench__gemm_8cpp_aae7e5362e39df9265f4fd78ffa61660a_aae7e5362e39df9265f4fd78ffa61660a}\index{bench\_gemm.cpp@{bench\_gemm.cpp}!SCALAR@{SCALAR}}
+\index{SCALAR@{SCALAR}!bench\_gemm.cpp@{bench\_gemm.cpp}}
+\doxysubsubsection{\texorpdfstring{SCALAR}{SCALAR}}
+{\footnotesize\ttfamily \label{bench__gemm_8cpp_aae7e5362e39df9265f4fd78ffa61660a_aae7e5362e39df9265f4fd78ffa61660a} 
+\#define SCALAR~float}
+
+\Hypertarget{bench__gemm_8cpp_ae9474e4988b28b326f4814400e289aea_ae9474e4988b28b326f4814400e289aea}\index{bench\_gemm.cpp@{bench\_gemm.cpp}!SCALARA@{SCALARA}}
+\index{SCALARA@{SCALARA}!bench\_gemm.cpp@{bench\_gemm.cpp}}
+\doxysubsubsection{\texorpdfstring{SCALARA}{SCALARA}}
+{\footnotesize\ttfamily \label{bench__gemm_8cpp_ae9474e4988b28b326f4814400e289aea_ae9474e4988b28b326f4814400e289aea} 
+\#define SCALARA~\mbox{\hyperlink{bench__gemm_8cpp_aae7e5362e39df9265f4fd78ffa61660a_aae7e5362e39df9265f4fd78ffa61660a}{SCALAR}}}
+
+\Hypertarget{bench__gemm_8cpp_a6ae276e9d1b5a6ad9a925bd5054c1df8_a6ae276e9d1b5a6ad9a925bd5054c1df8}\index{bench\_gemm.cpp@{bench\_gemm.cpp}!SCALARB@{SCALARB}}
+\index{SCALARB@{SCALARB}!bench\_gemm.cpp@{bench\_gemm.cpp}}
+\doxysubsubsection{\texorpdfstring{SCALARB}{SCALARB}}
+{\footnotesize\ttfamily \label{bench__gemm_8cpp_a6ae276e9d1b5a6ad9a925bd5054c1df8_a6ae276e9d1b5a6ad9a925bd5054c1df8} 
+\#define SCALARB~\mbox{\hyperlink{bench__gemm_8cpp_aae7e5362e39df9265f4fd78ffa61660a_aae7e5362e39df9265f4fd78ffa61660a}{SCALAR}}}
+
+
+
+\doxysubsection{型定義詳解}
+\Hypertarget{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}\index{bench\_gemm.cpp@{bench\_gemm.cpp}!A@{A}}
+\index{A@{A}!bench\_gemm.cpp@{bench\_gemm.cpp}}
+\doxysubsubsection{\texorpdfstring{A}{A}}
+{\footnotesize\ttfamily \label{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875} 
+\mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{Matrix\+Type}} \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}}
+
+\Hypertarget{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}\index{bench\_gemm.cpp@{bench\_gemm.cpp}!B@{B}}
+\index{B@{B}!bench\_gemm.cpp@{bench\_gemm.cpp}}
+\doxysubsubsection{\texorpdfstring{B}{B}}
+{\footnotesize\ttfamily \label{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{bench__gemm_8cpp_a6ae276e9d1b5a6ad9a925bd5054c1df8_a6ae276e9d1b5a6ad9a925bd5054c1df8}{SCALARB}},Dynamic,Dynamic,\mbox{\hyperlink{bench__gemm_8cpp_a63aca6103595640fc977951df5ea8464_a63aca6103595640fc977951df5ea8464}{opt\+\_\+B}}$>$ \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}}}
+
+\Hypertarget{bench__gemm_8cpp_aaee470c3acb6b181fd804d072284fbaa_aaee470c3acb6b181fd804d072284fbaa}\index{bench\_gemm.cpp@{bench\_gemm.cpp}!C@{C}}
+\index{C@{C}!bench\_gemm.cpp@{bench\_gemm.cpp}}
+\doxysubsubsection{\texorpdfstring{C}{C}}
+{\footnotesize\ttfamily \label{bench__gemm_8cpp_aaee470c3acb6b181fd804d072284fbaa_aaee470c3acb6b181fd804d072284fbaa} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}},Dynamic,Dynamic$>$ \mbox{\hyperlink{bench__gemm_8cpp_aaee470c3acb6b181fd804d072284fbaa_aaee470c3acb6b181fd804d072284fbaa}{C}}}
+
+\Hypertarget{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}\index{bench\_gemm.cpp@{bench\_gemm.cpp}!M@{M}}
+\index{M@{M}!bench\_gemm.cpp@{bench\_gemm.cpp}}
+\doxysubsubsection{\texorpdfstring{M}{M}}
+{\footnotesize\ttfamily \label{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{Real\+Scalar}},Dynamic,Dynamic$>$ \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}}}
+
+\Hypertarget{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}\index{bench\_gemm.cpp@{bench\_gemm.cpp}!RealScalar@{RealScalar}}
+\index{RealScalar@{RealScalar}!bench\_gemm.cpp@{bench\_gemm.cpp}}
+\doxysubsubsection{\texorpdfstring{RealScalar}{RealScalar}}
+{\footnotesize\ttfamily \label{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}$>$\mbox{\hyperlink{boostmultiprec_8cpp_ad5abe8020ead32dcab5e3c15d6d7c30e_ad5abe8020ead32dcab5e3c15d6d7c30e}{\+::\+Real}} \mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{Real\+Scalar}}}
+
+\Hypertarget{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}\index{bench\_gemm.cpp@{bench\_gemm.cpp}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!bench\_gemm.cpp@{bench\_gemm.cpp}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily \label{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9} 
+typedef \mbox{\hyperlink{bench__gemm_8cpp_aae7e5362e39df9265f4fd78ffa61660a_aae7e5362e39df9265f4fd78ffa61660a}{SCALAR}} \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}}
+
+\begin{Desc}
+\item[各種例]\par
+\mbox{\hyperlink{_d_1_2_one_drive_2_2_one_drive_2_c_g_programings_2qt3_2eigen-3_84_80_2eigen-3_84_80_2unsupported76d02eba95f5406375bb5d515cfbb965}{D\+:/\+One\+Drive\+\_\+2/\+One\+Drive/\+CGProgramings/qt3/eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/unsupported/\+Eigen/\+CXX11/src/\+Tensor/\+Tensor\+Layout\+Swap.\+h}}.\end{Desc}
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{bench__gemm_8cpp_a4e3341ba4cc101e5c46e8d6f201b21f9_a4e3341ba4cc101e5c46e8d6f201b21f9}\index{bench\_gemm.cpp@{bench\_gemm.cpp}!gemm@{gemm}}
+\index{gemm@{gemm}!bench\_gemm.cpp@{bench\_gemm.cpp}}
+\doxysubsubsection{\texorpdfstring{gemm()}{gemm()}}
+{\footnotesize\ttfamily \label{bench__gemm_8cpp_a4e3341ba4cc101e5c46e8d6f201b21f9_a4e3341ba4cc101e5c46e8d6f201b21f9} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}} , typename \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}} , typename \mbox{\hyperlink{bench__gemm_8cpp_aaee470c3acb6b181fd804d072284fbaa_aaee470c3acb6b181fd804d072284fbaa}{C}} $>$ \\
+\mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\+\_\+\+DONT\+\_\+\+INLINE}} void gemm (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}} \&}]{a}{, }\item[{const \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}} \&}]{b}{, }\item[{\mbox{\hyperlink{bench__gemm_8cpp_aaee470c3acb6b181fd804d072284fbaa_aaee470c3acb6b181fd804d072284fbaa}{C}} \&}]{c}{}\end{DoxyParamCaption})}
+
+\Hypertarget{bench__gemm_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_a3c04138a5bfe5d72780bb7e82a18e627}\index{bench\_gemm.cpp@{bench\_gemm.cpp}!main@{main}}
+\index{main@{main}!bench\_gemm.cpp@{bench\_gemm.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{bench__gemm_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_a3c04138a5bfe5d72780bb7e82a18e627} 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} main (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv}{}\end{DoxyParamCaption})}
+
+\Hypertarget{bench__gemm_8cpp_ac3f72509b5738db82641c3b82fbb924b_ac3f72509b5738db82641c3b82fbb924b}\index{bench\_gemm.cpp@{bench\_gemm.cpp}!matlab\_cplx\_cplx@{matlab\_cplx\_cplx}}
+\index{matlab\_cplx\_cplx@{matlab\_cplx\_cplx}!bench\_gemm.cpp@{bench\_gemm.cpp}}
+\doxysubsubsection{\texorpdfstring{matlab\_cplx\_cplx()}{matlab\_cplx\_cplx()}}
+{\footnotesize\ttfamily \label{bench__gemm_8cpp_ac3f72509b5738db82641c3b82fbb924b_ac3f72509b5738db82641c3b82fbb924b} 
+void matlab\+\_\+cplx\+\_\+cplx (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&}]{ar}{, }\item[{const \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&}]{ai}{, }\item[{const \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&}]{br}{, }\item[{const \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&}]{bi}{, }\item[{\mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&}]{cr}{, }\item[{\mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&}]{ci}{}\end{DoxyParamCaption})}
+
+\Hypertarget{bench__gemm_8cpp_a9e2d9ccfcb712b16c104621540a1119e_a9e2d9ccfcb712b16c104621540a1119e}\index{bench\_gemm.cpp@{bench\_gemm.cpp}!matlab\_cplx\_real@{matlab\_cplx\_real}}
+\index{matlab\_cplx\_real@{matlab\_cplx\_real}!bench\_gemm.cpp@{bench\_gemm.cpp}}
+\doxysubsubsection{\texorpdfstring{matlab\_cplx\_real()}{matlab\_cplx\_real()}}
+{\footnotesize\ttfamily \label{bench__gemm_8cpp_a9e2d9ccfcb712b16c104621540a1119e_a9e2d9ccfcb712b16c104621540a1119e} 
+void matlab\+\_\+cplx\+\_\+real (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&}]{ar}{, }\item[{const \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&}]{ai}{, }\item[{const \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&}]{b}{, }\item[{\mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&}]{cr}{, }\item[{\mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&}]{ci}{}\end{DoxyParamCaption})}
+
+\Hypertarget{bench__gemm_8cpp_a180c37ca9b882eaf80eac1e257f2a8c0_a180c37ca9b882eaf80eac1e257f2a8c0}\index{bench\_gemm.cpp@{bench\_gemm.cpp}!matlab\_real\_cplx@{matlab\_real\_cplx}}
+\index{matlab\_real\_cplx@{matlab\_real\_cplx}!bench\_gemm.cpp@{bench\_gemm.cpp}}
+\doxysubsubsection{\texorpdfstring{matlab\_real\_cplx()}{matlab\_real\_cplx()}}
+{\footnotesize\ttfamily \label{bench__gemm_8cpp_a180c37ca9b882eaf80eac1e257f2a8c0_a180c37ca9b882eaf80eac1e257f2a8c0} 
+void matlab\+\_\+real\+\_\+cplx (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&}]{a}{, }\item[{const \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&}]{br}{, }\item[{const \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&}]{bi}{, }\item[{\mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&}]{cr}{, }\item[{\mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}} \&}]{ci}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{変数詳解}
+\Hypertarget{bench__gemm_8cpp_a3cc402186a4d2070dfcf0581ee22ea49_a3cc402186a4d2070dfcf0581ee22ea49}\index{bench\_gemm.cpp@{bench\_gemm.cpp}!opt\_A@{opt\_A}}
+\index{opt\_A@{opt\_A}!bench\_gemm.cpp@{bench\_gemm.cpp}}
+\doxysubsubsection{\texorpdfstring{opt\_A}{opt\_A}}
+{\footnotesize\ttfamily \label{bench__gemm_8cpp_a3cc402186a4d2070dfcf0581ee22ea49_a3cc402186a4d2070dfcf0581ee22ea49} 
+const \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} opt\+\_\+A = Col\+Major}
+
+\Hypertarget{bench__gemm_8cpp_a63aca6103595640fc977951df5ea8464_a63aca6103595640fc977951df5ea8464}\index{bench\_gemm.cpp@{bench\_gemm.cpp}!opt\_B@{opt\_B}}
+\index{opt\_B@{opt\_B}!bench\_gemm.cpp@{bench\_gemm.cpp}}
+\doxysubsubsection{\texorpdfstring{opt\_B}{opt\_B}}
+{\footnotesize\ttfamily \label{bench__gemm_8cpp_a63aca6103595640fc977951df5ea8464_a63aca6103595640fc977951df5ea8464} 
+const \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} opt\+\_\+B = Col\+Major}
+

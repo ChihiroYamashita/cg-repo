@@ -1,0 +1,83 @@
+\doxysection{eigen-\/3.4.0/eigen-\/3.4.0/\+Eigen/src/\+Sparse\+LU/\+Sparse\+LU\+\_\+gemm\+\_\+kernel.h ファイル}
+\hypertarget{_sparse_l_u__gemm__kernel_8h}{}\label{_sparse_l_u__gemm__kernel_8h}\index{eigen-\/3.4.0/eigen-\/3.4.0/Eigen/src/SparseLU/SparseLU\_gemm\_kernel.h@{eigen-\/3.4.0/eigen-\/3.4.0/Eigen/src/SparseLU/SparseLU\_gemm\_kernel.h}}
+\doxysubsubsection*{名前空間}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_eigen}{Eigen}}
+\begin{DoxyCompactList}\small\item\em Namespace containing all symbols from the Eigen library. \end{DoxyCompactList}\item 
+namespace \mbox{\hyperlink{namespace_eigen_1_1internal}{Eigen\+::internal}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_sparse_l_u__gemm__kernel_8h_a123b338eb701cf369ce139a337568d8b_a123b338eb701cf369ce139a337568d8b}{KMADD}}(\mbox{\hyperlink{bench_vec_add_8cpp_a41689956983587b085f9da3e48f31d99_a41689956983587b085f9da3e48f31d99}{c}},  \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},  \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},  tmp)
+\item 
+\#define \mbox{\hyperlink{_sparse_l_u__gemm__kernel_8h_ac0f8112df7f88a3da625a17fbf9f0152_ac0f8112df7f88a3da625a17fbf9f0152}{WORK}}(\mbox{\hyperlink{main_8h_a60ef6e1bcfabb95cfeb300e1d03ce470_a60ef6e1bcfabb95cfeb300e1d03ce470}{I}})
+\item 
+\#define \mbox{\hyperlink{_sparse_l_u__gemm__kernel_8h_ac0f8112df7f88a3da625a17fbf9f0152_ac0f8112df7f88a3da625a17fbf9f0152}{WORK}}(\mbox{\hyperlink{main_8h_a60ef6e1bcfabb95cfeb300e1d03ce470_a60ef6e1bcfabb95cfeb300e1d03ce470}{I}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} $>$ }\\\mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\+\_\+\+DONT\+\_\+\+INLINE}} void \mbox{\hyperlink{namespace_eigen_1_1internal_a32f426c047271d8068ce90f72ff64632_a32f426c047271d8068ce90f72ff64632}{Eigen\+::internal\+::sparselu\+\_\+gemm}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} d, const \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{eigenvalues_8cpp_a68f113f7b88e1d430078f4d1ff0f149d_a68f113f7b88e1d430078f4d1ff0f149d}{lda}}, const \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} ldb, \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{bench__gemm_8cpp_aaee470c3acb6b181fd804d072284fbaa_aaee470c3acb6b181fd804d072284fbaa}{C}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} ldc)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{_sparse_l_u__gemm__kernel_8h_a123b338eb701cf369ce139a337568d8b_a123b338eb701cf369ce139a337568d8b}\index{SparseLU\_gemm\_kernel.h@{SparseLU\_gemm\_kernel.h}!KMADD@{KMADD}}
+\index{KMADD@{KMADD}!SparseLU\_gemm\_kernel.h@{SparseLU\_gemm\_kernel.h}}
+\doxysubsubsection{\texorpdfstring{KMADD}{KMADD}}
+{\footnotesize\ttfamily \label{_sparse_l_u__gemm__kernel_8h_a123b338eb701cf369ce139a337568d8b_a123b338eb701cf369ce139a337568d8b} 
+\#define KMADD(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{bench_vec_add_8cpp_a41689956983587b085f9da3e48f31d99_a41689956983587b085f9da3e48f31d99}{c}}}{, }\item[{}]{\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}}{, }\item[{}]{\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}}{, }\item[{}]{tmp}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{tmp\ =\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}};\ tmp\ =\ pmul(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},tmp);\ \mbox{\hyperlink{bench_vec_add_8cpp_a41689956983587b085f9da3e48f31d99_a41689956983587b085f9da3e48f31d99}{c}}\ =\ padd(\mbox{\hyperlink{bench_vec_add_8cpp_a41689956983587b085f9da3e48f31d99_a41689956983587b085f9da3e48f31d99}{c}},tmp);\}}
+
+\end{DoxyCode}
+\Hypertarget{_sparse_l_u__gemm__kernel_8h_ac0f8112df7f88a3da625a17fbf9f0152_ac0f8112df7f88a3da625a17fbf9f0152}\index{SparseLU\_gemm\_kernel.h@{SparseLU\_gemm\_kernel.h}!WORK@{WORK}}
+\index{WORK@{WORK}!SparseLU\_gemm\_kernel.h@{SparseLU\_gemm\_kernel.h}}
+\doxysubsubsection{\texorpdfstring{WORK}{WORK}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{_sparse_l_u__gemm__kernel_8h_ac0f8112df7f88a3da625a17fbf9f0152_ac0f8112df7f88a3da625a17fbf9f0152} 
+\#define WORK(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{main_8h_a60ef6e1bcfabb95cfeb300e1d03ce470_a60ef6e1bcfabb95cfeb300e1d03ce470}{I}}}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c0\ =\ pload<Packet>(C0+\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}+(\mbox{\hyperlink{main_8h_a60ef6e1bcfabb95cfeb300e1d03ce470_a60ef6e1bcfabb95cfeb300e1d03ce470}{I}})*PacketSize);\ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c1\ =\ pload<Packet>(C1+\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}+(\mbox{\hyperlink{main_8h_a60ef6e1bcfabb95cfeb300e1d03ce470_a60ef6e1bcfabb95cfeb300e1d03ce470}{I}})*PacketSize);\ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ KMADD(c0,\ a0,\ b00,\ t0)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ KMADD(c1,\ a0,\ b01,\ t1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a0\ =\ pload<Packet>(A0+\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}+(\mbox{\hyperlink{main_8h_a60ef6e1bcfabb95cfeb300e1d03ce470_a60ef6e1bcfabb95cfeb300e1d03ce470}{I}}+1)*PacketSize);\ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ KMADD(c0,\ a1,\ b10,\ t0)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ KMADD(c1,\ a1,\ b11,\ t1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a1\ =\ pload<Packet>(A1+\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}+(\mbox{\hyperlink{main_8h_a60ef6e1bcfabb95cfeb300e1d03ce470_a60ef6e1bcfabb95cfeb300e1d03ce470}{I}}+1)*PacketSize);\ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ if(RK==4)\{\ \mbox{\hyperlink{_sparse_l_u__gemm__kernel_8h_a123b338eb701cf369ce139a337568d8b_a123b338eb701cf369ce139a337568d8b}{KMADD}}(c0,\ a2,\ b20,\ t0)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ if(RK==4)\{\ \mbox{\hyperlink{_sparse_l_u__gemm__kernel_8h_a123b338eb701cf369ce139a337568d8b_a123b338eb701cf369ce139a337568d8b}{KMADD}}(c1,\ a2,\ b21,\ t1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ if(RK==4)\{\ a2\ =\ pload<Packet>(A2+\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}+(\mbox{\hyperlink{main_8h_a60ef6e1bcfabb95cfeb300e1d03ce470_a60ef6e1bcfabb95cfeb300e1d03ce470}{I}}+1)*PacketSize);\ \}\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ if(RK==4)\{\ \mbox{\hyperlink{_sparse_l_u__gemm__kernel_8h_a123b338eb701cf369ce139a337568d8b_a123b338eb701cf369ce139a337568d8b}{KMADD}}(c0,\ a3,\ b30,\ t0)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ if(RK==4)\{\ \mbox{\hyperlink{_sparse_l_u__gemm__kernel_8h_a123b338eb701cf369ce139a337568d8b_a123b338eb701cf369ce139a337568d8b}{KMADD}}(c1,\ a3,\ b31,\ t1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ if(RK==4)\{\ a3\ =\ pload<Packet>(A3+\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}+(\mbox{\hyperlink{main_8h_a60ef6e1bcfabb95cfeb300e1d03ce470_a60ef6e1bcfabb95cfeb300e1d03ce470}{I}}+1)*PacketSize);\ \}\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pstore(C0+\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}+(\mbox{\hyperlink{main_8h_a60ef6e1bcfabb95cfeb300e1d03ce470_a60ef6e1bcfabb95cfeb300e1d03ce470}{I}})*PacketSize,\ c0);\ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pstore(C1+\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}+(\mbox{\hyperlink{main_8h_a60ef6e1bcfabb95cfeb300e1d03ce470_a60ef6e1bcfabb95cfeb300e1d03ce470}{I}})*PacketSize,\ c1)}
+
+\end{DoxyCode}
+\Hypertarget{_sparse_l_u__gemm__kernel_8h_ac0f8112df7f88a3da625a17fbf9f0152_ac0f8112df7f88a3da625a17fbf9f0152}\index{SparseLU\_gemm\_kernel.h@{SparseLU\_gemm\_kernel.h}!WORK@{WORK}}
+\index{WORK@{WORK}!SparseLU\_gemm\_kernel.h@{SparseLU\_gemm\_kernel.h}}
+\doxysubsubsection{\texorpdfstring{WORK}{WORK}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{_sparse_l_u__gemm__kernel_8h_ac0f8112df7f88a3da625a17fbf9f0152_ac0f8112df7f88a3da625a17fbf9f0152} 
+\#define WORK(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{main_8h_a60ef6e1bcfabb95cfeb300e1d03ce470_a60ef6e1bcfabb95cfeb300e1d03ce470}{I}}}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c0\ =\ pload<Packet>(C0+\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}+(\mbox{\hyperlink{main_8h_a60ef6e1bcfabb95cfeb300e1d03ce470_a60ef6e1bcfabb95cfeb300e1d03ce470}{I}})*PacketSize);\ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ KMADD(c0,\ a0,\ b00,\ t0)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a0\ =\ pload<Packet>(A0+\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}+(\mbox{\hyperlink{main_8h_a60ef6e1bcfabb95cfeb300e1d03ce470_a60ef6e1bcfabb95cfeb300e1d03ce470}{I}}+1)*PacketSize);\ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ KMADD(c0,\ a1,\ b10,\ t0)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a1\ =\ pload<Packet>(A1+\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}+(\mbox{\hyperlink{main_8h_a60ef6e1bcfabb95cfeb300e1d03ce470_a60ef6e1bcfabb95cfeb300e1d03ce470}{I}}+1)*PacketSize);\ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if(RK==4)\{\ \mbox{\hyperlink{_sparse_l_u__gemm__kernel_8h_a123b338eb701cf369ce139a337568d8b_a123b338eb701cf369ce139a337568d8b}{KMADD}}(c0,\ a2,\ b20,\ t0)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if(RK==4)\{\ a2\ =\ pload<Packet>(A2+\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}+(\mbox{\hyperlink{main_8h_a60ef6e1bcfabb95cfeb300e1d03ce470_a60ef6e1bcfabb95cfeb300e1d03ce470}{I}}+1)*PacketSize);\ \ \}\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if(RK==4)\{\ \mbox{\hyperlink{_sparse_l_u__gemm__kernel_8h_a123b338eb701cf369ce139a337568d8b_a123b338eb701cf369ce139a337568d8b}{KMADD}}(c0,\ a3,\ b30,\ t0)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if(RK==4)\{\ a3\ =\ pload<Packet>(A3+\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}+(\mbox{\hyperlink{main_8h_a60ef6e1bcfabb95cfeb300e1d03ce470_a60ef6e1bcfabb95cfeb300e1d03ce470}{I}}+1)*PacketSize);\ \ \}\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pstore(C0+\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}+(\mbox{\hyperlink{main_8h_a60ef6e1bcfabb95cfeb300e1d03ce470_a60ef6e1bcfabb95cfeb300e1d03ce470}{I}})*PacketSize,\ c0);}
+
+\end{DoxyCode}

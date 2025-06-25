@@ -1,0 +1,308 @@
+\doxysection{Eigen\+::Kd\+BVH\texorpdfstring{$<$}{<} \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object \texorpdfstring{$>$}{>} クラステンプレート}
+\hypertarget{class_eigen_1_1_kd_b_v_h}{}\label{class_eigen_1_1_kd_b_v_h}\index{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}}
+
+
+A simple bounding volume hierarchy based on \doxylink{class_eigen_1_1_aligned_box}{Aligned\+Box}  
+
+
+
+
+{\ttfamily \#include $<$Kd\+BVH.\+h$>$}
+
+
+
+Eigen\+::Kd\+BVH\texorpdfstring{$<$}{<} \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=197pt]{class_eigen_1_1_kd_b_v_h__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{クラス}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_eigen_1_1_kd_b_v_h_1_1_vector_comparator}{Vector\+Comparator}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a2076dc5f9ec46a3a261c86a3f86e6fb0_a2076dc5f9ec46a3a261c86a3f86e6fb0ab731d3c5bf43aed26f0fdc8988150b4a}{Dim}} = \+\_\+\+Dim
+ \}
+\item 
+typedef \+\_\+\+Object \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a8d416d0710cfd99d4c02427a56cb4410_a8d416d0710cfd99d4c02427a56cb4410}{Object}}
+\item 
+typedef std\+::vector$<$ \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a8d416d0710cfd99d4c02427a56cb4410_a8d416d0710cfd99d4c02427a56cb4410}{Object}}, \mbox{\hyperlink{class_eigen_1_1aligned__allocator}{aligned\+\_\+allocator}}$<$ \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a8d416d0710cfd99d4c02427a56cb4410_a8d416d0710cfd99d4c02427a56cb4410}{Object}} $>$ $>$ \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_ae26e51905b34ed633b4a98d5def14e3b_ae26e51905b34ed633b4a98d5def14e3b}{Object\+List}}
+\item 
+typedef \+\_\+\+Scalar \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_ab009afef23500bc30d52a89b803281b3_ab009afef23500bc30d52a89b803281b3}{Scalar}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}}$<$ \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_ab009afef23500bc30d52a89b803281b3_ab009afef23500bc30d52a89b803281b3}{Scalar}}, \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a2076dc5f9ec46a3a261c86a3f86e6fb0_a2076dc5f9ec46a3a261c86a3f86e6fb0ab731d3c5bf43aed26f0fdc8988150b4a}{Dim}} $>$ \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_aa5f689797fe3ee149eb4e30f96afb9db_aa5f689797fe3ee149eb4e30f96afb9db}{Volume}}
+\item 
+typedef std\+::vector$<$ \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_aa5f689797fe3ee149eb4e30f96afb9db_aa5f689797fe3ee149eb4e30f96afb9db}{Volume}}, \mbox{\hyperlink{class_eigen_1_1aligned__allocator}{aligned\+\_\+allocator}}$<$ \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_aa5f689797fe3ee149eb4e30f96afb9db_aa5f689797fe3ee149eb4e30f96afb9db}{Volume}} $>$ $>$ \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a99fe8732297d31400275da9d5e77ea90_a99fe8732297d31400275da9d5e77ea90}{Volume\+List}}
+\item 
+typedef \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a4cf643e891619b23ef299d4dec483321_a4cf643e891619b23ef299d4dec483321}{Index}}
+\item 
+typedef const \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a83c142307d99bc803f9080137afa698f_a83c142307d99bc803f9080137afa698f}{Volume\+Iterator}}
+\item 
+typedef const \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a8d416d0710cfd99d4c02427a56cb4410_a8d416d0710cfd99d4c02427a56cb4410}{Object}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a369689a7f557184d350136bd7dbb6e76_a369689a7f557184d350136bd7dbb6e76}{Object\+Iterator}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_aeca39faf1559235c967a1437661c32ba_aeca39faf1559235c967a1437661c32ba}{Kd\+BVH}} ()
+\item 
+{\footnotesize template$<$typename Iter $>$ }\\\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a87d240e2d6ac5e87fc2e4ae6e0fe4bdc_a87d240e2d6ac5e87fc2e4ae6e0fe4bdc}{Kd\+BVH}} (Iter begin, Iter end)
+\item 
+{\footnotesize template$<$typename OIter , typename BIter $>$ }\\\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a94f781127eeec80a7659b8a625e2fa94_a94f781127eeec80a7659b8a625e2fa94}{Kd\+BVH}} (OIter begin, OIter end, BIter box\+Begin, BIter box\+End)
+\item 
+{\footnotesize template$<$typename Iter $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a431eed3c2567a854fb350f0b327d3307_a431eed3c2567a854fb350f0b327d3307}{init}} (Iter begin, Iter end)
+\item 
+{\footnotesize template$<$typename OIter , typename BIter $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a10a9c8f6d596d7a2cd285a3fb3e8c053_a10a9c8f6d596d7a2cd285a3fb3e8c053}{init}} (OIter begin, OIter end, BIter box\+Begin, BIter box\+End)
+\item 
+\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a4cf643e891619b23ef299d4dec483321_a4cf643e891619b23ef299d4dec483321}{Index}} \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a8111486ece7980dd8f0d10aff9693d11_a8111486ece7980dd8f0d10aff9693d11}{get\+Root\+Index}} () const
+\item 
+\mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} void \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a67326b18fcf16f341d2e4a16006d0205_a67326b18fcf16f341d2e4a16006d0205}{get\+Children}} (\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a4cf643e891619b23ef299d4dec483321_a4cf643e891619b23ef299d4dec483321}{Index}} index, \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a83c142307d99bc803f9080137afa698f_a83c142307d99bc803f9080137afa698f}{Volume\+Iterator}} \&out\+VBegin, \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a83c142307d99bc803f9080137afa698f_a83c142307d99bc803f9080137afa698f}{Volume\+Iterator}} \&out\+VEnd, \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a369689a7f557184d350136bd7dbb6e76_a369689a7f557184d350136bd7dbb6e76}{Object\+Iterator}} \&out\+OBegin, \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a369689a7f557184d350136bd7dbb6e76_a369689a7f557184d350136bd7dbb6e76}{Object\+Iterator}} \&out\+OEnd) const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_aa5f689797fe3ee149eb4e30f96afb9db_aa5f689797fe3ee149eb4e30f96afb9db}{Volume}} \& \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a9d12b951a356d0e225984aa80f2fce5e_a9d12b951a356d0e225984aa80f2fce5e}{get\+Volume}} (\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a4cf643e891619b23ef299d4dec483321_a4cf643e891619b23ef299d4dec483321}{Index}} index) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{非公開型}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1vector__int__pair}{internal\+::vector\+\_\+int\+\_\+pair}}$<$ \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_ab009afef23500bc30d52a89b803281b3_ab009afef23500bc30d52a89b803281b3}{Scalar}}, \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a2076dc5f9ec46a3a261c86a3f86e6fb0_a2076dc5f9ec46a3a261c86a3f86e6fb0ab731d3c5bf43aed26f0fdc8988150b4a}{Dim}} $>$ \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a28a21d7df67621255c2a0d597c69d477_a28a21d7df67621255c2a0d597c69d477}{VIPair}}
+\item 
+typedef std\+::vector$<$ \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a28a21d7df67621255c2a0d597c69d477_a28a21d7df67621255c2a0d597c69d477}{VIPair}}, \mbox{\hyperlink{class_eigen_1_1aligned__allocator}{aligned\+\_\+allocator}}$<$ \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a28a21d7df67621255c2a0d597c69d477_a28a21d7df67621255c2a0d597c69d477}{VIPair}} $>$ $>$ \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_ac144fbe92e3e79f3cadb6b8c40dab914_ac144fbe92e3e79f3cadb6b8c40dab914}{VIPair\+List}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_ab009afef23500bc30d52a89b803281b3_ab009afef23500bc30d52a89b803281b3}{Scalar}}, \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a2076dc5f9ec46a3a261c86a3f86e6fb0_a2076dc5f9ec46a3a261c86a3f86e6fb0ab731d3c5bf43aed26f0fdc8988150b4a}{Dim}}, 1 $>$ \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_ae7a244d0f4d59931fbaaf5f55cd94e13_ae7a244d0f4d59931fbaaf5f55cd94e13}{Vector\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{非公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_adc770e6de8412af2287ab63962c4ca40_adc770e6de8412af2287ab63962c4ca40}{build}} (\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_ac144fbe92e3e79f3cadb6b8c40dab914_ac144fbe92e3e79f3cadb6b8c40dab914}{VIPair\+List}} \&obj\+Centers, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} from, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} to, const \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a99fe8732297d31400275da9d5e77ea90_a99fe8732297d31400275da9d5e77ea90}{Volume\+List}} \&obj\+Boxes, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} dim)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{非公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} $>$ \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_adfaee5a35f1533338c381fe4697cccc0_adfaee5a35f1533338c381fe4697cccc0}{children}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a99fe8732297d31400275da9d5e77ea90_a99fe8732297d31400275da9d5e77ea90}{Volume\+List}} \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_ae8a8c69ed38b6e192e50444145c886ee_ae8a8c69ed38b6e192e50444145c886ee}{boxes}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_ae26e51905b34ed633b4a98d5def14e3b_ae26e51905b34ed633b4a98d5def14e3b}{Object\+List}} \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_af82a2afca9ba6ccfc747ff22f2ab1ff9_af82a2afca9ba6ccfc747ff22f2ab1ff9}{objects}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{詳解}
+\subsubsection*{template$<$typename \+\_\+\+Scalar, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Dim, typename \+\_\+\+Object$>$\newline
+class Eigen\+::\+Kd\+BVH$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object $>$}
+A simple bounding volume hierarchy based on \doxylink{class_eigen_1_1_aligned_box}{Aligned\+Box} 
+
+
+\begin{DoxyParams}{引数}
+{\em \+\_\+\+Scalar} & The underlying scalar type of the bounding boxes \\
+\hline
+{\em \+\_\+\+Dim} & The dimension of the space in which the hierarchy lives \\
+\hline
+{\em \+\_\+\+Object} & The object type that lives in the hierarchy. It must have value semantics. Either bounding\+\_\+box(\+\_\+\+Object) must be defined and return an Aligned\+Box$<$\+\_\+\+Scalar, \+\_\+\+Dim$>$ or bounding boxes must be provided to the tree initializer.\\
+\hline
+\end{DoxyParams}
+This class provides a simple (as opposed to optimized) implementation of a bounding volume hierarchy analogous to a Kd-\/tree. Given a sequence of objects, it computes their bounding boxes, constructs a Kd-\/tree of their centers and builds a BVH with the structure of that Kd-\/tree. When the elements of the tree are too expensive to be copied around, it is useful for \+\_\+\+Object to be a pointer. 
+
+\doxysubsection{型定義メンバ詳解}
+\Hypertarget{class_eigen_1_1_kd_b_v_h_a4cf643e891619b23ef299d4dec483321_a4cf643e891619b23ef299d4dec483321}\index{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}!Index@{Index}}
+\index{Index@{Index}!Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}}
+\doxysubsubsection{\texorpdfstring{Index}{Index}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_kd_b_v_h_a4cf643e891619b23ef299d4dec483321_a4cf643e891619b23ef299d4dec483321} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Dim, typename \+\_\+\+Object $>$ \\
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h}{Eigen\+::\+Kd\+BVH}}$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object $>$\+::\+Index}
+
+\Hypertarget{class_eigen_1_1_kd_b_v_h_a8d416d0710cfd99d4c02427a56cb4410_a8d416d0710cfd99d4c02427a56cb4410}\index{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}!Object@{Object}}
+\index{Object@{Object}!Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}}
+\doxysubsubsection{\texorpdfstring{Object}{Object}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_kd_b_v_h_a8d416d0710cfd99d4c02427a56cb4410_a8d416d0710cfd99d4c02427a56cb4410} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Dim, typename \+\_\+\+Object $>$ \\
+\+\_\+\+Object \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h}{Eigen\+::\+Kd\+BVH}}$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object $>$\+::\+Object}
+
+\Hypertarget{class_eigen_1_1_kd_b_v_h_a369689a7f557184d350136bd7dbb6e76_a369689a7f557184d350136bd7dbb6e76}\index{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}!ObjectIterator@{ObjectIterator}}
+\index{ObjectIterator@{ObjectIterator}!Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectIterator}{ObjectIterator}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_kd_b_v_h_a369689a7f557184d350136bd7dbb6e76_a369689a7f557184d350136bd7dbb6e76} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Dim, typename \+\_\+\+Object $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a8d416d0710cfd99d4c02427a56cb4410_a8d416d0710cfd99d4c02427a56cb4410}{Object}}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h}{Eigen\+::\+Kd\+BVH}}$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object $>$\+::\+Object\+Iterator}
+
+\Hypertarget{class_eigen_1_1_kd_b_v_h_ae26e51905b34ed633b4a98d5def14e3b_ae26e51905b34ed633b4a98d5def14e3b}\index{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}!ObjectList@{ObjectList}}
+\index{ObjectList@{ObjectList}!Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}}
+\doxysubsubsection{\texorpdfstring{ObjectList}{ObjectList}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_kd_b_v_h_ae26e51905b34ed633b4a98d5def14e3b_ae26e51905b34ed633b4a98d5def14e3b} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Dim, typename \+\_\+\+Object $>$ \\
+std\+::vector$<$\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a8d416d0710cfd99d4c02427a56cb4410_a8d416d0710cfd99d4c02427a56cb4410}{Object}}, \mbox{\hyperlink{class_eigen_1_1aligned__allocator}{aligned\+\_\+allocator}}$<$\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a8d416d0710cfd99d4c02427a56cb4410_a8d416d0710cfd99d4c02427a56cb4410}{Object}}$>$ $>$ \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h}{Eigen\+::\+Kd\+BVH}}$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object $>$\+::\+Object\+List}
+
+\Hypertarget{class_eigen_1_1_kd_b_v_h_ab009afef23500bc30d52a89b803281b3_ab009afef23500bc30d52a89b803281b3}\index{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_kd_b_v_h_ab009afef23500bc30d52a89b803281b3_ab009afef23500bc30d52a89b803281b3} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Dim, typename \+\_\+\+Object $>$ \\
+\+\_\+\+Scalar \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h}{Eigen\+::\+Kd\+BVH}}$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object $>$\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{\+::\+Scalar}}}
+
+\Hypertarget{class_eigen_1_1_kd_b_v_h_ae7a244d0f4d59931fbaaf5f55cd94e13_ae7a244d0f4d59931fbaaf5f55cd94e13}\index{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}!VectorType@{VectorType}}
+\index{VectorType@{VectorType}!Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}}
+\doxysubsubsection{\texorpdfstring{VectorType}{VectorType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_kd_b_v_h_ae7a244d0f4d59931fbaaf5f55cd94e13_ae7a244d0f4d59931fbaaf5f55cd94e13} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Dim, typename \+\_\+\+Object $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_ab009afef23500bc30d52a89b803281b3_ab009afef23500bc30d52a89b803281b3}{Scalar}}, \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a2076dc5f9ec46a3a261c86a3f86e6fb0_a2076dc5f9ec46a3a261c86a3f86e6fb0ab731d3c5bf43aed26f0fdc8988150b4a}{Dim}}, 1$>$ \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h}{Eigen\+::\+Kd\+BVH}}$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object $>$\mbox{\hyperlink{struct_vector_type}{\+::\+Vector\+Type}}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eigen_1_1_kd_b_v_h_a28a21d7df67621255c2a0d597c69d477_a28a21d7df67621255c2a0d597c69d477}\index{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}!VIPair@{VIPair}}
+\index{VIPair@{VIPair}!Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}}
+\doxysubsubsection{\texorpdfstring{VIPair}{VIPair}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_kd_b_v_h_a28a21d7df67621255c2a0d597c69d477_a28a21d7df67621255c2a0d597c69d477} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Dim, typename \+\_\+\+Object $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1vector__int__pair}{internal\+::vector\+\_\+int\+\_\+pair}}$<$\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_ab009afef23500bc30d52a89b803281b3_ab009afef23500bc30d52a89b803281b3}{Scalar}}, \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a2076dc5f9ec46a3a261c86a3f86e6fb0_a2076dc5f9ec46a3a261c86a3f86e6fb0ab731d3c5bf43aed26f0fdc8988150b4a}{Dim}}$>$ \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h}{Eigen\+::\+Kd\+BVH}}$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object $>$\+::\+VIPair\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eigen_1_1_kd_b_v_h_ac144fbe92e3e79f3cadb6b8c40dab914_ac144fbe92e3e79f3cadb6b8c40dab914}\index{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}!VIPairList@{VIPairList}}
+\index{VIPairList@{VIPairList}!Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}}
+\doxysubsubsection{\texorpdfstring{VIPairList}{VIPairList}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_kd_b_v_h_ac144fbe92e3e79f3cadb6b8c40dab914_ac144fbe92e3e79f3cadb6b8c40dab914} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Dim, typename \+\_\+\+Object $>$ \\
+std\+::vector$<$\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a28a21d7df67621255c2a0d597c69d477_a28a21d7df67621255c2a0d597c69d477}{VIPair}}, \mbox{\hyperlink{class_eigen_1_1aligned__allocator}{aligned\+\_\+allocator}}$<$\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a28a21d7df67621255c2a0d597c69d477_a28a21d7df67621255c2a0d597c69d477}{VIPair}}$>$ $>$ \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h}{Eigen\+::\+Kd\+BVH}}$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object $>$\+::\+VIPair\+List\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eigen_1_1_kd_b_v_h_aa5f689797fe3ee149eb4e30f96afb9db_aa5f689797fe3ee149eb4e30f96afb9db}\index{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}!Volume@{Volume}}
+\index{Volume@{Volume}!Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}}
+\doxysubsubsection{\texorpdfstring{Volume}{Volume}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_kd_b_v_h_aa5f689797fe3ee149eb4e30f96afb9db_aa5f689797fe3ee149eb4e30f96afb9db} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Dim, typename \+\_\+\+Object $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}}$<$\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_ab009afef23500bc30d52a89b803281b3_ab009afef23500bc30d52a89b803281b3}{Scalar}}, \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a2076dc5f9ec46a3a261c86a3f86e6fb0_a2076dc5f9ec46a3a261c86a3f86e6fb0ab731d3c5bf43aed26f0fdc8988150b4a}{Dim}}$>$ \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h}{Eigen\+::\+Kd\+BVH}}$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object $>$\+::\+Volume}
+
+\Hypertarget{class_eigen_1_1_kd_b_v_h_a83c142307d99bc803f9080137afa698f_a83c142307d99bc803f9080137afa698f}\index{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}!VolumeIterator@{VolumeIterator}}
+\index{VolumeIterator@{VolumeIterator}!Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}}
+\doxysubsubsection{\texorpdfstring{VolumeIterator}{VolumeIterator}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_kd_b_v_h_a83c142307d99bc803f9080137afa698f_a83c142307d99bc803f9080137afa698f} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Dim, typename \+\_\+\+Object $>$ \\
+const \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h}{Eigen\+::\+Kd\+BVH}}$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object $>$\+::\+Volume\+Iterator}
+
+\Hypertarget{class_eigen_1_1_kd_b_v_h_a99fe8732297d31400275da9d5e77ea90_a99fe8732297d31400275da9d5e77ea90}\index{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}!VolumeList@{VolumeList}}
+\index{VolumeList@{VolumeList}!Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}}
+\doxysubsubsection{\texorpdfstring{VolumeList}{VolumeList}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_kd_b_v_h_a99fe8732297d31400275da9d5e77ea90_a99fe8732297d31400275da9d5e77ea90} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Dim, typename \+\_\+\+Object $>$ \\
+std\+::vector$<$\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_aa5f689797fe3ee149eb4e30f96afb9db_aa5f689797fe3ee149eb4e30f96afb9db}{Volume}}, \mbox{\hyperlink{class_eigen_1_1aligned__allocator}{aligned\+\_\+allocator}}$<$\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_aa5f689797fe3ee149eb4e30f96afb9db_aa5f689797fe3ee149eb4e30f96afb9db}{Volume}}$>$ $>$ \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h}{Eigen\+::\+Kd\+BVH}}$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object $>$\+::\+Volume\+List}
+
+
+
+\doxysubsection{列挙型メンバ詳解}
+\Hypertarget{class_eigen_1_1_kd_b_v_h_a2076dc5f9ec46a3a261c86a3f86e6fb0_a2076dc5f9ec46a3a261c86a3f86e6fb0}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_kd_b_v_h_a2076dc5f9ec46a3a261c86a3f86e6fb0_a2076dc5f9ec46a3a261c86a3f86e6fb0} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Dim, typename \+\_\+\+Object $>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Dim@{Dim}!Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}}\index{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}!Dim@{Dim}}}\Hypertarget{class_eigen_1_1_kd_b_v_h_a2076dc5f9ec46a3a261c86a3f86e6fb0_a2076dc5f9ec46a3a261c86a3f86e6fb0ab731d3c5bf43aed26f0fdc8988150b4a}\label{class_eigen_1_1_kd_b_v_h_a2076dc5f9ec46a3a261c86a3f86e6fb0_a2076dc5f9ec46a3a261c86a3f86e6fb0} 
+Dim&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{構築子と解体子}
+\Hypertarget{class_eigen_1_1_kd_b_v_h_aeca39faf1559235c967a1437661c32ba_aeca39faf1559235c967a1437661c32ba}\index{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}!KdBVH@{KdBVH}}
+\index{KdBVH@{KdBVH}!Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}}
+\doxysubsubsection{\texorpdfstring{KdBVH()}{KdBVH()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_kd_b_v_h_aeca39faf1559235c967a1437661c32ba_aeca39faf1559235c967a1437661c32ba} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Dim, typename \+\_\+\+Object $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h}{Eigen\+::\+Kd\+BVH}}$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object $>$\+::\+Kd\+BVH (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_kd_b_v_h_a87d240e2d6ac5e87fc2e4ae6e0fe4bdc_a87d240e2d6ac5e87fc2e4ae6e0fe4bdc}\index{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}!KdBVH@{KdBVH}}
+\index{KdBVH@{KdBVH}!Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}}
+\doxysubsubsection{\texorpdfstring{KdBVH()}{KdBVH()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_kd_b_v_h_a87d240e2d6ac5e87fc2e4ae6e0fe4bdc_a87d240e2d6ac5e87fc2e4ae6e0fe4bdc} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Dim, typename \+\_\+\+Object $>$ \\
+template$<$typename Iter $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h}{Eigen\+::\+Kd\+BVH}}$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object $>$\+::\+Kd\+BVH (\begin{DoxyParamCaption}\item[{Iter}]{begin}{, }\item[{Iter}]{end}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Given an iterator range over {\itshape Object} references, constructs the BVH. Requires that bounding\+\_\+box(\+Object) return a Volume. \Hypertarget{class_eigen_1_1_kd_b_v_h_a94f781127eeec80a7659b8a625e2fa94_a94f781127eeec80a7659b8a625e2fa94}\index{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}!KdBVH@{KdBVH}}
+\index{KdBVH@{KdBVH}!Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}}
+\doxysubsubsection{\texorpdfstring{KdBVH()}{KdBVH()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_kd_b_v_h_a94f781127eeec80a7659b8a625e2fa94_a94f781127eeec80a7659b8a625e2fa94} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Dim, typename \+\_\+\+Object $>$ \\
+template$<$typename OIter , typename BIter $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h}{Eigen\+::\+Kd\+BVH}}$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object $>$\+::\+Kd\+BVH (\begin{DoxyParamCaption}\item[{OIter}]{begin}{, }\item[{OIter}]{end}{, }\item[{BIter}]{box\+Begin}{, }\item[{BIter}]{box\+End}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Given an iterator range over {\itshape Object} references and an iterator range over their bounding boxes, constructs the BVH 
+
+\doxysubsection{関数詳解}
+\Hypertarget{class_eigen_1_1_kd_b_v_h_adc770e6de8412af2287ab63962c4ca40_adc770e6de8412af2287ab63962c4ca40}\index{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}!build@{build}}
+\index{build@{build}!Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}}
+\doxysubsubsection{\texorpdfstring{build()}{build()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_kd_b_v_h_adc770e6de8412af2287ab63962c4ca40_adc770e6de8412af2287ab63962c4ca40} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Dim, typename \+\_\+\+Object $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h}{Eigen\+::\+Kd\+BVH}}$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object $>$\+::build (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_ac144fbe92e3e79f3cadb6b8c40dab914_ac144fbe92e3e79f3cadb6b8c40dab914}{VIPair\+List}} \&}]{obj\+Centers}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{from}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{to}{, }\item[{const \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a99fe8732297d31400275da9d5e77ea90_a99fe8732297d31400275da9d5e77ea90}{Volume\+List}} \&}]{obj\+Boxes}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{dim}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_eigen_1_1_kd_b_v_h_a67326b18fcf16f341d2e4a16006d0205_a67326b18fcf16f341d2e4a16006d0205}\index{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}!getChildren@{getChildren}}
+\index{getChildren@{getChildren}!Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}}
+\doxysubsubsection{\texorpdfstring{getChildren()}{getChildren()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_kd_b_v_h_a67326b18fcf16f341d2e4a16006d0205_a67326b18fcf16f341d2e4a16006d0205} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Dim, typename \+\_\+\+Object $>$ \\
+\mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} void \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h}{Eigen\+::\+Kd\+BVH}}$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object $>$\+::get\+Children (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a4cf643e891619b23ef299d4dec483321_a4cf643e891619b23ef299d4dec483321}{Index}}}]{index}{, }\item[{\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a83c142307d99bc803f9080137afa698f_a83c142307d99bc803f9080137afa698f}{Volume\+Iterator}} \&}]{out\+VBegin}{, }\item[{\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a83c142307d99bc803f9080137afa698f_a83c142307d99bc803f9080137afa698f}{Volume\+Iterator}} \&}]{out\+VEnd}{, }\item[{\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a369689a7f557184d350136bd7dbb6e76_a369689a7f557184d350136bd7dbb6e76}{Object\+Iterator}} \&}]{out\+OBegin}{, }\item[{\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a369689a7f557184d350136bd7dbb6e76_a369689a7f557184d350136bd7dbb6e76}{Object\+Iterator}} \&}]{out\+OEnd}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Given an {\itshape index} of a node, on exit, {\itshape out\+VBegin} and {\itshape out\+VEnd} range over the indices of the volume children of the node and {\itshape out\+OBegin} and {\itshape out\+OEnd} range over the object children of the node \Hypertarget{class_eigen_1_1_kd_b_v_h_a8111486ece7980dd8f0d10aff9693d11_a8111486ece7980dd8f0d10aff9693d11}\index{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}!getRootIndex@{getRootIndex}}
+\index{getRootIndex@{getRootIndex}!Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}}
+\doxysubsubsection{\texorpdfstring{getRootIndex()}{getRootIndex()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_kd_b_v_h_a8111486ece7980dd8f0d10aff9693d11_a8111486ece7980dd8f0d10aff9693d11} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Dim, typename \+\_\+\+Object $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a4cf643e891619b23ef299d4dec483321_a4cf643e891619b23ef299d4dec483321}{Index}} \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h}{Eigen\+::\+Kd\+BVH}}$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object $>$\+::get\+Root\+Index (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{戻り値}
+the index of the root of the hierarchy 
+\end{DoxyReturn}
+\Hypertarget{class_eigen_1_1_kd_b_v_h_a9d12b951a356d0e225984aa80f2fce5e_a9d12b951a356d0e225984aa80f2fce5e}\index{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}!getVolume@{getVolume}}
+\index{getVolume@{getVolume}!Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}}
+\doxysubsubsection{\texorpdfstring{getVolume()}{getVolume()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_kd_b_v_h_a9d12b951a356d0e225984aa80f2fce5e_a9d12b951a356d0e225984aa80f2fce5e} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Dim, typename \+\_\+\+Object $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_aa5f689797fe3ee149eb4e30f96afb9db_aa5f689797fe3ee149eb4e30f96afb9db}{Volume}} \& \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h}{Eigen\+::\+Kd\+BVH}}$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object $>$\+::get\+Volume (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a4cf643e891619b23ef299d4dec483321_a4cf643e891619b23ef299d4dec483321}{Index}}}]{index}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{戻り値}
+the bounding box of the node at {\itshape index} 
+\end{DoxyReturn}
+\Hypertarget{class_eigen_1_1_kd_b_v_h_a431eed3c2567a854fb350f0b327d3307_a431eed3c2567a854fb350f0b327d3307}\index{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}!init@{init}}
+\index{init@{init}!Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_kd_b_v_h_a431eed3c2567a854fb350f0b327d3307_a431eed3c2567a854fb350f0b327d3307} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Dim, typename \+\_\+\+Object $>$ \\
+template$<$typename Iter $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h}{Eigen\+::\+Kd\+BVH}}$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object $>$\mbox{\hyperlink{structinit}{\+::init}} (\begin{DoxyParamCaption}\item[{Iter}]{begin}{, }\item[{Iter}]{end}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Given an iterator range over {\itshape Object} references, constructs the BVH, overwriting whatever is in there currently. Requires that bounding\+\_\+box(\+Object) return a Volume. \Hypertarget{class_eigen_1_1_kd_b_v_h_a10a9c8f6d596d7a2cd285a3fb3e8c053_a10a9c8f6d596d7a2cd285a3fb3e8c053}\index{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}!init@{init}}
+\index{init@{init}!Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_kd_b_v_h_a10a9c8f6d596d7a2cd285a3fb3e8c053_a10a9c8f6d596d7a2cd285a3fb3e8c053} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Dim, typename \+\_\+\+Object $>$ \\
+template$<$typename OIter , typename BIter $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h}{Eigen\+::\+Kd\+BVH}}$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object $>$\mbox{\hyperlink{structinit}{\+::init}} (\begin{DoxyParamCaption}\item[{OIter}]{begin}{, }\item[{OIter}]{end}{, }\item[{BIter}]{box\+Begin}{, }\item[{BIter}]{box\+End}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Given an iterator range over {\itshape Object} references and an iterator range over their bounding boxes, constructs the BVH, overwriting whatever is in there currently. 
+
+\doxysubsection{メンバ詳解}
+\Hypertarget{class_eigen_1_1_kd_b_v_h_ae8a8c69ed38b6e192e50444145c886ee_ae8a8c69ed38b6e192e50444145c886ee}\index{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}!boxes@{boxes}}
+\index{boxes@{boxes}!Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}}
+\doxysubsubsection{\texorpdfstring{boxes}{boxes}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_kd_b_v_h_ae8a8c69ed38b6e192e50444145c886ee_ae8a8c69ed38b6e192e50444145c886ee} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Dim, typename \+\_\+\+Object $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_a99fe8732297d31400275da9d5e77ea90_a99fe8732297d31400275da9d5e77ea90}{Volume\+List}} \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h}{Eigen\+::\+Kd\+BVH}}$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object $>$\+::boxes\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eigen_1_1_kd_b_v_h_adfaee5a35f1533338c381fe4697cccc0_adfaee5a35f1533338c381fe4697cccc0}\index{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}!children@{children}}
+\index{children@{children}!Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}}
+\doxysubsubsection{\texorpdfstring{children}{children}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_kd_b_v_h_adfaee5a35f1533338c381fe4697cccc0_adfaee5a35f1533338c381fe4697cccc0} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Dim, typename \+\_\+\+Object $>$ \\
+std\+::vector$<$\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}$>$ \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h}{Eigen\+::\+Kd\+BVH}}$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object $>$\+::children\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eigen_1_1_kd_b_v_h_af82a2afca9ba6ccfc747ff22f2ab1ff9_af82a2afca9ba6ccfc747ff22f2ab1ff9}\index{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}!objects@{objects}}
+\index{objects@{objects}!Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$@{Eigen::KdBVH$<$ \_Scalar, \_Dim, \_Object $>$}}
+\doxysubsubsection{\texorpdfstring{objects}{objects}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_kd_b_v_h_af82a2afca9ba6ccfc747ff22f2ab1ff9_af82a2afca9ba6ccfc747ff22f2ab1ff9} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Dim, typename \+\_\+\+Object $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_kd_b_v_h_ae26e51905b34ed633b4a98d5def14e3b_ae26e51905b34ed633b4a98d5def14e3b}{Object\+List}} \mbox{\hyperlink{class_eigen_1_1_kd_b_v_h}{Eigen\+::\+Kd\+BVH}}$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Object $>$\+::objects\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/unsupported/\+Eigen/src/\+BVH/\mbox{\hyperlink{_kd_b_v_h_8h}{Kd\+BVH.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,527 @@
+\doxysection{svd\+\_\+common.\+h}
+\hypertarget{svd__common_8h_source}{}\label{svd__common_8h_source}\index{eigen-\/3.4.0/eigen-\/3.4.0/test/svd\_common.h@{eigen-\/3.4.0/eigen-\/3.4.0/test/svd\_common.h}}
+\mbox{\hyperlink{svd__common_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ Eigen,\ a\ lightweight\ C++\ template\ library}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ for\ linear\ algebra.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (C)\ 2008-\/2014\ Gael\ Guennebaud\ <gael.guennebaud@inria.fr>}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Copyright\ (C)\ 2009\ Benoit\ Jacob\ <jacob.benoit.1@gmail.com>}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ This\ Source\ Code\ Form\ is\ subject\ to\ the\ terms\ of\ the\ Mozilla}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ Public\ License\ v.\ 2.0.\ If\ a\ copy\ of\ the\ MPL\ was\ not\ distributed}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ with\ this\ file,\ You\ can\ obtain\ one\ at\ http://mozilla.org/MPL/2.0/.}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifndef\ SVD\_DEFAULT}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#error\ a\ macro\ SVD\_DEFAULT(MatrixType)\ must\ be\ defined\ prior\ to\ including\ svd\_common.h}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#ifndef\ SVD\_FOR\_MIN\_NORM}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#error\ a\ macro\ SVD\_FOR\_MIN\_NORM(MatrixType)\ must\ be\ defined\ prior\ to\ including\ svd\_common.h}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{svd__fill_8h}{svd\_fill.h}}"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{test_2_solver_base_8h}{solverbase.h}}"{}}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ Check\ that\ the\ matrix\ m\ is\ properly\ reconstructed\ and\ that\ the\ U\ and\ V\ factors\ are\ unitary}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ The\ SVD\ must\ have\ already\ been\ computed.}}
+\DoxyCodeLine{00024\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ SvdType,\ \textcolor{keyword}{typename}\ MatrixType>}
+\DoxyCodeLine{00025\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{svd__common_8h_ae318f00d929c0c2ed357e8252860ab47_ae318f00d929c0c2ed357e8252860ab47}{svd\_check\_full}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{MatrixType}}\&\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ \textcolor{keyword}{const}\ SvdType\&\ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}})}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \ \ Index\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}}\ =\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}.rows();}
+\DoxyCodeLine{00028\ \ \ Index\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}}\ =\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}.cols();}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ RowsAtCompileTime\ =\ MatrixType::RowsAtCompileTime,}
+\DoxyCodeLine{00032\ \ \ \ \ ColsAtCompileTime\ =\ MatrixType::ColsAtCompileTime}
+\DoxyCodeLine{00033\ \ \ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ MatrixType::Scalar\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}};}
+\DoxyCodeLine{00036\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ MatrixType::RealScalar\ \mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{RealScalar}};}
+\DoxyCodeLine{00037\ \ \ \textcolor{keyword}{typedef}\ Matrix<Scalar,\ RowsAtCompileTime,\ RowsAtCompileTime>\ MatrixUType;}
+\DoxyCodeLine{00038\ \ \ \textcolor{keyword}{typedef}\ Matrix<Scalar,\ ColsAtCompileTime,\ ColsAtCompileTime>\ MatrixVType;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{MatrixType}}\ \mbox{\hyperlink{lorenz_8c_a4ef930be9d7ab47d59cc0668d0d1fac8_a4ef930be9d7ab47d59cc0668d0d1fac8}{sigma}}\ =\ MatrixType::Zero(\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}},\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}});}
+\DoxyCodeLine{00041\ \ \ \mbox{\hyperlink{lorenz_8c_a4ef930be9d7ab47d59cc0668d0d1fac8_a4ef930be9d7ab47d59cc0668d0d1fac8}{sigma}}.diagonal()\ =\ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.singularValues().template\ \mbox{\hyperlink{_common_cwise_unary_ops_8h_aa89d007196125d10fa7d6e19811aca05_aa89d007196125d10fa7d6e19811aca05}{cast<Scalar>}}();}
+\DoxyCodeLine{00042\ \ \ MatrixUType\ u\ =\ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixU();}
+\DoxyCodeLine{00043\ \ \ MatrixVType\ \mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}}\ =\ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixV();}
+\DoxyCodeLine{00044\ \ \ \mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{RealScalar}}\ scaling\ =\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}.cwiseAbs().maxCoeff();}
+\DoxyCodeLine{00045\ \ \ \textcolor{keywordflow}{if}(scaling<(std::numeric\_limits<RealScalar>::min)())}
+\DoxyCodeLine{00046\ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{lorenz_8c_a4ef930be9d7ab47d59cc0668d0d1fac8_a4ef930be9d7ab47d59cc0668d0d1fac8}{sigma}}.cwiseAbs().maxCoeff()\ <=\ (std::numeric\_limits<RealScalar>::min)());}
+\DoxyCodeLine{00048\ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00050\ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}/scaling,\ u\ *\ (\mbox{\hyperlink{lorenz_8c_a4ef930be9d7ab47d59cc0668d0d1fac8_a4ef930be9d7ab47d59cc0668d0d1fac8}{sigma}}/scaling)\ *\ \mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}}.adjoint());}
+\DoxyCodeLine{00052\ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \mbox{\hyperlink{main_8h_ad07709a83a8d46d73b1c30d936cd4c0b_ad07709a83a8d46d73b1c30d936cd4c0b}{VERIFY\_IS\_UNITARY}}(u);}
+\DoxyCodeLine{00054\ \ \ \mbox{\hyperlink{main_8h_ad07709a83a8d46d73b1c30d936cd4c0b_ad07709a83a8d46d73b1c30d936cd4c0b}{VERIFY\_IS\_UNITARY}}(\mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}});}
+\DoxyCodeLine{00055\ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ Compare\ partial\ SVD\ defined\ by\ computationOptions\ to\ a\ full\ SVD\ referenceSvd}}
+\DoxyCodeLine{00058\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ SvdType,\ \textcolor{keyword}{typename}\ MatrixType>}
+\DoxyCodeLine{00059\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{svd__common_8h_a6831b336d27a4806382ee770116b0a2b_a6831b336d27a4806382ee770116b0a2b}{svd\_compare\_to\_full}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{MatrixType}}\&\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ computationOptions,}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ SvdType\&\ referenceSvd)}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ MatrixType::RealScalar\ \mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{RealScalar}};}
+\DoxyCodeLine{00064\ \ \ Index\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}}\ =\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}.rows();}
+\DoxyCodeLine{00065\ \ \ Index\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}}\ =\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}.cols();}
+\DoxyCodeLine{00066\ \ \ Index\ diagSize\ =\ (std::min)(\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}},\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}});}
+\DoxyCodeLine{00067\ \ \ \mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{RealScalar}}\ prec\ =\ \mbox{\hyperlink{spbenchsolver_8h_ac873ccd2d8b50aa74f31783a38ba5d99_ac873ccd2d8b50aa74f31783a38ba5d99}{test\_precision<RealScalar>}}();}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ SvdType\ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ computationOptions);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.singularValues(),\ referenceSvd.singularValues());}
+\DoxyCodeLine{00072\ \ \ }
+\DoxyCodeLine{00073\ \ \ \textcolor{keywordflow}{if}(computationOptions\ \&\ (ComputeFullV|ComputeThinV))}
+\DoxyCodeLine{00074\ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\ (\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixV().adjoint()*\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixV()).isIdentity(prec)\ );}
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(\ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixV().leftCols(diagSize)\ *\ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.singularValues().asDiagonal()\ *\ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixV().leftCols(diagSize).adjoint(),}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ referenceSvd.matrixV().leftCols(diagSize)\ *\ referenceSvd.singularValues().asDiagonal()\ *\ referenceSvd.matrixV().leftCols(diagSize).adjoint());}
+\DoxyCodeLine{00078\ \ \ \}}
+\DoxyCodeLine{00079\ \ \ }
+\DoxyCodeLine{00080\ \ \ \textcolor{keywordflow}{if}(computationOptions\ \&\ (ComputeFullU|ComputeThinU))}
+\DoxyCodeLine{00081\ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\ (\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixU().adjoint()*\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixU()).isIdentity(prec)\ );}
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(\ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixU().leftCols(diagSize)\ *\ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.singularValues().cwiseAbs2().asDiagonal()\ *\ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixU().leftCols(diagSize).adjoint(),}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ referenceSvd.matrixU().leftCols(diagSize)\ *\ referenceSvd.singularValues().cwiseAbs2().asDiagonal()\ *\ referenceSvd.matrixU().leftCols(diagSize).adjoint());}
+\DoxyCodeLine{00085\ \ \ \}}
+\DoxyCodeLine{00086\ \ \ }
+\DoxyCodeLine{00087\ \ \ \textcolor{comment}{//\ The\ following\ checks\ are\ not\ critical.}}
+\DoxyCodeLine{00088\ \ \ \textcolor{comment}{//\ For\ instance,\ with\ Dived\&Conquer\ SVD,\ if\ only\ the\ factor\ 'V'\ is\ computedt\ then\ different\ matrix-\/matrix\ product\ implementation\ will\ be\ used}}
+\DoxyCodeLine{00089\ \ \ \textcolor{comment}{//\ and\ the\ resulting\ 'V'\ factor\ might\ be\ significantly\ different\ when\ the\ SVD\ decomposition\ is\ not\ unique,\ especially\ with\ single\ precision\ float.}}
+\DoxyCodeLine{00090\ \ \ ++g\_test\_level;}
+\DoxyCodeLine{00091\ \ \ \textcolor{keywordflow}{if}(computationOptions\ \&\ ComputeFullU)\ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixU(),\ referenceSvd.matrixU());}
+\DoxyCodeLine{00092\ \ \ \textcolor{keywordflow}{if}(computationOptions\ \&\ ComputeThinU)\ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixU(),\ referenceSvd.matrixU().leftCols(diagSize));}
+\DoxyCodeLine{00093\ \ \ \textcolor{keywordflow}{if}(computationOptions\ \&\ ComputeFullV)\ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixV().cwiseAbs(),\ referenceSvd.matrixV().cwiseAbs());}
+\DoxyCodeLine{00094\ \ \ \textcolor{keywordflow}{if}(computationOptions\ \&\ ComputeThinV)\ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixV(),\ referenceSvd.matrixV().leftCols(diagSize));}
+\DoxyCodeLine{00095\ \ \ -\/-\/g\_test\_level;}
+\DoxyCodeLine{00096\ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{comment}{//}}
+\DoxyCodeLine{00099\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ SvdType,\ \textcolor{keyword}{typename}\ MatrixType>}
+\DoxyCodeLine{00100\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{svd__common_8h_a993e3af0920e58583d5df615c5f56d35_a993e3af0920e58583d5df615c5f56d35}{svd\_least\_square}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{MatrixType}}\&\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ computationOptions)}
+\DoxyCodeLine{00101\ \{}
+\DoxyCodeLine{00102\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ MatrixType::Scalar\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}};}
+\DoxyCodeLine{00103\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ MatrixType::RealScalar\ \mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{RealScalar}};}
+\DoxyCodeLine{00104\ \ \ Index\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}}\ =\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}.rows();}
+\DoxyCodeLine{00105\ \ \ Index\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}}\ =\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}.cols();}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ RowsAtCompileTime\ =\ MatrixType::RowsAtCompileTime,}
+\DoxyCodeLine{00109\ \ \ \ \ ColsAtCompileTime\ =\ MatrixType::ColsAtCompileTime}
+\DoxyCodeLine{00110\ \ \ \};}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \textcolor{keyword}{typedef}\ Matrix<Scalar,\ RowsAtCompileTime,\ Dynamic>\ RhsType;}
+\DoxyCodeLine{00113\ \ \ \textcolor{keyword}{typedef}\ Matrix<Scalar,\ ColsAtCompileTime,\ Dynamic>\ SolutionType;}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ RhsType\ rhs\ =\ RhsType::Random(\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}},\ internal::random<Index>(1,\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}}));}
+\DoxyCodeLine{00116\ \ \ SvdType\ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ computationOptions);}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(internal::is\_same<RealScalar,double>::value)\ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.setThreshold(1\mbox{\hyperlink{_cwise__array__power__array_8cpp_a9cb86ff854760bf91a154f2724a9101d_a9cb86ff854760bf91a154f2724a9101d}{e}}-\/8);}
+\DoxyCodeLine{00119\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(internal::is\_same<RealScalar,float>::value)\ \ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.setThreshold(2\mbox{\hyperlink{_cwise__array__power__array_8cpp_a9cb86ff854760bf91a154f2724a9101d_a9cb86ff854760bf91a154f2724a9101d}{e}}-\/4);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ SolutionType\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}\ =\ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.solve(rhs);}
+\DoxyCodeLine{00122\ \ \ \ }
+\DoxyCodeLine{00123\ \ \ \mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{RealScalar}}\ residual\ =\ (\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}*\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}-\/rhs).norm();}
+\DoxyCodeLine{00124\ \ \ \mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{RealScalar}}\ rhs\_norm\ =\ rhs.norm();}
+\DoxyCodeLine{00125\ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{_annoying_scalar_8h_a9e71f321e21f0faab375e9af04f4ad84_a9e71f321e21f0faab375e9af04f4ad84}{test\_isMuchSmallerThan}}(residual,rhs.norm()))}
+\DoxyCodeLine{00126\ \ \ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{comment}{//\ \string^\string^\string^\ If\ the\ residual\ is\ very\ small,\ then\ we\ have\ an\ exact\ solution,\ so\ we\ are\ already\ good.}}
+\DoxyCodeLine{00128\ \ \ \ \ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{comment}{//\ evaluate\ normal\ equation\ which\ works\ also\ for\ least-\/squares\ solutions}}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordflow}{if}(internal::is\_same<RealScalar,double>::value\ ||\ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.rank()==\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}.diagonal().size())}
+\DoxyCodeLine{00131\ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \textcolor{keyword}{using\ }std::sqrt;}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \textcolor{comment}{//\ This\ test\ is\ not\ stable\ with\ single\ precision.}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \textcolor{comment}{//\ This\ is\ probably\ because\ squaring\ m\ signicantly\ affects\ the\ precision.\ \ \ \ \ \ }}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(internal::is\_same<RealScalar,float>::value)\ ++g\_test\_level;}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}.adjoint()*(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}*\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}),\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}.adjoint()*rhs);}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(internal::is\_same<RealScalar,float>::value)\ -\/-\/g\_test\_level;}
+\DoxyCodeLine{00140\ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{comment}{//\ Check\ that\ there\ is\ no\ significantly\ better\ solution\ in\ the\ neighborhood\ of\ x}}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordflow}{for}(Index\ k=0;k<\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.rows();++k)}
+\DoxyCodeLine{00144\ \ \ \ \ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \textcolor{keyword}{using\ }std::abs;}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ SolutionType\ \mbox{\hyperlink{level1__cplx__impl_8h_a792f7d150beb978a4945c84df6867679_a792f7d150beb978a4945c84df6867679}{y}}(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}});}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \mbox{\hyperlink{level1__cplx__impl_8h_a792f7d150beb978a4945c84df6867679_a792f7d150beb978a4945c84df6867679}{y}}.row(k)\ =\ (\mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{RealScalar}}(1)+2*NumTraits<RealScalar>::epsilon())*\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.row(k);}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{RealScalar}}\ residual\_y\ =\ (\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}*\mbox{\hyperlink{level1__cplx__impl_8h_a792f7d150beb978a4945c84df6867679_a792f7d150beb978a4945c84df6867679}{y}}-\/rhs).norm();}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\ \mbox{\hyperlink{_annoying_scalar_8h_a9e71f321e21f0faab375e9af04f4ad84_a9e71f321e21f0faab375e9af04f4ad84}{test\_isMuchSmallerThan}}(\mbox{\hyperlink{datatypes_8h_a3aa069ac3980707dae1e0530f50d59e4_a3aa069ac3980707dae1e0530f50d59e4}{abs}}(residual\_y-\/residual),\ rhs\_norm)\ ||\ residual\ <\ residual\_y\ );}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(internal::is\_same<RealScalar,float>::value)\ ++g\_test\_level;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\ \mbox{\hyperlink{_annoying_scalar_8h_a0d8038e1d59f7279af6792c42464490a_a0d8038e1d59f7279af6792c42464490a}{test\_isApprox}}(residual\_y,residual)\ ||\ residual\ <\ residual\_y\ );}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(internal::is\_same<RealScalar,float>::value)\ -\/-\/g\_test\_level;}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \mbox{\hyperlink{level1__cplx__impl_8h_a792f7d150beb978a4945c84df6867679_a792f7d150beb978a4945c84df6867679}{y}}.row(k)\ =\ (\mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{RealScalar}}(1)-\/2*NumTraits<RealScalar>::epsilon())*\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.row(k);}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ residual\_y\ =\ (\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}*\mbox{\hyperlink{level1__cplx__impl_8h_a792f7d150beb978a4945c84df6867679_a792f7d150beb978a4945c84df6867679}{y}}-\/rhs).norm();}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\ \mbox{\hyperlink{_annoying_scalar_8h_a9e71f321e21f0faab375e9af04f4ad84_a9e71f321e21f0faab375e9af04f4ad84}{test\_isMuchSmallerThan}}(\mbox{\hyperlink{datatypes_8h_a3aa069ac3980707dae1e0530f50d59e4_a3aa069ac3980707dae1e0530f50d59e4}{abs}}(residual\_y-\/residual),\ rhs\_norm)\ ||\ residual\ <\ residual\_y\ );}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(internal::is\_same<RealScalar,float>::value)\ ++g\_test\_level;}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\ \mbox{\hyperlink{_annoying_scalar_8h_a0d8038e1d59f7279af6792c42464490a_a0d8038e1d59f7279af6792c42464490a}{test\_isApprox}}(residual\_y,residual)\ ||\ residual\ <\ residual\_y\ );}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(internal::is\_same<RealScalar,float>::value)\ -\/-\/g\_test\_level;}
+\DoxyCodeLine{00161\ \ \ \ \ \}}
+\DoxyCodeLine{00162\ \ \ \}}
+\DoxyCodeLine{00163\ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \textcolor{comment}{//\ check\ minimal\ norm\ solutions,\ the\ inoput\ matrix\ m\ is\ only\ used\ to\ recover\ problem\ size}}
+\DoxyCodeLine{00166\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ MatrixType>}
+\DoxyCodeLine{00167\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{svd__common_8h_a59fb42b0829d86517e758c9b3c5c3769_a59fb42b0829d86517e758c9b3c5c3769}{svd\_min\_norm}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{MatrixType}}\&\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ computationOptions)}
+\DoxyCodeLine{00168\ \{}
+\DoxyCodeLine{00169\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ MatrixType::Scalar\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}};}
+\DoxyCodeLine{00170\ \ \ Index\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}}\ =\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}.cols();}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ ColsAtCompileTime\ =\ MatrixType::ColsAtCompileTime}
+\DoxyCodeLine{00174\ \ \ \};}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \textcolor{keyword}{typedef}\ Matrix<Scalar,\ ColsAtCompileTime,\ Dynamic>\ SolutionType;}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \textcolor{comment}{//\ generate\ a\ full-\/rank\ m\ x\ n\ problem\ with\ m<n}}
+\DoxyCodeLine{00179\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00180\ \ \ \ \ RankAtCompileTime2\ =\ ColsAtCompileTime==Dynamic\ ?\ Dynamic\ :\ (ColsAtCompileTime)/2+1,}
+\DoxyCodeLine{00181\ \ \ \ \ RowsAtCompileTime3\ =\ ColsAtCompileTime==Dynamic\ ?\ Dynamic\ :\ ColsAtCompileTime+1}
+\DoxyCodeLine{00182\ \ \ \};}
+\DoxyCodeLine{00183\ \ \ \textcolor{keyword}{typedef}\ Matrix<Scalar,\ RankAtCompileTime2,\ ColsAtCompileTime>\ MatrixType2;}
+\DoxyCodeLine{00184\ \ \ \textcolor{keyword}{typedef}\ Matrix<Scalar,\ RankAtCompileTime2,\ 1>\ RhsType2;}
+\DoxyCodeLine{00185\ \ \ \textcolor{keyword}{typedef}\ Matrix<Scalar,\ ColsAtCompileTime,\ RankAtCompileTime2>\ MatrixType2T;}
+\DoxyCodeLine{00186\ \ \ Index\ rank\ =\ RankAtCompileTime2==Dynamic\ ?\ internal::random<Index>(1,\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}})\ :\ Index(RankAtCompileTime2);}
+\DoxyCodeLine{00187\ \ \ MatrixType2\ \mbox{\hyperlink{_tutorial___map__using_8cpp_ab3a01b595d22393ace0d30d5fa299f76_ab3a01b595d22393ace0d30d5fa299f76}{m2}}(rank,\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}});}
+\DoxyCodeLine{00188\ \ \ \textcolor{keywordtype}{int}\ guard\ =\ 0;}
+\DoxyCodeLine{00189\ \ \ \textcolor{keywordflow}{do}\ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \mbox{\hyperlink{_tutorial___map__using_8cpp_ab3a01b595d22393ace0d30d5fa299f76_ab3a01b595d22393ace0d30d5fa299f76}{m2}}.setRandom();}
+\DoxyCodeLine{00191\ \ \ \}\ \textcolor{keywordflow}{while}(\mbox{\hyperlink{bdcsvd_8cpp_ac6290843e6be5ef77440ba4abcef726b_ac6290843e6be5ef77440ba4abcef726b}{SVD\_FOR\_MIN\_NORM}}(MatrixType2)(\mbox{\hyperlink{_tutorial___map__using_8cpp_ab3a01b595d22393ace0d30d5fa299f76_ab3a01b595d22393ace0d30d5fa299f76}{m2}}).setThreshold(\mbox{\hyperlink{spbenchsolver_8h_ac873ccd2d8b50aa74f31783a38ba5d99_ac873ccd2d8b50aa74f31783a38ba5d99}{test\_precision<Scalar>}}()).rank()!=rank\ \&\&\ (++guard)<10);}
+\DoxyCodeLine{00192\ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(guard<10);}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ RhsType2\ rhs2\ =\ RhsType2::Random(rank);}
+\DoxyCodeLine{00195\ \ \ \textcolor{comment}{//\ use\ QR\ to\ find\ a\ reference\ minimal\ norm\ solution}}
+\DoxyCodeLine{00196\ \ \ HouseholderQR<MatrixType2T>\ \mbox{\hyperlink{qr__colpivoting_8cpp_a234047f1d6b0303293c8918968a9670e_a234047f1d6b0303293c8918968a9670e}{qr}}(\mbox{\hyperlink{_tutorial___map__using_8cpp_ab3a01b595d22393ace0d30d5fa299f76_ab3a01b595d22393ace0d30d5fa299f76}{m2}}.adjoint());}
+\DoxyCodeLine{00197\ \ \ Matrix<Scalar,Dynamic,1>\ tmp\ =\ \mbox{\hyperlink{qr__colpivoting_8cpp_a234047f1d6b0303293c8918968a9670e_a234047f1d6b0303293c8918968a9670e}{qr}}.matrixQR().topLeftCorner(rank,rank).template\ triangularView<Upper>().adjoint().solve(rhs2);}
+\DoxyCodeLine{00198\ \ \ tmp.conservativeResize(\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}});}
+\DoxyCodeLine{00199\ \ \ tmp.tail(\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}}-\/rank).setZero();}
+\DoxyCodeLine{00200\ \ \ SolutionType\ x21\ =\ \mbox{\hyperlink{qr__colpivoting_8cpp_a234047f1d6b0303293c8918968a9670e_a234047f1d6b0303293c8918968a9670e}{qr}}.householderQ()\ *\ tmp;}
+\DoxyCodeLine{00201\ \ \ \textcolor{comment}{//\ now\ check\ with\ SVD}}
+\DoxyCodeLine{00202\ \ \ \mbox{\hyperlink{bdcsvd_8cpp_ac6290843e6be5ef77440ba4abcef726b_ac6290843e6be5ef77440ba4abcef726b}{SVD\_FOR\_MIN\_NORM}}(MatrixType2)\ svd2(\mbox{\hyperlink{_tutorial___map__using_8cpp_ab3a01b595d22393ace0d30d5fa299f76_ab3a01b595d22393ace0d30d5fa299f76}{m2}},\ computationOptions);}
+\DoxyCodeLine{00203\ \ \ SolutionType\ x22\ =\ svd2.solve(rhs2);}
+\DoxyCodeLine{00204\ \ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(\mbox{\hyperlink{_tutorial___map__using_8cpp_ab3a01b595d22393ace0d30d5fa299f76_ab3a01b595d22393ace0d30d5fa299f76}{m2}}*x21,\ rhs2);}
+\DoxyCodeLine{00205\ \ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(\mbox{\hyperlink{_tutorial___map__using_8cpp_ab3a01b595d22393ace0d30d5fa299f76_ab3a01b595d22393ace0d30d5fa299f76}{m2}}*x22,\ rhs2);}
+\DoxyCodeLine{00206\ \ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(x21,\ x22);}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ \ \textcolor{comment}{//\ Now\ check\ with\ a\ rank\ deficient\ matrix}}
+\DoxyCodeLine{00209\ \ \ \textcolor{keyword}{typedef}\ Matrix<Scalar,\ RowsAtCompileTime3,\ ColsAtCompileTime>\ MatrixType3;}
+\DoxyCodeLine{00210\ \ \ \textcolor{keyword}{typedef}\ Matrix<Scalar,\ RowsAtCompileTime3,\ 1>\ RhsType3;}
+\DoxyCodeLine{00211\ \ \ Index\ rows3\ =\ RowsAtCompileTime3==Dynamic\ ?\ internal::random<Index>(rank+1,2*\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}})\ :\ Index(RowsAtCompileTime3);}
+\DoxyCodeLine{00212\ \ \ Matrix<Scalar,RowsAtCompileTime3,Dynamic>\ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}\ =\ Matrix<Scalar,RowsAtCompileTime3,Dynamic>::Random(rows3,rank);}
+\DoxyCodeLine{00213\ \ \ MatrixType3\ m3\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}\ *\ \mbox{\hyperlink{_tutorial___map__using_8cpp_ab3a01b595d22393ace0d30d5fa299f76_ab3a01b595d22393ace0d30d5fa299f76}{m2}};}
+\DoxyCodeLine{00214\ \ \ RhsType3\ rhs3\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}\ *\ rhs2;}
+\DoxyCodeLine{00215\ \ \ \mbox{\hyperlink{bdcsvd_8cpp_ac6290843e6be5ef77440ba4abcef726b_ac6290843e6be5ef77440ba4abcef726b}{SVD\_FOR\_MIN\_NORM}}(MatrixType3)\ svd3(m3,\ computationOptions);}
+\DoxyCodeLine{00216\ \ \ SolutionType\ x3\ =\ svd3.solve(rhs3);}
+\DoxyCodeLine{00217\ \ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(m3*x3,\ rhs3);}
+\DoxyCodeLine{00218\ \ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(m3*x21,\ rhs3);}
+\DoxyCodeLine{00219\ \ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(\mbox{\hyperlink{_tutorial___map__using_8cpp_ab3a01b595d22393ace0d30d5fa299f76_ab3a01b595d22393ace0d30d5fa299f76}{m2}}*x3,\ rhs2);}
+\DoxyCodeLine{00220\ \ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(x21,\ x3);}
+\DoxyCodeLine{00221\ \}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ MatrixType,\ \textcolor{keyword}{typename}\ SolverType>}
+\DoxyCodeLine{00224\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{svd__common_8h_a92acf378db52f255a7b0fa9a2ad30d05_a92acf378db52f255a7b0fa9a2ad30d05}{svd\_test\_solvers}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{MatrixType}}\&\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ \textcolor{keyword}{const}\ SolverType\&\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}})\ \{}
+\DoxyCodeLine{00225\ \ \ \ \ Index\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}},\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}},\ cols2;}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}}\ =\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}.rows();}
+\DoxyCodeLine{00228\ \ \ \ \ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}}\ =\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}.cols();}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keywordflow}{if}(MatrixType::ColsAtCompileTime==Dynamic)}
+\DoxyCodeLine{00231\ \ \ \ \ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ cols2\ =\ internal::random<int>(2,\mbox{\hyperlink{boostmultiprec_8cpp_a35acd92ad04929c35c17e12762249b15_a35acd92ad04929c35c17e12762249b15}{EIGEN\_TEST\_MAX\_SIZE}});}
+\DoxyCodeLine{00233\ \ \ \ \ \}}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00235\ \ \ \ \ \{}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ cols2\ =\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}};}
+\DoxyCodeLine{00237\ \ \ \ \ \}}
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{keyword}{typedef}\ Matrix<typename\ MatrixType::Scalar,\ MatrixType::ColsAtCompileTime,\ MatrixType::ColsAtCompileTime>\ CMatrixType;}
+\DoxyCodeLine{00239\ \ \ \ \ \mbox{\hyperlink{test_2_solver_base_8h_aa59fcfeb5aed12d41e6124b3fdf18540_aa59fcfeb5aed12d41e6124b3fdf18540}{check\_solverbase<CMatrixType,\ MatrixType>}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}},\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}},\ cols2);}
+\DoxyCodeLine{00240\ \}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \textcolor{comment}{//\ Check\ full,\ compare\_to\_full,\ least\_square,\ and\ min\_norm\ for\ all\ possible\ compute-\/options}}
+\DoxyCodeLine{00243\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ SvdType,\ \textcolor{keyword}{typename}\ MatrixType>}
+\DoxyCodeLine{00244\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{svd__common_8h_ab1630fb76a0e3e342bffe3dd03e8619d_ab1630fb76a0e3e342bffe3dd03e8619d}{svd\_test\_all\_computation\_options}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{MatrixType}}\&\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ \textcolor{keywordtype}{bool}\ full\_only)}
+\DoxyCodeLine{00245\ \{}
+\DoxyCodeLine{00246\ \textcolor{comment}{//\ \ \ if\ (QRPreconditioner\ ==\ NoQRPreconditioner\ \&\&\ m.rows()\ !=\ m.cols())}}
+\DoxyCodeLine{00247\ \textcolor{comment}{//\ \ \ \ \ return;}}
+\DoxyCodeLine{00248\ \ \ \mbox{\hyperlink{main_8h_a9f2eb6e264ce678b3d9b3dd53c652f3f_a9f2eb6e264ce678b3d9b3dd53c652f3f}{STATIC\_CHECK}}((\ internal::is\_same<typename\ SvdType::StorageIndex,int>::value\ ));}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ \ SvdType\ fullSvd(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ ComputeFullU|ComputeFullV);}
+\DoxyCodeLine{00251\ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}((\ \mbox{\hyperlink{svd__common_8h_ae318f00d929c0c2ed357e8252860ab47_ae318f00d929c0c2ed357e8252860ab47}{svd\_check\_full}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ fullSvd)\ ));}
+\DoxyCodeLine{00252\ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}((\ \mbox{\hyperlink{svd__common_8h_a993e3af0920e58583d5df615c5f56d35_a993e3af0920e58583d5df615c5f56d35}{svd\_least\_square<SvdType>}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ ComputeFullU\ |\ ComputeFullV)\ ));}
+\DoxyCodeLine{00253\ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}((\ \mbox{\hyperlink{svd__common_8h_a59fb42b0829d86517e758c9b3c5c3769_a59fb42b0829d86517e758c9b3c5c3769}{svd\_min\_norm}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ ComputeFullU\ |\ ComputeFullV)\ ));}
+\DoxyCodeLine{00254\ \ \ }
+\DoxyCodeLine{00255\ \textcolor{preprocessor}{\ \ \#if\ defined\ \_\_INTEL\_COMPILER}}
+\DoxyCodeLine{00256\ \ \ \textcolor{comment}{//\ remark\ \#111:\ statement\ is\ unreachable}}
+\DoxyCodeLine{00257\ \textcolor{preprocessor}{\ \ \#pragma\ warning\ disable\ 111}}
+\DoxyCodeLine{00258\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \ \ \mbox{\hyperlink{svd__common_8h_a92acf378db52f255a7b0fa9a2ad30d05_a92acf378db52f255a7b0fa9a2ad30d05}{svd\_test\_solvers}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ fullSvd);}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \ \ \textcolor{keywordflow}{if}(full\_only)}
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}((\ \mbox{\hyperlink{svd__common_8h_a6831b336d27a4806382ee770116b0a2b_a6831b336d27a4806382ee770116b0a2b}{svd\_compare\_to\_full}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ ComputeFullU,\ fullSvd)\ ));}
+\DoxyCodeLine{00266\ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}((\ \mbox{\hyperlink{svd__common_8h_a6831b336d27a4806382ee770116b0a2b_a6831b336d27a4806382ee770116b0a2b}{svd\_compare\_to\_full}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ ComputeFullV,\ fullSvd)\ ));}
+\DoxyCodeLine{00267\ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}((\ \mbox{\hyperlink{svd__common_8h_a6831b336d27a4806382ee770116b0a2b_a6831b336d27a4806382ee770116b0a2b}{svd\_compare\_to\_full}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ 0,\ fullSvd)\ ));}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \textcolor{keywordflow}{if}\ (MatrixType::ColsAtCompileTime\ ==\ Dynamic)\ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{comment}{//\ thin\ U/V\ are\ only\ available\ with\ dynamic\ number\ of\ columns}}
+\DoxyCodeLine{00271\ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}((\ \mbox{\hyperlink{svd__common_8h_a6831b336d27a4806382ee770116b0a2b_a6831b336d27a4806382ee770116b0a2b}{svd\_compare\_to\_full}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ ComputeFullU|ComputeThinV,\ fullSvd)\ ));}
+\DoxyCodeLine{00272\ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}((\ \mbox{\hyperlink{svd__common_8h_a6831b336d27a4806382ee770116b0a2b_a6831b336d27a4806382ee770116b0a2b}{svd\_compare\_to\_full}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ ComputeThinV,\ fullSvd)\ ));}
+\DoxyCodeLine{00273\ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}((\ \mbox{\hyperlink{svd__common_8h_a6831b336d27a4806382ee770116b0a2b_a6831b336d27a4806382ee770116b0a2b}{svd\_compare\_to\_full}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ ComputeThinU|ComputeFullV,\ fullSvd)\ ));}
+\DoxyCodeLine{00274\ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}((\ \mbox{\hyperlink{svd__common_8h_a6831b336d27a4806382ee770116b0a2b_a6831b336d27a4806382ee770116b0a2b}{svd\_compare\_to\_full}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ ComputeThinU\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ fullSvd)\ ));}
+\DoxyCodeLine{00275\ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}((\ \mbox{\hyperlink{svd__common_8h_a6831b336d27a4806382ee770116b0a2b_a6831b336d27a4806382ee770116b0a2b}{svd\_compare\_to\_full}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ ComputeThinU|ComputeThinV,\ fullSvd)\ ));}
+\DoxyCodeLine{00276\ \ \ \ \ }
+\DoxyCodeLine{00277\ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}((\ \mbox{\hyperlink{svd__common_8h_a993e3af0920e58583d5df615c5f56d35_a993e3af0920e58583d5df615c5f56d35}{svd\_least\_square<SvdType>}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ ComputeFullU\ |\ ComputeThinV)\ ));}
+\DoxyCodeLine{00278\ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}((\ \mbox{\hyperlink{svd__common_8h_a993e3af0920e58583d5df615c5f56d35_a993e3af0920e58583d5df615c5f56d35}{svd\_least\_square<SvdType>}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ ComputeThinU\ |\ ComputeFullV)\ ));}
+\DoxyCodeLine{00279\ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}((\ \mbox{\hyperlink{svd__common_8h_a993e3af0920e58583d5df615c5f56d35_a993e3af0920e58583d5df615c5f56d35}{svd\_least\_square<SvdType>}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ ComputeThinU\ |\ ComputeThinV)\ ));}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}((\ \mbox{\hyperlink{svd__common_8h_a59fb42b0829d86517e758c9b3c5c3769_a59fb42b0829d86517e758c9b3c5c3769}{svd\_min\_norm}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ ComputeFullU\ |\ ComputeThinV)\ ));}
+\DoxyCodeLine{00282\ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}((\ \mbox{\hyperlink{svd__common_8h_a59fb42b0829d86517e758c9b3c5c3769_a59fb42b0829d86517e758c9b3c5c3769}{svd\_min\_norm}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ ComputeThinU\ |\ ComputeFullV)\ ));}
+\DoxyCodeLine{00283\ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}((\ \mbox{\hyperlink{svd__common_8h_a59fb42b0829d86517e758c9b3c5c3769_a59fb42b0829d86517e758c9b3c5c3769}{svd\_min\_norm}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ ComputeThinU\ |\ ComputeThinV)\ ));}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{comment}{//\ test\ reconstruction}}
+\DoxyCodeLine{00286\ \ \ \ \ Index\ diagSize\ =\ (std::min)(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}.rows(),\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}.cols());}
+\DoxyCodeLine{00287\ \ \ \ \ SvdType\ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ ComputeThinU\ |\ ComputeThinV);}
+\DoxyCodeLine{00288\ \ \ \ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixU().leftCols(diagSize)\ *\ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.singularValues().asDiagonal()\ *\ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixV().leftCols(diagSize).adjoint());}
+\DoxyCodeLine{00289\ \ \ \}}
+\DoxyCodeLine{00290\ \}}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \textcolor{comment}{//\ work\ around\ stupid\ msvc\ error\ when\ constructing\ at\ compile\ time\ an\ expression\ that\ involves}}
+\DoxyCodeLine{00294\ \textcolor{comment}{//\ a\ division\ by\ zero,\ even\ if\ the\ numeric\ type\ has\ floating\ point}}
+\DoxyCodeLine{00295\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00296\ \mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\_DONT\_INLINE}}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}\ \mbox{\hyperlink{svd__common_8h_a4a86f5596ff1afa9113ff6cc07a60453_a4a86f5596ff1afa9113ff6cc07a60453}{zero}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}(0);\ \}}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ \textcolor{comment}{//\ workaround\ aggressive\ optimization\ in\ ICC}}
+\DoxyCodeLine{00299\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>\ \mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\_DONT\_INLINE}}\ \ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{svd__common_8h_abbcc1b1ba3de417b2c556b7a2f6d54f6_abbcc1b1ba3de417b2c556b7a2f6d54f6}{sub}}(\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}\ -\/\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}};\ \}}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \textcolor{comment}{//\ This\ function\ verifies\ we\ don't\ iterate\ infinitely\ on\ nan/inf\ values,}}
+\DoxyCodeLine{00302\ \textcolor{comment}{//\ and\ that\ info()\ returns\ InvalidInput.}}
+\DoxyCodeLine{00303\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ SvdType,\ \textcolor{keyword}{typename}\ MatrixType>}
+\DoxyCodeLine{00304\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{svd__common_8h_a8196f7d689a2447d9883159d40914692_a8196f7d689a2447d9883159d40914692}{svd\_inf\_nan}}()}
+\DoxyCodeLine{00305\ \{}
+\DoxyCodeLine{00306\ \ \ SvdType\ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}};}
+\DoxyCodeLine{00307\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ MatrixType::Scalar\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}};}
+\DoxyCodeLine{00308\ \ \ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}\ some\_inf\ =\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}(1)\ /\ \mbox{\hyperlink{svd__common_8h_a4a86f5596ff1afa9113ff6cc07a60453_a4a86f5596ff1afa9113ff6cc07a60453}{zero<Scalar>}}();}
+\DoxyCodeLine{00309\ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{svd__common_8h_abbcc1b1ba3de417b2c556b7a2f6d54f6_abbcc1b1ba3de417b2c556b7a2f6d54f6}{sub}}(some\_inf,\ some\_inf)\ !=\ \mbox{\hyperlink{svd__common_8h_abbcc1b1ba3de417b2c556b7a2f6d54f6_abbcc1b1ba3de417b2c556b7a2f6d54f6}{sub}}(some\_inf,\ some\_inf));}
+\DoxyCodeLine{00310\ \ \ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.compute(MatrixType::Constant(10,10,some\_inf),\ ComputeFullU\ |\ ComputeFullV);}
+\DoxyCodeLine{00311\ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.info()\ ==\ InvalidInput);}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ \ \ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}\ nan\ =\ std::numeric\_limits<Scalar>::quiet\_NaN();}
+\DoxyCodeLine{00314\ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(nan\ !=\ nan);}
+\DoxyCodeLine{00315\ \ \ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.compute(MatrixType::Constant(10,10,nan),\ ComputeFullU\ |\ ComputeFullV);}
+\DoxyCodeLine{00316\ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.info()\ ==\ InvalidInput);\ \ }
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \ \ \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{MatrixType}}\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}\ =\ MatrixType::Zero(10,10);}
+\DoxyCodeLine{00319\ \ \ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}(internal::random<int>(0,9),\ internal::random<int>(0,9))\ =\ some\_inf;}
+\DoxyCodeLine{00320\ \ \ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.compute(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ ComputeFullU\ |\ ComputeFullV);}
+\DoxyCodeLine{00321\ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.info()\ ==\ InvalidInput);}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00323\ \ \ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}\ =\ MatrixType::Zero(10,10);}
+\DoxyCodeLine{00324\ \ \ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}(internal::random<int>(0,9),\ internal::random<int>(0,9))\ =\ nan;}
+\DoxyCodeLine{00325\ \ \ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.compute(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ ComputeFullU\ |\ ComputeFullV);}
+\DoxyCodeLine{00326\ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.info()\ ==\ InvalidInput);}
+\DoxyCodeLine{00327\ \ \ }
+\DoxyCodeLine{00328\ \ \ \textcolor{comment}{//\ regression\ test\ for\ bug\ 791}}
+\DoxyCodeLine{00329\ \ \ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}.resize(3,3);}
+\DoxyCodeLine{00330\ \ \ m\ <<\ 0,\ \ \ \ 2*NumTraits<Scalar>::epsilon(),\ \ 0.5,}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ 0,\ \ \ -\/0.5,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ nan,\ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0;}
+\DoxyCodeLine{00333\ \ \ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.compute(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ ComputeFullU\ |\ ComputeFullV);}
+\DoxyCodeLine{00334\ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.info()\ ==\ InvalidInput);}
+\DoxyCodeLine{00335\ \ \ }
+\DoxyCodeLine{00336\ \ \ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}.resize(4,4);}
+\DoxyCodeLine{00337\ \ \ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}\ <<\ \ 1,\ 0,\ 0,\ 0,}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ 0,\ 3,\ 1,\ 2\mbox{\hyperlink{_cwise__array__power__array_8cpp_a9cb86ff854760bf91a154f2724a9101d_a9cb86ff854760bf91a154f2724a9101d}{e}}-\/308,}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ 1,\ 0,\ 1,\ nan,}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ 0,\ nan,\ nan,\ 0;}
+\DoxyCodeLine{00341\ \ \ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.compute(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ ComputeFullU\ |\ ComputeFullV);}
+\DoxyCodeLine{00342\ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.info()\ ==\ InvalidInput);}
+\DoxyCodeLine{00343\ \}}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \textcolor{comment}{//\ Regression\ test\ for\ bug\ 286:\ JacobiSVD\ loops\ indefinitely\ with\ some}}
+\DoxyCodeLine{00346\ \textcolor{comment}{//\ matrices\ containing\ denormal\ numbers.}}
+\DoxyCodeLine{00347\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}>}
+\DoxyCodeLine{00348\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{svd__common_8h_a7cbc24ede5c93bde20c682c51ef2439a_a7cbc24ede5c93bde20c682c51ef2439a}{svd\_underoverflow}}()}
+\DoxyCodeLine{00349\ \{}
+\DoxyCodeLine{00350\ \textcolor{preprocessor}{\#if\ defined\ \_\_INTEL\_COMPILER}}
+\DoxyCodeLine{00351\ \textcolor{comment}{//\ shut\ up\ warning\ \#239:\ floating\ point\ underflow}}
+\DoxyCodeLine{00352\ \textcolor{preprocessor}{\#pragma\ warning\ push}}
+\DoxyCodeLine{00353\ \textcolor{preprocessor}{\#pragma\ warning\ disable\ 239}}
+\DoxyCodeLine{00354\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00355\ \ \ Matrix2d\ \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}};}
+\DoxyCodeLine{00356\ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{M}}\ <<\ -\/7.90884e-\/313,\ -\/4.94e-\/324,}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ 5.60844e-\/313;}
+\DoxyCodeLine{00358\ \ \ \mbox{\hyperlink{bdcsvd_8cpp_a2abd8eaf55e1181ee230b0dc87cd54d2_a2abd8eaf55e1181ee230b0dc87cd54d2}{SVD\_DEFAULT}}(Matrix2d)\ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}};}
+\DoxyCodeLine{00359\ \ \ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.compute(\mbox{\hyperlink{class_eigen_1_1_matrix}{M}},ComputeFullU|ComputeFullV);}
+\DoxyCodeLine{00360\ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}(\ \mbox{\hyperlink{svd__common_8h_ae318f00d929c0c2ed357e8252860ab47_ae318f00d929c0c2ed357e8252860ab47}{svd\_check\_full}}(\mbox{\hyperlink{class_eigen_1_1_matrix}{M}},\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}})\ );}
+\DoxyCodeLine{00361\ \ \ }
+\DoxyCodeLine{00362\ \ \ \textcolor{comment}{//\ Check\ all\ 2x2\ matrices\ made\ with\ the\ following\ coefficients:}}
+\DoxyCodeLine{00363\ \ \ VectorXd\ value\_set(9);}
+\DoxyCodeLine{00364\ \ \ value\_set\ <<\ 0,\ 1,\ -\/1,\ 5.60844e-\/313,\ -\/5.60844e-\/313,\ 4.94e-\/324,\ -\/4.94e-\/324,\ -\/4.94e-\/223,\ 4.94e-\/223;}
+\DoxyCodeLine{00365\ \ \ Array4i\ id(0,0,0,0);}
+\DoxyCodeLine{00366\ \ \ \textcolor{keywordtype}{int}\ k\ =\ 0;}
+\DoxyCodeLine{00367\ \ \ \textcolor{keywordflow}{do}}
+\DoxyCodeLine{00368\ \ \ \{}
+\DoxyCodeLine{00369\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{M}}\ <<\ value\_set(\textcolor{keywordtype}{id}(0)),\ value\_set(\textcolor{keywordtype}{id}(1)),\ value\_set(\textcolor{keywordtype}{id}(2)),\ value\_set(\textcolor{keywordtype}{id}(3));}
+\DoxyCodeLine{00370\ \ \ \ \ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.compute(\mbox{\hyperlink{class_eigen_1_1_matrix}{M}},ComputeFullU|ComputeFullV);}
+\DoxyCodeLine{00371\ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}(\ \mbox{\hyperlink{svd__common_8h_ae318f00d929c0c2ed357e8252860ab47_ae318f00d929c0c2ed357e8252860ab47}{svd\_check\_full}}(\mbox{\hyperlink{class_eigen_1_1_matrix}{M}},\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}})\ );}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ \ \ \ \ id(k)++;}
+\DoxyCodeLine{00374\ \ \ \ \ \textcolor{keywordflow}{if}(\textcolor{keywordtype}{id}(k)>=value\_set.size())}
+\DoxyCodeLine{00375\ \ \ \ \ \{}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \textcolor{keywordflow}{while}(k<3\ \&\&\ \textcolor{keywordtype}{id}(k)>=value\_set.size())\ id(++k)++;}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \textcolor{keywordtype}{id}.head(k).setZero();}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ k=0;}
+\DoxyCodeLine{00379\ \ \ \ \ \}}
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00381\ \ \ \}\ \textcolor{keywordflow}{while}((\textcolor{keywordtype}{id}<\textcolor{keywordtype}{int}(value\_set.size())).all());}
+\DoxyCodeLine{00382\ \ \ }
+\DoxyCodeLine{00383\ \textcolor{preprocessor}{\#if\ defined\ \_\_INTEL\_COMPILER}}
+\DoxyCodeLine{00384\ \textcolor{preprocessor}{\#pragma\ warning\ pop}}
+\DoxyCodeLine{00385\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00386\ \ \ }
+\DoxyCodeLine{00387\ \ \ \textcolor{comment}{//\ Check\ for\ overflow:}}
+\DoxyCodeLine{00388\ \ \ Matrix3d\ \mbox{\hyperlink{_tutorial___slicing_col_8cpp_a14f7fa063aa2ce842adbe0ed34124aed_a14f7fa063aa2ce842adbe0ed34124aed}{M3}};}
+\DoxyCodeLine{00389\ \ \ \mbox{\hyperlink{_tutorial___slicing_col_8cpp_a14f7fa063aa2ce842adbe0ed34124aed_a14f7fa063aa2ce842adbe0ed34124aed}{M3}}\ <<\ 4.4331978442502944e+307,\ -\/5.8585363752028680e+307,\ \ 6.4527017443412964e+307,}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ 3.7841695601406358e+307,\ \ 2.4331702789740617e+306,\ -\/3.5235707140272905e+307,}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ -\/8.7190887618028355e+307,\ -\/7.3453213709232193e+307,\ -\/2.4367363684472105e+307;}
+\DoxyCodeLine{00392\ }
+\DoxyCodeLine{00393\ \ \ \mbox{\hyperlink{bdcsvd_8cpp_a2abd8eaf55e1181ee230b0dc87cd54d2_a2abd8eaf55e1181ee230b0dc87cd54d2}{SVD\_DEFAULT}}(Matrix3d)\ svd3;}
+\DoxyCodeLine{00394\ \ \ svd3.compute(\mbox{\hyperlink{_tutorial___slicing_col_8cpp_a14f7fa063aa2ce842adbe0ed34124aed_a14f7fa063aa2ce842adbe0ed34124aed}{M3}},ComputeFullU|ComputeFullV);\ \textcolor{comment}{//\ just\ check\ we\ don't\ loop\ indefinitely}}
+\DoxyCodeLine{00395\ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}(\ \mbox{\hyperlink{svd__common_8h_ae318f00d929c0c2ed357e8252860ab47_ae318f00d929c0c2ed357e8252860ab47}{svd\_check\_full}}(\mbox{\hyperlink{_tutorial___slicing_col_8cpp_a14f7fa063aa2ce842adbe0ed34124aed_a14f7fa063aa2ce842adbe0ed34124aed}{M3}},svd3)\ );}
+\DoxyCodeLine{00396\ \}}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00398\ \textcolor{comment}{//\ void\ jacobisvd(const\ MatrixType\&\ a\ =\ MatrixType(),\ bool\ pickrandom\ =\ true)}}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00400\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ MatrixType>}
+\DoxyCodeLine{00401\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{svd__common_8h_a8fd7fe5d507344c765982c5ffe736ee8_a8fd7fe5d507344c765982c5ffe736ee8}{svd\_all\_trivial\_2x2}}(\ \textcolor{keywordtype}{void}\ (*cb)(\textcolor{keyword}{const}\ \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{MatrixType}}\&,\textcolor{keywordtype}{bool})\ )}
+\DoxyCodeLine{00402\ \{}
+\DoxyCodeLine{00403\ \ \ \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{MatrixType}}\ \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}};}
+\DoxyCodeLine{00404\ \ \ VectorXd\ value\_set(3);}
+\DoxyCodeLine{00405\ \ \ value\_set\ <<\ 0,\ 1,\ -\/1;}
+\DoxyCodeLine{00406\ \ \ Array4i\ id(0,0,0,0);}
+\DoxyCodeLine{00407\ \ \ \textcolor{keywordtype}{int}\ k\ =\ 0;}
+\DoxyCodeLine{00408\ \ \ \textcolor{keywordflow}{do}}
+\DoxyCodeLine{00409\ \ \ \{}
+\DoxyCodeLine{00410\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{M}}\ <<\ value\_set(\textcolor{keywordtype}{id}(0)),\ value\_set(\textcolor{keywordtype}{id}(1)),\ value\_set(\textcolor{keywordtype}{id}(2)),\ value\_set(\textcolor{keywordtype}{id}(3));}
+\DoxyCodeLine{00411\ \ \ \ \ }
+\DoxyCodeLine{00412\ \ \ \ \ cb(\mbox{\hyperlink{class_eigen_1_1_matrix}{M}},\textcolor{keyword}{false});}
+\DoxyCodeLine{00413\ \ \ \ \ }
+\DoxyCodeLine{00414\ \ \ \ \ id(k)++;}
+\DoxyCodeLine{00415\ \ \ \ \ \textcolor{keywordflow}{if}(\textcolor{keywordtype}{id}(k)>=value\_set.size())}
+\DoxyCodeLine{00416\ \ \ \ \ \{}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \textcolor{keywordflow}{while}(k<3\ \&\&\ \textcolor{keywordtype}{id}(k)>=value\_set.size())\ id(++k)++;}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \textcolor{keywordtype}{id}.head(k).setZero();}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ k=0;}
+\DoxyCodeLine{00420\ \ \ \ \ \}}
+\DoxyCodeLine{00421\ \ \ \ \ }
+\DoxyCodeLine{00422\ \ \ \}\ \textcolor{keywordflow}{while}((\textcolor{keywordtype}{id}<\textcolor{keywordtype}{int}(value\_set.size())).all());}
+\DoxyCodeLine{00423\ \}}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}>}
+\DoxyCodeLine{00426\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{svd__common_8h_acc8ac8eb2f21caf3db8b0d47b10a45fd_acc8ac8eb2f21caf3db8b0d47b10a45fd}{svd\_preallocate}}()}
+\DoxyCodeLine{00427\ \{}
+\DoxyCodeLine{00428\ \ \ Vector3f\ \mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}}(3.f,\ 2.f,\ 1.f);}
+\DoxyCodeLine{00429\ \ \ MatrixXf\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}\ =\ \mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}}.asDiagonal();}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00431\ \ \ internal::set\_is\_malloc\_allowed(\textcolor{keyword}{false});}
+\DoxyCodeLine{00432\ \ \ \mbox{\hyperlink{main_8h_adff0e131e1264a2b62146d9a58338861_adff0e131e1264a2b62146d9a58338861}{VERIFY\_RAISES\_ASSERT}}(VectorXf\ tmp(10);)}
+\DoxyCodeLine{00433\ \ \ \mbox{\hyperlink{bdcsvd_8cpp_a2abd8eaf55e1181ee230b0dc87cd54d2_a2abd8eaf55e1181ee230b0dc87cd54d2}{SVD\_DEFAULT}}(MatrixXf)\ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}};}
+\DoxyCodeLine{00434\ \ \ internal::set\_is\_malloc\_allowed(\textcolor{keyword}{true});}
+\DoxyCodeLine{00435\ \ \ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.compute(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}});}
+\DoxyCodeLine{00436\ \ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.singularValues(),\ \mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}});}
+\DoxyCodeLine{00437\ }
+\DoxyCodeLine{00438\ \ \ \mbox{\hyperlink{bdcsvd_8cpp_a2abd8eaf55e1181ee230b0dc87cd54d2_a2abd8eaf55e1181ee230b0dc87cd54d2}{SVD\_DEFAULT}}(MatrixXf)\ svd2(3,3);}
+\DoxyCodeLine{00439\ \ \ internal::set\_is\_malloc\_allowed(\textcolor{keyword}{false});}
+\DoxyCodeLine{00440\ \ \ svd2.compute(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}});}
+\DoxyCodeLine{00441\ \ \ internal::set\_is\_malloc\_allowed(\textcolor{keyword}{true});}
+\DoxyCodeLine{00442\ \ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(svd2.singularValues(),\ \mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}});}
+\DoxyCodeLine{00443\ \ \ \mbox{\hyperlink{main_8h_adff0e131e1264a2b62146d9a58338861_adff0e131e1264a2b62146d9a58338861}{VERIFY\_RAISES\_ASSERT}}(svd2.matrixU());}
+\DoxyCodeLine{00444\ \ \ \mbox{\hyperlink{main_8h_adff0e131e1264a2b62146d9a58338861_adff0e131e1264a2b62146d9a58338861}{VERIFY\_RAISES\_ASSERT}}(svd2.matrixV());}
+\DoxyCodeLine{00445\ \ \ svd2.compute(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ ComputeFullU\ |\ ComputeFullV);}
+\DoxyCodeLine{00446\ \ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(svd2.matrixU(),\ Matrix3f::Identity());}
+\DoxyCodeLine{00447\ \ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(svd2.matrixV(),\ Matrix3f::Identity());}
+\DoxyCodeLine{00448\ \ \ internal::set\_is\_malloc\_allowed(\textcolor{keyword}{false});}
+\DoxyCodeLine{00449\ \ \ svd2.compute(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}});}
+\DoxyCodeLine{00450\ \ \ internal::set\_is\_malloc\_allowed(\textcolor{keyword}{true});}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \ \ \mbox{\hyperlink{bdcsvd_8cpp_a2abd8eaf55e1181ee230b0dc87cd54d2_a2abd8eaf55e1181ee230b0dc87cd54d2}{SVD\_DEFAULT}}(MatrixXf)\ svd3(3,3,ComputeFullU|ComputeFullV);}
+\DoxyCodeLine{00453\ \ \ internal::set\_is\_malloc\_allowed(\textcolor{keyword}{false});}
+\DoxyCodeLine{00454\ \ \ svd2.compute(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}});}
+\DoxyCodeLine{00455\ \ \ internal::set\_is\_malloc\_allowed(\textcolor{keyword}{true});}
+\DoxyCodeLine{00456\ \ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(svd2.singularValues(),\ \mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}});}
+\DoxyCodeLine{00457\ \ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(svd2.matrixU(),\ Matrix3f::Identity());}
+\DoxyCodeLine{00458\ \ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(svd2.matrixV(),\ Matrix3f::Identity());}
+\DoxyCodeLine{00459\ \ \ internal::set\_is\_malloc\_allowed(\textcolor{keyword}{false});}
+\DoxyCodeLine{00460\ \ \ svd2.compute(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ ComputeFullU|ComputeFullV);}
+\DoxyCodeLine{00461\ \ \ internal::set\_is\_malloc\_allowed(\textcolor{keyword}{true});}
+\DoxyCodeLine{00462\ \}}
+\DoxyCodeLine{00463\ }
+\DoxyCodeLine{00464\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ SvdType,\textcolor{keyword}{typename}\ MatrixType>\ }
+\DoxyCodeLine{00465\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{svd__common_8h_a778d541c78cdca02092414b074aa7253_a778d541c78cdca02092414b074aa7253}{svd\_verify\_assert}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{MatrixType}}\&\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ \textcolor{keywordtype}{bool}\ fullOnly\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00466\ \{}
+\DoxyCodeLine{00467\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ MatrixType::Scalar\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}};}
+\DoxyCodeLine{00468\ \ \ Index\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}}\ =\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}.rows();}
+\DoxyCodeLine{00469\ \ \ Index\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}}\ =\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}.cols();}
+\DoxyCodeLine{00470\ }
+\DoxyCodeLine{00471\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00472\ \ \ \ \ RowsAtCompileTime\ =\ MatrixType::RowsAtCompileTime,}
+\DoxyCodeLine{00473\ \ \ \ \ ColsAtCompileTime\ =\ MatrixType::ColsAtCompileTime}
+\DoxyCodeLine{00474\ \ \ \};}
+\DoxyCodeLine{00475\ }
+\DoxyCodeLine{00476\ \ \ \textcolor{keyword}{typedef}\ Matrix<Scalar,\ RowsAtCompileTime,\ 1>\ RhsType;}
+\DoxyCodeLine{00477\ \ \ RhsType\ rhs(\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}});}
+\DoxyCodeLine{00478\ \ \ SvdType\ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}};}
+\DoxyCodeLine{00479\ \ \ \mbox{\hyperlink{main_8h_adff0e131e1264a2b62146d9a58338861_adff0e131e1264a2b62146d9a58338861}{VERIFY\_RAISES\_ASSERT}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixU())}
+\DoxyCodeLine{00480\ \ \ \mbox{\hyperlink{main_8h_adff0e131e1264a2b62146d9a58338861_adff0e131e1264a2b62146d9a58338861}{VERIFY\_RAISES\_ASSERT}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.singularValues())}
+\DoxyCodeLine{00481\ \ \ \mbox{\hyperlink{main_8h_adff0e131e1264a2b62146d9a58338861_adff0e131e1264a2b62146d9a58338861}{VERIFY\_RAISES\_ASSERT}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixV())}
+\DoxyCodeLine{00482\ \ \ \mbox{\hyperlink{main_8h_adff0e131e1264a2b62146d9a58338861_adff0e131e1264a2b62146d9a58338861}{VERIFY\_RAISES\_ASSERT}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.solve(rhs))}
+\DoxyCodeLine{00483\ \ \ \mbox{\hyperlink{main_8h_adff0e131e1264a2b62146d9a58338861_adff0e131e1264a2b62146d9a58338861}{VERIFY\_RAISES\_ASSERT}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.transpose().solve(rhs))}
+\DoxyCodeLine{00484\ \ \ \mbox{\hyperlink{main_8h_adff0e131e1264a2b62146d9a58338861_adff0e131e1264a2b62146d9a58338861}{VERIFY\_RAISES\_ASSERT}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.adjoint().solve(rhs))}
+\DoxyCodeLine{00485\ \ \ \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{MatrixType}}\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}\ =\ MatrixType::Zero(\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}},\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}});}
+\DoxyCodeLine{00486\ \ \ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}.setZero();}
+\DoxyCodeLine{00487\ \ \ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.compute(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ 0);}
+\DoxyCodeLine{00488\ \ \ \mbox{\hyperlink{main_8h_adff0e131e1264a2b62146d9a58338861_adff0e131e1264a2b62146d9a58338861}{VERIFY\_RAISES\_ASSERT}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixU())}
+\DoxyCodeLine{00489\ \ \ \mbox{\hyperlink{main_8h_adff0e131e1264a2b62146d9a58338861_adff0e131e1264a2b62146d9a58338861}{VERIFY\_RAISES\_ASSERT}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixV())}
+\DoxyCodeLine{00490\ \ \ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.singularValues();}
+\DoxyCodeLine{00491\ \ \ \mbox{\hyperlink{main_8h_adff0e131e1264a2b62146d9a58338861_adff0e131e1264a2b62146d9a58338861}{VERIFY\_RAISES\_ASSERT}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.solve(rhs))}
+\DoxyCodeLine{00492\ }
+\DoxyCodeLine{00493\ \ \ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.compute(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ ComputeFullU);}
+\DoxyCodeLine{00494\ \ \ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixU();}
+\DoxyCodeLine{00495\ \ \ \mbox{\hyperlink{main_8h_adff0e131e1264a2b62146d9a58338861_adff0e131e1264a2b62146d9a58338861}{VERIFY\_RAISES\_ASSERT}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixV())}
+\DoxyCodeLine{00496\ \ \ \mbox{\hyperlink{main_8h_adff0e131e1264a2b62146d9a58338861_adff0e131e1264a2b62146d9a58338861}{VERIFY\_RAISES\_ASSERT}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.solve(rhs))}
+\DoxyCodeLine{00497\ \ \ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.compute(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ ComputeFullV);}
+\DoxyCodeLine{00498\ \ \ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixV();}
+\DoxyCodeLine{00499\ \ \ \mbox{\hyperlink{main_8h_adff0e131e1264a2b62146d9a58338861_adff0e131e1264a2b62146d9a58338861}{VERIFY\_RAISES\_ASSERT}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixU())}
+\DoxyCodeLine{00500\ \ \ \mbox{\hyperlink{main_8h_adff0e131e1264a2b62146d9a58338861_adff0e131e1264a2b62146d9a58338861}{VERIFY\_RAISES\_ASSERT}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.solve(rhs))}
+\DoxyCodeLine{00501\ }
+\DoxyCodeLine{00502\ \ \ \textcolor{keywordflow}{if}\ (!fullOnly\ \&\&\ ColsAtCompileTime\ ==\ Dynamic)}
+\DoxyCodeLine{00503\ \ \ \{}
+\DoxyCodeLine{00504\ \ \ \ \ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.compute(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ ComputeThinU);}
+\DoxyCodeLine{00505\ \ \ \ \ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixU();}
+\DoxyCodeLine{00506\ \ \ \ \ \mbox{\hyperlink{main_8h_adff0e131e1264a2b62146d9a58338861_adff0e131e1264a2b62146d9a58338861}{VERIFY\_RAISES\_ASSERT}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixV())}
+\DoxyCodeLine{00507\ \ \ \ \ \mbox{\hyperlink{main_8h_adff0e131e1264a2b62146d9a58338861_adff0e131e1264a2b62146d9a58338861}{VERIFY\_RAISES\_ASSERT}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.solve(rhs))}
+\DoxyCodeLine{00508\ \ \ \ \ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.compute(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ ComputeThinV);}
+\DoxyCodeLine{00509\ \ \ \ \ \mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixV();}
+\DoxyCodeLine{00510\ \ \ \ \ \mbox{\hyperlink{main_8h_adff0e131e1264a2b62146d9a58338861_adff0e131e1264a2b62146d9a58338861}{VERIFY\_RAISES\_ASSERT}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.matrixU())}
+\DoxyCodeLine{00511\ \ \ \ \ \mbox{\hyperlink{main_8h_adff0e131e1264a2b62146d9a58338861_adff0e131e1264a2b62146d9a58338861}{VERIFY\_RAISES\_ASSERT}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.solve(rhs))}
+\DoxyCodeLine{00512\ \ \ \}}
+\DoxyCodeLine{00513\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00514\ \ \ \{}
+\DoxyCodeLine{00515\ \ \ \ \ \mbox{\hyperlink{main_8h_adff0e131e1264a2b62146d9a58338861_adff0e131e1264a2b62146d9a58338861}{VERIFY\_RAISES\_ASSERT}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.compute(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ ComputeThinU))}
+\DoxyCodeLine{00516\ \ \ \ \ \mbox{\hyperlink{main_8h_adff0e131e1264a2b62146d9a58338861_adff0e131e1264a2b62146d9a58338861}{VERIFY\_RAISES\_ASSERT}}(\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.compute(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ ComputeThinV))}
+\DoxyCodeLine{00517\ \ \ \}}
+\DoxyCodeLine{00518\ \}}
+\DoxyCodeLine{00519\ }
+\DoxyCodeLine{00520\ \textcolor{preprocessor}{\#undef\ SVD\_DEFAULT}}
+\DoxyCodeLine{00521\ \textcolor{preprocessor}{\#undef\ SVD\_FOR\_MIN\_NORM}}
+
+\end{DoxyCode}

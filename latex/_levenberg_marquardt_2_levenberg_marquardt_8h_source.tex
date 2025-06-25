@@ -1,0 +1,355 @@
+\doxysection{Levenberg\+Marquardt.\+h}
+\hypertarget{_levenberg_marquardt_2_levenberg_marquardt_8h_source}{}\label{_levenberg_marquardt_2_levenberg_marquardt_8h_source}\index{eigen-\/3.4.0/eigen-\/3.4.0/unsupported/Eigen/src/LevenbergMarquardt/LevenbergMarquardt.h@{eigen-\/3.4.0/eigen-\/3.4.0/unsupported/Eigen/src/LevenbergMarquardt/LevenbergMarquardt.h}}
+\mbox{\hyperlink{_levenberg_marquardt_2_levenberg_marquardt_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ Eigen,\ a\ lightweight\ C++\ template\ library}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ for\ linear\ algebra.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (C)\ 2009\ Thomas\ Capricelli\ <orzel@freehackers.org>}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Copyright\ (C)\ 2012\ Desire\ Nuentsa\ <desire.nuentsa\_wakam@inria.fr>}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ The\ algorithm\ of\ this\ class\ initially\ comes\ from\ MINPACK\ whose\ original\ authors\ are:}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ Copyright\ Jorge\ More\ -\/\ Argonne\ National\ Laboratory}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ Copyright\ Burt\ Garbow\ -\/\ Argonne\ National\ Laboratory}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ Copyright\ Ken\ Hillstrom\ -\/\ Argonne\ National\ Laboratory}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ This\ Source\ Code\ Form\ is\ subject\ to\ the\ terms\ of\ the\ Minpack\ license}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ (a\ BSD-\/like\ license)\ described\ in\ the\ campaigned\ CopyrightMINPACK.txt\ file.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ This\ Source\ Code\ Form\ is\ subject\ to\ the\ terms\ of\ the\ Mozilla}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ Public\ License\ v.\ 2.0.\ If\ a\ copy\ of\ the\ MPL\ was\ not\ distributed}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ with\ this\ file,\ You\ can\ obtain\ one\ at\ http://mozilla.org/MPL/2.0/.}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_LEVENBERGMARQUARDT\_H}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ EIGEN\_LEVENBERGMARQUARDT\_H}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_eigen}{Eigen}}\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{namespace\ }LevenbergMarquardtSpace\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960}{Status}}\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960a810c50589dc755400ba2a2522c636d5e}{NotStarted}}\ =\ -\/2,}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960ab78a06f2e8a3d7845a7f6cf6a10509d2}{Running}}\ =\ -\/1,}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960ae989dceeff60c4b6eeb68583ba725083}{ImproperInputParameters}}\ =\ 0,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960a461ecc91d59b6b04c5d0bd1c67cc005e}{RelativeReductionTooSmall}}\ =\ 1,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960ae7d26f37ba9936b0bff941591c21375e}{RelativeErrorTooSmall}}\ =\ 2,}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960af223b11f9cd54dd898a4c737ee7d2dd3}{RelativeErrorAndReductionTooSmall}}\ =\ 3,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960ac5ff70d68553682f03c5846a1ce8e9c8}{CosinusTooSmall}}\ =\ 4,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960ac2198bb964dca4fc6a8628f1bb1bd849}{TooManyFunctionEvaluation}}\ =\ 5,}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960abaac8e41a77e4bdeabce3560d2567537}{FtolTooSmall}}\ =\ 6,}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960ac2313ce01bb0fce1431123759b8dfed3}{XtolTooSmall}}\ =\ 7,}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960a68f442cd7bfc7fea4106161c691f2b3d}{GtolTooSmall}}\ =\ 8,}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960ab1006c6b777e87a3ff709b2efb92b6bb}{UserAsked}}\ =\ 9}
+\DoxyCodeLine{00038\ \ \ \ \ \};}
+\DoxyCodeLine{00039\ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar,\ \textcolor{keywordtype}{int}\ NX=Dynamic,\ \textcolor{keywordtype}{int}\ NY=Dynamic>}
+\DoxyCodeLine{00042\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_dense_functor}{DenseFunctor}}}
+\DoxyCodeLine{00043\ \{}
+\DoxyCodeLine{00044\ \ \ \textcolor{keyword}{typedef}\ \_Scalar\ \mbox{\hyperlink{struct_eigen_1_1_dense_functor_a4ee88a0beb7caddd8084b45519c197e5_a4ee88a0beb7caddd8084b45519c197e5}{Scalar}};}
+\DoxyCodeLine{00045\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_dense_functor_afcf56c4509c31552c3e1014121b463df_afcf56c4509c31552c3e1014121b463dfa1ce9968fb3aafbcf82fc3dd370a5d0dc}{InputsAtCompileTime}}\ =\ NX,}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_dense_functor_afcf56c4509c31552c3e1014121b463df_afcf56c4509c31552c3e1014121b463dfa37d1d96443ae81e06730306847c87770}{ValuesAtCompileTime}}\ =\ NY}
+\DoxyCodeLine{00048\ \ \ \};}
+\DoxyCodeLine{00049\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<Scalar,InputsAtCompileTime,1>}}\ \mbox{\hyperlink{struct_eigen_1_1_dense_functor_a62a1102a24ba5e322c6d1d7846bdd166_a62a1102a24ba5e322c6d1d7846bdd166}{InputType}};}
+\DoxyCodeLine{00050\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<Scalar,ValuesAtCompileTime,1>}}\ \mbox{\hyperlink{struct_eigen_1_1_dense_functor_a58d92b31fce275b7f94ca64ca6f274d7_a58d92b31fce275b7f94ca64ca6f274d7}{ValueType}};}
+\DoxyCodeLine{00051\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<Scalar,ValuesAtCompileTime,InputsAtCompileTime>}}\ \mbox{\hyperlink{struct_eigen_1_1_dense_functor_a2a92b1168c4b965fe6d0d160a0a70ba9_a2a92b1168c4b965fe6d0d160a0a70ba9}{JacobianType}};}
+\DoxyCodeLine{00052\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{ColPivHouseholderQR<JacobianType>}}\ \mbox{\hyperlink{struct_eigen_1_1_dense_functor_aa5490968253cedbc8b60c15f11c99ab8_aa5490968253cedbc8b60c15f11c99ab8}{QRSolver}};}
+\DoxyCodeLine{00053\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1_dense_functor_a54b4e893f7f494a7b21ea3f55fd5a4f8_a54b4e893f7f494a7b21ea3f55fd5a4f8}{m\_inputs}},\ \mbox{\hyperlink{struct_eigen_1_1_dense_functor_a0e21085f60d96054586b270d6f1e4872_a0e21085f60d96054586b270d6f1e4872}{m\_values}};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \mbox{\hyperlink{struct_eigen_1_1_dense_functor_a656510f272f2105426c12a13830325e7_a656510f272f2105426c12a13830325e7}{DenseFunctor}}()\ :\ \mbox{\hyperlink{struct_eigen_1_1_dense_functor_a54b4e893f7f494a7b21ea3f55fd5a4f8_a54b4e893f7f494a7b21ea3f55fd5a4f8}{m\_inputs}}(\mbox{\hyperlink{struct_eigen_1_1_dense_functor_afcf56c4509c31552c3e1014121b463df_afcf56c4509c31552c3e1014121b463dfa1ce9968fb3aafbcf82fc3dd370a5d0dc}{InputsAtCompileTime}}),\ \mbox{\hyperlink{struct_eigen_1_1_dense_functor_a0e21085f60d96054586b270d6f1e4872_a0e21085f60d96054586b270d6f1e4872}{m\_values}}(\mbox{\hyperlink{struct_eigen_1_1_dense_functor_afcf56c4509c31552c3e1014121b463df_afcf56c4509c31552c3e1014121b463dfa37d1d96443ae81e06730306847c87770}{ValuesAtCompileTime}})\ \{\}}
+\DoxyCodeLine{00056\ \ \ \mbox{\hyperlink{struct_eigen_1_1_dense_functor_ae73ca67051cf4f2f122b94c73a655ab0_ae73ca67051cf4f2f122b94c73a655ab0}{DenseFunctor}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1_dense_functor_a3c626c07d04c37694defc84b37685c31_a3c626c07d04c37694defc84b37685c31}{inputs}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1_dense_functor_aec9ab249752ab792cba7d202295e786d_aec9ab249752ab792cba7d202295e786d}{values}})\ :\ \mbox{\hyperlink{struct_eigen_1_1_dense_functor_a54b4e893f7f494a7b21ea3f55fd5a4f8_a54b4e893f7f494a7b21ea3f55fd5a4f8}{m\_inputs}}(\mbox{\hyperlink{struct_eigen_1_1_dense_functor_a3c626c07d04c37694defc84b37685c31_a3c626c07d04c37694defc84b37685c31}{inputs}}),\ \mbox{\hyperlink{struct_eigen_1_1_dense_functor_a0e21085f60d96054586b270d6f1e4872_a0e21085f60d96054586b270d6f1e4872}{m\_values}}(\mbox{\hyperlink{struct_eigen_1_1_dense_functor_aec9ab249752ab792cba7d202295e786d_aec9ab249752ab792cba7d202295e786d}{values}})\ \{\}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1_dense_functor_a3c626c07d04c37694defc84b37685c31_a3c626c07d04c37694defc84b37685c31}{inputs}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1_dense_functor_a54b4e893f7f494a7b21ea3f55fd5a4f8_a54b4e893f7f494a7b21ea3f55fd5a4f8}{m\_inputs}};\ \}}
+\DoxyCodeLine{00059\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1_dense_functor_aec9ab249752ab792cba7d202295e786d_aec9ab249752ab792cba7d202295e786d}{values}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1_dense_functor_a0e21085f60d96054586b270d6f1e4872_a0e21085f60d96054586b270d6f1e4872}{m\_values}};\ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \textcolor{comment}{//int\ operator()(const\ InputType\ \&x,\ ValueType\&\ fvec)\ \{\ \}}}
+\DoxyCodeLine{00062\ \ \ \textcolor{comment}{//\ should\ be\ defined\ in\ derived\ classes}}
+\DoxyCodeLine{00063\ \ \ }
+\DoxyCodeLine{00064\ \ \ \textcolor{comment}{//int\ df(const\ InputType\ \&x,\ JacobianType\&\ fjac)\ \{\ \}}}
+\DoxyCodeLine{00065\ \ \ \textcolor{comment}{//\ should\ be\ defined\ in\ derived\ classes}}
+\DoxyCodeLine{00066\ \};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar,\ \textcolor{keyword}{typename}\ \_Index>}
+\DoxyCodeLine{00069\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_sparse_functor}{SparseFunctor}}}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00071\ \ \ \textcolor{keyword}{typedef}\ \_Scalar\ \mbox{\hyperlink{struct_eigen_1_1_sparse_functor_a8a205156b5ab5c6acc8469e633563e7e_a8a205156b5ab5c6acc8469e633563e7e}{Scalar}};}
+\DoxyCodeLine{00072\ \ \ \textcolor{keyword}{typedef}\ \_Index\ \mbox{\hyperlink{struct_eigen_1_1_sparse_functor_a416f2e385d7670a92c863d335796d30b_a416f2e385d7670a92c863d335796d30b}{Index}};}
+\DoxyCodeLine{00073\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<Scalar,Dynamic,1>}}\ \mbox{\hyperlink{struct_eigen_1_1_sparse_functor_a6245e0376e05a130e6a2a7995d0da124_a6245e0376e05a130e6a2a7995d0da124}{InputType}};}
+\DoxyCodeLine{00074\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<Scalar,Dynamic,1>}}\ \mbox{\hyperlink{struct_eigen_1_1_sparse_functor_aca46277a3d6997d1de7e066ab02729fd_aca46277a3d6997d1de7e066ab02729fd}{ValueType}};}
+\DoxyCodeLine{00075\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{SparseMatrix<Scalar,\ ColMajor,\ Index>}}\ \mbox{\hyperlink{struct_eigen_1_1_sparse_functor_a57618b83b3f1fdf9b8e8f20a55ace87f_a57618b83b3f1fdf9b8e8f20a55ace87f}{JacobianType}};}
+\DoxyCodeLine{00076\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_sparse_q_r}{SparseQR<JacobianType,\ COLAMDOrdering<int>}}\ >\ \mbox{\hyperlink{struct_eigen_1_1_sparse_functor_ac6406f9bf20d59e89b0d7f6f69bb0c8f_ac6406f9bf20d59e89b0d7f6f69bb0c8f}{QRSolver}};}
+\DoxyCodeLine{00077\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_sparse_functor_ade55fc76679496541b317bb5daf8d347_ade55fc76679496541b317bb5daf8d347aa835efd1413ae455ddf7a735c2da83a0}{InputsAtCompileTime}}\ =\ \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}},}
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_sparse_functor_ade55fc76679496541b317bb5daf8d347_ade55fc76679496541b317bb5daf8d347a9283de033fbd1411e70e8c1cbd036beb}{ValuesAtCompileTime}}\ =\ \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}}
+\DoxyCodeLine{00080\ \ \ \};}
+\DoxyCodeLine{00081\ \ \ }
+\DoxyCodeLine{00082\ \ \ \mbox{\hyperlink{struct_eigen_1_1_sparse_functor_a1c9e38d9692ebfdb9145a801a4d1a0ec_a1c9e38d9692ebfdb9145a801a4d1a0ec}{SparseFunctor}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1_sparse_functor_a712ff4e83e1403777c6863200e793ab8_a712ff4e83e1403777c6863200e793ab8}{inputs}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1_sparse_functor_a91b9ff3608d8f4fbca1a1df004582851_a91b9ff3608d8f4fbca1a1df004582851}{values}})\ :\ \mbox{\hyperlink{struct_eigen_1_1_sparse_functor_a64fdb81f92ba3fdc01c32e57cbf4bd31_a64fdb81f92ba3fdc01c32e57cbf4bd31}{m\_inputs}}(\mbox{\hyperlink{struct_eigen_1_1_sparse_functor_a712ff4e83e1403777c6863200e793ab8_a712ff4e83e1403777c6863200e793ab8}{inputs}}),\ \mbox{\hyperlink{struct_eigen_1_1_sparse_functor_aa1b65a0291e779316828ee72affd05cd_aa1b65a0291e779316828ee72affd05cd}{m\_values}}(\mbox{\hyperlink{struct_eigen_1_1_sparse_functor_a91b9ff3608d8f4fbca1a1df004582851_a91b9ff3608d8f4fbca1a1df004582851}{values}})\ \{\}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1_sparse_functor_a712ff4e83e1403777c6863200e793ab8_a712ff4e83e1403777c6863200e793ab8}{inputs}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1_sparse_functor_a64fdb81f92ba3fdc01c32e57cbf4bd31_a64fdb81f92ba3fdc01c32e57cbf4bd31}{m\_inputs}};\ \}}
+\DoxyCodeLine{00085\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1_sparse_functor_a91b9ff3608d8f4fbca1a1df004582851_a91b9ff3608d8f4fbca1a1df004582851}{values}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1_sparse_functor_aa1b65a0291e779316828ee72affd05cd_aa1b65a0291e779316828ee72affd05cd}{m\_values}};\ \}}
+\DoxyCodeLine{00086\ \ \ }
+\DoxyCodeLine{00087\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1_sparse_functor_a64fdb81f92ba3fdc01c32e57cbf4bd31_a64fdb81f92ba3fdc01c32e57cbf4bd31}{m\_inputs}},\ \mbox{\hyperlink{struct_eigen_1_1_sparse_functor_aa1b65a0291e779316828ee72affd05cd_aa1b65a0291e779316828ee72affd05cd}{m\_values}};}
+\DoxyCodeLine{00088\ \ \ \textcolor{comment}{//int\ operator()(const\ InputType\ \&x,\ ValueType\&\ fvec)\ \{\ \}}}
+\DoxyCodeLine{00089\ \ \ \textcolor{comment}{//\ to\ be\ defined\ in\ the\ functor}}
+\DoxyCodeLine{00090\ \ \ }
+\DoxyCodeLine{00091\ \ \ \textcolor{comment}{//int\ df(const\ InputType\ \&x,\ JacobianType\&\ fjac)\ \{\ \}}}
+\DoxyCodeLine{00092\ \ \ \textcolor{comment}{//\ to\ be\ defined\ in\ the\ functor\ if\ no\ automatic\ differentiation}}
+\DoxyCodeLine{00093\ \ \ }
+\DoxyCodeLine{00094\ \};}
+\DoxyCodeLine{00095\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceinternal}{internal}}\ \{}
+\DoxyCodeLine{00096\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ QRSolver,\ \textcolor{keyword}{typename}\ VectorType>}
+\DoxyCodeLine{00097\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_eigen_1_1internal_aba45e9db6efca39c2cd2ed9ea8911acf_aba45e9db6efca39c2cd2ed9ea8911acf}{lmpar2}}(\textcolor{keyword}{const}\ QRSolver\ \&\mbox{\hyperlink{qr__colpivoting_8cpp_a234047f1d6b0303293c8918968a9670e_a234047f1d6b0303293c8918968a9670e}{qr}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_vector_type}{VectorType}}\ \ \&diag,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_vector_type}{VectorType}}\ \ \&qtb,}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ VectorType::Scalar\ m\_delta,\ \textcolor{keyword}{typename}\ VectorType::Scalar\ \&par,}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_vector_type}{VectorType}}\ \ \&\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}});}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ \_FunctorType>}
+\DoxyCodeLine{00110\ \textcolor{keyword}{class\ }LevenbergMarquardt\ :\ internal::no\_assignment\_operator}
+\DoxyCodeLine{00111\ \{}
+\DoxyCodeLine{00112\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{typedef}\ \_FunctorType\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_ae64d826e7c3560a2ad0b88316715e1df_ae64d826e7c3560a2ad0b88316715e1df}{FunctorType}};}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ FunctorType::QRSolver\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_aa9a6b69989b36d6feafa899bf184a951_aa9a6b69989b36d6feafa899bf184a951}{QRSolver}};}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ FunctorType::JacobianType\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_aa18fad18a1d6233d4f5df16a8b12a467_aa18fad18a1d6233d4f5df16a8b12a467}{JacobianType}};}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ JacobianType::Scalar\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a77419845705269de7f0e8aa37ceee6c7_a77419845705269de7f0e8aa37ceee6c7}{Scalar}};}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ JacobianType::RealScalar\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7631c50b773889bff74adce37c64f97d_a7631c50b773889bff74adce37c64f97d}{RealScalar}};\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ QRSolver::StorageIndex\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a2c9acbd51f30ddad4cd21962b305fed3_a2c9acbd51f30ddad4cd21962b305fed3}{PermIndex}};}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<Scalar,Dynamic,1>}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a6b01954b26f919ef78a85305734feeb1_a6b01954b26f919ef78a85305734feeb1}{FVectorType}};}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{PermutationMatrix<Dynamic,Dynamic,int>}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a35182d468acc904fb21ba672e62e1678_a35182d468acc904fb21ba672e62e1678}{PermutationType}};}
+\DoxyCodeLine{00121\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00122\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a8c9e8fe24f3e34a72adc087a81c46a61_a8c9e8fe24f3e34a72adc087a81c46a61}{LevenbergMarquardt}}(\mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_ae64d826e7c3560a2ad0b88316715e1df_ae64d826e7c3560a2ad0b88316715e1df}{FunctorType}}\&\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a38460f00b2ba598037b695da9181719a_a38460f00b2ba598037b695da9181719a}{functor}})\ }
+\DoxyCodeLine{00123\ \ \ \ \ :\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a2126421dcced66741e323bd2e9b8a194_a2126421dcced66741e323bd2e9b8a194}{m\_functor}}(\mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a38460f00b2ba598037b695da9181719a_a38460f00b2ba598037b695da9181719a}{functor}}),\mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a54c1b9fbd6c879d38f3c8dc40b3b1142_a54c1b9fbd6c879d38f3c8dc40b3b1142}{m\_nfev}}(0),\mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a1c4fc53f3c9dc3b32fa4d86f601ba828_a1c4fc53f3c9dc3b32fa4d86f601ba828}{m\_njev}}(0),\mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a6c9f1ee4391dd4c8a0afbe3051ab4ea4_a6c9f1ee4391dd4c8a0afbe3051ab4ea4}{m\_fnorm}}(0.0),\mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7ff82f4124af2110f3f261981c45ff89_a7ff82f4124af2110f3f261981c45ff89}{m\_gnorm}}(0),}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a296497b53f652ec18bc88367d8dea9e0_a296497b53f652ec18bc88367d8dea9e0}{m\_isInitialized}}(false),\mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a78882fcae141dde6ed8ca46d291cd989_a78882fcae141dde6ed8ca46d291cd989}{m\_info}}(\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea580b2a3cafe585691e789f768fb729bf}{InvalidInput}})}
+\DoxyCodeLine{00125\ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a46a47986e5269f5bfcec9eb5a3b25696_a46a47986e5269f5bfcec9eb5a3b25696}{resetParameters}}();}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_aff9b8f471973fa0fa9cd83cba5112219_aff9b8f471973fa0fa9cd83cba5112219}{m\_useExternalScaling}}=\textcolor{keyword}{false};\ }
+\DoxyCodeLine{00128\ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \ \ \ \ }
+\DoxyCodeLine{00130\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960}{LevenbergMarquardtSpace::Status}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a5c1ef387601af15f7d2474165bb82865_a5c1ef387601af15f7d2474165bb82865}{minimize}}(\mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a6b01954b26f919ef78a85305734feeb1_a6b01954b26f919ef78a85305734feeb1}{FVectorType}}\ \&\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}});}
+\DoxyCodeLine{00131\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960}{LevenbergMarquardtSpace::Status}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_ad1b2467f6143a874e023416db0832810_ad1b2467f6143a874e023416db0832810}{minimizeInit}}(\mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a6b01954b26f919ef78a85305734feeb1_a6b01954b26f919ef78a85305734feeb1}{FVectorType}}\ \&\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}});}
+\DoxyCodeLine{00132\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960}{LevenbergMarquardtSpace::Status}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a1347316132f0bd7bf2541788d9e12637_a1347316132f0bd7bf2541788d9e12637}{minimizeOneStep}}(\mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a6b01954b26f919ef78a85305734feeb1_a6b01954b26f919ef78a85305734feeb1}{FVectorType}}\ \&\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}});}
+\DoxyCodeLine{00133\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960}{LevenbergMarquardtSpace::Status}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a88cddb5e5cabffcf7a00f1c303e37652_a88cddb5e5cabffcf7a00f1c303e37652}{lmder1}}(}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a6b01954b26f919ef78a85305734feeb1_a6b01954b26f919ef78a85305734feeb1}{FVectorType}}\ \ \&\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}},\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}\ tol\ =\ std::sqrt(\mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<Scalar>::epsilon}}())}
+\DoxyCodeLine{00136\ \ \ \ \ );}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960}{LevenbergMarquardtSpace::Status}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a03d503a4bd73715bb770e3e4c659d4ab_a03d503a4bd73715bb770e3e4c659d4ab}{lmdif1}}(}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_ae64d826e7c3560a2ad0b88316715e1df_ae64d826e7c3560a2ad0b88316715e1df}{FunctorType}}\ \&\mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a38460f00b2ba598037b695da9181719a_a38460f00b2ba598037b695da9181719a}{functor}},}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a6b01954b26f919ef78a85305734feeb1_a6b01954b26f919ef78a85305734feeb1}{FVectorType}}\ \ \&\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}},}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ *\mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_ae73f08a6997158bf881d4db206def160_ae73f08a6997158bf881d4db206def160}{nfev}},}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}\ tol\ =\ std::sqrt(\mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<Scalar>::epsilon}}())}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00143\ \ \ \ \ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a46a47986e5269f5bfcec9eb5a3b25696_a46a47986e5269f5bfcec9eb5a3b25696}{resetParameters}}()\ }
+\DoxyCodeLine{00146\ \ \ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \textcolor{keyword}{using\ }std::sqrt;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a385aad41164fb2623b93acde8eb8b13b_a385aad41164fb2623b93acde8eb8b13b}{m\_factor}}\ =\ 100.;\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7491e48514d42097bd56c9200ef2dd1f_a7491e48514d42097bd56c9200ef2dd1f}{m\_maxfev}}\ =\ 400;\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a6c670dc1fdf18f8e822066e231cb598b_a6c670dc1fdf18f8e822066e231cb598b}{m\_ftol}}\ =\ \mbox{\hyperlink{_array_cwise_unary_ops_8h_a656b9217a2fcb6de59dc8d1eb3079cc7_a656b9217a2fcb6de59dc8d1eb3079cc7}{sqrt}}(\mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<RealScalar>::epsilon}}());}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a4b0a41a5e721eb07113a6c5586f1ed3e_a4b0a41a5e721eb07113a6c5586f1ed3e}{m\_xtol}}\ =\ \mbox{\hyperlink{_array_cwise_unary_ops_8h_a656b9217a2fcb6de59dc8d1eb3079cc7_a656b9217a2fcb6de59dc8d1eb3079cc7}{sqrt}}(\mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<RealScalar>::epsilon}}());}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a39136ded550c08aa820161a0837224d3_a39136ded550c08aa820161a0837224d3}{m\_gtol}}\ =\ 0.\ ;\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a5102a85868b263c8de13cd501adf0a8b_a5102a85868b263c8de13cd501adf0a8b}{m\_epsfcn}}\ =\ 0.\ ;}
+\DoxyCodeLine{00155\ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \ \ \ \ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_ab76bfe84869adc999d0be1949ea48641_ab76bfe84869adc999d0be1949ea48641}{setXtol}}(\mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7631c50b773889bff74adce37c64f97d_a7631c50b773889bff74adce37c64f97d}{RealScalar}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a50542e064273bda216cca892a7c5602e_a50542e064273bda216cca892a7c5602e}{xtol}})\ \{\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a4b0a41a5e721eb07113a6c5586f1ed3e_a4b0a41a5e721eb07113a6c5586f1ed3e}{m\_xtol}}\ =\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a50542e064273bda216cca892a7c5602e_a50542e064273bda216cca892a7c5602e}{xtol}};\ \}}
+\DoxyCodeLine{00159\ \ \ \ \ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_ab560c9299571a3e4b6e4cb78c5446573_ab560c9299571a3e4b6e4cb78c5446573}{setFtol}}(\mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7631c50b773889bff74adce37c64f97d_a7631c50b773889bff74adce37c64f97d}{RealScalar}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_ac6b88af2739285a63a674dfc7df1ffd0_ac6b88af2739285a63a674dfc7df1ffd0}{ftol}})\ \{\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a6c670dc1fdf18f8e822066e231cb598b_a6c670dc1fdf18f8e822066e231cb598b}{m\_ftol}}\ =\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_ac6b88af2739285a63a674dfc7df1ffd0_ac6b88af2739285a63a674dfc7df1ffd0}{ftol}};\ \}}
+\DoxyCodeLine{00162\ \ \ \ \ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a12f76aac24461a98fa639ccceba01760_a12f76aac24461a98fa639ccceba01760}{setGtol}}(\mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7631c50b773889bff74adce37c64f97d_a7631c50b773889bff74adce37c64f97d}{RealScalar}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a688c47ef9d2fb0bb7c478ca55c8b0145_a688c47ef9d2fb0bb7c478ca55c8b0145}{gtol}})\ \{\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a39136ded550c08aa820161a0837224d3_a39136ded550c08aa820161a0837224d3}{m\_gtol}}\ =\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a688c47ef9d2fb0bb7c478ca55c8b0145_a688c47ef9d2fb0bb7c478ca55c8b0145}{gtol}};\ \}}
+\DoxyCodeLine{00165\ \ \ \ \ }
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a6a1603c08559eba76620811ab472da1e_a6a1603c08559eba76620811ab472da1e}{setFactor}}(\mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7631c50b773889bff74adce37c64f97d_a7631c50b773889bff74adce37c64f97d}{RealScalar}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a9172429a816c0cf5c60842b20eb5f1fc_a9172429a816c0cf5c60842b20eb5f1fc}{factor}})\ \{\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a385aad41164fb2623b93acde8eb8b13b_a385aad41164fb2623b93acde8eb8b13b}{m\_factor}}\ =\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a9172429a816c0cf5c60842b20eb5f1fc_a9172429a816c0cf5c60842b20eb5f1fc}{factor}};\ \}\ \ \ \ }
+\DoxyCodeLine{00168\ \ \ \ \ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a639856531b55d055fc5f32ebca17bcd7_a639856531b55d055fc5f32ebca17bcd7}{setEpsilon}}\ (\mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7631c50b773889bff74adce37c64f97d_a7631c50b773889bff74adce37c64f97d}{RealScalar}}\ epsfcn)\ \{\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a5102a85868b263c8de13cd501adf0a8b_a5102a85868b263c8de13cd501adf0a8b}{m\_epsfcn}}\ =\ epsfcn;\ \}}
+\DoxyCodeLine{00171\ \ \ \ \ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a67244440313baefdffa786daf1559e0c_a67244440313baefdffa786daf1559e0c}{setMaxfev}}(\mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a8b01c7bcb6d0f990e4165e0f8a29eabb_a8b01c7bcb6d0f990e4165e0f8a29eabb}{Index}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_afb035ca21a797cc70a3df721cacb3909_afb035ca21a797cc70a3df721cacb3909}{maxfev}})\ \{\mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7491e48514d42097bd56c9200ef2dd1f_a7491e48514d42097bd56c9200ef2dd1f}{m\_maxfev}}\ =\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_afb035ca21a797cc70a3df721cacb3909_afb035ca21a797cc70a3df721cacb3909}{maxfev}};\ \}}
+\DoxyCodeLine{00174\ \ \ \ \ }
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_aa8e64a2b2defcc6c742c2e5cb634d4ad_aa8e64a2b2defcc6c742c2e5cb634d4ad}{setExternalScaling}}(\textcolor{keywordtype}{bool}\ value)\ \{\mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_aff9b8f471973fa0fa9cd83cba5112219_aff9b8f471973fa0fa9cd83cba5112219}{m\_useExternalScaling}}\ \ =\ value;\ \}}
+\DoxyCodeLine{00177\ \ \ \ \ }
+\DoxyCodeLine{00179\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7631c50b773889bff74adce37c64f97d_a7631c50b773889bff74adce37c64f97d}{RealScalar}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a50542e064273bda216cca892a7c5602e_a50542e064273bda216cca892a7c5602e}{xtol}}()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a4b0a41a5e721eb07113a6c5586f1ed3e_a4b0a41a5e721eb07113a6c5586f1ed3e}{m\_xtol}};\ \}}
+\DoxyCodeLine{00180\ \ \ \ \ }
+\DoxyCodeLine{00182\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7631c50b773889bff74adce37c64f97d_a7631c50b773889bff74adce37c64f97d}{RealScalar}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_ac6b88af2739285a63a674dfc7df1ffd0_ac6b88af2739285a63a674dfc7df1ffd0}{ftol}}()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a6c670dc1fdf18f8e822066e231cb598b_a6c670dc1fdf18f8e822066e231cb598b}{m\_ftol}};\ \}}
+\DoxyCodeLine{00183\ \ \ \ \ }
+\DoxyCodeLine{00185\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7631c50b773889bff74adce37c64f97d_a7631c50b773889bff74adce37c64f97d}{RealScalar}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a688c47ef9d2fb0bb7c478ca55c8b0145_a688c47ef9d2fb0bb7c478ca55c8b0145}{gtol}}()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a39136ded550c08aa820161a0837224d3_a39136ded550c08aa820161a0837224d3}{m\_gtol}};\ \}}
+\DoxyCodeLine{00186\ \ \ \ \ }
+\DoxyCodeLine{00188\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7631c50b773889bff74adce37c64f97d_a7631c50b773889bff74adce37c64f97d}{RealScalar}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a9172429a816c0cf5c60842b20eb5f1fc_a9172429a816c0cf5c60842b20eb5f1fc}{factor}}()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a385aad41164fb2623b93acde8eb8b13b_a385aad41164fb2623b93acde8eb8b13b}{m\_factor}};\ \}}
+\DoxyCodeLine{00189\ \ \ \ \ }
+\DoxyCodeLine{00191\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7631c50b773889bff74adce37c64f97d_a7631c50b773889bff74adce37c64f97d}{RealScalar}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a3251044cbbb39b5e98b52ec0867454d9_a3251044cbbb39b5e98b52ec0867454d9}{epsilon}}()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a5102a85868b263c8de13cd501adf0a8b_a5102a85868b263c8de13cd501adf0a8b}{m\_epsfcn}};\ \}}
+\DoxyCodeLine{00192\ \ \ \ \ }
+\DoxyCodeLine{00194\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a8b01c7bcb6d0f990e4165e0f8a29eabb_a8b01c7bcb6d0f990e4165e0f8a29eabb}{Index}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_afb035ca21a797cc70a3df721cacb3909_afb035ca21a797cc70a3df721cacb3909}{maxfev}}()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7491e48514d42097bd56c9200ef2dd1f_a7491e48514d42097bd56c9200ef2dd1f}{m\_maxfev}};\ \}}
+\DoxyCodeLine{00195\ \ \ \ \ }
+\DoxyCodeLine{00197\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{FVectorType}}\&\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7a5035e8c9fa041817b3ae1e17c088b3_a7a5035e8c9fa041817b3ae1e17c088b3}{diag}}()\ \{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a037ef4efcf87810c5e1c55220d2f3df4_a037ef4efcf87810c5e1c55220d2f3df4}{m\_diag}};\ \}}
+\DoxyCodeLine{00198\ \ \ \ \ }
+\DoxyCodeLine{00200\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a8b01c7bcb6d0f990e4165e0f8a29eabb_a8b01c7bcb6d0f990e4165e0f8a29eabb}{Index}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_ad0cdb751b8ac5d823d09900047a32a72_ad0cdb751b8ac5d823d09900047a32a72}{iterations}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a90c731486116307cf3136f204ca1f5b0_a90c731486116307cf3136f204ca1f5b0}{m\_iter}};\ \}}
+\DoxyCodeLine{00201\ \ \ \ \ }
+\DoxyCodeLine{00203\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a8b01c7bcb6d0f990e4165e0f8a29eabb_a8b01c7bcb6d0f990e4165e0f8a29eabb}{Index}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a2ed661fab157a8293d9de99c750f0e25_a2ed661fab157a8293d9de99c750f0e25}{nfev}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a54c1b9fbd6c879d38f3c8dc40b3b1142_a54c1b9fbd6c879d38f3c8dc40b3b1142}{m\_nfev}};\ \}}
+\DoxyCodeLine{00204\ \ \ \ \ }
+\DoxyCodeLine{00206\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a8b01c7bcb6d0f990e4165e0f8a29eabb_a8b01c7bcb6d0f990e4165e0f8a29eabb}{Index}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a9cf5bb4a802c9756c465183707c3b8f3_a9cf5bb4a802c9756c465183707c3b8f3}{njev}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a1c4fc53f3c9dc3b32fa4d86f601ba828_a1c4fc53f3c9dc3b32fa4d86f601ba828}{m\_njev}};\ \}}
+\DoxyCodeLine{00207\ \ \ \ \ }
+\DoxyCodeLine{00209\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7631c50b773889bff74adce37c64f97d_a7631c50b773889bff74adce37c64f97d}{RealScalar}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a59f7320bcb8f2b0ddff53cf593b04426_a59f7320bcb8f2b0ddff53cf593b04426}{fnorm}}()\ \{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a6c9f1ee4391dd4c8a0afbe3051ab4ea4_a6c9f1ee4391dd4c8a0afbe3051ab4ea4}{m\_fnorm}};\ \}}
+\DoxyCodeLine{00210\ \ \ \ \ }
+\DoxyCodeLine{00212\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7631c50b773889bff74adce37c64f97d_a7631c50b773889bff74adce37c64f97d}{RealScalar}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_ab28deab8940741ece2cd876073931422_ab28deab8940741ece2cd876073931422}{gnorm}}()\ \{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7ff82f4124af2110f3f261981c45ff89_a7ff82f4124af2110f3f261981c45ff89}{m\_gnorm}};\ \}}
+\DoxyCodeLine{00213\ \ \ \ \ }
+\DoxyCodeLine{00215\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7631c50b773889bff74adce37c64f97d_a7631c50b773889bff74adce37c64f97d}{RealScalar}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a8e012302a83102af9d23109607bf0aa5_a8e012302a83102af9d23109607bf0aa5}{lm\_param}}(\textcolor{keywordtype}{void})\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_ac15701344edf0d30a45f596fa3af6c9f_ac15701344edf0d30a45f596fa3af6c9f}{m\_par}};\ \}}
+\DoxyCodeLine{00216\ \ \ \ \ }
+\DoxyCodeLine{00219\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{FVectorType}}\&\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a10fcbe46ddfcf4f8056b689519e15e6c_a10fcbe46ddfcf4f8056b689519e15e6c}{fvec}}()\ \{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a4f8e21b2b5ab7c0af42c0a8f5f71ce10_a4f8e21b2b5ab7c0af42c0a8f5f71ce10}{m\_fvec}};\ \}}
+\DoxyCodeLine{00220\ \ \ \ \ }
+\DoxyCodeLine{00223\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_aa18fad18a1d6233d4f5df16a8b12a467_aa18fad18a1d6233d4f5df16a8b12a467}{JacobianType}}\&\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a50a06f8cd3797209bae7cbebea37d8f1_a50a06f8cd3797209bae7cbebea37d8f1}{jacobian}}()\ \{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a9277ac73c5f4103e3debaf5556f7ef81_a9277ac73c5f4103e3debaf5556f7ef81}{m\_fjac}};\ \}}
+\DoxyCodeLine{00224\ \ \ \ \ }
+\DoxyCodeLine{00228\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_aa18fad18a1d6233d4f5df16a8b12a467_aa18fad18a1d6233d4f5df16a8b12a467}{JacobianType}}\&\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_acf9750a5bed9c698f365def375052601_acf9750a5bed9c698f365def375052601}{matrixR}}()\ \{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7c4aaf7c5f853567b2ec6cb4ccc78545_a7c4aaf7c5f853567b2ec6cb4ccc78545}{m\_rfactor}};\ \}}
+\DoxyCodeLine{00229\ \ \ \ \ }
+\DoxyCodeLine{00232\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{PermutationType}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a3435ee88e017bb19595f68e56935a5ca_a3435ee88e017bb19595f68e56935a5ca}{permutation}}()\ \{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_aaf07bcaa10767a4e04c410dc88a21888_aaf07bcaa10767a4e04c410dc88a21888}{m\_permutation}};\ \}}
+\DoxyCodeLine{00233\ \ \ \ \ }
+\DoxyCodeLine{00243\ \ \ \ \ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{ComputationInfo}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a92bc92da232e07e5b2d18e7112272312_a92bc92da232e07e5b2d18e7112272312}{info}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00244\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ }
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a78882fcae141dde6ed8ca46d291cd989_a78882fcae141dde6ed8ca46d291cd989}{m\_info}};}
+\DoxyCodeLine{00247\ \ \ \ \ \}}
+\DoxyCodeLine{00248\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00249\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_aa18fad18a1d6233d4f5df16a8b12a467_aa18fad18a1d6233d4f5df16a8b12a467}{JacobianType}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a9277ac73c5f4103e3debaf5556f7ef81_a9277ac73c5f4103e3debaf5556f7ef81}{m\_fjac}};\ }
+\DoxyCodeLine{00250\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_aa18fad18a1d6233d4f5df16a8b12a467_aa18fad18a1d6233d4f5df16a8b12a467}{JacobianType}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7c4aaf7c5f853567b2ec6cb4ccc78545_a7c4aaf7c5f853567b2ec6cb4ccc78545}{m\_rfactor}};\ \textcolor{comment}{//\ The\ triangular\ matrix\ R\ from\ the\ QR\ of\ the\ jacobian\ matrix\ m\_fjac}}
+\DoxyCodeLine{00251\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_ae64d826e7c3560a2ad0b88316715e1df_ae64d826e7c3560a2ad0b88316715e1df}{FunctorType}}\ \&\mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a2126421dcced66741e323bd2e9b8a194_a2126421dcced66741e323bd2e9b8a194}{m\_functor}};}
+\DoxyCodeLine{00252\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{FVectorType}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a4f8e21b2b5ab7c0af42c0a8f5f71ce10_a4f8e21b2b5ab7c0af42c0a8f5f71ce10}{m\_fvec}},\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a5b50907011b6ed05fc167ce639c6c0d5_a5b50907011b6ed05fc167ce639c6c0d5}{m\_qtf}},\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a037ef4efcf87810c5e1c55220d2f3df4_a037ef4efcf87810c5e1c55220d2f3df4}{m\_diag}};\ }
+\DoxyCodeLine{00253\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a8b01c7bcb6d0f990e4165e0f8a29eabb_a8b01c7bcb6d0f990e4165e0f8a29eabb}{Index}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_ac815c91d324d89f01ded78ebb9c6028f_ac815c91d324d89f01ded78ebb9c6028f}{n}};}
+\DoxyCodeLine{00254\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a8b01c7bcb6d0f990e4165e0f8a29eabb_a8b01c7bcb6d0f990e4165e0f8a29eabb}{Index}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_abe2703c18d4510844ff50fcece62e793_abe2703c18d4510844ff50fcece62e793}{m}};\ }
+\DoxyCodeLine{00255\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a8b01c7bcb6d0f990e4165e0f8a29eabb_a8b01c7bcb6d0f990e4165e0f8a29eabb}{Index}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a54c1b9fbd6c879d38f3c8dc40b3b1142_a54c1b9fbd6c879d38f3c8dc40b3b1142}{m\_nfev}};}
+\DoxyCodeLine{00256\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a8b01c7bcb6d0f990e4165e0f8a29eabb_a8b01c7bcb6d0f990e4165e0f8a29eabb}{Index}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a1c4fc53f3c9dc3b32fa4d86f601ba828_a1c4fc53f3c9dc3b32fa4d86f601ba828}{m\_njev}};\ }
+\DoxyCodeLine{00257\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7631c50b773889bff74adce37c64f97d_a7631c50b773889bff74adce37c64f97d}{RealScalar}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a6c9f1ee4391dd4c8a0afbe3051ab4ea4_a6c9f1ee4391dd4c8a0afbe3051ab4ea4}{m\_fnorm}};\ \textcolor{comment}{//\ Norm\ of\ the\ current\ vector\ function}}
+\DoxyCodeLine{00258\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7631c50b773889bff74adce37c64f97d_a7631c50b773889bff74adce37c64f97d}{RealScalar}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7ff82f4124af2110f3f261981c45ff89_a7ff82f4124af2110f3f261981c45ff89}{m\_gnorm}};\ \textcolor{comment}{//Norm\ of\ the\ gradient\ of\ the\ error\ }}
+\DoxyCodeLine{00259\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7631c50b773889bff74adce37c64f97d_a7631c50b773889bff74adce37c64f97d}{RealScalar}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a385aad41164fb2623b93acde8eb8b13b_a385aad41164fb2623b93acde8eb8b13b}{m\_factor}};\ \textcolor{comment}{//}}
+\DoxyCodeLine{00260\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a8b01c7bcb6d0f990e4165e0f8a29eabb_a8b01c7bcb6d0f990e4165e0f8a29eabb}{Index}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7491e48514d42097bd56c9200ef2dd1f_a7491e48514d42097bd56c9200ef2dd1f}{m\_maxfev}};\ \textcolor{comment}{//\ Maximum\ number\ of\ function\ evaluation}}
+\DoxyCodeLine{00261\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7631c50b773889bff74adce37c64f97d_a7631c50b773889bff74adce37c64f97d}{RealScalar}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a6c670dc1fdf18f8e822066e231cb598b_a6c670dc1fdf18f8e822066e231cb598b}{m\_ftol}};\ \textcolor{comment}{//Tolerance\ in\ the\ norm\ of\ the\ vector\ function}}
+\DoxyCodeLine{00262\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7631c50b773889bff74adce37c64f97d_a7631c50b773889bff74adce37c64f97d}{RealScalar}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a4b0a41a5e721eb07113a6c5586f1ed3e_a4b0a41a5e721eb07113a6c5586f1ed3e}{m\_xtol}};\ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00263\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7631c50b773889bff74adce37c64f97d_a7631c50b773889bff74adce37c64f97d}{RealScalar}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a39136ded550c08aa820161a0837224d3_a39136ded550c08aa820161a0837224d3}{m\_gtol}};\ \textcolor{comment}{//tolerance\ of\ the\ norm\ of\ the\ error\ gradient}}
+\DoxyCodeLine{00264\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7631c50b773889bff74adce37c64f97d_a7631c50b773889bff74adce37c64f97d}{RealScalar}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a5102a85868b263c8de13cd501adf0a8b_a5102a85868b263c8de13cd501adf0a8b}{m\_epsfcn}};\ \textcolor{comment}{//}}
+\DoxyCodeLine{00265\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a8b01c7bcb6d0f990e4165e0f8a29eabb_a8b01c7bcb6d0f990e4165e0f8a29eabb}{Index}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a90c731486116307cf3136f204ca1f5b0_a90c731486116307cf3136f204ca1f5b0}{m\_iter}};\ \textcolor{comment}{//\ Number\ of\ iterations\ performed}}
+\DoxyCodeLine{00266\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7631c50b773889bff74adce37c64f97d_a7631c50b773889bff74adce37c64f97d}{RealScalar}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_aa218e9f77d3cd3405bf19f90e46376d3_aa218e9f77d3cd3405bf19f90e46376d3}{m\_delta}};}
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_aff9b8f471973fa0fa9cd83cba5112219_aff9b8f471973fa0fa9cd83cba5112219}{m\_useExternalScaling}};}
+\DoxyCodeLine{00268\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{PermutationType}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_aaf07bcaa10767a4e04c410dc88a21888_aaf07bcaa10767a4e04c410dc88a21888}{m\_permutation}};}
+\DoxyCodeLine{00269\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{FVectorType}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_aa33169312e592705b3f999a48ff56211_aa33169312e592705b3f999a48ff56211}{m\_wa1}},\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_aba36b5e4ce1eb0551f5adf217577b9b0_aba36b5e4ce1eb0551f5adf217577b9b0}{m\_wa2}},\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a437e946f2caa1415efad6b603657911d_a437e946f2caa1415efad6b603657911d}{m\_wa3}},\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a8b5020639ff95279cf39fc270c2ad684_a8b5020639ff95279cf39fc270c2ad684}{m\_wa4}};\ \textcolor{comment}{//Temporary\ vectors}}
+\DoxyCodeLine{00270\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a7631c50b773889bff74adce37c64f97d_a7631c50b773889bff74adce37c64f97d}{RealScalar}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_ac15701344edf0d30a45f596fa3af6c9f_ac15701344edf0d30a45f596fa3af6c9f}{m\_par}};}
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a296497b53f652ec18bc88367d8dea9e0_a296497b53f652ec18bc88367d8dea9e0}{m\_isInitialized}};\ \textcolor{comment}{//\ Check\ whether\ the\ minimization\ step\ has\ been\ called}}
+\DoxyCodeLine{00272\ \ \ \ \ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{ComputationInfo}}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a78882fcae141dde6ed8ca46d291cd989_a78882fcae141dde6ed8ca46d291cd989}{m\_info}};\ }
+\DoxyCodeLine{00273\ \};}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ FunctorType>}
+\DoxyCodeLine{00276\ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960}{LevenbergMarquardtSpace::Status}}}
+\DoxyCodeLine{00277\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a5c1ef387601af15f7d2474165bb82865_a5c1ef387601af15f7d2474165bb82865}{LevenbergMarquardt<FunctorType>::minimize}}(\mbox{\hyperlink{class_eigen_1_1_matrix}{FVectorType}}\ \ \&\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}})}
+\DoxyCodeLine{00278\ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960}{LevenbergMarquardtSpace::Status}}\ status\ =\ minimizeInit(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}});}
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keywordflow}{if}\ (status==\mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960ae989dceeff60c4b6eeb68583ba725083}{LevenbergMarquardtSpace::ImproperInputParameters}})\ \{}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ m\_isInitialized\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ status;}
+\DoxyCodeLine{00283\ \ \ \ \ \}}
+\DoxyCodeLine{00284\ \ \ \ \ \textcolor{keywordflow}{do}\ \{}
+\DoxyCodeLine{00285\ \textcolor{comment}{//\ \ \ \ \ \ \ std::cout\ <<\ "{}\ uv\ "{}\ <<\ x.transpose()\ <<\ "{}\(\backslash\)n"{};}}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ status\ =\ minimizeOneStep(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}});}
+\DoxyCodeLine{00287\ \ \ \ \ \}\ \textcolor{keywordflow}{while}\ (status==\mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960ab78a06f2e8a3d7845a7f6cf6a10509d2}{LevenbergMarquardtSpace::Running}});}
+\DoxyCodeLine{00288\ \ \ \ \ \ m\_isInitialized\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00289\ \ \ \ \ \ \textcolor{keywordflow}{return}\ status;}
+\DoxyCodeLine{00290\ \}}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ FunctorType>}
+\DoxyCodeLine{00293\ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960}{LevenbergMarquardtSpace::Status}}}
+\DoxyCodeLine{00294\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_ad1b2467f6143a874e023416db0832810_ad1b2467f6143a874e023416db0832810}{LevenbergMarquardt<FunctorType>::minimizeInit}}(\mbox{\hyperlink{class_eigen_1_1_matrix}{FVectorType}}\ \ \&\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}})}
+\DoxyCodeLine{00295\ \{}
+\DoxyCodeLine{00296\ \ \ \ \ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}\ =\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.size();}
+\DoxyCodeLine{00297\ \ \ \ \ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}\ =\ m\_functor.values();}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \ \ \ \ m\_wa1.resize(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}});\ m\_wa2.resize(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}});\ m\_wa3.resize(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}});}
+\DoxyCodeLine{00300\ \ \ \ \ m\_wa4.resize(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}});}
+\DoxyCodeLine{00301\ \ \ \ \ m\_fvec.resize(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}});}
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{comment}{//FIXME\ Sparse\ Case\ :\ Allocate\ space\ for\ the\ jacobian}}
+\DoxyCodeLine{00303\ \ \ \ \ m\_fjac.resize(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}});}
+\DoxyCodeLine{00304\ \textcolor{comment}{//\ \ \ \ \ m\_fjac.reserve(VectorXi::Constant(n,5));\ //\ FIXME\ Find\ a\ better\ alternative}}
+\DoxyCodeLine{00305\ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_useExternalScaling)}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ m\_diag.resize(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}});}
+\DoxyCodeLine{00307\ \ \ \ \ \mbox{\hyperlink{_macros_8h_acaa7ba89800cfe18d5fd6eed620aea9c_acaa7ba89800cfe18d5fd6eed620aea9c}{eigen\_assert}}(\ (!m\_useExternalScaling\ ||\ m\_diag.size()==\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}})\ \&\&\ \textcolor{stringliteral}{"{}When\ m\_useExternalScaling\ is\ set,\ the\ caller\ must\ provide\ a\ valid\ 'm\_diag'"{}});}
+\DoxyCodeLine{00308\ \ \ \ \ m\_qtf.resize(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}});}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{comment}{/*\ Function\ Body\ */}}
+\DoxyCodeLine{00311\ \ \ \ \ m\_nfev\ =\ 0;}
+\DoxyCodeLine{00312\ \ \ \ \ m\_njev\ =\ 0;}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \ \ \ \ \textcolor{comment}{/*\ \ \ \ \ check\ the\ input\ parameters\ for\ errors.\ */}}
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}\ <=\ 0\ ||\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}\ <\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}\ ||\ m\_ftol\ <\ 0.\ ||\ m\_xtol\ <\ 0.\ ||\ m\_gtol\ <\ 0.\ ||\ m\_maxfev\ <=\ 0\ ||\ m\_factor\ <=\ 0.)\{}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ m\_info\ =\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea580b2a3cafe585691e789f768fb729bf}{InvalidInput}};}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960ae989dceeff60c4b6eeb68583ba725083}{LevenbergMarquardtSpace::ImproperInputParameters}};}
+\DoxyCodeLine{00318\ \ \ \ \ \}}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_useExternalScaling)}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a8b01c7bcb6d0f990e4165e0f8a29eabb_a8b01c7bcb6d0f990e4165e0f8a29eabb}{Index}}\ \mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}}\ =\ 0;\ \mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}}\ <\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}};\ ++\mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}})}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_diag[\mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}}]\ <=\ 0.)\ }
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_info\ =\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea580b2a3cafe585691e789f768fb729bf}{InvalidInput}};}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960ae989dceeff60c4b6eeb68583ba725083}{LevenbergMarquardtSpace::ImproperInputParameters}};}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ \ \ \ \ \textcolor{comment}{/*\ \ \ \ \ evaluate\ the\ function\ at\ the\ starting\ point\ */}}
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{comment}{/*\ \ \ \ \ and\ calculate\ its\ norm.\ */}}
+\DoxyCodeLine{00330\ \ \ \ \ m\_nfev\ =\ 1;}
+\DoxyCodeLine{00331\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ m\_functor(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}},\ m\_fvec)\ <\ 0)}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960ab1006c6b777e87a3ff709b2efb92b6bb}{LevenbergMarquardtSpace::UserAsked}};}
+\DoxyCodeLine{00333\ \ \ \ \ m\_fnorm\ =\ m\_fvec.stableNorm();}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ \ \ \ \ \textcolor{comment}{/*\ \ \ \ \ initialize\ levenberg-\/marquardt\ parameter\ and\ iteration\ counter.\ */}}
+\DoxyCodeLine{00336\ \ \ \ \ m\_par\ =\ 0.;}
+\DoxyCodeLine{00337\ \ \ \ \ m\_iter\ =\ 1;}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00339\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960a810c50589dc755400ba2a2522c636d5e}{LevenbergMarquardtSpace::NotStarted}};}
+\DoxyCodeLine{00340\ \}}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ FunctorType>}
+\DoxyCodeLine{00343\ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960}{LevenbergMarquardtSpace::Status}}}
+\DoxyCodeLine{00344\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a88cddb5e5cabffcf7a00f1c303e37652_a88cddb5e5cabffcf7a00f1c303e37652}{LevenbergMarquardt<FunctorType>::lmder1}}(}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{FVectorType}}\ \ \&\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}},}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a77419845705269de7f0e8aa37ceee6c7_a77419845705269de7f0e8aa37ceee6c7}{Scalar}}\ tol}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00348\ \{}
+\DoxyCodeLine{00349\ \ \ \ \ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}\ =\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.size();}
+\DoxyCodeLine{00350\ \ \ \ \ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}\ =\ m\_functor.values();}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{comment}{/*\ check\ the\ input\ parameters\ for\ errors.\ */}}
+\DoxyCodeLine{00353\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}\ <=\ 0\ ||\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}\ <\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}\ ||\ tol\ <\ 0.)}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960ae989dceeff60c4b6eeb68583ba725083}{LevenbergMarquardtSpace::ImproperInputParameters}};}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00356\ \ \ \ \ resetParameters();}
+\DoxyCodeLine{00357\ \ \ \ \ m\_ftol\ =\ tol;}
+\DoxyCodeLine{00358\ \ \ \ \ m\_xtol\ =\ tol;}
+\DoxyCodeLine{00359\ \ \ \ \ m\_maxfev\ =\ 100*(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}+1);}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \ \ \ \ \textcolor{keywordflow}{return}\ minimize(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}});}
+\DoxyCodeLine{00362\ \}}
+\DoxyCodeLine{00363\ }
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ FunctorType>}
+\DoxyCodeLine{00366\ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960}{LevenbergMarquardtSpace::Status}}}
+\DoxyCodeLine{00367\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a03d503a4bd73715bb770e3e4c659d4ab_a03d503a4bd73715bb770e3e4c659d4ab}{LevenbergMarquardt<FunctorType>::lmdif1}}(}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_ae64d826e7c3560a2ad0b88316715e1df_ae64d826e7c3560a2ad0b88316715e1df}{FunctorType}}\ \&functor,}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{FVectorType}}\ \ \&\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}},}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a8b01c7bcb6d0f990e4165e0f8a29eabb_a8b01c7bcb6d0f990e4165e0f8a29eabb}{Index}}\ *nfev,}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a77419845705269de7f0e8aa37ceee6c7_a77419845705269de7f0e8aa37ceee6c7}{Scalar}}\ tol}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00373\ \{}
+\DoxyCodeLine{00374\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a8b01c7bcb6d0f990e4165e0f8a29eabb_a8b01c7bcb6d0f990e4165e0f8a29eabb}{Index}}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}\ =\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.size();}
+\DoxyCodeLine{00375\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a8b01c7bcb6d0f990e4165e0f8a29eabb_a8b01c7bcb6d0f990e4165e0f8a29eabb}{Index}}\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}\ =\ functor.values();}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00377\ \ \ \ \ \textcolor{comment}{/*\ check\ the\ input\ parameters\ for\ errors.\ */}}
+\DoxyCodeLine{00378\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}\ <=\ 0\ ||\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}\ <\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}\ ||\ tol\ <\ 0.)}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960ae989dceeff60c4b6eeb68583ba725083}{LevenbergMarquardtSpace::ImproperInputParameters}};}
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00381\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_numerical_diff}{NumericalDiff<FunctorType>}}\ numDiff(functor);}
+\DoxyCodeLine{00382\ \ \ \ \ \textcolor{comment}{//\ embedded\ LevenbergMarquardt}}
+\DoxyCodeLine{00383\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{LevenbergMarquardt<NumericalDiff<FunctorType>}}\ >\ lm(numDiff);}
+\DoxyCodeLine{00384\ \ \ \ \ lm.setFtol(tol);}
+\DoxyCodeLine{00385\ \ \ \ \ lm.setXtol(tol);}
+\DoxyCodeLine{00386\ \ \ \ \ lm.setMaxfev(200*(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}+1));}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960}{LevenbergMarquardtSpace::Status}}\ \mbox{\hyperlink{lapack_2cholesky_8cpp_a19e186475eb822b276da4b357d68140d_a19e186475eb822b276da4b357d68140d}{info}}\ =\ \mbox{\hyperlink{namespace_eigen_1_1_levenberg_marquardt_space_af4e38304e1ecfc701465875eed50e960_af4e38304e1ecfc701465875eed50e960}{LevenbergMarquardtSpace::Status}}(lm.minimize(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}));}
+\DoxyCodeLine{00389\ \ \ \ \ \textcolor{keywordflow}{if}\ (nfev)}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ *\ nfev\ =\ lm.nfev();}
+\DoxyCodeLine{00391\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{lapack_2cholesky_8cpp_a19e186475eb822b276da4b357d68140d_a19e186475eb822b276da4b357d68140d}{info}};}
+\DoxyCodeLine{00392\ \}}
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00394\ \}\ \textcolor{comment}{//\ end\ namespace\ Eigen}}
+\DoxyCodeLine{00395\ }
+\DoxyCodeLine{00396\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ EIGEN\_LEVENBERGMARQUARDT\_H}}
+
+\end{DoxyCode}

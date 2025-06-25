@@ -1,0 +1,716 @@
+\doxysection{Eigen\+::SVDBase\texorpdfstring{$<$}{<} Derived \texorpdfstring{$>$}{>} クラステンプレート}
+\hypertarget{class_eigen_1_1_s_v_d_base}{}\label{class_eigen_1_1_s_v_d_base}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+
+
+Base class of SVD algorithms  
+
+
+
+
+{\ttfamily \#include $<$SVDBase.\+h$>$}
+
+
+
+Eigen\+::SVDBase\texorpdfstring{$<$}{<} Derived \texorpdfstring{$>$}{>} の継承関係図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_eigen_1_1_s_v_d_base__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Eigen\+::SVDBase\texorpdfstring{$<$}{<} Derived \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_eigen_1_1_s_v_d_base__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \newline
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7ac627616165f3cf1995b4204c92acc382}{Rows\+At\+Compile\+Time}} = Matrix\+Type\+::Rows\+At\+Compile\+Time
+, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7a24c453a15f0c1aa0c44f5c3e7071fe2a}{Cols\+At\+Compile\+Time}} = Matrix\+Type\+::Cols\+At\+Compile\+Time
+, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7a3e03f3669777f5c36bf254d6097360ed}{Diag\+Size\+At\+Compile\+Time}} = EIGEN\+\_\+\+SIZE\+\_\+\+MIN\+\_\+\+PREFER\+\_\+\+DYNAMIC(Rows\+At\+Compile\+Time,Cols\+At\+Compile\+Time)
+, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7a774a3ce934e1369a756c2791e6a08c41}{Max\+Rows\+At\+Compile\+Time}} = Matrix\+Type\+::Max\+Rows\+At\+Compile\+Time
+, \newline
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7aaf24a872b10f4c93f27976c90b2a7550}{Max\+Cols\+At\+Compile\+Time}} = Matrix\+Type\+::Max\+Cols\+At\+Compile\+Time
+, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7a7864b7e7cdaba2f7bfe009f35d9e7e56}{Max\+Diag\+Size\+At\+Compile\+Time}} = EIGEN\+\_\+\+SIZE\+\_\+\+MIN\+\_\+\+PREFER\+\_\+\+FIXED(Max\+Rows\+At\+Compile\+Time,Max\+Cols\+At\+Compile\+Time)
+, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7a1cb6f90f349bbd46697532fea7c03b61}{Matrix\+Options}} = Matrix\+Type\+::Options
+ \}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Derived $>$\mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{\+::\+Matrix\+Type}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a00189c82a63b39842c5278a5353e1849_a00189c82a63b39842c5278a5353e1849}{Matrix\+Type}}
+\item 
+typedef Matrix\+Type\+::\+Scalar \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a60bf6a1498de38df25a0789851ccd956_a60bf6a1498de38df25a0789851ccd956}{Scalar}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ typename\+Matrix\+Type\+::\+Scalar $>$\mbox{\hyperlink{boostmultiprec_8cpp_ad5abe8020ead32dcab5e3c15d6d7c30e_ad5abe8020ead32dcab5e3c15d6d7c30e}{\+::\+Real}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_ac31fb9f4f8ab20b9d11ffa2a68c6f927_ac31fb9f4f8ab20b9d11ffa2a68c6f927}{Real\+Scalar}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{Eigen\+::internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{SVDBase}} $>$\+::\+Storage\+Index \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a86ab1668ac076cedd9ca85dce99940fa_a86ab1668ac076cedd9ca85dce99940fa}{Storage\+Index}}
+\item 
+typedef \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aec692104f937d70a5252b3e5350bfb78_aec692104f937d70a5252b3e5350bfb78}{Index}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a60bf6a1498de38df25a0789851ccd956_a60bf6a1498de38df25a0789851ccd956}{Scalar}}, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7ac627616165f3cf1995b4204c92acc382}{Rows\+At\+Compile\+Time}}, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7ac627616165f3cf1995b4204c92acc382}{Rows\+At\+Compile\+Time}}, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7a1cb6f90f349bbd46697532fea7c03b61}{Matrix\+Options}}, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7a774a3ce934e1369a756c2791e6a08c41}{Max\+Rows\+At\+Compile\+Time}}, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7a774a3ce934e1369a756c2791e6a08c41}{Max\+Rows\+At\+Compile\+Time}} $>$ \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a933c1aa75deb1a1923bcc5a708c5b807_a933c1aa75deb1a1923bcc5a708c5b807}{Matrix\+UType}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a60bf6a1498de38df25a0789851ccd956_a60bf6a1498de38df25a0789851ccd956}{Scalar}}, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7a24c453a15f0c1aa0c44f5c3e7071fe2a}{Cols\+At\+Compile\+Time}}, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7a24c453a15f0c1aa0c44f5c3e7071fe2a}{Cols\+At\+Compile\+Time}}, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7a1cb6f90f349bbd46697532fea7c03b61}{Matrix\+Options}}, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7aaf24a872b10f4c93f27976c90b2a7550}{Max\+Cols\+At\+Compile\+Time}}, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7aaf24a872b10f4c93f27976c90b2a7550}{Max\+Cols\+At\+Compile\+Time}} $>$ \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aa3ac284462761d27449ed81af4036b62_aa3ac284462761d27449ed81af4036b62}{Matrix\+VType}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1plain__diag__type}{internal\+::plain\+\_\+diag\+\_\+type}}$<$ \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a00189c82a63b39842c5278a5353e1849_a00189c82a63b39842c5278a5353e1849}{Matrix\+Type}}, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_ac31fb9f4f8ab20b9d11ffa2a68c6f927_ac31fb9f4f8ab20b9d11ffa2a68c6f927}{Real\+Scalar}} $>$\+::type \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_abd54159fc5eddb6c792815dc39393054_abd54159fc5eddb6c792815dc39393054}{Singular\+Values\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsection*{基底クラス \mbox{\hyperlink{class_eigen_1_1_solver_base}{Eigen\+::\+Solver\+Base$<$ SVDBase$<$ Derived $>$ $>$}} に属する継承公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum 
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Derived $>$ \mbox{\hyperlink{class_eigen_1_1_solver_base_a0cb88443c1d50675c3c11a972edf18fd_a0cb88443c1d50675c3c11a972edf18fd}{Base}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Derived $>$\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{\+::\+Scalar}} \mbox{\hyperlink{class_eigen_1_1_solver_base_aad8fd6304f726bd6061512408670e83c_aad8fd6304f726bd6061512408670e83c}{Scalar}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_solver_base_aad8fd6304f726bd6061512408670e83c_aad8fd6304f726bd6061512408670e83c}{Scalar}} \mbox{\hyperlink{class_eigen_1_1_solver_base_a9b9fb46c7490805adcaf9cbbc808beb5_a9b9fb46c7490805adcaf9cbbc808beb5}{Coeff\+Return\+Type}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1add__const}{internal\+::add\+\_\+const}}$<$ \mbox{\hyperlink{class_eigen_1_1_transpose}{Transpose}}$<$ const\+Derived $>$ $>$\+::type \mbox{\hyperlink{class_eigen_1_1_solver_base_a02e2d9d5d73985473c5d723b7f22820c_a02e2d9d5d73985473c5d723b7f22820c}{Const\+Transpose\+Return\+Type}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{internal\+::conditional}}$<$ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_solver_base_aad8fd6304f726bd6061512408670e83c_aad8fd6304f726bd6061512408670e83c}{Scalar}} $>$\mbox{\hyperlink{common_8h_a80155586fa275b28773c9b203f52caba_a80155586fa275b28773c9b203f52cabaa66d6dc5b929fc072f7dce7fdab0ee378}{\+::\+Is\+Complex}}, \mbox{\hyperlink{class_eigen_1_1_cwise_unary_op}{Cwise\+Unary\+Op}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__conjugate__op}{internal\+::scalar\+\_\+conjugate\+\_\+op}}$<$ \mbox{\hyperlink{class_eigen_1_1_solver_base_aad8fd6304f726bd6061512408670e83c_aad8fd6304f726bd6061512408670e83c}{Scalar}} $>$, \mbox{\hyperlink{class_eigen_1_1_solver_base_a02e2d9d5d73985473c5d723b7f22820c_a02e2d9d5d73985473c5d723b7f22820c}{Const\+Transpose\+Return\+Type}} $>$, \mbox{\hyperlink{class_eigen_1_1_solver_base_a02e2d9d5d73985473c5d723b7f22820c_a02e2d9d5d73985473c5d723b7f22820c}{Const\+Transpose\+Return\+Type}} $>$\+::type \mbox{\hyperlink{class_eigen_1_1_solver_base_a9a7552f7b91a7190502909f56640a3ff_a9a7552f7b91a7190502909f56640a3ff}{Adjoint\+Return\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsection*{基底クラス \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+::\+Eigen\+Base$<$ Derived $>$}} に属する継承公開型}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}} \mbox{\hyperlink{struct_eigen_1_1_eigen_base_ade9431198306d6053f3a8fd8efb12b94_ade9431198306d6053f3a8fd8efb12b94}{Index}}
+\begin{DoxyCompactList}\small\item\em The interface type of indices \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Derived $>$\+::\+Storage\+Kind \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a2c5d3c1d201f036f813af6cb615b5f9c_a2c5d3c1d201f036f813af6cb615b5f9c}{Storage\+Kind}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+Derived \& \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a4beeacfa799671e2966f4c26f46e3654_a4beeacfa799671e2966f4c26f46e3654}{derived}} ()
+\item 
+const Derived \& \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aba4fe0b799580e94895b07fb7953f7f3_aba4fe0b799580e94895b07fb7953f7f3}{derived}} () const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a933c1aa75deb1a1923bcc5a708c5b807_a933c1aa75deb1a1923bcc5a708c5b807}{Matrix\+UType}} \& \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_accbc8e3f9baab3a57a6eba8e4cc3ea27_accbc8e3f9baab3a57a6eba8e4cc3ea27}{matrixU}} () const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aa3ac284462761d27449ed81af4036b62_aa3ac284462761d27449ed81af4036b62}{Matrix\+VType}} \& \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_af09f06357d7d7442f7ca7343713756fe_af09f06357d7d7442f7ca7343713756fe}{matrixV}} () const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_abd54159fc5eddb6c792815dc39393054_abd54159fc5eddb6c792815dc39393054}{Singular\+Values\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_ac44c307a70731003003faf3a9bdf14f6_ac44c307a70731003003faf3a9bdf14f6}{singular\+Values}} () const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aec692104f937d70a5252b3e5350bfb78_aec692104f937d70a5252b3e5350bfb78}{Index}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_afe8a555f38393a319a71ec0f0331c9ef_afe8a555f38393a319a71ec0f0331c9ef}{nonzero\+Singular\+Values}} () const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aec692104f937d70a5252b3e5350bfb78_aec692104f937d70a5252b3e5350bfb78}{Index}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a30b89e24f42f1692079eea31b361d26a_a30b89e24f42f1692079eea31b361d26a}{rank}} () const
+\item 
+Derived \& \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a0ef8fe7049bebc721437034d8d236888_a0ef8fe7049bebc721437034d8d236888}{set\+Threshold}} (const \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_ac31fb9f4f8ab20b9d11ffa2a68c6f927_ac31fb9f4f8ab20b9d11ffa2a68c6f927}{Real\+Scalar}} \&\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a98b2ee98690358951807353812a05c69_a98b2ee98690358951807353812a05c69}{threshold}})
+\item 
+Derived \& \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a8ec5520e8a3c7fc3134ada3822877334_a8ec5520e8a3c7fc3134ada3822877334}{set\+Threshold}} (\mbox{\hyperlink{namespace_eigen_a644c9489710c76e32bd3a9b15d83ca43_a644c9489710c76e32bd3a9b15d83ca43}{Default\+\_\+t}})
+\item 
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_ac31fb9f4f8ab20b9d11ffa2a68c6f927_ac31fb9f4f8ab20b9d11ffa2a68c6f927}{Real\+Scalar}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a98b2ee98690358951807353812a05c69_a98b2ee98690358951807353812a05c69}{threshold}} () const
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a705a7c2709e1624ccc19aa748a78d473_a705a7c2709e1624ccc19aa748a78d473}{computeU}} () const
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a5f12efcb791eb007d4a4890ac5255ac4_a5f12efcb791eb007d4a4890ac5255ac4}{computeV}} () const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aec692104f937d70a5252b3e5350bfb78_aec692104f937d70a5252b3e5350bfb78}{Index}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_ab1a0d1fcc818a876c3cb2b32887604be_ab1a0d1fcc818a876c3cb2b32887604be}{rows}} () const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aec692104f937d70a5252b3e5350bfb78_aec692104f937d70a5252b3e5350bfb78}{Index}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a083d99e05949bab974bbff2966606b7f_a083d99e05949bab974bbff2966606b7f}{cols}} () const
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a569913a15fa2f327121f155682368602_a569913a15fa2f327121f155682368602}{info}} () const
+\begin{DoxyCompactList}\small\item\em Reports whether previous computation was successful. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Rhs\+Type , typename Dst\+Type $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_ac3cd36e54727b6ae24e71b67d7e290dc_ac3cd36e54727b6ae24e71b67d7e290dc}{\+\_\+solve\+\_\+impl}} (const Rhs\+Type \&rhs, Dst\+Type \&dst) const
+\item 
+{\footnotesize template$<$bool Conjugate, typename Rhs\+Type , typename Dst\+Type $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a01b9814dd386927253731922032f4c30_a01b9814dd386927253731922032f4c30}{\+\_\+solve\+\_\+impl\+\_\+transposed}} (const Rhs\+Type \&rhs, Dst\+Type \&dst) const
+\end{DoxyCompactItemize}
+\doxysubsection*{基底クラス \mbox{\hyperlink{class_eigen_1_1_solver_base}{Eigen\+::\+Solver\+Base$<$ SVDBase$<$ Derived $>$ $>$}} に属する継承公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_solver_base_a4d5e5baddfba3790ab1a5f247dcc4dc1_a4d5e5baddfba3790ab1a5f247dcc4dc1}{Solver\+Base}} ()
+\item 
+\mbox{\hyperlink{class_eigen_1_1_solver_base_a5a9bb1cec6324ffd4016319e9ae94477_a5a9bb1cec6324ffd4016319e9ae94477}{\texorpdfstring{$\sim$}{\string~}\+Solver\+Base}} ()
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$ Derived, Rhs $>$ \mbox{\hyperlink{class_eigen_1_1_solver_base_a943c352b597e3cd4744d5c11bfd77520_a943c352b597e3cd4744d5c11bfd77520}{solve}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}) const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_solver_base_a02e2d9d5d73985473c5d723b7f22820c_a02e2d9d5d73985473c5d723b7f22820c}{Const\+Transpose\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_solver_base_a732e75b5132bb4db3775916927b0e86c_a732e75b5132bb4db3775916927b0e86c}{transpose}} () const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_solver_base_a9a7552f7b91a7190502909f56640a3ff_a9a7552f7b91a7190502909f56640a3ff}{Adjoint\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_solver_base_a05a3686a89888681c8e0c2bcab6d1ce5_a05a3686a89888681c8e0c2bcab6d1ce5}{adjoint}} () const
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} Derived \& \mbox{\hyperlink{class_eigen_1_1_solver_base_ab4cf3e6bb046a94a46b69b857bd3dbc9_ab4cf3e6bb046a94a46b69b857bd3dbc9}{derived}} ()
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} const Derived \& \mbox{\hyperlink{class_eigen_1_1_solver_base_a80808d9477b4dddab2613a5d8764d79e_a80808d9477b4dddab2613a5d8764d79e}{derived}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{基底クラス \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+::\+Eigen\+Base$<$ Derived $>$}} に属する継承公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} Derived \& \mbox{\hyperlink{struct_eigen_1_1_eigen_base_ab4cf3e6bb046a94a46b69b857bd3dbc9_ab4cf3e6bb046a94a46b69b857bd3dbc9}{derived}} ()
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} const Derived \& \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a80808d9477b4dddab2613a5d8764d79e_a80808d9477b4dddab2613a5d8764d79e}{derived}} () const
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} Derived \& \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a23248b545ee580f3ddb8150cd3d032a3_a23248b545ee580f3ddb8150cd3d032a3}{const\+\_\+cast\+\_\+derived}} () const
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} const Derived \& \mbox{\hyperlink{struct_eigen_1_1_eigen_base_abf0796214cde38991fd56c07f0765829_abf0796214cde38991fd56c07f0765829}{const\+\_\+derived}} () const
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{struct_eigen_1_1_eigen_base_ade9431198306d6053f3a8fd8efb12b94_ade9431198306d6053f3a8fd8efb12b94}{Index}} \mbox{\hyperlink{struct_eigen_1_1_eigen_base_af1d12fdb3361e150427e1fd94ebb1f14_af1d12fdb3361e150427e1fd94ebb1f14}{rows}} () const \mbox{\hyperlink{_macros_8h_a532c42c61426cc18d84097e29577acf8_a532c42c61426cc18d84097e29577acf8}{EIGEN\+\_\+\+NOEXCEPT}}
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{struct_eigen_1_1_eigen_base_ade9431198306d6053f3a8fd8efb12b94_ade9431198306d6053f3a8fd8efb12b94}{Index}} \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a50c19c45f15acdfe1cb66ab5e879b8e3_a50c19c45f15acdfe1cb66ab5e879b8e3}{cols}} () const \mbox{\hyperlink{_macros_8h_a532c42c61426cc18d84097e29577acf8_a532c42c61426cc18d84097e29577acf8}{EIGEN\+\_\+\+NOEXCEPT}}
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\+\_\+\+CONSTEXPR}} \mbox{\hyperlink{struct_eigen_1_1_eigen_base_ade9431198306d6053f3a8fd8efb12b94_ade9431198306d6053f3a8fd8efb12b94}{Index}} \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a9f40726259520d7e9c5ce58d19d62e79_a9f40726259520d7e9c5ce58d19d62e79}{size}} () const \mbox{\hyperlink{_macros_8h_a532c42c61426cc18d84097e29577acf8_a532c42c61426cc18d84097e29577acf8}{EIGEN\+\_\+\+NOEXCEPT}}
+\item 
+{\footnotesize template$<$typename Dest $>$ }\\\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} void \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a991b21b79bb613171a53271933c53cab_a991b21b79bb613171a53271933c53cab}{eval\+To}} (Dest \&dst) const
+\item 
+{\footnotesize template$<$typename Dest $>$ }\\\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} void \mbox{\hyperlink{struct_eigen_1_1_eigen_base_ad4300dbb47b34596d8ce6b2361c07b52_ad4300dbb47b34596d8ce6b2361c07b52}{add\+To}} (Dest \&dst) const
+\item 
+{\footnotesize template$<$typename Dest $>$ }\\\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} void \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a677a970c7d063d7033180dd9dbb53565_a677a970c7d063d7033180dd9dbb53565}{sub\+To}} (Dest \&dst) const
+\item 
+{\footnotesize template$<$typename Dest $>$ }\\\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} void \mbox{\hyperlink{struct_eigen_1_1_eigen_base_aabee6205996703a37df914e379472653_aabee6205996703a37df914e379472653}{apply\+This\+On\+The\+Right}} (Dest \&dst) const
+\item 
+{\footnotesize template$<$typename Dest $>$ }\\\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} void \mbox{\hyperlink{struct_eigen_1_1_eigen_base_ac8a579c4f982dddd2a01489fe66b73c9_ac8a579c4f982dddd2a01489fe66b73c9}{apply\+This\+On\+The\+Left}} (Dest \&dst) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{限定公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_af64f8efc2b33e59f0389ca580ad84fcf_af64f8efc2b33e59f0389ca580ad84fcf}{\+\_\+check\+\_\+compute\+\_\+assertions}} () const
+\item 
+{\footnotesize template$<$bool Transpose\+\_\+, typename Rhs $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a03cfe4ef5530cd028fcaacd146b9bd4f_a03cfe4ef5530cd028fcaacd146b9bd4f}{\+\_\+check\+\_\+solve\+\_\+assertion}} (const Rhs \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}) const
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a7be177a4c6e8e3fbf2bec40cb527321c_a7be177a4c6e8e3fbf2bec40cb527321c}{allocate}} (\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aec692104f937d70a5252b3e5350bfb78_aec692104f937d70a5252b3e5350bfb78}{Index}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_ab1a0d1fcc818a876c3cb2b32887604be_ab1a0d1fcc818a876c3cb2b32887604be}{rows}}, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aec692104f937d70a5252b3e5350bfb78_aec692104f937d70a5252b3e5350bfb78}{Index}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a083d99e05949bab974bbff2966606b7f_a083d99e05949bab974bbff2966606b7f}{cols}}, unsigned \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} computation\+Options)
+\item 
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_abed06fc6f4b743e1f76a7b317539da87_abed06fc6f4b743e1f76a7b317539da87}{SVDBase}} ()
+\begin{DoxyCompactList}\small\item\em Default Constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{基底クラス \mbox{\hyperlink{class_eigen_1_1_solver_base}{Eigen\+::\+Solver\+Base$<$ SVDBase$<$ Derived $>$ $>$}} に属する継承限定公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_solver_base_ac0bf165255e731b5c8a254dbfe5545c9_ac0bf165255e731b5c8a254dbfe5545c9}{\+\_\+check\+\_\+solve\+\_\+assertion}} (const Rhs \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静的限定公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aec918dd80eeb2d5bf628f15cda83053f_aec918dd80eeb2d5bf628f15cda83053f}{check\+\_\+template\+\_\+parameters}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{限定公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a933c1aa75deb1a1923bcc5a708c5b807_a933c1aa75deb1a1923bcc5a708c5b807}{Matrix\+UType}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_af0e0b3833c1d49286c0fdcbc023c3bd8_af0e0b3833c1d49286c0fdcbc023c3bd8}{m\+\_\+matrixU}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aa3ac284462761d27449ed81af4036b62_aa3ac284462761d27449ed81af4036b62}{Matrix\+VType}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a69cf1cfb527ff5562156c13bdca45ca5_a69cf1cfb527ff5562156c13bdca45ca5}{m\+\_\+matrixV}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_abd54159fc5eddb6c792815dc39393054_abd54159fc5eddb6c792815dc39393054}{Singular\+Values\+Type}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_ab71e31e61c33f68ff2f499ed9f30e718_ab71e31e61c33f68ff2f499ed9f30e718}{m\+\_\+singular\+Values}}
+\item 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a447d2789c6fda585482933f9f0cd02af_a447d2789c6fda585482933f9f0cd02af}{m\+\_\+info}}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a633b92f4eb9c65911b943b93bb8b341c_a633b92f4eb9c65911b943b93bb8b341c}{m\+\_\+is\+Initialized}}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_af91d9b16ff9b51e22bfb9b637ef50cfb_af91d9b16ff9b51e22bfb9b637ef50cfb}{m\+\_\+is\+Allocated}}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a1dd5193fac24ae397f08cc722f3ae3ca_a1dd5193fac24ae397f08cc722f3ae3ca}{m\+\_\+use\+Prescribed\+Threshold}}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_ad6f49fd8f826a41109f8eb68e2f48dc4_ad6f49fd8f826a41109f8eb68e2f48dc4}{m\+\_\+compute\+FullU}}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a47b67c55d69ba645bb7ae32bb5466138_a47b67c55d69ba645bb7ae32bb5466138}{m\+\_\+compute\+ThinU}}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a1eec8ead08bc9cd1729ba9ba7beb6b41_a1eec8ead08bc9cd1729ba9ba7beb6b41}{m\+\_\+compute\+FullV}}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_ac8321ff2cbf3b82f5c2638b9de6661af_ac8321ff2cbf3b82f5c2638b9de6661af}{m\+\_\+compute\+ThinV}}
+\item 
+unsigned \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a680646d2f3fa0de030cbf9b4815d6cda_a680646d2f3fa0de030cbf9b4815d6cda}{m\+\_\+computation\+Options}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aec692104f937d70a5252b3e5350bfb78_aec692104f937d70a5252b3e5350bfb78}{Index}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aa41b395662650f2e10652f76365877c4_aa41b395662650f2e10652f76365877c4}{m\+\_\+nonzero\+Singular\+Values}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aec692104f937d70a5252b3e5350bfb78_aec692104f937d70a5252b3e5350bfb78}{Index}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a9c7ac2fc2666e3d34143c726a6462f1f_a9c7ac2fc2666e3d34143c726a6462f1f}{m\+\_\+rows}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aec692104f937d70a5252b3e5350bfb78_aec692104f937d70a5252b3e5350bfb78}{Index}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a65e1a36d7d3d90ad143fa6a6494695c9_a65e1a36d7d3d90ad143fa6a6494695c9}{m\+\_\+cols}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aec692104f937d70a5252b3e5350bfb78_aec692104f937d70a5252b3e5350bfb78}{Index}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a6eca3829eb56684ca01c291c6630c8d8_a6eca3829eb56684ca01c291c6630c8d8}{m\+\_\+diag\+Size}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_ac31fb9f4f8ab20b9d11ffa2a68c6f927_ac31fb9f4f8ab20b9d11ffa2a68c6f927}{Real\+Scalar}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_abbc1cfb200cc681ca18bdb1892597e62_abbc1cfb200cc681ca18bdb1892597e62}{m\+\_\+prescribed\+Threshold}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{フレンド}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Derived\+\_\+ $>$ }\\struct \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aa074c5ef6323eb648d501dd6beb67d2b_aa074c5ef6323eb648d501dd6beb67d2b}{internal\+::solve\+\_\+assertion}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{詳解}
+\subsubsection*{template$<$typename Derived$>$\newline
+class Eigen\+::\+SVDBase$<$ Derived $>$}
+Base class of SVD algorithms 
+
+
+\begin{DoxyTemplParams}{テンプレート引数}
+{\em Derived} & the type of the actual SVD decomposition\\
+\hline
+\end{DoxyTemplParams}
+SVD decomposition consists in decomposing any n-\/by-\/p matrix {\itshape A} as a product \[ A = U S V^* \] where {\itshape U} is a n-\/by-\/n unitary, {\itshape V} is a p-\/by-\/p unitary, and {\itshape S} is a n-\/by-\/p real positive matrix which is zero outside of its main diagonal; the diagonal entries of S are known as the {\itshape singular} {\itshape values} of {\itshape A} and the columns of {\itshape U} and {\itshape V} are known as the left and right {\itshape singular} {\itshape vectors} of {\itshape A} respectively.
+
+Singular values are always sorted in decreasing order.
+
+You can ask for only {\itshape thin} {\itshape U} or {\itshape V} to be computed, meaning the following. In case of a rectangular n-\/by-\/p matrix, letting {\itshape m} be the smaller value among {\itshape n} and {\itshape p}, there are only {\itshape m} singular vectors; the remaining columns of {\itshape U} and {\itshape V} do not correspond to actual singular vectors. Asking for {\itshape thin} {\itshape U} or {\itshape V} means asking for only their {\itshape m} first columns to be formed. So {\itshape U} is then a n-\/by-\/m matrix, and {\itshape V} is then a p-\/by-\/m matrix. Notice that thin {\itshape U} and {\itshape V} are all you need for (least squares) solving.
+
+The status of the computation can be retrived using the {\itshape \doxylink{lapack_2cholesky_8cpp_a19e186475eb822b276da4b357d68140d_a19e186475eb822b276da4b357d68140d}{info()}} method. Unless {\itshape \doxylink{lapack_2cholesky_8cpp_a19e186475eb822b276da4b357d68140d_a19e186475eb822b276da4b357d68140d}{info()}} returns {\itshape Success}, the results should be not considered well defined.
+
+If the input matrix has inf or nan coefficients, the result of the computation is undefined, and {\itshape \doxylink{lapack_2cholesky_8cpp_a19e186475eb822b276da4b357d68140d_a19e186475eb822b276da4b357d68140d}{info()}} will return {\itshape Invalid\+Input}, but the computation is guaranteed to terminate in finite (and reasonable) time. \begin{DoxySeeAlso}{参照}
+class \doxylink{class_eigen_1_1_b_d_c_s_v_d}{BDCSVD}, class \doxylink{class_eigen_1_1_jacobi_s_v_d}{Jacobi\+SVD} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{型定義メンバ詳解}
+\Hypertarget{class_eigen_1_1_s_v_d_base_aec692104f937d70a5252b3e5350bfb78_aec692104f937d70a5252b3e5350bfb78}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!Index@{Index}}
+\index{Index@{Index}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{Index}{Index}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_aec692104f937d70a5252b3e5350bfb78_aec692104f937d70a5252b3e5350bfb78} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::\+Index}
+
+\begin{DoxyRefDesc}{非推奨}
+\item[\mbox{\hyperlink{deprecated__deprecated000036}{非推奨}}]since \doxylink{namespace_eigen}{Eigen} 3.\+3 \end{DoxyRefDesc}
+\Hypertarget{class_eigen_1_1_s_v_d_base_a00189c82a63b39842c5278a5353e1849_a00189c82a63b39842c5278a5353e1849}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!MatrixType@{MatrixType}}
+\index{MatrixType@{MatrixType}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{MatrixType}{MatrixType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a00189c82a63b39842c5278a5353e1849_a00189c82a63b39842c5278a5353e1849} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$Derived$>$\mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{\+::\+Matrix\+Type}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{\+::\+Matrix\+Type}}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_a933c1aa75deb1a1923bcc5a708c5b807_a933c1aa75deb1a1923bcc5a708c5b807}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!MatrixUType@{MatrixUType}}
+\index{MatrixUType@{MatrixUType}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{MatrixUType}{MatrixUType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a933c1aa75deb1a1923bcc5a708c5b807_a933c1aa75deb1a1923bcc5a708c5b807} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a60bf6a1498de38df25a0789851ccd956_a60bf6a1498de38df25a0789851ccd956}{Scalar}}, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7ac627616165f3cf1995b4204c92acc382}{Rows\+At\+Compile\+Time}}, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7ac627616165f3cf1995b4204c92acc382}{Rows\+At\+Compile\+Time}}, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7a1cb6f90f349bbd46697532fea7c03b61}{Matrix\+Options}}, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7a774a3ce934e1369a756c2791e6a08c41}{Max\+Rows\+At\+Compile\+Time}}, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7a774a3ce934e1369a756c2791e6a08c41}{Max\+Rows\+At\+Compile\+Time}}$>$ \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::\+Matrix\+UType}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_aa3ac284462761d27449ed81af4036b62_aa3ac284462761d27449ed81af4036b62}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!MatrixVType@{MatrixVType}}
+\index{MatrixVType@{MatrixVType}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{MatrixVType}{MatrixVType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_aa3ac284462761d27449ed81af4036b62_aa3ac284462761d27449ed81af4036b62} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a60bf6a1498de38df25a0789851ccd956_a60bf6a1498de38df25a0789851ccd956}{Scalar}}, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7a24c453a15f0c1aa0c44f5c3e7071fe2a}{Cols\+At\+Compile\+Time}}, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7a24c453a15f0c1aa0c44f5c3e7071fe2a}{Cols\+At\+Compile\+Time}}, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7a1cb6f90f349bbd46697532fea7c03b61}{Matrix\+Options}}, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7aaf24a872b10f4c93f27976c90b2a7550}{Max\+Cols\+At\+Compile\+Time}}, \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7aaf24a872b10f4c93f27976c90b2a7550}{Max\+Cols\+At\+Compile\+Time}}$>$ \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::\+Matrix\+VType}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_ac31fb9f4f8ab20b9d11ffa2a68c6f927_ac31fb9f4f8ab20b9d11ffa2a68c6f927}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!RealScalar@{RealScalar}}
+\index{RealScalar@{RealScalar}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{RealScalar}{RealScalar}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_ac31fb9f4f8ab20b9d11ffa2a68c6f927_ac31fb9f4f8ab20b9d11ffa2a68c6f927} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$typename\+Matrix\+Type\+::\+Scalar$>$\mbox{\hyperlink{boostmultiprec_8cpp_ad5abe8020ead32dcab5e3c15d6d7c30e_ad5abe8020ead32dcab5e3c15d6d7c30e}{\+::\+Real}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{\+::\+Real\+Scalar}}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_a60bf6a1498de38df25a0789851ccd956_a60bf6a1498de38df25a0789851ccd956}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a60bf6a1498de38df25a0789851ccd956_a60bf6a1498de38df25a0789851ccd956} 
+template$<$typename Derived $>$ \\
+Matrix\+Type\+::\+Scalar \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{\+::\+Scalar}}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_abd54159fc5eddb6c792815dc39393054_abd54159fc5eddb6c792815dc39393054}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!SingularValuesType@{SingularValuesType}}
+\index{SingularValuesType@{SingularValuesType}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{SingularValuesType}{SingularValuesType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_abd54159fc5eddb6c792815dc39393054_abd54159fc5eddb6c792815dc39393054} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1plain__diag__type}{internal\+::plain\+\_\+diag\+\_\+type}}$<$\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a00189c82a63b39842c5278a5353e1849_a00189c82a63b39842c5278a5353e1849}{Matrix\+Type}},\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_ac31fb9f4f8ab20b9d11ffa2a68c6f927_ac31fb9f4f8ab20b9d11ffa2a68c6f927}{Real\+Scalar}}$>$\+::type \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::\+Singular\+Values\+Type}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_a86ab1668ac076cedd9ca85dce99940fa_a86ab1668ac076cedd9ca85dce99940fa}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!StorageIndex@{StorageIndex}}
+\index{StorageIndex@{StorageIndex}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{StorageIndex}{StorageIndex}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a86ab1668ac076cedd9ca85dce99940fa_a86ab1668ac076cedd9ca85dce99940fa} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{Eigen\+::internal\+::traits}}$<$\mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{SVDBase}}$>$\+::\+Storage\+Index \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::\+Storage\+Index}
+
+
+
+\doxysubsection{列挙型メンバ詳解}
+\Hypertarget{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7} 
+template$<$typename Derived $>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RowsAtCompileTime@{RowsAtCompileTime}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!RowsAtCompileTime@{RowsAtCompileTime}}}\Hypertarget{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7ac627616165f3cf1995b4204c92acc382}\label{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7} 
+Rows\+At\+Compile\+Time&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ColsAtCompileTime@{ColsAtCompileTime}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!ColsAtCompileTime@{ColsAtCompileTime}}}\Hypertarget{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7a24c453a15f0c1aa0c44f5c3e7071fe2a}\label{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7} 
+Cols\+At\+Compile\+Time&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DiagSizeAtCompileTime@{DiagSizeAtCompileTime}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!DiagSizeAtCompileTime@{DiagSizeAtCompileTime}}}\Hypertarget{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7a3e03f3669777f5c36bf254d6097360ed}\label{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7} 
+Diag\+Size\+At\+Compile\+Time&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MaxRowsAtCompileTime@{MaxRowsAtCompileTime}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!MaxRowsAtCompileTime@{MaxRowsAtCompileTime}}}\Hypertarget{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7a774a3ce934e1369a756c2791e6a08c41}\label{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7} 
+Max\+Rows\+At\+Compile\+Time&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MaxColsAtCompileTime@{MaxColsAtCompileTime}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!MaxColsAtCompileTime@{MaxColsAtCompileTime}}}\Hypertarget{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7aaf24a872b10f4c93f27976c90b2a7550}\label{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7} 
+Max\+Cols\+At\+Compile\+Time&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MaxDiagSizeAtCompileTime@{MaxDiagSizeAtCompileTime}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!MaxDiagSizeAtCompileTime@{MaxDiagSizeAtCompileTime}}}\Hypertarget{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7a7864b7e7cdaba2f7bfe009f35d9e7e56}\label{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7} 
+Max\+Diag\+Size\+At\+Compile\+Time&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MatrixOptions@{MatrixOptions}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!MatrixOptions@{MatrixOptions}}}\Hypertarget{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7a1cb6f90f349bbd46697532fea7c03b61}\label{class_eigen_1_1_s_v_d_base_acb18e7b62572d63137dfbc7bc03576f7_acb18e7b62572d63137dfbc7bc03576f7} 
+Matrix\+Options&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{構築子と解体子}
+\Hypertarget{class_eigen_1_1_s_v_d_base_abed06fc6f4b743e1f76a7b317539da87_abed06fc6f4b743e1f76a7b317539da87}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!SVDBase@{SVDBase}}
+\index{SVDBase@{SVDBase}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{SVDBase()}{SVDBase()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_abed06fc6f4b743e1f76a7b317539da87_abed06fc6f4b743e1f76a7b317539da87} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::\+SVDBase (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Default Constructor. 
+
+Default constructor of \doxylink{class_eigen_1_1_s_v_d_base}{SVDBase} 
+
+\doxysubsection{関数詳解}
+\Hypertarget{class_eigen_1_1_s_v_d_base_af64f8efc2b33e59f0389ca580ad84fcf_af64f8efc2b33e59f0389ca580ad84fcf}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!\_check\_compute\_assertions@{\_check\_compute\_assertions}}
+\index{\_check\_compute\_assertions@{\_check\_compute\_assertions}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{\_check\_compute\_assertions()}{\_check\_compute\_assertions()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_af64f8efc2b33e59f0389ca580ad84fcf_af64f8efc2b33e59f0389ca580ad84fcf} 
+template$<$typename Derived $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::\+\_\+check\+\_\+compute\+\_\+assertions (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_a03cfe4ef5530cd028fcaacd146b9bd4f_a03cfe4ef5530cd028fcaacd146b9bd4f}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!\_check\_solve\_assertion@{\_check\_solve\_assertion}}
+\index{\_check\_solve\_assertion@{\_check\_solve\_assertion}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{\_check\_solve\_assertion()}{\_check\_solve\_assertion()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a03cfe4ef5530cd028fcaacd146b9bd4f_a03cfe4ef5530cd028fcaacd146b9bd4f} 
+template$<$typename Derived $>$ \\
+template$<$bool Transpose\+\_\+, typename Rhs $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::\+\_\+check\+\_\+solve\+\_\+assertion (\begin{DoxyParamCaption}\item[{const Rhs \&}]{b}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_ac3cd36e54727b6ae24e71b67d7e290dc_ac3cd36e54727b6ae24e71b67d7e290dc}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!\_solve\_impl@{\_solve\_impl}}
+\index{\_solve\_impl@{\_solve\_impl}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{\_solve\_impl()}{\_solve\_impl()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_ac3cd36e54727b6ae24e71b67d7e290dc_ac3cd36e54727b6ae24e71b67d7e290dc} 
+template$<$typename Derived $>$ \\
+template$<$typename Rhs\+Type , typename Dst\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::\+\_\+solve\+\_\+impl (\begin{DoxyParamCaption}\item[{const Rhs\+Type \&}]{rhs}{, }\item[{Dst\+Type \&}]{dst}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_a01b9814dd386927253731922032f4c30_a01b9814dd386927253731922032f4c30}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!\_solve\_impl\_transposed@{\_solve\_impl\_transposed}}
+\index{\_solve\_impl\_transposed@{\_solve\_impl\_transposed}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{\_solve\_impl\_transposed()}{\_solve\_impl\_transposed()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a01b9814dd386927253731922032f4c30_a01b9814dd386927253731922032f4c30} 
+template$<$typename Derived $>$ \\
+template$<$bool Conjugate, typename Rhs\+Type , typename Dst\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::\+\_\+solve\+\_\+impl\+\_\+transposed (\begin{DoxyParamCaption}\item[{const Rhs\+Type \&}]{rhs}{, }\item[{Dst\+Type \&}]{dst}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_a7be177a4c6e8e3fbf2bec40cb527321c_a7be177a4c6e8e3fbf2bec40cb527321c}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!allocate@{allocate}}
+\index{allocate@{allocate}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{allocate()}{allocate()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a7be177a4c6e8e3fbf2bec40cb527321c_a7be177a4c6e8e3fbf2bec40cb527321c} 
+template$<$typename \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a00189c82a63b39842c5278a5353e1849_a00189c82a63b39842c5278a5353e1849}{Matrix\+Type}} $>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a00189c82a63b39842c5278a5353e1849_a00189c82a63b39842c5278a5353e1849}{Matrix\+Type}} $>$\+::allocate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aec692104f937d70a5252b3e5350bfb78_aec692104f937d70a5252b3e5350bfb78}{Index}}}]{rows}{, }\item[{\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aec692104f937d70a5252b3e5350bfb78_aec692104f937d70a5252b3e5350bfb78}{Index}}}]{cols}{, }\item[{unsigned \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{computation\+Options}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_aec918dd80eeb2d5bf628f15cda83053f_aec918dd80eeb2d5bf628f15cda83053f}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!check\_template\_parameters@{check\_template\_parameters}}
+\index{check\_template\_parameters@{check\_template\_parameters}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{check\_template\_parameters()}{check\_template\_parameters()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_aec918dd80eeb2d5bf628f15cda83053f_aec918dd80eeb2d5bf628f15cda83053f} 
+template$<$typename Derived $>$ \\
+static void \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::check\+\_\+template\+\_\+parameters (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_a083d99e05949bab974bbff2966606b7f_a083d99e05949bab974bbff2966606b7f}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!cols@{cols}}
+\index{cols@{cols}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{cols()}{cols()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a083d99e05949bab974bbff2966606b7f_a083d99e05949bab974bbff2966606b7f} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aec692104f937d70a5252b3e5350bfb78_aec692104f937d70a5252b3e5350bfb78}{Index}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::cols (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_a705a7c2709e1624ccc19aa748a78d473_a705a7c2709e1624ccc19aa748a78d473}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!computeU@{computeU}}
+\index{computeU@{computeU}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{computeU()}{computeU()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a705a7c2709e1624ccc19aa748a78d473_a705a7c2709e1624ccc19aa748a78d473} 
+template$<$typename Derived $>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::computeU (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{戻り値}
+true if {\itshape U} (full or thin) is asked for in this SVD decomposition 
+\end{DoxyReturn}
+\Hypertarget{class_eigen_1_1_s_v_d_base_a5f12efcb791eb007d4a4890ac5255ac4_a5f12efcb791eb007d4a4890ac5255ac4}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!computeV@{computeV}}
+\index{computeV@{computeV}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{computeV()}{computeV()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a5f12efcb791eb007d4a4890ac5255ac4_a5f12efcb791eb007d4a4890ac5255ac4} 
+template$<$typename Derived $>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::computeV (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{戻り値}
+true if {\itshape V} (full or thin) is asked for in this SVD decomposition 
+\end{DoxyReturn}
+\Hypertarget{class_eigen_1_1_s_v_d_base_a4beeacfa799671e2966f4c26f46e3654_a4beeacfa799671e2966f4c26f46e3654}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!derived@{derived}}
+\index{derived@{derived}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{derived()}{derived()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a4beeacfa799671e2966f4c26f46e3654_a4beeacfa799671e2966f4c26f46e3654} 
+template$<$typename Derived $>$ \\
+Derived \& \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::derived (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_aba4fe0b799580e94895b07fb7953f7f3_aba4fe0b799580e94895b07fb7953f7f3}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!derived@{derived}}
+\index{derived@{derived}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{derived()}{derived()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_aba4fe0b799580e94895b07fb7953f7f3_aba4fe0b799580e94895b07fb7953f7f3} 
+template$<$typename Derived $>$ \\
+const Derived \& \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::derived (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_a569913a15fa2f327121f155682368602_a569913a15fa2f327121f155682368602}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!info@{info}}
+\index{info@{info}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a569913a15fa2f327121f155682368602_a569913a15fa2f327121f155682368602} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::info (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reports whether previous computation was successful. 
+
+\begin{DoxyReturn}{戻り値}
+{\ttfamily Success} if computation was successful. 
+\end{DoxyReturn}
+\Hypertarget{class_eigen_1_1_s_v_d_base_accbc8e3f9baab3a57a6eba8e4cc3ea27_accbc8e3f9baab3a57a6eba8e4cc3ea27}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!matrixU@{matrixU}}
+\index{matrixU@{matrixU}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{matrixU()}{matrixU()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_accbc8e3f9baab3a57a6eba8e4cc3ea27_accbc8e3f9baab3a57a6eba8e4cc3ea27} 
+template$<$typename Derived $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a933c1aa75deb1a1923bcc5a708c5b807_a933c1aa75deb1a1923bcc5a708c5b807}{Matrix\+UType}} \& \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::matrixU (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{戻り値}
+the {\itshape U} matrix.
+\end{DoxyReturn}
+For the SVD decomposition of a n-\/by-\/p matrix, letting {\itshape m} be the minimum of {\itshape n} and {\itshape p}, the U matrix is n-\/by-\/n if you asked for \doxylink{group__enums_gae3e239fb70022eb8747994cf5d68b4a9_ggae3e239fb70022eb8747994cf5d68b4a9a9fa9302d510cee20c26311154937e23f}{Compute\+FullU }, and is n-\/by-\/m if you asked for \doxylink{group__enums_gae3e239fb70022eb8747994cf5d68b4a9_ggae3e239fb70022eb8747994cf5d68b4a9aa7fb4e98834788d0b1b0f2b8467d2527}{Compute\+ThinU }.
+
+The {\itshape m} first columns of {\itshape U} are the left singular vectors of the matrix being decomposed.
+
+This method asserts that you asked for {\itshape U} to be computed. \Hypertarget{class_eigen_1_1_s_v_d_base_af09f06357d7d7442f7ca7343713756fe_af09f06357d7d7442f7ca7343713756fe}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!matrixV@{matrixV}}
+\index{matrixV@{matrixV}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{matrixV()}{matrixV()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_af09f06357d7d7442f7ca7343713756fe_af09f06357d7d7442f7ca7343713756fe} 
+template$<$typename Derived $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aa3ac284462761d27449ed81af4036b62_aa3ac284462761d27449ed81af4036b62}{Matrix\+VType}} \& \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::matrixV (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{戻り値}
+the {\itshape V} matrix.
+\end{DoxyReturn}
+For the SVD decomposition of a n-\/by-\/p matrix, letting {\itshape m} be the minimum of {\itshape n} and {\itshape p}, the V matrix is p-\/by-\/p if you asked for \doxylink{group__enums_gae3e239fb70022eb8747994cf5d68b4a9_ggae3e239fb70022eb8747994cf5d68b4a9a36581f7c662f7def31efd500c284f930}{Compute\+FullV }, and is p-\/by-\/m if you asked for \doxylink{group__enums_gae3e239fb70022eb8747994cf5d68b4a9_ggae3e239fb70022eb8747994cf5d68b4a9a540036417bfecf2e791a70948c227f47}{Compute\+ThinV }.
+
+The {\itshape m} first columns of {\itshape V} are the right singular vectors of the matrix being decomposed.
+
+This method asserts that you asked for {\itshape V} to be computed. \Hypertarget{class_eigen_1_1_s_v_d_base_afe8a555f38393a319a71ec0f0331c9ef_afe8a555f38393a319a71ec0f0331c9ef}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!nonzeroSingularValues@{nonzeroSingularValues}}
+\index{nonzeroSingularValues@{nonzeroSingularValues}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{nonzeroSingularValues()}{nonzeroSingularValues()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_afe8a555f38393a319a71ec0f0331c9ef_afe8a555f38393a319a71ec0f0331c9ef} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aec692104f937d70a5252b3e5350bfb78_aec692104f937d70a5252b3e5350bfb78}{Index}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::nonzero\+Singular\+Values (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{戻り値}
+the number of singular values that are not exactly 0 
+\end{DoxyReturn}
+\Hypertarget{class_eigen_1_1_s_v_d_base_a30b89e24f42f1692079eea31b361d26a_a30b89e24f42f1692079eea31b361d26a}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!rank@{rank}}
+\index{rank@{rank}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{rank()}{rank()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a30b89e24f42f1692079eea31b361d26a_a30b89e24f42f1692079eea31b361d26a} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aec692104f937d70a5252b3e5350bfb78_aec692104f937d70a5252b3e5350bfb78}{Index}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::rank (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{戻り値}
+the rank of the matrix of which {\ttfamily \texorpdfstring{$\ast$}{*}this} is the SVD.
+\end{DoxyReturn}
+\begin{DoxyNote}{覚え書き}
+This method has to determine which singular values should be considered nonzero. For that, it uses the threshold value that you can control by calling \doxylink{class_eigen_1_1_s_v_d_base_a0ef8fe7049bebc721437034d8d236888_a0ef8fe7049bebc721437034d8d236888}{set\+Threshold(const Real\+Scalar\&)}. 
+\end{DoxyNote}
+\Hypertarget{class_eigen_1_1_s_v_d_base_ab1a0d1fcc818a876c3cb2b32887604be_ab1a0d1fcc818a876c3cb2b32887604be}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!rows@{rows}}
+\index{rows@{rows}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{rows()}{rows()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_ab1a0d1fcc818a876c3cb2b32887604be_ab1a0d1fcc818a876c3cb2b32887604be} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aec692104f937d70a5252b3e5350bfb78_aec692104f937d70a5252b3e5350bfb78}{Index}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::rows (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_a0ef8fe7049bebc721437034d8d236888_a0ef8fe7049bebc721437034d8d236888}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!setThreshold@{setThreshold}}
+\index{setThreshold@{setThreshold}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{setThreshold()}{setThreshold()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a0ef8fe7049bebc721437034d8d236888_a0ef8fe7049bebc721437034d8d236888} 
+template$<$typename Derived $>$ \\
+Derived \& \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::set\+Threshold (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_ac31fb9f4f8ab20b9d11ffa2a68c6f927_ac31fb9f4f8ab20b9d11ffa2a68c6f927}{Real\+Scalar}} \&}]{threshold}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Allows to prescribe a threshold to be used by certain methods, such as \doxylink{class_eigen_1_1_s_v_d_base_a30b89e24f42f1692079eea31b361d26a_a30b89e24f42f1692079eea31b361d26a}{rank()} and \doxylink{class_eigen_1_1_solver_base_a943c352b597e3cd4744d5c11bfd77520_a943c352b597e3cd4744d5c11bfd77520}{solve()}, which need to determine when singular values are to be considered nonzero. This is not used for the SVD decomposition itself.
+
+When it needs to get the threshold value, \doxylink{namespace_eigen}{Eigen} calls \doxylink{class_eigen_1_1_s_v_d_base_a98b2ee98690358951807353812a05c69_a98b2ee98690358951807353812a05c69}{threshold()}. The default is {\ttfamily \doxylink{struct_eigen_1_1_generic_num_traits_a3a573c69713fbb143fb49af7db463cee_a3a573c69713fbb143fb49af7db463cee}{Num\+Traits$<$\+Scalar$>$\+::epsilon()}} 
+
+
+\begin{DoxyParams}{引数}
+{\em threshold} & The new value to use as the threshold.\\
+\hline
+\end{DoxyParams}
+A singular value will be considered nonzero if its value is strictly greater than $ \vert singular value \vert \leqslant threshold \times \vert max singular value \vert $.
+
+If you want to come back to the default behavior, call \doxylink{class_eigen_1_1_s_v_d_base_a8ec5520e8a3c7fc3134ada3822877334_a8ec5520e8a3c7fc3134ada3822877334}{set\+Threshold(\+Default\+\_\+t)} \Hypertarget{class_eigen_1_1_s_v_d_base_a8ec5520e8a3c7fc3134ada3822877334_a8ec5520e8a3c7fc3134ada3822877334}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!setThreshold@{setThreshold}}
+\index{setThreshold@{setThreshold}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{setThreshold()}{setThreshold()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a8ec5520e8a3c7fc3134ada3822877334_a8ec5520e8a3c7fc3134ada3822877334} 
+template$<$typename Derived $>$ \\
+Derived \& \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::set\+Threshold (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a644c9489710c76e32bd3a9b15d83ca43_a644c9489710c76e32bd3a9b15d83ca43}{Default\+\_\+t}}}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Allows to come back to the default behavior, letting \doxylink{namespace_eigen}{Eigen} use its default formula for determining the threshold.
+
+You should pass the special object \doxylink{namespace_eigen_a644c9489710c76e32bd3a9b15d83ca43_a644c9489710c76e32bd3a9b15d83ca43af9d7e49f0799ab145f0a4f6ea7e82b95}{Eigen\+::\+Default} as parameter here. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_jacobi_s_v_d__basic_8cpp_a961ad48248cad814fa628db8adefbd42_a961ad48248cad814fa628db8adefbd42}{svd}}.setThreshold(\mbox{\hyperlink{namespace_eigen_a644c9489710c76e32bd3a9b15d83ca43_a644c9489710c76e32bd3a9b15d83ca43af9d7e49f0799ab145f0a4f6ea7e82b95}{Eigen::Default}});\ }
+
+\end{DoxyCode}
+
+
+See the documentation of \doxylink{class_eigen_1_1_s_v_d_base_a0ef8fe7049bebc721437034d8d236888_a0ef8fe7049bebc721437034d8d236888}{set\+Threshold(const Real\+Scalar\&)}. \Hypertarget{class_eigen_1_1_s_v_d_base_ac44c307a70731003003faf3a9bdf14f6_ac44c307a70731003003faf3a9bdf14f6}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!singularValues@{singularValues}}
+\index{singularValues@{singularValues}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{singularValues()}{singularValues()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_ac44c307a70731003003faf3a9bdf14f6_ac44c307a70731003003faf3a9bdf14f6} 
+template$<$typename Derived $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_s_v_d_base_abd54159fc5eddb6c792815dc39393054_abd54159fc5eddb6c792815dc39393054}{Singular\+Values\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::singular\+Values (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{戻り値}
+the vector of singular values.
+\end{DoxyReturn}
+For the SVD decomposition of a n-\/by-\/p matrix, letting {\itshape m} be the minimum of {\itshape n} and {\itshape p}, the returned vector has size {\itshape m}. Singular values are always sorted in decreasing order. \Hypertarget{class_eigen_1_1_s_v_d_base_a98b2ee98690358951807353812a05c69_a98b2ee98690358951807353812a05c69}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!threshold@{threshold}}
+\index{threshold@{threshold}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{threshold()}{threshold()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a98b2ee98690358951807353812a05c69_a98b2ee98690358951807353812a05c69} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_ac31fb9f4f8ab20b9d11ffa2a68c6f927_ac31fb9f4f8ab20b9d11ffa2a68c6f927}{Real\+Scalar}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::threshold (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the threshold that will be used by certain methods such as \doxylink{class_eigen_1_1_s_v_d_base_a30b89e24f42f1692079eea31b361d26a_a30b89e24f42f1692079eea31b361d26a}{rank()}.
+
+See the documentation of \doxylink{class_eigen_1_1_s_v_d_base_a0ef8fe7049bebc721437034d8d236888_a0ef8fe7049bebc721437034d8d236888}{set\+Threshold(const Real\+Scalar\&)}. 
+
+\doxysubsection{フレンドと関連関数の詳解}
+\Hypertarget{class_eigen_1_1_s_v_d_base_aa074c5ef6323eb648d501dd6beb67d2b_aa074c5ef6323eb648d501dd6beb67d2b}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!internal::solve\_assertion@{internal::solve\_assertion}}
+\index{internal::solve\_assertion@{internal::solve\_assertion}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{internal::solve\_assertion}{internal::solve\_assertion}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_aa074c5ef6323eb648d501dd6beb67d2b_aa074c5ef6323eb648d501dd6beb67d2b} 
+template$<$typename Derived $>$ \\
+template$<$typename Derived\+\_\+ $>$ \\
+friend struct \mbox{\hyperlink{struct_eigen_1_1internal_1_1solve__assertion}{internal\+::solve\+\_\+assertion}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+\doxysubsection{メンバ詳解}
+\Hypertarget{class_eigen_1_1_s_v_d_base_a65e1a36d7d3d90ad143fa6a6494695c9_a65e1a36d7d3d90ad143fa6a6494695c9}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!m\_cols@{m\_cols}}
+\index{m\_cols@{m\_cols}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_cols}{m\_cols}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a65e1a36d7d3d90ad143fa6a6494695c9_a65e1a36d7d3d90ad143fa6a6494695c9} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aec692104f937d70a5252b3e5350bfb78_aec692104f937d70a5252b3e5350bfb78}{Index}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::m\+\_\+cols\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_a680646d2f3fa0de030cbf9b4815d6cda_a680646d2f3fa0de030cbf9b4815d6cda}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!m\_computationOptions@{m\_computationOptions}}
+\index{m\_computationOptions@{m\_computationOptions}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_computationOptions}{m\_computationOptions}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a680646d2f3fa0de030cbf9b4815d6cda_a680646d2f3fa0de030cbf9b4815d6cda} 
+template$<$typename Derived $>$ \\
+unsigned \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::m\+\_\+computation\+Options\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_ad6f49fd8f826a41109f8eb68e2f48dc4_ad6f49fd8f826a41109f8eb68e2f48dc4}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!m\_computeFullU@{m\_computeFullU}}
+\index{m\_computeFullU@{m\_computeFullU}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_computeFullU}{m\_computeFullU}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_ad6f49fd8f826a41109f8eb68e2f48dc4_ad6f49fd8f826a41109f8eb68e2f48dc4} 
+template$<$typename Derived $>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::m\+\_\+compute\+FullU\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_a1eec8ead08bc9cd1729ba9ba7beb6b41_a1eec8ead08bc9cd1729ba9ba7beb6b41}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!m\_computeFullV@{m\_computeFullV}}
+\index{m\_computeFullV@{m\_computeFullV}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_computeFullV}{m\_computeFullV}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a1eec8ead08bc9cd1729ba9ba7beb6b41_a1eec8ead08bc9cd1729ba9ba7beb6b41} 
+template$<$typename Derived $>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::m\+\_\+compute\+FullV\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_a47b67c55d69ba645bb7ae32bb5466138_a47b67c55d69ba645bb7ae32bb5466138}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!m\_computeThinU@{m\_computeThinU}}
+\index{m\_computeThinU@{m\_computeThinU}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_computeThinU}{m\_computeThinU}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a47b67c55d69ba645bb7ae32bb5466138_a47b67c55d69ba645bb7ae32bb5466138} 
+template$<$typename Derived $>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::m\+\_\+compute\+ThinU\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_ac8321ff2cbf3b82f5c2638b9de6661af_ac8321ff2cbf3b82f5c2638b9de6661af}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!m\_computeThinV@{m\_computeThinV}}
+\index{m\_computeThinV@{m\_computeThinV}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_computeThinV}{m\_computeThinV}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_ac8321ff2cbf3b82f5c2638b9de6661af_ac8321ff2cbf3b82f5c2638b9de6661af} 
+template$<$typename Derived $>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::m\+\_\+compute\+ThinV\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_a6eca3829eb56684ca01c291c6630c8d8_a6eca3829eb56684ca01c291c6630c8d8}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!m\_diagSize@{m\_diagSize}}
+\index{m\_diagSize@{m\_diagSize}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_diagSize}{m\_diagSize}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a6eca3829eb56684ca01c291c6630c8d8_a6eca3829eb56684ca01c291c6630c8d8} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aec692104f937d70a5252b3e5350bfb78_aec692104f937d70a5252b3e5350bfb78}{Index}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::m\+\_\+diag\+Size\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_a447d2789c6fda585482933f9f0cd02af_a447d2789c6fda585482933f9f0cd02af}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!m\_info@{m\_info}}
+\index{m\_info@{m\_info}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_info}{m\_info}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a447d2789c6fda585482933f9f0cd02af_a447d2789c6fda585482933f9f0cd02af} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::m\+\_\+info\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_af91d9b16ff9b51e22bfb9b637ef50cfb_af91d9b16ff9b51e22bfb9b637ef50cfb}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!m\_isAllocated@{m\_isAllocated}}
+\index{m\_isAllocated@{m\_isAllocated}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_isAllocated}{m\_isAllocated}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_af91d9b16ff9b51e22bfb9b637ef50cfb_af91d9b16ff9b51e22bfb9b637ef50cfb} 
+template$<$typename Derived $>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::m\+\_\+is\+Allocated\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_a633b92f4eb9c65911b943b93bb8b341c_a633b92f4eb9c65911b943b93bb8b341c}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!m\_isInitialized@{m\_isInitialized}}
+\index{m\_isInitialized@{m\_isInitialized}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_isInitialized}{m\_isInitialized}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a633b92f4eb9c65911b943b93bb8b341c_a633b92f4eb9c65911b943b93bb8b341c} 
+template$<$typename Derived $>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::m\+\_\+is\+Initialized\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_af0e0b3833c1d49286c0fdcbc023c3bd8_af0e0b3833c1d49286c0fdcbc023c3bd8}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!m\_matrixU@{m\_matrixU}}
+\index{m\_matrixU@{m\_matrixU}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_matrixU}{m\_matrixU}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_af0e0b3833c1d49286c0fdcbc023c3bd8_af0e0b3833c1d49286c0fdcbc023c3bd8} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_a933c1aa75deb1a1923bcc5a708c5b807_a933c1aa75deb1a1923bcc5a708c5b807}{Matrix\+UType}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::m\+\_\+matrixU\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_a69cf1cfb527ff5562156c13bdca45ca5_a69cf1cfb527ff5562156c13bdca45ca5}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!m\_matrixV@{m\_matrixV}}
+\index{m\_matrixV@{m\_matrixV}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_matrixV}{m\_matrixV}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a69cf1cfb527ff5562156c13bdca45ca5_a69cf1cfb527ff5562156c13bdca45ca5} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aa3ac284462761d27449ed81af4036b62_aa3ac284462761d27449ed81af4036b62}{Matrix\+VType}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::m\+\_\+matrixV\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_aa41b395662650f2e10652f76365877c4_aa41b395662650f2e10652f76365877c4}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!m\_nonzeroSingularValues@{m\_nonzeroSingularValues}}
+\index{m\_nonzeroSingularValues@{m\_nonzeroSingularValues}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_nonzeroSingularValues}{m\_nonzeroSingularValues}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_aa41b395662650f2e10652f76365877c4_aa41b395662650f2e10652f76365877c4} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aec692104f937d70a5252b3e5350bfb78_aec692104f937d70a5252b3e5350bfb78}{Index}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::m\+\_\+nonzero\+Singular\+Values\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_abbc1cfb200cc681ca18bdb1892597e62_abbc1cfb200cc681ca18bdb1892597e62}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!m\_prescribedThreshold@{m\_prescribedThreshold}}
+\index{m\_prescribedThreshold@{m\_prescribedThreshold}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_prescribedThreshold}{m\_prescribedThreshold}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_abbc1cfb200cc681ca18bdb1892597e62_abbc1cfb200cc681ca18bdb1892597e62} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_ac31fb9f4f8ab20b9d11ffa2a68c6f927_ac31fb9f4f8ab20b9d11ffa2a68c6f927}{Real\+Scalar}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::m\+\_\+prescribed\+Threshold\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_a9c7ac2fc2666e3d34143c726a6462f1f_a9c7ac2fc2666e3d34143c726a6462f1f}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!m\_rows@{m\_rows}}
+\index{m\_rows@{m\_rows}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_rows}{m\_rows}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a9c7ac2fc2666e3d34143c726a6462f1f_a9c7ac2fc2666e3d34143c726a6462f1f} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_aec692104f937d70a5252b3e5350bfb78_aec692104f937d70a5252b3e5350bfb78}{Index}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::m\+\_\+rows\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_ab71e31e61c33f68ff2f499ed9f30e718_ab71e31e61c33f68ff2f499ed9f30e718}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!m\_singularValues@{m\_singularValues}}
+\index{m\_singularValues@{m\_singularValues}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_singularValues}{m\_singularValues}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_ab71e31e61c33f68ff2f499ed9f30e718_ab71e31e61c33f68ff2f499ed9f30e718} 
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_s_v_d_base_abd54159fc5eddb6c792815dc39393054_abd54159fc5eddb6c792815dc39393054}{Singular\+Values\+Type}} \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::m\+\_\+singular\+Values\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_s_v_d_base_a1dd5193fac24ae397f08cc722f3ae3ca_a1dd5193fac24ae397f08cc722f3ae3ca}\index{Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}!m\_usePrescribedThreshold@{m\_usePrescribedThreshold}}
+\index{m\_usePrescribedThreshold@{m\_usePrescribedThreshold}!Eigen::SVDBase$<$ Derived $>$@{Eigen::SVDBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{m\_usePrescribedThreshold}{m\_usePrescribedThreshold}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_s_v_d_base_a1dd5193fac24ae397f08cc722f3ae3ca_a1dd5193fac24ae397f08cc722f3ae3ca} 
+template$<$typename Derived $>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_s_v_d_base}{Eigen\+::\+SVDBase}}$<$ Derived $>$\+::m\+\_\+use\+Prescribed\+Threshold\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Core/util/\mbox{\hyperlink{_forward_declarations_8h}{Forward\+Declarations.\+h}}\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+SVD/\mbox{\hyperlink{_s_v_d_base_8h}{SVDBase.\+h}}\end{DoxyCompactItemize}

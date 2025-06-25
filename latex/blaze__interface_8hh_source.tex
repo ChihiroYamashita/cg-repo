@@ -1,0 +1,147 @@
+\doxysection{blaze\+\_\+interface.\+hh}
+\hypertarget{blaze__interface_8hh_source}{}\label{blaze__interface_8hh_source}\index{eigen-\/3.4.0/eigen-\/3.4.0/bench/btl/libs/blaze/blaze\_interface.hh@{eigen-\/3.4.0/eigen-\/3.4.0/bench/btl/libs/blaze/blaze\_interface.hh}}
+\mbox{\hyperlink{blaze__interface_8hh}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//=====================================================}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Copyright\ (C)\ 2008\ Gael\ Guennebaud\ <gael.guennebaud@inria.fr>}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//=====================================================}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ This\ program\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ as\ published\ by\ the\ Free\ Software\ Foundation;\ either\ version\ 2}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ of\ the\ License,\ or\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ This\ program\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ along\ with\ this\ program;\ if\ not,\ write\ to\ the\ Free\ Software}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ Foundation,\ Inc.,\ 59\ Temple\ Place\ -\/\ Suite\ 330,\ Boston,\ MA\ \ 02111-\/1307,\ USA.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#ifndef\ BLAZE\_INTERFACE\_HH}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ BLAZE\_INTERFACE\_HH}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <blaze/Math.h>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <blaze/Blaze.h>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <Eigen/Core>}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ using\ namespace\ blaze;}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ real>}
+\DoxyCodeLine{00029\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classblaze__interface}{blaze\_interface}}\ \{}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ public\ :}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{structreal}{real}}\ \mbox{\hyperlink{classblaze__interface_a7709461795f5040d5dfea1e164e5d490_a7709461795f5040d5dfea1e164e5d490}{real\_type}}\ ;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \textcolor{keyword}{typedef}\ std::vector<real>\ \ \ \ \ \ \ \ \mbox{\hyperlink{classblaze__interface_aea894ca97833cde0b55b68b5059b5eaf_aea894ca97833cde0b55b68b5059b5eaf}{stl\_vector}};}
+\DoxyCodeLine{00036\ \ \ \textcolor{keyword}{typedef}\ std::vector<stl\_vector\ >\ \mbox{\hyperlink{classblaze__interface_ad9ee53ad76bcac5d8f7d0a5e612a3d28_ad9ee53ad76bcac5d8f7d0a5e612a3d28}{stl\_matrix}};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \textcolor{keyword}{typedef}\ blaze::DynamicMatrix<real,blaze::columnMajor>\ \ \mbox{\hyperlink{classblaze__interface_a13157508214efb217570c55682791c55_a13157508214efb217570c55682791c55}{gene\_matrix}};}
+\DoxyCodeLine{00039\ \ \ \textcolor{keyword}{typedef}\ blaze::DynamicVector<real>\ \ \mbox{\hyperlink{classblaze__interface_a1bd49bbbe5259bf81de03bd8d483e8b2_a1bd49bbbe5259bf81de03bd8d483e8b2}{gene\_vector}};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{classblaze__interface_a801e615649439fe5dd6f8098b7cef133_a801e615649439fe5dd6f8098b7cef133}{name}}()\ \{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}blaze"{}};\ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classblaze__interface_a7da64c1944a0e84895fef1a9eed4adac_a7da64c1944a0e84895fef1a9eed4adac}{free\_matrix}}(\mbox{\hyperlink{classblaze__interface_a13157508214efb217570c55682791c55_a13157508214efb217570c55682791c55}{gene\_matrix}}\ \&\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{freeglut__geometry_8c_a171232fbfaa696c3994c87eedd320363_a171232fbfaa696c3994c87eedd320363}{N}})\{}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{level1__cplx__impl_8h_a9717e7bbecb906637e86cef6da3d83c2_a9717e7bbecb906637e86cef6da3d83c2}{return}}\ ;}
+\DoxyCodeLine{00045\ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classblaze__interface_aa36658d0f96c773ac99e9dc4ab154f79_aa36658d0f96c773ac99e9dc4ab154f79}{free\_vector}}(\mbox{\hyperlink{classblaze__interface_a1bd49bbbe5259bf81de03bd8d483e8b2_a1bd49bbbe5259bf81de03bd8d483e8b2}{gene\_vector}}\ \&\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}})\{}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{level1__cplx__impl_8h_a9717e7bbecb906637e86cef6da3d83c2_a9717e7bbecb906637e86cef6da3d83c2}{return}}\ ;}
+\DoxyCodeLine{00049\ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classblaze__interface_a21ac5c9d6773829f2ed0d7d85bf59ef0_a21ac5c9d6773829f2ed0d7d85bf59ef0}{matrix\_from\_stl}}(\mbox{\hyperlink{classblaze__interface_a13157508214efb217570c55682791c55_a13157508214efb217570c55682791c55}{gene\_matrix}}\ \&\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \mbox{\hyperlink{classblaze__interface_ad9ee53ad76bcac5d8f7d0a5e612a3d28_ad9ee53ad76bcac5d8f7d0a5e612a3d28}{stl\_matrix}}\ \&\ A\_stl)\{}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_a99d9054ee2d5a40c6e00ded0265e9cea_a99d9054ee2d5a40c6e00ded0265e9cea}{resize}}(A\_stl[0].\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}(),\ A\_stl.size());}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}}=0;\ \mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}}<A\_stl.size()\ ;\ \mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}}++)\{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}=0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}<A\_stl[\mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}}].size()\ ;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}++)\{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}},\mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}})\ =\ A\_stl[\mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}}][\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}];}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classblaze__interface_af15b1051a78fba611b4b83a5a104e26d_af15b1051a78fba611b4b83a5a104e26d}{vector\_from\_stl}}(\mbox{\hyperlink{classblaze__interface_a1bd49bbbe5259bf81de03bd8d483e8b2_a1bd49bbbe5259bf81de03bd8d483e8b2}{gene\_vector}}\ \&\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}},\ \mbox{\hyperlink{classblaze__interface_aea894ca97833cde0b55b68b5059b5eaf_aea894ca97833cde0b55b68b5059b5eaf}{stl\_vector}}\ \&\ B\_stl)\{}
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_a99d9054ee2d5a40c6e00ded0265e9cea_a99d9054ee2d5a40c6e00ded0265e9cea}{resize}}(B\_stl.size());}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}=0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}<B\_stl.size()\ ;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}++)\{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}]\ =\ B\_stl[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}];}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \ \ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classblaze__interface_a6c15bf598d55aa8ae1d795f75c60e036_a6c15bf598d55aa8ae1d795f75c60e036}{vector\_to\_stl}}(\mbox{\hyperlink{classblaze__interface_a1bd49bbbe5259bf81de03bd8d483e8b2_a1bd49bbbe5259bf81de03bd8d483e8b2}{gene\_vector}}\ \&\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}},\ \mbox{\hyperlink{classblaze__interface_aea894ca97833cde0b55b68b5059b5eaf_aea894ca97833cde0b55b68b5059b5eaf}{stl\_vector}}\ \&\ B\_stl)\{}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}=0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}<B\_stl.size()\ ;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}++)\{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ B\_stl[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}]\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}];}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classblaze__interface_ab503e3ef1d52c07b2d414e2a0a5425d1_ab503e3ef1d52c07b2d414e2a0a5425d1}{matrix\_to\_stl}}(\mbox{\hyperlink{classblaze__interface_a13157508214efb217570c55682791c55_a13157508214efb217570c55682791c55}{gene\_matrix}}\ \&\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \mbox{\hyperlink{classblaze__interface_ad9ee53ad76bcac5d8f7d0a5e612a3d28_ad9ee53ad76bcac5d8f7d0a5e612a3d28}{stl\_matrix}}\ \&\ A\_stl)\{}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{freeglut__geometry_8c_a171232fbfaa696c3994c87eedd320363_a171232fbfaa696c3994c87eedd320363}{N}}=A\_stl.size();}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}}=0;\mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}}<\mbox{\hyperlink{freeglut__geometry_8c_a171232fbfaa696c3994c87eedd320363_a171232fbfaa696c3994c87eedd320363}{N}};\mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}}++)\{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ A\_stl[\mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}}].resize(\mbox{\hyperlink{freeglut__geometry_8c_a171232fbfaa696c3994c87eedd320363_a171232fbfaa696c3994c87eedd320363}{N}});}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}=0;\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}<\mbox{\hyperlink{freeglut__geometry_8c_a171232fbfaa696c3994c87eedd320363_a171232fbfaa696c3994c87eedd320363}{N}};\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}++)\{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ A\_stl[\mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}}][\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}]\ =\ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}},\mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}});}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \ \ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\_DONT\_INLINE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classblaze__interface_ade315685ca66483fe4753dd780543246_ade315685ca66483fe4753dd780543246}{matrix\_matrix\_product}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classblaze__interface_a13157508214efb217570c55682791c55_a13157508214efb217570c55682791c55}{gene\_matrix}}\ \&\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classblaze__interface_a13157508214efb217570c55682791c55_a13157508214efb217570c55682791c55}{gene\_matrix}}\ \&\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}},\ \mbox{\hyperlink{classblaze__interface_a13157508214efb217570c55682791c55_a13157508214efb217570c55682791c55}{gene\_matrix}}\ \&\ \mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{freeglut__geometry_8c_a171232fbfaa696c3994c87eedd320363_a171232fbfaa696c3994c87eedd320363}{N}})\{}
+\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}}\ =\ (\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}*\mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}});}
+\DoxyCodeLine{00086\ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\_DONT\_INLINE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classblaze__interface_acc1d4aaa42aef1359a8e0d993137d569_acc1d4aaa42aef1359a8e0d993137d569}{transposed\_matrix\_matrix\_product}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classblaze__interface_a13157508214efb217570c55682791c55_a13157508214efb217570c55682791c55}{gene\_matrix}}\ \&\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classblaze__interface_a13157508214efb217570c55682791c55_a13157508214efb217570c55682791c55}{gene\_matrix}}\ \&\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}},\ \mbox{\hyperlink{classblaze__interface_a13157508214efb217570c55682791c55_a13157508214efb217570c55682791c55}{gene\_matrix}}\ \&\ \mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{freeglut__geometry_8c_a171232fbfaa696c3994c87eedd320363_a171232fbfaa696c3994c87eedd320363}{N}})\{}
+\DoxyCodeLine{00089\ \ \ \ \ \mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}}\ =\ (trans(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}})*trans(\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}));}
+\DoxyCodeLine{00090\ \ \ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\_DONT\_INLINE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classblaze__interface_abf6aedd6ac6aebb85c98fe7d4f181377_abf6aedd6ac6aebb85c98fe7d4f181377}{ata\_product}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classblaze__interface_a13157508214efb217570c55682791c55_a13157508214efb217570c55682791c55}{gene\_matrix}}\ \&\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \mbox{\hyperlink{classblaze__interface_a13157508214efb217570c55682791c55_a13157508214efb217570c55682791c55}{gene\_matrix}}\ \&\ \mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{freeglut__geometry_8c_a171232fbfaa696c3994c87eedd320363_a171232fbfaa696c3994c87eedd320363}{N}})\{}
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}}\ =\ (trans(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}})*\mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}});}
+\DoxyCodeLine{00094\ \ \ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\_DONT\_INLINE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classblaze__interface_a9ddb57f3357030a589385fc3ae66d254_a9ddb57f3357030a589385fc3ae66d254}{aat\_product}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classblaze__interface_a13157508214efb217570c55682791c55_a13157508214efb217570c55682791c55}{gene\_matrix}}\ \&\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \mbox{\hyperlink{classblaze__interface_a13157508214efb217570c55682791c55_a13157508214efb217570c55682791c55}{gene\_matrix}}\ \&\ \mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{freeglut__geometry_8c_a171232fbfaa696c3994c87eedd320363_a171232fbfaa696c3994c87eedd320363}{N}})\{}
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}}\ =\ (\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}*trans(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}));}
+\DoxyCodeLine{00098\ \ \ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\_DONT\_INLINE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classblaze__interface_aab366ab8c671855e42c4acb62d65005f_aab366ab8c671855e42c4acb62d65005f}{matrix\_vector\_product}}(\mbox{\hyperlink{classblaze__interface_a13157508214efb217570c55682791c55_a13157508214efb217570c55682791c55}{gene\_matrix}}\ \&\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \mbox{\hyperlink{classblaze__interface_a1bd49bbbe5259bf81de03bd8d483e8b2_a1bd49bbbe5259bf81de03bd8d483e8b2}{gene\_vector}}\ \&\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}},\ \mbox{\hyperlink{classblaze__interface_a1bd49bbbe5259bf81de03bd8d483e8b2_a1bd49bbbe5259bf81de03bd8d483e8b2}{gene\_vector}}\ \&\ \mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{freeglut__geometry_8c_a171232fbfaa696c3994c87eedd320363_a171232fbfaa696c3994c87eedd320363}{N}})\{}
+\DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}}\ =\ (\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}*\mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}});}
+\DoxyCodeLine{00102\ \ \ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\_DONT\_INLINE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classblaze__interface_a75400cfebb0edbafa274b60195ab042b_a75400cfebb0edbafa274b60195ab042b}{atv\_product}}(\mbox{\hyperlink{classblaze__interface_a13157508214efb217570c55682791c55_a13157508214efb217570c55682791c55}{gene\_matrix}}\ \&\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \mbox{\hyperlink{classblaze__interface_a1bd49bbbe5259bf81de03bd8d483e8b2_a1bd49bbbe5259bf81de03bd8d483e8b2}{gene\_vector}}\ \&\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}},\ \mbox{\hyperlink{classblaze__interface_a1bd49bbbe5259bf81de03bd8d483e8b2_a1bd49bbbe5259bf81de03bd8d483e8b2}{gene\_vector}}\ \&\ \mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{freeglut__geometry_8c_a171232fbfaa696c3994c87eedd320363_a171232fbfaa696c3994c87eedd320363}{N}})\{}
+\DoxyCodeLine{00105\ \ \ \ \ \mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}}\ =\ (trans(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}})*\mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}});}
+\DoxyCodeLine{00106\ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\_DONT\_INLINE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classblaze__interface_a9b499e47be1b810538c7095721e9821b_a9b499e47be1b810538c7095721e9821b}{axpy}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structreal}{real}}\ coef,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classblaze__interface_a1bd49bbbe5259bf81de03bd8d483e8b2_a1bd49bbbe5259bf81de03bd8d483e8b2}{gene\_vector}}\ \&\ \mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}},\ \mbox{\hyperlink{classblaze__interface_a1bd49bbbe5259bf81de03bd8d483e8b2_a1bd49bbbe5259bf81de03bd8d483e8b2}{gene\_vector}}\ \&\ \mbox{\hyperlink{test_2_euler_angles_8cpp_aecb7a48bf527ac0585250551f77b2657_aecb7a48bf527ac0585250551f77b2657}{Y}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{freeglut__geometry_8c_a171232fbfaa696c3994c87eedd320363_a171232fbfaa696c3994c87eedd320363}{N}})\{}
+\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{test_2_euler_angles_8cpp_aecb7a48bf527ac0585250551f77b2657_aecb7a48bf527ac0585250551f77b2657}{Y}}\ +=\ coef\ *\ \mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}};}
+\DoxyCodeLine{00110\ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{_macros_8h_aa715c1fe854205b27e962ee7d7e06faf_aa715c1fe854205b27e962ee7d7e06faf}{EIGEN\_DONT\_INLINE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classblaze__interface_a6f8010eb0e91189669667c9cfc5ec5f5_a6f8010eb0e91189669667c9cfc5ec5f5}{axpby}}(\mbox{\hyperlink{structreal}{real}}\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classblaze__interface_a1bd49bbbe5259bf81de03bd8d483e8b2_a1bd49bbbe5259bf81de03bd8d483e8b2}{gene\_vector}}\ \&\ \mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}},\ \mbox{\hyperlink{structreal}{real}}\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \mbox{\hyperlink{classblaze__interface_a1bd49bbbe5259bf81de03bd8d483e8b2_a1bd49bbbe5259bf81de03bd8d483e8b2}{gene\_vector}}\ \&\ \mbox{\hyperlink{test_2_euler_angles_8cpp_aecb7a48bf527ac0585250551f77b2657_aecb7a48bf527ac0585250551f77b2657}{Y}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{freeglut__geometry_8c_a171232fbfaa696c3994c87eedd320363_a171232fbfaa696c3994c87eedd320363}{N}})\{}
+\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{test_2_euler_angles_8cpp_aecb7a48bf527ac0585250551f77b2657_aecb7a48bf527ac0585250551f77b2657}{Y}}\ =\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}*\mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}}\ +\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}*\mbox{\hyperlink{test_2_euler_angles_8cpp_aecb7a48bf527ac0585250551f77b2657_aecb7a48bf527ac0585250551f77b2657}{Y}};}
+\DoxyCodeLine{00114\ \ \ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{comment}{//\ \ \ static\ inline\ void\ cholesky(const\ gene\_matrix\ \&\ X,\ gene\_matrix\ \&\ C,\ int\ N)\{}}
+\DoxyCodeLine{00117\ \textcolor{comment}{//\ \ \ \ \ C\ =\ X;}}
+\DoxyCodeLine{00118\ \textcolor{comment}{//\ \ \ \ \ recursive\_cholesky(C);}}
+\DoxyCodeLine{00119\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{comment}{//\ \ \ static\ inline\ void\ lu\_decomp(const\ gene\_matrix\ \&\ X,\ gene\_matrix\ \&\ R,\ int\ N)\{}}
+\DoxyCodeLine{00122\ \textcolor{comment}{//\ \ \ \ \ R\ =\ X;}}
+\DoxyCodeLine{00123\ \textcolor{comment}{//\ \ \ \ \ std::vector<int>\ ipvt(N);}}
+\DoxyCodeLine{00124\ \textcolor{comment}{//\ \ \ \ \ lu\_factor(R,\ ipvt);}}
+\DoxyCodeLine{00125\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{comment}{//\ \ \ static\ inline\ void\ trisolve\_lower(const\ gene\_matrix\ \&\ L,\ const\ gene\_vector\&\ B,\ gene\_vector\ \&\ X,\ int\ N)\{}}
+\DoxyCodeLine{00128\ \textcolor{comment}{//\ \ \ \ \ X\ =\ lower\_trisolve(L,\ B);}}
+\DoxyCodeLine{00129\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classblaze__interface_a84778950c524019b0fb5e554bcfcacb2_a84778950c524019b0fb5e554bcfcacb2}{copy\_matrix}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classblaze__interface_a13157508214efb217570c55682791c55_a13157508214efb217570c55682791c55}{gene\_matrix}}\ \&\ source,\ \mbox{\hyperlink{classblaze__interface_a13157508214efb217570c55682791c55_a13157508214efb217570c55682791c55}{gene\_matrix}}\ \&\ cible,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{freeglut__geometry_8c_a171232fbfaa696c3994c87eedd320363_a171232fbfaa696c3994c87eedd320363}{N}})\{}
+\DoxyCodeLine{00132\ \ \ \ \ cible\ =\ source;}
+\DoxyCodeLine{00133\ \ \ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classblaze__interface_ad1af38b455850b4af1e4f421a705c212_ad1af38b455850b4af1e4f421a705c212}{copy\_vector}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classblaze__interface_a1bd49bbbe5259bf81de03bd8d483e8b2_a1bd49bbbe5259bf81de03bd8d483e8b2}{gene\_vector}}\ \&\ source,\ \mbox{\hyperlink{classblaze__interface_a1bd49bbbe5259bf81de03bd8d483e8b2_a1bd49bbbe5259bf81de03bd8d483e8b2}{gene\_vector}}\ \&\ cible,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{freeglut__geometry_8c_a171232fbfaa696c3994c87eedd320363_a171232fbfaa696c3994c87eedd320363}{N}})\{}
+\DoxyCodeLine{00136\ \ \ \ \ cible\ =\ source;}
+\DoxyCodeLine{00137\ \ \ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \};}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

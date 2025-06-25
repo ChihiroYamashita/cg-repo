@@ -1,0 +1,66 @@
+\doxysection{Eigen\+::internal\+::make\+\_\+proper\+\_\+matrix\+\_\+type\texorpdfstring{$<$}{<} \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols \texorpdfstring{$>$}{>} クラステンプレート}
+\hypertarget{class_eigen_1_1internal_1_1make__proper__matrix__type}{}\label{class_eigen_1_1internal_1_1make__proper__matrix__type}\index{Eigen::internal::make\_proper\_matrix\_type$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::internal::make\_proper\_matrix\_type$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+
+
+{\ttfamily \#include $<$Xpr\+Helper.\+h$>$}
+
+
+
+Eigen\+::internal\+::make\+\_\+proper\+\_\+matrix\+\_\+type\texorpdfstring{$<$}{<} \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{class_eigen_1_1internal_1_1make__proper__matrix__type__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \mbox{\hyperlink{class_eigen_1_1internal_1_1make__proper__matrix__type_a92a9e993667e409923691a8124aadc9d_a92a9e993667e409923691a8124aadc9da18b749d270116430d9c8cef6871e3112}{Options}}, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1make__proper__matrix__type_a1dada73f331c9d6941b501ac5cac7da5_a1dada73f331c9d6941b501ac5cac7da5}{type}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{非公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{class_eigen_1_1internal_1_1make__proper__matrix__type_a92a9e993667e409923691a8124aadc9d_a92a9e993667e409923691a8124aadc9da72019b22ae5e14eb57b8ecc48e066ee9}{Is\+Col\+Vector}} = \+\_\+\+Cols==1 \&\& \+\_\+\+Rows!=1
+, \mbox{\hyperlink{class_eigen_1_1internal_1_1make__proper__matrix__type_a92a9e993667e409923691a8124aadc9d_a92a9e993667e409923691a8124aadc9da5e8704972dbd7dbd124e07398b194a9f}{Is\+Row\+Vector}} = \+\_\+\+Rows==1 \&\& \+\_\+\+Cols!=1
+, \mbox{\hyperlink{class_eigen_1_1internal_1_1make__proper__matrix__type_a92a9e993667e409923691a8124aadc9d_a92a9e993667e409923691a8124aadc9da18b749d270116430d9c8cef6871e3112}{Options}}
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{型定義メンバ詳解}
+\Hypertarget{class_eigen_1_1internal_1_1make__proper__matrix__type_a1dada73f331c9d6941b501ac5cac7da5_a1dada73f331c9d6941b501ac5cac7da5}\index{Eigen::internal::make\_proper\_matrix\_type$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::internal::make\_proper\_matrix\_type$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!type@{type}}
+\index{type@{type}!Eigen::internal::make\_proper\_matrix\_type$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::internal::make\_proper\_matrix\_type$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1make__proper__matrix__type_a1dada73f331c9d6941b501ac5cac7da5_a1dada73f331c9d6941b501ac5cac7da5} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Rows, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Cols, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Options = Auto\+Align \texorpdfstring{$\vert$}{|} ( (\+\_\+\+Rows==1 \&\& \+\_\+\+Cols!=1) ? Row\+Major                          \+: (\+\_\+\+Cols==1 \&\& \+\_\+\+Rows!=1) ? Col\+Major                          \+: EIGEN\+\_\+\+DEFAULT\+\_\+\+MATRIX\+\_\+\+STORAGE\+\_\+\+ORDER\+\_\+\+OPTION ), \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Max\+Rows = \+\_\+\+Rows, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Max\+Cols = \+\_\+\+Cols$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \mbox{\hyperlink{class_eigen_1_1internal_1_1make__proper__matrix__type_a92a9e993667e409923691a8124aadc9d_a92a9e993667e409923691a8124aadc9da18b749d270116430d9c8cef6871e3112}{Options}}, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols$>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1make__proper__matrix__type}{Eigen\+::internal\+::make\+\_\+proper\+\_\+matrix\+\_\+type}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$\+::type}
+
+
+
+\doxysubsection{列挙型メンバ詳解}
+\Hypertarget{class_eigen_1_1internal_1_1make__proper__matrix__type_a92a9e993667e409923691a8124aadc9d_a92a9e993667e409923691a8124aadc9d}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1make__proper__matrix__type_a92a9e993667e409923691a8124aadc9d_a92a9e993667e409923691a8124aadc9d} 
+template$<$typename \+\_\+\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Rows, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Cols, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Options = Auto\+Align \texorpdfstring{$\vert$}{|} ( (\+\_\+\+Rows==1 \&\& \+\_\+\+Cols!=1) ? Row\+Major                          \+: (\+\_\+\+Cols==1 \&\& \+\_\+\+Rows!=1) ? Col\+Major                          \+: EIGEN\+\_\+\+DEFAULT\+\_\+\+MATRIX\+\_\+\+STORAGE\+\_\+\+ORDER\+\_\+\+OPTION ), \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Max\+Rows = \+\_\+\+Rows, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Max\+Cols = \+\_\+\+Cols$>$ \\
+anonymous enum\hspace{0.3cm}{\ttfamily [private]}}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IsColVector@{IsColVector}!Eigen::internal::make\_proper\_matrix\_type$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::internal::make\_proper\_matrix\_type$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}\index{Eigen::internal::make\_proper\_matrix\_type$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::internal::make\_proper\_matrix\_type$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!IsColVector@{IsColVector}}}\Hypertarget{class_eigen_1_1internal_1_1make__proper__matrix__type_a92a9e993667e409923691a8124aadc9d_a92a9e993667e409923691a8124aadc9da72019b22ae5e14eb57b8ecc48e066ee9}\label{class_eigen_1_1internal_1_1make__proper__matrix__type_a92a9e993667e409923691a8124aadc9d_a92a9e993667e409923691a8124aadc9d} 
+Is\+Col\+Vector&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IsRowVector@{IsRowVector}!Eigen::internal::make\_proper\_matrix\_type$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::internal::make\_proper\_matrix\_type$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}\index{Eigen::internal::make\_proper\_matrix\_type$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::internal::make\_proper\_matrix\_type$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!IsRowVector@{IsRowVector}}}\Hypertarget{class_eigen_1_1internal_1_1make__proper__matrix__type_a92a9e993667e409923691a8124aadc9d_a92a9e993667e409923691a8124aadc9da5e8704972dbd7dbd124e07398b194a9f}\label{class_eigen_1_1internal_1_1make__proper__matrix__type_a92a9e993667e409923691a8124aadc9d_a92a9e993667e409923691a8124aadc9d} 
+Is\+Row\+Vector&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Options@{Options}!Eigen::internal::make\_proper\_matrix\_type$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::internal::make\_proper\_matrix\_type$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}\index{Eigen::internal::make\_proper\_matrix\_type$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::internal::make\_proper\_matrix\_type$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!Options@{Options}}}\Hypertarget{class_eigen_1_1internal_1_1make__proper__matrix__type_a92a9e993667e409923691a8124aadc9d_a92a9e993667e409923691a8124aadc9da18b749d270116430d9c8cef6871e3112}\label{class_eigen_1_1internal_1_1make__proper__matrix__type_a92a9e993667e409923691a8124aadc9d_a92a9e993667e409923691a8124aadc9d} 
+Options&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Core/util/\mbox{\hyperlink{_xpr_helper_8h}{Xpr\+Helper.\+h}}\end{DoxyCompactItemize}

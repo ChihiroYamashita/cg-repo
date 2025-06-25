@@ -1,0 +1,197 @@
+\doxysection{Tensor\+Forward\+Declarations.\+h}
+\hypertarget{_tensor_forward_declarations_8h_source}{}\label{_tensor_forward_declarations_8h_source}\index{eigen-\/3.4.0/eigen-\/3.4.0/unsupported/Eigen/CXX11/src/Tensor/TensorForwardDeclarations.h@{eigen-\/3.4.0/eigen-\/3.4.0/unsupported/Eigen/CXX11/src/Tensor/TensorForwardDeclarations.h}}
+\mbox{\hyperlink{_tensor_forward_declarations_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ Eigen,\ a\ lightweight\ C++\ template\ library}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ for\ linear\ algebra.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (C)\ 2014\ Benoit\ Steiner\ <benoit.steiner.goog@gmail.com>}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ This\ Source\ Code\ Form\ is\ subject\ to\ the\ terms\ of\ the\ Mozilla}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Public\ License\ v.\ 2.0.\ If\ a\ copy\ of\ the\ MPL\ was\ not\ distributed}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ with\ this\ file,\ You\ can\ obtain\ one\ at\ http://mozilla.org/MPL/2.0/.}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_CXX11\_TENSOR\_TENSOR\_FORWARD\_DECLARATIONS\_H}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ EIGEN\_CXX11\_TENSOR\_TENSOR\_FORWARD\_DECLARATIONS\_H}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_eigen}{Eigen}}\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ MakePointer\ class\ is\ used\ as\ a\ container\ of\ the\ address\ space\ of\ the\ pointer}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ on\ the\ host\ and\ on\ the\ device.\ From\ the\ host\ side\ it\ generates\ the\ T*\ pointer}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ and\ when\ EIGEN\_USE\_SYCL\ is\ used\ it\ construct\ a\ buffer\ with\ a\ map\_allocator\ to}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ T*\ m\_data\ on\ the\ host.\ It\ is\ always\ called\ on\ the\ device.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ Specialisation\ of\ MakePointer\ class\ for\ creating\ the\ sycl\ buffer\ with}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ map\_allocator.}}
+\DoxyCodeLine{00021\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_make_pointer}{MakePointer}}\ \{}
+\DoxyCodeLine{00022\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\ \mbox{\hyperlink{struct_eigen_1_1_make_pointer_ad5ad877605f41bf69c9ffdf13567c693_ad5ad877605f41bf69c9ffdf13567c693}{Type}};}
+\DoxyCodeLine{00023\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\ \mbox{\hyperlink{struct_eigen_1_1_make_pointer_a021a92ce291b071767ce9e326822feb0_a021a92ce291b071767ce9e326822feb0}{ConstType}};}
+\DoxyCodeLine{00024\ \};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00027\ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\ \mbox{\hyperlink{namespace_eigen_a3bd92b19390d0ec188412026668b6fb7_a3bd92b19390d0ec188412026668b6fb7}{constCast}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\ \mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}})\ \{}
+\DoxyCodeLine{00028\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{const\_cast<}\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\textcolor{keyword}{>}(\mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}});}
+\DoxyCodeLine{00029\ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ The\ StorageMemory\ class\ is\ a\ container\ of\ the\ device\ specific\ pointer}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ used\ for\ refering\ to\ a\ Pointer\ on\ TensorEvaluator\ class.\ While\ the\ TensorExpression}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ is\ a\ device-\/agnostic\ type\ and\ need\ MakePointer\ class\ for\ type\ conversion,}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ the\ TensorEvaluator\ class\ can\ be\ specialized\ for\ a\ device,\ hence\ it\ is\ possible}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ to\ construct\ different\ types\ of\ temproray\ storage\ memory\ in\ TensorEvaluator}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ for\ different\ devices\ by\ specializing\ the\ following\ StorageMemory\ class.}}
+\DoxyCodeLine{00037\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ device>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_storage_memory}{StorageMemory}}:\ \mbox{\hyperlink{struct_eigen_1_1_make_pointer}{MakePointer}}\ <T>\ \{\};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceinternal}{internal}}\{}
+\DoxyCodeLine{00040\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ A,\ \textcolor{keyword}{typename}\ B>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1_pointer__type__promotion}{Pointer\_type\_promotion}}\ \{}
+\DoxyCodeLine{00041\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_pointer__type__promotion_aa1a1946d8a3a08bfcc13d3dfc6093115_aa1a1946d8a3a08bfcc13d3dfc6093115}{val}}=\textcolor{keyword}{false};}
+\DoxyCodeLine{00042\ \};}
+\DoxyCodeLine{00043\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ A>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1_pointer__type__promotion}{Pointer\_type\_promotion}}<\mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}>\ \{}
+\DoxyCodeLine{00044\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_pointer__type__promotion_aa1a1946d8a3a08bfcc13d3dfc6093115_aa1a1946d8a3a08bfcc13d3dfc6093115}{val}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00045\ \};}
+\DoxyCodeLine{00046\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ A,\ \textcolor{keyword}{typename}\ B>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1_type_conversion}{TypeConversion}}\ \{}
+\DoxyCodeLine{00047\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}*\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_type_conversion_a360e718250a06fa2dbfc905568c48a6a_a360e718250a06fa2dbfc905568c48a6a}{type}};}
+\DoxyCodeLine{00048\ \};}
+\DoxyCodeLine{00049\ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ PlainObjectType,\ \textcolor{keywordtype}{int}\ Options\_\ =\ Unaligned,\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}>\ \textcolor{keyword}{class\ }MakePointer\_\ =\ \mbox{\hyperlink{struct_eigen_1_1_make_pointer}{MakePointer}}>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap}};}
+\DoxyCodeLine{00053\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Scalar\_,\ \textcolor{keywordtype}{int}\ NumIndices\_,\ \textcolor{keywordtype}{int}\ Options\_\ =\ 0,\ \textcolor{keyword}{typename}\ IndexType\ =\ DenseIndex>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor}{Tensor}};}
+\DoxyCodeLine{00054\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Scalar\_,\ \textcolor{keyword}{typename}\ Dimensions,\ \textcolor{keywordtype}{int}\ Options\_\ =\ 0,\ \textcolor{keyword}{typename}\ IndexType\ =\ DenseIndex>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_fixed_size}{TensorFixedSize}};}
+\DoxyCodeLine{00055\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ PlainObjectType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_ref}{TensorRef}};}
+\DoxyCodeLine{00056\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keywordtype}{int}\ AccessLevel>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_base}{TensorBase}};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NullaryOp,\ \textcolor{keyword}{typename}\ PlainObjectType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_cwise_nullary_op}{TensorCwiseNullaryOp}};}
+\DoxyCodeLine{00059\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ UnaryOp,\ \textcolor{keyword}{typename}\ XprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_cwise_unary_op}{TensorCwiseUnaryOp}};}
+\DoxyCodeLine{00060\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ BinaryOp,\ \textcolor{keyword}{typename}\ LeftXprType,\ \textcolor{keyword}{typename}\ RightXprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_cwise_binary_op}{TensorCwiseBinaryOp}};}
+\DoxyCodeLine{00061\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TernaryOp,\ \textcolor{keyword}{typename}\ Arg1XprType,\ \textcolor{keyword}{typename}\ Arg2XprType,\ \textcolor{keyword}{typename}\ Arg3XprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_cwise_ternary_op}{TensorCwiseTernaryOp}};}
+\DoxyCodeLine{00062\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ IfXprType,\ \textcolor{keyword}{typename}\ ThenXprType,\ \textcolor{keyword}{typename}\ ElseXprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_select_op}{TensorSelectOp}};}
+\DoxyCodeLine{00063\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Op,\ \textcolor{keyword}{typename}\ Dims,\ \textcolor{keyword}{typename}\ XprType,\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}>\ \textcolor{keyword}{class\ }MakePointer\_\ =\ \mbox{\hyperlink{struct_eigen_1_1_make_pointer}{MakePointer}}\ >\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_reduction_op}{TensorReductionOp}};}
+\DoxyCodeLine{00064\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ XprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_index_tuple_op}{TensorIndexTupleOp}};}
+\DoxyCodeLine{00065\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ReduceOp,\ \textcolor{keyword}{typename}\ Dims,\ \textcolor{keyword}{typename}\ XprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_tuple_reducer_op}{TensorTupleReducerOp}};}
+\DoxyCodeLine{00066\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Axis,\ \textcolor{keyword}{typename}\ LeftXprType,\ \textcolor{keyword}{typename}\ RightXprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_concatenation_op}{TensorConcatenationOp}};}
+\DoxyCodeLine{00067\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Dimensions,\ \textcolor{keyword}{typename}\ LeftXprType,\ \textcolor{keyword}{typename}\ RightXprType,\ \textcolor{keyword}{typename}\ OutputKernelType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_contraction_op}{TensorContractionOp}};}
+\DoxyCodeLine{00068\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TargetType,\ \textcolor{keyword}{typename}\ XprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op}{TensorConversionOp}};}
+\DoxyCodeLine{00069\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Dimensions,\ \textcolor{keyword}{typename}\ InputXprType,\ \textcolor{keyword}{typename}\ KernelXprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_convolution_op}{TensorConvolutionOp}};}
+\DoxyCodeLine{00070\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ FFT,\ \textcolor{keyword}{typename}\ XprType,\ \textcolor{keywordtype}{int}\ FFTDataType,\ \textcolor{keywordtype}{int}\ FFTDirection>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_f_f_t_op}{TensorFFTOp}};}
+\DoxyCodeLine{00071\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ PatchDim,\ \textcolor{keyword}{typename}\ XprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_patch_op}{TensorPatchOp}};}
+\DoxyCodeLine{00072\ \textcolor{keyword}{template}<DenseIndex\ Rows,\ DenseIndex\ Cols,\ \textcolor{keyword}{typename}\ XprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_image_patch_op}{TensorImagePatchOp}};}
+\DoxyCodeLine{00073\ \textcolor{keyword}{template}<DenseIndex\ Planes,\ DenseIndex\ Rows,\ DenseIndex\ Cols,\ \textcolor{keyword}{typename}\ XprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_volume_patch_op}{TensorVolumePatchOp}};}
+\DoxyCodeLine{00074\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Broadcast,\ \textcolor{keyword}{typename}\ XprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_broadcasting_op}{TensorBroadcastingOp}};}
+\DoxyCodeLine{00075\ \textcolor{keyword}{template}<DenseIndex\ DimId,\ \textcolor{keyword}{typename}\ XprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_chipping_op}{TensorChippingOp}};}
+\DoxyCodeLine{00076\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ NewDimensions,\ \textcolor{keyword}{typename}\ XprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_reshaping_op}{TensorReshapingOp}};}
+\DoxyCodeLine{00077\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ XprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_layout_swap_op}{TensorLayoutSwapOp}};}
+\DoxyCodeLine{00078\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ StartIndices,\ \textcolor{keyword}{typename}\ Sizes,\ \textcolor{keyword}{typename}\ XprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_slicing_op}{TensorSlicingOp}};}
+\DoxyCodeLine{00079\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ReverseDimensions,\ \textcolor{keyword}{typename}\ XprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_reverse_op}{TensorReverseOp}};}
+\DoxyCodeLine{00080\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ PaddingDimensions,\ \textcolor{keyword}{typename}\ XprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_padding_op}{TensorPaddingOp}};}
+\DoxyCodeLine{00081\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Shuffle,\ \textcolor{keyword}{typename}\ XprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_shuffling_op}{TensorShufflingOp}};}
+\DoxyCodeLine{00082\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Str\textcolor{keywordtype}{id}es,\ \textcolor{keyword}{typename}\ XprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_striding_op}{TensorStridingOp}};}
+\DoxyCodeLine{00083\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ StartIndices,\ \textcolor{keyword}{typename}\ StopIndices,\ \textcolor{keyword}{typename}\ Str\textcolor{keywordtype}{id}es,\ \textcolor{keyword}{typename}\ XprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_striding_slicing_op}{TensorStridingSlicingOp}};}
+\DoxyCodeLine{00084\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Str\textcolor{keywordtype}{id}es,\ \textcolor{keyword}{typename}\ XprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_inflation_op}{TensorInflationOp}};}
+\DoxyCodeLine{00085\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Generator,\ \textcolor{keyword}{typename}\ XprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_generator_op}{TensorGeneratorOp}};}
+\DoxyCodeLine{00086\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ LeftXprType,\ \textcolor{keyword}{typename}\ RightXprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_assign_op}{TensorAssignOp}};}
+\DoxyCodeLine{00087\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Op,\ \textcolor{keyword}{typename}\ XprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_scan_op}{TensorScanOp}};}
+\DoxyCodeLine{00088\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Dims,\ \textcolor{keyword}{typename}\ XprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_trace_op}{TensorTraceOp}};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ CustomUnaryFunc,\ \textcolor{keyword}{typename}\ XprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_custom_unary_op}{TensorCustomUnaryOp}};}
+\DoxyCodeLine{00091\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ CustomBinaryFunc,\ \textcolor{keyword}{typename}\ LhsXprType,\ \textcolor{keyword}{typename}\ RhsXprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_custom_binary_op}{TensorCustomBinaryOp}};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ XprType,\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}>\ \textcolor{keyword}{class\ }MakePointer\_\ =\ \mbox{\hyperlink{struct_eigen_1_1_make_pointer}{MakePointer}}>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_eval_to_op}{TensorEvalToOp}};}
+\DoxyCodeLine{00094\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ XprType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_forced_eval_op}{TensorForcedEvalOp}};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ExpressionType,\ \textcolor{keyword}{typename}\ DeviceType>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_device}{TensorDevice}};}
+\DoxyCodeLine{00097\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ ExpressionType,\ \textcolor{keyword}{typename}\ DeviceType,\ \textcolor{keyword}{typename}\ DoneCallback>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_tensor_async_device}{TensorAsyncDevice}};}
+\DoxyCodeLine{00098\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived,\ \textcolor{keyword}{typename}\ Device>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator}};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_no_op_output_kernel}{NoOpOutputKernel}};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_default_device}{DefaultDevice}};}
+\DoxyCodeLine{00103\ \textcolor{keyword}{struct\ }ThreadPoolDevice;}
+\DoxyCodeLine{00104\ \textcolor{keyword}{struct\ }GpuDevice;}
+\DoxyCodeLine{00105\ \textcolor{keyword}{struct\ }SyclDevice;}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_USE\_SYCL}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{struct\ }MakeSYCLPointer\ \{}
+\DoxyCodeLine{00110\ \ \ \textcolor{keyword}{typedef}\ Eigen::TensorSycl::internal::RangeAccess<cl::sycl::access::mode::read\_write,\ T>\ Type;}
+\DoxyCodeLine{00111\ \};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00114\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keyword}{const}\ Eigen::TensorSycl::internal::RangeAccess<cl::sycl::access::mode::read\_write,\ T>\&}
+\DoxyCodeLine{00115\ \mbox{\hyperlink{namespace_eigen_a3bd92b19390d0ec188412026668b6fb7_a3bd92b19390d0ec188412026668b6fb7}{constCast}}(\textcolor{keyword}{const}\ Eigen::TensorSycl::internal::RangeAccess<cl::sycl::access::mode::read\_write,\ T>\&\ \mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}})\ \{}
+\DoxyCodeLine{00116\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}};}
+\DoxyCodeLine{00117\ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00120\ \textcolor{keyword}{struct\ }StorageMemory<\mbox{\hyperlink{class_eigen_1_1_triplet}{T}},\ SyclDevice>\ :\ MakeSYCLPointer<T>\ \{\};}
+\DoxyCodeLine{00121\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00122\ \textcolor{keyword}{struct\ }StorageMemory<\mbox{\hyperlink{class_eigen_1_1_triplet}{T}},\ const\ SyclDevice>\ :\ StorageMemory<T,\ SyclDevice>\ \{\};}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \textcolor{keyword}{namespace\ }TensorSycl\ \{}
+\DoxyCodeLine{00125\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceinternal}{internal}}\{}
+\DoxyCodeLine{00126\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Evaluator,\ \textcolor{keyword}{typename}\ Op>\ \textcolor{keyword}{class\ }GenericNondeterministicReducer;}
+\DoxyCodeLine{00127\ \}}
+\DoxyCodeLine{00128\ \}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespace_eigen_a5c51628ff1971f45d37282fedc8cdafe_a5c51628ff1971f45d37282fedc8cdafe}{FFTResultType}}\ \{}
+\DoxyCodeLine{00133\ \ \ \mbox{\hyperlink{namespace_eigen_a5c51628ff1971f45d37282fedc8cdafe_a5c51628ff1971f45d37282fedc8cdafeaf2d57ba74eb1535af45010eeaa70ed0a}{RealPart}}\ =\ 0,}
+\DoxyCodeLine{00134\ \ \ \mbox{\hyperlink{namespace_eigen_a5c51628ff1971f45d37282fedc8cdafe_a5c51628ff1971f45d37282fedc8cdafeab3cc7334ae85776014eae0f3ae1d4b76}{ImagPart}}\ =\ 1,}
+\DoxyCodeLine{00135\ \ \ \mbox{\hyperlink{namespace_eigen_a5c51628ff1971f45d37282fedc8cdafe_a5c51628ff1971f45d37282fedc8cdafeacd32c292b6cc73c96eb592ca3a779daf}{BothParts}}\ =\ 2}
+\DoxyCodeLine{00136\ \};}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespace_eigen_a21243f618445aca2fd04fd6a0f0f6bf6_a21243f618445aca2fd04fd6a0f0f6bf6}{FFTDirection}}\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_a21243f618445aca2fd04fd6a0f0f6bf6_a21243f618445aca2fd04fd6a0f0f6bf6a61760ed615a5006b7b20b28da7e3c0ec}{FFT\_FORWARD}}\ =\ 0,}
+\DoxyCodeLine{00140\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_a21243f618445aca2fd04fd6a0f0f6bf6_a21243f618445aca2fd04fd6a0f0f6bf6a73ecf68b9c0689f7d604572d7b1d3b50}{FFT\_REVERSE}}\ =\ 1}
+\DoxyCodeLine{00141\ \};}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceinternal}{internal}}\ \{}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Device,\ \textcolor{keyword}{typename}\ Expression>}
+\DoxyCodeLine{00147\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1_is_vectorizable}{IsVectorizable}}\ \{}
+\DoxyCodeLine{00148\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_is_vectorizable_a63f1426b925a75938507573c67d99748_a63f1426b925a75938507573c67d99748}{value}}\ =\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator<Expression,\ Device>::PacketAccess}};}
+\DoxyCodeLine{00149\ \};}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Expression>}
+\DoxyCodeLine{00152\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1_is_vectorizable}{IsVectorizable}}<GpuDevice,\ Expression>\ \{}
+\DoxyCodeLine{00153\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_is_vectorizable_a63f1426b925a75938507573c67d99748_a63f1426b925a75938507573c67d99748}{value}}\ =\ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator<Expression,\ GpuDevice>::PacketAccess}}\ \&\&}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator<Expression,\ GpuDevice>::IsAligned}};}
+\DoxyCodeLine{00155\ \};}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \textcolor{comment}{//\ Tiled\ evaluation\ strategy.}}
+\DoxyCodeLine{00158\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespace_eigen_1_1internal_a131ba611978f02e7ac1c6a0faae2a250_a131ba611978f02e7ac1c6a0faae2a250}{TiledEvaluation}}\ \{}
+\DoxyCodeLine{00159\ \ \ \mbox{\hyperlink{namespace_eigen_1_1internal_a131ba611978f02e7ac1c6a0faae2a250_a131ba611978f02e7ac1c6a0faae2a250a0a95a784612867ddc388e35fabdc4e1e}{Off}}\ =\ 0,\ \ \ \ \textcolor{comment}{//\ tiled\ evaluation\ is\ not\ supported}}
+\DoxyCodeLine{00160\ \ \ \mbox{\hyperlink{namespace_eigen_1_1internal_a131ba611978f02e7ac1c6a0faae2a250_a131ba611978f02e7ac1c6a0faae2a250ae06dc1b8345430280ad68edd6597e3b2}{On}}\ =\ 1,\ \ \ \ \ \textcolor{comment}{//\ still\ work\ in\ progress\ (see\ TensorBlock.h)}}
+\DoxyCodeLine{00161\ \};}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Device,\ \textcolor{keyword}{typename}\ Expression>}
+\DoxyCodeLine{00164\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1_is_tileable}{IsTileable}}\ \{}
+\DoxyCodeLine{00165\ \ \ \textcolor{comment}{//\ Check\ that\ block\ evaluation\ is\ supported\ and\ it's\ a\ preferred\ option\ (at}}
+\DoxyCodeLine{00166\ \ \ \textcolor{comment}{//\ least\ one\ sub-\/expression\ has\ much\ faster\ block\ evaluation,\ e.g.}}
+\DoxyCodeLine{00167\ \ \ \textcolor{comment}{//\ broadcasting).}}
+\DoxyCodeLine{00168\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_is_tileable_a25b925eba0ec1a707301396ba261b22b_a25b925eba0ec1a707301396ba261b22b}{BlockAccess}}\ =}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator<Expression,\ Device>::BlockAccess}}\ \&\&}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{TensorEvaluator<Expression,\ Device>::PreferBlockAccess}};}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_eigen_1_1internal_a131ba611978f02e7ac1c6a0faae2a250_a131ba611978f02e7ac1c6a0faae2a250}{TiledEvaluation}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_is_tileable_a2810f9bd832b9de75c6e4f5deb40884a_a2810f9bd832b9de75c6e4f5deb40884a}{value}}\ =}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_is_tileable_a25b925eba0ec1a707301396ba261b22b_a25b925eba0ec1a707301396ba261b22b}{BlockAccess}}\ ?\ \mbox{\hyperlink{namespace_eigen_1_1internal_a131ba611978f02e7ac1c6a0faae2a250_a131ba611978f02e7ac1c6a0faae2a250ae06dc1b8345430280ad68edd6597e3b2}{TiledEvaluation::On}}\ :\ \mbox{\hyperlink{namespace_eigen_1_1internal_a131ba611978f02e7ac1c6a0faae2a250_a131ba611978f02e7ac1c6a0faae2a250a0a95a784612867ddc388e35fabdc4e1e}{TiledEvaluation::Off}};}
+\DoxyCodeLine{00174\ \};}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Expression,\ \textcolor{keyword}{typename}\ Device,}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Vectorizable\ \ \ \ \ \ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_is_vectorizable}{IsVectorizable<Device,\ Expression>::value}},}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_1_1internal_a131ba611978f02e7ac1c6a0faae2a250_a131ba611978f02e7ac1c6a0faae2a250}{TiledEvaluation}}\ Tiling\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_is_tileable}{IsTileable<Device,\ Expression>::value}}>}
+\DoxyCodeLine{00179\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_executor}{TensorExecutor}};}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Expression,\ \textcolor{keyword}{typename}\ Device,\ \textcolor{keyword}{typename}\ DoneCallback,}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ Vectorizable\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_is_vectorizable}{IsVectorizable<Device,\ Expression>::value}},}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_1_1internal_a131ba611978f02e7ac1c6a0faae2a250_a131ba611978f02e7ac1c6a0faae2a250}{TiledEvaluation}}\ Tiling\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1_is_tileable}{IsTileable<Device,\ Expression>::value}}>}
+\DoxyCodeLine{00184\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_async_executor}{TensorAsyncExecutor}};}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \}\ \ \textcolor{comment}{//\ end\ namespace\ internal}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \}\ \ \textcolor{comment}{//\ end\ namespace\ Eigen}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ EIGEN\_CXX11\_TENSOR\_TENSOR\_FORWARD\_DECLARATIONS\_H}}
+
+\end{DoxyCode}

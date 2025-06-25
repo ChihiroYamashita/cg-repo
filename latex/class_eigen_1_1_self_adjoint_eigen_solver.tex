@@ -1,0 +1,654 @@
+\doxysection{Eigen\+::Self\+Adjoint\+Eigen\+Solver\texorpdfstring{$<$}{<} \+\_\+\+Matrix\+Type \texorpdfstring{$>$}{>} クラステンプレート}
+\hypertarget{class_eigen_1_1_self_adjoint_eigen_solver}{}\label{class_eigen_1_1_self_adjoint_eigen_solver}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+
+
+Computes eigenvalues and eigenvectors of selfadjoint matrices  
+
+
+
+
+{\ttfamily \#include $<$Self\+Adjoint\+Eigen\+Solver.\+h$>$}
+
+
+
+Eigen\+::Self\+Adjoint\+Eigen\+Solver\texorpdfstring{$<$}{<} \+\_\+\+Matrix\+Type \texorpdfstring{$>$}{>} の継承関係図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_eigen_1_1_self_adjoint_eigen_solver__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Eigen\+::Self\+Adjoint\+Eigen\+Solver\texorpdfstring{$<$}{<} \+\_\+\+Matrix\+Type \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_eigen_1_1_self_adjoint_eigen_solver__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_aba121c61691410fb9508eb5f82fcbd01_aba121c61691410fb9508eb5f82fcbd01a12ecb6f6de5809c8abad46d995914e8a}{Size}} = Matrix\+Type\+::Rows\+At\+Compile\+Time
+, \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_aba121c61691410fb9508eb5f82fcbd01_aba121c61691410fb9508eb5f82fcbd01adc53ffa99e7500940f6f56e8fae7c3a9}{Cols\+At\+Compile\+Time}} = Matrix\+Type\+::Cols\+At\+Compile\+Time
+, \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_aba121c61691410fb9508eb5f82fcbd01_aba121c61691410fb9508eb5f82fcbd01a9bebdb8fd135f2ed1cf56aa00e4b72e8}{Options}} = Matrix\+Type\+::Options
+, \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_aba121c61691410fb9508eb5f82fcbd01_aba121c61691410fb9508eb5f82fcbd01af51d0afe7ca59ac789ac8dcb573e3c66}{Max\+Cols\+At\+Compile\+Time}} = Matrix\+Type\+::Max\+Cols\+At\+Compile\+Time
+ \}
+\item 
+typedef \+\_\+\+Matrix\+Type \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a1fbb8c77fa7eb0cbcb15d3a23abc9566_a1fbb8c77fa7eb0cbcb15d3a23abc9566}{Matrix\+Type}}
+\item 
+typedef Matrix\+Type\+::\+Scalar \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a47715558106c1a1c3bf4fa6d21ae3663_a47715558106c1a1c3bf4fa6d21ae3663}{Scalar}}
+\begin{DoxyCompactList}\small\item\em Scalar type for matrices of type {\ttfamily \+\_\+\+Matrix\+Type}. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a6a953addf8102a1dc35476cdb10afbf2_a6a953addf8102a1dc35476cdb10afbf2}{Index}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a47715558106c1a1c3bf4fa6d21ae3663_a47715558106c1a1c3bf4fa6d21ae3663}{Scalar}}, \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_aba121c61691410fb9508eb5f82fcbd01_aba121c61691410fb9508eb5f82fcbd01a12ecb6f6de5809c8abad46d995914e8a}{Size}}, \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_aba121c61691410fb9508eb5f82fcbd01_aba121c61691410fb9508eb5f82fcbd01a12ecb6f6de5809c8abad46d995914e8a}{Size}}, \mbox{\hyperlink{group__enums_gaacded1a18ae58b0f554751f6cdf9eb13_ggaacded1a18ae58b0f554751f6cdf9eb13a0103672ae41005ab03b4176c765afd62}{Col\+Major}}, \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_aba121c61691410fb9508eb5f82fcbd01_aba121c61691410fb9508eb5f82fcbd01af51d0afe7ca59ac789ac8dcb573e3c66}{Max\+Cols\+At\+Compile\+Time}}, \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_aba121c61691410fb9508eb5f82fcbd01_aba121c61691410fb9508eb5f82fcbd01af51d0afe7ca59ac789ac8dcb573e3c66}{Max\+Cols\+At\+Compile\+Time}} $>$ \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_ab8df1ae55c4fd44f3be6c20d4c825ce7_ab8df1ae55c4fd44f3be6c20d4c825ce7}{Eigenvectors\+Type}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a47715558106c1a1c3bf4fa6d21ae3663_a47715558106c1a1c3bf4fa6d21ae3663}{Scalar}} $>$\mbox{\hyperlink{boostmultiprec_8cpp_ad5abe8020ead32dcab5e3c15d6d7c30e_ad5abe8020ead32dcab5e3c15d6d7c30e}{\+::\+Real}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a82e3d810af0a4ba512fec72950cc5fb0_a82e3d810af0a4ba512fec72950cc5fb0}{Real\+Scalar}}
+\begin{DoxyCompactList}\small\item\em Real scalar type for {\ttfamily \+\_\+\+Matrix\+Type}. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1plain__col__type}{internal\+::plain\+\_\+col\+\_\+type}}$<$ \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a1fbb8c77fa7eb0cbcb15d3a23abc9566_a1fbb8c77fa7eb0cbcb15d3a23abc9566}{Matrix\+Type}}, \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a82e3d810af0a4ba512fec72950cc5fb0_a82e3d810af0a4ba512fec72950cc5fb0}{Real\+Scalar}} $>$\+::type \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a38fe3afa37cf7cac9d0fbe63fcc2c18d_a38fe3afa37cf7cac9d0fbe63fcc2c18d}{Real\+Vector\+Type}}
+\begin{DoxyCompactList}\small\item\em Type for vector of eigenvalues as returned by \doxylink{class_eigen_1_1_self_adjoint_eigen_solver_aea708eb6ecf37fcaa7d415fec2892d60_aea708eb6ecf37fcaa7d415fec2892d60}{eigenvalues()}. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_tridiagonalization}{Tridiagonalization}}$<$ \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a1fbb8c77fa7eb0cbcb15d3a23abc9566_a1fbb8c77fa7eb0cbcb15d3a23abc9566}{Matrix\+Type}} $>$ \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a37d694b165e4ef8bfbdc22c1cb32552e_a37d694b165e4ef8bfbdc22c1cb32552e}{Tridiagonalization\+Type}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_tridiagonalization_a9f1b9d6cb4b0aae2625e034ef5146740_a9f1b9d6cb4b0aae2625e034ef5146740}{Tridiagonalization\+Type\+::\+Sub\+Diagonal\+Type}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a22c2e9e06d3af80207a01feb881f0fa3_a22c2e9e06d3af80207a01feb881f0fa3}{Sub\+Diagonal\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_af3466b3809be4a7738d84493d80d4737_af3466b3809be4a7738d84493d80d4737}{Self\+Adjoint\+Eigen\+Solver}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for fixed-\/size matrices. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_af20f466a4c29477271e91841e3382b27_af20f466a4c29477271e91841e3382b27}{Self\+Adjoint\+Eigen\+Solver}} (\mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a6a953addf8102a1dc35476cdb10afbf2_a6a953addf8102a1dc35476cdb10afbf2}{Index}} \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}})
+\begin{DoxyCompactList}\small\item\em Constructor, pre-\/allocates memory for dynamic-\/size matrices. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_ade694ed7b0a4d9da9480cedc849be76f_ade694ed7b0a4d9da9480cedc849be76f}{Self\+Adjoint\+Eigen\+Solver}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&\mbox{\hyperlink{common_8h_a2c4e93d1f3604b217c5d0e211def96fb_a2c4e93d1f3604b217c5d0e211def96fb}{matrix}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} options=\mbox{\hyperlink{group__enums_gae3e239fb70022eb8747994cf5d68b4a9_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}})
+\begin{DoxyCompactList}\small\item\em Constructor; computes eigendecomposition of given matrix. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Self\+Adjoint\+Eigen\+Solver}} \& \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_aca7cecd3847bfea28e5984ab1c9e3921_aca7cecd3847bfea28e5984ab1c9e3921}{compute}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&\mbox{\hyperlink{common_8h_a2c4e93d1f3604b217c5d0e211def96fb_a2c4e93d1f3604b217c5d0e211def96fb}{matrix}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} options=\mbox{\hyperlink{group__enums_gae3e239fb70022eb8747994cf5d68b4a9_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}})
+\begin{DoxyCompactList}\small\item\em Computes eigendecomposition of given matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Self\+Adjoint\+Eigen\+Solver}} \& \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a40b0a68841d6176b1ab98743cc82bef4_a40b0a68841d6176b1ab98743cc82bef4}{compute\+Direct}} (const \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a1fbb8c77fa7eb0cbcb15d3a23abc9566_a1fbb8c77fa7eb0cbcb15d3a23abc9566}{Matrix\+Type}} \&\mbox{\hyperlink{common_8h_a2c4e93d1f3604b217c5d0e211def96fb_a2c4e93d1f3604b217c5d0e211def96fb}{matrix}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} options=\mbox{\hyperlink{group__enums_gae3e239fb70022eb8747994cf5d68b4a9_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}})
+\begin{DoxyCompactList}\small\item\em Computes eigendecomposition of given matrix using a closed-\/form algorithm \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Self\+Adjoint\+Eigen\+Solver}} \& \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a297893df7098c43278d385e4d4e23fe4_a297893df7098c43278d385e4d4e23fe4}{compute\+From\+Tridiagonal}} (const \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a38fe3afa37cf7cac9d0fbe63fcc2c18d_a38fe3afa37cf7cac9d0fbe63fcc2c18d}{Real\+Vector\+Type}} \&diag, const \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a22c2e9e06d3af80207a01feb881f0fa3_a22c2e9e06d3af80207a01feb881f0fa3}{Sub\+Diagonal\+Type}} \&subdiag, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} options=\mbox{\hyperlink{group__enums_gae3e239fb70022eb8747994cf5d68b4a9_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}})
+\begin{DoxyCompactList}\small\item\em Computes the eigen decomposition from a tridiagonal symmetric matrix \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} const \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_ab8df1ae55c4fd44f3be6c20d4c825ce7_ab8df1ae55c4fd44f3be6c20d4c825ce7}{Eigenvectors\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_aa6e650f65298c05b78942df39f6c9388_aa6e650f65298c05b78942df39f6c9388}{eigenvectors}} () const
+\begin{DoxyCompactList}\small\item\em Returns the eigenvectors of given matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} const \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a38fe3afa37cf7cac9d0fbe63fcc2c18d_a38fe3afa37cf7cac9d0fbe63fcc2c18d}{Real\+Vector\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_aea708eb6ecf37fcaa7d415fec2892d60_aea708eb6ecf37fcaa7d415fec2892d60}{eigenvalues}} () const
+\begin{DoxyCompactList}\small\item\em Returns the eigenvalues of given matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a1fbb8c77fa7eb0cbcb15d3a23abc9566_a1fbb8c77fa7eb0cbcb15d3a23abc9566}{Matrix\+Type}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a5c5158fd86366081bdabec38112c2c8a_a5c5158fd86366081bdabec38112c2c8a}{operator\+Sqrt}} () const
+\begin{DoxyCompactList}\small\item\em Computes the positive-\/definite square root of the matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a1fbb8c77fa7eb0cbcb15d3a23abc9566_a1fbb8c77fa7eb0cbcb15d3a23abc9566}{Matrix\+Type}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a71fe0aea0b22d176efcea556c5c160f5_a71fe0aea0b22d176efcea556c5c160f5}{operator\+Inverse\+Sqrt}} () const
+\begin{DoxyCompactList}\small\item\em Computes the inverse square root of the matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a56bd59b85a6f6f00ff7bff307ad0e015_a56bd59b85a6f6f00ff7bff307ad0e015}{info}} () const
+\begin{DoxyCompactList}\small\item\em Reports whether previous computation was successful. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Self\+Adjoint\+Eigen\+Solver}}$<$ \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a1fbb8c77fa7eb0cbcb15d3a23abc9566_a1fbb8c77fa7eb0cbcb15d3a23abc9566}{Matrix\+Type}} $>$ \& \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a1c141900263df7cecf8a5ac5a338d4ca_a1c141900263df7cecf8a5ac5a338d4ca}{compute}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&a\+\_\+matrix, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} options)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静的公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+static const \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a9ba10b83f095b18dbea345db7304acfa_a9ba10b83f095b18dbea345db7304acfa}{m\+\_\+max\+Iterations}} = 30
+\begin{DoxyCompactList}\small\item\em Maximum number of iterations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{静的限定公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} void \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_ac3a9eb3435e248ecd7edc324add041c9_ac3a9eb3435e248ecd7edc324add041c9}{check\+\_\+template\+\_\+parameters}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{限定公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_ab8df1ae55c4fd44f3be6c20d4c825ce7_ab8df1ae55c4fd44f3be6c20d4c825ce7}{Eigenvectors\+Type}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a4c86f72288084ac48c2b6493a893bae4_a4c86f72288084ac48c2b6493a893bae4}{m\+\_\+eivec}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a38fe3afa37cf7cac9d0fbe63fcc2c18d_a38fe3afa37cf7cac9d0fbe63fcc2c18d}{Real\+Vector\+Type}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a1ba3c7fe4703ee7eed528a18e53b0289_a1ba3c7fe4703ee7eed528a18e53b0289}{m\+\_\+eivalues}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_tridiagonalization_a9f1b9d6cb4b0aae2625e034ef5146740_a9f1b9d6cb4b0aae2625e034ef5146740}{Tridiagonalization\+Type\+::\+Sub\+Diagonal\+Type}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a5da95aa467ce0555d01a69ba357f62bb_a5da95aa467ce0555d01a69ba357f62bb}{m\+\_\+subdiag}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_tridiagonalization_ac63712a284d02d613a81cd43dca21b61_ac63712a284d02d613a81cd43dca21b61}{Tridiagonalization\+Type\+::\+Coeff\+Vector\+Type}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a27867094c784977fdf86c3312ecedcf4_a27867094c784977fdf86c3312ecedcf4}{m\+\_\+hcoeffs}}
+\item 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a7d3a941711a788da32be6cc6126e698b_a7d3a941711a788da32be6cc6126e698b}{m\+\_\+info}}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a7619df2065e46bde1f509cae1bc15a97_a7619df2065e46bde1f509cae1bc15a97}{m\+\_\+is\+Initialized}}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a26697e6c17e490fd4f6315276c597fb1_a26697e6c17e490fd4f6315276c597fb1}{m\+\_\+eigenvectors\+Ok}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{フレンド}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_ac6b52963cfee7ba77cf9f2314b29546b_ac6b52963cfee7ba77cf9f2314b29546b}{internal\+::direct\+\_\+selfadjoint\+\_\+eigenvalues$<$ Self\+Adjoint\+Eigen\+Solver, Size, Num\+Traits$<$ Scalar $>$\+::\+Is\+Complex $>$}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{詳解}
+\subsubsection*{template$<$typename \+\_\+\+Matrix\+Type$>$\newline
+class Eigen\+::\+Self\+Adjoint\+Eigen\+Solver$<$ \+\_\+\+Matrix\+Type $>$}
+Computes eigenvalues and eigenvectors of selfadjoint matrices 
+
+\textbackslash{}eigenvalues\+\_\+module
+
+
+\begin{DoxyTemplParams}{テンプレート引数}
+{\em \+\_\+\+Matrix\+Type} & the type of the matrix of which we are computing the eigendecomposition; this is expected to be an instantiation of the \doxylink{class_eigen_1_1_matrix}{Matrix} class template.\\
+\hline
+\end{DoxyTemplParams}
+A matrix $ A $ is selfadjoint if it equals its adjoint. For real matrices, this means that the matrix is symmetric\+: it equals its transpose. This class computes the eigenvalues and eigenvectors of a selfadjoint matrix. These are the scalars $ \lambda $ and vectors $ v $ such that $ Av = \lambda v $. The eigenvalues of a selfadjoint matrix are always real. If $ D $ is a diagonal matrix with the eigenvalues on the diagonal, and $ V $ is a matrix with the eigenvectors as its columns, then $ A = V D V^{-1} $. This is called the eigendecomposition.
+
+For a selfadjoint matrix, $ V $ is unitary, meaning its inverse is equal to its adjoint, $ V^{-1} = V^{\dagger} $. If $ A $ is real, then $ V $ is also real and therefore orthogonal, meaning its inverse is equal to its transpose, $ V^{-1} = V^T $.
+
+The algorithm exploits the fact that the matrix is selfadjoint, making it faster and more accurate than the general purpose eigenvalue algorithms implemented in \doxylink{class_eigen_1_1_eigen_solver}{Eigen\+Solver} and \doxylink{class_eigen_1_1_complex_eigen_solver}{Complex\+Eigen\+Solver}.
+
+Only the {\bfseries{lower}} {\bfseries{triangular}} {\bfseries{part}} of the input matrix is referenced.
+
+Call the function \doxylink{class_eigen_1_1_self_adjoint_eigen_solver_aca7cecd3847bfea28e5984ab1c9e3921_aca7cecd3847bfea28e5984ab1c9e3921}{compute()} to compute the eigenvalues and eigenvectors of a given matrix. Alternatively, you can use the Self\+Adjoint\+Eigen\+Solver(const Matrix\+Type\&, int) constructor which computes the eigenvalues and eigenvectors at construction time. Once the eigenvalue and eigenvectors are computed, they can be retrieved with the \doxylink{class_eigen_1_1_self_adjoint_eigen_solver_aea708eb6ecf37fcaa7d415fec2892d60_aea708eb6ecf37fcaa7d415fec2892d60}{eigenvalues()} and \doxylink{class_eigen_1_1_self_adjoint_eigen_solver_aa6e650f65298c05b78942df39f6c9388_aa6e650f65298c05b78942df39f6c9388}{eigenvectors()} functions.
+
+The documentation for Self\+Adjoint\+Eigen\+Solver(const Matrix\+Type\&, int) contains an example of the typical use of this class.
+
+To solve the {\itshape generalized} eigenvalue problem $ Av = \lambda Bv $ and the likes, see the class \doxylink{class_eigen_1_1_generalized_self_adjoint_eigen_solver}{Generalized\+Self\+Adjoint\+Eigen\+Solver}.
+
+\begin{DoxySeeAlso}{参照}
+\doxylink{class_eigen_1_1_matrix_base_a30430fa3d5b4e74d312fd4f502ac984d_a30430fa3d5b4e74d312fd4f502ac984d}{Matrix\+Base\+::eigenvalues()}, class \doxylink{class_eigen_1_1_eigen_solver}{Eigen\+Solver}, class \doxylink{class_eigen_1_1_complex_eigen_solver}{Complex\+Eigen\+Solver} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{型定義メンバ詳解}
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_ab8df1ae55c4fd44f3be6c20d4c825ce7_ab8df1ae55c4fd44f3be6c20d4c825ce7}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!EigenvectorsType@{EigenvectorsType}}
+\index{EigenvectorsType@{EigenvectorsType}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{EigenvectorsType}{EigenvectorsType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_ab8df1ae55c4fd44f3be6c20d4c825ce7_ab8df1ae55c4fd44f3be6c20d4c825ce7} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a47715558106c1a1c3bf4fa6d21ae3663_a47715558106c1a1c3bf4fa6d21ae3663}{Scalar}},\mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_aba121c61691410fb9508eb5f82fcbd01_aba121c61691410fb9508eb5f82fcbd01a12ecb6f6de5809c8abad46d995914e8a}{Size}},\mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_aba121c61691410fb9508eb5f82fcbd01_aba121c61691410fb9508eb5f82fcbd01a12ecb6f6de5809c8abad46d995914e8a}{Size}},\mbox{\hyperlink{group__enums_gaacded1a18ae58b0f554751f6cdf9eb13_ggaacded1a18ae58b0f554751f6cdf9eb13a0103672ae41005ab03b4176c765afd62}{Col\+Major}},\mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_aba121c61691410fb9508eb5f82fcbd01_aba121c61691410fb9508eb5f82fcbd01af51d0afe7ca59ac789ac8dcb573e3c66}{Max\+Cols\+At\+Compile\+Time}},\mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_aba121c61691410fb9508eb5f82fcbd01_aba121c61691410fb9508eb5f82fcbd01af51d0afe7ca59ac789ac8dcb573e3c66}{Max\+Cols\+At\+Compile\+Time}}$>$ \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Eigenvectors\+Type}
+
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_a6a953addf8102a1dc35476cdb10afbf2_a6a953addf8102a1dc35476cdb10afbf2}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!Index@{Index}}
+\index{Index@{Index}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{Index}{Index}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_a6a953addf8102a1dc35476cdb10afbf2_a6a953addf8102a1dc35476cdb10afbf2} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Index}
+
+\begin{DoxyRefDesc}{非推奨}
+\item[\mbox{\hyperlink{deprecated__deprecated000021}{非推奨}}]since \doxylink{namespace_eigen}{Eigen} 3.\+3 \end{DoxyRefDesc}
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_a1fbb8c77fa7eb0cbcb15d3a23abc9566_a1fbb8c77fa7eb0cbcb15d3a23abc9566}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!MatrixType@{MatrixType}}
+\index{MatrixType@{MatrixType}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{MatrixType}{MatrixType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_a1fbb8c77fa7eb0cbcb15d3a23abc9566_a1fbb8c77fa7eb0cbcb15d3a23abc9566} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\+\_\+\+Matrix\+Type \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{\+::\+Matrix\+Type}}}
+
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_a82e3d810af0a4ba512fec72950cc5fb0_a82e3d810af0a4ba512fec72950cc5fb0}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!RealScalar@{RealScalar}}
+\index{RealScalar@{RealScalar}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{RealScalar}{RealScalar}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_a82e3d810af0a4ba512fec72950cc5fb0_a82e3d810af0a4ba512fec72950cc5fb0} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$\mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a47715558106c1a1c3bf4fa6d21ae3663_a47715558106c1a1c3bf4fa6d21ae3663}{Scalar}}$>$\mbox{\hyperlink{boostmultiprec_8cpp_ad5abe8020ead32dcab5e3c15d6d7c30e_ad5abe8020ead32dcab5e3c15d6d7c30e}{\+::\+Real}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{\+::\+Real\+Scalar}}}
+
+
+
+Real scalar type for {\ttfamily \+\_\+\+Matrix\+Type}. 
+
+This is just {\ttfamily Scalar} if \doxylink{class_eigen_1_1_self_adjoint_eigen_solver_a47715558106c1a1c3bf4fa6d21ae3663_a47715558106c1a1c3bf4fa6d21ae3663}{Scalar} is real (e.\+g., {\ttfamily float} or {\ttfamily double}), and the type of the real part of {\ttfamily Scalar} if \doxylink{class_eigen_1_1_self_adjoint_eigen_solver_a47715558106c1a1c3bf4fa6d21ae3663_a47715558106c1a1c3bf4fa6d21ae3663}{Scalar} is complex. \Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_a38fe3afa37cf7cac9d0fbe63fcc2c18d_a38fe3afa37cf7cac9d0fbe63fcc2c18d}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!RealVectorType@{RealVectorType}}
+\index{RealVectorType@{RealVectorType}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{RealVectorType}{RealVectorType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_a38fe3afa37cf7cac9d0fbe63fcc2c18d_a38fe3afa37cf7cac9d0fbe63fcc2c18d} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1plain__col__type}{internal\+::plain\+\_\+col\+\_\+type}}$<$\mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a1fbb8c77fa7eb0cbcb15d3a23abc9566_a1fbb8c77fa7eb0cbcb15d3a23abc9566}{Matrix\+Type}},\mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a82e3d810af0a4ba512fec72950cc5fb0_a82e3d810af0a4ba512fec72950cc5fb0}{Real\+Scalar}}$>$\+::type \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Real\+Vector\+Type}
+
+
+
+Type for vector of eigenvalues as returned by \doxylink{class_eigen_1_1_self_adjoint_eigen_solver_aea708eb6ecf37fcaa7d415fec2892d60_aea708eb6ecf37fcaa7d415fec2892d60}{eigenvalues()}. 
+
+This is a column vector with entries of type \doxylink{class_eigen_1_1_self_adjoint_eigen_solver_a82e3d810af0a4ba512fec72950cc5fb0_a82e3d810af0a4ba512fec72950cc5fb0}{Real\+Scalar}. The length of the vector is the size of {\ttfamily \+\_\+\+Matrix\+Type}. \Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_a47715558106c1a1c3bf4fa6d21ae3663_a47715558106c1a1c3bf4fa6d21ae3663}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_a47715558106c1a1c3bf4fa6d21ae3663_a47715558106c1a1c3bf4fa6d21ae3663} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+Matrix\+Type\+::\+Scalar \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{\+::\+Scalar}}}
+
+
+
+Scalar type for matrices of type {\ttfamily \+\_\+\+Matrix\+Type}. 
+
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_a22c2e9e06d3af80207a01feb881f0fa3_a22c2e9e06d3af80207a01feb881f0fa3}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!SubDiagonalType@{SubDiagonalType}}
+\index{SubDiagonalType@{SubDiagonalType}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{SubDiagonalType}{SubDiagonalType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_a22c2e9e06d3af80207a01feb881f0fa3_a22c2e9e06d3af80207a01feb881f0fa3} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_tridiagonalization_a9f1b9d6cb4b0aae2625e034ef5146740_a9f1b9d6cb4b0aae2625e034ef5146740}{Tridiagonalization\+Type\+::\+Sub\+Diagonal\+Type}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Sub\+Diagonal\+Type}
+
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_a37d694b165e4ef8bfbdc22c1cb32552e_a37d694b165e4ef8bfbdc22c1cb32552e}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!TridiagonalizationType@{TridiagonalizationType}}
+\index{TridiagonalizationType@{TridiagonalizationType}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{TridiagonalizationType}{TridiagonalizationType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_a37d694b165e4ef8bfbdc22c1cb32552e_a37d694b165e4ef8bfbdc22c1cb32552e} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_tridiagonalization}{Tridiagonalization}}$<$\mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a1fbb8c77fa7eb0cbcb15d3a23abc9566_a1fbb8c77fa7eb0cbcb15d3a23abc9566}{Matrix\+Type}}$>$ \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Tridiagonalization\+Type}
+
+
+
+\doxysubsection{列挙型メンバ詳解}
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_aba121c61691410fb9508eb5f82fcbd01_aba121c61691410fb9508eb5f82fcbd01}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_aba121c61691410fb9508eb5f82fcbd01_aba121c61691410fb9508eb5f82fcbd01} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Size@{Size}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!Size@{Size}}}\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_aba121c61691410fb9508eb5f82fcbd01_aba121c61691410fb9508eb5f82fcbd01a12ecb6f6de5809c8abad46d995914e8a}\label{class_eigen_1_1_self_adjoint_eigen_solver_aba121c61691410fb9508eb5f82fcbd01_aba121c61691410fb9508eb5f82fcbd01} 
+Size&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ColsAtCompileTime@{ColsAtCompileTime}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!ColsAtCompileTime@{ColsAtCompileTime}}}\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_aba121c61691410fb9508eb5f82fcbd01_aba121c61691410fb9508eb5f82fcbd01adc53ffa99e7500940f6f56e8fae7c3a9}\label{class_eigen_1_1_self_adjoint_eigen_solver_aba121c61691410fb9508eb5f82fcbd01_aba121c61691410fb9508eb5f82fcbd01} 
+Cols\+At\+Compile\+Time&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Options@{Options}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!Options@{Options}}}\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_aba121c61691410fb9508eb5f82fcbd01_aba121c61691410fb9508eb5f82fcbd01a9bebdb8fd135f2ed1cf56aa00e4b72e8}\label{class_eigen_1_1_self_adjoint_eigen_solver_aba121c61691410fb9508eb5f82fcbd01_aba121c61691410fb9508eb5f82fcbd01} 
+Options&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MaxColsAtCompileTime@{MaxColsAtCompileTime}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!MaxColsAtCompileTime@{MaxColsAtCompileTime}}}\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_aba121c61691410fb9508eb5f82fcbd01_aba121c61691410fb9508eb5f82fcbd01af51d0afe7ca59ac789ac8dcb573e3c66}\label{class_eigen_1_1_self_adjoint_eigen_solver_aba121c61691410fb9508eb5f82fcbd01_aba121c61691410fb9508eb5f82fcbd01} 
+Max\+Cols\+At\+Compile\+Time&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{構築子と解体子}
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_af3466b3809be4a7738d84493d80d4737_af3466b3809be4a7738d84493d80d4737}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!SelfAdjointEigenSolver@{SelfAdjointEigenSolver}}
+\index{SelfAdjointEigenSolver@{SelfAdjointEigenSolver}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{SelfAdjointEigenSolver()}{SelfAdjointEigenSolver()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_af3466b3809be4a7738d84493d80d4737_af3466b3809be4a7738d84493d80d4737} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Self\+Adjoint\+Eigen\+Solver (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor for fixed-\/size matrices. 
+
+The default constructor is useful in cases in which the user intends to perform decompositions via \doxylink{class_eigen_1_1_self_adjoint_eigen_solver_aca7cecd3847bfea28e5984ab1c9e3921_aca7cecd3847bfea28e5984ab1c9e3921}{compute()}. This constructor can only be used if {\ttfamily \+\_\+\+Matrix\+Type} is a fixed-\/size matrix; use \doxylink{class_eigen_1_1_self_adjoint_eigen_solver_af20f466a4c29477271e91841e3382b27_af20f466a4c29477271e91841e3382b27}{Self\+Adjoint\+Eigen\+Solver(\+Index)} for dynamic-\/size matrices.
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+ \Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_af20f466a4c29477271e91841e3382b27_af20f466a4c29477271e91841e3382b27}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!SelfAdjointEigenSolver@{SelfAdjointEigenSolver}}
+\index{SelfAdjointEigenSolver@{SelfAdjointEigenSolver}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{SelfAdjointEigenSolver()}{SelfAdjointEigenSolver()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_af20f466a4c29477271e91841e3382b27_af20f466a4c29477271e91841e3382b27} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Self\+Adjoint\+Eigen\+Solver (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a6a953addf8102a1dc35476cdb10afbf2_a6a953addf8102a1dc35476cdb10afbf2}{Index}}}]{size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructor, pre-\/allocates memory for dynamic-\/size matrices. 
+
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\texttt{ in}}  & {\em size} & Positive integer, size of the matrix whose eigenvalues and eigenvectors will be computed.\\
+\hline
+\end{DoxyParams}
+This constructor is useful for dynamic-\/size matrices, when the user intends to perform decompositions via \doxylink{class_eigen_1_1_self_adjoint_eigen_solver_aca7cecd3847bfea28e5984ab1c9e3921_aca7cecd3847bfea28e5984ab1c9e3921}{compute()}. The {\ttfamily size} parameter is only used as a hint. It is not an error to give a wrong {\ttfamily size}, but it may impair performance.
+
+\begin{DoxySeeAlso}{参照}
+\doxylink{class_eigen_1_1_self_adjoint_eigen_solver_aca7cecd3847bfea28e5984ab1c9e3921_aca7cecd3847bfea28e5984ab1c9e3921}{compute()} \doxylink{_map__general__stride_8cpp_a69476a5acb953cf3172f9a5fd6e519e1_a69476a5acb953cf3172f9a5fd6e519e1}{for} an example 
+\end{DoxySeeAlso}
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_ade694ed7b0a4d9da9480cedc849be76f_ade694ed7b0a4d9da9480cedc849be76f}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!SelfAdjointEigenSolver@{SelfAdjointEigenSolver}}
+\index{SelfAdjointEigenSolver@{SelfAdjointEigenSolver}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{SelfAdjointEigenSolver()}{SelfAdjointEigenSolver()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_ade694ed7b0a4d9da9480cedc849be76f_ade694ed7b0a4d9da9480cedc849be76f} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+template$<$typename Input\+Type $>$ \\
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Self\+Adjoint\+Eigen\+Solver (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&}]{matrix}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{options}{ = {\ttfamily \mbox{\hyperlink{group__enums_gae3e239fb70022eb8747994cf5d68b4a9_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructor; computes eigendecomposition of given matrix. 
+
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\texttt{ in}}  & {\em matrix} & Selfadjoint matrix whose eigendecomposition is to be computed. Only the lower triangular part of the matrix is referenced. \\
+\hline
+\mbox{\texttt{ in}}  & {\em options} & Can be \doxylink{group__enums_gae3e239fb70022eb8747994cf5d68b4a9_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors} (default) or \doxylink{group__enums_gae3e239fb70022eb8747994cf5d68b4a9_ggae3e239fb70022eb8747994cf5d68b4a9afd06633f270207c373875fd7ca03e906}{Eigenvalues\+Only}.\\
+\hline
+\end{DoxyParams}
+This constructor calls compute(const Matrix\+Type\&, int) to compute the eigenvalues of the matrix {\ttfamily matrix}. The eigenvectors are computed if {\ttfamily options} equals \doxylink{group__enums_gae3e239fb70022eb8747994cf5d68b4a9_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}.
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{参照}
+compute(const Matrix\+Type\&, int) 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_ac3a9eb3435e248ecd7edc324add041c9_ac3a9eb3435e248ecd7edc324add041c9}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!check\_template\_parameters@{check\_template\_parameters}}
+\index{check\_template\_parameters@{check\_template\_parameters}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{check\_template\_parameters()}{check\_template\_parameters()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_ac3a9eb3435e248ecd7edc324add041c9_ac3a9eb3435e248ecd7edc324add041c9} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+static \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} void \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::check\+\_\+template\+\_\+parameters (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_a1c141900263df7cecf8a5ac5a338d4ca_a1c141900263df7cecf8a5ac5a338d4ca}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!compute@{compute}}
+\index{compute@{compute}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_a1c141900263df7cecf8a5ac5a338d4ca_a1c141900263df7cecf8a5ac5a338d4ca} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+template$<$typename Input\+Type $>$ \\
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Self\+Adjoint\+Eigen\+Solver}}$<$ \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a1fbb8c77fa7eb0cbcb15d3a23abc9566_a1fbb8c77fa7eb0cbcb15d3a23abc9566}{Matrix\+Type}} $>$ \& \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::compute (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&}]{a\+\_\+matrix}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{options}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_aca7cecd3847bfea28e5984ab1c9e3921_aca7cecd3847bfea28e5984ab1c9e3921}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!compute@{compute}}
+\index{compute@{compute}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_aca7cecd3847bfea28e5984ab1c9e3921_aca7cecd3847bfea28e5984ab1c9e3921} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+template$<$typename Input\+Type $>$ \\
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Self\+Adjoint\+Eigen\+Solver}} \& \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::compute (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&}]{matrix}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{options}{ = {\ttfamily \mbox{\hyperlink{group__enums_gae3e239fb70022eb8747994cf5d68b4a9_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}}}}\end{DoxyParamCaption})}
+
+
+
+Computes eigendecomposition of given matrix. 
+
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\texttt{ in}}  & {\em matrix} & Selfadjoint matrix whose eigendecomposition is to be computed. Only the lower triangular part of the matrix is referenced. \\
+\hline
+\mbox{\texttt{ in}}  & {\em options} & Can be \doxylink{group__enums_gae3e239fb70022eb8747994cf5d68b4a9_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors} (default) or \doxylink{group__enums_gae3e239fb70022eb8747994cf5d68b4a9_ggae3e239fb70022eb8747994cf5d68b4a9afd06633f270207c373875fd7ca03e906}{Eigenvalues\+Only}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+Reference to {\ttfamily \texorpdfstring{$\ast$}{*}this} 
+\end{DoxyReturn}
+This function computes the eigenvalues of {\ttfamily matrix}. The \doxylink{class_eigen_1_1_self_adjoint_eigen_solver_aea708eb6ecf37fcaa7d415fec2892d60_aea708eb6ecf37fcaa7d415fec2892d60}{eigenvalues()} function can be used to retrieve them. If {\ttfamily options} equals \doxylink{group__enums_gae3e239fb70022eb8747994cf5d68b4a9_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}, then the eigenvectors are also computed and can be retrieved by calling \doxylink{class_eigen_1_1_self_adjoint_eigen_solver_aa6e650f65298c05b78942df39f6c9388_aa6e650f65298c05b78942df39f6c9388}{eigenvectors()}.
+
+This implementation uses a symmetric QR algorithm. The matrix is first reduced to tridiagonal form using the \doxylink{class_eigen_1_1_tridiagonalization}{Tridiagonalization} class. The tridiagonal matrix is then brought to diagonal form with implicit symmetric QR steps with Wilkinson shift. Details can be found in Section 8.\+3 of Golub \& Van Loan, {\itshape Matrix Computations}.
+
+The cost of the computation is about $ 9n^3 $ if the eigenvectors are required and $ 4n^3/3 $ if they are not required.
+
+This method reuses the memory in the \doxylink{class_eigen_1_1_self_adjoint_eigen_solver}{Self\+Adjoint\+Eigen\+Solver} object that was allocated when the object was constructed, if the size of the matrix does not change.
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{参照}
+Self\+Adjoint\+Eigen\+Solver(const Matrix\+Type\&, int) 
+\end{DoxySeeAlso}
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_a40b0a68841d6176b1ab98743cc82bef4_a40b0a68841d6176b1ab98743cc82bef4}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!computeDirect@{computeDirect}}
+\index{computeDirect@{computeDirect}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{computeDirect()}{computeDirect()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_a40b0a68841d6176b1ab98743cc82bef4_a40b0a68841d6176b1ab98743cc82bef4} 
+template$<$typename \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a1fbb8c77fa7eb0cbcb15d3a23abc9566_a1fbb8c77fa7eb0cbcb15d3a23abc9566}{Matrix\+Type}} $>$ \\
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Self\+Adjoint\+Eigen\+Solver}}$<$ \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a1fbb8c77fa7eb0cbcb15d3a23abc9566_a1fbb8c77fa7eb0cbcb15d3a23abc9566}{Matrix\+Type}} $>$ \& \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a1fbb8c77fa7eb0cbcb15d3a23abc9566_a1fbb8c77fa7eb0cbcb15d3a23abc9566}{Matrix\+Type}} $>$\+::compute\+Direct (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a1fbb8c77fa7eb0cbcb15d3a23abc9566_a1fbb8c77fa7eb0cbcb15d3a23abc9566}{Matrix\+Type}} \&}]{matrix}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{options}{ = {\ttfamily \mbox{\hyperlink{group__enums_gae3e239fb70022eb8747994cf5d68b4a9_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}}}}\end{DoxyParamCaption})}
+
+
+
+Computes eigendecomposition of given matrix using a closed-\/form algorithm 
+
+This is a variant of compute(const Matrix\+Type\&, int options) which directly solves the underlying polynomial equation.
+
+Currently only 2x2 and 3x3 matrices for which the sizes are known at compile time are supported (e.\+g., Matrix3d).
+
+This method is usually significantly faster than the QR iterative algorithm but it might also be less accurate. It is also worth noting that for 3x3 matrices it involves trigonometric operations which are not necessarily available for all scalar types.
+
+For the 3x3 case, we observed the following worst case relative error regarding the eigenvalues\+:
+\begin{DoxyItemize}
+\item double\+: 1e-\/8
+\item float\+: 1e-\/3
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{参照}
+compute(const Matrix\+Type\&, int options) 
+\end{DoxySeeAlso}
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_a297893df7098c43278d385e4d4e23fe4_a297893df7098c43278d385e4d4e23fe4}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!computeFromTridiagonal@{computeFromTridiagonal}}
+\index{computeFromTridiagonal@{computeFromTridiagonal}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{computeFromTridiagonal()}{computeFromTridiagonal()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_a297893df7098c43278d385e4d4e23fe4_a297893df7098c43278d385e4d4e23fe4} 
+template$<$typename \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a1fbb8c77fa7eb0cbcb15d3a23abc9566_a1fbb8c77fa7eb0cbcb15d3a23abc9566}{Matrix\+Type}} $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Self\+Adjoint\+Eigen\+Solver}}$<$ \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a1fbb8c77fa7eb0cbcb15d3a23abc9566_a1fbb8c77fa7eb0cbcb15d3a23abc9566}{Matrix\+Type}} $>$ \& \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a1fbb8c77fa7eb0cbcb15d3a23abc9566_a1fbb8c77fa7eb0cbcb15d3a23abc9566}{Matrix\+Type}} $>$\+::compute\+From\+Tridiagonal (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a38fe3afa37cf7cac9d0fbe63fcc2c18d_a38fe3afa37cf7cac9d0fbe63fcc2c18d}{Real\+Vector\+Type}} \&}]{diag}{, }\item[{const \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a22c2e9e06d3af80207a01feb881f0fa3_a22c2e9e06d3af80207a01feb881f0fa3}{Sub\+Diagonal\+Type}} \&}]{subdiag}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{options}{ = {\ttfamily \mbox{\hyperlink{group__enums_gae3e239fb70022eb8747994cf5d68b4a9_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}}}}\end{DoxyParamCaption})}
+
+
+
+Computes the eigen decomposition from a tridiagonal symmetric matrix 
+
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\texttt{ in}}  & {\em diag} & The vector containing the diagonal of the matrix. \\
+\hline
+\mbox{\texttt{ in}}  & {\em subdiag} & The subdiagonal of the matrix. \\
+\hline
+\mbox{\texttt{ in}}  & {\em options} & Can be \doxylink{group__enums_gae3e239fb70022eb8747994cf5d68b4a9_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors} (default) or \doxylink{group__enums_gae3e239fb70022eb8747994cf5d68b4a9_ggae3e239fb70022eb8747994cf5d68b4a9afd06633f270207c373875fd7ca03e906}{Eigenvalues\+Only}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+Reference to {\ttfamily \texorpdfstring{$\ast$}{*}this} 
+\end{DoxyReturn}
+This function assumes that the matrix has been reduced to tridiagonal form.
+
+\begin{DoxySeeAlso}{参照}
+compute(const Matrix\+Type\&, int) \doxylink{_map__general__stride_8cpp_a69476a5acb953cf3172f9a5fd6e519e1_a69476a5acb953cf3172f9a5fd6e519e1}{for} more information 
+\end{DoxySeeAlso}
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_aea708eb6ecf37fcaa7d415fec2892d60_aea708eb6ecf37fcaa7d415fec2892d60}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!eigenvalues@{eigenvalues}}
+\index{eigenvalues@{eigenvalues}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{eigenvalues()}{eigenvalues()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_aea708eb6ecf37fcaa7d415fec2892d60_aea708eb6ecf37fcaa7d415fec2892d60} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} const \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a38fe3afa37cf7cac9d0fbe63fcc2c18d_a38fe3afa37cf7cac9d0fbe63fcc2c18d}{Real\+Vector\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::eigenvalues (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the eigenvalues of given matrix. 
+
+\begin{DoxyReturn}{戻り値}
+A const reference to the column vector containing the eigenvalues.
+\end{DoxyReturn}
+\begin{DoxyPrecond}{事前条件}
+The eigenvalues have been computed before.
+\end{DoxyPrecond}
+The eigenvalues are repeated according to their algebraic multiplicity, so there are as many eigenvalues as rows in the matrix. The eigenvalues are sorted in increasing order.
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{参照}
+\doxylink{class_eigen_1_1_self_adjoint_eigen_solver_aa6e650f65298c05b78942df39f6c9388_aa6e650f65298c05b78942df39f6c9388}{eigenvectors()}, \doxylink{class_eigen_1_1_matrix_base_a30430fa3d5b4e74d312fd4f502ac984d_a30430fa3d5b4e74d312fd4f502ac984d}{Matrix\+Base\+::eigenvalues()} 
+\end{DoxySeeAlso}
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_aa6e650f65298c05b78942df39f6c9388_aa6e650f65298c05b78942df39f6c9388}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!eigenvectors@{eigenvectors}}
+\index{eigenvectors@{eigenvectors}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{eigenvectors()}{eigenvectors()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_aa6e650f65298c05b78942df39f6c9388_aa6e650f65298c05b78942df39f6c9388} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} const \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_ab8df1ae55c4fd44f3be6c20d4c825ce7_ab8df1ae55c4fd44f3be6c20d4c825ce7}{Eigenvectors\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::eigenvectors (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the eigenvectors of given matrix. 
+
+\begin{DoxyReturn}{戻り値}
+A const reference to the matrix whose columns are the eigenvectors.
+\end{DoxyReturn}
+\begin{DoxyPrecond}{事前条件}
+The eigenvectors have been computed before.
+\end{DoxyPrecond}
+Column $ k $ of the returned matrix is an eigenvector corresponding to eigenvalue number $ k $ as returned by \doxylink{class_eigen_1_1_self_adjoint_eigen_solver_aea708eb6ecf37fcaa7d415fec2892d60_aea708eb6ecf37fcaa7d415fec2892d60}{eigenvalues()}. The eigenvectors are normalized to have (Euclidean) norm equal to one. If this object was used to solve the eigenproblem for the selfadjoint matrix $ A $, then the matrix returned by this function is the matrix $ V $ in the eigendecomposition $ A = V D V^{-1} $.
+
+For a selfadjoint matrix, $ V $ is unitary, meaning its inverse is equal to its adjoint, $ V^{-1} = V^{\dagger} $. If $ A $ is real, then $ V $ is also real and therefore orthogonal, meaning its inverse is equal to its transpose, $ V^{-1} = V^T $.
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{参照}
+\doxylink{class_eigen_1_1_self_adjoint_eigen_solver_aea708eb6ecf37fcaa7d415fec2892d60_aea708eb6ecf37fcaa7d415fec2892d60}{eigenvalues()} 
+\end{DoxySeeAlso}
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_a56bd59b85a6f6f00ff7bff307ad0e015_a56bd59b85a6f6f00ff7bff307ad0e015}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!info@{info}}
+\index{info@{info}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_a56bd59b85a6f6f00ff7bff307ad0e015_a56bd59b85a6f6f00ff7bff307ad0e015} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::info (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reports whether previous computation was successful. 
+
+\begin{DoxyReturn}{戻り値}
+{\ttfamily Success} if computation was successful, {\ttfamily No\+Convergence} otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_a71fe0aea0b22d176efcea556c5c160f5_a71fe0aea0b22d176efcea556c5c160f5}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!operatorInverseSqrt@{operatorInverseSqrt}}
+\index{operatorInverseSqrt@{operatorInverseSqrt}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{operatorInverseSqrt()}{operatorInverseSqrt()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_a71fe0aea0b22d176efcea556c5c160f5_a71fe0aea0b22d176efcea556c5c160f5} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a1fbb8c77fa7eb0cbcb15d3a23abc9566_a1fbb8c77fa7eb0cbcb15d3a23abc9566}{Matrix\+Type}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::operator\+Inverse\+Sqrt (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Computes the inverse square root of the matrix. 
+
+\begin{DoxyReturn}{戻り値}
+the inverse positive-\/definite square root of the matrix
+\end{DoxyReturn}
+\begin{DoxyPrecond}{事前条件}
+The eigenvalues and eigenvectors of a positive-\/definite matrix have been computed before.
+\end{DoxyPrecond}
+This function uses the eigendecomposition $ A = V D V^{-1} $ to compute the inverse square root as $ V D^{-1/2} V^{-1} $. This is cheaper than first computing the square root with \doxylink{class_eigen_1_1_self_adjoint_eigen_solver_a5c5158fd86366081bdabec38112c2c8a_a5c5158fd86366081bdabec38112c2c8a}{operator\+Sqrt()} and then its inverse with \doxylink{class_eigen_1_1_matrix_base_add090d35d12d42d01eba1a24f22cf8f3_add090d35d12d42d01eba1a24f22cf8f3}{Matrix\+Base\+::inverse()}.
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{参照}
+\doxylink{class_eigen_1_1_self_adjoint_eigen_solver_a5c5158fd86366081bdabec38112c2c8a_a5c5158fd86366081bdabec38112c2c8a}{operator\+Sqrt()}, \doxylink{class_eigen_1_1_matrix_base_add090d35d12d42d01eba1a24f22cf8f3_add090d35d12d42d01eba1a24f22cf8f3}{Matrix\+Base\+::inverse()}, \href{unsupported/group__MatrixFunctions__Module.html}{\texttt{ Matrix\+Functions Module}} 
+\end{DoxySeeAlso}
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_a5c5158fd86366081bdabec38112c2c8a_a5c5158fd86366081bdabec38112c2c8a}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!operatorSqrt@{operatorSqrt}}
+\index{operatorSqrt@{operatorSqrt}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{operatorSqrt()}{operatorSqrt()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_a5c5158fd86366081bdabec38112c2c8a_a5c5158fd86366081bdabec38112c2c8a} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a1fbb8c77fa7eb0cbcb15d3a23abc9566_a1fbb8c77fa7eb0cbcb15d3a23abc9566}{Matrix\+Type}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::operator\+Sqrt (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Computes the positive-\/definite square root of the matrix. 
+
+\begin{DoxyReturn}{戻り値}
+the positive-\/definite square root of the matrix
+\end{DoxyReturn}
+\begin{DoxyPrecond}{事前条件}
+The eigenvalues and eigenvectors of a positive-\/definite matrix have been computed before.
+\end{DoxyPrecond}
+The square root of a positive-\/definite matrix $ A $ is the positive-\/definite matrix whose square equals $ A $. This function uses the eigendecomposition $ A = V D V^{-1} $ to compute the square root as $ A^{1/2} = V D^{1/2} V^{-1} $.
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{参照}
+\doxylink{class_eigen_1_1_self_adjoint_eigen_solver_a71fe0aea0b22d176efcea556c5c160f5_a71fe0aea0b22d176efcea556c5c160f5}{operator\+Inverse\+Sqrt()}, \href{unsupported/group__MatrixFunctions__Module.html}{\texttt{ Matrix\+Functions Module}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{フレンドと関連関数の詳解}
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_ac6b52963cfee7ba77cf9f2314b29546b_ac6b52963cfee7ba77cf9f2314b29546b}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!internal::direct\_selfadjoint\_eigenvalues$<$ SelfAdjointEigenSolver, Size, NumTraits$<$ Scalar $>$::IsComplex $>$@{internal::direct\_selfadjoint\_eigenvalues$<$ SelfAdjointEigenSolver, Size, NumTraits$<$ Scalar $>$::IsComplex $>$}}
+\index{internal::direct\_selfadjoint\_eigenvalues$<$ SelfAdjointEigenSolver, Size, NumTraits$<$ Scalar $>$::IsComplex $>$@{internal::direct\_selfadjoint\_eigenvalues$<$ SelfAdjointEigenSolver, Size, NumTraits$<$ Scalar $>$::IsComplex $>$}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{internal::direct\_selfadjoint\_eigenvalues$<$ SelfAdjointEigenSolver, Size, NumTraits$<$ Scalar $>$::IsComplex $>$}{internal::direct\_selfadjoint\_eigenvalues< SelfAdjointEigenSolver, Size, NumTraits< Scalar >::IsComplex >}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_ac6b52963cfee7ba77cf9f2314b29546b_ac6b52963cfee7ba77cf9f2314b29546b} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+friend struct \mbox{\hyperlink{struct_eigen_1_1internal_1_1direct__selfadjoint__eigenvalues}{internal\+::direct\+\_\+selfadjoint\+\_\+eigenvalues}}$<$ \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Self\+Adjoint\+Eigen\+Solver}}, \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_aba121c61691410fb9508eb5f82fcbd01_aba121c61691410fb9508eb5f82fcbd01a12ecb6f6de5809c8abad46d995914e8a}{Size}}, \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a47715558106c1a1c3bf4fa6d21ae3663_a47715558106c1a1c3bf4fa6d21ae3663}{Scalar}} $>$\mbox{\hyperlink{common_8h_a80155586fa275b28773c9b203f52caba_a80155586fa275b28773c9b203f52cabaa66d6dc5b929fc072f7dce7fdab0ee378}{\+::\+Is\+Complex}} $>$\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+\doxysubsection{メンバ詳解}
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_a26697e6c17e490fd4f6315276c597fb1_a26697e6c17e490fd4f6315276c597fb1}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!m\_eigenvectorsOk@{m\_eigenvectorsOk}}
+\index{m\_eigenvectorsOk@{m\_eigenvectorsOk}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{m\_eigenvectorsOk}{m\_eigenvectorsOk}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_a26697e6c17e490fd4f6315276c597fb1_a26697e6c17e490fd4f6315276c597fb1} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::m\+\_\+eigenvectors\+Ok\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_a1ba3c7fe4703ee7eed528a18e53b0289_a1ba3c7fe4703ee7eed528a18e53b0289}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!m\_eivalues@{m\_eivalues}}
+\index{m\_eivalues@{m\_eivalues}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{m\_eivalues}{m\_eivalues}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_a1ba3c7fe4703ee7eed528a18e53b0289_a1ba3c7fe4703ee7eed528a18e53b0289} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_a38fe3afa37cf7cac9d0fbe63fcc2c18d_a38fe3afa37cf7cac9d0fbe63fcc2c18d}{Real\+Vector\+Type}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::m\+\_\+eivalues\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_a4c86f72288084ac48c2b6493a893bae4_a4c86f72288084ac48c2b6493a893bae4}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!m\_eivec@{m\_eivec}}
+\index{m\_eivec@{m\_eivec}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{m\_eivec}{m\_eivec}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_a4c86f72288084ac48c2b6493a893bae4_a4c86f72288084ac48c2b6493a893bae4} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver_ab8df1ae55c4fd44f3be6c20d4c825ce7_ab8df1ae55c4fd44f3be6c20d4c825ce7}{Eigenvectors\+Type}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::m\+\_\+eivec\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_a27867094c784977fdf86c3312ecedcf4_a27867094c784977fdf86c3312ecedcf4}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!m\_hcoeffs@{m\_hcoeffs}}
+\index{m\_hcoeffs@{m\_hcoeffs}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{m\_hcoeffs}{m\_hcoeffs}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_a27867094c784977fdf86c3312ecedcf4_a27867094c784977fdf86c3312ecedcf4} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_tridiagonalization_ac63712a284d02d613a81cd43dca21b61_ac63712a284d02d613a81cd43dca21b61}{Tridiagonalization\+Type\+::\+Coeff\+Vector\+Type}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::m\+\_\+hcoeffs\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_a7d3a941711a788da32be6cc6126e698b_a7d3a941711a788da32be6cc6126e698b}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!m\_info@{m\_info}}
+\index{m\_info@{m\_info}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{m\_info}{m\_info}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_a7d3a941711a788da32be6cc6126e698b_a7d3a941711a788da32be6cc6126e698b} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::m\+\_\+info\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_a7619df2065e46bde1f509cae1bc15a97_a7619df2065e46bde1f509cae1bc15a97}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!m\_isInitialized@{m\_isInitialized}}
+\index{m\_isInitialized@{m\_isInitialized}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{m\_isInitialized}{m\_isInitialized}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_a7619df2065e46bde1f509cae1bc15a97_a7619df2065e46bde1f509cae1bc15a97} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::m\+\_\+is\+Initialized\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_a9ba10b83f095b18dbea345db7304acfa_a9ba10b83f095b18dbea345db7304acfa}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!m\_maxIterations@{m\_maxIterations}}
+\index{m\_maxIterations@{m\_maxIterations}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{m\_maxIterations}{m\_maxIterations}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_a9ba10b83f095b18dbea345db7304acfa_a9ba10b83f095b18dbea345db7304acfa} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+const \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::m\+\_\+max\+Iterations = 30\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Maximum number of iterations. 
+
+The algorithm terminates if it does not converge within m\+\_\+max\+Iterations \texorpdfstring{$\ast$}{*} n iterations, where n denotes the size of the matrix. This value is currently set to 30 (copied from LAPACK). \Hypertarget{class_eigen_1_1_self_adjoint_eigen_solver_a5da95aa467ce0555d01a69ba357f62bb_a5da95aa467ce0555d01a69ba357f62bb}\index{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}!m\_subdiag@{m\_subdiag}}
+\index{m\_subdiag@{m\_subdiag}!Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$@{Eigen::SelfAdjointEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{m\_subdiag}{m\_subdiag}}
+{\footnotesize\ttfamily \label{class_eigen_1_1_self_adjoint_eigen_solver_a5da95aa467ce0555d01a69ba357f62bb_a5da95aa467ce0555d01a69ba357f62bb} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_tridiagonalization_a9f1b9d6cb4b0aae2625e034ef5146740_a9f1b9d6cb4b0aae2625e034ef5146740}{Tridiagonalization\+Type\+::\+Sub\+Diagonal\+Type}} \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Eigen\+::\+Self\+Adjoint\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::m\+\_\+subdiag\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Eigenvalues/\mbox{\hyperlink{_self_adjoint_eigen_solver_8h}{Self\+Adjoint\+Eigen\+Solver.\+h}}\end{DoxyCompactItemize}

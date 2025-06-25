@@ -1,0 +1,114 @@
+\doxysection{eigen-\/3.4.0/eigen-\/3.4.0/test/gpu\+\_\+common.h ファイル}
+\hypertarget{gpu__common_8h}{}\label{gpu__common_8h}\index{eigen-\/3.4.0/eigen-\/3.4.0/test/gpu\_common.h@{eigen-\/3.4.0/eigen-\/3.4.0/test/gpu\_common.h}}
+{\ttfamily \#include $<$cuda.\+h$>$}\newline
+{\ttfamily \#include $<$cuda\+\_\+runtime.\+h$>$}\newline
+{\ttfamily \#include $<$cuda\+\_\+runtime\+\_\+api.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$unsupported/\+Eigen/\+CXX11/src/\+Tensor/\+Tensor\+Gpu\+Hip\+Cuda\+Defines.\+h$>$}\newline
+gpu\+\_\+common.\+h の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gpu__common_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{クラス}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcompile__time__device__info}{compile\+\_\+time\+\_\+device\+\_\+info}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{gpu__common_8h_a48c24b64ad922cf47db32f795189956a_a48c24b64ad922cf47db32f795189956a}{EIGEN\+\_\+\+USE\+\_\+\+GPU}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Kernel , typename Input , typename Output $>$ }\\void \mbox{\hyperlink{gpu__common_8h_ac6fe3277d974fdfc37105ea2912f1b8b_ac6fe3277d974fdfc37105ea2912f1b8b}{run\+\_\+on\+\_\+cpu}} (const Kernel \&ker, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}, const Input \&in, Output \&\mbox{\hyperlink{tensor__contract__sycl__bench_8cc_acc4949c3e64b4395f74072403ddf6184_acc4949c3e64b4395f74072403ddf6184}{out}})
+\item 
+{\footnotesize template$<$typename Kernel , typename Input , typename Output $>$ }\\\+\_\+\+\_\+global\+\_\+\+\_\+ \mbox{\hyperlink{_macros_8h_ab7c87492b7a80ed45d2e0377b40cdee5_ab7c87492b7a80ed45d2e0377b40cdee5}{EIGEN\+\_\+\+HIP\+\_\+\+LAUNCH\+\_\+\+BOUNDS\+\_\+1024}} void \mbox{\hyperlink{gpu__common_8h_a8e23b46f6b4b771cb36c3cfaa63de922_a8e23b46f6b4b771cb36c3cfaa63de922}{run\+\_\+on\+\_\+gpu\+\_\+meta\+\_\+kernel}} (const Kernel ker, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}, const Input \texorpdfstring{$\ast$}{*}in, Output \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{tensor__contract__sycl__bench_8cc_acc4949c3e64b4395f74072403ddf6184_acc4949c3e64b4395f74072403ddf6184}{out}})
+\item 
+{\footnotesize template$<$typename Kernel , typename Input , typename Output $>$ }\\void \mbox{\hyperlink{gpu__common_8h_af5aff2ac350ef1ac3900d4d3900d872b_af5aff2ac350ef1ac3900d4d3900d872b}{run\+\_\+on\+\_\+gpu}} (const Kernel \&ker, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}, const Input \&in, Output \&\mbox{\hyperlink{tensor__contract__sycl__bench_8cc_acc4949c3e64b4395f74072403ddf6184_acc4949c3e64b4395f74072403ddf6184}{out}})
+\item 
+{\footnotesize template$<$typename Kernel , typename Input , typename Output $>$ }\\void \mbox{\hyperlink{gpu__common_8h_a70dfd40c42e927f5a4aa5a2384593655_a70dfd40c42e927f5a4aa5a2384593655}{run\+\_\+and\+\_\+compare\+\_\+to\+\_\+gpu}} (const Kernel \&ker, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}, const Input \&in, Output \&\mbox{\hyperlink{tensor__contract__sycl__bench_8cc_acc4949c3e64b4395f74072403ddf6184_acc4949c3e64b4395f74072403ddf6184}{out}})
+\item 
+void \mbox{\hyperlink{gpu__common_8h_a23b1d09043f92d1bdc56ea1c7a2ff803_a23b1d09043f92d1bdc56ea1c7a2ff803}{ei\+\_\+test\+\_\+init\+\_\+gpu}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{変数}
+\begin{DoxyCompactItemize}
+\item 
+dim3 \mbox{\hyperlink{gpu__common_8h_a0a680a9519f7aaccce02a4bb4c0a0b52_a0a680a9519f7aaccce02a4bb4c0a0b52}{thread\+Idx}}
+\item 
+dim3 \mbox{\hyperlink{gpu__common_8h_a1a2cdcc50d7e1505a058c5832ebe5702_a1a2cdcc50d7e1505a058c5832ebe5702}{block\+Dim}}
+\item 
+dim3 \mbox{\hyperlink{gpu__common_8h_ab30e5f6958c9264d3c5235d463eb2b57_ab30e5f6958c9264d3c5235d463eb2b57}{block\+Idx}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{gpu__common_8h_a48c24b64ad922cf47db32f795189956a_a48c24b64ad922cf47db32f795189956a}\index{gpu\_common.h@{gpu\_common.h}!EIGEN\_USE\_GPU@{EIGEN\_USE\_GPU}}
+\index{EIGEN\_USE\_GPU@{EIGEN\_USE\_GPU}!gpu\_common.h@{gpu\_common.h}}
+\doxysubsubsection{\texorpdfstring{EIGEN\_USE\_GPU}{EIGEN\_USE\_GPU}}
+{\footnotesize\ttfamily \label{gpu__common_8h_a48c24b64ad922cf47db32f795189956a_a48c24b64ad922cf47db32f795189956a} 
+\#define EIGEN\+\_\+\+USE\+\_\+\+GPU}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{gpu__common_8h_a23b1d09043f92d1bdc56ea1c7a2ff803_a23b1d09043f92d1bdc56ea1c7a2ff803}\index{gpu\_common.h@{gpu\_common.h}!ei\_test\_init\_gpu@{ei\_test\_init\_gpu}}
+\index{ei\_test\_init\_gpu@{ei\_test\_init\_gpu}!gpu\_common.h@{gpu\_common.h}}
+\doxysubsubsection{\texorpdfstring{ei\_test\_init\_gpu()}{ei\_test\_init\_gpu()}}
+{\footnotesize\ttfamily \label{gpu__common_8h_a23b1d09043f92d1bdc56ea1c7a2ff803_a23b1d09043f92d1bdc56ea1c7a2ff803} 
+void ei\+\_\+test\+\_\+init\+\_\+gpu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{gpu__common_8h_a70dfd40c42e927f5a4aa5a2384593655_a70dfd40c42e927f5a4aa5a2384593655}\index{gpu\_common.h@{gpu\_common.h}!run\_and\_compare\_to\_gpu@{run\_and\_compare\_to\_gpu}}
+\index{run\_and\_compare\_to\_gpu@{run\_and\_compare\_to\_gpu}!gpu\_common.h@{gpu\_common.h}}
+\doxysubsubsection{\texorpdfstring{run\_and\_compare\_to\_gpu()}{run\_and\_compare\_to\_gpu()}}
+{\footnotesize\ttfamily \label{gpu__common_8h_a70dfd40c42e927f5a4aa5a2384593655_a70dfd40c42e927f5a4aa5a2384593655} 
+template$<$typename Kernel , typename Input , typename Output $>$ \\
+void run\+\_\+and\+\_\+compare\+\_\+to\+\_\+gpu (\begin{DoxyParamCaption}\item[{const Kernel \&}]{ker}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{n}{, }\item[{const Input \&}]{in}{, }\item[{Output \&}]{out}{}\end{DoxyParamCaption})}
+
+\Hypertarget{gpu__common_8h_ac6fe3277d974fdfc37105ea2912f1b8b_ac6fe3277d974fdfc37105ea2912f1b8b}\index{gpu\_common.h@{gpu\_common.h}!run\_on\_cpu@{run\_on\_cpu}}
+\index{run\_on\_cpu@{run\_on\_cpu}!gpu\_common.h@{gpu\_common.h}}
+\doxysubsubsection{\texorpdfstring{run\_on\_cpu()}{run\_on\_cpu()}}
+{\footnotesize\ttfamily \label{gpu__common_8h_ac6fe3277d974fdfc37105ea2912f1b8b_ac6fe3277d974fdfc37105ea2912f1b8b} 
+template$<$typename Kernel , typename Input , typename Output $>$ \\
+void run\+\_\+on\+\_\+cpu (\begin{DoxyParamCaption}\item[{const Kernel \&}]{ker}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{n}{, }\item[{const Input \&}]{in}{, }\item[{Output \&}]{out}{}\end{DoxyParamCaption})}
+
+\Hypertarget{gpu__common_8h_af5aff2ac350ef1ac3900d4d3900d872b_af5aff2ac350ef1ac3900d4d3900d872b}\index{gpu\_common.h@{gpu\_common.h}!run\_on\_gpu@{run\_on\_gpu}}
+\index{run\_on\_gpu@{run\_on\_gpu}!gpu\_common.h@{gpu\_common.h}}
+\doxysubsubsection{\texorpdfstring{run\_on\_gpu()}{run\_on\_gpu()}}
+{\footnotesize\ttfamily \label{gpu__common_8h_af5aff2ac350ef1ac3900d4d3900d872b_af5aff2ac350ef1ac3900d4d3900d872b} 
+template$<$typename Kernel , typename Input , typename Output $>$ \\
+void run\+\_\+on\+\_\+gpu (\begin{DoxyParamCaption}\item[{const Kernel \&}]{ker}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{n}{, }\item[{const Input \&}]{in}{, }\item[{Output \&}]{out}{}\end{DoxyParamCaption})}
+
+\Hypertarget{gpu__common_8h_a8e23b46f6b4b771cb36c3cfaa63de922_a8e23b46f6b4b771cb36c3cfaa63de922}\index{gpu\_common.h@{gpu\_common.h}!run\_on\_gpu\_meta\_kernel@{run\_on\_gpu\_meta\_kernel}}
+\index{run\_on\_gpu\_meta\_kernel@{run\_on\_gpu\_meta\_kernel}!gpu\_common.h@{gpu\_common.h}}
+\doxysubsubsection{\texorpdfstring{run\_on\_gpu\_meta\_kernel()}{run\_on\_gpu\_meta\_kernel()}}
+{\footnotesize\ttfamily \label{gpu__common_8h_a8e23b46f6b4b771cb36c3cfaa63de922_a8e23b46f6b4b771cb36c3cfaa63de922} 
+template$<$typename Kernel , typename Input , typename Output $>$ \\
+\+\_\+\+\_\+global\+\_\+\+\_\+ \mbox{\hyperlink{_macros_8h_ab7c87492b7a80ed45d2e0377b40cdee5_ab7c87492b7a80ed45d2e0377b40cdee5}{EIGEN\+\_\+\+HIP\+\_\+\+LAUNCH\+\_\+\+BOUNDS\+\_\+1024}} void run\+\_\+on\+\_\+gpu\+\_\+meta\+\_\+kernel (\begin{DoxyParamCaption}\item[{const Kernel}]{ker}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{n}{, }\item[{const Input \texorpdfstring{$\ast$}{*}}]{in}{, }\item[{Output \texorpdfstring{$\ast$}{*}}]{out}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{変数詳解}
+\Hypertarget{gpu__common_8h_a1a2cdcc50d7e1505a058c5832ebe5702_a1a2cdcc50d7e1505a058c5832ebe5702}\index{gpu\_common.h@{gpu\_common.h}!blockDim@{blockDim}}
+\index{blockDim@{blockDim}!gpu\_common.h@{gpu\_common.h}}
+\doxysubsubsection{\texorpdfstring{blockDim}{blockDim}}
+{\footnotesize\ttfamily \label{gpu__common_8h_a1a2cdcc50d7e1505a058c5832ebe5702_a1a2cdcc50d7e1505a058c5832ebe5702} 
+dim3 block\+Dim}
+
+\Hypertarget{gpu__common_8h_ab30e5f6958c9264d3c5235d463eb2b57_ab30e5f6958c9264d3c5235d463eb2b57}\index{gpu\_common.h@{gpu\_common.h}!blockIdx@{blockIdx}}
+\index{blockIdx@{blockIdx}!gpu\_common.h@{gpu\_common.h}}
+\doxysubsubsection{\texorpdfstring{blockIdx}{blockIdx}}
+{\footnotesize\ttfamily \label{gpu__common_8h_ab30e5f6958c9264d3c5235d463eb2b57_ab30e5f6958c9264d3c5235d463eb2b57} 
+dim3 block\+Idx}
+
+\Hypertarget{gpu__common_8h_a0a680a9519f7aaccce02a4bb4c0a0b52_a0a680a9519f7aaccce02a4bb4c0a0b52}\index{gpu\_common.h@{gpu\_common.h}!threadIdx@{threadIdx}}
+\index{threadIdx@{threadIdx}!gpu\_common.h@{gpu\_common.h}}
+\doxysubsubsection{\texorpdfstring{threadIdx}{threadIdx}}
+{\footnotesize\ttfamily \label{gpu__common_8h_a0a680a9519f7aaccce02a4bb4c0a0b52_a0a680a9519f7aaccce02a4bb4c0a0b52} 
+dim3 thread\+Idx}
+

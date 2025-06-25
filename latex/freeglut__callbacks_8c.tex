@@ -1,0 +1,306 @@
+\doxysection{freeglut-\/2.8.1.tar/freeglut-\/2.8.1/freeglut-\/2.8.1/src/freeglut\+\_\+callbacks.c ファイル}
+\hypertarget{freeglut__callbacks_8c}{}\label{freeglut__callbacks_8c}\index{freeglut-\/2.8.1.tar/freeglut-\/2.8.1/freeglut-\/2.8.1/src/freeglut\_callbacks.c@{freeglut-\/2.8.1.tar/freeglut-\/2.8.1/freeglut-\/2.8.1/src/freeglut\_callbacks.c}}
+{\ttfamily \#include $<$GL/freeglut.\+h$>$}\newline
+{\ttfamily \#include "{}freeglut\+\_\+internal.\+h"{}}\newline
+freeglut\+\_\+callbacks.\+c の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{freeglut__callbacks_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{freeglut__callbacks_8c_a52e065505a905d382f47c008abbce586_a52e065505a905d382f47c008abbce586}{SET\+\_\+\+CALLBACK}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_a4727c5f942108b80b89d09b4e639ae7c_a4727c5f942108b80b89d09b4e639ae7c}{glut\+Display\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(void))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_a78598cd32438f8db41eaeaa091dbd210_a78598cd32438f8db41eaeaa091dbd210}{glut\+Reshape\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_abe08b0bc16806764ce5a9fa5ebf6e04a_abe08b0bc16806764ce5a9fa5ebf6e04a}{glut\+Keyboard\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(unsigned char, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_a8c2a7d4c1aaad798c3f4085c9dc36f5a_a8c2a7d4c1aaad798c3f4085c9dc36f5a}{glut\+Special\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_a0841405aa33442746239dc0b6305ab19_a0841405aa33442746239dc0b6305ab19}{glut\+Idle\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(void))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_a2080e7ebf73efbf5e4b58d91d26def8d_a2080e7ebf73efbf5e4b58d91d26def8d}{glut\+Timer\+Func}} (unsigned \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} time\+Out, void(\texorpdfstring{$\ast$}{*}callback)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}), \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} timer\+ID)
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_ad144c70fff279d6540faa04b495b81ac_ad144c70fff279d6540faa04b495b81ac}{glut\+Visibility\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_a67608884ec336d3e3ce0e1298740cf01_a67608884ec336d3e3ce0e1298740cf01}{glut\+Keyboard\+Up\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(unsigned char, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_ac345157f9217827d2dd3572520db86ce_ac345157f9217827d2dd3572520db86ce}{glut\+Special\+Up\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_a49ef355c0954e28646163682b343fbf7_a49ef355c0954e28646163682b343fbf7}{glut\+Joystick\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(unsigned \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}), \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} poll\+Interval)
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_a807ff3591a3079538a42eebd51ebc521_a807ff3591a3079538a42eebd51ebc521}{glut\+Mouse\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_aa9a7e9097da6cd8a9d01241adae830aa_aa9a7e9097da6cd8a9d01241adae830aa}{glut\+Mouse\+Wheel\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_a7f46d0be62f712355b495fff1afef2d1_a7f46d0be62f712355b495fff1afef2d1}{glut\+Motion\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_a3279ef1a8b9173582bd5e2cb10355032_a3279ef1a8b9173582bd5e2cb10355032}{glut\+Passive\+Motion\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_ab604de05bfd153e8c3680b3d2ad7b80f_ab604de05bfd153e8c3680b3d2ad7b80f}{glut\+Entry\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_a0bd1ec26a09beaf742f19100f6e5ece0_a0bd1ec26a09beaf742f19100f6e5ece0}{glut\+Close\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(void))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_a4474dbafdbface1b40a66f4b5c4f1f7d_a4474dbafdbface1b40a66f4b5c4f1f7d}{glut\+WMClose\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(void))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_a6e1a82672e06bee9484fd63c4eeebcf2_a6e1a82672e06bee9484fd63c4eeebcf2}{glut\+Menu\+Destroy\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(void))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_abb815d4a581ae924597ef249d4fb08d1_abb815d4a581ae924597ef249d4fb08d1}{glut\+Menu\+State\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_a4bc20b7f575d44ef28a943f4efc7d289_a4bc20b7f575d44ef28a943f4efc7d289}{glut\+Menu\+Status\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_a6dc8e11d6f3d9c857b830b9889289650_a6dc8e11d6f3d9c857b830b9889289650}{glut\+Overlay\+Display\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(void))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_af09ca389ed75295824098b8639f915d1_af09ca389ed75295824098b8639f915d1}{glut\+Window\+Status\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_a3b27492ac43f84280b3b1af1350c8637_a3b27492ac43f84280b3b1af1350c8637}{glut\+Spaceball\+Motion\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_a3064802622a5e3b6eb8da64daa16d97a_a3064802622a5e3b6eb8da64daa16d97a}{glut\+Spaceball\+Rotate\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_a65bbc4d72442ec9ad3914743ac264faf_a65bbc4d72442ec9ad3914743ac264faf}{glut\+Spaceball\+Button\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_abc07843e0ea3fe01ef65064f59795ec7_abc07843e0ea3fe01ef65064f59795ec7}{glut\+Button\+Box\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_a50ffb5c42fb8e782cc56739e1c37063d_a50ffb5c42fb8e782cc56739e1c37063d}{glut\+Dials\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_a96d4e51ec3d6f6f92ff705c19c85d2ec_a96d4e51ec3d6f6f92ff705c19c85d2ec}{glut\+Tablet\+Motion\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_a6dd47c8cde5de726a1454941575dacb4_a6dd47c8cde5de726a1454941575dacb4}{glut\+Tablet\+Button\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_a87adaacf91e9a7f05c97e66931eab32a_a87adaacf91e9a7f05c97e66931eab32a}{glut\+Multi\+Entry\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_a5dd31ca0ca5a6f69a7c25b47805d3467_a5dd31ca0ca5a6f69a7c25b47805d3467}{glut\+Multi\+Button\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_ad7ff6940989045d8df85ba2ba531fd49_ad7ff6940989045d8df85ba2ba531fd49}{glut\+Multi\+Motion\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}))
+\item 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} \mbox{\hyperlink{freeglut__callbacks_8c_aa3d3a265d7e96ee850d43e705f041cc6_aa3d3a265d7e96ee850d43e705f041cc6}{glut\+Multi\+Passive\+Func}} (void(\texorpdfstring{$\ast$}{*}callback)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}))
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{freeglut__callbacks_8c_a52e065505a905d382f47c008abbce586_a52e065505a905d382f47c008abbce586}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!SET\_CALLBACK@{SET\_CALLBACK}}
+\index{SET\_CALLBACK@{SET\_CALLBACK}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{SET\_CALLBACK}{SET\_CALLBACK}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_a52e065505a905d382f47c008abbce586_a52e065505a905d382f47c008abbce586} 
+\#define SET\+\_\+\+CALLBACK(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ if(\ \mbox{\hyperlink{freeglut__internal_8h_a2080ddc364d4d07b4f3352f353e10a7a_a2080ddc364d4d07b4f3352f353e10a7a}{fgStructure}}.\mbox{\hyperlink{structtag_s_f_g___structure_ab3d72742bdf10e75c276a6f8ff53fe1a_ab3d72742bdf10e75c276a6f8ff53fe1a}{CurrentWindow}}\ ==\ NULL\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ SET\_WCB(\ (\ *(\ \mbox{\hyperlink{freeglut__internal_8h_a2080ddc364d4d07b4f3352f353e10a7a_a2080ddc364d4d07b4f3352f353e10a7a}{fgStructure}}.\mbox{\hyperlink{structtag_s_f_g___structure_ab3d72742bdf10e75c276a6f8ff53fe1a_ab3d72742bdf10e75c276a6f8ff53fe1a}{CurrentWindow}}\ )\ ),\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ callback\ );\ \(\backslash\)}
+\DoxyCodeLine{\}\ \textcolor{keywordflow}{while}(\ 0\ )}
+
+\end{DoxyCode}
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{freeglut__callbacks_8c_abc07843e0ea3fe01ef65064f59795ec7_abc07843e0ea3fe01ef65064f59795ec7}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutButtonBoxFunc@{glutButtonBoxFunc}}
+\index{glutButtonBoxFunc@{glutButtonBoxFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutButtonBoxFunc()}{glutButtonBoxFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_abc07843e0ea3fe01ef65064f59795ec7_abc07843e0ea3fe01ef65064f59795ec7} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Button\+Box\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_a0bd1ec26a09beaf742f19100f6e5ece0_a0bd1ec26a09beaf742f19100f6e5ece0}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutCloseFunc@{glutCloseFunc}}
+\index{glutCloseFunc@{glutCloseFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutCloseFunc()}{glutCloseFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_a0bd1ec26a09beaf742f19100f6e5ece0_a0bd1ec26a09beaf742f19100f6e5ece0} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Close\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(void)}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_a50ffb5c42fb8e782cc56739e1c37063d_a50ffb5c42fb8e782cc56739e1c37063d}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutDialsFunc@{glutDialsFunc}}
+\index{glutDialsFunc@{glutDialsFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutDialsFunc()}{glutDialsFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_a50ffb5c42fb8e782cc56739e1c37063d_a50ffb5c42fb8e782cc56739e1c37063d} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Dials\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_a4727c5f942108b80b89d09b4e639ae7c_a4727c5f942108b80b89d09b4e639ae7c}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutDisplayFunc@{glutDisplayFunc}}
+\index{glutDisplayFunc@{glutDisplayFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutDisplayFunc()}{glutDisplayFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_a4727c5f942108b80b89d09b4e639ae7c_a4727c5f942108b80b89d09b4e639ae7c} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Display\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(void)}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_ab604de05bfd153e8c3680b3d2ad7b80f_ab604de05bfd153e8c3680b3d2ad7b80f}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutEntryFunc@{glutEntryFunc}}
+\index{glutEntryFunc@{glutEntryFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutEntryFunc()}{glutEntryFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_ab604de05bfd153e8c3680b3d2ad7b80f_ab604de05bfd153e8c3680b3d2ad7b80f} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Entry\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_a0841405aa33442746239dc0b6305ab19_a0841405aa33442746239dc0b6305ab19}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutIdleFunc@{glutIdleFunc}}
+\index{glutIdleFunc@{glutIdleFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutIdleFunc()}{glutIdleFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_a0841405aa33442746239dc0b6305ab19_a0841405aa33442746239dc0b6305ab19} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Idle\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(void)}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_a49ef355c0954e28646163682b343fbf7_a49ef355c0954e28646163682b343fbf7}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutJoystickFunc@{glutJoystickFunc}}
+\index{glutJoystickFunc@{glutJoystickFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutJoystickFunc()}{glutJoystickFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_a49ef355c0954e28646163682b343fbf7_a49ef355c0954e28646163682b343fbf7} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Joystick\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(unsigned \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}), }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{poll\+Interval}{}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_abe08b0bc16806764ce5a9fa5ebf6e04a_abe08b0bc16806764ce5a9fa5ebf6e04a}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutKeyboardFunc@{glutKeyboardFunc}}
+\index{glutKeyboardFunc@{glutKeyboardFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutKeyboardFunc()}{glutKeyboardFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_abe08b0bc16806764ce5a9fa5ebf6e04a_abe08b0bc16806764ce5a9fa5ebf6e04a} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Keyboard\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(unsigned char, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_a67608884ec336d3e3ce0e1298740cf01_a67608884ec336d3e3ce0e1298740cf01}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutKeyboardUpFunc@{glutKeyboardUpFunc}}
+\index{glutKeyboardUpFunc@{glutKeyboardUpFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutKeyboardUpFunc()}{glutKeyboardUpFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_a67608884ec336d3e3ce0e1298740cf01_a67608884ec336d3e3ce0e1298740cf01} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Keyboard\+Up\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(unsigned char, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_a6e1a82672e06bee9484fd63c4eeebcf2_a6e1a82672e06bee9484fd63c4eeebcf2}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutMenuDestroyFunc@{glutMenuDestroyFunc}}
+\index{glutMenuDestroyFunc@{glutMenuDestroyFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutMenuDestroyFunc()}{glutMenuDestroyFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_a6e1a82672e06bee9484fd63c4eeebcf2_a6e1a82672e06bee9484fd63c4eeebcf2} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Menu\+Destroy\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(void)}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_abb815d4a581ae924597ef249d4fb08d1_abb815d4a581ae924597ef249d4fb08d1}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutMenuStateFunc@{glutMenuStateFunc}}
+\index{glutMenuStateFunc@{glutMenuStateFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutMenuStateFunc()}{glutMenuStateFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_abb815d4a581ae924597ef249d4fb08d1_abb815d4a581ae924597ef249d4fb08d1} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Menu\+State\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_a4bc20b7f575d44ef28a943f4efc7d289_a4bc20b7f575d44ef28a943f4efc7d289}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutMenuStatusFunc@{glutMenuStatusFunc}}
+\index{glutMenuStatusFunc@{glutMenuStatusFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutMenuStatusFunc()}{glutMenuStatusFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_a4bc20b7f575d44ef28a943f4efc7d289_a4bc20b7f575d44ef28a943f4efc7d289} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Menu\+Status\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_a7f46d0be62f712355b495fff1afef2d1_a7f46d0be62f712355b495fff1afef2d1}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutMotionFunc@{glutMotionFunc}}
+\index{glutMotionFunc@{glutMotionFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutMotionFunc()}{glutMotionFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_a7f46d0be62f712355b495fff1afef2d1_a7f46d0be62f712355b495fff1afef2d1} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Motion\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_a807ff3591a3079538a42eebd51ebc521_a807ff3591a3079538a42eebd51ebc521}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutMouseFunc@{glutMouseFunc}}
+\index{glutMouseFunc@{glutMouseFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutMouseFunc()}{glutMouseFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_a807ff3591a3079538a42eebd51ebc521_a807ff3591a3079538a42eebd51ebc521} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Mouse\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_aa9a7e9097da6cd8a9d01241adae830aa_aa9a7e9097da6cd8a9d01241adae830aa}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutMouseWheelFunc@{glutMouseWheelFunc}}
+\index{glutMouseWheelFunc@{glutMouseWheelFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutMouseWheelFunc()}{glutMouseWheelFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_aa9a7e9097da6cd8a9d01241adae830aa_aa9a7e9097da6cd8a9d01241adae830aa} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Mouse\+Wheel\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_a5dd31ca0ca5a6f69a7c25b47805d3467_a5dd31ca0ca5a6f69a7c25b47805d3467}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutMultiButtonFunc@{glutMultiButtonFunc}}
+\index{glutMultiButtonFunc@{glutMultiButtonFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutMultiButtonFunc()}{glutMultiButtonFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_a5dd31ca0ca5a6f69a7c25b47805d3467_a5dd31ca0ca5a6f69a7c25b47805d3467} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Multi\+Button\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_a87adaacf91e9a7f05c97e66931eab32a_a87adaacf91e9a7f05c97e66931eab32a}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutMultiEntryFunc@{glutMultiEntryFunc}}
+\index{glutMultiEntryFunc@{glutMultiEntryFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutMultiEntryFunc()}{glutMultiEntryFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_a87adaacf91e9a7f05c97e66931eab32a_a87adaacf91e9a7f05c97e66931eab32a} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Multi\+Entry\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_ad7ff6940989045d8df85ba2ba531fd49_ad7ff6940989045d8df85ba2ba531fd49}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutMultiMotionFunc@{glutMultiMotionFunc}}
+\index{glutMultiMotionFunc@{glutMultiMotionFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutMultiMotionFunc()}{glutMultiMotionFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_ad7ff6940989045d8df85ba2ba531fd49_ad7ff6940989045d8df85ba2ba531fd49} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Multi\+Motion\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_aa3d3a265d7e96ee850d43e705f041cc6_aa3d3a265d7e96ee850d43e705f041cc6}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutMultiPassiveFunc@{glutMultiPassiveFunc}}
+\index{glutMultiPassiveFunc@{glutMultiPassiveFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutMultiPassiveFunc()}{glutMultiPassiveFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_aa3d3a265d7e96ee850d43e705f041cc6_aa3d3a265d7e96ee850d43e705f041cc6} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Multi\+Passive\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_a6dc8e11d6f3d9c857b830b9889289650_a6dc8e11d6f3d9c857b830b9889289650}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutOverlayDisplayFunc@{glutOverlayDisplayFunc}}
+\index{glutOverlayDisplayFunc@{glutOverlayDisplayFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutOverlayDisplayFunc()}{glutOverlayDisplayFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_a6dc8e11d6f3d9c857b830b9889289650_a6dc8e11d6f3d9c857b830b9889289650} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Overlay\+Display\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(void)}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_a3279ef1a8b9173582bd5e2cb10355032_a3279ef1a8b9173582bd5e2cb10355032}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutPassiveMotionFunc@{glutPassiveMotionFunc}}
+\index{glutPassiveMotionFunc@{glutPassiveMotionFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutPassiveMotionFunc()}{glutPassiveMotionFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_a3279ef1a8b9173582bd5e2cb10355032_a3279ef1a8b9173582bd5e2cb10355032} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Passive\+Motion\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_a78598cd32438f8db41eaeaa091dbd210_a78598cd32438f8db41eaeaa091dbd210}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutReshapeFunc@{glutReshapeFunc}}
+\index{glutReshapeFunc@{glutReshapeFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutReshapeFunc()}{glutReshapeFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_a78598cd32438f8db41eaeaa091dbd210_a78598cd32438f8db41eaeaa091dbd210} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Reshape\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_a65bbc4d72442ec9ad3914743ac264faf_a65bbc4d72442ec9ad3914743ac264faf}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutSpaceballButtonFunc@{glutSpaceballButtonFunc}}
+\index{glutSpaceballButtonFunc@{glutSpaceballButtonFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutSpaceballButtonFunc()}{glutSpaceballButtonFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_a65bbc4d72442ec9ad3914743ac264faf_a65bbc4d72442ec9ad3914743ac264faf} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Spaceball\+Button\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_a3b27492ac43f84280b3b1af1350c8637_a3b27492ac43f84280b3b1af1350c8637}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutSpaceballMotionFunc@{glutSpaceballMotionFunc}}
+\index{glutSpaceballMotionFunc@{glutSpaceballMotionFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutSpaceballMotionFunc()}{glutSpaceballMotionFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_a3b27492ac43f84280b3b1af1350c8637_a3b27492ac43f84280b3b1af1350c8637} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Spaceball\+Motion\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_a3064802622a5e3b6eb8da64daa16d97a_a3064802622a5e3b6eb8da64daa16d97a}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutSpaceballRotateFunc@{glutSpaceballRotateFunc}}
+\index{glutSpaceballRotateFunc@{glutSpaceballRotateFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutSpaceballRotateFunc()}{glutSpaceballRotateFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_a3064802622a5e3b6eb8da64daa16d97a_a3064802622a5e3b6eb8da64daa16d97a} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Spaceball\+Rotate\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_a8c2a7d4c1aaad798c3f4085c9dc36f5a_a8c2a7d4c1aaad798c3f4085c9dc36f5a}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutSpecialFunc@{glutSpecialFunc}}
+\index{glutSpecialFunc@{glutSpecialFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutSpecialFunc()}{glutSpecialFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_a8c2a7d4c1aaad798c3f4085c9dc36f5a_a8c2a7d4c1aaad798c3f4085c9dc36f5a} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Special\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_ac345157f9217827d2dd3572520db86ce_ac345157f9217827d2dd3572520db86ce}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutSpecialUpFunc@{glutSpecialUpFunc}}
+\index{glutSpecialUpFunc@{glutSpecialUpFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutSpecialUpFunc()}{glutSpecialUpFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_ac345157f9217827d2dd3572520db86ce_ac345157f9217827d2dd3572520db86ce} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Special\+Up\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_a6dd47c8cde5de726a1454941575dacb4_a6dd47c8cde5de726a1454941575dacb4}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutTabletButtonFunc@{glutTabletButtonFunc}}
+\index{glutTabletButtonFunc@{glutTabletButtonFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutTabletButtonFunc()}{glutTabletButtonFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_a6dd47c8cde5de726a1454941575dacb4_a6dd47c8cde5de726a1454941575dacb4} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Tablet\+Button\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_a96d4e51ec3d6f6f92ff705c19c85d2ec_a96d4e51ec3d6f6f92ff705c19c85d2ec}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutTabletMotionFunc@{glutTabletMotionFunc}}
+\index{glutTabletMotionFunc@{glutTabletMotionFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutTabletMotionFunc()}{glutTabletMotionFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_a96d4e51ec3d6f6f92ff705c19c85d2ec_a96d4e51ec3d6f6f92ff705c19c85d2ec} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Tablet\+Motion\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_a2080e7ebf73efbf5e4b58d91d26def8d_a2080e7ebf73efbf5e4b58d91d26def8d}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutTimerFunc@{glutTimerFunc}}
+\index{glutTimerFunc@{glutTimerFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutTimerFunc()}{glutTimerFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_a2080e7ebf73efbf5e4b58d91d26def8d_a2080e7ebf73efbf5e4b58d91d26def8d} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Timer\+Func (\begin{DoxyParamCaption}\item[{unsigned \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{time\+Out}{, }\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}), }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{timer\+ID}{}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_ad144c70fff279d6540faa04b495b81ac_ad144c70fff279d6540faa04b495b81ac}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutVisibilityFunc@{glutVisibilityFunc}}
+\index{glutVisibilityFunc@{glutVisibilityFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutVisibilityFunc()}{glutVisibilityFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_ad144c70fff279d6540faa04b495b81ac_ad144c70fff279d6540faa04b495b81ac} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Visibility\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_af09ca389ed75295824098b8639f915d1_af09ca389ed75295824098b8639f915d1}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutWindowStatusFunc@{glutWindowStatusFunc}}
+\index{glutWindowStatusFunc@{glutWindowStatusFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutWindowStatusFunc()}{glutWindowStatusFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_af09ca389ed75295824098b8639f915d1_af09ca389ed75295824098b8639f915d1} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+Window\+Status\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})}\end{DoxyParamCaption})}
+
+\Hypertarget{freeglut__callbacks_8c_a4474dbafdbface1b40a66f4b5c4f1f7d_a4474dbafdbface1b40a66f4b5c4f1f7d}\index{freeglut\_callbacks.c@{freeglut\_callbacks.c}!glutWMCloseFunc@{glutWMCloseFunc}}
+\index{glutWMCloseFunc@{glutWMCloseFunc}!freeglut\_callbacks.c@{freeglut\_callbacks.c}}
+\doxysubsubsection{\texorpdfstring{glutWMCloseFunc()}{glutWMCloseFunc()}}
+{\footnotesize\ttfamily \label{freeglut__callbacks_8c_a4474dbafdbface1b40a66f4b5c4f1f7d_a4474dbafdbface1b40a66f4b5c4f1f7d} 
+void \mbox{\hyperlink{freeglut__std_8h_acfe8e7260770f0d6471764f95864489c_acfe8e7260770f0d6471764f95864489c}{FGAPIENTRY}} glut\+WMClose\+Func (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{callback~}{)(void)}\end{DoxyParamCaption})}
+

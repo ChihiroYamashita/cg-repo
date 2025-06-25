@@ -1,0 +1,613 @@
+\doxysection{Eigen\+::internal\+::Sparse\+LUImpl\texorpdfstring{$<$}{<} Scalar, Storage\+Index \texorpdfstring{$>$}{>} クラステンプレート}
+\hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl}{}\label{class_eigen_1_1internal_1_1_sparse_l_u_impl}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+
+
+{\ttfamily \#include $<$Sparse\+LUImpl.\+h$>$}
+
+
+
+Eigen\+::internal\+::Sparse\+LUImpl\texorpdfstring{$<$}{<} Scalar, Storage\+Index \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{class_eigen_1_1internal_1_1_sparse_l_u_impl__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, 1 $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a93af73309914cb76c49fc4dd3991e752_a93af73309914cb76c49fc4dd3991e752}{Scalar\+Vector}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Storage\+Index, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, 1 $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, \mbox{\hyperlink{group__enums_gaacded1a18ae58b0f554751f6cdf9eb13_ggaacded1a18ae58b0f554751f6cdf9eb13a0103672ae41005ab03b4176c765afd62}{Col\+Major}} $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_adcf700b6c48dcc18a7cbeeebdaaae536_adcf700b6c48dcc18a7cbeeebdaaae536}{Scalar\+Matrix}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_map}{Map}}$<$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_adcf700b6c48dcc18a7cbeeebdaaae536_adcf700b6c48dcc18a7cbeeebdaaae536}{Scalar\+Matrix}}, 0, \mbox{\hyperlink{class_eigen_1_1_outer_stride}{Outer\+Stride}}$<$$>$ $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a20ea6fd5984bfdaa216de0aabfdaa40e_a20ea6fd5984bfdaa216de0aabfdaa40e}{Mapped\+Matrix\+Block}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_plain_object_base_a675fa4104cdacc7f0904b2ec975a4712_a675fa4104cdacc7f0904b2ec975a4712}{Scalar\+Vector\+::\+Real\+Scalar}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ac2dff89de3eea1fb3fcabe804f2ac109_ac2dff89de3eea1fb3fcabe804f2ac109}{Real\+Scalar}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_ref}{Ref}}$<$ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, 1 $>$ $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a5c975e72794a25670a7d9f4998754e4f_a5c975e72794a25670a7d9f4998754e4f}{Block\+Scalar\+Vector}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_ref}{Ref}}$<$ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Storage\+Index, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, 1 $>$ $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab14789d198bff8224dd5a8cd0e45bc13_ab14789d198bff8224dd5a8cd0e45bc13}{Block\+Index\+Vector}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1_l_u___global_l_u__t}{LU\+\_\+\+Global\+LU\+\_\+t}}$<$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}}, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a93af73309914cb76c49fc4dd3991e752_a93af73309914cb76c49fc4dd3991e752}{Scalar\+Vector}} $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, \mbox{\hyperlink{group__enums_gaacded1a18ae58b0f554751f6cdf9eb13_ggaacded1a18ae58b0f554751f6cdf9eb13a0103672ae41005ab03b4176c765afd62}{Col\+Major}}, Storage\+Index $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_aef2d55dd71d88615ad00abd4458f3970_aef2d55dd71d88615ad00abd4458f3970}{Matrix\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{限定公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{struct_vector_type}{Vector\+Type}} $>$ }\\\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a1ca361dbb608931316a87f77d695fddf_a1ca361dbb608931316a87f77d695fddf}{expand}} (\mbox{\hyperlink{struct_vector_type}{Vector\+Type}} \&vec, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&length, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} nb\+Elts, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} keep\+\_\+prev, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&num\+\_\+expansions)
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_aaf7f8fa515405d509d1a80fd91cc2dbf_aaf7f8fa515405d509d1a80fd91cc2dbf}{mem\+Init}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} annz, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} lwork, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} fillratio, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} panel\+\_\+size, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&glu)
+\begin{DoxyCompactList}\small\item\em Allocate various working space for the numerical factorization phase. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{struct_vector_type}{Vector\+Type}} $>$ }\\\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_adcc7edfe2c9a69fd39caf96da66c8982_adcc7edfe2c9a69fd39caf96da66c8982}{mem\+Xpand}} (\mbox{\hyperlink{struct_vector_type}{Vector\+Type}} \&vec, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&maxlen, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} nb\+Elts, \mbox{\hyperlink{namespace_eigen_1_1internal_a5ada550dfc9d36503a814391f7f68fc9_a5ada550dfc9d36503a814391f7f68fc9}{Mem\+Type}} memtype, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&num\+\_\+expansions)
+\begin{DoxyCompactList}\small\item\em Expand the existing storage \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a8b5382b7fe4bad9e020da452880ed7bd_a8b5382b7fe4bad9e020da452880ed7bd}{heap\+\_\+relax\+\_\+snode}} (const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&et, const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} relax\+\_\+columns, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&descendants, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&relax\+\_\+end)
+\begin{DoxyCompactList}\small\item\em Identify the initial relaxed supernodes \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2c382fe7e03a35c479dd98409690dfcb_a2c382fe7e03a35c479dd98409690dfcb}{relax\+\_\+snode}} (const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&et, const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} relax\+\_\+columns, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&descendants, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&relax\+\_\+end)
+\begin{DoxyCompactList}\small\item\em Identify the initial relaxed supernodes \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a75c5a4b5a17643e243e11741df018470_a75c5a4b5a17643e243e11741df018470}{snode\+\_\+dfs}} (const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} jcol, const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} kcol, const \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_aef2d55dd71d88615ad00abd4458f3970_aef2d55dd71d88615ad00abd4458f3970}{Matrix\+Type}} \&\mbox{\hyperlink{_tutorial___advanced_initialization___comma_temporary_8cpp_a5d2ded7a4c8830608d7b218f5f27c0a0_a5d2ded7a4c8830608d7b218f5f27c0a0}{mat}}, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&xprune, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&marker, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&glu)
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2d835179cc3dcf09ff14ab3c8f0d9415_a2d835179cc3dcf09ff14ab3c8f0d9415}{snode\+\_\+bmod}} (const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} jcol, const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} fsupc, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a93af73309914cb76c49fc4dd3991e752_a93af73309914cb76c49fc4dd3991e752}{Scalar\+Vector}} \&dense, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&glu)
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a9ddac9b647036e94b016af5eb566ad54_a9ddac9b647036e94b016af5eb566ad54}{pivotL}} (const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} jcol, const \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ac2dff89de3eea1fb3fcabe804f2ac109_ac2dff89de3eea1fb3fcabe804f2ac109}{Real\+Scalar}} \&diagpivotthresh, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&perm\+\_\+r, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&iperm\+\_\+c, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&pivrow, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&glu)
+\begin{DoxyCompactList}\small\item\em Performs the numerical pivotin on the current column of L, and the CDIV operation. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Traits $>$ }\\void \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_aef49b896c596d9e4893d3ae468d1dfac_aef49b896c596d9e4893d3ae468d1dfac}{dfs\+\_\+kernel}} (const Storage\+Index jj, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&perm\+\_\+r, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&nseg, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&panel\+\_\+lsub, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&segrep, \mbox{\hyperlink{class_eigen_1_1_ref}{Ref}}$<$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} $>$ repfnz\+\_\+col, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&xprune, \mbox{\hyperlink{class_eigen_1_1_ref}{Ref}}$<$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} $>$ marker, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&parent, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&xplore, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&glu, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&nextl\+\_\+col, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} krow, Traits \&\mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}})
+\item 
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a8c3121399bef169be65974ac20e9be7d_a8c3121399bef169be65974ac20e9be7d}{panel\+\_\+dfs}} (const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}, const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_matrix__resize__int_8cpp_aab236ce080522c9832217fd5f157541b_aab236ce080522c9832217fd5f157541b}{w}}, const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} jcol, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_aef2d55dd71d88615ad00abd4458f3970_aef2d55dd71d88615ad00abd4458f3970}{Matrix\+Type}} \&\mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&perm\+\_\+r, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&nseg, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a93af73309914cb76c49fc4dd3991e752_a93af73309914cb76c49fc4dd3991e752}{Scalar\+Vector}} \&dense, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&panel\+\_\+lsub, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&segrep, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&repfnz, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&xprune, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&marker, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&parent, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&xplore, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&glu)
+\begin{DoxyCompactList}\small\item\em Performs a symbolic factorization on a panel of columns \mbox{[}jcol, jcol+w) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_adc02571904ce316f7337c93770cdd221_adc02571904ce316f7337c93770cdd221}{panel\+\_\+bmod}} (const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}, const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_matrix__resize__int_8cpp_aab236ce080522c9832217fd5f157541b_aab236ce080522c9832217fd5f157541b}{w}}, const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} jcol, const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} nseg, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a93af73309914cb76c49fc4dd3991e752_a93af73309914cb76c49fc4dd3991e752}{Scalar\+Vector}} \&dense, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a93af73309914cb76c49fc4dd3991e752_a93af73309914cb76c49fc4dd3991e752}{Scalar\+Vector}} \&tempv, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&segrep, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&repfnz, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&glu)
+\begin{DoxyCompactList}\small\item\em Performs numeric block updates (sup-\/panel) in topological order. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a38690e2c61ff91fd724d0e96c22c8377_a38690e2c61ff91fd724d0e96c22c8377}{column\+\_\+dfs}} (const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}, const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} jcol, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&perm\+\_\+r, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} maxsuper, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&nseg, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab14789d198bff8224dd5a8cd0e45bc13_ab14789d198bff8224dd5a8cd0e45bc13}{Block\+Index\+Vector}} lsub\+\_\+col, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&segrep, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab14789d198bff8224dd5a8cd0e45bc13_ab14789d198bff8224dd5a8cd0e45bc13}{Block\+Index\+Vector}} repfnz, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&xprune, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&marker, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&parent, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&xplore, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&glu)
+\begin{DoxyCompactList}\small\item\em Performs a symbolic factorization on column jcol and decide the supernode boundary \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a9d8ed13d67f664e4aa3269df8a13b0aa_a9d8ed13d67f664e4aa3269df8a13b0aa}{column\+\_\+bmod}} (const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} jcol, const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} nseg, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a5c975e72794a25670a7d9f4998754e4f_a5c975e72794a25670a7d9f4998754e4f}{Block\+Scalar\+Vector}} dense, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a93af73309914cb76c49fc4dd3991e752_a93af73309914cb76c49fc4dd3991e752}{Scalar\+Vector}} \&tempv, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab14789d198bff8224dd5a8cd0e45bc13_ab14789d198bff8224dd5a8cd0e45bc13}{Block\+Index\+Vector}} segrep, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab14789d198bff8224dd5a8cd0e45bc13_ab14789d198bff8224dd5a8cd0e45bc13}{Block\+Index\+Vector}} repfnz, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} fpanelc, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&glu)
+\begin{DoxyCompactList}\small\item\em Performs numeric block updates (sup-\/col) in topological order \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a5c1f6106d5bf6886d5c7148e59d7c3b6_a5c1f6106d5bf6886d5c7148e59d7c3b6}{copy\+\_\+to\+\_\+ucol}} (const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} jcol, const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} nseg, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&segrep, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab14789d198bff8224dd5a8cd0e45bc13_ab14789d198bff8224dd5a8cd0e45bc13}{Block\+Index\+Vector}} repfnz, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&perm\+\_\+r, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a5c975e72794a25670a7d9f4998754e4f_a5c975e72794a25670a7d9f4998754e4f}{Block\+Scalar\+Vector}} dense, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&glu)
+\begin{DoxyCompactList}\small\item\em Performs numeric block updates (sup-\/col) in topological order \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ad01384d1bf6bb19e8219ff74e1f43ce9_ad01384d1bf6bb19e8219ff74e1f43ce9}{pruneL}} (const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} jcol, const \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&perm\+\_\+r, const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} pivrow, const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} nseg, const \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&segrep, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab14789d198bff8224dd5a8cd0e45bc13_ab14789d198bff8224dd5a8cd0e45bc13}{Block\+Index\+Vector}} repfnz, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&xprune, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&glu)
+\begin{DoxyCompactList}\small\item\em Prunes the L-\/structure. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a9605741d19fe01ee4ec07f42988a386a_a9605741d19fe01ee4ec07f42988a386a}{countnz}} (const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&nnzL, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&nnzU, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&glu)
+\begin{DoxyCompactList}\small\item\em Count Nonzero elements in the factors \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a49c9b29b0c5a8233d58d8a204ed59105_a49c9b29b0c5a8233d58d8a204ed59105}{fixupL}} (const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}, const \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&perm\+\_\+r, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&glu)
+\begin{DoxyCompactList}\small\item\em Fix up the data storage lsub for L-\/subscripts. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{フレンド}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename , typename $>$ }\\struct \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_aeb52445d9b5f3ca9a6e74be2e7e42e12_aeb52445d9b5f3ca9a6e74be2e7e42e12}{column\+\_\+dfs\+\_\+traits}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{詳解}
+\subsubsection*{template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, typename Storage\+Index$>$\newline
+class Eigen\+::internal\+::\+Sparse\+LUImpl$<$ Scalar, Storage\+Index $>$}
+Base class for sparse\+LU 
+
+\doxysubsection{型定義メンバ詳解}
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab14789d198bff8224dd5a8cd0e45bc13_ab14789d198bff8224dd5a8cd0e45bc13}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!BlockIndexVector@{BlockIndexVector}}
+\index{BlockIndexVector@{BlockIndexVector}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{BlockIndexVector}{BlockIndexVector}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab14789d198bff8224dd5a8cd0e45bc13_ab14789d198bff8224dd5a8cd0e45bc13} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_ref}{Ref}}$<$\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$Storage\+Index,\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}},1$>$ $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Eigen\+::internal\+::\+Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\+::\+Block\+Index\+Vector}
+
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_a5c975e72794a25670a7d9f4998754e4f_a5c975e72794a25670a7d9f4998754e4f}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!BlockScalarVector@{BlockScalarVector}}
+\index{BlockScalarVector@{BlockScalarVector}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{BlockScalarVector}{BlockScalarVector}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_a5c975e72794a25670a7d9f4998754e4f_a5c975e72794a25670a7d9f4998754e4f} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_ref}{Ref}}$<$\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}},\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}},1$>$ $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Eigen\+::internal\+::\+Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\+::\+Block\+Scalar\+Vector}
+
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!GlobalLU\_t@{GlobalLU\_t}}
+\index{GlobalLU\_t@{GlobalLU\_t}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{GlobalLU\_t}{GlobalLU\_t}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1_l_u___global_l_u__t}{LU\+\_\+\+Global\+LU\+\_\+t}}$<$\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}}, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a93af73309914cb76c49fc4dd3991e752_a93af73309914cb76c49fc4dd3991e752}{Scalar\+Vector}}$>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Eigen\+::internal\+::\+Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\+::\+Global\+LU\+\_\+t}
+
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!IndexVector@{IndexVector}}
+\index{IndexVector@{IndexVector}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{IndexVector}{IndexVector}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$Storage\+Index,\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}},1$>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Eigen\+::internal\+::\+Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\+::\+Index\+Vector}
+
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_a20ea6fd5984bfdaa216de0aabfdaa40e_a20ea6fd5984bfdaa216de0aabfdaa40e}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!MappedMatrixBlock@{MappedMatrixBlock}}
+\index{MappedMatrixBlock@{MappedMatrixBlock}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{MappedMatrixBlock}{MappedMatrixBlock}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_a20ea6fd5984bfdaa216de0aabfdaa40e_a20ea6fd5984bfdaa216de0aabfdaa40e} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_map}{Map}}$<$\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_adcf700b6c48dcc18a7cbeeebdaaae536_adcf700b6c48dcc18a7cbeeebdaaae536}{Scalar\+Matrix}}, 0, \mbox{\hyperlink{class_eigen_1_1_outer_stride}{Outer\+Stride}}$<$$>$ $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Eigen\+::internal\+::\+Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\+::\+Mapped\+Matrix\+Block}
+
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_aef2d55dd71d88615ad00abd4458f3970_aef2d55dd71d88615ad00abd4458f3970}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!MatrixType@{MatrixType}}
+\index{MatrixType@{MatrixType}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{MatrixType}{MatrixType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_aef2d55dd71d88615ad00abd4458f3970_aef2d55dd71d88615ad00abd4458f3970} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}},\mbox{\hyperlink{group__enums_gaacded1a18ae58b0f554751f6cdf9eb13_ggaacded1a18ae58b0f554751f6cdf9eb13a0103672ae41005ab03b4176c765afd62}{Col\+Major}},Storage\+Index$>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Eigen\+::internal\+::\+Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{\+::\+Matrix\+Type}}}
+
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_ac2dff89de3eea1fb3fcabe804f2ac109_ac2dff89de3eea1fb3fcabe804f2ac109}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!RealScalar@{RealScalar}}
+\index{RealScalar@{RealScalar}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{RealScalar}{RealScalar}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_ac2dff89de3eea1fb3fcabe804f2ac109_ac2dff89de3eea1fb3fcabe804f2ac109} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_plain_object_base_a675fa4104cdacc7f0904b2ec975a4712_a675fa4104cdacc7f0904b2ec975a4712}{Scalar\+Vector\+::\+Real\+Scalar}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Eigen\+::internal\+::\+Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{\+::\+Real\+Scalar}}}
+
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_adcf700b6c48dcc18a7cbeeebdaaae536_adcf700b6c48dcc18a7cbeeebdaaae536}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!ScalarMatrix@{ScalarMatrix}}
+\index{ScalarMatrix@{ScalarMatrix}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{ScalarMatrix}{ScalarMatrix}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_adcf700b6c48dcc18a7cbeeebdaaae536_adcf700b6c48dcc18a7cbeeebdaaae536} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}},\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}},\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}},\mbox{\hyperlink{group__enums_gaacded1a18ae58b0f554751f6cdf9eb13_ggaacded1a18ae58b0f554751f6cdf9eb13a0103672ae41005ab03b4176c765afd62}{Col\+Major}}$>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Eigen\+::internal\+::\+Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\+::\+Scalar\+Matrix}
+
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_a93af73309914cb76c49fc4dd3991e752_a93af73309914cb76c49fc4dd3991e752}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!ScalarVector@{ScalarVector}}
+\index{ScalarVector@{ScalarVector}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{ScalarVector}{ScalarVector}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_a93af73309914cb76c49fc4dd3991e752_a93af73309914cb76c49fc4dd3991e752} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}},\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}},1$>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Eigen\+::internal\+::\+Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\+::\+Scalar\+Vector}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_a9d8ed13d67f664e4aa3269df8a13b0aa_a9d8ed13d67f664e4aa3269df8a13b0aa}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!column\_bmod@{column\_bmod}}
+\index{column\_bmod@{column\_bmod}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{column\_bmod()}{column\_bmod()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_a9d8ed13d67f664e4aa3269df8a13b0aa_a9d8ed13d67f664e4aa3269df8a13b0aa} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Eigen\+::internal\+::\+Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\+::column\+\_\+bmod (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{jcol}{, }\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{nseg}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a5c975e72794a25670a7d9f4998754e4f_a5c975e72794a25670a7d9f4998754e4f}{Block\+Scalar\+Vector}}}]{dense}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a93af73309914cb76c49fc4dd3991e752_a93af73309914cb76c49fc4dd3991e752}{Scalar\+Vector}} \&}]{tempv}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab14789d198bff8224dd5a8cd0e45bc13_ab14789d198bff8224dd5a8cd0e45bc13}{Block\+Index\+Vector}}}]{segrep}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab14789d198bff8224dd5a8cd0e45bc13_ab14789d198bff8224dd5a8cd0e45bc13}{Block\+Index\+Vector}}}]{repfnz}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{fpanelc}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&}]{glu}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Performs numeric block updates (sup-\/col) in topological order 
+
+
+\begin{DoxyParams}{引数}
+{\em jcol} & current column to update \\
+\hline
+{\em nseg} & Number of segments in the U part \\
+\hline
+{\em dense} & Store the full representation of the column \\
+\hline
+{\em tempv} & working array \\
+\hline
+{\em segrep} & segment representative ... \\
+\hline
+{\em repfnz} & ??? First nonzero column in each row ??? ... \\
+\hline
+{\em fpanelc} & First column in the current panel \\
+\hline
+{\em glu} & Global LU data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+0 -\/ successful return \texorpdfstring{$>$}{>} 0 -\/ number of bytes allocated when run out of space 
+\end{DoxyReturn}
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_a38690e2c61ff91fd724d0e96c22c8377_a38690e2c61ff91fd724d0e96c22c8377}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!column\_dfs@{column\_dfs}}
+\index{column\_dfs@{column\_dfs}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{column\_dfs()}{column\_dfs()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_a38690e2c61ff91fd724d0e96c22c8377_a38690e2c61ff91fd724d0e96c22c8377} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Eigen\+::internal\+::\+Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\+::column\+\_\+dfs (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{m}{, }\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{jcol}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{perm\+\_\+r}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{maxsuper}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&}]{nseg}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab14789d198bff8224dd5a8cd0e45bc13_ab14789d198bff8224dd5a8cd0e45bc13}{Block\+Index\+Vector}}}]{lsub\+\_\+col}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{segrep}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab14789d198bff8224dd5a8cd0e45bc13_ab14789d198bff8224dd5a8cd0e45bc13}{Block\+Index\+Vector}}}]{repfnz}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{xprune}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{marker}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{parent}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{xplore}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&}]{glu}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Performs a symbolic factorization on column jcol and decide the supernode boundary 
+
+A supernode representative is the last column of a supernode. The nonzeros in U\mbox{[}\texorpdfstring{$\ast$}{*},j\mbox{]} are segments that end at supernodes representatives. The routine returns a list of the supernodal representatives in topological order of the dfs that generates them. The location of the first nonzero in each supernodal segment (supernodal entry location) is also returned.
+
+
+\begin{DoxyParams}[1]{引数}
+ & {\em m} & number of rows in the matrix \\
+\hline
+ & {\em jcol} & Current column \\
+\hline
+ & {\em perm\+\_\+r} & Row permutation \\
+\hline
+ & {\em maxsuper} & Maximum number of column allowed in a supernode \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em nseg} & Number of segments in current U\mbox{[}\texorpdfstring{$\ast$}{*},j\mbox{]} -\/ new segments appended \\
+\hline
+ & {\em lsub\+\_\+col} & defines the rhs vector to start the dfs \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em segrep} & Segment representatives -\/ new segments appended \\
+\hline
+ & {\em repfnz} & First nonzero location in each row \\
+\hline
+ & {\em xprune} & \\
+\hline
+ & {\em marker} & marker\mbox{[}i\mbox{]} == jj, if i was visited during dfs of current column jj; \\
+\hline
+ & {\em parent} & \\
+\hline
+ & {\em xplore} & working array \\
+\hline
+ & {\em glu} & global LU data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+0 success \texorpdfstring{$>$}{>} 0 number of bytes allocated when run out of space 
+\end{DoxyReturn}
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_a5c1f6106d5bf6886d5c7148e59d7c3b6_a5c1f6106d5bf6886d5c7148e59d7c3b6}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!copy\_to\_ucol@{copy\_to\_ucol}}
+\index{copy\_to\_ucol@{copy\_to\_ucol}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{copy\_to\_ucol()}{copy\_to\_ucol()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_a5c1f6106d5bf6886d5c7148e59d7c3b6_a5c1f6106d5bf6886d5c7148e59d7c3b6} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Eigen\+::internal\+::\+Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\+::copy\+\_\+to\+\_\+ucol (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{jcol}{, }\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{nseg}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{segrep}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab14789d198bff8224dd5a8cd0e45bc13_ab14789d198bff8224dd5a8cd0e45bc13}{Block\+Index\+Vector}}}]{repfnz}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{perm\+\_\+r}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a5c975e72794a25670a7d9f4998754e4f_a5c975e72794a25670a7d9f4998754e4f}{Block\+Scalar\+Vector}}}]{dense}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&}]{glu}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Performs numeric block updates (sup-\/col) in topological order 
+
+
+\begin{DoxyParams}{引数}
+{\em jcol} & current column to update \\
+\hline
+{\em nseg} & Number of segments in the U part \\
+\hline
+{\em segrep} & segment representative ... \\
+\hline
+{\em repfnz} & First nonzero column in each row ... \\
+\hline
+{\em perm\+\_\+r} & Row permutation \\
+\hline
+{\em dense} & Store the full representation of the column \\
+\hline
+{\em glu} & Global LU data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+0 -\/ successful return \texorpdfstring{$>$}{>} 0 -\/ number of bytes allocated when run out of space 
+\end{DoxyReturn}
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_a9605741d19fe01ee4ec07f42988a386a_a9605741d19fe01ee4ec07f42988a386a}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!countnz@{countnz}}
+\index{countnz@{countnz}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{countnz()}{countnz()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_a9605741d19fe01ee4ec07f42988a386a_a9605741d19fe01ee4ec07f42988a386a} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Eigen\+::internal\+::\+Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\+::countnz (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{n}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&}]{nnzL}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&}]{nnzU}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&}]{glu}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Count Nonzero elements in the factors 
+
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_aef49b896c596d9e4893d3ae468d1dfac_aef49b896c596d9e4893d3ae468d1dfac}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!dfs\_kernel@{dfs\_kernel}}
+\index{dfs\_kernel@{dfs\_kernel}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{dfs\_kernel()}{dfs\_kernel()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_aef49b896c596d9e4893d3ae468d1dfac_aef49b896c596d9e4893d3ae468d1dfac} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+template$<$typename Traits $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\+::dfs\+\_\+kernel (\begin{DoxyParamCaption}\item[{const Storage\+Index}]{jj}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{perm\+\_\+r}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&}]{nseg}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{panel\+\_\+lsub}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{segrep}{, }\item[{\mbox{\hyperlink{class_eigen_1_1_ref}{Ref}}$<$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} $>$}]{repfnz\+\_\+col}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{xprune}{, }\item[{\mbox{\hyperlink{class_eigen_1_1_ref}{Ref}}$<$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} $>$}]{marker}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{parent}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{xplore}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&}]{glu}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&}]{nextl\+\_\+col}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{krow}{, }\item[{Traits \&}]{traits}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_a1ca361dbb608931316a87f77d695fddf_a1ca361dbb608931316a87f77d695fddf}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!expand@{expand}}
+\index{expand@{expand}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{expand()}{expand()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_a1ca361dbb608931316a87f77d695fddf_a1ca361dbb608931316a87f77d695fddf} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+template$<$typename \mbox{\hyperlink{struct_vector_type}{Vector\+Type}} $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Eigen\+::internal\+::\+Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\+::expand (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_vector_type}{Vector\+Type}} \&}]{vec}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&}]{length}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{nb\+Elts}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{keep\+\_\+prev}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&}]{num\+\_\+expansions}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Expand the existing storage to accommodate more fill-\/ins 
+\begin{DoxyParams}[1]{引数}
+ & {\em vec} & Valid pointer to the vector to allocate or expand \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em length} & At input, contain the current length of the vector that is to be increased. At output, length of the newly allocated vector \\
+\hline
+\mbox{\texttt{ in}}  & {\em nb\+Elts} & Current number of elements in the factors \\
+\hline
+ & {\em keep\+\_\+prev} & 1\+: use length and do not expand the vector; 0\+: compute new\+\_\+len and expand \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+expansions} & Number of times the memory has been expanded \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_a49c9b29b0c5a8233d58d8a204ed59105_a49c9b29b0c5a8233d58d8a204ed59105}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!fixupL@{fixupL}}
+\index{fixupL@{fixupL}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{fixupL()}{fixupL()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_a49c9b29b0c5a8233d58d8a204ed59105_a49c9b29b0c5a8233d58d8a204ed59105} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Eigen\+::internal\+::\+Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\+::fixupL (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{n}{, }\item[{const \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{perm\+\_\+r}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&}]{glu}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Fix up the data storage lsub for L-\/subscripts. 
+
+It removes the subscripts sets for structural pruning, and applies permutation to the remaining subscripts \Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_a8b5382b7fe4bad9e020da452880ed7bd_a8b5382b7fe4bad9e020da452880ed7bd}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!heap\_relax\_snode@{heap\_relax\_snode}}
+\index{heap\_relax\_snode@{heap\_relax\_snode}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{heap\_relax\_snode()}{heap\_relax\_snode()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_a8b5382b7fe4bad9e020da452880ed7bd_a8b5382b7fe4bad9e020da452880ed7bd} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Eigen\+::internal\+::\+Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\+::heap\+\_\+relax\+\_\+snode (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{n}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{et}{, }\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{relax\+\_\+columns}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{descendants}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{relax\+\_\+end}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Identify the initial relaxed supernodes 
+
+This routine applied to a symmetric elimination tree. It assumes that the matrix has been reordered according to the postorder of the etree 
+\begin{DoxyParams}{引数}
+{\em n} & The number of columns \\
+\hline
+{\em et} & elimination tree \\
+\hline
+{\em relax\+\_\+columns} & Maximum number of columns allowed in a relaxed snode \\
+\hline
+{\em descendants} & Number of descendants of each node in the etree \\
+\hline
+{\em relax\+\_\+end} & last column in a supernode \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_aaf7f8fa515405d509d1a80fd91cc2dbf_aaf7f8fa515405d509d1a80fd91cc2dbf}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!memInit@{memInit}}
+\index{memInit@{memInit}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{memInit()}{memInit()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_aaf7f8fa515405d509d1a80fd91cc2dbf_aaf7f8fa515405d509d1a80fd91cc2dbf} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Eigen\+::internal\+::\+Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\+::mem\+Init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{m}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{n}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{annz}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{lwork}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{fillratio}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{panel\+\_\+size}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&}]{glu}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Allocate various working space for the numerical factorization phase. 
+
+
+\begin{DoxyParams}{引数}
+{\em m} & number of rows of the input matrix \\
+\hline
+{\em n} & number of columns \\
+\hline
+{\em annz} & number of initial nonzeros in the matrix \\
+\hline
+{\em lwork} & if lwork=-\/1, this routine returns an estimated size of the required memory \\
+\hline
+{\em glu} & persistent data to facilitate multiple factors \+: will be deleted later ?? \\
+\hline
+{\em fillratio} & estimated ratio of fill in the factors \\
+\hline
+{\em panel\+\_\+size} & Size of a panel \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+an estimated size of the required memory if lwork = -\/1; otherwise, return the size of actually allocated memory when allocation failed, and 0 on success 
+\end{DoxyReturn}
+\begin{DoxyNote}{覚え書き}
+Unlike \doxylink{class_eigen_1_1_super_l_u}{Super\+LU}, this routine does not support successive factorization with the same pattern and the same row permutation 
+\end{DoxyNote}
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_adcc7edfe2c9a69fd39caf96da66c8982_adcc7edfe2c9a69fd39caf96da66c8982}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!memXpand@{memXpand}}
+\index{memXpand@{memXpand}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{memXpand()}{memXpand()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_adcc7edfe2c9a69fd39caf96da66c8982_adcc7edfe2c9a69fd39caf96da66c8982} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+template$<$typename \mbox{\hyperlink{struct_vector_type}{Vector\+Type}} $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Eigen\+::internal\+::\+Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\+::mem\+Xpand (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_vector_type}{Vector\+Type}} \&}]{vec}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&}]{maxlen}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{nb\+Elts}{, }\item[{\mbox{\hyperlink{namespace_eigen_1_1internal_a5ada550dfc9d36503a814391f7f68fc9_a5ada550dfc9d36503a814391f7f68fc9}{Mem\+Type}}}]{memtype}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&}]{num\+\_\+expansions}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Expand the existing storage 
+
+
+\begin{DoxyParams}[1]{引数}
+ & {\em vec} & vector to expand \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em maxlen} & On input, previous size of vec (Number of elements to copy ). on output, new size \\
+\hline
+ & {\em nb\+Elts} & current number of elements in the vector. \\
+\hline
+ & {\em memtype} & Type of the element to expand \\
+\hline
+ & {\em num\+\_\+expansions} & Number of expansions \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+0 on success, \texorpdfstring{$>$}{>} 0 size of the memory allocated so far 
+\end{DoxyReturn}
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_adc02571904ce316f7337c93770cdd221_adc02571904ce316f7337c93770cdd221}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!panel\_bmod@{panel\_bmod}}
+\index{panel\_bmod@{panel\_bmod}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{panel\_bmod()}{panel\_bmod()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_adc02571904ce316f7337c93770cdd221_adc02571904ce316f7337c93770cdd221} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Eigen\+::internal\+::\+Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\+::panel\+\_\+bmod (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{m}{, }\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{w}{, }\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{jcol}{, }\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{nseg}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a93af73309914cb76c49fc4dd3991e752_a93af73309914cb76c49fc4dd3991e752}{Scalar\+Vector}} \&}]{dense}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a93af73309914cb76c49fc4dd3991e752_a93af73309914cb76c49fc4dd3991e752}{Scalar\+Vector}} \&}]{tempv}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{segrep}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{repfnz}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&}]{glu}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Performs numeric block updates (sup-\/panel) in topological order. 
+
+Before entering this routine, the original nonzeros in the panel were already copied into the spa\mbox{[}m,w\mbox{]}
+
+
+\begin{DoxyParams}{引数}
+{\em m} & number of rows in the matrix \\
+\hline
+{\em w} & Panel size \\
+\hline
+{\em jcol} & Starting column of the panel \\
+\hline
+{\em nseg} & Number of segments in the U part \\
+\hline
+{\em dense} & Store the full representation of the panel \\
+\hline
+{\em tempv} & working array \\
+\hline
+{\em segrep} & segment representative... first row in the segment \\
+\hline
+{\em repfnz} & First nonzero rows \\
+\hline
+{\em glu} & Global LU data. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_a8c3121399bef169be65974ac20e9be7d_a8c3121399bef169be65974ac20e9be7d}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!panel\_dfs@{panel\_dfs}}
+\index{panel\_dfs@{panel\_dfs}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{panel\_dfs()}{panel\_dfs()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_a8c3121399bef169be65974ac20e9be7d_a8c3121399bef169be65974ac20e9be7d} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Eigen\+::internal\+::\+Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\+::panel\+\_\+dfs (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{m}{, }\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{w}{, }\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{jcol}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_aef2d55dd71d88615ad00abd4458f3970_aef2d55dd71d88615ad00abd4458f3970}{Matrix\+Type}} \&}]{A}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{perm\+\_\+r}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&}]{nseg}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a93af73309914cb76c49fc4dd3991e752_a93af73309914cb76c49fc4dd3991e752}{Scalar\+Vector}} \&}]{dense}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{panel\+\_\+lsub}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{segrep}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{repfnz}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{xprune}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{marker}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{parent}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{xplore}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&}]{glu}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Performs a symbolic factorization on a panel of columns \mbox{[}jcol, jcol+w) 
+
+A supernode representative is the last column of a supernode. The nonzeros in U\mbox{[}\texorpdfstring{$\ast$}{*},j\mbox{]} are segments that end at supernodes representatives
+
+The routine returns a list of the supernodal representatives in topological order of the dfs that generates them. This list is a superset of the topological order of each individual column within the panel. The location of the first nonzero in each supernodal segment (supernodal entry location) is also returned. Each column has a separate list for this purpose.
+
+Two markers arrays are used for dfs \+: marker\mbox{[}i\mbox{]} == jj, if i was visited during dfs of current column jj; marker1\mbox{[}i\mbox{]} \texorpdfstring{$>$}{>}= jcol, if i was visited by earlier columns in this panel;
+
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\texttt{ in}}  & {\em m} & number of rows in the matrix \\
+\hline
+\mbox{\texttt{ in}}  & {\em w} & Panel size \\
+\hline
+\mbox{\texttt{ in}}  & {\em jcol} & Starting column of the panel \\
+\hline
+\mbox{\texttt{ in}}  & {\em A} & Input matrix in column-\/major storage \\
+\hline
+\mbox{\texttt{ in}}  & {\em perm\+\_\+r} & Row permutation \\
+\hline
+\mbox{\texttt{ out}}  & {\em nseg} & Number of U segments \\
+\hline
+\mbox{\texttt{ out}}  & {\em dense} & Accumulate the column vectors of the panel \\
+\hline
+\mbox{\texttt{ out}}  & {\em panel\+\_\+lsub} & Subscripts of the row in the panel \\
+\hline
+\mbox{\texttt{ out}}  & {\em segrep} & Segment representative i.\+e first nonzero row of each segment \\
+\hline
+\mbox{\texttt{ out}}  & {\em repfnz} & First nonzero location in each row \\
+\hline
+\mbox{\texttt{ out}}  & {\em xprune} & The pruned elimination tree \\
+\hline
+\mbox{\texttt{ out}}  & {\em marker} & work vector \\
+\hline
+ & {\em parent} & The elimination tree \\
+\hline
+ & {\em xplore} & work vector \\
+\hline
+ & {\em glu} & The global data structure \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_a9ddac9b647036e94b016af5eb566ad54_a9ddac9b647036e94b016af5eb566ad54}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!pivotL@{pivotL}}
+\index{pivotL@{pivotL}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{pivotL()}{pivotL()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_a9ddac9b647036e94b016af5eb566ad54_a9ddac9b647036e94b016af5eb566ad54} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Eigen\+::internal\+::\+Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\+::pivotL (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{jcol}{, }\item[{const \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ac2dff89de3eea1fb3fcabe804f2ac109_ac2dff89de3eea1fb3fcabe804f2ac109}{Real\+Scalar}} \&}]{diagpivotthresh}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{perm\+\_\+r}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{iperm\+\_\+c}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&}]{pivrow}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&}]{glu}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Performs the numerical pivotin on the current column of L, and the CDIV operation. 
+
+Pivot policy \+: (1) Compute thresh = u \texorpdfstring{$\ast$}{*} max\+\_\+(i\texorpdfstring{$>$}{>}=j) \doxylink{datatypes_8h_a3aa069ac3980707dae1e0530f50d59e4_a3aa069ac3980707dae1e0530f50d59e4}{abs(\+A\+\_\+ij)}; (2) IF user specifies pivot row k and \doxylink{datatypes_8h_a3aa069ac3980707dae1e0530f50d59e4_a3aa069ac3980707dae1e0530f50d59e4}{abs(\+A\+\_\+kj)} \texorpdfstring{$>$}{>}= thresh THEN pivot row = k; ELSE IF \doxylink{datatypes_8h_a3aa069ac3980707dae1e0530f50d59e4_a3aa069ac3980707dae1e0530f50d59e4}{abs(\+A\+\_\+jj)} \texorpdfstring{$>$}{>}= thresh THEN pivot row = j; ELSE pivot row = m;
+
+Note\+: If you absolutely want to use a given pivot order, then set u=0.\+0.
+
+
+\begin{DoxyParams}[1]{引数}
+ & {\em jcol} & The current column of L \\
+\hline
+ & {\em diagpivotthresh} & diagonal pivoting threshold \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em perm\+\_\+r} & Row permutation (threshold pivoting) \\
+\hline
+\mbox{\texttt{ in}}  & {\em iperm\+\_\+c} & column permutation -\/ used to finf diagonal of Pc\texorpdfstring{$\ast$}{*}\+A\texorpdfstring{$\ast$}{*}\+Pc\textquotesingle{} \\
+\hline
+\mbox{\texttt{ out}}  & {\em pivrow} & The pivot row \\
+\hline
+ & {\em glu} & Global LU data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+0 if success, i \texorpdfstring{$>$}{>} 0 if U(i,i) is exactly zero 
+\end{DoxyReturn}
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_ad01384d1bf6bb19e8219ff74e1f43ce9_ad01384d1bf6bb19e8219ff74e1f43ce9}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!pruneL@{pruneL}}
+\index{pruneL@{pruneL}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{pruneL()}{pruneL()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_ad01384d1bf6bb19e8219ff74e1f43ce9_ad01384d1bf6bb19e8219ff74e1f43ce9} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Eigen\+::internal\+::\+Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\+::pruneL (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{jcol}{, }\item[{const \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{perm\+\_\+r}{, }\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{pivrow}{, }\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{nseg}{, }\item[{const \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{segrep}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab14789d198bff8224dd5a8cd0e45bc13_ab14789d198bff8224dd5a8cd0e45bc13}{Block\+Index\+Vector}}}]{repfnz}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{xprune}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&}]{glu}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Prunes the L-\/structure. 
+
+It prunes the L-\/structure of supernodes whose L-\/structure contains the current pivot row "{}pivrow"{}
+
+
+\begin{DoxyParams}[1]{引数}
+ & {\em jcol} & The current column of L \\
+\hline
+\mbox{\texttt{ in}}  & {\em perm\+\_\+r} & Row permutation \\
+\hline
+\mbox{\texttt{ out}}  & {\em pivrow} & The pivot row \\
+\hline
+ & {\em nseg} & Number of segments \\
+\hline
+ & {\em segrep} & \\
+\hline
+ & {\em repfnz} & \\
+\hline
+\mbox{\texttt{ out}}  & {\em xprune} & \\
+\hline
+ & {\em glu} & Global LU data \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2c382fe7e03a35c479dd98409690dfcb_a2c382fe7e03a35c479dd98409690dfcb}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!relax\_snode@{relax\_snode}}
+\index{relax\_snode@{relax\_snode}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{relax\_snode()}{relax\_snode()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2c382fe7e03a35c479dd98409690dfcb_a2c382fe7e03a35c479dd98409690dfcb} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Eigen\+::internal\+::\+Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\+::relax\+\_\+snode (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{n}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{et}{, }\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{relax\+\_\+columns}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{descendants}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{relax\+\_\+end}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Identify the initial relaxed supernodes 
+
+This routine is applied to a column elimination tree. It assumes that the matrix has been reordered according to the postorder of the etree 
+\begin{DoxyParams}{引数}
+{\em n} & the number of columns \\
+\hline
+{\em et} & elimination tree \\
+\hline
+{\em relax\+\_\+columns} & Maximum number of columns allowed in a relaxed snode \\
+\hline
+{\em descendants} & Number of descendants of each node in the etree \\
+\hline
+{\em relax\+\_\+end} & last column in a supernode \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2d835179cc3dcf09ff14ab3c8f0d9415_a2d835179cc3dcf09ff14ab3c8f0d9415}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!snode\_bmod@{snode\_bmod}}
+\index{snode\_bmod@{snode\_bmod}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{snode\_bmod()}{snode\_bmod()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2d835179cc3dcf09ff14ab3c8f0d9415_a2d835179cc3dcf09ff14ab3c8f0d9415} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Eigen\+::internal\+::\+Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\+::snode\+\_\+bmod (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{jcol}{, }\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{fsupc}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a93af73309914cb76c49fc4dd3991e752_a93af73309914cb76c49fc4dd3991e752}{Scalar\+Vector}} \&}]{dense}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&}]{glu}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_a75c5a4b5a17643e243e11741df018470_a75c5a4b5a17643e243e11741df018470}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!snode\_dfs@{snode\_dfs}}
+\index{snode\_dfs@{snode\_dfs}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{snode\_dfs()}{snode\_dfs()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_a75c5a4b5a17643e243e11741df018470_a75c5a4b5a17643e243e11741df018470} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Eigen\+::internal\+::\+Sparse\+LUImpl}}$<$ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}, Storage\+Index $>$\+::snode\+\_\+dfs (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{jcol}{, }\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{kcol}{, }\item[{const \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_aef2d55dd71d88615ad00abd4458f3970_aef2d55dd71d88615ad00abd4458f3970}{Matrix\+Type}} \&}]{mat}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{xprune}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_a2dcbabe6d686592fa44c760d07d26e70_a2dcbabe6d686592fa44c760d07d26e70}{Index\+Vector}} \&}]{marker}{, }\item[{\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl_ab280917b30fb56286b94e73de59e4ee4_ab280917b30fb56286b94e73de59e4ee4}{Global\+LU\+\_\+t}} \&}]{glu}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\doxysubsection{フレンドと関連関数の詳解}
+\Hypertarget{class_eigen_1_1internal_1_1_sparse_l_u_impl_aeb52445d9b5f3ca9a6e74be2e7e42e12_aeb52445d9b5f3ca9a6e74be2e7e42e12}\index{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}!column\_dfs\_traits@{column\_dfs\_traits}}
+\index{column\_dfs\_traits@{column\_dfs\_traits}!Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$@{Eigen::internal::SparseLUImpl$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{column\_dfs\_traits}{column\_dfs\_traits}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_sparse_l_u_impl_aeb52445d9b5f3ca9a6e74be2e7e42e12_aeb52445d9b5f3ca9a6e74be2e7e42e12} 
+template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename Storage\+Index $>$ \\
+template$<$typename , typename $>$ \\
+friend struct \mbox{\hyperlink{struct_eigen_1_1internal_1_1column__dfs__traits}{column\+\_\+dfs\+\_\+traits}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Sparse\+LU/\mbox{\hyperlink{_sparse_l_u_impl_8h}{Sparse\+LUImpl.\+h}}\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Sparse\+LU/\mbox{\hyperlink{_sparse_l_u__column__bmod_8h}{Sparse\+LU\+\_\+column\+\_\+bmod.\+h}}\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Sparse\+LU/\mbox{\hyperlink{_sparse_l_u__column__dfs_8h}{Sparse\+LU\+\_\+column\+\_\+dfs.\+h}}\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Sparse\+LU/\mbox{\hyperlink{_sparse_l_u__copy__to__ucol_8h}{Sparse\+LU\+\_\+copy\+\_\+to\+\_\+ucol.\+h}}\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Sparse\+LU/\mbox{\hyperlink{_sparse_l_u__heap__relax__snode_8h}{Sparse\+LU\+\_\+heap\+\_\+relax\+\_\+snode.\+h}}\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Sparse\+LU/\mbox{\hyperlink{_sparse_l_u___memory_8h}{Sparse\+LU\+\_\+\+Memory.\+h}}\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Sparse\+LU/\mbox{\hyperlink{_sparse_l_u__panel__bmod_8h}{Sparse\+LU\+\_\+panel\+\_\+bmod.\+h}}\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Sparse\+LU/\mbox{\hyperlink{_sparse_l_u__panel__dfs_8h}{Sparse\+LU\+\_\+panel\+\_\+dfs.\+h}}\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Sparse\+LU/\mbox{\hyperlink{_sparse_l_u__pivot_l_8h}{Sparse\+LU\+\_\+pivot\+L.\+h}}\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Sparse\+LU/\mbox{\hyperlink{_sparse_l_u__prune_l_8h}{Sparse\+LU\+\_\+prune\+L.\+h}}\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Sparse\+LU/\mbox{\hyperlink{_sparse_l_u__relax__snode_8h}{Sparse\+LU\+\_\+relax\+\_\+snode.\+h}}\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Sparse\+LU/\mbox{\hyperlink{_sparse_l_u___utils_8h}{Sparse\+LU\+\_\+\+Utils.\+h}}\end{DoxyCompactItemize}

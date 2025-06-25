@@ -1,0 +1,138 @@
+\doxysection{eigen-\/3.4.0/eigen-\/3.4.0/bench/tensors/tensor\+\_\+contract\+\_\+sycl\+\_\+bench.cc ファイル}
+\hypertarget{tensor__contract__sycl__bench_8cc}{}\label{tensor__contract__sycl__bench_8cc}\index{eigen-\/3.4.0/eigen-\/3.4.0/bench/tensors/tensor\_contract\_sycl\_bench.cc@{eigen-\/3.4.0/eigen-\/3.4.0/bench/tensors/tensor\_contract\_sycl\_bench.cc}}
+{\ttfamily \#include $<$SYCL/sycl.\+hpp$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include $<$unsupported/\+Eigen/\+CXX11/\+Tensor$>$}\newline
+tensor\+\_\+contract\+\_\+sycl\+\_\+bench.\+cc の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tensor__contract__sycl__bench_8cc__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{tensor__contract__sycl__bench_8cc_a0ac2411a38153dc20fb9531b77f9e344_a0ac2411a38153dc20fb9531b77f9e344}{EIGEN\+\_\+\+BENCH\+\_\+\+CONTRACT\+\_\+\+SYCL}}
+\item 
+\#define \mbox{\hyperlink{tensor__contract__sycl__bench_8cc_a47aafa3c6006d4a1892911cca05448be_a47aafa3c6006d4a1892911cca05448be}{EIGEN\+\_\+\+TEST\+\_\+\+NO\+\_\+\+LONGDOUBLE}}
+\item 
+\#define \mbox{\hyperlink{tensor__contract__sycl__bench_8cc_accdbdad937288caeb34ecd61a3b08f57_accdbdad937288caeb34ecd61a3b08f57}{EIGEN\+\_\+\+TEST\+\_\+\+NO\+\_\+\+COMPLEX}}
+\item 
+\#define \mbox{\hyperlink{tensor__contract__sycl__bench_8cc_a23fafe2bd4e27ecadab4deb95691bcf4_a23fafe2bd4e27ecadab4deb95691bcf4}{EIGEN\+\_\+\+DEFAULT\+\_\+\+DENSE\+\_\+\+INDEX\+\_\+\+TYPE}}~int64\+\_\+t
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ofstream \mbox{\hyperlink{tensor__contract__sycl__bench_8cc_acc4949c3e64b4395f74072403ddf6184_acc4949c3e64b4395f74072403ddf6184}{out}} ("{}Result.\+txt"{})
+\item 
+std\+::chrono\+::time\+\_\+point$<$ std\+::chrono\+::system\+\_\+clock $>$ \mbox{\hyperlink{tensor__contract__sycl__bench_8cc_ada8a0382af2a1950b919cf6b99c10a18_ada8a0382af2a1950b919cf6b99c10a18}{get\+\_\+time}} ()
+\item 
+{\footnotesize template$<$typename Start , typename End , typename \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} $>$ }\\void \mbox{\hyperlink{tensor__contract__sycl__bench_8cc_aa2530080b56373cf2620a7c8c5473e8d_aa2530080b56373cf2620a7c8c5473e8d}{finalize\+Benchmark}} (Start start, End end, \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} m\+\_\+, \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} k\+\_\+, \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} n\+\_\+, \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} num\+\_\+iters, std\+::string name)
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} , typename Device , typename \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} $>$ }\\void \mbox{\hyperlink{tensor__contract__sycl__bench_8cc_ac5b12bb89d693519c9167f955ef1c959_ac5b12bb89d693519c9167f955ef1c959}{contraction}} (const Device \&device\+\_\+, \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} num\+\_\+iters, \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} m\+\_\+, \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} k\+\_\+, \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} n\+\_\+)
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} , typename Device , typename \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} $>$ }\\void \mbox{\hyperlink{tensor__contract__sycl__bench_8cc_aaf21c75b1a5f3775e11aed0e15d2e3fb_aaf21c75b1a5f3775e11aed0e15d2e3fb}{contraction\+Row\+Major}} (const Device \&device\+\_\+, \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} num\+\_\+iters, \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} m\+\_\+, \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} k\+\_\+, \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} n\+\_\+)
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} , typename Device , typename \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} $>$ }\\void \mbox{\hyperlink{tensor__contract__sycl__bench_8cc_a0667ff475df5f88488628d1d1ae07657_a0667ff475df5f88488628d1d1ae07657}{contraction\+AT}} (const Device \&device\+\_\+, \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} num\+\_\+iters, \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} m\+\_\+, \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} k\+\_\+, \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} n\+\_\+)
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} , typename Device , typename \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} $>$ }\\void \mbox{\hyperlink{tensor__contract__sycl__bench_8cc_ac0899865a2d39c72f71b8e28168eb9f9_ac0899865a2d39c72f71b8e28168eb9f9}{contraction\+BT}} (const Device \&device\+\_\+, \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} num\+\_\+iters, \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} m\+\_\+, \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} k\+\_\+, \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} n\+\_\+)
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} , typename Device , typename \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} $>$ }\\void \mbox{\hyperlink{tensor__contract__sycl__bench_8cc_aa0358b485b1b17055ac1f4b50b4ef218_aa0358b485b1b17055ac1f4b50b4ef218}{contraction\+ABT}} (const Device \&device\+\_\+, \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} num\+\_\+iters, \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} m\+\_\+, \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} k\+\_\+, \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} n\+\_\+)
+\item 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{tensor__contract__sycl__bench_8cc_ae66f6b31b5ad750f1fe042a706a4e3d4_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{tensor__contract__sycl__bench_8cc_a0ac2411a38153dc20fb9531b77f9e344_a0ac2411a38153dc20fb9531b77f9e344}\index{tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}!EIGEN\_BENCH\_CONTRACT\_SYCL@{EIGEN\_BENCH\_CONTRACT\_SYCL}}
+\index{EIGEN\_BENCH\_CONTRACT\_SYCL@{EIGEN\_BENCH\_CONTRACT\_SYCL}!tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}}
+\doxysubsubsection{\texorpdfstring{EIGEN\_BENCH\_CONTRACT\_SYCL}{EIGEN\_BENCH\_CONTRACT\_SYCL}}
+{\footnotesize\ttfamily \label{tensor__contract__sycl__bench_8cc_a0ac2411a38153dc20fb9531b77f9e344_a0ac2411a38153dc20fb9531b77f9e344} 
+\#define EIGEN\+\_\+\+BENCH\+\_\+\+CONTRACT\+\_\+\+SYCL}
+
+\Hypertarget{tensor__contract__sycl__bench_8cc_a23fafe2bd4e27ecadab4deb95691bcf4_a23fafe2bd4e27ecadab4deb95691bcf4}\index{tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}!EIGEN\_DEFAULT\_DENSE\_INDEX\_TYPE@{EIGEN\_DEFAULT\_DENSE\_INDEX\_TYPE}}
+\index{EIGEN\_DEFAULT\_DENSE\_INDEX\_TYPE@{EIGEN\_DEFAULT\_DENSE\_INDEX\_TYPE}!tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}}
+\doxysubsubsection{\texorpdfstring{EIGEN\_DEFAULT\_DENSE\_INDEX\_TYPE}{EIGEN\_DEFAULT\_DENSE\_INDEX\_TYPE}}
+{\footnotesize\ttfamily \label{tensor__contract__sycl__bench_8cc_a23fafe2bd4e27ecadab4deb95691bcf4_a23fafe2bd4e27ecadab4deb95691bcf4} 
+\#define EIGEN\+\_\+\+DEFAULT\+\_\+\+DENSE\+\_\+\+INDEX\+\_\+\+TYPE~int64\+\_\+t}
+
+\Hypertarget{tensor__contract__sycl__bench_8cc_accdbdad937288caeb34ecd61a3b08f57_accdbdad937288caeb34ecd61a3b08f57}\index{tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}!EIGEN\_TEST\_NO\_COMPLEX@{EIGEN\_TEST\_NO\_COMPLEX}}
+\index{EIGEN\_TEST\_NO\_COMPLEX@{EIGEN\_TEST\_NO\_COMPLEX}!tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}}
+\doxysubsubsection{\texorpdfstring{EIGEN\_TEST\_NO\_COMPLEX}{EIGEN\_TEST\_NO\_COMPLEX}}
+{\footnotesize\ttfamily \label{tensor__contract__sycl__bench_8cc_accdbdad937288caeb34ecd61a3b08f57_accdbdad937288caeb34ecd61a3b08f57} 
+\#define EIGEN\+\_\+\+TEST\+\_\+\+NO\+\_\+\+COMPLEX}
+
+\Hypertarget{tensor__contract__sycl__bench_8cc_a47aafa3c6006d4a1892911cca05448be_a47aafa3c6006d4a1892911cca05448be}\index{tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}!EIGEN\_TEST\_NO\_LONGDOUBLE@{EIGEN\_TEST\_NO\_LONGDOUBLE}}
+\index{EIGEN\_TEST\_NO\_LONGDOUBLE@{EIGEN\_TEST\_NO\_LONGDOUBLE}!tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}}
+\doxysubsubsection{\texorpdfstring{EIGEN\_TEST\_NO\_LONGDOUBLE}{EIGEN\_TEST\_NO\_LONGDOUBLE}}
+{\footnotesize\ttfamily \label{tensor__contract__sycl__bench_8cc_a47aafa3c6006d4a1892911cca05448be_a47aafa3c6006d4a1892911cca05448be} 
+\#define EIGEN\+\_\+\+TEST\+\_\+\+NO\+\_\+\+LONGDOUBLE}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{tensor__contract__sycl__bench_8cc_ac5b12bb89d693519c9167f955ef1c959_ac5b12bb89d693519c9167f955ef1c959}\index{tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}!contraction@{contraction}}
+\index{contraction@{contraction}!tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}}
+\doxysubsubsection{\texorpdfstring{contraction()}{contraction()}}
+{\footnotesize\ttfamily \label{tensor__contract__sycl__bench_8cc_ac5b12bb89d693519c9167f955ef1c959_ac5b12bb89d693519c9167f955ef1c959} 
+template$<$typename \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} , typename Device , typename \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} $>$ \\
+void contraction (\begin{DoxyParamCaption}\item[{const Device \&}]{device\+\_\+}{, }\item[{\mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}}}]{num\+\_\+iters}{, }\item[{\mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}}}]{m\+\_\+}{, }\item[{\mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}}}]{k\+\_\+}{, }\item[{\mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}}}]{n\+\_\+}{}\end{DoxyParamCaption})}
+
+\Hypertarget{tensor__contract__sycl__bench_8cc_aa0358b485b1b17055ac1f4b50b4ef218_aa0358b485b1b17055ac1f4b50b4ef218}\index{tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}!contractionABT@{contractionABT}}
+\index{contractionABT@{contractionABT}!tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}}
+\doxysubsubsection{\texorpdfstring{contractionABT()}{contractionABT()}}
+{\footnotesize\ttfamily \label{tensor__contract__sycl__bench_8cc_aa0358b485b1b17055ac1f4b50b4ef218_aa0358b485b1b17055ac1f4b50b4ef218} 
+template$<$typename \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} , typename Device , typename \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} $>$ \\
+void contraction\+ABT (\begin{DoxyParamCaption}\item[{const Device \&}]{device\+\_\+}{, }\item[{\mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}}}]{num\+\_\+iters}{, }\item[{\mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}}}]{m\+\_\+}{, }\item[{\mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}}}]{k\+\_\+}{, }\item[{\mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}}}]{n\+\_\+}{}\end{DoxyParamCaption})}
+
+\Hypertarget{tensor__contract__sycl__bench_8cc_a0667ff475df5f88488628d1d1ae07657_a0667ff475df5f88488628d1d1ae07657}\index{tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}!contractionAT@{contractionAT}}
+\index{contractionAT@{contractionAT}!tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}}
+\doxysubsubsection{\texorpdfstring{contractionAT()}{contractionAT()}}
+{\footnotesize\ttfamily \label{tensor__contract__sycl__bench_8cc_a0667ff475df5f88488628d1d1ae07657_a0667ff475df5f88488628d1d1ae07657} 
+template$<$typename \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} , typename Device , typename \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} $>$ \\
+void contraction\+AT (\begin{DoxyParamCaption}\item[{const Device \&}]{device\+\_\+}{, }\item[{\mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}}}]{num\+\_\+iters}{, }\item[{\mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}}}]{m\+\_\+}{, }\item[{\mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}}}]{k\+\_\+}{, }\item[{\mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}}}]{n\+\_\+}{}\end{DoxyParamCaption})}
+
+\Hypertarget{tensor__contract__sycl__bench_8cc_ac0899865a2d39c72f71b8e28168eb9f9_ac0899865a2d39c72f71b8e28168eb9f9}\index{tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}!contractionBT@{contractionBT}}
+\index{contractionBT@{contractionBT}!tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}}
+\doxysubsubsection{\texorpdfstring{contractionBT()}{contractionBT()}}
+{\footnotesize\ttfamily \label{tensor__contract__sycl__bench_8cc_ac0899865a2d39c72f71b8e28168eb9f9_ac0899865a2d39c72f71b8e28168eb9f9} 
+template$<$typename \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} , typename Device , typename \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} $>$ \\
+void contraction\+BT (\begin{DoxyParamCaption}\item[{const Device \&}]{device\+\_\+}{, }\item[{\mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}}}]{num\+\_\+iters}{, }\item[{\mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}}}]{m\+\_\+}{, }\item[{\mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}}}]{k\+\_\+}{, }\item[{\mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}}}]{n\+\_\+}{}\end{DoxyParamCaption})}
+
+\Hypertarget{tensor__contract__sycl__bench_8cc_aaf21c75b1a5f3775e11aed0e15d2e3fb_aaf21c75b1a5f3775e11aed0e15d2e3fb}\index{tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}!contractionRowMajor@{contractionRowMajor}}
+\index{contractionRowMajor@{contractionRowMajor}!tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}}
+\doxysubsubsection{\texorpdfstring{contractionRowMajor()}{contractionRowMajor()}}
+{\footnotesize\ttfamily \label{tensor__contract__sycl__bench_8cc_aaf21c75b1a5f3775e11aed0e15d2e3fb_aaf21c75b1a5f3775e11aed0e15d2e3fb} 
+template$<$typename \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} , typename Device , typename \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} $>$ \\
+void contraction\+Row\+Major (\begin{DoxyParamCaption}\item[{const Device \&}]{device\+\_\+}{, }\item[{\mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}}}]{num\+\_\+iters}{, }\item[{\mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}}}]{m\+\_\+}{, }\item[{\mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}}}]{k\+\_\+}{, }\item[{\mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}}}]{n\+\_\+}{}\end{DoxyParamCaption})}
+
+\Hypertarget{tensor__contract__sycl__bench_8cc_aa2530080b56373cf2620a7c8c5473e8d_aa2530080b56373cf2620a7c8c5473e8d}\index{tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}!finalizeBenchmark@{finalizeBenchmark}}
+\index{finalizeBenchmark@{finalizeBenchmark}!tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}}
+\doxysubsubsection{\texorpdfstring{finalizeBenchmark()}{finalizeBenchmark()}}
+{\footnotesize\ttfamily \label{tensor__contract__sycl__bench_8cc_aa2530080b56373cf2620a7c8c5473e8d_aa2530080b56373cf2620a7c8c5473e8d} 
+template$<$typename Start , typename End , typename \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}} $>$ \\
+void finalize\+Benchmark (\begin{DoxyParamCaption}\item[{Start}]{start}{, }\item[{End}]{end}{, }\item[{\mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}}}]{m\+\_\+}{, }\item[{\mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}}}]{k\+\_\+}{, }\item[{\mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}}}]{n\+\_\+}{, }\item[{\mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{Tensor\+Index}}}]{num\+\_\+iters}{, }\item[{std\+::string}]{name}{}\end{DoxyParamCaption})}
+
+\Hypertarget{tensor__contract__sycl__bench_8cc_ada8a0382af2a1950b919cf6b99c10a18_ada8a0382af2a1950b919cf6b99c10a18}\index{tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}!get\_time@{get\_time}}
+\index{get\_time@{get\_time}!tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}}
+\doxysubsubsection{\texorpdfstring{get\_time()}{get\_time()}}
+{\footnotesize\ttfamily \label{tensor__contract__sycl__bench_8cc_ada8a0382af2a1950b919cf6b99c10a18_ada8a0382af2a1950b919cf6b99c10a18} 
+std\+::chrono\+::time\+\_\+point$<$ std\+::chrono\+::system\+\_\+clock $>$ get\+\_\+time (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{tensor__contract__sycl__bench_8cc_ae66f6b31b5ad750f1fe042a706a4e3d4_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}!main@{main}}
+\index{main@{main}!tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{tensor__contract__sycl__bench_8cc_ae66f6b31b5ad750f1fe042a706a4e3d4_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} main (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{tensor__contract__sycl__bench_8cc_acc4949c3e64b4395f74072403ddf6184_acc4949c3e64b4395f74072403ddf6184}\index{tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}!out@{out}}
+\index{out@{out}!tensor\_contract\_sycl\_bench.cc@{tensor\_contract\_sycl\_bench.cc}}
+\doxysubsubsection{\texorpdfstring{out()}{out()}}
+{\footnotesize\ttfamily \label{tensor__contract__sycl__bench_8cc_acc4949c3e64b4395f74072403ddf6184_acc4949c3e64b4395f74072403ddf6184} 
+std\+::ofstream out (\begin{DoxyParamCaption}\item[{"{}Result.\+txt"{}}]{}{}\end{DoxyParamCaption})}
+

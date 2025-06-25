@@ -1,0 +1,858 @@
+\doxysection{main.\+h}
+\hypertarget{main_8h_source}{}\label{main_8h_source}\index{eigen-\/3.4.0/eigen-\/3.4.0/test/main.h@{eigen-\/3.4.0/eigen-\/3.4.0/test/main.h}}
+\mbox{\hyperlink{main_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ Eigen,\ a\ lightweight\ C++\ template\ library}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ for\ linear\ algebra.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Copyright\ (C)\ 2006-\/2008\ Benoit\ Jacob\ <jacob.benoit.1@gmail.com>}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ Copyright\ (C)\ 2008\ Gael\ Guennebaud\ <gael.guennebaud@inria.fr>}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ This\ Source\ Code\ Form\ is\ subject\ to\ the\ terms\ of\ the\ Mozilla}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ Public\ License\ v.\ 2.0.\ If\ a\ copy\ of\ the\ MPL\ was\ not\ distributed}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ with\ this\ file,\ You\ can\ obtain\ one\ at\ http://mozilla.org/MPL/2.0/.}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <cerrno>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <ctime>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <typeinfo>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ The\ following\ includes\ of\ STL\ headers\ have\ to\ be\ done\ \_before\_\ the}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ definition\ of\ macros\ min()\ and\ max().\ \ The\ reason\ is\ that\ many\ STL}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ implementations\ will\ not\ work\ properly\ as\ the\ min\ and\ max\ symbols\ collide}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ with\ the\ STL\ functions\ std:min()\ and\ std::max().\ \ The\ STL\ headers\ may\ check}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ for\ the\ macro\ definition\ of\ min/max\ and\ issue\ a\ warning\ or\ undefine\ the}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ macros.}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ Still,\ Windows\ defines\ min()\ and\ max()\ in\ windef.h\ as\ part\ of\ the\ regular}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ Windows\ system\ interfaces\ and\ many\ other\ Windows\ APIs\ depend\ on\ these}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ macros\ being\ available.\ \ To\ prevent\ the\ macro\ expansion\ of\ min/max\ and\ to}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ make\ Eigen\ compatible\ with\ the\ Windows\ environment\ all\ function\ calls\ of}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ std::min()\ and\ std::max()\ have\ to\ be\ written\ with\ parenthesis\ around\ the}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ function\ name.}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ All\ STL\ headers\ used\ by\ Eigen\ should\ be\ included\ here.\ \ Because\ main.h\ is}}
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ included\ before\ any\ Eigen\ header\ and\ because\ the\ STL\ headers\ are\ guarded}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ against\ multiple\ inclusions,\ no\ STL\ header\ will\ see\ our\ own\ min/max\ macro}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ definitions.}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ Disable\ ICC's\ std::complex\ operator\ specializations\ so\ we\ can\ use\ our\ own.}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ \_OVERRIDE\_COMPLEX\_SPECIALIZATION\_\ 1}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ <complex>}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ <deque>}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ <queue>}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ <cassert>}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#if\ \_\_cplusplus\ >=\ 201103L\ ||\ (defined(\_MSVC\_LANG)\ \&\&\ \_MSVC\_LANG\ >=\ 201103L)}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_USE\_THREADS}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#include\ <future>}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{comment}{//\ Same\ for\ cuda\_fp16.h}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#if\ defined(\_\_CUDACC\_\_)\ \&\&\ !defined(EIGEN\_NO\_CUDA)}}
+\DoxyCodeLine{00060\ \ \ \textcolor{comment}{//\ Means\ the\ compiler\ is\ either\ nvcc\ or\ clang\ with\ CUDA\ enabled}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\ \ \#define\ EIGEN\_CUDACC\ \_\_CUDACC\_\_}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#if\ defined(EIGEN\_CUDACC)}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#include\ <cuda.h>}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\ \ \#define\ EIGEN\_CUDA\_SDK\_VER\ (CUDA\_VERSION\ *\ 10)}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\ \ \#define\ EIGEN\_CUDA\_SDK\_VER\ 0}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#if\ EIGEN\_CUDA\_SDK\_VER\ >=\ 70500}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#include\ <cuda\_fp16.h>}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ To\ test\ that\ all\ calls\ from\ Eigen\ code\ to\ std::min()\ and\ std::max()\ are}}
+\DoxyCodeLine{00074\ \textcolor{comment}{//\ protected\ by\ parenthesis\ against\ macro\ expansion,\ the\ min()/max()\ macros}}
+\DoxyCodeLine{00075\ \textcolor{comment}{//\ are\ defined\ here\ and\ any\ not-\/parenthesized\ min/max\ call\ will\ cause\ a}}
+\DoxyCodeLine{00076\ \textcolor{comment}{//\ compiler\ error.}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#if\ !defined(\_\_HIPCC\_\_)\ \&\&\ !defined(EIGEN\_USE\_SYCL)}}
+\DoxyCodeLine{00078\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00079\ \ \ \textcolor{comment}{//\ HIP\ header\ files\ include\ the\ following\ files}}
+\DoxyCodeLine{00080\ \ \ \textcolor{comment}{//\ \ <thread>}}
+\DoxyCodeLine{00081\ \ \ \textcolor{comment}{//\ \ <regex>}}
+\DoxyCodeLine{00082\ \ \ \textcolor{comment}{//\ \ <unordered\_map>}}
+\DoxyCodeLine{00083\ \ \ \textcolor{comment}{//\ which\ seem\ to\ contain\ not-\/parenthesized\ calls\ to\ "{}max"{}/"{}min"{},\ triggering\ the\ following\ check\ and\ causing\ the\ compile\ to\ fail}}
+\DoxyCodeLine{00084\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00085\ \ \ \textcolor{comment}{//\ Including\ those\ header\ files\ before\ the\ following\ macro\ definition\ for\ "{}min"{}\ /\ "{}max"{},\ only\ partially\ resolves\ the\ issue}}
+\DoxyCodeLine{00086\ \ \ \textcolor{comment}{//\ This\ is\ because\ other\ HIP\ header\ files\ also\ define\ "{}isnan"{}\ /\ "{}isinf"{}\ /\ "{}isfinite"{}\ functions,\ which\ are\ needed\ in\ other}}
+\DoxyCodeLine{00087\ \ \ \textcolor{comment}{//\ headers.}}
+\DoxyCodeLine{00088\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00089\ \ \ \textcolor{comment}{//\ So\ instead\ choosing\ to\ simply\ disable\ this\ check\ for\ HIP}}
+\DoxyCodeLine{00090\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\ \ \#define\ min(A,B)\ please\_protect\_your\_min\_with\_parentheses}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\ \ \#define\ max(A,B)\ please\_protect\_your\_max\_with\_parentheses}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\ \ \#define\ isnan(X)\ please\_protect\_your\_isnan\_with\_parentheses}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\ \ \#define\ isinf(X)\ please\_protect\_your\_isinf\_with\_parentheses}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\ \ \#define\ isfinite(X)\ please\_protect\_your\_isfinite\_with\_parentheses}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{comment}{//\ test\ possible\ conflicts}}
+\DoxyCodeLine{00100\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structreal}{real}}\ \{\};}
+\DoxyCodeLine{00101\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structimag}{imag}}\ \{\};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#ifdef\ M\_PI}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#undef\ M\_PI}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#define\ M\_PI\ please\_use\_EIGEN\_PI\_instead\_of\_M\_PI}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#define\ FORBIDDEN\_IDENTIFIER\ (this\_identifier\_is\_forbidden\_to\_avoid\_clashes)\ this\_identifier\_is\_forbidden\_to\_avoid\_clashes}}
+\DoxyCodeLine{00109\ \textcolor{comment}{//\ B0\ is\ defined\ in\ POSIX\ header\ termios.h}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#define\ B0\ FORBIDDEN\_IDENTIFIER}}
+\DoxyCodeLine{00111\ \textcolor{comment}{//\ \`{}I`\ may\ be\ defined\ by\ complex.h:}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ I\ \ FORBIDDEN\_IDENTIFIER}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{comment}{//\ Unit\ tests\ calling\ Eigen's\ blas\ library\ must\ preserve\ the\ default\ blocking\ size}}
+\DoxyCodeLine{00115\ \textcolor{comment}{//\ to\ avoid\ troubles.}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_NO\_DEBUG\_SMALL\_PRODUCT\_BLOCKS}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#define\ EIGEN\_DEBUG\_SMALL\_PRODUCT\_BLOCKS}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{comment}{//\ shuts\ down\ ICC's\ remark\ \#593:\ variable\ "{}XXX"{}\ was\ set\ but\ never\ used}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#define\ TEST\_SET\_BUT\_UNUSED\_VARIABLE(X)\ EIGEN\_UNUSED\_VARIABLE(X)}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#ifdef\ TEST\_ENABLE\_TEMPORARY\_TRACKING}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{int}\ nb\_temporaries;}
+\DoxyCodeLine{00126\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{int}\ nb\_temporaries\_on\_assert\ =\ -\/1;}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{test_2sparse__product_8cpp_a6bc79aae996d7c600fbb27245adf514a_a6bc79aae996d7c600fbb27245adf514a}{on\_temporary\_creation}}(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}})\ \{}
+\DoxyCodeLine{00129\ \ \ \textcolor{comment}{//\ here's\ a\ great\ place\ to\ set\ a\ breakpoint\ when\ debugging\ failures\ in\ this\ test!}}
+\DoxyCodeLine{00130\ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}!=0)\ nb\_temporaries++;}
+\DoxyCodeLine{00131\ \ \ \textcolor{keywordflow}{if}(nb\_temporaries\_on\_assert>0)\ assert(nb\_temporaries<nb\_temporaries\_on\_assert);}
+\DoxyCodeLine{00132\ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#define\ EIGEN\_DENSE\_STORAGE\_CTOR\_PLUGIN\ \{\ on\_temporary\_creation(size);\ \}}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#define\ VERIFY\_EVALUATION\_COUNT(XPR,N)\ \{\(\backslash\)}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\ \ \ \ nb\_temporaries\ =\ 0;\ \(\backslash\)}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\ \ \ \ XPR;\ \(\backslash\)}}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\ \ \ \ if(nb\_temporaries!=(N))\ \{\ std::cerr\ <<\ "{}nb\_temporaries\ ==\ "{}\ <<\ nb\_temporaries\ <<\ "{}\(\backslash\)n"{};\ \}\(\backslash\)}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\ \ \ \ VERIFY(\ (\#XPR)\ \&\&\ nb\_temporaries==(N)\ );\ \(\backslash\)}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\ \ \}}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{split__test__helper_8h}{split\_test\_helper.h}}"{}}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#ifdef\ NDEBUG}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#undef\ NDEBUG}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \textcolor{comment}{//\ On\ windows\ CE,\ NDEBUG\ is\ automatically\ defined\ <assert.h>\ if\ NDEBUG\ is\ not\ defined.}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#ifndef\ DEBUG}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#define\ DEBUG}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{comment}{//\ bounds\ integer\ values\ for\ AltiVec}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#if\ defined(\_\_ALTIVEC\_\_)\ ||\ defined(\_\_VSX\_\_)}}
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#define\ EIGEN\_MAKING\_DOCS}}
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#define\ DEFAULT\_REPEAT\ 10}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_eigen}{Eigen}}}
+\DoxyCodeLine{00164\ \{}
+\DoxyCodeLine{00165\ \ \ \textcolor{keyword}{static}\ std::vector<std::string>\ g\_test\_stack;}
+\DoxyCodeLine{00166\ \ \ \textcolor{comment}{//\ level\ ==\ 0\ <=>\ abort\ if\ test\ fail}}
+\DoxyCodeLine{00167\ \ \ \textcolor{comment}{//\ level\ >=\ 1\ <=>\ warning\ message\ to\ std::cerr\ if\ test\ fail}}
+\DoxyCodeLine{00168\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ g\_test\_level\ =\ 0;}
+\DoxyCodeLine{00169\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ g\_repeat\ =\ 1;}
+\DoxyCodeLine{00170\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ g\_seed\ =\ 0;}
+\DoxyCodeLine{00171\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ g\_has\_set\_repeat\ =\ \textcolor{keyword}{false},\ g\_has\_set\_seed\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_eigen_test}{EigenTest}}}
+\DoxyCodeLine{00174\ \ \ \{}
+\DoxyCodeLine{00175\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00176\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_eigen_test_a59141fce80940ace7ac8fd01f7d2044a_a59141fce80940ace7ac8fd01f7d2044a}{EigenTest}}()\ :\ \mbox{\hyperlink{class_eigen_1_1_eigen_test_abd169210cb57f8cb3e56d8d331b3327c_abd169210cb57f8cb3e56d8d331b3327c}{m\_func}}(0)\ \{\}}
+\DoxyCodeLine{00177\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_eigen_test_a052741fe0fb4dc4ef0fda6e5a4d882d2_a052741fe0fb4dc4ef0fda6e5a4d882d2}{EigenTest}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ a\_name,\ \textcolor{keywordtype}{void}\ (*\mbox{\hyperlink{structfunc}{func}})(\textcolor{keywordtype}{void}))}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ :\ \mbox{\hyperlink{class_eigen_1_1_eigen_test_a9802a214a2bae2430697407c47b916c4_a9802a214a2bae2430697407c47b916c4}{m\_name}}(a\_name),\ \mbox{\hyperlink{class_eigen_1_1_eigen_test_abd169210cb57f8cb3e56d8d331b3327c_abd169210cb57f8cb3e56d8d331b3327c}{m\_func}}(\mbox{\hyperlink{structfunc}{func}})}
+\DoxyCodeLine{00179\ \ \ \ \ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_eigen_test_a1594ab984f9e5f3ed238d41020d615d2_a1594ab984f9e5f3ed238d41020d615d2}{get\_registered\_tests}}().push\_back(\textcolor{keyword}{this});}
+\DoxyCodeLine{00181\ \ \ \ \ \}}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{class_eigen_1_1_eigen_test_a482b32262224e543d44359d3e4478b66_a482b32262224e543d44359d3e4478b66}{name}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_eigen_test_a9802a214a2bae2430697407c47b916c4_a9802a214a2bae2430697407c47b916c4}{m\_name}};\ \}}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_eigen_test_a612840682f229416242e41de729302ef_a612840682f229416242e41de729302ef}{operator()}}()\textcolor{keyword}{\ const\ }\{\ \mbox{\hyperlink{class_eigen_1_1_eigen_test_abd169210cb57f8cb3e56d8d331b3327c_abd169210cb57f8cb3e56d8d331b3327c}{m\_func}}();\ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ std::vector<EigenTest*>\&\ \mbox{\hyperlink{class_eigen_1_1_eigen_test_a4fd3d95c851abed8c3df12f853b7c13f_a4fd3d95c851abed8c3df12f853b7c13f}{all}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_eigen_test_a1594ab984f9e5f3ed238d41020d615d2_a1594ab984f9e5f3ed238d41020d615d2}{get\_registered\_tests}}();\ \}}
+\DoxyCodeLine{00186\ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keyword}{static}\ std::vector<EigenTest*>\&\ \mbox{\hyperlink{class_eigen_1_1_eigen_test_a1594ab984f9e5f3ed238d41020d615d2_a1594ab984f9e5f3ed238d41020d615d2}{get\_registered\_tests}}()}
+\DoxyCodeLine{00188\ \ \ \ \ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \textcolor{keyword}{static}\ std::vector<EigenTest*>*\ ms\_registered\_tests\ =\ \textcolor{keyword}{new}\ std::vector<EigenTest*>();}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *ms\_registered\_tests;}
+\DoxyCodeLine{00191\ \ \ \ \ \}}
+\DoxyCodeLine{00192\ \ \ \ \ std::string\ \mbox{\hyperlink{class_eigen_1_1_eigen_test_a9802a214a2bae2430697407c47b916c4_a9802a214a2bae2430697407c47b916c4}{m\_name}};}
+\DoxyCodeLine{00193\ \ \ \ \ void\ (*\mbox{\hyperlink{class_eigen_1_1_eigen_test_abd169210cb57f8cb3e56d8d331b3327c_abd169210cb57f8cb3e56d8d331b3327c}{m\_func}})(void);}
+\DoxyCodeLine{00194\ \ \ \};}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \textcolor{comment}{//\ Declare\ and\ register\ a\ test,\ e.g.:}}
+\DoxyCodeLine{00197\ \ \ \textcolor{comment}{//\ \ \ \ EIGEN\_DECLARE\_TEST(mytest)\ \{\ ...\ \}}}
+\DoxyCodeLine{00198\ \ \ \textcolor{comment}{//\ will\ create\ a\ function:}}
+\DoxyCodeLine{00199\ \ \ \textcolor{comment}{//\ \ \ \ void\ test\_mytest()\ \{\ ...\ \}}}
+\DoxyCodeLine{00200\ \ \ \textcolor{comment}{//\ that\ will\ be\ automatically\ called.}}
+\DoxyCodeLine{00201\ \textcolor{preprocessor}{\ \ \#define\ EIGEN\_DECLARE\_TEST(X)\ \(\backslash\)}}
+\DoxyCodeLine{00202\ \textcolor{preprocessor}{\ \ \ \ void\ EIGEN\_CAT(test\_,X)\ ();\ \(\backslash\)}}
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\ \ \ \ static\ EigenTest\ EIGEN\_CAT(test\_handler\_,X)\ (EIGEN\_MAKESTRING(X),\ \&\ EIGEN\_CAT(test\_,X));\ \(\backslash\)}}
+\DoxyCodeLine{00204\ \textcolor{preprocessor}{\ \ \ \ void\ EIGEN\_CAT(test\_,X)\ ()}}
+\DoxyCodeLine{00205\ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\#define\ TRACK\ std::cerr\ <<\ \_\_FILE\_\_\ <<\ "{}\ "{}\ <<\ \_\_LINE\_\_\ <<\ std::endl}}
+\DoxyCodeLine{00208\ \textcolor{comment}{//\ \#define\ TRACK\ while()}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \textcolor{preprocessor}{\#define\ EIGEN\_DEFAULT\_IO\_FORMAT\ IOFormat(4,\ 0,\ "{}\ \ "{},\ "{}\(\backslash\)n"{},\ "{}"{},\ "{}"{},\ "{}"{},\ "{}"{})}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \textcolor{preprocessor}{\#if\ (defined(\_CPPUNWIND)\ ||\ defined(\_\_EXCEPTIONS))\ \&\&\ !defined(\_\_CUDA\_ARCH\_\_)\ \&\&\ !defined(\_\_HIP\_DEVICE\_COMPILE\_\_)\ \&\&\ !defined(\_\_SYCL\_DEVICE\_ONLY\_\_)}}
+\DoxyCodeLine{00213\ \textcolor{preprocessor}{\ \ \#define\ EIGEN\_EXCEPTIONS}}
+\DoxyCodeLine{00214\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_NO\_ASSERTION\_CHECKING}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_eigen}{Eigen}}}
+\DoxyCodeLine{00219\ \ \ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ should\_raise\_an\_assert\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{comment}{//\ Used\ to\ avoid\ to\ raise\ two\ exceptions\ at\ a\ time\ in\ which}}
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{comment}{//\ case\ the\ exception\ is\ not\ properly\ caught.}}
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{comment}{//\ This\ may\ happen\ when\ a\ second\ exceptions\ is\ triggered\ in\ a\ destructor.}}
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ no\_more\_assert\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ report\_on\_cerr\_on\_assert\_failure\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1eigen__assert__exception}{eigen\_assert\_exception}}}
+\DoxyCodeLine{00229\ \ \ \ \ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1eigen__assert__exception_a0d52f0065dd63a47cb71b3ec84edd007_a0d52f0065dd63a47cb71b3ec84edd007}{eigen\_assert\_exception}}(\textcolor{keywordtype}{void})\ \{\}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1eigen__assert__exception_a3aa5977450a20153858fb6ca82c0b24b_a3aa5977450a20153858fb6ca82c0b24b}{\string~eigen\_assert\_exception}}()\ \{\ Eigen::no\_more\_assert\ =\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00232\ \ \ \ \ \};}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1eigen__static__assert__exception}{eigen\_static\_assert\_exception}}}
+\DoxyCodeLine{00235\ \ \ \ \ \{}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1eigen__static__assert__exception_a0697fb60b5838a89708f25bcd9e895a4_a0697fb60b5838a89708f25bcd9e895a4}{eigen\_static\_assert\_exception}}(\textcolor{keywordtype}{void})\ \{\}}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1eigen__static__assert__exception_a9311b233e5f3d6e97261e6cd6abd6aa3_a9311b233e5f3d6e97261e6cd6abd6aa3}{\string~eigen\_static\_assert\_exception}}()\ \{\ Eigen::no\_more\_assert\ =\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00238\ \ \ \ \ \};}
+\DoxyCodeLine{00239\ \ \ \}}
+\DoxyCodeLine{00240\ \ \ \textcolor{comment}{//\ If\ EIGEN\_DEBUG\_ASSERTS\ is\ defined\ and\ if\ no\ assertion\ is\ triggered\ while}}
+\DoxyCodeLine{00241\ \ \ \textcolor{comment}{//\ one\ should\ have\ been,\ then\ the\ list\ of\ executed\ assertions\ is\ printed\ out.}}
+\DoxyCodeLine{00242\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00243\ \ \ \textcolor{comment}{//\ EIGEN\_DEBUG\_ASSERTS\ is\ not\ enabled\ by\ default\ as\ it}}
+\DoxyCodeLine{00244\ \ \ \textcolor{comment}{//\ significantly\ increases\ the\ compilation\ time}}
+\DoxyCodeLine{00245\ \ \ \textcolor{comment}{//\ and\ might\ even\ introduce\ side\ effects\ that\ would\ hide}}
+\DoxyCodeLine{00246\ \ \ \textcolor{comment}{//\ some\ memory\ errors.}}
+\DoxyCodeLine{00247\ \textcolor{preprocessor}{\ \ \#ifdef\ EIGEN\_DEBUG\_ASSERTS}}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_eigen}{Eigen}}}
+\DoxyCodeLine{00250\ \ \ \ \ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceinternal}{internal}}}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ push\_assert\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \textcolor{keyword}{static}\ std::vector<std::string>\ eigen\_assert\_list;}
+\DoxyCodeLine{00256\ \ \ \ \ \}}
+\DoxyCodeLine{00257\ \textcolor{preprocessor}{\ \ \ \ \#define\ eigen\_assert(a)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00258\ \textcolor{preprocessor}{\ \ \ \ \ \ if(\ (!(a))\ \&\&\ (!no\_more\_assert)\ )\ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00259\ \textcolor{preprocessor}{\ \ \ \ \ \ \{\ \(\backslash\)}}
+\DoxyCodeLine{00260\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ if(report\_on\_cerr\_on\_assert\_failure)\ \(\backslash\)}}
+\DoxyCodeLine{00261\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \ \#a\ <<\ "{}\ "{}\ \_\_FILE\_\_\ <<\ "{}("{}\ <<\ \_\_LINE\_\_\ <<\ "{})\(\backslash\)n"{};\ \(\backslash\)}}
+\DoxyCodeLine{00262\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ Eigen::no\_more\_assert\ =\ true;\ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00263\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ EIGEN\_THROW\_X(Eigen::eigen\_assert\_exception());\ \(\backslash\)}}
+\DoxyCodeLine{00264\ \textcolor{preprocessor}{\ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00265\ \textcolor{preprocessor}{\ \ \ \ \ \ else\ if\ (Eigen::internal::push\_assert)\ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00266\ \textcolor{preprocessor}{\ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00267\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ eigen\_assert\_list.push\_back(std::string(EIGEN\_MAKESTRING(\_\_FILE\_\_)\ "{}\ ("{}\ EIGEN\_MAKESTRING(\_\_LINE\_\_)\ "{})\ :\ "{}\ \#a)\ );\ \(\backslash\)}}
+\DoxyCodeLine{00268\ \textcolor{preprocessor}{\ \ \ \ \ \ \}}}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ EIGEN\_EXCEPTIONS}}
+\DoxyCodeLine{00271\ \textcolor{preprocessor}{\ \ \ \ \#define\ VERIFY\_RAISES\_ASSERT(a)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00272\ \textcolor{preprocessor}{\ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00273\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ Eigen::no\_more\_assert\ =\ false;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ Eigen::eigen\_assert\_list.clear();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00275\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ Eigen::internal::push\_assert\ =\ true;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00276\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ Eigen::report\_on\_cerr\_on\_assert\_failure\ =\ false;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00277\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ try\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00278\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ a;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00279\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ "{}One\ of\ the\ following\ asserts\ should\ have\ been\ triggered:\(\backslash\)n"{};\ \ \(\backslash\)}}
+\DoxyCodeLine{00280\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ for\ (uint\ ai=0\ ;\ ai<eigen\_assert\_list.size()\ ;\ ++ai)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00281\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ "{}\ \ "{}\ <<\ eigen\_assert\_list[ai]\ <<\ "{}\(\backslash\)n"{};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00282\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ VERIFY(Eigen::should\_raise\_an\_assert\ \&\&\ \#\ a);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00283\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \}\ catch\ (Eigen::eigen\_assert\_exception)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00284\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ Eigen::internal::push\_assert\ =\ false;\ VERIFY(true);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00285\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00286\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ Eigen::report\_on\_cerr\_on\_assert\_failure\ =\ true;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00287\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ Eigen::internal::push\_assert\ =\ false;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\ \ \ \ \ \ \}}}
+\DoxyCodeLine{00289\ \textcolor{preprocessor}{\ \ \ \ \#endif\ }\textcolor{comment}{//EIGEN\_EXCEPTIONS}}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \textcolor{preprocessor}{\ \ \#elif\ !defined(\_\_CUDACC\_\_)\ \&\&\ !defined(\_\_HIPCC\_\_)\ \&\&\ !defined(SYCL\_DEVICE\_ONLY)\ }\textcolor{comment}{//\ EIGEN\_DEBUG\_ASSERTS}}
+\DoxyCodeLine{00292\ \ \ \ \ \textcolor{comment}{//\ see\ bug\ 89.\ The\ copy\_bool\ here\ is\ working\ around\ a\ bug\ in\ gcc\ <=\ 4.3}}
+\DoxyCodeLine{00293\ \textcolor{preprocessor}{\ \ \ \ \#define\ eigen\_assert(a)\ \(\backslash\)}}
+\DoxyCodeLine{00294\ \textcolor{preprocessor}{\ \ \ \ \ \ if(\ (!Eigen::internal::copy\_bool(a))\ \&\&\ (!no\_more\_assert)\ )\(\backslash\)}}
+\DoxyCodeLine{00295\ \textcolor{preprocessor}{\ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00296\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ Eigen::no\_more\_assert\ =\ true;\ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00297\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ if(report\_on\_cerr\_on\_assert\_failure)\ \ \(\backslash\)}}
+\DoxyCodeLine{00298\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ eigen\_plain\_assert(a);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00299\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ else\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00300\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ EIGEN\_THROW\_X(Eigen::eigen\_assert\_exception());\ \(\backslash\)}}
+\DoxyCodeLine{00301\ \textcolor{preprocessor}{\ \ \ \ \ \ \}}}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ EIGEN\_EXCEPTIONS}}
+\DoxyCodeLine{00304\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ VERIFY\_RAISES\_ASSERT(a)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00305\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ Eigen::no\_more\_assert\ =\ false;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00306\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ Eigen::report\_on\_cerr\_on\_assert\_failure\ =\ false;\ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00307\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ try\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00308\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ a;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00309\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ VERIFY(Eigen::should\_raise\_an\_assert\ \&\&\ \#\ a);\ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00310\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00311\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ catch\ (Eigen::eigen\_assert\_exception\&)\ \{\ VERIFY(true);\ \}\ \ \(\backslash\)}}
+\DoxyCodeLine{00312\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ Eigen::report\_on\_cerr\_on\_assert\_failure\ =\ true;\ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00313\ \textcolor{preprocessor}{\ \ \ \ \ \ \}}}
+\DoxyCodeLine{00314\ \textcolor{preprocessor}{\ \ \ \ \#endif\ }\textcolor{comment}{//\ EIGEN\_EXCEPTIONS}}
+\DoxyCodeLine{00315\ \textcolor{preprocessor}{\ \ \#endif\ }\textcolor{comment}{//\ EIGEN\_DEBUG\_ASSERTS}}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \textcolor{preprocessor}{\ \ \#if\ defined(TEST\_CHECK\_STATIC\_ASSERTIONS)\ \&\&\ defined(EIGEN\_EXCEPTIONS)}}
+\DoxyCodeLine{00318\ \textcolor{preprocessor}{\ \ \ \ \#define\ EIGEN\_STATIC\_ASSERT(a,MSG)\ \(\backslash\)}}
+\DoxyCodeLine{00319\ \textcolor{preprocessor}{\ \ \ \ \ \ if(\ (!Eigen::internal::copy\_bool(a))\ \&\&\ (!no\_more\_assert)\ )\(\backslash\)}}
+\DoxyCodeLine{00320\ \textcolor{preprocessor}{\ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00321\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ Eigen::no\_more\_assert\ =\ true;\ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00322\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ if(report\_on\_cerr\_on\_assert\_failure)\ \ \(\backslash\)}}
+\DoxyCodeLine{00323\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ eigen\_plain\_assert((a)\ \&\&\ \#MSG);\ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00324\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ else\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00325\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ EIGEN\_THROW\_X(Eigen::eigen\_static\_assert\_exception());\ \(\backslash\)}}
+\DoxyCodeLine{00326\ \textcolor{preprocessor}{\ \ \ \ \ \ \}}}
+\DoxyCodeLine{00327\ \textcolor{preprocessor}{\ \ \ \ \#define\ VERIFY\_RAISES\_STATIC\_ASSERT(a)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00328\ \textcolor{preprocessor}{\ \ \ \ \ \ Eigen::no\_more\_assert\ =\ false;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00329\ \textcolor{preprocessor}{\ \ \ \ \ \ Eigen::report\_on\_cerr\_on\_assert\_failure\ =\ false;\ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00330\ \textcolor{preprocessor}{\ \ \ \ \ \ try\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00331\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ a;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00332\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ VERIFY(Eigen::should\_raise\_an\_assert\ \&\&\ \#\ a);\ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00333\ \textcolor{preprocessor}{\ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00334\ \textcolor{preprocessor}{\ \ \ \ \ \ catch\ (Eigen::eigen\_static\_assert\_exception\&)\ \{\ VERIFY(true);\ \}\ \ \(\backslash\)}}
+\DoxyCodeLine{00335\ \textcolor{preprocessor}{\ \ \ \ \ \ Eigen::report\_on\_cerr\_on\_assert\_failure\ =\ true;\ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00336\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{00337\ \textcolor{preprocessor}{\ \ \#endif\ }\textcolor{comment}{//\ TEST\_CHECK\_STATIC\_ASSERTIONS}}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00339\ \textcolor{preprocessor}{\#ifndef\ VERIFY\_RAISES\_ASSERT}}
+\DoxyCodeLine{00340\ \textcolor{preprocessor}{\ \ \#define\ VERIFY\_RAISES\_ASSERT(a)\ \(\backslash\)}}
+\DoxyCodeLine{00341\ \textcolor{preprocessor}{\ \ \ \ std::cout\ <<\ "{}Can't\ VERIFY\_RAISES\_ASSERT(\ "{}\ \#a\ "{}\ )\ with\ exceptions\ disabled\(\backslash\)n"{};}}
+\DoxyCodeLine{00342\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00343\ \textcolor{preprocessor}{\#ifndef\ VERIFY\_RAISES\_STATIC\_ASSERT}}
+\DoxyCodeLine{00344\ \textcolor{preprocessor}{\ \ \#define\ VERIFY\_RAISES\_STATIC\_ASSERT(a)\ \(\backslash\)}}
+\DoxyCodeLine{00345\ \textcolor{preprocessor}{\ \ \ \ std::cout\ <<\ "{}Can't\ VERIFY\_RAISES\_STATIC\_ASSERT(\ "{}\ \#a\ "{}\ )\ with\ exceptions\ disabled\(\backslash\)n"{};}}
+\DoxyCodeLine{00346\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \textcolor{preprocessor}{\ \ \#if\ !defined(\_\_CUDACC\_\_)\ \&\&\ !defined(\_\_HIPCC\_\_)\ \&\&\ !defined(SYCL\_DEVICE\_ONLY)}}
+\DoxyCodeLine{00349\ \textcolor{preprocessor}{\ \ \#define\ EIGEN\_USE\_CUSTOM\_ASSERT}}
+\DoxyCodeLine{00350\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ EIGEN\_NO\_ASSERTION\_CHECKING}}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \textcolor{preprocessor}{\ \ \#define\ VERIFY\_RAISES\_ASSERT(a)\ \{\}}}
+\DoxyCodeLine{00355\ \textcolor{preprocessor}{\ \ \#define\ VERIFY\_RAISES\_STATIC\_ASSERT(a)\ \{\}}}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00357\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ EIGEN\_NO\_ASSERTION\_CHECKING}}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00359\ \textcolor{preprocessor}{\#define\ EIGEN\_INTERNAL\_DEBUGGING}}
+\DoxyCodeLine{00360\ \textcolor{preprocessor}{\#include\ <Eigen/QR>}\ \textcolor{comment}{//\ required\ for\ createRandomPIMatrixOfRank}}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8h_a7fbdaff7ff8efe28db968e1ba5c13a3d_a7fbdaff7ff8efe28db968e1ba5c13a3d}{verify\_impl}}(\textcolor{keywordtype}{bool}\ condition,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *testname,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *file,\ \textcolor{keywordtype}{int}\ line,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *condition\_as\_string)}
+\DoxyCodeLine{00363\ \{}
+\DoxyCodeLine{00364\ \ \ \textcolor{keywordflow}{if}\ (!condition)}
+\DoxyCodeLine{00365\ \ \ \{}
+\DoxyCodeLine{00366\ \ \ \ \ \textcolor{keywordflow}{if}(Eigen::g\_test\_level>0)}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}WARNING:\ "{}};}
+\DoxyCodeLine{00368\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Test\ "{}}\ <<\ testname\ <<\ \textcolor{stringliteral}{"{}\ failed\ in\ "{}}\ <<\ file\ <<\ \textcolor{stringliteral}{"{}\ ("{}}\ <<\ line\ <<\ \textcolor{stringliteral}{"{})"{}}}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ <<\ std::endl\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ "{}}\ <<\ condition\_as\_string\ <<\ std::endl;}
+\DoxyCodeLine{00370\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Stack:\(\backslash\)n"{}};}
+\DoxyCodeLine{00371\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ test\_stack\_size\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(Eigen::g\_test\_stack.size());}
+\DoxyCodeLine{00372\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}=test\_stack\_size-\/1;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}>=0;\ -\/-\/\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}})}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}\ \ -\/\ "{}}\ <<\ Eigen::g\_test\_stack[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}]\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00374\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00375\ \ \ \ \ \textcolor{keywordflow}{if}(Eigen::g\_test\_level==0)}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ abort();}
+\DoxyCodeLine{00377\ \ \ \}}
+\DoxyCodeLine{00378\ \}}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \textcolor{preprocessor}{\#define\ VERIFY(a)\ ::verify\_impl(a,\ g\_test\_stack.back().c\_str(),\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ EIGEN\_MAKESTRING(a))}}
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00382\ \textcolor{preprocessor}{\#define\ VERIFY\_GE(a,\ b)\ ::verify\_impl(a\ >=\ b,\ g\_test\_stack.back().c\_str(),\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ EIGEN\_MAKESTRING(a\ >=\ b))}}
+\DoxyCodeLine{00383\ \textcolor{preprocessor}{\#define\ VERIFY\_LE(a,\ b)\ ::verify\_impl(a\ <=\ b,\ g\_test\_stack.back().c\_str(),\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ EIGEN\_MAKESTRING(a\ <=\ b))}}
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00386\ \textcolor{preprocessor}{\#define\ VERIFY\_IS\_EQUAL(a,\ b)\ VERIFY(test\_is\_equal(a,\ b,\ true))}}
+\DoxyCodeLine{00387\ \textcolor{preprocessor}{\#define\ VERIFY\_IS\_NOT\_EQUAL(a,\ b)\ VERIFY(test\_is\_equal(a,\ b,\ false))}}
+\DoxyCodeLine{00388\ \textcolor{preprocessor}{\#define\ VERIFY\_IS\_APPROX(a,\ b)\ VERIFY(verifyIsApprox(a,\ b))}}
+\DoxyCodeLine{00389\ \textcolor{preprocessor}{\#define\ VERIFY\_IS\_NOT\_APPROX(a,\ b)\ VERIFY(!test\_isApprox(a,\ b))}}
+\DoxyCodeLine{00390\ \textcolor{preprocessor}{\#define\ VERIFY\_IS\_MUCH\_SMALLER\_THAN(a,\ b)\ VERIFY(test\_isMuchSmallerThan(a,\ b))}}
+\DoxyCodeLine{00391\ \textcolor{preprocessor}{\#define\ VERIFY\_IS\_NOT\_MUCH\_SMALLER\_THAN(a,\ b)\ VERIFY(!test\_isMuchSmallerThan(a,\ b))}}
+\DoxyCodeLine{00392\ \textcolor{preprocessor}{\#define\ VERIFY\_IS\_APPROX\_OR\_LESS\_THAN(a,\ b)\ VERIFY(test\_isApproxOrLessThan(a,\ b))}}
+\DoxyCodeLine{00393\ \textcolor{preprocessor}{\#define\ VERIFY\_IS\_NOT\_APPROX\_OR\_LESS\_THAN(a,\ b)\ VERIFY(!test\_isApproxOrLessThan(a,\ b))}}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00395\ \textcolor{preprocessor}{\#define\ VERIFY\_IS\_UNITARY(a)\ VERIFY(test\_isUnitary(a))}}
+\DoxyCodeLine{00396\ }
+\DoxyCodeLine{00397\ \textcolor{preprocessor}{\#define\ STATIC\_CHECK(COND)\ EIGEN\_STATIC\_ASSERT(\ (COND)\ ,\ EIGEN\_INTERNAL\_ERROR\_PLEASE\_FILE\_A\_BUG\_REPORT\ )}}
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00399\ \textcolor{preprocessor}{\#define\ CALL\_SUBTEST(FUNC)\ do\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00400\ \textcolor{preprocessor}{\ \ \ \ g\_test\_stack.push\_back(EIGEN\_MAKESTRING(FUNC));\ \(\backslash\)}}
+\DoxyCodeLine{00401\ \textcolor{preprocessor}{\ \ \ \ FUNC;\ \(\backslash\)}}
+\DoxyCodeLine{00402\ \textcolor{preprocessor}{\ \ \ \ g\_test\_stack.pop\_back();\ \(\backslash\)}}
+\DoxyCodeLine{00403\ \textcolor{preprocessor}{\ \ \}\ while\ (0)}}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00405\ }
+\DoxyCodeLine{00406\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_eigen}{Eigen}}\ \{}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00408\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T1,\textcolor{keyword}{typename}\ T2>}
+\DoxyCodeLine{00409\ \textcolor{keyword}{typename}\ internal::enable\_if<internal::is\_same<T1,T2>::value,\textcolor{keywordtype}{bool}>::type}
+\DoxyCodeLine{00410\ \mbox{\hyperlink{namespace_eigen_a7546f34ccde03f65631c8a783381f21c_a7546f34ccde03f65631c8a783381f21c}{is\_same\_type}}(\textcolor{keyword}{const}\ T1\&,\ \textcolor{keyword}{const}\ T2\&)}
+\DoxyCodeLine{00411\ \{}
+\DoxyCodeLine{00412\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00413\ \}}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00415\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{inline}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{NumTraits<T>::Real}}\ \mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_aec48507dff26f2fdbb985a871f7f4eff_aec48507dff26f2fdbb985a871f7f4eff}{NumTraits<T>::dummy\_precision}}();\ \}}
+\DoxyCodeLine{00416\ \textcolor{keyword}{template}<>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespace_eigen_a6881d7a18f97c01df6c1252fc5bac126_a6881d7a18f97c01df6c1252fc5bac126}{test\_precision<float>}}()\ \{\ \textcolor{keywordflow}{return}\ 1e-\/3f;\ \}}
+\DoxyCodeLine{00417\ \textcolor{keyword}{template}<>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespace_eigen_a80318b650b1e0ff8ff96b9efad266ba1_a80318b650b1e0ff8ff96b9efad266ba1}{test\_precision<double>}}()\ \{\ \textcolor{keywordflow}{return}\ 1\mbox{\hyperlink{_cwise__array__power__array_8cpp_a9cb86ff854760bf91a154f2724a9101d_a9cb86ff854760bf91a154f2724a9101d}{e}}-\/6;\ \}}
+\DoxyCodeLine{00418\ \textcolor{keyword}{template}<>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespace_eigen_a7683c2a014c5259e16ad4ab9e0170232_a7683c2a014c5259e16ad4ab9e0170232}{test\_precision<long\ double>}}()\ \{\ \textcolor{keywordflow}{return}\ 1e-\/6l;\ \}}
+\DoxyCodeLine{00419\ \textcolor{keyword}{template}<>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<std::complex<float>}}\ >()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_a6881d7a18f97c01df6c1252fc5bac126_a6881d7a18f97c01df6c1252fc5bac126}{test\_precision<float>}}();\ \}}
+\DoxyCodeLine{00420\ \textcolor{keyword}{template}<>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<std::complex<double>}}\ >()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_a80318b650b1e0ff8ff96b9efad266ba1_a80318b650b1e0ff8ff96b9efad266ba1}{test\_precision<double>}}();\ \}}
+\DoxyCodeLine{00421\ \textcolor{keyword}{template}<>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<std::complex<long\ double>}}\ >()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_a7683c2a014c5259e16ad4ab9e0170232_a7683c2a014c5259e16ad4ab9e0170232}{test\_precision<long\ double>}}();\ \}}
+\DoxyCodeLine{00422\ }
+\DoxyCodeLine{00423\ \textcolor{preprocessor}{\#define\ EIGEN\_TEST\_SCALAR\_TEST\_OVERLOAD(TYPE)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00424\ \textcolor{preprocessor}{\ \ inline\ bool\ test\_isApprox(TYPE\ a,\ TYPE\ b)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00425\ \textcolor{preprocessor}{\ \ \{\ return\ internal::isApprox(a,\ b,\ test\_precision<TYPE>());\ \}\ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00426\ \textcolor{preprocessor}{\ \ inline\ bool\ test\_isMuchSmallerThan(TYPE\ a,\ TYPE\ b)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00427\ \textcolor{preprocessor}{\ \ \{\ return\ internal::isMuchSmallerThan(a,\ b,\ test\_precision<TYPE>());\ \}\ \ \ \(\backslash\)}}
+\DoxyCodeLine{00428\ \textcolor{preprocessor}{\ \ inline\ bool\ test\_isApproxOrLessThan(TYPE\ a,\ TYPE\ b)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00429\ \textcolor{preprocessor}{\ \ \{\ return\ internal::isApproxOrLessThan(a,\ b,\ test\_precision<TYPE>());\ \}}}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00431\ \mbox{\hyperlink{main_8h_aebae567f4e40be552926992ba5b07afa_aebae567f4e40be552926992ba5b07afa}{EIGEN\_TEST\_SCALAR\_TEST\_OVERLOAD}}(\textcolor{keywordtype}{short})}
+\DoxyCodeLine{00432\ \mbox{\hyperlink{main_8h_aebae567f4e40be552926992ba5b07afa_aebae567f4e40be552926992ba5b07afa}{EIGEN\_TEST\_SCALAR\_TEST\_OVERLOAD}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short})}
+\DoxyCodeLine{00433\ \mbox{\hyperlink{main_8h_aebae567f4e40be552926992ba5b07afa_aebae567f4e40be552926992ba5b07afa}{EIGEN\_TEST\_SCALAR\_TEST\_OVERLOAD}}(\textcolor{keywordtype}{int})}
+\DoxyCodeLine{00434\ \mbox{\hyperlink{main_8h_aebae567f4e40be552926992ba5b07afa_aebae567f4e40be552926992ba5b07afa}{EIGEN\_TEST\_SCALAR\_TEST\_OVERLOAD}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int})}
+\DoxyCodeLine{00435\ \mbox{\hyperlink{main_8h_aebae567f4e40be552926992ba5b07afa_aebae567f4e40be552926992ba5b07afa}{EIGEN\_TEST\_SCALAR\_TEST\_OVERLOAD}}(\textcolor{keywordtype}{long})}
+\DoxyCodeLine{00436\ \mbox{\hyperlink{main_8h_aebae567f4e40be552926992ba5b07afa_aebae567f4e40be552926992ba5b07afa}{EIGEN\_TEST\_SCALAR\_TEST\_OVERLOAD}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long})}
+\DoxyCodeLine{00437\ \textcolor{preprocessor}{\#if\ EIGEN\_HAS\_CXX11}}
+\DoxyCodeLine{00438\ \mbox{\hyperlink{main_8h_aebae567f4e40be552926992ba5b07afa_aebae567f4e40be552926992ba5b07afa}{EIGEN\_TEST\_SCALAR\_TEST\_OVERLOAD}}(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long})}
+\DoxyCodeLine{00439\ \mbox{\hyperlink{main_8h_aebae567f4e40be552926992ba5b07afa_aebae567f4e40be552926992ba5b07afa}{EIGEN\_TEST\_SCALAR\_TEST\_OVERLOAD}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long})}
+\DoxyCodeLine{00440\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00441\ \mbox{\hyperlink{main_8h_aebae567f4e40be552926992ba5b07afa_aebae567f4e40be552926992ba5b07afa}{EIGEN\_TEST\_SCALAR\_TEST\_OVERLOAD}}(\textcolor{keywordtype}{float})}
+\DoxyCodeLine{00442\ \mbox{\hyperlink{main_8h_aebae567f4e40be552926992ba5b07afa_aebae567f4e40be552926992ba5b07afa}{EIGEN\_TEST\_SCALAR\_TEST\_OVERLOAD}}(\textcolor{keywordtype}{double})}
+\DoxyCodeLine{00443\ \mbox{\hyperlink{main_8h_aebae567f4e40be552926992ba5b07afa_aebae567f4e40be552926992ba5b07afa}{EIGEN\_TEST\_SCALAR\_TEST\_OVERLOAD}}(\mbox{\hyperlink{struct_eigen_1_1half}{half}})}
+\DoxyCodeLine{00444\ \mbox{\hyperlink{main_8h_aebae567f4e40be552926992ba5b07afa_aebae567f4e40be552926992ba5b07afa}{EIGEN\_TEST\_SCALAR\_TEST\_OVERLOAD}}(\mbox{\hyperlink{struct_eigen_1_1bfloat16}{bfloat16}})}
+\DoxyCodeLine{00445\ }
+\DoxyCodeLine{00446\ \textcolor{preprocessor}{\#undef\ EIGEN\_TEST\_SCALAR\_TEST\_OVERLOAD}}
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00448\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_TEST\_NO\_COMPLEX}}
+\DoxyCodeLine{00449\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespace_eigen_a866914d9c95461cc21d9d5a42c9fcdf8_a866914d9c95461cc21d9d5a42c9fcdf8}{test\_isApprox}}(\textcolor{keyword}{const}\ std::complex<float>\&\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ std::complex<float>\&\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})}
+\DoxyCodeLine{00450\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1internal_a7c83f2257c639f3d550f5d7d7c69ca3b_a7c83f2257c639f3d550f5d7d7c69ca3b}{internal::isApprox}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision}}<std::complex<float>\ >());\ \}}
+\DoxyCodeLine{00451\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespace_eigen_a539da498bda2dcfc0edcf0bda2c2be73_a539da498bda2dcfc0edcf0bda2c2be73}{test\_isMuchSmallerThan}}(\textcolor{keyword}{const}\ std::complex<float>\&\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ std::complex<float>\&\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})}
+\DoxyCodeLine{00452\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1internal_a84d9a116f1410c45670db495257f64ac_a84d9a116f1410c45670db495257f64ac}{internal::isMuchSmallerThan}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision}}<std::complex<float>\ >());\ \}}
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00454\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespace_eigen_a866914d9c95461cc21d9d5a42c9fcdf8_a866914d9c95461cc21d9d5a42c9fcdf8}{test\_isApprox}}(\textcolor{keyword}{const}\ std::complex<double>\&\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ std::complex<double>\&\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})}
+\DoxyCodeLine{00455\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1internal_a7c83f2257c639f3d550f5d7d7c69ca3b_a7c83f2257c639f3d550f5d7d7c69ca3b}{internal::isApprox}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision}}<std::complex<double>\ >());\ \}}
+\DoxyCodeLine{00456\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespace_eigen_a539da498bda2dcfc0edcf0bda2c2be73_a539da498bda2dcfc0edcf0bda2c2be73}{test\_isMuchSmallerThan}}(\textcolor{keyword}{const}\ std::complex<double>\&\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ std::complex<double>\&\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})}
+\DoxyCodeLine{00457\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1internal_a84d9a116f1410c45670db495257f64ac_a84d9a116f1410c45670db495257f64ac}{internal::isMuchSmallerThan}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision}}<std::complex<double>\ >());\ \}}
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00459\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_TEST\_NO\_LONGDOUBLE}}
+\DoxyCodeLine{00460\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespace_eigen_a866914d9c95461cc21d9d5a42c9fcdf8_a866914d9c95461cc21d9d5a42c9fcdf8}{test\_isApprox}}(\textcolor{keyword}{const}\ std::complex<long\ double>\&\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ std::complex<long\ double>\&\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})}
+\DoxyCodeLine{00461\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1internal_a7c83f2257c639f3d550f5d7d7c69ca3b_a7c83f2257c639f3d550f5d7d7c69ca3b}{internal::isApprox}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision}}<std::complex<long\ double>\ >());\ \}}
+\DoxyCodeLine{00462\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespace_eigen_a539da498bda2dcfc0edcf0bda2c2be73_a539da498bda2dcfc0edcf0bda2c2be73}{test\_isMuchSmallerThan}}(\textcolor{keyword}{const}\ std::complex<long\ double>\&\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ std::complex<long\ double>\&\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})}
+\DoxyCodeLine{00463\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1internal_a84d9a116f1410c45670db495257f64ac_a84d9a116f1410c45670db495257f64ac}{internal::isMuchSmallerThan}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision}}<std::complex<long\ double>\ >());\ \}}
+\DoxyCodeLine{00464\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00465\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00467\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_TEST\_NO\_LONGDOUBLE}}
+\DoxyCodeLine{00468\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespace_eigen_a866914d9c95461cc21d9d5a42c9fcdf8_a866914d9c95461cc21d9d5a42c9fcdf8}{test\_isApprox}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\&\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\&\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})}
+\DoxyCodeLine{00469\ \{}
+\DoxyCodeLine{00470\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{level1__cplx__impl_8h_afb8d513d0298d2695018eb494b092786_afb8d513d0298d2695018eb494b092786}{ret}}\ =\ \mbox{\hyperlink{namespace_eigen_1_1internal_a7c83f2257c639f3d550f5d7d7c69ca3b_a7c83f2257c639f3d550f5d7d7c69ca3b}{internal::isApprox}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \mbox{\hyperlink{namespace_eigen_a7683c2a014c5259e16ad4ab9e0170232_a7683c2a014c5259e16ad4ab9e0170232}{test\_precision<long\ double>}}());}
+\DoxyCodeLine{00471\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{level1__cplx__impl_8h_afb8d513d0298d2695018eb494b092786_afb8d513d0298d2695018eb494b092786}{ret}})\ std::cerr}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ <<\ std::endl\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ actual\ \ \ =\ "{}}\ <<\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ <<\ std::endl\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ expected\ =\ "{}}\ <<\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}\ <<\ std::endl\ <<\ std::endl;}
+\DoxyCodeLine{00474\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{level1__cplx__impl_8h_afb8d513d0298d2695018eb494b092786_afb8d513d0298d2695018eb494b092786}{ret}};}
+\DoxyCodeLine{00475\ \}}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00477\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespace_eigen_a539da498bda2dcfc0edcf0bda2c2be73_a539da498bda2dcfc0edcf0bda2c2be73}{test\_isMuchSmallerThan}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\&\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\&\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})}
+\DoxyCodeLine{00478\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1internal_a84d9a116f1410c45670db495257f64ac_a84d9a116f1410c45670db495257f64ac}{internal::isMuchSmallerThan}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \mbox{\hyperlink{namespace_eigen_a7683c2a014c5259e16ad4ab9e0170232_a7683c2a014c5259e16ad4ab9e0170232}{test\_precision<long\ double>}}());\ \}}
+\DoxyCodeLine{00479\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespace_eigen_a37038e95456c17b19dc69180583444bb_a37038e95456c17b19dc69180583444bb}{test\_isApproxOrLessThan}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\&\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\&\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})}
+\DoxyCodeLine{00480\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1internal_afece450c6344e5a39261f006e0e8513d_afece450c6344e5a39261f006e0e8513d}{internal::isApproxOrLessThan}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \mbox{\hyperlink{namespace_eigen_a7683c2a014c5259e16ad4ab9e0170232_a7683c2a014c5259e16ad4ab9e0170232}{test\_precision<long\ double>}}());\ \}}
+\DoxyCodeLine{00481\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ EIGEN\_TEST\_NO\_LONGDOUBLE}}
+\DoxyCodeLine{00482\ }
+\DoxyCodeLine{00483\ \textcolor{comment}{//\ test\_relative\_error\ returns\ the\ relative\ difference\ between\ a\ and\ b\ as\ a\ real\ scalar\ as\ used\ in\ isApprox.}}
+\DoxyCodeLine{00484\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T1,\textcolor{keyword}{typename}\ T2>}
+\DoxyCodeLine{00485\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{NumTraits<typename\ T1::RealScalar>::NonInteger}}\ \mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{EigenBase<T1>}}\ \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{EigenBase<T2>}}\ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})}
+\DoxyCodeLine{00486\ \{}
+\DoxyCodeLine{00487\ \ \ \textcolor{keyword}{using\ }std::sqrt;}
+\DoxyCodeLine{00488\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{NumTraits<typename\ T1::RealScalar>::NonInteger}}\ \mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{RealScalar}};}
+\DoxyCodeLine{00489\ \ \ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_lazy_evaluator_writable}{internal::nested\_eval<T1,2>::type}}\ ea(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}.derived());}
+\DoxyCodeLine{00490\ \ \ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_lazy_evaluator_writable}{internal::nested\_eval<T2,2>::type}}\ eb(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}.derived());}
+\DoxyCodeLine{00491\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_array_cwise_unary_ops_8h_a656b9217a2fcb6de59dc8d1eb3079cc7_a656b9217a2fcb6de59dc8d1eb3079cc7}{sqrt}}(\mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{RealScalar}}((ea-\/eb).\mbox{\hyperlink{_matrix_cwise_unary_ops_8h_a426713f88e0c1c0d6626fbadced4e9d7_a426713f88e0c1c0d6626fbadced4e9d7}{cwiseAbs2}}().sum())\ /\ \mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{RealScalar}}((std::min)(eb.cwiseAbs2().sum(),ea.cwiseAbs2().sum())));}
+\DoxyCodeLine{00492\ \}}
+\DoxyCodeLine{00493\ }
+\DoxyCodeLine{00494\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T1,\textcolor{keyword}{typename}\ T2>}
+\DoxyCodeLine{00495\ \textcolor{keyword}{typename}\ T1::RealScalar\ \mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}(\textcolor{keyword}{const}\ T1\ \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ T2\ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ T1::Coefficients*\ =\ 0)}
+\DoxyCodeLine{00496\ \{}
+\DoxyCodeLine{00497\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}.coeffs(),\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}.coeffs());}
+\DoxyCodeLine{00498\ \}}
+\DoxyCodeLine{00499\ }
+\DoxyCodeLine{00500\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T1,\textcolor{keyword}{typename}\ T2>}
+\DoxyCodeLine{00501\ \textcolor{keyword}{typename}\ T1::Scalar\ \mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}(\textcolor{keyword}{const}\ T1\ \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ T2\ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ T1::MatrixType*\ =\ 0)}
+\DoxyCodeLine{00502\ \{}
+\DoxyCodeLine{00503\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}.matrix(),\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}.matrix());}
+\DoxyCodeLine{00504\ \}}
+\DoxyCodeLine{00505\ }
+\DoxyCodeLine{00506\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ S,\ \textcolor{keywordtype}{int}\ D>}
+\DoxyCodeLine{00507\ S\ \mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_translation}{Translation<S,D>}}\ \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_translation}{Translation<S,D>}}\ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})}
+\DoxyCodeLine{00508\ \{}
+\DoxyCodeLine{00509\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}.vector(),\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}.vector());}
+\DoxyCodeLine{00510\ \}}
+\DoxyCodeLine{00511\ }
+\DoxyCodeLine{00512\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ S,\ \textcolor{keywordtype}{int}\ D,\ \textcolor{keywordtype}{int}\ O>}
+\DoxyCodeLine{00513\ S\ \mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{ParametrizedLine<S,D,O>}}\ \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{ParametrizedLine<S,D,O>}}\ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})}
+\DoxyCodeLine{00514\ \{}
+\DoxyCodeLine{00515\ \ \ \textcolor{keywordflow}{return}\ (std::max)(\mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}.origin(),\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}.origin()),\ \mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}.origin(),\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}.origin()));}
+\DoxyCodeLine{00516\ \}}
+\DoxyCodeLine{00517\ }
+\DoxyCodeLine{00518\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ S,\ \textcolor{keywordtype}{int}\ D>}
+\DoxyCodeLine{00519\ S\ \mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_aligned_box}{AlignedBox<S,D>}}\ \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_aligned_box}{AlignedBox<S,D>}}\ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})}
+\DoxyCodeLine{00520\ \{}
+\DoxyCodeLine{00521\ \ \ \textcolor{keywordflow}{return}\ (std::max)(\mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}((\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}.min)(),\ (\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}.min)()),\ \mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}((\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}.max)(),\ (\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}.max)()));}
+\DoxyCodeLine{00522\ \}}
+\DoxyCodeLine{00523\ }
+\DoxyCodeLine{00524\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{SparseMatrixBase}};}
+\DoxyCodeLine{00525\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T1,\textcolor{keyword}{typename}\ T2>}
+\DoxyCodeLine{00526\ \textcolor{keyword}{typename}\ T1::RealScalar\ \mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_matrix_base}{MatrixBase<T1>}}\ \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{SparseMatrixBase<T2>}}\ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})}
+\DoxyCodeLine{00527\ \{}
+\DoxyCodeLine{00528\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}.toDense());}
+\DoxyCodeLine{00529\ \}}
+\DoxyCodeLine{00530\ }
+\DoxyCodeLine{00531\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{SparseMatrixBase}};}
+\DoxyCodeLine{00532\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T1,\textcolor{keyword}{typename}\ T2>}
+\DoxyCodeLine{00533\ \textcolor{keyword}{typename}\ T1::RealScalar\ \mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{SparseMatrixBase<T1>}}\ \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_matrix_base}{MatrixBase<T2>}}\ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})}
+\DoxyCodeLine{00534\ \{}
+\DoxyCodeLine{00535\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}.toDense(),\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00536\ \}}
+\DoxyCodeLine{00537\ }
+\DoxyCodeLine{00538\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{SparseMatrixBase}};}
+\DoxyCodeLine{00539\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T1,\textcolor{keyword}{typename}\ T2>}
+\DoxyCodeLine{00540\ \textcolor{keyword}{typename}\ T1::RealScalar\ \mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{SparseMatrixBase<T1>}}\ \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{SparseMatrixBase<T2>}}\ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})}
+\DoxyCodeLine{00541\ \{}
+\DoxyCodeLine{00542\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}.toDense(),\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}.toDense());}
+\DoxyCodeLine{00543\ \}}
+\DoxyCodeLine{00544\ }
+\DoxyCodeLine{00545\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T1,\textcolor{keyword}{typename}\ T2>}
+\DoxyCodeLine{00546\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<typename\ NumTraits<T1>::Real}}>::NonInteger\ \mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}(\textcolor{keyword}{const}\ T1\ \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ T2\ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{internal::enable\_if}}<\mbox{\hyperlink{struct_eigen_1_1internal_1_1is__arithmetic}{internal::is\_arithmetic}}<\textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{NumTraits<T1>::Real}}>::value,\ T1>::type*\ =\ 0)}
+\DoxyCodeLine{00547\ \{}
+\DoxyCodeLine{00548\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<typename\ NumTraits<T1>::Real}}>::NonInteger\ \mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{RealScalar}};}
+\DoxyCodeLine{00549\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_1_1numext_a982549ff7a7aa1a72c691bca5ea32ae4_a982549ff7a7aa1a72c691bca5ea32ae4}{numext::sqrt}}(\mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{RealScalar}}(\mbox{\hyperlink{namespace_eigen_1_1numext_ad59216129a430099e97b4c4b1e2f2984_ad59216129a430099e97b4c4b1e2f2984}{numext::abs2}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}-\/\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}))/(\mbox{\hyperlink{namespace_eigen_1_1numext_ab3b30bf0bcfa1ad91dbec75fabb3bea0_ab3b30bf0bcfa1ad91dbec75fabb3bea0}{numext::mini}})(\mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{RealScalar}}(\mbox{\hyperlink{namespace_eigen_1_1numext_ad59216129a430099e97b4c4b1e2f2984_ad59216129a430099e97b4c4b1e2f2984}{numext::abs2}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}})),\mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{RealScalar}}(\mbox{\hyperlink{namespace_eigen_1_1numext_ad59216129a430099e97b4c4b1e2f2984_ad59216129a430099e97b4c4b1e2f2984}{numext::abs2}}(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}))));}
+\DoxyCodeLine{00550\ \}}
+\DoxyCodeLine{00551\ }
+\DoxyCodeLine{00552\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00553\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_rotation2_d}{Rotation2D<T>}}\ \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_rotation2_d}{Rotation2D<T>}}\ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})}
+\DoxyCodeLine{00554\ \{}
+\DoxyCodeLine{00555\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}.angle(),\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}.angle());}
+\DoxyCodeLine{00556\ \}}
+\DoxyCodeLine{00557\ }
+\DoxyCodeLine{00558\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00559\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_angle_axis}{AngleAxis<T>}}\ \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_angle_axis}{AngleAxis<T>}}\ \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})}
+\DoxyCodeLine{00560\ \{}
+\DoxyCodeLine{00561\ \ \ \textcolor{keywordflow}{return}\ (std::max)(\mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}.angle(),\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}.angle()),\ \mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}.axis(),\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}.axis()));}
+\DoxyCodeLine{00562\ \}}
+\DoxyCodeLine{00563\ }
+\DoxyCodeLine{00564\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Type1,\ \textcolor{keyword}{typename}\ Type2>}
+\DoxyCodeLine{00565\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespace_eigen_a866914d9c95461cc21d9d5a42c9fcdf8_a866914d9c95461cc21d9d5a42c9fcdf8}{test\_isApprox}}(\textcolor{keyword}{const}\ Type1\&\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ Type2\&\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \textcolor{keyword}{typename}\ Type1::Scalar*\ =\ 0)\ \textcolor{comment}{//\ Enabled\ for\ Eigen's\ type\ only}}
+\DoxyCodeLine{00566\ \{}
+\DoxyCodeLine{00567\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}.isApprox(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<typename\ Type1::Scalar>}}());}
+\DoxyCodeLine{00568\ \}}
+\DoxyCodeLine{00569\ }
+\DoxyCodeLine{00570\ \textcolor{comment}{//\ get\_test\_precision\ is\ a\ small\ wrapper\ to\ test\_precision\ allowing\ to\ return\ the\ scalar\ precision\ for\ either\ scalars\ or\ expressions}}
+\DoxyCodeLine{00571\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00572\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{NumTraits<typename\ T::Scalar>::Real}}\ \mbox{\hyperlink{namespace_eigen_a8390ba31b96aa57666b5dbd1291796f8_a8390ba31b96aa57666b5dbd1291796f8}{get\_test\_precision}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\&,\ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ T::Scalar*\ =\ 0)}
+\DoxyCodeLine{00573\ \{}
+\DoxyCodeLine{00574\ \ \ \textcolor{keywordflow}{return}\ test\_precision<typename\ NumTraits<typename\ T::Scalar>::Real>();}
+\DoxyCodeLine{00575\ \}}
+\DoxyCodeLine{00576\ }
+\DoxyCodeLine{00577\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00578\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{NumTraits<T>::Real}}\ \mbox{\hyperlink{namespace_eigen_a8390ba31b96aa57666b5dbd1291796f8_a8390ba31b96aa57666b5dbd1291796f8}{get\_test\_precision}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\&,\textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{internal::enable\_if}}<\mbox{\hyperlink{struct_eigen_1_1internal_1_1is__arithmetic}{internal::is\_arithmetic}}<\textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{NumTraits<T>::Real}}>::value,\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}>::type*\ =\ 0)}
+\DoxyCodeLine{00579\ \{}
+\DoxyCodeLine{00580\ \ \ \textcolor{keywordflow}{return}\ test\_precision<typename\ NumTraits<T>::Real>();}
+\DoxyCodeLine{00581\ \}}
+\DoxyCodeLine{00582\ }
+\DoxyCodeLine{00583\ \textcolor{comment}{//\ verifyIsApprox\ is\ a\ wrapper\ to\ test\_isApprox\ that\ outputs\ the\ relative\ difference\ magnitude\ if\ the\ test\ fails.}}
+\DoxyCodeLine{00584\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Type1,\ \textcolor{keyword}{typename}\ Type2>}
+\DoxyCodeLine{00585\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespace_eigen_a7a1a0a2e015838382b95725487e0ef7e_a7a1a0a2e015838382b95725487e0ef7e}{verifyIsApprox}}(\textcolor{keyword}{const}\ Type1\&\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ Type2\&\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})}
+\DoxyCodeLine{00586\ \{}
+\DoxyCodeLine{00587\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{level1__cplx__impl_8h_afb8d513d0298d2695018eb494b092786_afb8d513d0298d2695018eb494b092786}{ret}}\ =\ \mbox{\hyperlink{namespace_eigen_a866914d9c95461cc21d9d5a42c9fcdf8_a866914d9c95461cc21d9d5a42c9fcdf8}{test\_isApprox}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00588\ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{level1__cplx__impl_8h_afb8d513d0298d2695018eb494b092786_afb8d513d0298d2695018eb494b092786}{ret}})}
+\DoxyCodeLine{00589\ \ \ \{}
+\DoxyCodeLine{00590\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Difference\ too\ large\ wrt\ tolerance\ "{}}\ <<\ \mbox{\hyperlink{namespace_eigen_a8390ba31b96aa57666b5dbd1291796f8_a8390ba31b96aa57666b5dbd1291796f8}{get\_test\_precision}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}})\ \ <<\ \textcolor{stringliteral}{"{},\ relative\ error\ is:\ "{}}\ <<\ \mbox{\hyperlink{namespace_eigen_a334ab420797f07b7266ddff5f797aaf0_a334ab420797f07b7266ddff5f797aaf0}{test\_relative\_error}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})\ <<\ std::endl;}
+\DoxyCodeLine{00591\ \ \ \}}
+\DoxyCodeLine{00592\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{level1__cplx__impl_8h_afb8d513d0298d2695018eb494b092786_afb8d513d0298d2695018eb494b092786}{ret}};}
+\DoxyCodeLine{00593\ \}}
+\DoxyCodeLine{00594\ }
+\DoxyCodeLine{00595\ \textcolor{comment}{//\ The\ idea\ behind\ this\ function\ is\ to\ compare\ the\ two\ scalars\ a\ and\ b\ where}}
+\DoxyCodeLine{00596\ \textcolor{comment}{//\ the\ scalar\ ref\ is\ a\ hint\ about\ the\ expected\ order\ of\ magnitude\ of\ a\ and\ b.}}
+\DoxyCodeLine{00597\ \textcolor{comment}{//\ WARNING:\ the\ scalar\ a\ and\ b\ must\ be\ positive}}
+\DoxyCodeLine{00598\ \textcolor{comment}{//\ Therefore,\ if\ for\ some\ reason\ a\ and\ b\ are\ very\ small\ compared\ to\ ref,}}
+\DoxyCodeLine{00599\ \textcolor{comment}{//\ we\ won't\ issue\ a\ false\ negative.}}
+\DoxyCodeLine{00600\ \textcolor{comment}{//\ This\ test\ could\ be:\ abs(a-\/b)\ <=\ eps\ *\ ref}}
+\DoxyCodeLine{00601\ \textcolor{comment}{//\ However,\ it\ seems\ that\ simply\ comparing\ a+ref\ and\ b+ref\ is\ more\ sensitive\ to\ true\ error.}}
+\DoxyCodeLine{00602\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Scalar,\textcolor{keyword}{typename}\ ScalarRef>}
+\DoxyCodeLine{00603\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespace_eigen_ac629f5f03405251bde5776a443935e32_ac629f5f03405251bde5776a443935e32}{test\_isApproxWithRef}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}\&\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}\&\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \textcolor{keyword}{const}\ ScalarRef\&\ ref)}
+\DoxyCodeLine{00604\ \{}
+\DoxyCodeLine{00605\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_eigen_a866914d9c95461cc21d9d5a42c9fcdf8_a866914d9c95461cc21d9d5a42c9fcdf8}{test\_isApprox}}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}+ref,\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}+ref);}
+\DoxyCodeLine{00606\ \}}
+\DoxyCodeLine{00607\ }
+\DoxyCodeLine{00608\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived1,\ \textcolor{keyword}{typename}\ Derived2>}
+\DoxyCodeLine{00609\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespace_eigen_a539da498bda2dcfc0edcf0bda2c2be73_a539da498bda2dcfc0edcf0bda2c2be73}{test\_isMuchSmallerThan}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_matrix_base}{MatrixBase<Derived1>}}\&\ \mbox{\hyperlink{_i_o_format_8cpp_ade6f22163da3c189aade978b48a8bb74_ade6f22163da3c189aade978b48a8bb74}{m1}},}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_matrix_base}{MatrixBase<Derived2>}}\&\ \mbox{\hyperlink{_tutorial___map__using_8cpp_ab3a01b595d22393ace0d30d5fa299f76_ab3a01b595d22393ace0d30d5fa299f76}{m2}})}
+\DoxyCodeLine{00611\ \{}
+\DoxyCodeLine{00612\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_i_o_format_8cpp_ade6f22163da3c189aade978b48a8bb74_ade6f22163da3c189aade978b48a8bb74}{m1}}.isMuchSmallerThan(\mbox{\hyperlink{_tutorial___map__using_8cpp_ab3a01b595d22393ace0d30d5fa299f76_ab3a01b595d22393ace0d30d5fa299f76}{m2}},\ \mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision}}<\textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal::traits<Derived1>::Scalar}}>());}
+\DoxyCodeLine{00613\ \}}
+\DoxyCodeLine{00614\ }
+\DoxyCodeLine{00615\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived>}
+\DoxyCodeLine{00616\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespace_eigen_a539da498bda2dcfc0edcf0bda2c2be73_a539da498bda2dcfc0edcf0bda2c2be73}{test\_isMuchSmallerThan}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_matrix_base}{MatrixBase<Derived>}}\&\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits}}<\textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal::traits<Derived>::Scalar}}>\mbox{\hyperlink{boostmultiprec_8cpp_ad5abe8020ead32dcab5e3c15d6d7c30e_ad5abe8020ead32dcab5e3c15d6d7c30e}{::Real}}\&\ \mbox{\hyperlink{level1__cplx__impl_8h_a462761ca92ad97a9a705cb875828b0b8_a462761ca92ad97a9a705cb875828b0b8}{s}})}
+\DoxyCodeLine{00618\ \{}
+\DoxyCodeLine{00619\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}.isMuchSmallerThan(\mbox{\hyperlink{level1__cplx__impl_8h_a462761ca92ad97a9a705cb875828b0b8_a462761ca92ad97a9a705cb875828b0b8}{s}},\ \mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision}}<\textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal::traits<Derived>::Scalar}}>());}
+\DoxyCodeLine{00620\ \}}
+\DoxyCodeLine{00621\ }
+\DoxyCodeLine{00622\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived>}
+\DoxyCodeLine{00623\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespace_eigen_aa1ba6c19dbe321546997e690a9778406_aa1ba6c19dbe321546997e690a9778406}{test\_isUnitary}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_matrix_base}{MatrixBase<Derived>}}\&\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}})}
+\DoxyCodeLine{00624\ \{}
+\DoxyCodeLine{00625\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}.isUnitary(\mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision}}<\textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal::traits<Derived>::Scalar}}>());}
+\DoxyCodeLine{00626\ \}}
+\DoxyCodeLine{00627\ }
+\DoxyCodeLine{00628\ \textcolor{comment}{//\ Forward\ declaration\ to\ avoid\ ICC\ warning}}
+\DoxyCodeLine{00629\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00630\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespace_eigen_a093442939f1f6fa45fd216dbdd93c286_a093442939f1f6fa45fd216dbdd93c286}{test\_is\_equal}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\&\ actual,\ \textcolor{keyword}{const}\ U\&\ expected,\ \textcolor{keywordtype}{bool}\ expect\_equal=\textcolor{keyword}{true});}
+\DoxyCodeLine{00631\ }
+\DoxyCodeLine{00632\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00633\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespace_eigen_a093442939f1f6fa45fd216dbdd93c286_a093442939f1f6fa45fd216dbdd93c286}{test\_is\_equal}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\&\ actual,\ \textcolor{keyword}{const}\ U\&\ expected,\ \textcolor{keywordtype}{bool}\ expect\_equal)}
+\DoxyCodeLine{00634\ \{}
+\DoxyCodeLine{00635\ \ \ \ \ \textcolor{keywordflow}{if}\ ((actual==expected)\ ==\ expect\_equal)}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00637\ \ \ \ \ \textcolor{comment}{//\ false:}}
+\DoxyCodeLine{00638\ \ \ \ \ std::cerr}
+\DoxyCodeLine{00639\ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n\ \ \ \ actual\ \ \ =\ "{}}\ <<\ actual}
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n\ \ \ \ expected\ "{}}\ <<\ (expect\_equal\ ?\ \textcolor{stringliteral}{"{}=\ "{}}\ :\ \textcolor{stringliteral}{"{}!="{}})\ <<\ expected\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)n"{}};}
+\DoxyCodeLine{00641\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00642\ \}}
+\DoxyCodeLine{00643\ }
+\DoxyCodeLine{00649\ \textcolor{comment}{//\ Forward\ declaration\ to\ avoid\ ICC\ warning}}
+\DoxyCodeLine{00650\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ MatrixType>}
+\DoxyCodeLine{00651\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_eigen_a0d9a7ddcee5c7c8defaba3628455efb2_a0d9a7ddcee5c7c8defaba3628455efb2}{createRandomPIMatrixOfRank}}(\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ desired\_rank,\ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}},\ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}},\ \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{MatrixType}}\&\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}});}
+\DoxyCodeLine{00652\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ MatrixType>}
+\DoxyCodeLine{00653\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_eigen_a0d9a7ddcee5c7c8defaba3628455efb2_a0d9a7ddcee5c7c8defaba3628455efb2}{createRandomPIMatrixOfRank}}(\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ desired\_rank,\ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}},\ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}},\ \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{MatrixType}}\&\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}})}
+\DoxyCodeLine{00654\ \{}
+\DoxyCodeLine{00655\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal::traits<MatrixType>::Scalar}}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}};}
+\DoxyCodeLine{00656\ \ \ \textcolor{keyword}{enum}\ \{\ Rows\ =\ MatrixType::RowsAtCompileTime,\ Cols\ =\ MatrixType::ColsAtCompileTime\ \};}
+\DoxyCodeLine{00657\ }
+\DoxyCodeLine{00658\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<Scalar,\ Dynamic,\ 1>}}\ \mbox{\hyperlink{struct_vector_type}{VectorType}};}
+\DoxyCodeLine{00659\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<Scalar,\ Rows,\ Rows>}}\ MatrixAType;}
+\DoxyCodeLine{00660\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<Scalar,\ Cols,\ Cols>}}\ MatrixBType;}
+\DoxyCodeLine{00661\ }
+\DoxyCodeLine{00662\ \ \ \textcolor{keywordflow}{if}(desired\_rank\ ==\ 0)}
+\DoxyCodeLine{00663\ \ \ \{}
+\DoxyCodeLine{00664\ \ \ \ \ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}.setZero(\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}},\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}});}
+\DoxyCodeLine{00665\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00666\ \ \ \}}
+\DoxyCodeLine{00667\ }
+\DoxyCodeLine{00668\ \ \ \textcolor{keywordflow}{if}(desired\_rank\ ==\ 1)}
+\DoxyCodeLine{00669\ \ \ \{}
+\DoxyCodeLine{00670\ \ \ \ \ \textcolor{comment}{//\ here\ we\ normalize\ the\ vectors\ to\ get\ a\ partial\ isometry}}
+\DoxyCodeLine{00671\ \ \ \ \ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}\ =\ VectorType::Random(\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}}).normalized()\ *\ VectorType::Random(\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}}).normalized().transpose();}
+\DoxyCodeLine{00672\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00673\ \ \ \}}
+\DoxyCodeLine{00674\ }
+\DoxyCodeLine{00675\ \ \ MatrixAType\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}\ =\ MatrixAType::Random(\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}},\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}});}
+\DoxyCodeLine{00676\ \ \ \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{MatrixType}}\ d\ =\ MatrixType::Identity(\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}},\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}});}
+\DoxyCodeLine{00677\ \ \ MatrixBType\ \ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}\ =\ MatrixBType::Random(\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}},\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}});}
+\DoxyCodeLine{00678\ }
+\DoxyCodeLine{00679\ \ \ \textcolor{comment}{//\ set\ the\ diagonal\ such\ that\ only\ desired\_rank\ non-\/zero\ entries\ reamain}}
+\DoxyCodeLine{00680\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ diag\_size\ =\ (std::min)(d.rows(),d.cols());}
+\DoxyCodeLine{00681\ \ \ \textcolor{keywordflow}{if}(diag\_size\ !=\ desired\_rank)}
+\DoxyCodeLine{00682\ \ \ \ \ d.diagonal().segment(desired\_rank,\ diag\_size-\/desired\_rank)\ =\ VectorType::Zero(diag\_size-\/desired\_rank);}
+\DoxyCodeLine{00683\ }
+\DoxyCodeLine{00684\ \ \ \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{HouseholderQR<MatrixAType>}}\ qra(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}});}
+\DoxyCodeLine{00685\ \ \ \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{HouseholderQR<MatrixBType>}}\ qrb(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00686\ \ \ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}\ =\ qra.\mbox{\hyperlink{class_eigen_1_1_householder_q_r_affd506c10ef2d25f56e7b1f9f25ff885_affd506c10ef2d25f56e7b1f9f25ff885}{householderQ}}()\ *\ d\ *\ qrb.\mbox{\hyperlink{class_eigen_1_1_householder_q_r_affd506c10ef2d25f56e7b1f9f25ff885_affd506c10ef2d25f56e7b1f9f25ff885}{householderQ}}();}
+\DoxyCodeLine{00687\ \}}
+\DoxyCodeLine{00688\ }
+\DoxyCodeLine{00689\ \textcolor{comment}{//\ Forward\ declaration\ to\ avoid\ ICC\ warning}}
+\DoxyCodeLine{00690\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ PermutationVectorType>}
+\DoxyCodeLine{00691\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_eigen_a9489ae63302dfd33d4560c5377ead43f_a9489ae63302dfd33d4560c5377ead43f}{randomPermutationVector}}(PermutationVectorType\&\ \mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}},\ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}});}
+\DoxyCodeLine{00692\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ PermutationVectorType>}
+\DoxyCodeLine{00693\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_eigen_a9489ae63302dfd33d4560c5377ead43f_a9489ae63302dfd33d4560c5377ead43f}{randomPermutationVector}}(PermutationVectorType\&\ \mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}},\ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}})}
+\DoxyCodeLine{00694\ \{}
+\DoxyCodeLine{00695\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ PermutationVectorType::Scalar\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}};}
+\DoxyCodeLine{00696\ \ \ \mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}}.resize(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}});}
+\DoxyCodeLine{00697\ \ \ \textcolor{keywordflow}{for}(\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ <\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}};\ ++\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}})\ \mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}})\ =\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}});}
+\DoxyCodeLine{00698\ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}\ ==\ 1)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00699\ \ \ \textcolor{keywordflow}{for}(\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}\ =\ 0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}\ <\ 3\ *\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}};\ ++\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}})}
+\DoxyCodeLine{00700\ \ \ \{}
+\DoxyCodeLine{00701\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ internal::random<Index>(0,\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}-\/1);}
+\DoxyCodeLine{00702\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ \mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}};}
+\DoxyCodeLine{00703\ \ \ \ \ \textcolor{keywordflow}{do}\ \mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}}\ =\ internal::random<Index>(0,\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}-\/1);\ \textcolor{keywordflow}{while}(\mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}}==\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}});}
+\DoxyCodeLine{00704\ \ \ \ \ std::swap(\mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}),\ \mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}}(\mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}}));}
+\DoxyCodeLine{00705\ \ \ \}}
+\DoxyCodeLine{00706\ \}}
+\DoxyCodeLine{00707\ }
+\DoxyCodeLine{00708\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespace_eigen_a10d79d82f1c6e55567791cd5c5304bc0_a10d79d82f1c6e55567791cd5c5304bc0}{isNotNaN}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\&\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}})}
+\DoxyCodeLine{00709\ \{}
+\DoxyCodeLine{00710\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}==\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}};}
+\DoxyCodeLine{00711\ \}}
+\DoxyCodeLine{00712\ }
+\DoxyCodeLine{00713\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespace_eigen_ab8d65958858e32e62aeba1e4455a5737_ab8d65958858e32e62aeba1e4455a5737}{isPlusInf}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\&\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}})}
+\DoxyCodeLine{00714\ \{}
+\DoxyCodeLine{00715\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}\ >\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_ac8509669719a15051e933e0dc7efd3b6_ac8509669719a15051e933e0dc7efd3b6}{NumTraits<T>::highest}}();}
+\DoxyCodeLine{00716\ \}}
+\DoxyCodeLine{00717\ }
+\DoxyCodeLine{00718\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespace_eigen_a73e4b5699212c361ff6818d5badb9e71_a73e4b5699212c361ff6818d5badb9e71}{isMinusInf}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\&\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}})}
+\DoxyCodeLine{00719\ \{}
+\DoxyCodeLine{00720\ \ \ \textcolor{keywordflow}{return}\ x\ <\ NumTraits<T>::lowest();}
+\DoxyCodeLine{00721\ \}}
+\DoxyCodeLine{00722\ }
+\DoxyCodeLine{00723\ \}\ \textcolor{comment}{//\ end\ namespace\ Eigen}}
+\DoxyCodeLine{00724\ }
+\DoxyCodeLine{00725\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_get_different_type}{GetDifferentType}};}
+\DoxyCodeLine{00726\ }
+\DoxyCodeLine{00727\ \textcolor{keyword}{template}<>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_get_different_type}{GetDifferentType}}<float>\ \{\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{struct_get_different_type_3_01float_01_4_a2c8996bbd8080d18fab0723883ed0bfc_a2c8996bbd8080d18fab0723883ed0bfc}{type}};\ \};}
+\DoxyCodeLine{00728\ \textcolor{keyword}{template}<>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_get_different_type}{GetDifferentType}}<double>\ \{\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_get_different_type_3_01double_01_4_ab9d526e35a37ccdaed32b6cf2d64f755_ab9d526e35a37ccdaed32b6cf2d64f755}{type}};\ \};}
+\DoxyCodeLine{00729\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_get_different_type}{GetDifferentType}}<\mbox{\hyperlink{namespacestd}{std}}::\mbox{\hyperlink{structcomplex}{complex}}<T>\ >}
+\DoxyCodeLine{00730\ \{\ \textcolor{keyword}{typedef}\ std::complex<typename\ GetDifferentType<T>::type>\ \mbox{\hyperlink{struct_get_different_type_3_01std_1_1complex_3_01_t_01_4_01_4_aca184f2398d5aff525b37fde9dc30d2b_aca184f2398d5aff525b37fde9dc30d2b}{type}};\ \};}
+\DoxyCodeLine{00731\ }
+\DoxyCodeLine{00732\ \textcolor{comment}{//\ Forward\ declaration\ to\ avoid\ ICC\ warning}}
+\DoxyCodeLine{00733\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>\ std::string\ \mbox{\hyperlink{main_8h_a1a1074959c8879b67ba74dbe7026fc24_a1a1074959c8879b67ba74dbe7026fc24}{type\_name}}();}
+\DoxyCodeLine{00734\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>\ std::string\ \mbox{\hyperlink{main_8h_a1a1074959c8879b67ba74dbe7026fc24_a1a1074959c8879b67ba74dbe7026fc24}{type\_name}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}other"{}};\ \}}
+\DoxyCodeLine{00735\ \textcolor{keyword}{template}<>\ std::string\ \mbox{\hyperlink{main_8h_af1f18255a0f44ca173d51cad495e8243_af1f18255a0f44ca173d51cad495e8243}{type\_name<float>}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}float"{}};\ \}}
+\DoxyCodeLine{00736\ \textcolor{keyword}{template}<>\ std::string\ \mbox{\hyperlink{main_8h_a9eea535d56fd6eb0309146b370d030f2_a9eea535d56fd6eb0309146b370d030f2}{type\_name<double>}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}double"{}};\ \}}
+\DoxyCodeLine{00737\ \textcolor{keyword}{template}<>\ std::string\ \mbox{\hyperlink{main_8h_aa3749edaa2b9e623a0e1cbe9d18ccb8a_aa3749edaa2b9e623a0e1cbe9d18ccb8a}{type\_name<long\ double>}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}long\ double"{}};\ \}}
+\DoxyCodeLine{00738\ \textcolor{keyword}{template}<>\ std::string\ \mbox{\hyperlink{main_8h_a9fec784f673d83943c21f304fc16d54e_a9fec784f673d83943c21f304fc16d54e}{type\_name<int>}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}int"{}};\ \}}
+\DoxyCodeLine{00739\ \textcolor{keyword}{template}<>\ std::string\ \mbox{\hyperlink{main_8h_a1a1074959c8879b67ba74dbe7026fc24_a1a1074959c8879b67ba74dbe7026fc24}{type\_name<std::complex<float>}}\ >()\ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}complex<float>"{}};\ \}}
+\DoxyCodeLine{00740\ \textcolor{keyword}{template}<>\ std::string\ \mbox{\hyperlink{main_8h_a1a1074959c8879b67ba74dbe7026fc24_a1a1074959c8879b67ba74dbe7026fc24}{type\_name<std::complex<double>}}\ >()\ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}complex<double>"{}};\ \}}
+\DoxyCodeLine{00741\ \textcolor{keyword}{template}<>\ std::string\ \mbox{\hyperlink{main_8h_a1a1074959c8879b67ba74dbe7026fc24_a1a1074959c8879b67ba74dbe7026fc24}{type\_name<std::complex<long\ double>}}\ >()\ \ \{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}complex<long\ double>"{}};\ \}}
+\DoxyCodeLine{00742\ \textcolor{keyword}{template}<>\ std::string\ \mbox{\hyperlink{main_8h_a1a1074959c8879b67ba74dbe7026fc24_a1a1074959c8879b67ba74dbe7026fc24}{type\_name<std::complex<int>}}\ >()\ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}complex<int>"{}};\ \}}
+\DoxyCodeLine{00743\ }
+\DoxyCodeLine{00744\ \textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespace_eigen}{Eigen}};}
+\DoxyCodeLine{00745\ }
+\DoxyCodeLine{00746\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8h_aafb7e592eb6af45e984510c738e2dd46_aafb7e592eb6af45e984510c738e2dd46}{set\_repeat\_from\_string}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *str)}
+\DoxyCodeLine{00747\ \{}
+\DoxyCodeLine{00748\ \ \ errno\ =\ 0;}
+\DoxyCodeLine{00749\ \ \ g\_repeat\ =\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}(strtoul(str,\ 0,\ 10));}
+\DoxyCodeLine{00750\ \ \ \textcolor{keywordflow}{if}(errno\ ||\ g\_repeat\ <=\ 0)}
+\DoxyCodeLine{00751\ \ \ \{}
+\DoxyCodeLine{00752\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ repeat\ value\ "{}}\ <<\ str\ <<\ std::endl;}
+\DoxyCodeLine{00753\ \ \ \ \ exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00754\ \ \ \}}
+\DoxyCodeLine{00755\ \ \ g\_has\_set\_repeat\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00756\ \}}
+\DoxyCodeLine{00757\ }
+\DoxyCodeLine{00758\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8h_ab33fb56b47e6e7afd138200cee889d65_ab33fb56b47e6e7afd138200cee889d65}{set\_seed\_from\_string}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *str)}
+\DoxyCodeLine{00759\ \{}
+\DoxyCodeLine{00760\ \ \ errno\ =\ 0;}
+\DoxyCodeLine{00761\ \ \ g\_seed\ =\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}(strtoul(str,\ 0,\ 10));}
+\DoxyCodeLine{00762\ \ \ \textcolor{keywordflow}{if}(errno\ ||\ g\_seed\ ==\ 0)}
+\DoxyCodeLine{00763\ \ \ \{}
+\DoxyCodeLine{00764\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ seed\ value\ "{}}\ <<\ str\ <<\ std::endl;}
+\DoxyCodeLine{00765\ \ \ \ \ exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00766\ \ \ \}}
+\DoxyCodeLine{00767\ \ \ g\_has\_set\_seed\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00768\ \}}
+\DoxyCodeLine{00769\ }
+\DoxyCodeLine{00770\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{bench__move__semantics_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ *argv[])}
+\DoxyCodeLine{00771\ \{}
+\DoxyCodeLine{00772\ \ \ \ \ g\_has\_set\_repeat\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00773\ \ \ \ \ g\_has\_set\_seed\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00774\ \ \ \ \ \textcolor{keywordtype}{bool}\ need\_help\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00775\ }
+\DoxyCodeLine{00776\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 1;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ <\ argc;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}++)}
+\DoxyCodeLine{00777\ \ \ \ \ \{}
+\DoxyCodeLine{00778\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(argv[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}][0]\ ==\ \textcolor{charliteral}{'r'})}
+\DoxyCodeLine{00779\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00780\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(g\_has\_set\_repeat)}
+\DoxyCodeLine{00781\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00782\ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Argument\ "{}}\ <<\ argv[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}]\ <<\ \textcolor{stringliteral}{"{}\ conflicting\ with\ a\ former\ argument"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00783\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00784\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00785\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_aafb7e592eb6af45e984510c738e2dd46_aafb7e592eb6af45e984510c738e2dd46}{set\_repeat\_from\_string}}(argv[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}]+1);}
+\DoxyCodeLine{00786\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00787\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(argv[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}][0]\ ==\ \textcolor{charliteral}{'s'})}
+\DoxyCodeLine{00788\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00789\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(g\_has\_set\_seed)}
+\DoxyCodeLine{00790\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00791\ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Argument\ "{}}\ <<\ argv[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}]\ <<\ \textcolor{stringliteral}{"{}\ conflicting\ with\ a\ former\ argument"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00792\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00793\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00794\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_ab33fb56b47e6e7afd138200cee889d65_ab33fb56b47e6e7afd138200cee889d65}{set\_seed\_from\_string}}(argv[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}]+1);}
+\DoxyCodeLine{00795\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00796\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00797\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00798\ \ \ \ \ \ \ \ \ need\_help\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00799\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00800\ \ \ \ \ \}}
+\DoxyCodeLine{00801\ }
+\DoxyCodeLine{00802\ \ \ \ \ \textcolor{keywordflow}{if}(need\_help)}
+\DoxyCodeLine{00803\ \ \ \ \ \{}
+\DoxyCodeLine{00804\ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}This\ test\ application\ takes\ the\ following\ optional\ arguments:"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00805\ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\ \ rN\ \ \ \ \ Repeat\ each\ test\ N\ times\ (default:\ "{}}\ <<\ \mbox{\hyperlink{main_8h_a31297f9f161da8fea3ee365d71066e2d_a31297f9f161da8fea3ee365d71066e2d}{DEFAULT\_REPEAT}}\ <<\ \textcolor{stringliteral}{"{})"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00806\ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\ \ sN\ \ \ \ \ Use\ N\ as\ seed\ for\ random\ numbers\ (default:\ based\ on\ current\ time)"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00807\ \ \ \ \ \ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{00808\ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}If\ defined,\ the\ environment\ variables\ EIGEN\_REPEAT\ and\ EIGEN\_SEED"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00809\ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}will\ be\ used\ as\ default\ values\ for\ these\ parameters."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00810\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00811\ \ \ \ \ \}}
+\DoxyCodeLine{00812\ }
+\DoxyCodeLine{00813\ \ \ \ \ \textcolor{keywordtype}{char}\ *env\_EIGEN\_REPEAT\ =\ getenv(\textcolor{stringliteral}{"{}EIGEN\_REPEAT"{}});}
+\DoxyCodeLine{00814\ \ \ \ \ \textcolor{keywordflow}{if}(!g\_has\_set\_repeat\ \&\&\ env\_EIGEN\_REPEAT)}
+\DoxyCodeLine{00815\ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_aafb7e592eb6af45e984510c738e2dd46_aafb7e592eb6af45e984510c738e2dd46}{set\_repeat\_from\_string}}(env\_EIGEN\_REPEAT);}
+\DoxyCodeLine{00816\ \ \ \ \ \textcolor{keywordtype}{char}\ *env\_EIGEN\_SEED\ =\ getenv(\textcolor{stringliteral}{"{}EIGEN\_SEED"{}});}
+\DoxyCodeLine{00817\ \ \ \ \ \textcolor{keywordflow}{if}(!g\_has\_set\_seed\ \&\&\ env\_EIGEN\_SEED)}
+\DoxyCodeLine{00818\ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_ab33fb56b47e6e7afd138200cee889d65_ab33fb56b47e6e7afd138200cee889d65}{set\_seed\_from\_string}}(env\_EIGEN\_SEED);}
+\DoxyCodeLine{00819\ }
+\DoxyCodeLine{00820\ \ \ \ \ \textcolor{keywordflow}{if}(!g\_has\_set\_seed)\ g\_seed\ =\ (\textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}})\ time(NULL);}
+\DoxyCodeLine{00821\ \ \ \ \ \textcolor{keywordflow}{if}(!g\_has\_set\_repeat)\ g\_repeat\ =\ \mbox{\hyperlink{main_8h_a31297f9f161da8fea3ee365d71066e2d_a31297f9f161da8fea3ee365d71066e2d}{DEFAULT\_REPEAT}};}
+\DoxyCodeLine{00822\ }
+\DoxyCodeLine{00823\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Initializing\ random\ number\ generator\ with\ seed\ "{}}\ <<\ g\_seed\ <<\ std::endl;}
+\DoxyCodeLine{00824\ \ \ \ \ std::stringstream\ ss;}
+\DoxyCodeLine{00825\ \ \ \ \ ss\ <<\ \textcolor{stringliteral}{"{}Seed:\ "{}}\ <<\ g\_seed;}
+\DoxyCodeLine{00826\ \ \ \ \ g\_test\_stack.push\_back(ss.str());}
+\DoxyCodeLine{00827\ \ \ \ \ srand(g\_seed);}
+\DoxyCodeLine{00828\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Repeating\ each\ test\ "{}}\ <<\ g\_repeat\ <<\ \textcolor{stringliteral}{"{}\ times"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00829\ }
+\DoxyCodeLine{00830\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{class_eigen_1_1_eigen_test_a4fd3d95c851abed8c3df12f853b7c13f_a4fd3d95c851abed8c3df12f853b7c13f}{EigenTest::all}}().\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}()>0);}
+\DoxyCodeLine{00831\ }
+\DoxyCodeLine{00832\ \ \ \ \ \textcolor{keywordflow}{for}(std::size\_t\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}=0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}<\mbox{\hyperlink{class_eigen_1_1_eigen_test_a4fd3d95c851abed8c3df12f853b7c13f_a4fd3d95c851abed8c3df12f853b7c13f}{EigenTest::all}}().size();\ ++\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}})}
+\DoxyCodeLine{00833\ \ \ \ \ \{}
+\DoxyCodeLine{00834\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_eigen_test}{EigenTest}}\&\ current\_test\ =\ *\mbox{\hyperlink{class_eigen_1_1_eigen_test_a4fd3d95c851abed8c3df12f853b7c13f_a4fd3d95c851abed8c3df12f853b7c13f}{EigenTest::all}}()[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}];}
+\DoxyCodeLine{00835\ \ \ \ \ \ \ Eigen::g\_test\_stack.push\_back(current\_test.\mbox{\hyperlink{class_eigen_1_1_eigen_test_a482b32262224e543d44359d3e4478b66_a482b32262224e543d44359d3e4478b66}{name}}());}
+\DoxyCodeLine{00836\ \ \ \ \ \ \ current\_test();}
+\DoxyCodeLine{00837\ \ \ \ \ \ \ Eigen::g\_test\_stack.pop\_back();}
+\DoxyCodeLine{00838\ \ \ \ \ \}}
+\DoxyCodeLine{00839\ }
+\DoxyCodeLine{00840\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00841\ \}}
+\DoxyCodeLine{00842\ }
+\DoxyCodeLine{00843\ \textcolor{comment}{//\ These\ warning\ are\ disabled\ here\ such\ that\ they\ are\ still\ ON\ when\ parsing\ Eigen's\ header\ files.}}
+\DoxyCodeLine{00844\ \textcolor{preprocessor}{\#if\ defined\ \_\_INTEL\_COMPILER}}
+\DoxyCodeLine{00845\ \ \ \textcolor{comment}{//\ remark\ \#383:\ value\ copied\ to\ temporary,\ reference\ to\ temporary\ used}}
+\DoxyCodeLine{00846\ \ \ \textcolor{comment}{//\ \ -\/>\ this\ warning\ is\ raised\ even\ for\ legal\ usage\ as:\ g\_test\_stack.push\_back("{}foo"{});\ where\ g\_test\_stack\ is\ a\ std::vector<std::string>}}
+\DoxyCodeLine{00847\ \ \ \textcolor{comment}{//\ remark\ \#1418:\ external\ function\ definition\ with\ no\ prior\ declaration}}
+\DoxyCodeLine{00848\ \ \ \textcolor{comment}{//\ \ -\/>\ this\ warning\ is\ raised\ for\ all\ our\ test\ functions.\ Declaring\ them\ static\ would\ fix\ the\ issue.}}
+\DoxyCodeLine{00849\ \ \ \textcolor{comment}{//\ warning\ \#279:\ controlling\ expression\ is\ constant}}
+\DoxyCodeLine{00850\ \ \ \textcolor{comment}{//\ remark\ \#1572:\ floating-\/point\ equality\ and\ inequality\ comparisons\ are\ unreliable}}
+\DoxyCodeLine{00851\ \textcolor{preprocessor}{\ \ \#pragma\ warning\ disable\ 279\ 383\ 1418\ 1572}}
+\DoxyCodeLine{00852\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00853\ }
+\DoxyCodeLine{00854\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00855\ \ \ \textcolor{comment}{//\ 4503\ -\/\ decorated\ name\ length\ exceeded,\ name\ was\ truncated}}
+\DoxyCodeLine{00856\ \textcolor{preprocessor}{\ \ \#pragma\ warning(\ disable\ :\ 4503)}}
+\DoxyCodeLine{00857\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

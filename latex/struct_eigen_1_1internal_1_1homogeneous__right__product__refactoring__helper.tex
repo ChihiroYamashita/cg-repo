@@ -1,0 +1,103 @@
+\doxysection{Eigen\+::internal\+::homogeneous\+\_\+right\+\_\+product\+\_\+refactoring\+\_\+helper\texorpdfstring{$<$}{<} Lhs, Rhs \texorpdfstring{$>$}{>} 構造体テンプレート}
+\hypertarget{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper}{}\label{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper}\index{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$@{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$}}
+
+
+{\ttfamily \#include $<$Homogeneous.\+h$>$}
+
+
+
+Eigen\+::internal\+::homogeneous\+\_\+right\+\_\+product\+\_\+refactoring\+\_\+helper\texorpdfstring{$<$}{<} Lhs, Rhs \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_ad7faef11046ca767b3f3637903e8c08a_ad7faef11046ca767b3f3637903e8c08aa11d6628d556fa66d069432d4119255a2}{Dim}} = Lhs\+::Cols\+At\+Compile\+Time
+, \mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_ad7faef11046ca767b3f3637903e8c08a_ad7faef11046ca767b3f3637903e8c08aad3c75657777299cb90a12508ed8a0299}{Rows}} = Lhs\+::Rows\+At\+Compile\+Time
+ \}
+\item 
+typedef Rhs\+::template \mbox{\hyperlink{struct_const_n_rows_block_xpr}{Const\+NRows\+Block\+Xpr}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_ad7faef11046ca767b3f3637903e8c08a_ad7faef11046ca767b3f3637903e8c08aa11d6628d556fa66d069432d4119255a2}{Dim}} $>$\+::\+Type \mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_a55d0571ac78dc0839b600502c94201ec_a55d0571ac78dc0839b600502c94201ec}{Linear\+Block\+Const}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__const}{remove\+\_\+const}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_a55d0571ac78dc0839b600502c94201ec_a55d0571ac78dc0839b600502c94201ec}{Linear\+Block\+Const}} $>$\+::type \mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_a1ace036de6f1cc2da789908f82b57f2a_a1ace036de6f1cc2da789908f82b57f2a}{Linear\+Block}}
+\item 
+typedef Rhs\+::\+Const\+Row\+Xpr \mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_ab468901b528441e760258d680f686ca8_ab468901b528441e760258d680f686ca8}{Constant\+Column}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}}$<$ const \mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_ab468901b528441e760258d680f686ca8_ab468901b528441e760258d680f686ca8}{Constant\+Column}}, \mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_ad7faef11046ca767b3f3637903e8c08a_ad7faef11046ca767b3f3637903e8c08aad3c75657777299cb90a12508ed8a0299}{Rows}}, 1 $>$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_a386844f806749ed73de17fd6a71d6e47_a386844f806749ed73de17fd6a71d6e47}{Constant\+Block}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_product}{Product}}$<$ \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a1a7f4ccbeaf23168b50a83680f8f35fb}{Lhs}}, \mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_a1ace036de6f1cc2da789908f82b57f2a_a1ace036de6f1cc2da789908f82b57f2a}{Linear\+Block}}, \mbox{\hyperlink{namespace_eigen_a15a3e26ba06f3c60d2f2e46f56045f27_a15a3e26ba06f3c60d2f2e46f56045f27a14eddae1399980a6a1927a27c8d18a62}{Lazy\+Product}} $>$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_a40e2f54509732929fda5d29535ad0396_a40e2f54509732929fda5d29535ad0396}{Linear\+Product}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Cwise\+Binary\+Op}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__sum__op}{internal\+::scalar\+\_\+sum\+\_\+op}}$<$ typename Lhs\+::\+Scalar, typename Rhs\+::\+Scalar $>$, const \mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_a40e2f54509732929fda5d29535ad0396_a40e2f54509732929fda5d29535ad0396}{Linear\+Product}}, const \mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_a386844f806749ed73de17fd6a71d6e47_a386844f806749ed73de17fd6a71d6e47}{Constant\+Block}} $>$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_a0027f4f3d34302c4ee639a690fdf5cc3_a0027f4f3d34302c4ee639a690fdf5cc3}{Xpr}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{型定義メンバ詳解}
+\Hypertarget{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_a386844f806749ed73de17fd6a71d6e47_a386844f806749ed73de17fd6a71d6e47}\index{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$@{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$}!ConstantBlock@{ConstantBlock}}
+\index{ConstantBlock@{ConstantBlock}!Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$@{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$}}
+\doxysubsubsection{\texorpdfstring{ConstantBlock}{ConstantBlock}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_a386844f806749ed73de17fd6a71d6e47_a386844f806749ed73de17fd6a71d6e47} 
+template$<$typename \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a1a7f4ccbeaf23168b50a83680f8f35fb}{Lhs}} , typename \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a6c8de80f9984c6a6da22b7c288fee57d}{Rhs}} $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}}$<$const \mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_ab468901b528441e760258d680f686ca8_ab468901b528441e760258d680f686ca8}{Constant\+Column}},\mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_ad7faef11046ca767b3f3637903e8c08a_ad7faef11046ca767b3f3637903e8c08aad3c75657777299cb90a12508ed8a0299}{Rows}},1$>$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper}{Eigen\+::internal\+::homogeneous\+\_\+right\+\_\+product\+\_\+refactoring\+\_\+helper}}$<$ \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a1a7f4ccbeaf23168b50a83680f8f35fb}{Lhs}}, \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a6c8de80f9984c6a6da22b7c288fee57d}{Rhs}} $>$\+::\+Constant\+Block}
+
+\Hypertarget{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_ab468901b528441e760258d680f686ca8_ab468901b528441e760258d680f686ca8}\index{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$@{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$}!ConstantColumn@{ConstantColumn}}
+\index{ConstantColumn@{ConstantColumn}!Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$@{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$}}
+\doxysubsubsection{\texorpdfstring{ConstantColumn}{ConstantColumn}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_ab468901b528441e760258d680f686ca8_ab468901b528441e760258d680f686ca8} 
+template$<$typename \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a1a7f4ccbeaf23168b50a83680f8f35fb}{Lhs}} , typename \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a6c8de80f9984c6a6da22b7c288fee57d}{Rhs}} $>$ \\
+Rhs\+::\+Const\+Row\+Xpr \mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper}{Eigen\+::internal\+::homogeneous\+\_\+right\+\_\+product\+\_\+refactoring\+\_\+helper}}$<$ \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a1a7f4ccbeaf23168b50a83680f8f35fb}{Lhs}}, \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a6c8de80f9984c6a6da22b7c288fee57d}{Rhs}} $>$\+::\+Constant\+Column}
+
+\Hypertarget{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_a1ace036de6f1cc2da789908f82b57f2a_a1ace036de6f1cc2da789908f82b57f2a}\index{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$@{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$}!LinearBlock@{LinearBlock}}
+\index{LinearBlock@{LinearBlock}!Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$@{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$}}
+\doxysubsubsection{\texorpdfstring{LinearBlock}{LinearBlock}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_a1ace036de6f1cc2da789908f82b57f2a_a1ace036de6f1cc2da789908f82b57f2a} 
+template$<$typename \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a1a7f4ccbeaf23168b50a83680f8f35fb}{Lhs}} , typename \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a6c8de80f9984c6a6da22b7c288fee57d}{Rhs}} $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__const}{remove\+\_\+const}}$<$\mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_a55d0571ac78dc0839b600502c94201ec_a55d0571ac78dc0839b600502c94201ec}{Linear\+Block\+Const}}$>$\+::type \mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper}{Eigen\+::internal\+::homogeneous\+\_\+right\+\_\+product\+\_\+refactoring\+\_\+helper}}$<$ \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a1a7f4ccbeaf23168b50a83680f8f35fb}{Lhs}}, \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a6c8de80f9984c6a6da22b7c288fee57d}{Rhs}} $>$\+::\+Linear\+Block}
+
+\Hypertarget{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_a55d0571ac78dc0839b600502c94201ec_a55d0571ac78dc0839b600502c94201ec}\index{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$@{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$}!LinearBlockConst@{LinearBlockConst}}
+\index{LinearBlockConst@{LinearBlockConst}!Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$@{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$}}
+\doxysubsubsection{\texorpdfstring{LinearBlockConst}{LinearBlockConst}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_a55d0571ac78dc0839b600502c94201ec_a55d0571ac78dc0839b600502c94201ec} 
+template$<$typename \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a1a7f4ccbeaf23168b50a83680f8f35fb}{Lhs}} , typename \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a6c8de80f9984c6a6da22b7c288fee57d}{Rhs}} $>$ \\
+Rhs\+::template \mbox{\hyperlink{struct_const_n_rows_block_xpr}{Const\+NRows\+Block\+Xpr}}$<$\mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_ad7faef11046ca767b3f3637903e8c08a_ad7faef11046ca767b3f3637903e8c08aa11d6628d556fa66d069432d4119255a2}{Dim}}$>$\+::\+Type \mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper}{Eigen\+::internal\+::homogeneous\+\_\+right\+\_\+product\+\_\+refactoring\+\_\+helper}}$<$ \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a1a7f4ccbeaf23168b50a83680f8f35fb}{Lhs}}, \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a6c8de80f9984c6a6da22b7c288fee57d}{Rhs}} $>$\+::\+Linear\+Block\+Const}
+
+\Hypertarget{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_a40e2f54509732929fda5d29535ad0396_a40e2f54509732929fda5d29535ad0396}\index{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$@{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$}!LinearProduct@{LinearProduct}}
+\index{LinearProduct@{LinearProduct}!Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$@{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$}}
+\doxysubsubsection{\texorpdfstring{LinearProduct}{LinearProduct}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_a40e2f54509732929fda5d29535ad0396_a40e2f54509732929fda5d29535ad0396} 
+template$<$typename \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a1a7f4ccbeaf23168b50a83680f8f35fb}{Lhs}} , typename \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a6c8de80f9984c6a6da22b7c288fee57d}{Rhs}} $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_product}{Product}}$<$\mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a1a7f4ccbeaf23168b50a83680f8f35fb}{Lhs}},\mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_a1ace036de6f1cc2da789908f82b57f2a_a1ace036de6f1cc2da789908f82b57f2a}{Linear\+Block}},\mbox{\hyperlink{namespace_eigen_a15a3e26ba06f3c60d2f2e46f56045f27_a15a3e26ba06f3c60d2f2e46f56045f27a14eddae1399980a6a1927a27c8d18a62}{Lazy\+Product}}$>$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper}{Eigen\+::internal\+::homogeneous\+\_\+right\+\_\+product\+\_\+refactoring\+\_\+helper}}$<$ \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a1a7f4ccbeaf23168b50a83680f8f35fb}{Lhs}}, \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a6c8de80f9984c6a6da22b7c288fee57d}{Rhs}} $>$\+::\+Linear\+Product}
+
+\Hypertarget{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_a0027f4f3d34302c4ee639a690fdf5cc3_a0027f4f3d34302c4ee639a690fdf5cc3}\index{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$@{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$}!Xpr@{Xpr}}
+\index{Xpr@{Xpr}!Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$@{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$}}
+\doxysubsubsection{\texorpdfstring{Xpr}{Xpr}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_a0027f4f3d34302c4ee639a690fdf5cc3_a0027f4f3d34302c4ee639a690fdf5cc3} 
+template$<$typename \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a1a7f4ccbeaf23168b50a83680f8f35fb}{Lhs}} , typename \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a6c8de80f9984c6a6da22b7c288fee57d}{Rhs}} $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Cwise\+Binary\+Op}}$<$\mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__sum__op}{internal\+::scalar\+\_\+sum\+\_\+op}}$<$typename Lhs\+::\+Scalar,typename Rhs\+::\+Scalar$>$, const \mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_a40e2f54509732929fda5d29535ad0396_a40e2f54509732929fda5d29535ad0396}{Linear\+Product}}, const \mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_a386844f806749ed73de17fd6a71d6e47_a386844f806749ed73de17fd6a71d6e47}{Constant\+Block}}$>$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper}{Eigen\+::internal\+::homogeneous\+\_\+right\+\_\+product\+\_\+refactoring\+\_\+helper}}$<$ \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a1a7f4ccbeaf23168b50a83680f8f35fb}{Lhs}}, \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a6c8de80f9984c6a6da22b7c288fee57d}{Rhs}} $>$\+::\+Xpr}
+
+
+
+\doxysubsection{列挙型メンバ詳解}
+\Hypertarget{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_ad7faef11046ca767b3f3637903e8c08a_ad7faef11046ca767b3f3637903e8c08a}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_ad7faef11046ca767b3f3637903e8c08a_ad7faef11046ca767b3f3637903e8c08a} 
+template$<$typename \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a1a7f4ccbeaf23168b50a83680f8f35fb}{Lhs}} , typename \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a6c8de80f9984c6a6da22b7c288fee57d}{Rhs}} $>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Dim@{Dim}!Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$@{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$}}\index{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$@{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$}!Dim@{Dim}}}\Hypertarget{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_ad7faef11046ca767b3f3637903e8c08a_ad7faef11046ca767b3f3637903e8c08aa11d6628d556fa66d069432d4119255a2}\label{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_ad7faef11046ca767b3f3637903e8c08a_ad7faef11046ca767b3f3637903e8c08a} 
+Dim&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Rows@{Rows}!Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$@{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$}}\index{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$@{Eigen::internal::homogeneous\_right\_product\_refactoring\_helper$<$ Lhs, Rhs $>$}!Rows@{Rows}}}\Hypertarget{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_ad7faef11046ca767b3f3637903e8c08a_ad7faef11046ca767b3f3637903e8c08aad3c75657777299cb90a12508ed8a0299}\label{struct_eigen_1_1internal_1_1homogeneous__right__product__refactoring__helper_ad7faef11046ca767b3f3637903e8c08a_ad7faef11046ca767b3f3637903e8c08a} 
+Rows&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+この構造体詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Geometry/\mbox{\hyperlink{_homogeneous_8h}{Homogeneous.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,158 @@
+\doxysection{random\+\_\+without\+\_\+cast\+\_\+overflow.\+h}
+\hypertarget{random__without__cast__overflow_8h_source}{}\label{random__without__cast__overflow_8h_source}\index{eigen-\/3.4.0/eigen-\/3.4.0/test/random\_without\_cast\_overflow.h@{eigen-\/3.4.0/eigen-\/3.4.0/test/random\_without\_cast\_overflow.h}}
+\mbox{\hyperlink{random__without__cast__overflow_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ Eigen,\ a\ lightweight\ C++\ template\ library}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ for\ linear\ algebra.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (C)\ 2020\ C.\ Antonio\ Sanchez\ <cantonios@google.com>}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ This\ Source\ Code\ Form\ is\ subject\ to\ the\ terms\ of\ the\ Mozilla}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Public\ License\ v.\ 2.0.\ If\ a\ copy\ of\ the\ MPL\ was\ not\ distributed}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ with\ this\ file,\ You\ can\ obtain\ one\ at\ http://mozilla.org/MPL/2.0/.}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ Utilities\ for\ generating\ random\ numbers\ without\ overflows,\ which\ might}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ otherwise\ result\ in\ undefined\ behavior.}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_eigen}{Eigen}}\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceinternal}{internal}}\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ Default\ implementation\ assuming\ SrcScalar\ fits\ into\ TgtScalar.}}
+\DoxyCodeLine{00017\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SrcScalar,\ \textcolor{keyword}{typename}\ TgtScalar,\ \textcolor{keyword}{typename}\ EnableIf\ =\ \textcolor{keywordtype}{void}>}
+\DoxyCodeLine{00018\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow}{random\_without\_cast\_overflow}}\ \{}
+\DoxyCodeLine{00019\ \ \ \textcolor{keyword}{static}\ SrcScalar\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow_a9b3b50eaec215cfbab3a7ff2deb391ed_a9b3b50eaec215cfbab3a7ff2deb391ed}{value}}()\ \{\ \textcolor{keywordflow}{return}\ internal::random<SrcScalar>();\ \}}
+\DoxyCodeLine{00020\ \};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ Signed\ to\ unsigned\ integer\ widening\ cast.}}
+\DoxyCodeLine{00023\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SrcScalar,\ \textcolor{keyword}{typename}\ TgtScalar>}
+\DoxyCodeLine{00024\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow}{random\_without\_cast\_overflow}}<}
+\DoxyCodeLine{00025\ \ \ \ \ SrcScalar,\ TgtScalar,}
+\DoxyCodeLine{00026\ \ \ \ \ typename\ \mbox{\hyperlink{namespaceinternal}{internal}}::\mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{enable\_if}}<NumTraits<SrcScalar>::IsInteger\ \&\&\ NumTraits<TgtScalar>::IsInteger\ \&\&}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !NumTraits<TgtScalar>::IsSigned\ \&\&}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (std::numeric\_limits<SrcScalar>::digits\ <\ std::numeric\_limits<TgtScalar>::digits\ ||}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (std::numeric\_limits<SrcScalar>::digits\ ==\ std::numeric\_limits<TgtScalar>::digits\ \&\&}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NumTraits<SrcScalar>::IsSigned))>::type>\ \{}
+\DoxyCodeLine{00031\ \ \ \textcolor{keyword}{static}\ SrcScalar\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow_3_01_src_scalar_00_01_tgt_scalar_00_20a82b334540e4c1deb21cd781f8e755_a25e4662136311f345aa0df292d2dc759_a25e4662136311f345aa0df292d2dc759}{value}}()\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ SrcScalar\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}\ =\ internal::random<SrcScalar>();}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}\ <\ SrcScalar(0)\ ?\ -\/(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}\ +\ 1)\ :\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}};}
+\DoxyCodeLine{00034\ \ \ \}}
+\DoxyCodeLine{00035\ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ Integer\ to\ unsigned\ narrowing\ cast.}}
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SrcScalar,\ \textcolor{keyword}{typename}\ TgtScalar>}
+\DoxyCodeLine{00039\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow}{random\_without\_cast\_overflow}}<}
+\DoxyCodeLine{00040\ \ \ \ \ SrcScalar,\ TgtScalar,}
+\DoxyCodeLine{00041\ \ \ \ \ typename\ \mbox{\hyperlink{namespaceinternal}{internal}}::\mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{enable\_if}}<}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ NumTraits<SrcScalar>::IsInteger\ \&\&\ NumTraits<TgtScalar>::IsInteger\ \&\&\ !NumTraits<SrcScalar>::IsSigned\ \&\&}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ (std::numeric\_limits<SrcScalar>::digits\ >\ std::numeric\_limits<TgtScalar>::digits)>::type>\ \{}
+\DoxyCodeLine{00044\ \ \ \textcolor{keyword}{static}\ SrcScalar\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow_3_01_src_scalar_00_01_tgt_scalar_00_7c5dd962acc526b4a280a85aa6612577_a4a473a3b84379a78d18f936013e83b15_a4a473a3b84379a78d18f936013e83b15}{value}}()\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ TgtScalar\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}\ =\ internal::random<TgtScalar>();}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}SrcScalar\textcolor{keyword}{>}(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}\ <\ TgtScalar(0)\ ?\ -\/(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}\ +\ 1)\ :\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00047\ \ \ \}}
+\DoxyCodeLine{00048\ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ Integer\ to\ signed\ narrowing\ cast.}}
+\DoxyCodeLine{00051\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SrcScalar,\ \textcolor{keyword}{typename}\ TgtScalar>}
+\DoxyCodeLine{00052\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow}{random\_without\_cast\_overflow}}<}
+\DoxyCodeLine{00053\ \ \ \ \ SrcScalar,\ TgtScalar,}
+\DoxyCodeLine{00054\ \ \ \ \ typename\ \mbox{\hyperlink{namespaceinternal}{internal}}::\mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{enable\_if}}<}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ NumTraits<SrcScalar>::IsInteger\ \&\&\ NumTraits<TgtScalar>::IsInteger\ \&\&\ NumTraits<SrcScalar>::IsSigned\ \&\&}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ (std::numeric\_limits<SrcScalar>::digits\ >\ std::numeric\_limits<TgtScalar>::digits)>::type>\ \{}
+\DoxyCodeLine{00057\ \ \ \textcolor{keyword}{static}\ SrcScalar\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow_3_01_src_scalar_00_01_tgt_scalar_00_a3bbb06a7c2e3da9b6541b4ee0377145_ae8d1b37d51c5fca42c1fa697586981f8_ae8d1b37d51c5fca42c1fa697586981f8}{value}}()\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}SrcScalar\textcolor{keyword}{>}(internal::random<TgtScalar>());\ \}}
+\DoxyCodeLine{00058\ \};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ Unsigned\ to\ signed\ integer\ narrowing\ cast.}}
+\DoxyCodeLine{00061\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SrcScalar,\ \textcolor{keyword}{typename}\ TgtScalar>}
+\DoxyCodeLine{00062\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow}{random\_without\_cast\_overflow}}<}
+\DoxyCodeLine{00063\ \ \ \ \ SrcScalar,\ TgtScalar,}
+\DoxyCodeLine{00064\ \ \ \ \ typename\ \mbox{\hyperlink{namespaceinternal}{internal}}::\mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{enable\_if}}<NumTraits<SrcScalar>::IsInteger\ \&\&\ NumTraits<TgtScalar>::IsInteger\ \&\&}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !NumTraits<SrcScalar>::IsSigned\ \&\&\ NumTraits<TgtScalar>::IsSigned\ \&\&}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (std::numeric\_limits<SrcScalar>::digits\ ==}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::numeric\_limits<TgtScalar>::digits)>::type>\ \{}
+\DoxyCodeLine{00068\ \ \ \textcolor{keyword}{static}\ SrcScalar\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow_3_01_src_scalar_00_01_tgt_scalar_00_222d3030ecebf69392874673c3d750b5_ad9167d79510ba11c60dc03fe0ed9798a_ad9167d79510ba11c60dc03fe0ed9798a}{value}}()\ \{\ \textcolor{keywordflow}{return}\ internal::random<SrcScalar>()\ /\ 2;\ \}}
+\DoxyCodeLine{00069\ \};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{comment}{//\ Floating-\/point\ to\ integer,\ full\ precision.}}
+\DoxyCodeLine{00072\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SrcScalar,\ \textcolor{keyword}{typename}\ TgtScalar>}
+\DoxyCodeLine{00073\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow}{random\_without\_cast\_overflow}}<}
+\DoxyCodeLine{00074\ \ \ \ \ SrcScalar,\ TgtScalar,}
+\DoxyCodeLine{00075\ \ \ \ \ typename\ \mbox{\hyperlink{namespaceinternal}{internal}}::\mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{enable\_if}}<}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ !NumTraits<SrcScalar>::IsInteger\ \&\&\ !NumTraits<SrcScalar>::IsComplex\ \&\&\ NumTraits<TgtScalar>::IsInteger\ \&\&}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ (std::numeric\_limits<TgtScalar>::digits\ <=\ std::numeric\_limits<SrcScalar>::digits)>::type>\ \{}
+\DoxyCodeLine{00078\ \ \ \textcolor{keyword}{static}\ SrcScalar\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow_3_01_src_scalar_00_01_tgt_scalar_00_d3ba861526f5342440d2b1b3e7e9d9b5_a31c0977f046bb474b105a04b4ee204d1_a31c0977f046bb474b105a04b4ee204d1}{value}}()\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}SrcScalar\textcolor{keyword}{>}(internal::random<TgtScalar>());\ \}}
+\DoxyCodeLine{00079\ \};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{comment}{//\ Floating-\/point\ to\ integer,\ narrowing\ precision.}}
+\DoxyCodeLine{00082\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SrcScalar,\ \textcolor{keyword}{typename}\ TgtScalar>}
+\DoxyCodeLine{00083\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow}{random\_without\_cast\_overflow}}<}
+\DoxyCodeLine{00084\ \ \ \ \ SrcScalar,\ TgtScalar,}
+\DoxyCodeLine{00085\ \ \ \ \ typename\ \mbox{\hyperlink{namespaceinternal}{internal}}::\mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{enable\_if}}<}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ !NumTraits<SrcScalar>::IsInteger\ \&\&\ !NumTraits<SrcScalar>::IsComplex\ \&\&\ NumTraits<TgtScalar>::IsInteger\ \&\&}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ (std::numeric\_limits<TgtScalar>::digits\ >\ std::numeric\_limits<SrcScalar>::digits)>::type>\ \{}
+\DoxyCodeLine{00088\ \ \ \textcolor{keyword}{static}\ SrcScalar\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow_3_01_src_scalar_00_01_tgt_scalar_00_6d3aa1c00c81dc373f2076a4e076a9e4_a1bc5a8a51a45e1c80904e5a32f8bb5dd_a1bc5a8a51a45e1c80904e5a32f8bb5dd}{value}}()\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{comment}{//\ NOTE:\ internal::random<T>()\ is\ limited\ by\ RAND\_MAX,\ so\ random<int64\_t>\ is\ always\ within\ that\ range.}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{//\ This\ prevents\ us\ from\ simply\ shifting\ bits,\ which\ would\ result\ in\ only\ 0\ or\ -\/1.}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{//\ Instead,\ keep\ least-\/significant\ K\ bits\ and\ sign.}}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ TgtScalar\ KeepMask\ =\ (\textcolor{keyword}{static\_cast<}TgtScalar\textcolor{keyword}{>}(1)\ <<\ std::numeric\_limits<SrcScalar>::digits)\ -\/\ 1;}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{const}\ TgtScalar\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}\ =\ internal::random<TgtScalar>();}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}SrcScalar\textcolor{keyword}{>}(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}\ >\ TgtScalar(0)\ ?\ (\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}\ \&\ KeepMask)\ :\ -\/(\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}\ \&\ KeepMask));}
+\DoxyCodeLine{00095\ \ \ \}}
+\DoxyCodeLine{00096\ \};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{comment}{//\ Integer\ to\ floating-\/point,\ re-\/use\ above\ logic.}}
+\DoxyCodeLine{00099\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SrcScalar,\ \textcolor{keyword}{typename}\ TgtScalar>}
+\DoxyCodeLine{00100\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow}{random\_without\_cast\_overflow}}<}
+\DoxyCodeLine{00101\ \ \ \ \ SrcScalar,\ TgtScalar,}
+\DoxyCodeLine{00102\ \ \ \ \ typename\ \mbox{\hyperlink{namespaceinternal}{internal}}::\mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{enable\_if}}<NumTraits<SrcScalar>::IsInteger\ \&\&\ !NumTraits<TgtScalar>::IsInteger\ \&\&}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !NumTraits<TgtScalar>::IsComplex>::type>\ \{}
+\DoxyCodeLine{00104\ \ \ \textcolor{keyword}{static}\ SrcScalar\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow_3_01_src_scalar_00_01_tgt_scalar_00_34c79f00761d235eed7773735fe5560c_a608f34c14a4deba53cdbb515cf23644e_a608f34c14a4deba53cdbb515cf23644e}{value}}()\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}SrcScalar\textcolor{keyword}{>}(\mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow_a9b3b50eaec215cfbab3a7ff2deb391ed_a9b3b50eaec215cfbab3a7ff2deb391ed}{random\_without\_cast\_overflow<TgtScalar,\ SrcScalar>::value}}());}
+\DoxyCodeLine{00106\ \ \ \}}
+\DoxyCodeLine{00107\ \};}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{comment}{//\ Floating-\/point\ narrowing\ conversion.}}
+\DoxyCodeLine{00110\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SrcScalar,\ \textcolor{keyword}{typename}\ TgtScalar>}
+\DoxyCodeLine{00111\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow}{random\_without\_cast\_overflow}}<}
+\DoxyCodeLine{00112\ \ \ \ \ SrcScalar,\ TgtScalar,}
+\DoxyCodeLine{00113\ \ \ \ \ typename\ \mbox{\hyperlink{namespaceinternal}{internal}}::\mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{enable\_if}}<!NumTraits<SrcScalar>::IsInteger\ \&\&\ !NumTraits<SrcScalar>::IsComplex\ \&\&}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !NumTraits<TgtScalar>::IsInteger\ \&\&\ !NumTraits<TgtScalar>::IsComplex\ \&\&}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (std::numeric\_limits<SrcScalar>::digits\ >}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::numeric\_limits<TgtScalar>::digits)>::type>\ \{}
+\DoxyCodeLine{00117\ \ \ \textcolor{keyword}{static}\ SrcScalar\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow_3_01_src_scalar_00_01_tgt_scalar_00_29286e85a821d29921efa14902755da7_a98cf304f09bb5d5a6487f7ccf5e1517e_a98cf304f09bb5d5a6487f7ccf5e1517e}{value}}()\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}SrcScalar\textcolor{keyword}{>}(internal::random<TgtScalar>());\ \}}
+\DoxyCodeLine{00118\ \};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{comment}{//\ Complex\ to\ non-\/complex.}}
+\DoxyCodeLine{00121\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SrcScalar,\ \textcolor{keyword}{typename}\ TgtScalar>}
+\DoxyCodeLine{00122\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow}{random\_without\_cast\_overflow}}<}
+\DoxyCodeLine{00123\ \ \ \ \ SrcScalar,\ TgtScalar,}
+\DoxyCodeLine{00124\ \ \ \ \ typename\ \mbox{\hyperlink{namespaceinternal}{internal}}::\mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{enable\_if}}<NumTraits<SrcScalar>::IsComplex\ \&\&\ !NumTraits<TgtScalar>::IsComplex>::type>\ \{}
+\DoxyCodeLine{00125\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{NumTraits<SrcScalar>::Real}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow_3_01_src_scalar_00_01_tgt_scalar_00_296d0fe27943d478e74fa958addb57f3_a028cdbdb52401b551bb3251331f79fc5_a028cdbdb52401b551bb3251331f79fc5}{SrcReal}};}
+\DoxyCodeLine{00126\ \ \ \textcolor{keyword}{static}\ SrcScalar\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow_3_01_src_scalar_00_01_tgt_scalar_00_296d0fe27943d478e74fa958addb57f3_a3420e381df58cedb6bf72a6ccfa69b60_a3420e381df58cedb6bf72a6ccfa69b60}{value}}()\ \{\ \textcolor{keywordflow}{return}\ SrcScalar(\mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow}{random\_without\_cast\_overflow<SrcReal,\ TgtScalar>::value}}(),\ 0);\ \}}
+\DoxyCodeLine{00127\ \};}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{comment}{//\ Non-\/complex\ to\ complex.}}
+\DoxyCodeLine{00130\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SrcScalar,\ \textcolor{keyword}{typename}\ TgtScalar>}
+\DoxyCodeLine{00131\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow}{random\_without\_cast\_overflow}}<}
+\DoxyCodeLine{00132\ \ \ \ \ SrcScalar,\ TgtScalar,}
+\DoxyCodeLine{00133\ \ \ \ \ typename\ \mbox{\hyperlink{namespaceinternal}{internal}}::\mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{enable\_if}}<!NumTraits<SrcScalar>::IsComplex\ \&\&\ NumTraits<TgtScalar>::IsComplex>::type>\ \{}
+\DoxyCodeLine{00134\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{NumTraits<TgtScalar>::Real}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow_3_01_src_scalar_00_01_tgt_scalar_00_95799384c26aaed79c50ed27f1496e8b_a287426748713f137117ac3758923ee65_a287426748713f137117ac3758923ee65}{TgtReal}};}
+\DoxyCodeLine{00135\ \ \ \textcolor{keyword}{static}\ SrcScalar\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow_3_01_src_scalar_00_01_tgt_scalar_00_95799384c26aaed79c50ed27f1496e8b_a1121866ebec5c2f0fb0b7f49e4547c95_a1121866ebec5c2f0fb0b7f49e4547c95}{value}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow_a9b3b50eaec215cfbab3a7ff2deb391ed_a9b3b50eaec215cfbab3a7ff2deb391ed}{random\_without\_cast\_overflow<SrcScalar,\ TgtReal>::value}}();\ \}}
+\DoxyCodeLine{00136\ \};}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \textcolor{comment}{//\ Complex\ to\ complex.}}
+\DoxyCodeLine{00139\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ SrcScalar,\ \textcolor{keyword}{typename}\ TgtScalar>}
+\DoxyCodeLine{00140\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow}{random\_without\_cast\_overflow}}<}
+\DoxyCodeLine{00141\ \ \ \ \ SrcScalar,\ TgtScalar,}
+\DoxyCodeLine{00142\ \ \ \ \ typename\ \mbox{\hyperlink{namespaceinternal}{internal}}::\mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{enable\_if}}<NumTraits<SrcScalar>::IsComplex\ \&\&\ NumTraits<TgtScalar>::IsComplex>::type>\ \{}
+\DoxyCodeLine{00143\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{NumTraits<SrcScalar>::Real}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow_3_01_src_scalar_00_01_tgt_scalar_00_858249ae4458dce967d22a1092e225d2_a6687ca6a929963ae12c29dca493c1333_a6687ca6a929963ae12c29dca493c1333}{SrcReal}};}
+\DoxyCodeLine{00144\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{NumTraits<TgtScalar>::Real}}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow_3_01_src_scalar_00_01_tgt_scalar_00_858249ae4458dce967d22a1092e225d2_a74dc5cf99c34fd076509de9967f2b935_a74dc5cf99c34fd076509de9967f2b935}{TgtReal}};}
+\DoxyCodeLine{00145\ \ \ \textcolor{keyword}{static}\ SrcScalar\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow_3_01_src_scalar_00_01_tgt_scalar_00_858249ae4458dce967d22a1092e225d2_a1d25af54df2e46db2b06c29a7314e914_a1d25af54df2e46db2b06c29a7314e914}{value}}()\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordflow}{return}\ SrcScalar(\mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow}{random\_without\_cast\_overflow<SrcReal,\ TgtReal>::value}}(),}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1internal_1_1random__without__cast__overflow}{random\_without\_cast\_overflow<SrcReal,\ TgtReal>::value}}());}
+\DoxyCodeLine{00148\ \ \ \}}
+\DoxyCodeLine{00149\ \};}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \}\ \ \textcolor{comment}{//\ namespace\ internal}}
+\DoxyCodeLine{00152\ \}\ \ \textcolor{comment}{//\ namespace\ Eigen}}
+
+\end{DoxyCode}

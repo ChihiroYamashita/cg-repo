@@ -1,0 +1,79 @@
+\doxysection{eigen-\/3.4.0/eigen-\/3.4.0/bench/\+Bench\+Util.h ファイル}
+\hypertarget{_bench_util_8h}{}\label{_bench_util_8h}\index{eigen-\/3.4.0/eigen-\/3.4.0/bench/BenchUtil.h@{eigen-\/3.4.0/eigen-\/3.4.0/bench/BenchUtil.h}}
+{\ttfamily \#include $<$Eigen/\+Core$>$}\newline
+{\ttfamily \#include "{}Bench\+Timer.\+h"{}}\newline
+{\ttfamily \#include $<$boost/preprocessor/repetition/enum\+\_\+params.\+hpp$>$}\newline
+{\ttfamily \#include $<$boost/preprocessor/repetition.\+hpp$>$}\newline
+{\ttfamily \#include $<$boost/preprocessor/seq.\+hpp$>$}\newline
+{\ttfamily \#include $<$boost/preprocessor/array.\+hpp$>$}\newline
+{\ttfamily \#include $<$boost/preprocessor/arithmetic.\+hpp$>$}\newline
+{\ttfamily \#include $<$boost/preprocessor/comparison.\+hpp$>$}\newline
+{\ttfamily \#include $<$boost/preprocessor/punctuation.\+hpp$>$}\newline
+{\ttfamily \#include $<$boost/preprocessor/punctuation/comma.\+hpp$>$}\newline
+{\ttfamily \#include $<$boost/preprocessor/stringize.\+hpp$>$}\newline
+Bench\+Util.\+h の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_bench_util_8h__incl}
+\end{center}
+\end{figure}
+被依存関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_bench_util_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_bench_util_8h_a62e3265480ac2ab68b11fc1c5a3da747_a62e3265480ac2ab68b11fc1c5a3da747}{DISABLE\+\_\+\+SSE\+\_\+\+EXCEPTIONS}}()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{Matrix\+Type}} $>$ }\\void \mbox{\hyperlink{_bench_util_8h_af03059ceff46160bbce9dc56d5758686_af03059ceff46160bbce9dc56d5758686}{init\+Matrix\+\_\+random}} (\mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{Matrix\+Type}} \&\mbox{\hyperlink{_tutorial___advanced_initialization___comma_temporary_8cpp_a5d2ded7a4c8830608d7b218f5f27c0a0_a5d2ded7a4c8830608d7b218f5f27c0a0}{mat}}) \mbox{\hyperlink{bench__reverse_8cpp_af57f208bfabc394dd45616e63728dce0_af57f208bfabc394dd45616e63728dce0}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}((noinline))
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{Matrix\+Type}} $>$ }\\void \mbox{\hyperlink{_bench_util_8h_aaca223bd1c2ca240cbceda872c77b21c_aaca223bd1c2ca240cbceda872c77b21c}{init\+Matrix\+\_\+identity}} (\mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{Matrix\+Type}} \&\mbox{\hyperlink{_tutorial___advanced_initialization___comma_temporary_8cpp_a5d2ded7a4c8830608d7b218f5f27c0a0_a5d2ded7a4c8830608d7b218f5f27c0a0}{mat}}) \mbox{\hyperlink{bench__reverse_8cpp_af57f208bfabc394dd45616e63728dce0_af57f208bfabc394dd45616e63728dce0}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}((noinline))
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{_bench_util_8h_a62e3265480ac2ab68b11fc1c5a3da747_a62e3265480ac2ab68b11fc1c5a3da747}\index{BenchUtil.h@{BenchUtil.h}!DISABLE\_SSE\_EXCEPTIONS@{DISABLE\_SSE\_EXCEPTIONS}}
+\index{DISABLE\_SSE\_EXCEPTIONS@{DISABLE\_SSE\_EXCEPTIONS}!BenchUtil.h@{BenchUtil.h}}
+\doxysubsubsection{\texorpdfstring{DISABLE\_SSE\_EXCEPTIONS}{DISABLE\_SSE\_EXCEPTIONS}}
+{\footnotesize\ttfamily \label{_bench_util_8h_a62e3265480ac2ab68b11fc1c5a3da747_a62e3265480ac2ab68b11fc1c5a3da747} 
+\#define DISABLE\+\_\+\+SSE\+\_\+\+EXCEPTIONS(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ aux;\ \(\backslash\)}
+\DoxyCodeLine{\ \ asm(\ \(\backslash\)}
+\DoxyCodeLine{\ \ \textcolor{stringliteral}{"{}stmxcsr\ \ \ \%[aux]\ \ \ \ \ \ \ \ \ \ \ \(\backslash\)n\(\backslash\)t"{}}\ \(\backslash\)}
+\DoxyCodeLine{\ \ \textcolor{stringliteral}{"{}orl\ \ \ \ \ \ \ \$32832,\ \%[aux]\ \ \ \(\backslash\)n\(\backslash\)t"{}}\ \(\backslash\)}
+\DoxyCodeLine{\ \ \textcolor{stringliteral}{"{}ldmxcsr\ \ \ \%[aux]\ \ \ \ \ \ \ \ \ \ \ \(\backslash\)n\(\backslash\)t"{}}\ \(\backslash\)}
+\DoxyCodeLine{\ \ :\ :\ [aux]\ \textcolor{stringliteral}{"{}m"{}}\ (aux));\ \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{_bench_util_8h_aaca223bd1c2ca240cbceda872c77b21c_aaca223bd1c2ca240cbceda872c77b21c}\index{BenchUtil.h@{BenchUtil.h}!initMatrix\_identity@{initMatrix\_identity}}
+\index{initMatrix\_identity@{initMatrix\_identity}!BenchUtil.h@{BenchUtil.h}}
+\doxysubsubsection{\texorpdfstring{initMatrix\_identity()}{initMatrix\_identity()}}
+{\footnotesize\ttfamily \label{_bench_util_8h_aaca223bd1c2ca240cbceda872c77b21c_aaca223bd1c2ca240cbceda872c77b21c} 
+template$<$typename \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{Matrix\+Type}} $>$ \\
+void init\+Matrix\+\_\+identity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{Matrix\+Type}} \&}]{mat}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_bench_util_8h_af03059ceff46160bbce9dc56d5758686_af03059ceff46160bbce9dc56d5758686}\index{BenchUtil.h@{BenchUtil.h}!initMatrix\_random@{initMatrix\_random}}
+\index{initMatrix\_random@{initMatrix\_random}!BenchUtil.h@{BenchUtil.h}}
+\doxysubsubsection{\texorpdfstring{initMatrix\_random()}{initMatrix\_random()}}
+{\footnotesize\ttfamily \label{_bench_util_8h_af03059ceff46160bbce9dc56d5758686_af03059ceff46160bbce9dc56d5758686} 
+template$<$typename \mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{Matrix\+Type}} $>$ \\
+void init\+Matrix\+\_\+random (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{Matrix\+Type}} \&}]{mat}{}\end{DoxyParamCaption})}
+

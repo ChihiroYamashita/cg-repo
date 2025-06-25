@@ -1,0 +1,492 @@
+\doxysection{Non\+Blocking\+Thread\+Pool.\+h}
+\hypertarget{_non_blocking_thread_pool_8h_source}{}\label{_non_blocking_thread_pool_8h_source}\index{eigen-\/3.4.0/eigen-\/3.4.0/unsupported/Eigen/CXX11/src/ThreadPool/NonBlockingThreadPool.h@{eigen-\/3.4.0/eigen-\/3.4.0/unsupported/Eigen/CXX11/src/ThreadPool/NonBlockingThreadPool.h}}
+\mbox{\hyperlink{_non_blocking_thread_pool_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ Eigen,\ a\ lightweight\ C++\ template\ library}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ for\ linear\ algebra.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (C)\ 2016\ Dmitry\ Vyukov\ <dvyukov@google.com>}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ This\ Source\ Code\ Form\ is\ subject\ to\ the\ terms\ of\ the\ Mozilla}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Public\ License\ v.\ 2.0.\ If\ a\ copy\ of\ the\ MPL\ was\ not\ distributed}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ with\ this\ file,\ You\ can\ obtain\ one\ at\ http://mozilla.org/MPL/2.0/.}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_CXX11\_THREADPOOL\_NONBLOCKING\_THREAD\_POOL\_H}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ EIGEN\_CXX11\_THREADPOOL\_NONBLOCKING\_THREAD\_POOL\_H}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_eigen}{Eigen}}\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Environment>}
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ}{ThreadPoolTempl}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_interface}{Eigen::ThreadPoolInterface}}\ \{}
+\DoxyCodeLine{00017\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ Environment::Task\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_adf196760672014b96bb76fd0b8191d95_adf196760672014b96bb76fd0b8191d95}{Task}};}
+\DoxyCodeLine{00019\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_run_queue}{RunQueue<Task,\ 1024>}}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aeafcd23636275484cfc61a214f592513_aeafcd23636275484cfc61a214f592513}{Queue}};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a9ac475e6b3df752a34c42a7d7cd5934a_a9ac475e6b3df752a34c42a7d7cd5934a}{ThreadPoolTempl}}(\textcolor{keywordtype}{int}\ num\_threads,\ Environment\ env\ =\ Environment())}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ :\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ}{ThreadPoolTempl}}(num\_threads,\ true,\ env)\ \{\}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a260a9bd9c0b4766c67d8c92f13539faf_a260a9bd9c0b4766c67d8c92f13539faf}{ThreadPoolTempl}}(\textcolor{keywordtype}{int}\ num\_threads,\ \textcolor{keywordtype}{bool}\ allow\_spinning,}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Environment\ env\ =\ Environment())}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ :\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_af45f798efad20863b31723533e7f5e10_af45f798efad20863b31723533e7f5e10}{env\_}}(env),}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a068fa3d75e3d4333f655c90a096fbd27_a068fa3d75e3d4333f655c90a096fbd27}{num\_threads\_}}(num\_threads),}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a5c1998ac2d723178e78b134a43ac85bf_a5c1998ac2d723178e78b134a43ac85bf}{allow\_spinning\_}}(allow\_spinning),}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a43d29d2c5a8e59161610f20f01ee15e8_a43d29d2c5a8e59161610f20f01ee15e8}{thread\_data\_}}(num\_threads),}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa58a8f54d063bcc206ef48071b1f4f20_aa58a8f54d063bcc206ef48071b1f4f20}{all\_coprimes\_}}(num\_threads),}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_ae9f49a0c8f1a617a2895a5a61b88d009_ae9f49a0c8f1a617a2895a5a61b88d009}{waiters\_}}(num\_threads),}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_ad5d8bbe2ff4d7e8717baf8969ad7bad5_ad5d8bbe2ff4d7e8717baf8969ad7bad5}{global\_steal\_partition\_}}(\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a9ef3e00c98dabf804fd5c561dcc38f4b_a9ef3e00c98dabf804fd5c561dcc38f4b}{EncodePartition}}(0,\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a068fa3d75e3d4333f655c90a096fbd27_a068fa3d75e3d4333f655c90a096fbd27}{num\_threads\_}})),}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a0fac26e4e1962f8b285a7857a521df76_a0fac26e4e1962f8b285a7857a521df76}{blocked\_}}(0),}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa2d67a14a80965e64a0687aae83fa473_aa2d67a14a80965e64a0687aae83fa473}{spinning\_}}(0),}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_ac74e83ea9972e996f0e81c91a0581938_ac74e83ea9972e996f0e81c91a0581938}{done\_}}(false),}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa6bd846431d1f0fec7eb0641b985070e_aa6bd846431d1f0fec7eb0641b985070e}{cancelled\_}}(false),}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aae473fc80de007adbe6ffe49074ae4a8_aae473fc80de007adbe6ffe49074ae4a8}{ec\_}}(\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_ae9f49a0c8f1a617a2895a5a61b88d009_ae9f49a0c8f1a617a2895a5a61b88d009}{waiters\_}})\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_ae9f49a0c8f1a617a2895a5a61b88d009_ae9f49a0c8f1a617a2895a5a61b88d009}{waiters\_}}.resize(\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a068fa3d75e3d4333f655c90a096fbd27_a068fa3d75e3d4333f655c90a096fbd27}{num\_threads\_}});}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ Calculate\ coprimes\ of\ all\ numbers\ [1,\ num\_threads].}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ Coprimes\ are\ used\ for\ random\ walks\ over\ all\ threads\ in\ Steal}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ and\ NonEmptyQueueIndex.\ Iteration\ is\ based\ on\ the\ fact\ that\ if\ we\ take}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ a\ random\ starting\ thread\ index\ t\ and\ calculate\ num\_threads\ -\/\ 1\ subsequent}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ indices\ as\ (t\ +\ coprime)\ \%\ num\_threads,\ we\ will\ cover\ all\ threads\ without}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ repetitions\ (effectively\ getting\ a\ presudo-\/random\ permutation\ of\ thread}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ indices).}}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{_macros_8h_a000d296c3fca8ba6e784bdcc7d01d91d_a000d296c3fca8ba6e784bdcc7d01d91d}{eigen\_plain\_assert}}(\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a068fa3d75e3d4333f655c90a096fbd27_a068fa3d75e3d4333f655c90a096fbd27}{num\_threads\_}}\ <\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a66236b13992b14cd20697611546e700b_a66236b13992b14cd20697611546e700b}{kMaxThreads}});}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 1;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ <=\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a068fa3d75e3d4333f655c90a096fbd27_a068fa3d75e3d4333f655c90a096fbd27}{num\_threads\_}};\ ++\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}})\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa58a8f54d063bcc206ef48071b1f4f20_aa58a8f54d063bcc206ef48071b1f4f20}{all\_coprimes\_}}.emplace\_back(\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}});}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a1ea51754eb4378b3f18488fed8518e73_a1ea51754eb4378b3f18488fed8518e73}{ComputeCoprimes}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}},\ \&\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa58a8f54d063bcc206ef48071b1f4f20_aa58a8f54d063bcc206ef48071b1f4f20}{all\_coprimes\_}}.back());}
+\DoxyCodeLine{00050\ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_THREAD\_LOCAL}}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a730c58b4c6496db15c573d3e42f7b92a_a730c58b4c6496db15c573d3e42f7b92a}{init\_barrier\_}}.reset(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_eigen_1_1_barrier}{Barrier}}(\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a068fa3d75e3d4333f655c90a096fbd27_a068fa3d75e3d4333f655c90a096fbd27}{num\_threads\_}}));}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a43d29d2c5a8e59161610f20f01ee15e8_a43d29d2c5a8e59161610f20f01ee15e8}{thread\_data\_}}.resize(\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a068fa3d75e3d4333f655c90a096fbd27_a068fa3d75e3d4333f655c90a096fbd27}{num\_threads\_}});}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ <\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a068fa3d75e3d4333f655c90a096fbd27_a068fa3d75e3d4333f655c90a096fbd27}{num\_threads\_}};\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}++)\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a33043481eee397d6945aeedfb69e8b22_a33043481eee397d6945aeedfb69e8b22}{SetStealPartition}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a9ef3e00c98dabf804fd5c561dcc38f4b_a9ef3e00c98dabf804fd5c561dcc38f4b}{EncodePartition}}(0,\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a068fa3d75e3d4333f655c90a096fbd27_a068fa3d75e3d4333f655c90a096fbd27}{num\_threads\_}}));}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a43d29d2c5a8e59161610f20f01ee15e8_a43d29d2c5a8e59161610f20f01ee15e8}{thread\_data\_}}[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}].thread.reset(}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_af45f798efad20863b31723533e7f5e10_af45f798efad20863b31723533e7f5e10}{env\_}}.CreateThread([\textcolor{keyword}{this},\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}]()\ \{\ WorkerLoop(i);\ \}));}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_THREAD\_LOCAL}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//\ Wait\ for\ workers\ to\ initialize\ per\_thread\_map\_.\ Otherwise\ we\ might\ race}}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ with\ them\ in\ Schedule\ or\ CurrentThreadId.}}
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a730c58b4c6496db15c573d3e42f7b92a_a730c58b4c6496db15c573d3e42f7b92a}{init\_barrier\_}}-\/>Wait();}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00065\ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a23e588780519fa22fa46d316c154ce9b_a23e588780519fa22fa46d316c154ce9b}{\string~ThreadPoolTempl}}()\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_ac74e83ea9972e996f0e81c91a0581938_ac74e83ea9972e996f0e81c91a0581938}{done\_}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{//\ Now\ if\ all\ threads\ block\ without\ work,\ they\ will\ start\ exiting.}}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{//\ But\ note\ that\ threads\ can\ continue\ to\ work\ arbitrary\ long,}}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{//\ block,\ submit\ new\ work,\ unblock\ and\ otherwise\ live\ full\ life.}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa6bd846431d1f0fec7eb0641b985070e_aa6bd846431d1f0fec7eb0641b985070e}{cancelled\_}})\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aae473fc80de007adbe6ffe49074ae4a8_aae473fc80de007adbe6ffe49074ae4a8}{ec\_}}.\mbox{\hyperlink{class_eigen_1_1_event_count_a4e0c3f15c54ef7baa9ff1963f549f73d_a4e0c3f15c54ef7baa9ff1963f549f73d}{Notify}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{00075\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \textcolor{comment}{//\ Since\ we\ were\ cancelled,\ there\ might\ be\ entries\ in\ the\ queues.}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \textcolor{comment}{//\ Empty\ them\ to\ prevent\ their\ destructor\ from\ asserting.}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ <\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a43d29d2c5a8e59161610f20f01ee15e8_a43d29d2c5a8e59161610f20f01ee15e8}{thread\_data\_}}.size();\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}++)\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a43d29d2c5a8e59161610f20f01ee15e8_a43d29d2c5a8e59161610f20f01ee15e8}{thread\_data\_}}[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}].queue.Flush();}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{//\ Join\ threads\ explicitly\ (by\ destroying)\ to\ avoid\ destruction\ order\ within}}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//\ this\ class.}}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ <\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a43d29d2c5a8e59161610f20f01ee15e8_a43d29d2c5a8e59161610f20f01ee15e8}{thread\_data\_}}.size();\ ++\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}})}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a43d29d2c5a8e59161610f20f01ee15e8_a43d29d2c5a8e59161610f20f01ee15e8}{thread\_data\_}}[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}].thread.reset();}
+\DoxyCodeLine{00086\ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a0eb8ef5a4669ca6180c4514b4ce599b8_a0eb8ef5a4669ca6180c4514b4ce599b8}{SetStealPartitions}}(\textcolor{keyword}{const}\ std::vector<std::pair<unsigned,\ unsigned>>\&\ partitions)\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \mbox{\hyperlink{_macros_8h_a000d296c3fca8ba6e784bdcc7d01d91d_a000d296c3fca8ba6e784bdcc7d01d91d}{eigen\_plain\_assert}}(partitions.size()\ ==\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a068fa3d75e3d4333f655c90a096fbd27_a068fa3d75e3d4333f655c90a096fbd27}{num\_threads\_}}));}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{//\ Pass\ this\ information\ to\ each\ thread\ queue.}}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ <\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a068fa3d75e3d4333f655c90a096fbd27_a068fa3d75e3d4333f655c90a096fbd27}{num\_threads\_}};\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}++)\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ pair\ =\ partitions[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}];}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ start\ =\ pair.first,\ end\ =\ pair.second;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a02b0f4e8b3a4106866115727b4237ef0_a02b0f4e8b3a4106866115727b4237ef0}{AssertBounds}}(start,\ end);}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ val\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a9ef3e00c98dabf804fd5c561dcc38f4b_a9ef3e00c98dabf804fd5c561dcc38f4b}{EncodePartition}}(start,\ end);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a33043481eee397d6945aeedfb69e8b22_a33043481eee397d6945aeedfb69e8b22}{SetStealPartition}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}},\ val);}
+\DoxyCodeLine{00098\ \ \ \ \ \}}
+\DoxyCodeLine{00099\ \ \ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a173a9316c1c44bfa16ea684d40d082e7_a173a9316c1c44bfa16ea684d40d082e7}{Schedule}}(std::function<\textcolor{keywordtype}{void}()>\ fn)\ \mbox{\hyperlink{_macros_8h_a19dff117eed64678a59331cdeda6d8fc_a19dff117eed64678a59331cdeda6d8fc}{EIGEN\_OVERRIDE}}\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a307298c025beb275281e24828822581c_a307298c025beb275281e24828822581c}{ScheduleWithHint}}(std::move(fn),\ 0,\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a068fa3d75e3d4333f655c90a096fbd27_a068fa3d75e3d4333f655c90a096fbd27}{num\_threads\_}});}
+\DoxyCodeLine{00103\ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a307298c025beb275281e24828822581c_a307298c025beb275281e24828822581c}{ScheduleWithHint}}(std::function<\textcolor{keywordtype}{void}()>\ fn,\ \textcolor{keywordtype}{int}\ start,}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ limit)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_adf196760672014b96bb76fd0b8191d95_adf196760672014b96bb76fd0b8191d95}{Task}}\ t\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_af45f798efad20863b31723533e7f5e10_af45f798efad20863b31723533e7f5e10}{env\_}}.CreateTask(std::move(fn));}
+\DoxyCodeLine{00108\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread}{PerThread}}*\ pt\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a5fbdeeb556df2aa372800c2166fee539_a5fbdeeb556df2aa372800c2166fee539}{GetPerThread}}();}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{if}\ (pt-\/>\mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread_a1c03c2ef9807783ae984dec5e1817de4_a1c03c2ef9807783ae984dec5e1817de4}{pool}}\ ==\ \textcolor{keyword}{this})\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \textcolor{comment}{//\ Worker\ thread\ of\ this\ pool,\ push\ onto\ the\ thread's\ queue.}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_run_queue}{Queue}}\&\ q\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a43d29d2c5a8e59161610f20f01ee15e8_a43d29d2c5a8e59161610f20f01ee15e8}{thread\_data\_}}[pt-\/>\mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread_a6873baf3e94761e2c2a531cecefe6481_a6873baf3e94761e2c2a531cecefe6481}{thread\_id}}].queue;}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ t\ =\ q.PushFront(std::move(t));}
+\DoxyCodeLine{00113\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \textcolor{comment}{//\ A\ free-\/standing\ thread\ (or\ worker\ of\ another\ pool),\ push\ onto\ a\ random}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \textcolor{comment}{//\ queue.}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \mbox{\hyperlink{_macros_8h_a000d296c3fca8ba6e784bdcc7d01d91d_a000d296c3fca8ba6e784bdcc7d01d91d}{eigen\_plain\_assert}}(start\ <\ limit);}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \mbox{\hyperlink{_macros_8h_a000d296c3fca8ba6e784bdcc7d01d91d_a000d296c3fca8ba6e784bdcc7d01d91d}{eigen\_plain\_assert}}(limit\ <=\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a068fa3d75e3d4333f655c90a096fbd27_a068fa3d75e3d4333f655c90a096fbd27}{num\_threads\_}});}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ num\_queues\ =\ limit\ -\/\ start;}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ rnd\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a2dd271b2a237a0a87c501b60018045be_a2dd271b2a237a0a87c501b60018045be}{Rand}}(\&pt-\/>\mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread_a694ad14dafe7ae0dc802ca89d74b52c1_a694ad14dafe7ae0dc802ca89d74b52c1}{rand}})\ \%\ num\_queues;}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \mbox{\hyperlink{_macros_8h_a000d296c3fca8ba6e784bdcc7d01d91d_a000d296c3fca8ba6e784bdcc7d01d91d}{eigen\_plain\_assert}}(start\ +\ rnd\ <\ limit);}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_run_queue}{Queue}}\&\ q\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a43d29d2c5a8e59161610f20f01ee15e8_a43d29d2c5a8e59161610f20f01ee15e8}{thread\_data\_}}[start\ +\ rnd].queue;}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ t\ =\ q.PushBack(std::move(t));}
+\DoxyCodeLine{00123\ \ \ \ \ \}}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{comment}{//\ Note:\ below\ we\ touch\ this\ after\ making\ w\ available\ to\ worker\ threads.}}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{comment}{//\ Strictly\ speaking,\ this\ can\ lead\ to\ a\ racy-\/use-\/after-\/free.\ Consider\ that}}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{comment}{//\ Schedule\ is\ called\ from\ a\ thread\ that\ is\ neither\ main\ thread\ nor\ a\ worker}}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{comment}{//\ thread\ of\ this\ pool.\ Then,\ execution\ of\ w\ directly\ or\ indirectly}}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{comment}{//\ completes\ overall\ computations,\ which\ in\ turn\ leads\ to\ destruction\ of}}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{comment}{//\ this.\ We\ expect\ that\ such\ scenario\ is\ prevented\ by\ program,\ that\ is,}}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{comment}{//\ this\ is\ kept\ alive\ while\ any\ threads\ can\ potentially\ be\ in\ Schedule.}}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordflow}{if}\ (!t.f)\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aae473fc80de007adbe6ffe49074ae4a8_aae473fc80de007adbe6ffe49074ae4a8}{ec\_}}.\mbox{\hyperlink{class_eigen_1_1_event_count_a4e0c3f15c54ef7baa9ff1963f549f73d_a4e0c3f15c54ef7baa9ff1963f549f73d}{Notify}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{00133\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_af45f798efad20863b31723533e7f5e10_af45f798efad20863b31723533e7f5e10}{env\_}}.ExecuteTask(t);\ \ \textcolor{comment}{//\ Push\ failed,\ execute\ directly.}}
+\DoxyCodeLine{00135\ \ \ \ \ \}}
+\DoxyCodeLine{00136\ \ \ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a0ad2d7bc31ee21c0d44cffd4934901c2_a0ad2d7bc31ee21c0d44cffd4934901c2}{Cancel}}()\ \mbox{\hyperlink{_macros_8h_a19dff117eed64678a59331cdeda6d8fc_a19dff117eed64678a59331cdeda6d8fc}{EIGEN\_OVERRIDE}}\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa6bd846431d1f0fec7eb0641b985070e_aa6bd846431d1f0fec7eb0641b985070e}{cancelled\_}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00140\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_ac74e83ea9972e996f0e81c91a0581938_ac74e83ea9972e996f0e81c91a0581938}{done\_}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{comment}{//\ Let\ each\ thread\ know\ it's\ been\ cancelled.}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_THREAD\_ENV\_SUPPORTS\_CANCELLATION}}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ <\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a43d29d2c5a8e59161610f20f01ee15e8_a43d29d2c5a8e59161610f20f01ee15e8}{thread\_data\_}}.size();\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}++)\ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a43d29d2c5a8e59161610f20f01ee15e8_a43d29d2c5a8e59161610f20f01ee15e8}{thread\_data\_}}[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}].thread-\/>OnCancel();}
+\DoxyCodeLine{00146\ \ \ \ \ \}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{comment}{//\ Wake\ up\ the\ threads\ without\ work\ to\ let\ them\ exit\ on\ their\ own.}}
+\DoxyCodeLine{00150\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aae473fc80de007adbe6ffe49074ae4a8_aae473fc80de007adbe6ffe49074ae4a8}{ec\_}}.\mbox{\hyperlink{class_eigen_1_1_event_count_a4e0c3f15c54ef7baa9ff1963f549f73d_a4e0c3f15c54ef7baa9ff1963f549f73d}{Notify}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{00151\ \ \ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a834d2d2c52d326c78a04daa9e6c64ae4_a834d2d2c52d326c78a04daa9e6c64ae4}{NumThreads}}()\ const\ \mbox{\hyperlink{_macros_8h_a77fd405b2a61a9ff14bc36e54ae70b2e_a77fd405b2a61a9ff14bc36e54ae70b2e}{EIGEN\_FINAL}}\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a068fa3d75e3d4333f655c90a096fbd27_a068fa3d75e3d4333f655c90a096fbd27}{num\_threads\_}};\ \}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a10e5996daf4278d48e419e19f8af2569_a10e5996daf4278d48e419e19f8af2569}{CurrentThreadId}}()\ const\ \mbox{\hyperlink{_macros_8h_a77fd405b2a61a9ff14bc36e54ae70b2e_a77fd405b2a61a9ff14bc36e54ae70b2e}{EIGEN\_FINAL}}\ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread}{PerThread}}*\ pt\ =\ \textcolor{keyword}{const\_cast<}\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ}{ThreadPoolTempl}}*\textcolor{keyword}{>}(\textcolor{keyword}{this})-\/>\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a5fbdeeb556df2aa372800c2166fee539_a5fbdeeb556df2aa372800c2166fee539}{GetPerThread}}();}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordflow}{if}\ (pt-\/>\mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread_a1c03c2ef9807783ae984dec5e1817de4_a1c03c2ef9807783ae984dec5e1817de4}{pool}}\ ==\ \textcolor{keyword}{this})\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pt-\/>\mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread_a6873baf3e94761e2c2a531cecefe6481_a6873baf3e94761e2c2a531cecefe6481}{thread\_id}};}
+\DoxyCodeLine{00159\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00161\ \ \ \ \ \}}
+\DoxyCodeLine{00162\ \ \ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00165\ \ \ \textcolor{comment}{//\ Create\ a\ single\ atomic<int>\ that\ encodes\ start\ and\ limit\ information\ for}}
+\DoxyCodeLine{00166\ \ \ \textcolor{comment}{//\ each\ thread.}}
+\DoxyCodeLine{00167\ \ \ \textcolor{comment}{//\ We\ expect\ num\_threads\_\ <\ 65536,\ so\ we\ can\ store\ them\ in\ a\ single}}
+\DoxyCodeLine{00168\ \ \ \textcolor{comment}{//\ std::atomic<unsigned>.}}
+\DoxyCodeLine{00169\ \ \ \textcolor{comment}{//\ Exposed\ publicly\ as\ static\ functions\ so\ that\ external\ callers\ can\ reuse}}
+\DoxyCodeLine{00170\ \ \ \textcolor{comment}{//\ this\ encode/decode\ logic\ for\ maintaining\ their\ own\ thread-\/safe\ copies\ of}}
+\DoxyCodeLine{00171\ \ \ \textcolor{comment}{//\ scheduling\ and\ steal\ domain(s).}}
+\DoxyCodeLine{00172\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a45e00085966d13692e95c1bce3b2651c_a45e00085966d13692e95c1bce3b2651c}{kMaxPartitionBits}}\ =\ 16;}
+\DoxyCodeLine{00173\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a66236b13992b14cd20697611546e700b_a66236b13992b14cd20697611546e700b}{kMaxThreads}}\ =\ 1\ <<\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a45e00085966d13692e95c1bce3b2651c_a45e00085966d13692e95c1bce3b2651c}{kMaxPartitionBits}};}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a9ef3e00c98dabf804fd5c561dcc38f4b_a9ef3e00c98dabf804fd5c561dcc38f4b}{EncodePartition}}(\textcolor{keywordtype}{unsigned}\ start,\ \textcolor{keywordtype}{unsigned}\ limit)\ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordflow}{return}\ (start\ <<\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a45e00085966d13692e95c1bce3b2651c_a45e00085966d13692e95c1bce3b2651c}{kMaxPartitionBits}})\ |\ limit;}
+\DoxyCodeLine{00177\ \ \ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a8852da6106e6ae24ccc376d98724a444_a8852da6106e6ae24ccc376d98724a444}{DecodePartition}}(\textcolor{keywordtype}{unsigned}\ val,\ \textcolor{keywordtype}{unsigned}*\ start,\ \textcolor{keywordtype}{unsigned}*\ limit)\ \{}
+\DoxyCodeLine{00180\ \ \ \ \ *limit\ =\ val\ \&\ (\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a66236b13992b14cd20697611546e700b_a66236b13992b14cd20697611546e700b}{kMaxThreads}}\ -\/\ 1);}
+\DoxyCodeLine{00181\ \ \ \ \ val\ >>=\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a45e00085966d13692e95c1bce3b2651c_a45e00085966d13692e95c1bce3b2651c}{kMaxPartitionBits}};}
+\DoxyCodeLine{00182\ \ \ \ \ *start\ =\ val;}
+\DoxyCodeLine{00183\ \ \ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a02b0f4e8b3a4106866115727b4237ef0_a02b0f4e8b3a4106866115727b4237ef0}{AssertBounds}}(\textcolor{keywordtype}{int}\ start,\ \textcolor{keywordtype}{int}\ end)\ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \mbox{\hyperlink{_macros_8h_a000d296c3fca8ba6e784bdcc7d01d91d_a000d296c3fca8ba6e784bdcc7d01d91d}{eigen\_plain\_assert}}(start\ >=\ 0);}
+\DoxyCodeLine{00187\ \ \ \ \ \mbox{\hyperlink{_macros_8h_a000d296c3fca8ba6e784bdcc7d01d91d_a000d296c3fca8ba6e784bdcc7d01d91d}{eigen\_plain\_assert}}(start\ <\ end);\ \ \textcolor{comment}{//\ non-\/zero\ sized\ partition}}
+\DoxyCodeLine{00188\ \ \ \ \ \mbox{\hyperlink{_macros_8h_a000d296c3fca8ba6e784bdcc7d01d91d_a000d296c3fca8ba6e784bdcc7d01d91d}{eigen\_plain\_assert}}(end\ <=\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a068fa3d75e3d4333f655c90a096fbd27_a068fa3d75e3d4333f655c90a096fbd27}{num\_threads\_}});}
+\DoxyCodeLine{00189\ \ \ \}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a33043481eee397d6945aeedfb69e8b22_a33043481eee397d6945aeedfb69e8b22}{SetStealPartition}}(\textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}},\ \textcolor{keywordtype}{unsigned}\ val)\ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a43d29d2c5a8e59161610f20f01ee15e8_a43d29d2c5a8e59161610f20f01ee15e8}{thread\_data\_}}[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}].steal\_partition.store(val,\ std::memory\_order\_relaxed);}
+\DoxyCodeLine{00193\ \ \ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a9a3fee6a5f23403f4ec032fa74c07b68_a9a3fee6a5f23403f4ec032fa74c07b68}{GetStealPartition}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}})\ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a43d29d2c5a8e59161610f20f01ee15e8_a43d29d2c5a8e59161610f20f01ee15e8}{thread\_data\_}}[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}].steal\_partition.load(std::memory\_order\_relaxed);}
+\DoxyCodeLine{00197\ \ \ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a1ea51754eb4378b3f18488fed8518e73_a1ea51754eb4378b3f18488fed8518e73}{ComputeCoprimes}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{freeglut__geometry_8c_a171232fbfaa696c3994c87eedd320363_a171232fbfaa696c3994c87eedd320363}{N}},\ \mbox{\hyperlink{class_eigen_1_1_max_size_vector}{MaxSizeVector<unsigned>}}*\ coprimes)\ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 1;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ <=\ \mbox{\hyperlink{freeglut__geometry_8c_a171232fbfaa696c3994c87eedd320363_a171232fbfaa696c3994c87eedd320363}{N}};\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}++)\ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}\ =\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}};}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}\ =\ \mbox{\hyperlink{freeglut__geometry_8c_a171232fbfaa696c3994c87eedd320363_a171232fbfaa696c3994c87eedd320363}{N}};}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \textcolor{comment}{//\ If\ GCD(a,\ b)\ ==\ 1,\ then\ a\ and\ b\ are\ coprimes.}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}\ !=\ 0)\ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ tmp\ =\ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}};}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}\ =\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}};}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}\ =\ tmp\ \%\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}};}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}\ ==\ 1)\ \{}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ coprimes-\/>\mbox{\hyperlink{class_eigen_1_1_max_size_vector_a8e7af55e22c320493f08e371813c8cea_a8e7af55e22c320493f08e371813c8cea}{push\_back}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}});}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00212\ \ \ \ \ \}}
+\DoxyCodeLine{00213\ \ \ \}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ Environment::EnvThread\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_ae5e9c3137bd512d84dda7e799f723c91_ae5e9c3137bd512d84dda7e799f723c91}{Thread}};}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread}{PerThread}}\ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread_ab87fee607fb0d93b13cd557e647c3ebc_ab87fee607fb0d93b13cd557e647c3ebc}{PerThread}}()\ :\ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread_a1c03c2ef9807783ae984dec5e1817de4_a1c03c2ef9807783ae984dec5e1817de4}{pool}}(NULL),\ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread_a694ad14dafe7ae0dc802ca89d74b52c1_a694ad14dafe7ae0dc802ca89d74b52c1}{rand}}(0),\ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread_a6873baf3e94761e2c2a531cecefe6481_a6873baf3e94761e2c2a531cecefe6481}{thread\_id}}(-\/1)\ \{\}}
+\DoxyCodeLine{00219\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ}{ThreadPoolTempl}}*\ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread_a1c03c2ef9807783ae984dec5e1817de4_a1c03c2ef9807783ae984dec5e1817de4}{pool}};\ \ \textcolor{comment}{//\ Parent\ pool,\ or\ null\ for\ normal\ threads.}}
+\DoxyCodeLine{00220\ \ \ \ \ uint64\_t\ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread_a694ad14dafe7ae0dc802ca89d74b52c1_a694ad14dafe7ae0dc802ca89d74b52c1}{rand}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Random\ generator\ state.}}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread_a6873baf3e94761e2c2a531cecefe6481_a6873baf3e94761e2c2a531cecefe6481}{thread\_id}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Worker\ thread\ index\ in\ pool.}}
+\DoxyCodeLine{00222\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_THREAD\_LOCAL}}
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{comment}{//\ Prevent\ false\ sharing.}}
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread_afd79754e81c88035292fbf6e89220884_afd79754e81c88035292fbf6e89220884}{pad\_}}[128];}
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00226\ \ \ \};}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_thread_data}{ThreadData}}\ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_thread_data_a572d3e22913369a6633daf96ef7c33f8_a572d3e22913369a6633daf96ef7c33f8}{ThreadData}}()\ :\ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_thread_data_a256af91cdc42e43f022c606d3b68ee9f_a256af91cdc42e43f022c606d3b68ee9f}{thread}}(),\ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_thread_data_a38ec1f16e9ba58cbc021ed0dc6b3858e_a38ec1f16e9ba58cbc021ed0dc6b3858e}{steal\_partition}}(0),\ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_thread_data_aa4d60208b947693f1b5aad76392b64e7_aa4d60208b947693f1b5aad76392b64e7}{queue}}()\ \{\}}
+\DoxyCodeLine{00230\ \ \ \ \ std::unique\_ptr<Thread>\ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_thread_data_a256af91cdc42e43f022c606d3b68ee9f_a256af91cdc42e43f022c606d3b68ee9f}{thread}};}
+\DoxyCodeLine{00231\ \ \ \ \ std::atomic<unsigned>\ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_thread_data_a38ec1f16e9ba58cbc021ed0dc6b3858e_a38ec1f16e9ba58cbc021ed0dc6b3858e}{steal\_partition}};}
+\DoxyCodeLine{00232\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_run_queue}{Queue}}\ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_thread_data_aa4d60208b947693f1b5aad76392b64e7_aa4d60208b947693f1b5aad76392b64e7}{queue}};}
+\DoxyCodeLine{00233\ \ \ \};}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ Environment\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_af45f798efad20863b31723533e7f5e10_af45f798efad20863b31723533e7f5e10}{env\_}};}
+\DoxyCodeLine{00236\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a068fa3d75e3d4333f655c90a096fbd27_a068fa3d75e3d4333f655c90a096fbd27}{num\_threads\_}};}
+\DoxyCodeLine{00237\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a5c1998ac2d723178e78b134a43ac85bf_a5c1998ac2d723178e78b134a43ac85bf}{allow\_spinning\_}};}
+\DoxyCodeLine{00238\ \ \ \mbox{\hyperlink{class_eigen_1_1_max_size_vector}{MaxSizeVector<ThreadData>}}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a43d29d2c5a8e59161610f20f01ee15e8_a43d29d2c5a8e59161610f20f01ee15e8}{thread\_data\_}};}
+\DoxyCodeLine{00239\ \ \ \mbox{\hyperlink{class_eigen_1_1_max_size_vector}{MaxSizeVector<MaxSizeVector<unsigned>}}>\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa58a8f54d063bcc206ef48071b1f4f20_aa58a8f54d063bcc206ef48071b1f4f20}{all\_coprimes\_}};}
+\DoxyCodeLine{00240\ \ \ \mbox{\hyperlink{class_eigen_1_1_max_size_vector}{MaxSizeVector<EventCount::Waiter>}}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_ae9f49a0c8f1a617a2895a5a61b88d009_ae9f49a0c8f1a617a2895a5a61b88d009}{waiters\_}};}
+\DoxyCodeLine{00241\ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_ad5d8bbe2ff4d7e8717baf8969ad7bad5_ad5d8bbe2ff4d7e8717baf8969ad7bad5}{global\_steal\_partition\_}};}
+\DoxyCodeLine{00242\ \ \ std::atomic<unsigned>\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a0fac26e4e1962f8b285a7857a521df76_a0fac26e4e1962f8b285a7857a521df76}{blocked\_}};}
+\DoxyCodeLine{00243\ \ \ std::atomic<bool>\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa2d67a14a80965e64a0687aae83fa473_aa2d67a14a80965e64a0687aae83fa473}{spinning\_}};}
+\DoxyCodeLine{00244\ \ \ std::atomic<bool>\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_ac74e83ea9972e996f0e81c91a0581938_ac74e83ea9972e996f0e81c91a0581938}{done\_}};}
+\DoxyCodeLine{00245\ \ \ std::atomic<bool>\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa6bd846431d1f0fec7eb0641b985070e_aa6bd846431d1f0fec7eb0641b985070e}{cancelled\_}};}
+\DoxyCodeLine{00246\ \ \ \mbox{\hyperlink{class_eigen_1_1_event_count}{EventCount}}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aae473fc80de007adbe6ffe49074ae4a8_aae473fc80de007adbe6ffe49074ae4a8}{ec\_}};}
+\DoxyCodeLine{00247\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_THREAD\_LOCAL}}
+\DoxyCodeLine{00248\ \ \ std::unique\_ptr<Barrier>\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a730c58b4c6496db15c573d3e42f7b92a_a730c58b4c6496db15c573d3e42f7b92a}{init\_barrier\_}};}
+\DoxyCodeLine{00249\ \ \ std::mutex\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa2588b41cd2833f6146236a3aacd70c4_aa2588b41cd2833f6146236a3aacd70c4}{per\_thread\_map\_mutex\_}};\ \ \textcolor{comment}{//\ Protects\ per\_thread\_map\_.}}
+\DoxyCodeLine{00250\ \ \ std::unordered\_map<uint64\_t,\ std::unique\_ptr<PerThread>>\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a445e7596bf304be1cc5dca230deed560_a445e7596bf304be1cc5dca230deed560}{per\_thread\_map\_}};}
+\DoxyCodeLine{00251\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \ \ \textcolor{comment}{//\ Main\ worker\ thread\ loop.}}
+\DoxyCodeLine{00254\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_af4597a012682e51aa9ff7de2faca7139_af4597a012682e51aa9ff7de2faca7139}{WorkerLoop}}(\textcolor{keywordtype}{int}\ thread\_id)\ \{}
+\DoxyCodeLine{00255\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_THREAD\_LOCAL}}
+\DoxyCodeLine{00256\ \ \ \ \ std::unique\_ptr<PerThread>\ new\_pt(\textcolor{keyword}{new}\ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread}{PerThread}}());}
+\DoxyCodeLine{00257\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa2588b41cd2833f6146236a3aacd70c4_aa2588b41cd2833f6146236a3aacd70c4}{per\_thread\_map\_mutex\_}}.lock();}
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordtype}{bool}\ insertOK\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a445e7596bf304be1cc5dca230deed560_a445e7596bf304be1cc5dca230deed560}{per\_thread\_map\_}}.emplace(\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_addc7407216b9842cc8f5993e69265b84_addc7407216b9842cc8f5993e69265b84}{GlobalThreadIdHash}}(),\ std::move(new\_pt)).second;}
+\DoxyCodeLine{00259\ \ \ \ \ \mbox{\hyperlink{_macros_8h_a000d296c3fca8ba6e784bdcc7d01d91d_a000d296c3fca8ba6e784bdcc7d01d91d}{eigen\_plain\_assert}}(insertOK);}
+\DoxyCodeLine{00260\ \ \ \ \ \mbox{\hyperlink{_macros_8h_a7cf6d5b460def34dc4e6acf42889b6a9_a7cf6d5b460def34dc4e6acf42889b6a9}{EIGEN\_UNUSED\_VARIABLE}}(insertOK);}
+\DoxyCodeLine{00261\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa2588b41cd2833f6146236a3aacd70c4_aa2588b41cd2833f6146236a3aacd70c4}{per\_thread\_map\_mutex\_}}.unlock();}
+\DoxyCodeLine{00262\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a730c58b4c6496db15c573d3e42f7b92a_a730c58b4c6496db15c573d3e42f7b92a}{init\_barrier\_}}-\/>Notify();}
+\DoxyCodeLine{00263\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a730c58b4c6496db15c573d3e42f7b92a_a730c58b4c6496db15c573d3e42f7b92a}{init\_barrier\_}}-\/>Wait();}
+\DoxyCodeLine{00264\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00265\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread}{PerThread}}*\ pt\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a5fbdeeb556df2aa372800c2166fee539_a5fbdeeb556df2aa372800c2166fee539}{GetPerThread}}();}
+\DoxyCodeLine{00266\ \ \ \ \ pt-\/>\mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread_a1c03c2ef9807783ae984dec5e1817de4_a1c03c2ef9807783ae984dec5e1817de4}{pool}}\ =\ \textcolor{keyword}{this};}
+\DoxyCodeLine{00267\ \ \ \ \ pt-\/>\mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread_a694ad14dafe7ae0dc802ca89d74b52c1_a694ad14dafe7ae0dc802ca89d74b52c1}{rand}}\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_addc7407216b9842cc8f5993e69265b84_addc7407216b9842cc8f5993e69265b84}{GlobalThreadIdHash}}();}
+\DoxyCodeLine{00268\ \ \ \ \ pt-\/>\mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread_a6873baf3e94761e2c2a531cecefe6481_a6873baf3e94761e2c2a531cecefe6481}{thread\_id}}\ =\ thread\_id;}
+\DoxyCodeLine{00269\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_run_queue}{Queue}}\&\ q\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a43d29d2c5a8e59161610f20f01ee15e8_a43d29d2c5a8e59161610f20f01ee15e8}{thread\_data\_}}[thread\_id].queue;}
+\DoxyCodeLine{00270\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_event_count_1_1_waiter}{EventCount::Waiter}}*\ waiter\ =\ \&\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_ae9f49a0c8f1a617a2895a5a61b88d009_ae9f49a0c8f1a617a2895a5a61b88d009}{waiters\_}}[thread\_id];}
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{comment}{//\ TODO(dvyukov,rmlarsen):\ The\ time\ spent\ in\ NonEmptyQueueIndex()\ is}}
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{comment}{//\ proportional\ to\ num\_threads\_\ and\ we\ assume\ that\ new\ work\ is\ scheduled\ at}}
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{comment}{//\ a\ constant\ rate,\ so\ we\ set\ spin\_count\ to\ 5000\ /\ num\_threads\_.\ The}}
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{comment}{//\ constant\ was\ picked\ based\ on\ a\ fair\ dice\ roll,\ tune\ it.}}
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ spin\_count\ =}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a5c1998ac2d723178e78b134a43ac85bf_a5c1998ac2d723178e78b134a43ac85bf}{allow\_spinning\_}}\ \&\&\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a068fa3d75e3d4333f655c90a096fbd27_a068fa3d75e3d4333f655c90a096fbd27}{num\_threads\_}}\ >\ 0\ ?\ 5000\ /\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a068fa3d75e3d4333f655c90a096fbd27_a068fa3d75e3d4333f655c90a096fbd27}{num\_threads\_}}\ :\ 0;}
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a068fa3d75e3d4333f655c90a096fbd27_a068fa3d75e3d4333f655c90a096fbd27}{num\_threads\_}}\ ==\ 1)\ \{}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \textcolor{comment}{//\ For\ num\_threads\_\ ==\ 1\ there\ is\ no\ point\ in\ going\ through\ the\ expensive}}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \textcolor{comment}{//\ steal\ loop.\ Moreover,\ since\ NonEmptyQueueIndex()\ calls\ PopBack()\ on\ the}}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \textcolor{comment}{//\ victim\ queues\ it\ might\ reverse\ the\ order\ in\ which\ ops\ are\ executed}}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \textcolor{comment}{//\ compared\ to\ the\ order\ in\ which\ they\ are\ scheduled,\ which\ tends\ to\ be}}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \textcolor{comment}{//\ counter-\/productive\ for\ the\ types\ of\ I/O\ workloads\ the\ single\ thread}}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \textcolor{comment}{//\ pools\ tend\ to\ be\ used\ for.}}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa6bd846431d1f0fec7eb0641b985070e_aa6bd846431d1f0fec7eb0641b985070e}{cancelled\_}})\ \{}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_adf196760672014b96bb76fd0b8191d95_adf196760672014b96bb76fd0b8191d95}{Task}}\ t\ =\ q.PopFront();}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ <\ spin\_count\ \&\&\ !t.f;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}++)\ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa6bd846431d1f0fec7eb0641b985070e_aa6bd846431d1f0fec7eb0641b985070e}{cancelled\_}}.load(std::memory\_order\_relaxed))\ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ t\ =\ q.PopFront();}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!t.f)\ \{}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a0ed1b9f3106633e1594ce0c2dbba656b_a0ed1b9f3106633e1594ce0c2dbba656b}{WaitForWork}}(waiter,\ \&t))\ \{}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (t.f)\ \{}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_af45f798efad20863b31723533e7f5e10_af45f798efad20863b31723533e7f5e10}{env\_}}.ExecuteTask(t);}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00300\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa6bd846431d1f0fec7eb0641b985070e_aa6bd846431d1f0fec7eb0641b985070e}{cancelled\_}})\ \{}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_adf196760672014b96bb76fd0b8191d95_adf196760672014b96bb76fd0b8191d95}{Task}}\ t\ =\ q.PopFront();}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!t.f)\ \{}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ t\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a7b4943ef624c9fef465e5f4197d9e050_a7b4943ef624c9fef465e5f4197d9e050}{LocalSteal}}();}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!t.f)\ \{}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ t\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_ad2a65afc7f37ba7f08e4e97463c82bc2_ad2a65afc7f37ba7f08e4e97463c82bc2}{GlobalSteal}}();}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!t.f)\ \{}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Leave\ one\ thread\ spinning.\ This\ reduces\ latency.}}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a5c1998ac2d723178e78b134a43ac85bf_a5c1998ac2d723178e78b134a43ac85bf}{allow\_spinning\_}}\ \&\&\ !\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa2d67a14a80965e64a0687aae83fa473_aa2d67a14a80965e64a0687aae83fa473}{spinning\_}}\ \&\&\ !\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa2d67a14a80965e64a0687aae83fa473_aa2d67a14a80965e64a0687aae83fa473}{spinning\_}}.exchange(\textcolor{keyword}{true}))\ \{}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ <\ spin\_count\ \&\&\ !t.f;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}++)\ \{}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa6bd846431d1f0fec7eb0641b985070e_aa6bd846431d1f0fec7eb0641b985070e}{cancelled\_}}.load(std::memory\_order\_relaxed))\ \{}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_ad2a65afc7f37ba7f08e4e97463c82bc2_ad2a65afc7f37ba7f08e4e97463c82bc2}{GlobalSteal}}();}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa2d67a14a80965e64a0687aae83fa473_aa2d67a14a80965e64a0687aae83fa473}{spinning\_}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!t.f)\ \{}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a0ed1b9f3106633e1594ce0c2dbba656b_a0ed1b9f3106633e1594ce0c2dbba656b}{WaitForWork}}(waiter,\ \&t))\ \{}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (t.f)\ \{}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_af45f798efad20863b31723533e7f5e10_af45f798efad20863b31723533e7f5e10}{env\_}}.ExecuteTask(t);}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00331\ \ \ \ \ \}}
+\DoxyCodeLine{00332\ \ \ \}}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ \ \ \textcolor{comment}{//\ Steal\ tries\ to\ steal\ work\ from\ other\ worker\ threads\ in\ the\ range\ [start,}}
+\DoxyCodeLine{00335\ \ \ \textcolor{comment}{//\ limit)\ in\ best-\/effort\ manner.}}
+\DoxyCodeLine{00336\ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_adf196760672014b96bb76fd0b8191d95_adf196760672014b96bb76fd0b8191d95}{Task}}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_af8ce48cf708f883a3d02b19577548fe0_af8ce48cf708f883a3d02b19577548fe0}{Steal}}(\textcolor{keywordtype}{unsigned}\ start,\ \textcolor{keywordtype}{unsigned}\ limit)\ \{}
+\DoxyCodeLine{00337\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread}{PerThread}}*\ pt\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a5fbdeeb556df2aa372800c2166fee539_a5fbdeeb556df2aa372800c2166fee539}{GetPerThread}}();}
+\DoxyCodeLine{00338\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}\ =\ limit\ -\/\ start;}
+\DoxyCodeLine{00339\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{lorenz_8c_a880a49112fedae68e714341a9a082fb6_a880a49112fedae68e714341a9a082fb6}{r}}\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a2dd271b2a237a0a87c501b60018045be_a2dd271b2a237a0a87c501b60018045be}{Rand}}(\&pt-\/>\mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread_a694ad14dafe7ae0dc802ca89d74b52c1_a694ad14dafe7ae0dc802ca89d74b52c1}{rand}});}
+\DoxyCodeLine{00340\ \ \ \ \ \textcolor{comment}{//\ Reduce\ r\ into\ [0,\ size)\ range,\ this\ utilizes\ trick\ from}}
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{comment}{//\ https://lemire.me/blog/2016/06/27/a-\/fast-\/alternative-\/to-\/the-\/modulo-\/reduction/}}
+\DoxyCodeLine{00342\ \ \ \ \ \mbox{\hyperlink{_macros_8h_a000d296c3fca8ba6e784bdcc7d01d91d_a000d296c3fca8ba6e784bdcc7d01d91d}{eigen\_plain\_assert}}(\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa58a8f54d063bcc206ef48071b1f4f20_aa58a8f54d063bcc206ef48071b1f4f20}{all\_coprimes\_}}[\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}\ -\/\ 1].\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}()\ <\ (1<<30));}
+\DoxyCodeLine{00343\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ victim\ =\ ((uint64\_t)\mbox{\hyperlink{lorenz_8c_a880a49112fedae68e714341a9a082fb6_a880a49112fedae68e714341a9a082fb6}{r}}\ *\ (uint64\_t)\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}})\ >>\ 32;}
+\DoxyCodeLine{00344\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ index\ =\ ((uint64\_t)\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa58a8f54d063bcc206ef48071b1f4f20_aa58a8f54d063bcc206ef48071b1f4f20}{all\_coprimes\_}}[\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}\ -\/\ 1].size()\ *\ (uint64\_t)\mbox{\hyperlink{lorenz_8c_a880a49112fedae68e714341a9a082fb6_a880a49112fedae68e714341a9a082fb6}{r}})\ >>\ 32;}
+\DoxyCodeLine{00345\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ inc\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa58a8f54d063bcc206ef48071b1f4f20_aa58a8f54d063bcc206ef48071b1f4f20}{all\_coprimes\_}}[\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}\ -\/\ 1][index];}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00347\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ <\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}};\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}++)\ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \mbox{\hyperlink{_macros_8h_a000d296c3fca8ba6e784bdcc7d01d91d_a000d296c3fca8ba6e784bdcc7d01d91d}{eigen\_plain\_assert}}(start\ +\ victim\ <\ limit);}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_adf196760672014b96bb76fd0b8191d95_adf196760672014b96bb76fd0b8191d95}{Task}}\ t\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a43d29d2c5a8e59161610f20f01ee15e8_a43d29d2c5a8e59161610f20f01ee15e8}{thread\_data\_}}[start\ +\ victim].queue.PopBack();}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (t.f)\ \{}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ t;}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ victim\ +=\ inc;}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (victim\ >=\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}})\ \{}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ victim\ -\/=\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}};}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00357\ \ \ \ \ \}}
+\DoxyCodeLine{00358\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_adf196760672014b96bb76fd0b8191d95_adf196760672014b96bb76fd0b8191d95}{Task}}();}
+\DoxyCodeLine{00359\ \ \ \}}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \ \ \textcolor{comment}{//\ Steals\ work\ within\ threads\ belonging\ to\ the\ partition.}}
+\DoxyCodeLine{00362\ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_adf196760672014b96bb76fd0b8191d95_adf196760672014b96bb76fd0b8191d95}{Task}}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a7b4943ef624c9fef465e5f4197d9e050_a7b4943ef624c9fef465e5f4197d9e050}{LocalSteal}}()\ \{}
+\DoxyCodeLine{00363\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread}{PerThread}}*\ pt\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a5fbdeeb556df2aa372800c2166fee539_a5fbdeeb556df2aa372800c2166fee539}{GetPerThread}}();}
+\DoxyCodeLine{00364\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ partition\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a9a3fee6a5f23403f4ec032fa74c07b68_a9a3fee6a5f23403f4ec032fa74c07b68}{GetStealPartition}}(pt-\/>\mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread_a6873baf3e94761e2c2a531cecefe6481_a6873baf3e94761e2c2a531cecefe6481}{thread\_id}});}
+\DoxyCodeLine{00365\ \ \ \ \ \textcolor{comment}{//\ If\ thread\ steal\ partition\ is\ the\ same\ as\ global\ partition,\ there\ is\ no}}
+\DoxyCodeLine{00366\ \ \ \ \ \textcolor{comment}{//\ need\ to\ go\ through\ the\ steal\ loop\ twice.}}
+\DoxyCodeLine{00367\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_ad5d8bbe2ff4d7e8717baf8969ad7bad5_ad5d8bbe2ff4d7e8717baf8969ad7bad5}{global\_steal\_partition\_}}\ ==\ partition)\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_adf196760672014b96bb76fd0b8191d95_adf196760672014b96bb76fd0b8191d95}{Task}}();}
+\DoxyCodeLine{00368\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ start,\ limit;}
+\DoxyCodeLine{00369\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a8852da6106e6ae24ccc376d98724a444_a8852da6106e6ae24ccc376d98724a444}{DecodePartition}}(partition,\ \&start,\ \&limit);}
+\DoxyCodeLine{00370\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a02b0f4e8b3a4106866115727b4237ef0_a02b0f4e8b3a4106866115727b4237ef0}{AssertBounds}}(start,\ limit);}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_af8ce48cf708f883a3d02b19577548fe0_af8ce48cf708f883a3d02b19577548fe0}{Steal}}(start,\ limit);}
+\DoxyCodeLine{00373\ \ \ \}}
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00375\ \ \ \textcolor{comment}{//\ Steals\ work\ from\ any\ other\ thread\ in\ the\ pool.}}
+\DoxyCodeLine{00376\ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_adf196760672014b96bb76fd0b8191d95_adf196760672014b96bb76fd0b8191d95}{Task}}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_ad2a65afc7f37ba7f08e4e97463c82bc2_ad2a65afc7f37ba7f08e4e97463c82bc2}{GlobalSteal}}()\ \{}
+\DoxyCodeLine{00377\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_af8ce48cf708f883a3d02b19577548fe0_af8ce48cf708f883a3d02b19577548fe0}{Steal}}(0,\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a068fa3d75e3d4333f655c90a096fbd27_a068fa3d75e3d4333f655c90a096fbd27}{num\_threads\_}});}
+\DoxyCodeLine{00378\ \ \ \}}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00381\ \ \ \textcolor{comment}{//\ WaitForWork\ blocks\ until\ new\ work\ is\ available\ (returns\ true),\ or\ if\ it\ is}}
+\DoxyCodeLine{00382\ \ \ \textcolor{comment}{//\ time\ to\ exit\ (returns\ false).\ Can\ optionally\ return\ a\ task\ to\ execute\ in\ t}}
+\DoxyCodeLine{00383\ \ \ \textcolor{comment}{//\ (in\ such\ case\ t.f\ !=\ nullptr\ on\ return).}}
+\DoxyCodeLine{00384\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a0ed1b9f3106633e1594ce0c2dbba656b_a0ed1b9f3106633e1594ce0c2dbba656b}{WaitForWork}}(\mbox{\hyperlink{class_eigen_1_1_event_count_1_1_waiter}{EventCount::Waiter}}*\ waiter,\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_adf196760672014b96bb76fd0b8191d95_adf196760672014b96bb76fd0b8191d95}{Task}}*\ t)\ \{}
+\DoxyCodeLine{00385\ \ \ \ \ \mbox{\hyperlink{_macros_8h_a000d296c3fca8ba6e784bdcc7d01d91d_a000d296c3fca8ba6e784bdcc7d01d91d}{eigen\_plain\_assert}}(!t-\/>f);}
+\DoxyCodeLine{00386\ \ \ \ \ \textcolor{comment}{//\ We\ already\ did\ best-\/effort\ emptiness\ check\ in\ Steal,\ so\ prepare\ for}}
+\DoxyCodeLine{00387\ \ \ \ \ \textcolor{comment}{//\ blocking.}}
+\DoxyCodeLine{00388\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aae473fc80de007adbe6ffe49074ae4a8_aae473fc80de007adbe6ffe49074ae4a8}{ec\_}}.\mbox{\hyperlink{class_eigen_1_1_event_count_af783653098405a22f54e91d2a51152b1_af783653098405a22f54e91d2a51152b1}{Prewait}}();}
+\DoxyCodeLine{00389\ \ \ \ \ \textcolor{comment}{//\ Now\ do\ a\ reliable\ emptiness\ check.}}
+\DoxyCodeLine{00390\ \ \ \ \ \textcolor{keywordtype}{int}\ victim\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a33496917320d9414a508fb5ab6ad8ebc_a33496917320d9414a508fb5ab6ad8ebc}{NonEmptyQueueIndex}}();}
+\DoxyCodeLine{00391\ \ \ \ \ \textcolor{keywordflow}{if}\ (victim\ !=\ -\/1)\ \{}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aae473fc80de007adbe6ffe49074ae4a8_aae473fc80de007adbe6ffe49074ae4a8}{ec\_}}.\mbox{\hyperlink{class_eigen_1_1_event_count_a8f69b70f7f0021e5487d710cecda3b57_a8f69b70f7f0021e5487d710cecda3b57}{CancelWait}}();}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa6bd846431d1f0fec7eb0641b985070e_aa6bd846431d1f0fec7eb0641b985070e}{cancelled\_}})\ \{}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ *t\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a43d29d2c5a8e59161610f20f01ee15e8_a43d29d2c5a8e59161610f20f01ee15e8}{thread\_data\_}}[victim].queue.PopBack();}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00399\ \ \ \ \ \}}
+\DoxyCodeLine{00400\ \ \ \ \ \textcolor{comment}{//\ Number\ of\ blocked\ threads\ is\ used\ as\ termination\ condition.}}
+\DoxyCodeLine{00401\ \ \ \ \ \textcolor{comment}{//\ If\ we\ are\ shutting\ down\ and\ all\ worker\ threads\ blocked\ without\ work,}}
+\DoxyCodeLine{00402\ \ \ \ \ \textcolor{comment}{//\ that's\ we\ are\ done.}}
+\DoxyCodeLine{00403\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a0fac26e4e1962f8b285a7857a521df76_a0fac26e4e1962f8b285a7857a521df76}{blocked\_}}++;}
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{comment}{//\ TODO\ is\ blocked\_\ required\ to\ be\ unsigned?}}
+\DoxyCodeLine{00405\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_ac74e83ea9972e996f0e81c91a0581938_ac74e83ea9972e996f0e81c91a0581938}{done\_}}\ \&\&\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a0fac26e4e1962f8b285a7857a521df76_a0fac26e4e1962f8b285a7857a521df76}{blocked\_}}\ ==\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\textcolor{keyword}{>}(\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a068fa3d75e3d4333f655c90a096fbd27_a068fa3d75e3d4333f655c90a096fbd27}{num\_threads\_}}))\ \{}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aae473fc80de007adbe6ffe49074ae4a8_aae473fc80de007adbe6ffe49074ae4a8}{ec\_}}.\mbox{\hyperlink{class_eigen_1_1_event_count_a8f69b70f7f0021e5487d710cecda3b57_a8f69b70f7f0021e5487d710cecda3b57}{CancelWait}}();}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \textcolor{comment}{//\ Almost\ done,\ but\ need\ to\ re-\/check\ queues.}}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \textcolor{comment}{//\ Consider\ that\ all\ queues\ are\ empty\ and\ all\ worker\ threads\ are\ preempted}}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \textcolor{comment}{//\ right\ after\ incrementing\ blocked\_\ above.\ Now\ a\ free-\/standing\ thread}}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \textcolor{comment}{//\ submits\ work\ and\ calls\ destructor\ (which\ sets\ done\_).\ If\ we\ don't}}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \textcolor{comment}{//\ re-\/check\ queues,\ we\ will\ exit\ leaving\ the\ work\ unexecuted.}}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a33496917320d9414a508fb5ab6ad8ebc_a33496917320d9414a508fb5ab6ad8ebc}{NonEmptyQueueIndex}}()\ !=\ -\/1)\ \{}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note:\ we\ must\ not\ pop\ from\ queues\ before\ we\ decrement\ blocked\_,}}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ otherwise\ the\ following\ scenario\ is\ possible.\ Consider\ that\ instead}}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ of\ checking\ for\ emptiness\ we\ popped\ the\ only\ element\ from\ queues.}}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Now\ other\ worker\ threads\ can\ start\ exiting,\ which\ is\ bad\ if\ the}}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ work\ item\ submits\ other\ work.\ So\ we\ just\ check\ emptiness\ here,}}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ which\ ensures\ that\ all\ worker\ threads\ exit\ at\ the\ same\ time.}}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a0fac26e4e1962f8b285a7857a521df76_a0fac26e4e1962f8b285a7857a521df76}{blocked\_}}-\/-\/;}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \textcolor{comment}{//\ Reached\ stable\ termination\ state.}}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aae473fc80de007adbe6ffe49074ae4a8_aae473fc80de007adbe6ffe49074ae4a8}{ec\_}}.\mbox{\hyperlink{class_eigen_1_1_event_count_a4e0c3f15c54ef7baa9ff1963f549f73d_a4e0c3f15c54ef7baa9ff1963f549f73d}{Notify}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00425\ \ \ \ \ \}}
+\DoxyCodeLine{00426\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aae473fc80de007adbe6ffe49074ae4a8_aae473fc80de007adbe6ffe49074ae4a8}{ec\_}}.\mbox{\hyperlink{class_eigen_1_1_event_count_a381300f183b2dc605b8f68b41a96ee90_a381300f183b2dc605b8f68b41a96ee90}{CommitWait}}(waiter);}
+\DoxyCodeLine{00427\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a0fac26e4e1962f8b285a7857a521df76_a0fac26e4e1962f8b285a7857a521df76}{blocked\_}}-\/-\/;}
+\DoxyCodeLine{00428\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00429\ \ \ \}}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00431\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a33496917320d9414a508fb5ab6ad8ebc_a33496917320d9414a508fb5ab6ad8ebc}{NonEmptyQueueIndex}}()\ \{}
+\DoxyCodeLine{00432\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread}{PerThread}}*\ pt\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a5fbdeeb556df2aa372800c2166fee539_a5fbdeeb556df2aa372800c2166fee539}{GetPerThread}}();}
+\DoxyCodeLine{00433\ \ \ \ \ \textcolor{comment}{//\ We\ intentionally\ design\ NonEmptyQueueIndex\ to\ steal\ work\ from}}
+\DoxyCodeLine{00434\ \ \ \ \ \textcolor{comment}{//\ anywhere\ in\ the\ queue\ so\ threads\ don't\ block\ in\ WaitForWork()\ forever}}
+\DoxyCodeLine{00435\ \ \ \ \ \textcolor{comment}{//\ when\ all\ threads\ in\ their\ partition\ go\ to\ sleep.\ Steal\ is\ still\ local.}}
+\DoxyCodeLine{00436\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a43d29d2c5a8e59161610f20f01ee15e8_a43d29d2c5a8e59161610f20f01ee15e8}{thread\_data\_}}.size();}
+\DoxyCodeLine{00437\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{lorenz_8c_a880a49112fedae68e714341a9a082fb6_a880a49112fedae68e714341a9a082fb6}{r}}\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a2dd271b2a237a0a87c501b60018045be_a2dd271b2a237a0a87c501b60018045be}{Rand}}(\&pt-\/>\mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread_a694ad14dafe7ae0dc802ca89d74b52c1_a694ad14dafe7ae0dc802ca89d74b52c1}{rand}});}
+\DoxyCodeLine{00438\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ inc\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa58a8f54d063bcc206ef48071b1f4f20_aa58a8f54d063bcc206ef48071b1f4f20}{all\_coprimes\_}}[\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}\ -\/\ 1][\mbox{\hyperlink{lorenz_8c_a880a49112fedae68e714341a9a082fb6_a880a49112fedae68e714341a9a082fb6}{r}}\ \%\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_aa58a8f54d063bcc206ef48071b1f4f20_aa58a8f54d063bcc206ef48071b1f4f20}{all\_coprimes\_}}[\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}\ -\/\ 1].size()];}
+\DoxyCodeLine{00439\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ victim\ =\ \mbox{\hyperlink{lorenz_8c_a880a49112fedae68e714341a9a082fb6_a880a49112fedae68e714341a9a082fb6}{r}}\ \%\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}};}
+\DoxyCodeLine{00440\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ <\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}};\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}++)\ \{}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a43d29d2c5a8e59161610f20f01ee15e8_a43d29d2c5a8e59161610f20f01ee15e8}{thread\_data\_}}[victim].queue.Empty())\ \{}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ victim;}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ victim\ +=\ inc;}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (victim\ >=\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}})\ \{}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ victim\ -\/=\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}};}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00448\ \ \ \ \ \}}
+\DoxyCodeLine{00449\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00450\ \ \ \}}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ uint64\_t\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_addc7407216b9842cc8f5993e69265b84_addc7407216b9842cc8f5993e69265b84}{GlobalThreadIdHash}}()\ \{}
+\DoxyCodeLine{00453\ \ \ \ \ \textcolor{keywordflow}{return}\ std::hash<std::thread::id>()(std::this\_thread::get\_id());}
+\DoxyCodeLine{00454\ \ \ \}}
+\DoxyCodeLine{00455\ }
+\DoxyCodeLine{00456\ \ \ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread}{PerThread}}*\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a5fbdeeb556df2aa372800c2166fee539_a5fbdeeb556df2aa372800c2166fee539}{GetPerThread}}()\ \{}
+\DoxyCodeLine{00457\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_THREAD\_LOCAL}}
+\DoxyCodeLine{00458\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread}{PerThread}}\ dummy;}
+\DoxyCodeLine{00459\ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a445e7596bf304be1cc5dca230deed560_a445e7596bf304be1cc5dca230deed560}{per\_thread\_map\_}}.find(\mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_addc7407216b9842cc8f5993e69265b84_addc7407216b9842cc8f5993e69265b84}{GlobalThreadIdHash}}());}
+\DoxyCodeLine{00460\ \ \ \ \ \textcolor{keywordflow}{if}\ (it\ ==\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a445e7596bf304be1cc5dca230deed560_a445e7596bf304be1cc5dca230deed560}{per\_thread\_map\_}}.end())\ \{}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&dummy;}
+\DoxyCodeLine{00462\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ it-\/>second.get();}
+\DoxyCodeLine{00464\ \ \ \ \ \}}
+\DoxyCodeLine{00465\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00466\ \ \ \ \ EIGEN\_THREAD\_LOCAL\ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread}{PerThread}}\ per\_thread\_;}
+\DoxyCodeLine{00467\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_thread_pool_templ_1_1_per_thread}{PerThread}}*\ pt\ =\ \&per\_thread\_;}
+\DoxyCodeLine{00468\ \ \ \ \ \textcolor{keywordflow}{return}\ pt;}
+\DoxyCodeLine{00469\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00470\ \ \ \}}
+\DoxyCodeLine{00471\ }
+\DoxyCodeLine{00472\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ_a2dd271b2a237a0a87c501b60018045be_a2dd271b2a237a0a87c501b60018045be}{Rand}}(uint64\_t*\ state)\ \{}
+\DoxyCodeLine{00473\ \ \ \ \ uint64\_t\ current\ =\ *state;}
+\DoxyCodeLine{00474\ \ \ \ \ \textcolor{comment}{//\ Update\ the\ internal\ state}}
+\DoxyCodeLine{00475\ \ \ \ \ *state\ =\ current\ *\ 6364136223846793005ULL\ +\ 0xda3e39cb94b95bdbULL;}
+\DoxyCodeLine{00476\ \ \ \ \ \textcolor{comment}{//\ Generate\ the\ random\ output\ (using\ the\ PCG-\/XSH-\/RS\ scheme)}}
+\DoxyCodeLine{00477\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\textcolor{keyword}{>}((current\ \string^\ (current\ >>\ 22))\ >>}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (22\ +\ (current\ >>\ 61)));}
+\DoxyCodeLine{00479\ \ \ \}}
+\DoxyCodeLine{00480\ \};}
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00482\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_thread_pool_templ}{ThreadPoolTempl<StlThreadEnvironment>}}\ \mbox{\hyperlink{namespace_eigen_af7c6b7a6f48f574147fb206d7f63c41b_af7c6b7a6f48f574147fb206d7f63c41b}{ThreadPool}};}
+\DoxyCodeLine{00483\ }
+\DoxyCodeLine{00484\ \}\ \ \textcolor{comment}{//\ namespace\ Eigen}}
+\DoxyCodeLine{00485\ }
+\DoxyCodeLine{00486\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ EIGEN\_CXX11\_THREADPOOL\_NONBLOCKING\_THREAD\_POOL\_H}}
+
+\end{DoxyCode}

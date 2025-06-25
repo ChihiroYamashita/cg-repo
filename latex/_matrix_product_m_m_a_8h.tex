@@ -1,0 +1,595 @@
+\doxysection{eigen-\/3.4.0/eigen-\/3.4.0/\+Eigen/src/\+Core/arch/\+Alti\+Vec/\+Matrix\+Product\+MMA.h ファイル}
+\hypertarget{_matrix_product_m_m_a_8h}{}\label{_matrix_product_m_m_a_8h}\index{eigen-\/3.4.0/eigen-\/3.4.0/Eigen/src/Core/arch/AltiVec/MatrixProductMMA.h@{eigen-\/3.4.0/eigen-\/3.4.0/Eigen/src/Core/arch/AltiVec/MatrixProductMMA.h}}
+\doxysubsubsection*{名前空間}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_eigen}{Eigen}}
+\begin{DoxyCompactList}\small\item\em Namespace containing all symbols from the Eigen library. \end{DoxyCompactList}\item 
+namespace \mbox{\hyperlink{namespace_eigen_1_1internal}{Eigen\+::internal}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_aa5ebfdd2d5cc8ea41abe361c4750e3b6_aa5ebfdd2d5cc8ea41abe361c4750e3b6}{PEEL\+\_\+\+MMA}}~7
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_aa1a18afd02293baa009b943dbc44f963_aa1a18afd02293baa009b943dbc44f963}{MICRO\+\_\+\+MMA\+\_\+\+UNROLL}}(\mbox{\hyperlink{structfunc}{func}})
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a1192b949793105cc645646396a9f66bd_a1192b949793105cc645646396a9f66bd}{MICRO\+\_\+\+MMA\+\_\+\+LOAD\+\_\+\+ONE}}(iter)
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a412547a4d7b1f0fec4125666f1925c0c_a412547a4d7b1f0fec4125666f1925c0c}{MICRO\+\_\+\+MMA\+\_\+\+WORK\+\_\+\+ONE}}(iter,  type,  peel)
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a8a762e8135405ed787bc5bd60669a954_a8a762e8135405ed787bc5bd60669a954}{MICRO\+\_\+\+MMA\+\_\+\+TYPE\+\_\+\+PEEL}}(\mbox{\hyperlink{structfunc}{func}},  func2,  type,  peel)
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a4606aadfe09252b812016f736e685def_a4606aadfe09252b812016f736e685def}{MICRO\+\_\+\+MMA\+\_\+\+UNROLL\+\_\+\+TYPE\+\_\+\+PEEL}}(\mbox{\hyperlink{structfunc}{func}},  func2,  type)
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_aba08fd140b0aed6ed1b2ae456b3c339f_aba08fd140b0aed6ed1b2ae456b3c339f}{MICRO\+\_\+\+MMA\+\_\+\+UNROLL\+\_\+\+TYPE\+\_\+\+ONE}}(\mbox{\hyperlink{structfunc}{func}},  func2,  type)
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a9adc034eee7e3f16dddb1c8b5d713c20_a9adc034eee7e3f16dddb1c8b5d713c20}{MICRO\+\_\+\+MMA\+\_\+\+ONE\+\_\+\+PEEL}}
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a653a9fa9d2731daab93f51de32907f02_a653a9fa9d2731daab93f51de32907f02}{MICRO\+\_\+\+MMA\+\_\+\+ONE}}
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_ad2ffaeaeb709a09198495eaea4840f61_ad2ffaeaeb709a09198495eaea4840f61}{MICRO\+\_\+\+MMA\+\_\+\+DST\+\_\+\+PTR\+\_\+\+ONE}}(iter)
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a0aa08525a716db895179d6f03b468a23_a0aa08525a716db895179d6f03b468a23}{MICRO\+\_\+\+MMA\+\_\+\+DST\+\_\+\+PTR}}~\mbox{\hyperlink{_matrix_product_m_m_a_8h_aa1a18afd02293baa009b943dbc44f963_aa1a18afd02293baa009b943dbc44f963}{MICRO\+\_\+\+MMA\+\_\+\+UNROLL}}(\mbox{\hyperlink{_matrix_product_m_m_a_8h_ad2ffaeaeb709a09198495eaea4840f61_ad2ffaeaeb709a09198495eaea4840f61}{MICRO\+\_\+\+MMA\+\_\+\+DST\+\_\+\+PTR\+\_\+\+ONE}})
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_ae0b0e74efbc7d7e5ade24276285a64df_ae0b0e74efbc7d7e5ade24276285a64df}{MICRO\+\_\+\+MMA\+\_\+\+SRC\+\_\+\+PTR\+\_\+\+ONE}}(iter)
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a709be76b4f333a1fe4f6824dd6abd3d6_a709be76b4f333a1fe4f6824dd6abd3d6}{MICRO\+\_\+\+MMA\+\_\+\+SRC\+\_\+\+PTR}}~\mbox{\hyperlink{_matrix_product_m_m_a_8h_aa1a18afd02293baa009b943dbc44f963_aa1a18afd02293baa009b943dbc44f963}{MICRO\+\_\+\+MMA\+\_\+\+UNROLL}}(\mbox{\hyperlink{_matrix_product_m_m_a_8h_ae0b0e74efbc7d7e5ade24276285a64df_ae0b0e74efbc7d7e5ade24276285a64df}{MICRO\+\_\+\+MMA\+\_\+\+SRC\+\_\+\+PTR\+\_\+\+ONE}})
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a7001b39d85f0cc6fe35dd6924b68e3f5_a7001b39d85f0cc6fe35dd6924b68e3f5}{MICRO\+\_\+\+MMA\+\_\+\+PREFETCH\+\_\+\+ONE}}(iter)
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a4a4a19fad3a0c4f35aeb0c993af39bf7_a4a4a19fad3a0c4f35aeb0c993af39bf7}{MICRO\+\_\+\+MMA\+\_\+\+PREFETCH}}~\mbox{\hyperlink{_matrix_product_m_m_a_8h_aa1a18afd02293baa009b943dbc44f963_aa1a18afd02293baa009b943dbc44f963}{MICRO\+\_\+\+MMA\+\_\+\+UNROLL}}(\mbox{\hyperlink{_matrix_product_m_m_a_8h_a7001b39d85f0cc6fe35dd6924b68e3f5_a7001b39d85f0cc6fe35dd6924b68e3f5}{MICRO\+\_\+\+MMA\+\_\+\+PREFETCH\+\_\+\+ONE}})
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a76020571be65af80e7e9e5c05a189692_a76020571be65af80e7e9e5c05a189692}{MICRO\+\_\+\+MMA\+\_\+\+STORE\+\_\+\+ONE}}(iter)
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a321865ed9356d5053247a00b97b8c205_a321865ed9356d5053247a00b97b8c205}{MICRO\+\_\+\+MMA\+\_\+\+STORE}}~\mbox{\hyperlink{_matrix_product_m_m_a_8h_aa1a18afd02293baa009b943dbc44f963_aa1a18afd02293baa009b943dbc44f963}{MICRO\+\_\+\+MMA\+\_\+\+UNROLL}}(\mbox{\hyperlink{_matrix_product_m_m_a_8h_a76020571be65af80e7e9e5c05a189692_a76020571be65af80e7e9e5c05a189692}{MICRO\+\_\+\+MMA\+\_\+\+STORE\+\_\+\+ONE}})
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a9fb65b6250a5a458e10d471d40863670_a9fb65b6250a5a458e10d471d40863670}{MAX\+\_\+\+MMA\+\_\+\+UNROLL}}~7
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a32122a203a5407d7a8cf9b0d8495dc75_a32122a203a5407d7a8cf9b0d8495dc75}{acc\+ColsC}}~(acc\+Cols / 2)
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a41a0307ca9c6701cfb7cca80301257de_a41a0307ca9c6701cfb7cca80301257de}{advance\+Rows}}~((Lhs\+Is\+Real) ? 1 \+: 2)
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a16534d538ecb9f56bb480a75e5148175_a16534d538ecb9f56bb480a75e5148175}{advance\+Cols}}~((Rhs\+Is\+Real) ? 1 \+: 2)
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_acf0f91c511c8b10d3e2a2676d31f4a29_acf0f91c511c8b10d3e2a2676d31f4a29}{PEEL\+\_\+\+COMPLEX\+\_\+\+MMA}}~7
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_abfe82c0a125e0ad1dbc76b5360fec8db_abfe82c0a125e0ad1dbc76b5360fec8db}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+UNROLL}}(\mbox{\hyperlink{structfunc}{func}})
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a4372ca26db125b8805d23ae83058a9fd_a4372ca26db125b8805d23ae83058a9fd}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+LOAD\+\_\+\+ONE}}(iter)
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a65a51f48a5142908ae84330673c9e2d4_a65a51f48a5142908ae84330673c9e2d4}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+WORK\+\_\+\+ONE}}(iter,  type,  peel)
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_aa9ca302a106e60f99eb31b99cf5b01eb_aa9ca302a106e60f99eb31b99cf5b01eb}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+TYPE\+\_\+\+PEEL}}(\mbox{\hyperlink{structfunc}{func}},  func2,  type,  peel)
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a26fd4caa8362a6a9098771474b071bad_a26fd4caa8362a6a9098771474b071bad}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+UNROLL\+\_\+\+TYPE\+\_\+\+PEEL}}(\mbox{\hyperlink{structfunc}{func}},  func2,  type)
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_adf0fd1a4b9d26955fcfc2a59fecff3e7_adf0fd1a4b9d26955fcfc2a59fecff3e7}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+UNROLL\+\_\+\+TYPE\+\_\+\+ONE}}(\mbox{\hyperlink{structfunc}{func}},  func2,  type)
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a8a3ce05bced034758180b951a0b62ac6_a8a3ce05bced034758180b951a0b62ac6}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+ONE\+\_\+\+PEEL}}
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a1c0fd041ff323f5b62a7a98c2c046e37_a1c0fd041ff323f5b62a7a98c2c046e37}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+ONE}}
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a79d0b7176cca561318974da4667f6242_a79d0b7176cca561318974da4667f6242}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+DST\+\_\+\+PTR\+\_\+\+ONE}}(iter)
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a3a7a96bb00c7c882a7bc92ede07a1301_a3a7a96bb00c7c882a7bc92ede07a1301}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+DST\+\_\+\+PTR}}~\mbox{\hyperlink{_matrix_product_m_m_a_8h_abfe82c0a125e0ad1dbc76b5360fec8db_abfe82c0a125e0ad1dbc76b5360fec8db}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+UNROLL}}(\mbox{\hyperlink{_matrix_product_m_m_a_8h_a79d0b7176cca561318974da4667f6242_a79d0b7176cca561318974da4667f6242}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+DST\+\_\+\+PTR\+\_\+\+ONE}})
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a9353033d2dbf460322ceb1bebdf79ee3_a9353033d2dbf460322ceb1bebdf79ee3}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+SRC\+\_\+\+PTR\+\_\+\+ONE}}(iter)
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a3d439e488aeaf89e3934121872631487_a3d439e488aeaf89e3934121872631487}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+SRC\+\_\+\+PTR}}~\mbox{\hyperlink{_matrix_product_m_m_a_8h_abfe82c0a125e0ad1dbc76b5360fec8db_abfe82c0a125e0ad1dbc76b5360fec8db}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+UNROLL}}(\mbox{\hyperlink{_matrix_product_m_m_a_8h_a9353033d2dbf460322ceb1bebdf79ee3_a9353033d2dbf460322ceb1bebdf79ee3}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+SRC\+\_\+\+PTR\+\_\+\+ONE}})
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a98fef10509af6f191a28c32fee35850d_a98fef10509af6f191a28c32fee35850d}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+PREFETCH\+\_\+\+ONE}}(iter)
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_afc7abe6d1bae2f8fb91c294fc48cf6bc_afc7abe6d1bae2f8fb91c294fc48cf6bc}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+PREFETCH}}~\mbox{\hyperlink{_matrix_product_m_m_a_8h_abfe82c0a125e0ad1dbc76b5360fec8db_abfe82c0a125e0ad1dbc76b5360fec8db}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+UNROLL}}(\mbox{\hyperlink{_matrix_product_m_m_a_8h_a98fef10509af6f191a28c32fee35850d_a98fef10509af6f191a28c32fee35850d}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+PREFETCH\+\_\+\+ONE}})
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_aedec9481c73baac278be47c1a43869d7_aedec9481c73baac278be47c1a43869d7}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+STORE\+\_\+\+ONE}}(iter)
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a5be5ea25ccff9b4fe96e398ac0311468_a5be5ea25ccff9b4fe96e398ac0311468}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+STORE}}~\mbox{\hyperlink{_matrix_product_m_m_a_8h_abfe82c0a125e0ad1dbc76b5360fec8db_abfe82c0a125e0ad1dbc76b5360fec8db}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+UNROLL}}(\mbox{\hyperlink{_matrix_product_m_m_a_8h_aedec9481c73baac278be47c1a43869d7_aedec9481c73baac278be47c1a43869d7}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+STORE\+\_\+\+ONE}})
+\item 
+\#define \mbox{\hyperlink{_matrix_product_m_m_a_8h_a6f76f67ece14c0b55c15bff559045f25_a6f76f67ece14c0b55c15bff559045f25}{MAX\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+UNROLL}}~4
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} $>$ }\\\mbox{\hyperlink{_macros_8h_a1fdc6f94f20527c7275768d82b2eb9ce_a1fdc6f94f20527c7275768d82b2eb9ce}{EIGEN\+\_\+\+ALWAYS\+\_\+\+INLINE}} void \mbox{\hyperlink{namespace_eigen_1_1internal_af5d7ede347b014cd065cd359b0f9b30d_af5d7ede347b014cd065cd359b0f9b30d}{Eigen\+::internal\+::bsetzero\+MMA}} (\+\_\+\+\_\+vector\+\_\+quad \texorpdfstring{$\ast$}{*}acc)
+\item 
+{\footnotesize template$<$typename Data\+Mapper , typename \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} , typename \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} , const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} acc\+Cols$>$ }\\\mbox{\hyperlink{_macros_8h_a1fdc6f94f20527c7275768d82b2eb9ce_a1fdc6f94f20527c7275768d82b2eb9ce}{EIGEN\+\_\+\+ALWAYS\+\_\+\+INLINE}} void \mbox{\hyperlink{namespace_eigen_1_1internal_a194d6c63ccbcfc2259f2365f9c88b26e_a194d6c63ccbcfc2259f2365f9c88b26e}{Eigen\+::internal\+::store\+Accumulator}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}}, const Data\+Mapper \&\mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}}, const \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} \&\mbox{\hyperlink{level1__cplx__impl_8h_ad64a0b860552910d1ffaf381e5d66e03_ad64a0b860552910d1ffaf381e5d66e03}{alpha}}, \+\_\+\+\_\+vector\+\_\+quad \texorpdfstring{$\ast$}{*}acc)
+\item 
+{\footnotesize template$<$typename Data\+Mapper , typename \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} , typename \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} , typename Packetc , const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} acc\+ColsC, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} N$>$ }\\\mbox{\hyperlink{_macros_8h_a1fdc6f94f20527c7275768d82b2eb9ce_a1fdc6f94f20527c7275768d82b2eb9ce}{EIGEN\+\_\+\+ALWAYS\+\_\+\+INLINE}} void \mbox{\hyperlink{namespace_eigen_1_1internal_aa790fec03f0d142eaadf355b13b1076d_aa790fec03f0d142eaadf355b13b1076d}{Eigen\+::internal\+::store\+Complex\+Accumulator}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}}, const Data\+Mapper \&\mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}}, const \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} \&alpha\+Real, const \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} \&alpha\+Imag, \+\_\+\+\_\+vector\+\_\+quad \texorpdfstring{$\ast$}{*}acc\+Real, \+\_\+\+\_\+vector\+\_\+quad \texorpdfstring{$\ast$}{*}acc\+Imag)
+\item 
+{\footnotesize template$<$typename Lhs\+Packet , typename Rhs\+Packet , bool Negative\+Accumulate$>$ }\\\mbox{\hyperlink{_macros_8h_a1fdc6f94f20527c7275768d82b2eb9ce_a1fdc6f94f20527c7275768d82b2eb9ce}{EIGEN\+\_\+\+ALWAYS\+\_\+\+INLINE}} void \mbox{\hyperlink{namespace_eigen_1_1internal_afb69053c0004c22065888fda3a07f0e5_afb69053c0004c22065888fda3a07f0e5}{Eigen\+::internal\+::pger\+MMA}} (\+\_\+\+\_\+vector\+\_\+quad \texorpdfstring{$\ast$}{*}acc, const Rhs\+Packet \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}, const Lhs\+Packet \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})
+\item 
+{\footnotesize template$<$typename Lhs\+Packet , typename Rhs\+Packet , bool Negative\+Accumulate$>$ }\\\mbox{\hyperlink{_macros_8h_a1fdc6f94f20527c7275768d82b2eb9ce_a1fdc6f94f20527c7275768d82b2eb9ce}{EIGEN\+\_\+\+ALWAYS\+\_\+\+INLINE}} void \mbox{\hyperlink{namespace_eigen_1_1internal_a898ef8322af08a7fa16f68ec21d054a3_a898ef8322af08a7fa16f68ec21d054a3}{Eigen\+::internal\+::pger\+MMA}} (\+\_\+\+\_\+vector\+\_\+quad \texorpdfstring{$\ast$}{*}acc, const \mbox{\hyperlink{struct_eigen_1_1internal_1_1_packet_block}{Packet\+Block}}$<$ \mbox{\hyperlink{namespace_eigen_1_1internal_a071504a8c370c69609dc68dbf8d4d9f7_a071504a8c370c69609dc68dbf8d4d9f7}{Packet2d}}, 2 $>$ \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}, const \mbox{\hyperlink{namespace_eigen_1_1internal_a071504a8c370c69609dc68dbf8d4d9f7_a071504a8c370c69609dc68dbf8d4d9f7}{Packet2d}} \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})
+\item 
+{\footnotesize template$<$typename Lhs\+Packet , typename Rhs\+Packet , bool Negative\+Accumulate$>$ }\\\mbox{\hyperlink{_macros_8h_a1fdc6f94f20527c7275768d82b2eb9ce_a1fdc6f94f20527c7275768d82b2eb9ce}{EIGEN\+\_\+\+ALWAYS\+\_\+\+INLINE}} void \mbox{\hyperlink{namespace_eigen_1_1internal_af792a8ae37ba307552493a2094f78a2c_af792a8ae37ba307552493a2094f78a2c}{Eigen\+::internal\+::pger\+MMA}} (\+\_\+\+\_\+vector\+\_\+quad \texorpdfstring{$\ast$}{*}acc, const \+\_\+\+\_\+vector\+\_\+pair \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}, const \mbox{\hyperlink{namespace_eigen_1_1internal_a071504a8c370c69609dc68dbf8d4d9f7_a071504a8c370c69609dc68dbf8d4d9f7}{Packet2d}} \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})
+\item 
+{\footnotesize template$<$typename Lhs\+Packet , typename Rhs\+Packet , bool Negative\+Accumulate$>$ }\\\mbox{\hyperlink{_macros_8h_a1fdc6f94f20527c7275768d82b2eb9ce_a1fdc6f94f20527c7275768d82b2eb9ce}{EIGEN\+\_\+\+ALWAYS\+\_\+\+INLINE}} void \mbox{\hyperlink{namespace_eigen_1_1internal_a16601d97b0a809d2bfeb5d59b139f6ed_a16601d97b0a809d2bfeb5d59b139f6ed}{Eigen\+::internal\+::pger\+MMA}} (\+\_\+\+\_\+vector\+\_\+quad \texorpdfstring{$\ast$}{*}, const \+\_\+\+\_\+vector\+\_\+pair \&, const \mbox{\hyperlink{namespace_eigen_1_1internal_ae26c66dd0a5e5fe89ede57fe7005e2f7_ae26c66dd0a5e5fe89ede57fe7005e2f7}{Packet4f}} \&)
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} , typename Rhs\+Packet , bool Conjugate\+Lhs, bool Conjugate\+Rhs, bool Lhs\+Is\+Real, bool Rhs\+Is\+Real$>$ }\\\mbox{\hyperlink{_macros_8h_a1fdc6f94f20527c7275768d82b2eb9ce_a1fdc6f94f20527c7275768d82b2eb9ce}{EIGEN\+\_\+\+ALWAYS\+\_\+\+INLINE}} void \mbox{\hyperlink{namespace_eigen_1_1internal_aaddda52a567c481d46467a72e29264d7_aaddda52a567c481d46467a72e29264d7}{Eigen\+::internal\+::pgerc\+MMA}} (\+\_\+\+\_\+vector\+\_\+quad \texorpdfstring{$\ast$}{*}acc\+Real, \+\_\+\+\_\+vector\+\_\+quad \texorpdfstring{$\ast$}{*}acc\+Imag, const \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} \&lhsV, const \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} \&lhs\+Vi, const Rhs\+Packet \&rhsV, const Rhs\+Packet \&rhs\+Vi)
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} $>$ }\\\mbox{\hyperlink{_macros_8h_a1fdc6f94f20527c7275768d82b2eb9ce_a1fdc6f94f20527c7275768d82b2eb9ce}{EIGEN\+\_\+\+ALWAYS\+\_\+\+INLINE}} void \mbox{\hyperlink{namespace_eigen_1_1internal_af8a89bbb94b89a7c715fcd804b5dfa9c_af8a89bbb94b89a7c715fcd804b5dfa9c}{Eigen\+::internal\+::pload\+Rhs\+MMA}} (const \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} \texorpdfstring{$\ast$}{*}rhs, \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} \&rhsV)
+\item 
+template$<$$>$ \mbox{\hyperlink{_macros_8h_a1fdc6f94f20527c7275768d82b2eb9ce_a1fdc6f94f20527c7275768d82b2eb9ce}{EIGEN\+\_\+\+ALWAYS\+\_\+\+INLINE}} void \mbox{\hyperlink{namespace_eigen_1_1internal_a7975e91b79da6d72eb99a16908690c90_a7975e91b79da6d72eb99a16908690c90}{Eigen\+::internal\+::pload\+Rhs\+MMA$<$ double, Packet\+Block$<$ Packet2d, 2 $>$ $>$}} (const double \texorpdfstring{$\ast$}{*}rhs, \mbox{\hyperlink{struct_eigen_1_1internal_1_1_packet_block}{Packet\+Block}}$<$ \mbox{\hyperlink{namespace_eigen_1_1internal_a071504a8c370c69609dc68dbf8d4d9f7_a071504a8c370c69609dc68dbf8d4d9f7}{Packet2d}}, 2 $>$ \&rhsV)
+\item 
+template$<$$>$ \mbox{\hyperlink{_macros_8h_a1fdc6f94f20527c7275768d82b2eb9ce_a1fdc6f94f20527c7275768d82b2eb9ce}{EIGEN\+\_\+\+ALWAYS\+\_\+\+INLINE}} void \mbox{\hyperlink{namespace_eigen_1_1internal_adf6d19fc157853a716c9240af8e6cb1a_adf6d19fc157853a716c9240af8e6cb1a}{Eigen\+::internal\+::pload\+Rhs\+MMA$<$ double, \+\_\+\+\_\+vector\+\_\+pair $>$}} (const double \texorpdfstring{$\ast$}{*}rhs, \+\_\+\+\_\+vector\+\_\+pair \&rhsV)
+\item 
+template$<$$>$ \mbox{\hyperlink{_macros_8h_a1fdc6f94f20527c7275768d82b2eb9ce_a1fdc6f94f20527c7275768d82b2eb9ce}{EIGEN\+\_\+\+ALWAYS\+\_\+\+INLINE}} void \mbox{\hyperlink{namespace_eigen_1_1internal_a34818048cde8d4e952c2f3f85870f4b3_a34818048cde8d4e952c2f3f85870f4b3}{Eigen\+::internal\+::pload\+Rhs\+MMA}} (const float \texorpdfstring{$\ast$}{*}, \+\_\+\+\_\+vector\+\_\+pair \&)
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} unroll\+\_\+factor, typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} , typename Rhs\+Packet , typename Data\+Mapper , typename \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} , const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} acc\+Rows, const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} acc\+Cols$>$ }\\\mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} void \mbox{\hyperlink{namespace_eigen_1_1internal_ac9ec0b6dc7364751589a4f6c81e78fc5_ac9ec0b6dc7364751589a4f6c81e78fc5}{Eigen\+::internal\+::gemm\+\_\+unrolled\+\_\+\+MMA\+\_\+iteration}} (const Data\+Mapper \&\mbox{\hyperlink{_partial_redux__count_8cpp_acbe60897559b79afc28b79b0687b5f29_acbe60897559b79afc28b79b0687b5f29}{res}}, const \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} \texorpdfstring{$\ast$}{*}lhs\+\_\+base, const \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} \texorpdfstring{$\ast$}{*}rhs\+\_\+base, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} depth, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} strideA, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} offsetA, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&\mbox{\hyperlink{_matrix_base__row_8cpp_a64ef8efef59f875033a27e7cbbc879ec_a64ef8efef59f875033a27e7cbbc879ec}{row}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_matrix_base__col_8cpp_aa168d9544aa6d49fce0cbfc0bec849b0_aa168d9544aa6d49fce0cbfc0bec849b0}{col}}, const \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} \&p\+Alpha)
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} , typename \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} , typename Rhs\+Packet , typename Data\+Mapper , const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} acc\+Rows, const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} acc\+Cols$>$ }\\void \mbox{\hyperlink{namespace_eigen_1_1internal_a7ae35fa055c755781311b4278226e9bd_a7ae35fa055c755781311b4278226e9bd}{Eigen\+::internal\+::gemm\+MMA}} (const Data\+Mapper \&\mbox{\hyperlink{_partial_redux__count_8cpp_acbe60897559b79afc28b79b0687b5f29_acbe60897559b79afc28b79b0687b5f29}{res}}, const \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} \texorpdfstring{$\ast$}{*}blockA, const \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} \texorpdfstring{$\ast$}{*}blockB, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} depth, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}}, \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} \mbox{\hyperlink{level1__cplx__impl_8h_ad64a0b860552910d1ffaf381e5d66e03_ad64a0b860552910d1ffaf381e5d66e03}{alpha}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} strideA, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} strideB, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} offsetA, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} offsetB)
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} unroll\+\_\+factor, typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} , typename Packetc , typename Rhs\+Packet , typename Data\+Mapper , typename \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} , const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} acc\+Rows, const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} acc\+Cols, bool Conjugate\+Lhs, bool Conjugate\+Rhs, bool Lhs\+Is\+Real, bool Rhs\+Is\+Real$>$ }\\\mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} void \mbox{\hyperlink{namespace_eigen_1_1internal_a8d4b3275654451896f9ebdd3188f8aa4_a8d4b3275654451896f9ebdd3188f8aa4}{Eigen\+::internal\+::gemm\+\_\+complex\+\_\+unrolled\+\_\+\+MMA\+\_\+iteration}} (const Data\+Mapper \&\mbox{\hyperlink{_partial_redux__count_8cpp_acbe60897559b79afc28b79b0687b5f29_acbe60897559b79afc28b79b0687b5f29}{res}}, const \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} \texorpdfstring{$\ast$}{*}lhs\+\_\+base, const \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} \texorpdfstring{$\ast$}{*}rhs\+\_\+base, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} depth, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} strideA, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} offsetA, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} strideB, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&\mbox{\hyperlink{_matrix_base__row_8cpp_a64ef8efef59f875033a27e7cbbc879ec_a64ef8efef59f875033a27e7cbbc879ec}{row}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_matrix_base__col_8cpp_aa168d9544aa6d49fce0cbfc0bec849b0_aa168d9544aa6d49fce0cbfc0bec849b0}{col}}, const \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} \&p\+Alpha\+Real, const \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} \&p\+Alpha\+Imag)
+\item 
+{\footnotesize template$<$typename Lhs\+Scalar , typename Rhs\+Scalar , typename Scalarc , typename \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}} , typename \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} , typename \mbox{\hyperlink{union_eigen_1_1internal_1_1_packet}{Packet}} , typename Packetc , typename Rhs\+Packet , typename Data\+Mapper , const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} acc\+Rows, const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} acc\+Cols, bool Conjugate\+Lhs, bool Conjugate\+Rhs, bool Lhs\+Is\+Real, bool Rhs\+Is\+Real$>$ }\\void \mbox{\hyperlink{namespace_eigen_1_1internal_a0a12db49b7cc7b86e309b3b637cf0c37_a0a12db49b7cc7b86e309b3b637cf0c37}{Eigen\+::internal\+::gemm\+\_\+complex\+MMA}} (const Data\+Mapper \&\mbox{\hyperlink{_partial_redux__count_8cpp_acbe60897559b79afc28b79b0687b5f29_acbe60897559b79afc28b79b0687b5f29}{res}}, const Lhs\+Scalar \texorpdfstring{$\ast$}{*}block\+Ac, const Rhs\+Scalar \texorpdfstring{$\ast$}{*}block\+Bc, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} depth, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}}, Scalarc \mbox{\hyperlink{level1__cplx__impl_8h_ad64a0b860552910d1ffaf381e5d66e03_ad64a0b860552910d1ffaf381e5d66e03}{alpha}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} strideA, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} strideB, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} offsetA, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} offsetB)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{_matrix_product_m_m_a_8h_a32122a203a5407d7a8cf9b0d8495dc75_a32122a203a5407d7a8cf9b0d8495dc75}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!accColsC@{accColsC}}
+\index{accColsC@{accColsC}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{accColsC}{accColsC}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a32122a203a5407d7a8cf9b0d8495dc75_a32122a203a5407d7a8cf9b0d8495dc75} 
+\#define acc\+ColsC~(acc\+Cols / 2)}
+
+\Hypertarget{_matrix_product_m_m_a_8h_a16534d538ecb9f56bb480a75e5148175_a16534d538ecb9f56bb480a75e5148175}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!advanceCols@{advanceCols}}
+\index{advanceCols@{advanceCols}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{advanceCols}{advanceCols}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a16534d538ecb9f56bb480a75e5148175_a16534d538ecb9f56bb480a75e5148175} 
+\#define advance\+Cols~((Rhs\+Is\+Real) ? 1 \+: 2)}
+
+\Hypertarget{_matrix_product_m_m_a_8h_a41a0307ca9c6701cfb7cca80301257de_a41a0307ca9c6701cfb7cca80301257de}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!advanceRows@{advanceRows}}
+\index{advanceRows@{advanceRows}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{advanceRows}{advanceRows}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a41a0307ca9c6701cfb7cca80301257de_a41a0307ca9c6701cfb7cca80301257de} 
+\#define advance\+Rows~((Lhs\+Is\+Real) ? 1 \+: 2)}
+
+\Hypertarget{_matrix_product_m_m_a_8h_a6f76f67ece14c0b55c15bff559045f25_a6f76f67ece14c0b55c15bff559045f25}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MAX\_COMPLEX\_MMA\_UNROLL@{MAX\_COMPLEX\_MMA\_UNROLL}}
+\index{MAX\_COMPLEX\_MMA\_UNROLL@{MAX\_COMPLEX\_MMA\_UNROLL}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_COMPLEX\_MMA\_UNROLL}{MAX\_COMPLEX\_MMA\_UNROLL}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a6f76f67ece14c0b55c15bff559045f25_a6f76f67ece14c0b55c15bff559045f25} 
+\#define MAX\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+UNROLL~4}
+
+\Hypertarget{_matrix_product_m_m_a_8h_a9fb65b6250a5a458e10d471d40863670_a9fb65b6250a5a458e10d471d40863670}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MAX\_MMA\_UNROLL@{MAX\_MMA\_UNROLL}}
+\index{MAX\_MMA\_UNROLL@{MAX\_MMA\_UNROLL}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_MMA\_UNROLL}{MAX\_MMA\_UNROLL}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a9fb65b6250a5a458e10d471d40863670_a9fb65b6250a5a458e10d471d40863670} 
+\#define MAX\+\_\+\+MMA\+\_\+\+UNROLL~7}
+
+\Hypertarget{_matrix_product_m_m_a_8h_a3a7a96bb00c7c882a7bc92ede07a1301_a3a7a96bb00c7c882a7bc92ede07a1301}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_COMPLEX\_MMA\_DST\_PTR@{MICRO\_COMPLEX\_MMA\_DST\_PTR}}
+\index{MICRO\_COMPLEX\_MMA\_DST\_PTR@{MICRO\_COMPLEX\_MMA\_DST\_PTR}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_COMPLEX\_MMA\_DST\_PTR}{MICRO\_COMPLEX\_MMA\_DST\_PTR}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a3a7a96bb00c7c882a7bc92ede07a1301_a3a7a96bb00c7c882a7bc92ede07a1301} 
+\#define MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+DST\+\_\+\+PTR~\mbox{\hyperlink{_matrix_product_m_m_a_8h_abfe82c0a125e0ad1dbc76b5360fec8db_abfe82c0a125e0ad1dbc76b5360fec8db}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+UNROLL}}(\mbox{\hyperlink{_matrix_product_m_m_a_8h_a79d0b7176cca561318974da4667f6242_a79d0b7176cca561318974da4667f6242}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+DST\+\_\+\+PTR\+\_\+\+ONE}})}
+
+\Hypertarget{_matrix_product_m_m_a_8h_a79d0b7176cca561318974da4667f6242_a79d0b7176cca561318974da4667f6242}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_COMPLEX\_MMA\_DST\_PTR\_ONE@{MICRO\_COMPLEX\_MMA\_DST\_PTR\_ONE}}
+\index{MICRO\_COMPLEX\_MMA\_DST\_PTR\_ONE@{MICRO\_COMPLEX\_MMA\_DST\_PTR\_ONE}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_COMPLEX\_MMA\_DST\_PTR\_ONE}{MICRO\_COMPLEX\_MMA\_DST\_PTR\_ONE}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a79d0b7176cca561318974da4667f6242_a79d0b7176cca561318974da4667f6242} 
+\#define MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+DST\+\_\+\+PTR\+\_\+\+ONE(\begin{DoxyParamCaption}\item[{}]{iter}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (unroll\_factor\ >\ iter)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ bsetzeroMMA<Scalar,\ Packet>(\&accReal\#\#iter);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ bsetzeroMMA<Scalar,\ Packet>(\&accImag\#\#iter);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}\ \textcolor{keywordflow}{else}\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ EIGEN\_UNUSED\_VARIABLE(accReal\#\#iter);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ EIGEN\_UNUSED\_VARIABLE(accImag\#\#iter);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{_matrix_product_m_m_a_8h_a4372ca26db125b8805d23ae83058a9fd_a4372ca26db125b8805d23ae83058a9fd}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_COMPLEX\_MMA\_LOAD\_ONE@{MICRO\_COMPLEX\_MMA\_LOAD\_ONE}}
+\index{MICRO\_COMPLEX\_MMA\_LOAD\_ONE@{MICRO\_COMPLEX\_MMA\_LOAD\_ONE}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_COMPLEX\_MMA\_LOAD\_ONE}{MICRO\_COMPLEX\_MMA\_LOAD\_ONE}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a4372ca26db125b8805d23ae83058a9fd_a4372ca26db125b8805d23ae83058a9fd} 
+\#define MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+LOAD\+\_\+\+ONE(\begin{DoxyParamCaption}\item[{}]{iter}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (unroll\_factor\ >\ iter)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ lhsV\#\#iter\ =\ ploadLhs<Scalar,\ Packet>(lhs\_ptr\_real\#\#iter);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ lhs\_ptr\_real\#\#iter\ +=\ accCols;\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ if(!LhsIsReal)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ lhsVi\#\#iter\ =\ ploadLhs<Scalar,\ Packet>(lhs\_ptr\_imag\#\#iter);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ lhs\_ptr\_imag\#\#iter\ +=\ accCols;\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ EIGEN\_UNUSED\_VARIABLE(lhsVi\#\#iter);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}\ \textcolor{keywordflow}{else}\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ EIGEN\_UNUSED\_VARIABLE(lhsV\#\#iter);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ EIGEN\_UNUSED\_VARIABLE(lhsVi\#\#iter);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{_matrix_product_m_m_a_8h_a1c0fd041ff323f5b62a7a98c2c046e37_a1c0fd041ff323f5b62a7a98c2c046e37}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_COMPLEX\_MMA\_ONE@{MICRO\_COMPLEX\_MMA\_ONE}}
+\index{MICRO\_COMPLEX\_MMA\_ONE@{MICRO\_COMPLEX\_MMA\_ONE}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_COMPLEX\_MMA\_ONE}{MICRO\_COMPLEX\_MMA\_ONE}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a1c0fd041ff323f5b62a7a98c2c046e37_a1c0fd041ff323f5b62a7a98c2c046e37} 
+\#define MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+ONE}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{sizeof}(\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}})\ ==\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{float}))\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MICRO\_COMPLEX\_MMA\_UNROLL\_TYPE\_ONE(\mbox{\hyperlink{_matrix_product_m_m_a_8h_a65a51f48a5142908ae84330673c9e2d4_a65a51f48a5142908ae84330673c9e2d4}{MICRO\_COMPLEX\_MMA\_WORK\_ONE}},\ \mbox{\hyperlink{_matrix_product_m_m_a_8h_a4372ca26db125b8805d23ae83058a9fd_a4372ca26db125b8805d23ae83058a9fd}{MICRO\_COMPLEX\_MMA\_LOAD\_ONE}},\ RhsPacket);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}\ \textcolor{keywordflow}{else}\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MICRO\_COMPLEX\_MMA\_UNROLL\_TYPE\_ONE(\mbox{\hyperlink{_matrix_product_m_m_a_8h_a65a51f48a5142908ae84330673c9e2d4_a65a51f48a5142908ae84330673c9e2d4}{MICRO\_COMPLEX\_MMA\_WORK\_ONE}},\ \mbox{\hyperlink{_matrix_product_m_m_a_8h_a4372ca26db125b8805d23ae83058a9fd_a4372ca26db125b8805d23ae83058a9fd}{MICRO\_COMPLEX\_MMA\_LOAD\_ONE}},\ \_\_vector\_pair);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}\ \(\backslash\)}
+\DoxyCodeLine{\ \ rhs\_ptr\_real\ +=\ accRows;\ \(\backslash\)}
+\DoxyCodeLine{\ \ if(!RhsIsReal)\ rhs\_ptr\_imag\ +=\ accRows;}
+
+\end{DoxyCode}
+\Hypertarget{_matrix_product_m_m_a_8h_a8a3ce05bced034758180b951a0b62ac6_a8a3ce05bced034758180b951a0b62ac6}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_COMPLEX\_MMA\_ONE\_PEEL@{MICRO\_COMPLEX\_MMA\_ONE\_PEEL}}
+\index{MICRO\_COMPLEX\_MMA\_ONE\_PEEL@{MICRO\_COMPLEX\_MMA\_ONE\_PEEL}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_COMPLEX\_MMA\_ONE\_PEEL}{MICRO\_COMPLEX\_MMA\_ONE\_PEEL}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a8a3ce05bced034758180b951a0b62ac6_a8a3ce05bced034758180b951a0b62ac6} 
+\#define MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+ONE\+\_\+\+PEEL}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{sizeof}(\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}})\ ==\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{float}))\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MICRO\_COMPLEX\_MMA\_UNROLL\_TYPE\_PEEL(\mbox{\hyperlink{_matrix_product_m_m_a_8h_a65a51f48a5142908ae84330673c9e2d4_a65a51f48a5142908ae84330673c9e2d4}{MICRO\_COMPLEX\_MMA\_WORK\_ONE}},\ \mbox{\hyperlink{_matrix_product_m_m_a_8h_a4372ca26db125b8805d23ae83058a9fd_a4372ca26db125b8805d23ae83058a9fd}{MICRO\_COMPLEX\_MMA\_LOAD\_ONE}},\ RhsPacket);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}\ \textcolor{keywordflow}{else}\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MICRO\_COMPLEX\_MMA\_UNROLL\_TYPE\_PEEL(\mbox{\hyperlink{_matrix_product_m_m_a_8h_a65a51f48a5142908ae84330673c9e2d4_a65a51f48a5142908ae84330673c9e2d4}{MICRO\_COMPLEX\_MMA\_WORK\_ONE}},\ \mbox{\hyperlink{_matrix_product_m_m_a_8h_a4372ca26db125b8805d23ae83058a9fd_a4372ca26db125b8805d23ae83058a9fd}{MICRO\_COMPLEX\_MMA\_LOAD\_ONE}},\ \_\_vector\_pair);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}\ \(\backslash\)}
+\DoxyCodeLine{\ \ rhs\_ptr\_real\ +=\ (accRows\ *\ \mbox{\hyperlink{_matrix_product_m_m_a_8h_acf0f91c511c8b10d3e2a2676d31f4a29_acf0f91c511c8b10d3e2a2676d31f4a29}{PEEL\_COMPLEX\_MMA}});\ \(\backslash\)}
+\DoxyCodeLine{\ \ if(!RhsIsReal)\ rhs\_ptr\_imag\ +=\ (accRows\ *\ \mbox{\hyperlink{_matrix_product_m_m_a_8h_acf0f91c511c8b10d3e2a2676d31f4a29_acf0f91c511c8b10d3e2a2676d31f4a29}{PEEL\_COMPLEX\_MMA}});}
+
+\end{DoxyCode}
+\Hypertarget{_matrix_product_m_m_a_8h_afc7abe6d1bae2f8fb91c294fc48cf6bc_afc7abe6d1bae2f8fb91c294fc48cf6bc}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_COMPLEX\_MMA\_PREFETCH@{MICRO\_COMPLEX\_MMA\_PREFETCH}}
+\index{MICRO\_COMPLEX\_MMA\_PREFETCH@{MICRO\_COMPLEX\_MMA\_PREFETCH}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_COMPLEX\_MMA\_PREFETCH}{MICRO\_COMPLEX\_MMA\_PREFETCH}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_afc7abe6d1bae2f8fb91c294fc48cf6bc_afc7abe6d1bae2f8fb91c294fc48cf6bc} 
+\#define MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+PREFETCH~\mbox{\hyperlink{_matrix_product_m_m_a_8h_abfe82c0a125e0ad1dbc76b5360fec8db_abfe82c0a125e0ad1dbc76b5360fec8db}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+UNROLL}}(\mbox{\hyperlink{_matrix_product_m_m_a_8h_a98fef10509af6f191a28c32fee35850d_a98fef10509af6f191a28c32fee35850d}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+PREFETCH\+\_\+\+ONE}})}
+
+\Hypertarget{_matrix_product_m_m_a_8h_a98fef10509af6f191a28c32fee35850d_a98fef10509af6f191a28c32fee35850d}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_COMPLEX\_MMA\_PREFETCH\_ONE@{MICRO\_COMPLEX\_MMA\_PREFETCH\_ONE}}
+\index{MICRO\_COMPLEX\_MMA\_PREFETCH\_ONE@{MICRO\_COMPLEX\_MMA\_PREFETCH\_ONE}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_COMPLEX\_MMA\_PREFETCH\_ONE}{MICRO\_COMPLEX\_MMA\_PREFETCH\_ONE}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a98fef10509af6f191a28c32fee35850d_a98fef10509af6f191a28c32fee35850d} 
+\#define MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+PREFETCH\+\_\+\+ONE(\begin{DoxyParamCaption}\item[{}]{iter}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (unroll\_factor\ >\ iter)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ EIGEN\_POWER\_PREFETCH(lhs\_ptr\_real\#\#iter);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ if(!LhsIsReal)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ EIGEN\_POWER\_PREFETCH(lhs\_ptr\_imag\#\#iter);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{_matrix_product_m_m_a_8h_a3d439e488aeaf89e3934121872631487_a3d439e488aeaf89e3934121872631487}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_COMPLEX\_MMA\_SRC\_PTR@{MICRO\_COMPLEX\_MMA\_SRC\_PTR}}
+\index{MICRO\_COMPLEX\_MMA\_SRC\_PTR@{MICRO\_COMPLEX\_MMA\_SRC\_PTR}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_COMPLEX\_MMA\_SRC\_PTR}{MICRO\_COMPLEX\_MMA\_SRC\_PTR}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a3d439e488aeaf89e3934121872631487_a3d439e488aeaf89e3934121872631487} 
+\#define MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+SRC\+\_\+\+PTR~\mbox{\hyperlink{_matrix_product_m_m_a_8h_abfe82c0a125e0ad1dbc76b5360fec8db_abfe82c0a125e0ad1dbc76b5360fec8db}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+UNROLL}}(\mbox{\hyperlink{_matrix_product_m_m_a_8h_a9353033d2dbf460322ceb1bebdf79ee3_a9353033d2dbf460322ceb1bebdf79ee3}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+SRC\+\_\+\+PTR\+\_\+\+ONE}})}
+
+\Hypertarget{_matrix_product_m_m_a_8h_a9353033d2dbf460322ceb1bebdf79ee3_a9353033d2dbf460322ceb1bebdf79ee3}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_COMPLEX\_MMA\_SRC\_PTR\_ONE@{MICRO\_COMPLEX\_MMA\_SRC\_PTR\_ONE}}
+\index{MICRO\_COMPLEX\_MMA\_SRC\_PTR\_ONE@{MICRO\_COMPLEX\_MMA\_SRC\_PTR\_ONE}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_COMPLEX\_MMA\_SRC\_PTR\_ONE}{MICRO\_COMPLEX\_MMA\_SRC\_PTR\_ONE}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a9353033d2dbf460322ceb1bebdf79ee3_a9353033d2dbf460322ceb1bebdf79ee3} 
+\#define MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+SRC\+\_\+\+PTR\+\_\+\+ONE(\begin{DoxyParamCaption}\item[{}]{iter}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (unroll\_factor\ >\ iter)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ lhs\_ptr\_real\#\#iter\ =\ lhs\_base\ +\ (\ ((\mbox{\hyperlink{_matrix_product_m_m_a_8h_a41a0307ca9c6701cfb7cca80301257de_a41a0307ca9c6701cfb7cca80301257de}{advanceRows}}*\mbox{\hyperlink{_matrix_base__row_8cpp_a64ef8efef59f875033a27e7cbbc879ec_a64ef8efef59f875033a27e7cbbc879ec}{row}})/accCols)\ +\ iter*\mbox{\hyperlink{_matrix_product_m_m_a_8h_a41a0307ca9c6701cfb7cca80301257de_a41a0307ca9c6701cfb7cca80301257de}{advanceRows}}\ )*strideA*accCols\ +\ accCols*offsetA;\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ if(!LhsIsReal)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ lhs\_ptr\_imag\#\#iter\ =\ lhs\_ptr\_real\#\#iter\ +\ accCols*strideA;\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ EIGEN\_UNUSED\_VARIABLE(lhs\_ptr\_imag\#\#iter);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}\ \textcolor{keywordflow}{else}\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ EIGEN\_UNUSED\_VARIABLE(lhs\_ptr\_real\#\#iter);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ EIGEN\_UNUSED\_VARIABLE(lhs\_ptr\_imag\#\#iter);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{_matrix_product_m_m_a_8h_a5be5ea25ccff9b4fe96e398ac0311468_a5be5ea25ccff9b4fe96e398ac0311468}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_COMPLEX\_MMA\_STORE@{MICRO\_COMPLEX\_MMA\_STORE}}
+\index{MICRO\_COMPLEX\_MMA\_STORE@{MICRO\_COMPLEX\_MMA\_STORE}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_COMPLEX\_MMA\_STORE}{MICRO\_COMPLEX\_MMA\_STORE}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a5be5ea25ccff9b4fe96e398ac0311468_a5be5ea25ccff9b4fe96e398ac0311468} 
+\#define MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+STORE~\mbox{\hyperlink{_matrix_product_m_m_a_8h_abfe82c0a125e0ad1dbc76b5360fec8db_abfe82c0a125e0ad1dbc76b5360fec8db}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+UNROLL}}(\mbox{\hyperlink{_matrix_product_m_m_a_8h_aedec9481c73baac278be47c1a43869d7_aedec9481c73baac278be47c1a43869d7}{MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+STORE\+\_\+\+ONE}})}
+
+\Hypertarget{_matrix_product_m_m_a_8h_aedec9481c73baac278be47c1a43869d7_aedec9481c73baac278be47c1a43869d7}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_COMPLEX\_MMA\_STORE\_ONE@{MICRO\_COMPLEX\_MMA\_STORE\_ONE}}
+\index{MICRO\_COMPLEX\_MMA\_STORE\_ONE@{MICRO\_COMPLEX\_MMA\_STORE\_ONE}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_COMPLEX\_MMA\_STORE\_ONE}{MICRO\_COMPLEX\_MMA\_STORE\_ONE}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_aedec9481c73baac278be47c1a43869d7_aedec9481c73baac278be47c1a43869d7} 
+\#define MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+STORE\+\_\+\+ONE(\begin{DoxyParamCaption}\item[{}]{iter}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (unroll\_factor\ >\ iter)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ storeComplexAccumulator<DataMapper,\ Index,\ Packet,\ Packetc,\ accColsC,\ 0>(\mbox{\hyperlink{_matrix_base__row_8cpp_a64ef8efef59f875033a27e7cbbc879ec_a64ef8efef59f875033a27e7cbbc879ec}{row}}\ +\ iter*accCols,\ \mbox{\hyperlink{_matrix_base__col_8cpp_aa168d9544aa6d49fce0cbfc0bec849b0_aa168d9544aa6d49fce0cbfc0bec849b0}{col}},\ \mbox{\hyperlink{_partial_redux__count_8cpp_acbe60897559b79afc28b79b0687b5f29_acbe60897559b79afc28b79b0687b5f29}{res}},\ pAlphaReal,\ pAlphaImag,\ \&accReal\#\#iter,\ \&accImag\#\#iter);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{_matrix_product_m_m_a_8h_aa9ca302a106e60f99eb31b99cf5b01eb_aa9ca302a106e60f99eb31b99cf5b01eb}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_COMPLEX\_MMA\_TYPE\_PEEL@{MICRO\_COMPLEX\_MMA\_TYPE\_PEEL}}
+\index{MICRO\_COMPLEX\_MMA\_TYPE\_PEEL@{MICRO\_COMPLEX\_MMA\_TYPE\_PEEL}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_COMPLEX\_MMA\_TYPE\_PEEL}{MICRO\_COMPLEX\_MMA\_TYPE\_PEEL}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_aa9ca302a106e60f99eb31b99cf5b01eb_aa9ca302a106e60f99eb31b99cf5b01eb} 
+\#define MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+TYPE\+\_\+\+PEEL(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structfunc}{func}}}{, }\item[{}]{func2}{, }\item[{}]{type}{, }\item[{}]{peel}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_matrix_product_m_m_a_8h_acf0f91c511c8b10d3e2a2676d31f4a29_acf0f91c511c8b10d3e2a2676d31f4a29}{PEEL\_COMPLEX\_MMA}}\ >\ peel)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_eigen_1_1_triplet}{Packet}}\ lhsV0,\ lhsV1,\ lhsV2,\ lhsV3,\ lhsV4;\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_eigen_1_1_triplet}{Packet}}\ lhsVi0,\ lhsVi1,\ lhsVi2,\ lhsVi3,\ lhsVi4;\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ ploadRhsMMA<Scalar,\ type>(rhs\_ptr\_real\ +\ (accRows\ *\ peel),\ rhsV\#\#peel);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ if(!RhsIsReal)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ ploadRhsMMA<Scalar,\ type>(rhs\_ptr\_imag\ +\ (accRows\ *\ peel),\ rhsVi\#\#peel);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ EIGEN\_UNUSED\_VARIABLE(rhsVi\#\#peel);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MICRO\_COMPLEX\_MMA\_UNROLL(func2);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ func(0,type,peel)\ \mbox{\hyperlink{structfunc}{func}}(1,type,peel)\ \mbox{\hyperlink{structfunc}{func}}(2,type,peel)\ \mbox{\hyperlink{structfunc}{func}}(3,type,peel)\ \mbox{\hyperlink{structfunc}{func}}(4,type,peel)\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}\ \textcolor{keywordflow}{else}\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ EIGEN\_UNUSED\_VARIABLE(rhsV\#\#peel);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ EIGEN\_UNUSED\_VARIABLE(rhsVi\#\#peel);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{_matrix_product_m_m_a_8h_abfe82c0a125e0ad1dbc76b5360fec8db_abfe82c0a125e0ad1dbc76b5360fec8db}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_COMPLEX\_MMA\_UNROLL@{MICRO\_COMPLEX\_MMA\_UNROLL}}
+\index{MICRO\_COMPLEX\_MMA\_UNROLL@{MICRO\_COMPLEX\_MMA\_UNROLL}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_COMPLEX\_MMA\_UNROLL}{MICRO\_COMPLEX\_MMA\_UNROLL}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_abfe82c0a125e0ad1dbc76b5360fec8db_abfe82c0a125e0ad1dbc76b5360fec8db} 
+\#define MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+UNROLL(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structfunc}{func}}}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{structfunc}{func}}(0)\ \mbox{\hyperlink{structfunc}{func}}(1)\ \mbox{\hyperlink{structfunc}{func}}(2)\ \mbox{\hyperlink{structfunc}{func}}(3)\ \mbox{\hyperlink{structfunc}{func}}(4)}
+
+\end{DoxyCode}
+\Hypertarget{_matrix_product_m_m_a_8h_adf0fd1a4b9d26955fcfc2a59fecff3e7_adf0fd1a4b9d26955fcfc2a59fecff3e7}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_COMPLEX\_MMA\_UNROLL\_TYPE\_ONE@{MICRO\_COMPLEX\_MMA\_UNROLL\_TYPE\_ONE}}
+\index{MICRO\_COMPLEX\_MMA\_UNROLL\_TYPE\_ONE@{MICRO\_COMPLEX\_MMA\_UNROLL\_TYPE\_ONE}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_COMPLEX\_MMA\_UNROLL\_TYPE\_ONE}{MICRO\_COMPLEX\_MMA\_UNROLL\_TYPE\_ONE}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_adf0fd1a4b9d26955fcfc2a59fecff3e7_adf0fd1a4b9d26955fcfc2a59fecff3e7} 
+\#define MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+UNROLL\+\_\+\+TYPE\+\_\+\+ONE(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structfunc}{func}}}{, }\item[{}]{func2}{, }\item[{}]{type}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ type\ rhsV0,\ rhsVi0;\ \(\backslash\)}
+\DoxyCodeLine{\ \ MICRO\_COMPLEX\_MMA\_TYPE\_PEEL(\mbox{\hyperlink{structfunc}{func}},func2,type,0);}
+
+\end{DoxyCode}
+\Hypertarget{_matrix_product_m_m_a_8h_a26fd4caa8362a6a9098771474b071bad_a26fd4caa8362a6a9098771474b071bad}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_COMPLEX\_MMA\_UNROLL\_TYPE\_PEEL@{MICRO\_COMPLEX\_MMA\_UNROLL\_TYPE\_PEEL}}
+\index{MICRO\_COMPLEX\_MMA\_UNROLL\_TYPE\_PEEL@{MICRO\_COMPLEX\_MMA\_UNROLL\_TYPE\_PEEL}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_COMPLEX\_MMA\_UNROLL\_TYPE\_PEEL}{MICRO\_COMPLEX\_MMA\_UNROLL\_TYPE\_PEEL}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a26fd4caa8362a6a9098771474b071bad_a26fd4caa8362a6a9098771474b071bad} 
+\#define MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+UNROLL\+\_\+\+TYPE\+\_\+\+PEEL(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structfunc}{func}}}{, }\item[{}]{func2}{, }\item[{}]{type}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ type\ rhsV0,\ rhsV1,\ rhsV2,\ rhsV3,\ rhsV4,\ rhsV5,\ rhsV6,\ rhsV7,\ rhsV8,\ rhsV9;\ \(\backslash\)}
+\DoxyCodeLine{\ \ type\ rhsVi0,\ rhsVi1,\ rhsVi2,\ rhsVi3,\ rhsVi4,\ rhsVi5,\ rhsVi6,\ rhsVi7,\ rhsVi8,\ rhsVi9;\ \(\backslash\)}
+\DoxyCodeLine{\ \ MICRO\_COMPLEX\_MMA\_TYPE\_PEEL(\mbox{\hyperlink{structfunc}{func}},func2,type,0);\ \mbox{\hyperlink{_matrix_product_m_m_a_8h_aa9ca302a106e60f99eb31b99cf5b01eb_aa9ca302a106e60f99eb31b99cf5b01eb}{MICRO\_COMPLEX\_MMA\_TYPE\_PEEL}}(\mbox{\hyperlink{structfunc}{func}},func2,type,1);\ \(\backslash\)}
+\DoxyCodeLine{\ \ MICRO\_COMPLEX\_MMA\_TYPE\_PEEL(\mbox{\hyperlink{structfunc}{func}},func2,type,2);\ \mbox{\hyperlink{_matrix_product_m_m_a_8h_aa9ca302a106e60f99eb31b99cf5b01eb_aa9ca302a106e60f99eb31b99cf5b01eb}{MICRO\_COMPLEX\_MMA\_TYPE\_PEEL}}(\mbox{\hyperlink{structfunc}{func}},func2,type,3);\ \(\backslash\)}
+\DoxyCodeLine{\ \ MICRO\_COMPLEX\_MMA\_TYPE\_PEEL(\mbox{\hyperlink{structfunc}{func}},func2,type,4);\ \mbox{\hyperlink{_matrix_product_m_m_a_8h_aa9ca302a106e60f99eb31b99cf5b01eb_aa9ca302a106e60f99eb31b99cf5b01eb}{MICRO\_COMPLEX\_MMA\_TYPE\_PEEL}}(\mbox{\hyperlink{structfunc}{func}},func2,type,5);\ \(\backslash\)}
+\DoxyCodeLine{\ \ MICRO\_COMPLEX\_MMA\_TYPE\_PEEL(\mbox{\hyperlink{structfunc}{func}},func2,type,6);\ \mbox{\hyperlink{_matrix_product_m_m_a_8h_aa9ca302a106e60f99eb31b99cf5b01eb_aa9ca302a106e60f99eb31b99cf5b01eb}{MICRO\_COMPLEX\_MMA\_TYPE\_PEEL}}(\mbox{\hyperlink{structfunc}{func}},func2,type,7);\ \(\backslash\)}
+\DoxyCodeLine{\ \ MICRO\_COMPLEX\_MMA\_TYPE\_PEEL(\mbox{\hyperlink{structfunc}{func}},func2,type,8);\ \mbox{\hyperlink{_matrix_product_m_m_a_8h_aa9ca302a106e60f99eb31b99cf5b01eb_aa9ca302a106e60f99eb31b99cf5b01eb}{MICRO\_COMPLEX\_MMA\_TYPE\_PEEL}}(\mbox{\hyperlink{structfunc}{func}},func2,type,9);}
+
+\end{DoxyCode}
+\Hypertarget{_matrix_product_m_m_a_8h_a65a51f48a5142908ae84330673c9e2d4_a65a51f48a5142908ae84330673c9e2d4}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_COMPLEX\_MMA\_WORK\_ONE@{MICRO\_COMPLEX\_MMA\_WORK\_ONE}}
+\index{MICRO\_COMPLEX\_MMA\_WORK\_ONE@{MICRO\_COMPLEX\_MMA\_WORK\_ONE}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_COMPLEX\_MMA\_WORK\_ONE}{MICRO\_COMPLEX\_MMA\_WORK\_ONE}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a65a51f48a5142908ae84330673c9e2d4_a65a51f48a5142908ae84330673c9e2d4} 
+\#define MICRO\+\_\+\+COMPLEX\+\_\+\+MMA\+\_\+\+WORK\+\_\+\+ONE(\begin{DoxyParamCaption}\item[{}]{iter}{, }\item[{}]{type}{, }\item[{}]{peel}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (unroll\_factor\ >\ iter)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ pgercMMA<Scalar,\ Packet,\ type,\ ConjugateLhs,\ ConjugateRhs,\ LhsIsReal,\ RhsIsReal>(\&accReal\#\#iter,\ \&accImag\#\#iter,\ lhsV\#\#iter,\ lhsVi\#\#iter,\ rhsV\#\#peel,\ rhsVi\#\#peel);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{_matrix_product_m_m_a_8h_a0aa08525a716db895179d6f03b468a23_a0aa08525a716db895179d6f03b468a23}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_MMA\_DST\_PTR@{MICRO\_MMA\_DST\_PTR}}
+\index{MICRO\_MMA\_DST\_PTR@{MICRO\_MMA\_DST\_PTR}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_MMA\_DST\_PTR}{MICRO\_MMA\_DST\_PTR}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a0aa08525a716db895179d6f03b468a23_a0aa08525a716db895179d6f03b468a23} 
+\#define MICRO\+\_\+\+MMA\+\_\+\+DST\+\_\+\+PTR~\mbox{\hyperlink{_matrix_product_m_m_a_8h_aa1a18afd02293baa009b943dbc44f963_aa1a18afd02293baa009b943dbc44f963}{MICRO\+\_\+\+MMA\+\_\+\+UNROLL}}(\mbox{\hyperlink{_matrix_product_m_m_a_8h_ad2ffaeaeb709a09198495eaea4840f61_ad2ffaeaeb709a09198495eaea4840f61}{MICRO\+\_\+\+MMA\+\_\+\+DST\+\_\+\+PTR\+\_\+\+ONE}})}
+
+\Hypertarget{_matrix_product_m_m_a_8h_ad2ffaeaeb709a09198495eaea4840f61_ad2ffaeaeb709a09198495eaea4840f61}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_MMA\_DST\_PTR\_ONE@{MICRO\_MMA\_DST\_PTR\_ONE}}
+\index{MICRO\_MMA\_DST\_PTR\_ONE@{MICRO\_MMA\_DST\_PTR\_ONE}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_MMA\_DST\_PTR\_ONE}{MICRO\_MMA\_DST\_PTR\_ONE}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_ad2ffaeaeb709a09198495eaea4840f61_ad2ffaeaeb709a09198495eaea4840f61} 
+\#define MICRO\+\_\+\+MMA\+\_\+\+DST\+\_\+\+PTR\+\_\+\+ONE(\begin{DoxyParamCaption}\item[{}]{iter}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (unroll\_factor\ >\ iter)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ bsetzeroMMA<Scalar,\ Packet>(\&accZero\#\#iter);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}\ \textcolor{keywordflow}{else}\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ EIGEN\_UNUSED\_VARIABLE(accZero\#\#iter);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{_matrix_product_m_m_a_8h_a1192b949793105cc645646396a9f66bd_a1192b949793105cc645646396a9f66bd}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_MMA\_LOAD\_ONE@{MICRO\_MMA\_LOAD\_ONE}}
+\index{MICRO\_MMA\_LOAD\_ONE@{MICRO\_MMA\_LOAD\_ONE}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_MMA\_LOAD\_ONE}{MICRO\_MMA\_LOAD\_ONE}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a1192b949793105cc645646396a9f66bd_a1192b949793105cc645646396a9f66bd} 
+\#define MICRO\+\_\+\+MMA\+\_\+\+LOAD\+\_\+\+ONE(\begin{DoxyParamCaption}\item[{}]{iter}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (unroll\_factor\ >\ iter)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ lhsV\#\#iter\ =\ ploadLhs<Scalar,\ Packet>(lhs\_ptr\#\#iter);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ lhs\_ptr\#\#iter\ +=\ accCols;\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}\ \textcolor{keywordflow}{else}\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ EIGEN\_UNUSED\_VARIABLE(lhsV\#\#iter);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{_matrix_product_m_m_a_8h_a653a9fa9d2731daab93f51de32907f02_a653a9fa9d2731daab93f51de32907f02}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_MMA\_ONE@{MICRO\_MMA\_ONE}}
+\index{MICRO\_MMA\_ONE@{MICRO\_MMA\_ONE}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_MMA\_ONE}{MICRO\_MMA\_ONE}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a653a9fa9d2731daab93f51de32907f02_a653a9fa9d2731daab93f51de32907f02} 
+\#define MICRO\+\_\+\+MMA\+\_\+\+ONE}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{sizeof}(\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}})\ ==\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{float}))\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MICRO\_MMA\_UNROLL\_TYPE\_ONE(\mbox{\hyperlink{_matrix_product_m_m_a_8h_a412547a4d7b1f0fec4125666f1925c0c_a412547a4d7b1f0fec4125666f1925c0c}{MICRO\_MMA\_WORK\_ONE}},\ \mbox{\hyperlink{_matrix_product_m_m_a_8h_a1192b949793105cc645646396a9f66bd_a1192b949793105cc645646396a9f66bd}{MICRO\_MMA\_LOAD\_ONE}},\ RhsPacket);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}\ \textcolor{keywordflow}{else}\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MICRO\_MMA\_UNROLL\_TYPE\_ONE(\mbox{\hyperlink{_matrix_product_m_m_a_8h_a412547a4d7b1f0fec4125666f1925c0c_a412547a4d7b1f0fec4125666f1925c0c}{MICRO\_MMA\_WORK\_ONE}},\ \mbox{\hyperlink{_matrix_product_m_m_a_8h_a1192b949793105cc645646396a9f66bd_a1192b949793105cc645646396a9f66bd}{MICRO\_MMA\_LOAD\_ONE}},\ \_\_vector\_pair);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}\ \(\backslash\)}
+\DoxyCodeLine{\ \ rhs\_ptr\ +=\ accRows;}
+
+\end{DoxyCode}
+\Hypertarget{_matrix_product_m_m_a_8h_a9adc034eee7e3f16dddb1c8b5d713c20_a9adc034eee7e3f16dddb1c8b5d713c20}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_MMA\_ONE\_PEEL@{MICRO\_MMA\_ONE\_PEEL}}
+\index{MICRO\_MMA\_ONE\_PEEL@{MICRO\_MMA\_ONE\_PEEL}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_MMA\_ONE\_PEEL}{MICRO\_MMA\_ONE\_PEEL}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a9adc034eee7e3f16dddb1c8b5d713c20_a9adc034eee7e3f16dddb1c8b5d713c20} 
+\#define MICRO\+\_\+\+MMA\+\_\+\+ONE\+\_\+\+PEEL}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{sizeof}(\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}})\ ==\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{float}))\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MICRO\_MMA\_UNROLL\_TYPE\_PEEL(\mbox{\hyperlink{_matrix_product_m_m_a_8h_a412547a4d7b1f0fec4125666f1925c0c_a412547a4d7b1f0fec4125666f1925c0c}{MICRO\_MMA\_WORK\_ONE}},\ \mbox{\hyperlink{_matrix_product_m_m_a_8h_a1192b949793105cc645646396a9f66bd_a1192b949793105cc645646396a9f66bd}{MICRO\_MMA\_LOAD\_ONE}},\ RhsPacket);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}\ \textcolor{keywordflow}{else}\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MICRO\_MMA\_UNROLL\_TYPE\_PEEL(\mbox{\hyperlink{_matrix_product_m_m_a_8h_a412547a4d7b1f0fec4125666f1925c0c_a412547a4d7b1f0fec4125666f1925c0c}{MICRO\_MMA\_WORK\_ONE}},\ \mbox{\hyperlink{_matrix_product_m_m_a_8h_a1192b949793105cc645646396a9f66bd_a1192b949793105cc645646396a9f66bd}{MICRO\_MMA\_LOAD\_ONE}},\ \_\_vector\_pair);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}\ \(\backslash\)}
+\DoxyCodeLine{\ \ rhs\_ptr\ +=\ (accRows\ *\ \mbox{\hyperlink{_matrix_product_m_m_a_8h_aa5ebfdd2d5cc8ea41abe361c4750e3b6_aa5ebfdd2d5cc8ea41abe361c4750e3b6}{PEEL\_MMA}});}
+
+\end{DoxyCode}
+\Hypertarget{_matrix_product_m_m_a_8h_a4a4a19fad3a0c4f35aeb0c993af39bf7_a4a4a19fad3a0c4f35aeb0c993af39bf7}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_MMA\_PREFETCH@{MICRO\_MMA\_PREFETCH}}
+\index{MICRO\_MMA\_PREFETCH@{MICRO\_MMA\_PREFETCH}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_MMA\_PREFETCH}{MICRO\_MMA\_PREFETCH}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a4a4a19fad3a0c4f35aeb0c993af39bf7_a4a4a19fad3a0c4f35aeb0c993af39bf7} 
+\#define MICRO\+\_\+\+MMA\+\_\+\+PREFETCH~\mbox{\hyperlink{_matrix_product_m_m_a_8h_aa1a18afd02293baa009b943dbc44f963_aa1a18afd02293baa009b943dbc44f963}{MICRO\+\_\+\+MMA\+\_\+\+UNROLL}}(\mbox{\hyperlink{_matrix_product_m_m_a_8h_a7001b39d85f0cc6fe35dd6924b68e3f5_a7001b39d85f0cc6fe35dd6924b68e3f5}{MICRO\+\_\+\+MMA\+\_\+\+PREFETCH\+\_\+\+ONE}})}
+
+\Hypertarget{_matrix_product_m_m_a_8h_a7001b39d85f0cc6fe35dd6924b68e3f5_a7001b39d85f0cc6fe35dd6924b68e3f5}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_MMA\_PREFETCH\_ONE@{MICRO\_MMA\_PREFETCH\_ONE}}
+\index{MICRO\_MMA\_PREFETCH\_ONE@{MICRO\_MMA\_PREFETCH\_ONE}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_MMA\_PREFETCH\_ONE}{MICRO\_MMA\_PREFETCH\_ONE}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a7001b39d85f0cc6fe35dd6924b68e3f5_a7001b39d85f0cc6fe35dd6924b68e3f5} 
+\#define MICRO\+\_\+\+MMA\+\_\+\+PREFETCH\+\_\+\+ONE(\begin{DoxyParamCaption}\item[{}]{iter}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (unroll\_factor\ >\ iter)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ EIGEN\_POWER\_PREFETCH(lhs\_ptr\#\#iter);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{_matrix_product_m_m_a_8h_a709be76b4f333a1fe4f6824dd6abd3d6_a709be76b4f333a1fe4f6824dd6abd3d6}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_MMA\_SRC\_PTR@{MICRO\_MMA\_SRC\_PTR}}
+\index{MICRO\_MMA\_SRC\_PTR@{MICRO\_MMA\_SRC\_PTR}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_MMA\_SRC\_PTR}{MICRO\_MMA\_SRC\_PTR}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a709be76b4f333a1fe4f6824dd6abd3d6_a709be76b4f333a1fe4f6824dd6abd3d6} 
+\#define MICRO\+\_\+\+MMA\+\_\+\+SRC\+\_\+\+PTR~\mbox{\hyperlink{_matrix_product_m_m_a_8h_aa1a18afd02293baa009b943dbc44f963_aa1a18afd02293baa009b943dbc44f963}{MICRO\+\_\+\+MMA\+\_\+\+UNROLL}}(\mbox{\hyperlink{_matrix_product_m_m_a_8h_ae0b0e74efbc7d7e5ade24276285a64df_ae0b0e74efbc7d7e5ade24276285a64df}{MICRO\+\_\+\+MMA\+\_\+\+SRC\+\_\+\+PTR\+\_\+\+ONE}})}
+
+\Hypertarget{_matrix_product_m_m_a_8h_ae0b0e74efbc7d7e5ade24276285a64df_ae0b0e74efbc7d7e5ade24276285a64df}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_MMA\_SRC\_PTR\_ONE@{MICRO\_MMA\_SRC\_PTR\_ONE}}
+\index{MICRO\_MMA\_SRC\_PTR\_ONE@{MICRO\_MMA\_SRC\_PTR\_ONE}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_MMA\_SRC\_PTR\_ONE}{MICRO\_MMA\_SRC\_PTR\_ONE}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_ae0b0e74efbc7d7e5ade24276285a64df_ae0b0e74efbc7d7e5ade24276285a64df} 
+\#define MICRO\+\_\+\+MMA\+\_\+\+SRC\+\_\+\+PTR\+\_\+\+ONE(\begin{DoxyParamCaption}\item[{}]{iter}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (unroll\_factor\ >\ iter)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ lhs\_ptr\#\#iter\ =\ lhs\_base\ +\ (\ (\mbox{\hyperlink{_matrix_base__row_8cpp_a64ef8efef59f875033a27e7cbbc879ec_a64ef8efef59f875033a27e7cbbc879ec}{row}}/accCols)\ +\ iter\ )*strideA*accCols\ +\ accCols*offsetA;\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}\ \textcolor{keywordflow}{else}\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ EIGEN\_UNUSED\_VARIABLE(lhs\_ptr\#\#iter);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{_matrix_product_m_m_a_8h_a321865ed9356d5053247a00b97b8c205_a321865ed9356d5053247a00b97b8c205}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_MMA\_STORE@{MICRO\_MMA\_STORE}}
+\index{MICRO\_MMA\_STORE@{MICRO\_MMA\_STORE}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_MMA\_STORE}{MICRO\_MMA\_STORE}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a321865ed9356d5053247a00b97b8c205_a321865ed9356d5053247a00b97b8c205} 
+\#define MICRO\+\_\+\+MMA\+\_\+\+STORE~\mbox{\hyperlink{_matrix_product_m_m_a_8h_aa1a18afd02293baa009b943dbc44f963_aa1a18afd02293baa009b943dbc44f963}{MICRO\+\_\+\+MMA\+\_\+\+UNROLL}}(\mbox{\hyperlink{_matrix_product_m_m_a_8h_a76020571be65af80e7e9e5c05a189692_a76020571be65af80e7e9e5c05a189692}{MICRO\+\_\+\+MMA\+\_\+\+STORE\+\_\+\+ONE}})}
+
+\Hypertarget{_matrix_product_m_m_a_8h_a76020571be65af80e7e9e5c05a189692_a76020571be65af80e7e9e5c05a189692}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_MMA\_STORE\_ONE@{MICRO\_MMA\_STORE\_ONE}}
+\index{MICRO\_MMA\_STORE\_ONE@{MICRO\_MMA\_STORE\_ONE}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_MMA\_STORE\_ONE}{MICRO\_MMA\_STORE\_ONE}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a76020571be65af80e7e9e5c05a189692_a76020571be65af80e7e9e5c05a189692} 
+\#define MICRO\+\_\+\+MMA\+\_\+\+STORE\+\_\+\+ONE(\begin{DoxyParamCaption}\item[{}]{iter}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (unroll\_factor\ >\ iter)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ storeAccumulator<DataMapper,\ Index,\ Packet,\ accCols>(\mbox{\hyperlink{_matrix_base__row_8cpp_a64ef8efef59f875033a27e7cbbc879ec_a64ef8efef59f875033a27e7cbbc879ec}{row}}\ +\ iter*accCols,\ \mbox{\hyperlink{_matrix_base__col_8cpp_aa168d9544aa6d49fce0cbfc0bec849b0_aa168d9544aa6d49fce0cbfc0bec849b0}{col}},\ \mbox{\hyperlink{_partial_redux__count_8cpp_acbe60897559b79afc28b79b0687b5f29_acbe60897559b79afc28b79b0687b5f29}{res}},\ pAlpha,\ \&accZero\#\#iter);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{_matrix_product_m_m_a_8h_a8a762e8135405ed787bc5bd60669a954_a8a762e8135405ed787bc5bd60669a954}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_MMA\_TYPE\_PEEL@{MICRO\_MMA\_TYPE\_PEEL}}
+\index{MICRO\_MMA\_TYPE\_PEEL@{MICRO\_MMA\_TYPE\_PEEL}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_MMA\_TYPE\_PEEL}{MICRO\_MMA\_TYPE\_PEEL}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a8a762e8135405ed787bc5bd60669a954_a8a762e8135405ed787bc5bd60669a954} 
+\#define MICRO\+\_\+\+MMA\+\_\+\+TYPE\+\_\+\+PEEL(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structfunc}{func}}}{, }\item[{}]{func2}{, }\item[{}]{type}{, }\item[{}]{peel}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_matrix_product_m_m_a_8h_aa5ebfdd2d5cc8ea41abe361c4750e3b6_aa5ebfdd2d5cc8ea41abe361c4750e3b6}{PEEL\_MMA}}\ >\ peel)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_eigen_1_1_triplet}{Packet}}\ lhsV0,\ lhsV1,\ lhsV2,\ lhsV3,\ lhsV4,\ lhsV5,\ lhsV6,\ lhsV7;\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ ploadRhsMMA<Scalar,\ type>(rhs\_ptr\ +\ (accRows\ *\ peel),\ rhsV\#\#peel);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ MICRO\_MMA\_UNROLL(func2);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ func(0,type,peel)\ \mbox{\hyperlink{structfunc}{func}}(1,type,peel)\ \mbox{\hyperlink{structfunc}{func}}(2,type,peel)\ \mbox{\hyperlink{structfunc}{func}}(3,type,peel)\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ func(4,type,peel)\ \mbox{\hyperlink{structfunc}{func}}(5,type,peel)\ \mbox{\hyperlink{structfunc}{func}}(6,type,peel)\ \mbox{\hyperlink{structfunc}{func}}(7,type,peel)\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}\ \textcolor{keywordflow}{else}\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ EIGEN\_UNUSED\_VARIABLE(rhsV\#\#peel);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{_matrix_product_m_m_a_8h_aa1a18afd02293baa009b943dbc44f963_aa1a18afd02293baa009b943dbc44f963}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_MMA\_UNROLL@{MICRO\_MMA\_UNROLL}}
+\index{MICRO\_MMA\_UNROLL@{MICRO\_MMA\_UNROLL}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_MMA\_UNROLL}{MICRO\_MMA\_UNROLL}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_aa1a18afd02293baa009b943dbc44f963_aa1a18afd02293baa009b943dbc44f963} 
+\#define MICRO\+\_\+\+MMA\+\_\+\+UNROLL(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structfunc}{func}}}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{structfunc}{func}}(0)\ \mbox{\hyperlink{structfunc}{func}}(1)\ \mbox{\hyperlink{structfunc}{func}}(2)\ \mbox{\hyperlink{structfunc}{func}}(3)\ \mbox{\hyperlink{structfunc}{func}}(4)\ \mbox{\hyperlink{structfunc}{func}}(5)\ \mbox{\hyperlink{structfunc}{func}}(6)\ \mbox{\hyperlink{structfunc}{func}}(7)}
+
+\end{DoxyCode}
+\Hypertarget{_matrix_product_m_m_a_8h_aba08fd140b0aed6ed1b2ae456b3c339f_aba08fd140b0aed6ed1b2ae456b3c339f}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_MMA\_UNROLL\_TYPE\_ONE@{MICRO\_MMA\_UNROLL\_TYPE\_ONE}}
+\index{MICRO\_MMA\_UNROLL\_TYPE\_ONE@{MICRO\_MMA\_UNROLL\_TYPE\_ONE}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_MMA\_UNROLL\_TYPE\_ONE}{MICRO\_MMA\_UNROLL\_TYPE\_ONE}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_aba08fd140b0aed6ed1b2ae456b3c339f_aba08fd140b0aed6ed1b2ae456b3c339f} 
+\#define MICRO\+\_\+\+MMA\+\_\+\+UNROLL\+\_\+\+TYPE\+\_\+\+ONE(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structfunc}{func}}}{, }\item[{}]{func2}{, }\item[{}]{type}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ type\ rhsV0;\ \(\backslash\)}
+\DoxyCodeLine{\ \ MICRO\_MMA\_TYPE\_PEEL(\mbox{\hyperlink{structfunc}{func}},func2,type,0);}
+
+\end{DoxyCode}
+\Hypertarget{_matrix_product_m_m_a_8h_a4606aadfe09252b812016f736e685def_a4606aadfe09252b812016f736e685def}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_MMA\_UNROLL\_TYPE\_PEEL@{MICRO\_MMA\_UNROLL\_TYPE\_PEEL}}
+\index{MICRO\_MMA\_UNROLL\_TYPE\_PEEL@{MICRO\_MMA\_UNROLL\_TYPE\_PEEL}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_MMA\_UNROLL\_TYPE\_PEEL}{MICRO\_MMA\_UNROLL\_TYPE\_PEEL}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a4606aadfe09252b812016f736e685def_a4606aadfe09252b812016f736e685def} 
+\#define MICRO\+\_\+\+MMA\+\_\+\+UNROLL\+\_\+\+TYPE\+\_\+\+PEEL(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structfunc}{func}}}{, }\item[{}]{func2}{, }\item[{}]{type}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ type\ rhsV0,\ rhsV1,\ rhsV2,\ rhsV3,\ rhsV4,\ rhsV5,\ rhsV6,\ rhsV7,\ rhsV8,\ rhsV9;\ \(\backslash\)}
+\DoxyCodeLine{\ \ MICRO\_MMA\_TYPE\_PEEL(\mbox{\hyperlink{structfunc}{func}},func2,type,0);\ \mbox{\hyperlink{_matrix_product_m_m_a_8h_a8a762e8135405ed787bc5bd60669a954_a8a762e8135405ed787bc5bd60669a954}{MICRO\_MMA\_TYPE\_PEEL}}(\mbox{\hyperlink{structfunc}{func}},func2,type,1);\ \(\backslash\)}
+\DoxyCodeLine{\ \ MICRO\_MMA\_TYPE\_PEEL(\mbox{\hyperlink{structfunc}{func}},func2,type,2);\ \mbox{\hyperlink{_matrix_product_m_m_a_8h_a8a762e8135405ed787bc5bd60669a954_a8a762e8135405ed787bc5bd60669a954}{MICRO\_MMA\_TYPE\_PEEL}}(\mbox{\hyperlink{structfunc}{func}},func2,type,3);\ \(\backslash\)}
+\DoxyCodeLine{\ \ MICRO\_MMA\_TYPE\_PEEL(\mbox{\hyperlink{structfunc}{func}},func2,type,4);\ \mbox{\hyperlink{_matrix_product_m_m_a_8h_a8a762e8135405ed787bc5bd60669a954_a8a762e8135405ed787bc5bd60669a954}{MICRO\_MMA\_TYPE\_PEEL}}(\mbox{\hyperlink{structfunc}{func}},func2,type,5);\ \(\backslash\)}
+\DoxyCodeLine{\ \ MICRO\_MMA\_TYPE\_PEEL(\mbox{\hyperlink{structfunc}{func}},func2,type,6);\ \mbox{\hyperlink{_matrix_product_m_m_a_8h_a8a762e8135405ed787bc5bd60669a954_a8a762e8135405ed787bc5bd60669a954}{MICRO\_MMA\_TYPE\_PEEL}}(\mbox{\hyperlink{structfunc}{func}},func2,type,7);\ \(\backslash\)}
+\DoxyCodeLine{\ \ MICRO\_MMA\_TYPE\_PEEL(\mbox{\hyperlink{structfunc}{func}},func2,type,8);\ \mbox{\hyperlink{_matrix_product_m_m_a_8h_a8a762e8135405ed787bc5bd60669a954_a8a762e8135405ed787bc5bd60669a954}{MICRO\_MMA\_TYPE\_PEEL}}(\mbox{\hyperlink{structfunc}{func}},func2,type,9);}
+
+\end{DoxyCode}
+\Hypertarget{_matrix_product_m_m_a_8h_a412547a4d7b1f0fec4125666f1925c0c_a412547a4d7b1f0fec4125666f1925c0c}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!MICRO\_MMA\_WORK\_ONE@{MICRO\_MMA\_WORK\_ONE}}
+\index{MICRO\_MMA\_WORK\_ONE@{MICRO\_MMA\_WORK\_ONE}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{MICRO\_MMA\_WORK\_ONE}{MICRO\_MMA\_WORK\_ONE}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_a412547a4d7b1f0fec4125666f1925c0c_a412547a4d7b1f0fec4125666f1925c0c} 
+\#define MICRO\+\_\+\+MMA\+\_\+\+WORK\+\_\+\+ONE(\begin{DoxyParamCaption}\item[{}]{iter}{, }\item[{}]{type}{, }\item[{}]{peel}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (unroll\_factor\ >\ iter)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ pgerMMA<Packet,\ type,\ false>(\&accZero\#\#iter,\ rhsV\#\#peel,\ lhsV\#\#iter);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{_matrix_product_m_m_a_8h_acf0f91c511c8b10d3e2a2676d31f4a29_acf0f91c511c8b10d3e2a2676d31f4a29}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!PEEL\_COMPLEX\_MMA@{PEEL\_COMPLEX\_MMA}}
+\index{PEEL\_COMPLEX\_MMA@{PEEL\_COMPLEX\_MMA}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{PEEL\_COMPLEX\_MMA}{PEEL\_COMPLEX\_MMA}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_acf0f91c511c8b10d3e2a2676d31f4a29_acf0f91c511c8b10d3e2a2676d31f4a29} 
+\#define PEEL\+\_\+\+COMPLEX\+\_\+\+MMA~7}
+
+\Hypertarget{_matrix_product_m_m_a_8h_aa5ebfdd2d5cc8ea41abe361c4750e3b6_aa5ebfdd2d5cc8ea41abe361c4750e3b6}\index{MatrixProductMMA.h@{MatrixProductMMA.h}!PEEL\_MMA@{PEEL\_MMA}}
+\index{PEEL\_MMA@{PEEL\_MMA}!MatrixProductMMA.h@{MatrixProductMMA.h}}
+\doxysubsubsection{\texorpdfstring{PEEL\_MMA}{PEEL\_MMA}}
+{\footnotesize\ttfamily \label{_matrix_product_m_m_a_8h_aa5ebfdd2d5cc8ea41abe361c4750e3b6_aa5ebfdd2d5cc8ea41abe361c4750e3b6} 
+\#define PEEL\+\_\+\+MMA~7}
+

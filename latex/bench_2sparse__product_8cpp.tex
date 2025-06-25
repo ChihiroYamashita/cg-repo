@@ -1,0 +1,93 @@
+\doxysection{eigen-\/3.4.0/eigen-\/3.4.0/bench/sparse\+\_\+product.cpp ファイル}
+\hypertarget{bench_2sparse__product_8cpp}{}\label{bench_2sparse__product_8cpp}\index{eigen-\/3.4.0/eigen-\/3.4.0/bench/sparse\_product.cpp@{eigen-\/3.4.0/eigen-\/3.4.0/bench/sparse\_product.cpp}}
+{\ttfamily \#include $<$typeinfo$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include "{}Bench\+Timer.\+h"{}}\newline
+{\ttfamily \#include "{}Bench\+Util.\+h"{}}\newline
+{\ttfamily \#include "{}Bench\+Sparse\+Util.\+h"{}}\newline
+sparse\+\_\+product.\+cpp の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bench_2sparse__product_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{bench_2sparse__product_8cpp_a70ed59adcb4159ac551058053e649640_a70ed59adcb4159ac551058053e649640}{SIZE}}~1000000
+\item 
+\#define \mbox{\hyperlink{bench_2sparse__product_8cpp_a5a59cf75146a7c478b2bc41e70b27f9b_a5a59cf75146a7c478b2bc41e70b27f9b}{NNZPERCOL}}~6
+\item 
+\#define \mbox{\hyperlink{bench_2sparse__product_8cpp_a2c9384c67919c632913b8db2088f8341_a2c9384c67919c632913b8db2088f8341}{REPEAT}}~1
+\item 
+\#define \mbox{\hyperlink{bench_2sparse__product_8cpp_a4ba7e63cc7b53c648c5b2d15a2ee6dba_a4ba7e63cc7b53c648c5b2d15a2ee6dba}{NBTRIES}}~1
+\item 
+\#define \mbox{\hyperlink{bench_2sparse__product_8cpp_a5fcf11b9dba96e1e0555440c480f839c_a5fcf11b9dba96e1e0555440c480f839c}{BENCH}}(\mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{bench_2sparse__product_8cpp_a651dd7860092f31db3b08fe36ed82438_a651dd7860092f31db3b08fe36ed82438}{bench\+\_\+sort}} ()
+\item 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{bench_2sparse__product_8cpp_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97}{main}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{bench_2sparse__product_8cpp_a5fcf11b9dba96e1e0555440c480f839c_a5fcf11b9dba96e1e0555440c480f839c}\index{sparse\_product.cpp@{sparse\_product.cpp}!BENCH@{BENCH}}
+\index{BENCH@{BENCH}!sparse\_product.cpp@{sparse\_product.cpp}}
+\doxysubsubsection{\texorpdfstring{BENCH}{BENCH}}
+{\footnotesize\ttfamily \label{bench_2sparse__product_8cpp_a5fcf11b9dba96e1e0555440c480f839c_a5fcf11b9dba96e1e0555440c480f839c} 
+\#define BENCH(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}}}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ timer.reset();\ \(\backslash\)}
+\DoxyCodeLine{\ \ for\ (\textcolor{keywordtype}{int}\ \_j=0;\ \_j<\mbox{\hyperlink{bench_2sparse__product_8cpp_a4ba7e63cc7b53c648c5b2d15a2ee6dba_a4ba7e63cc7b53c648c5b2d15a2ee6dba}{NBTRIES}};\ ++\_j)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ timer.start();\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ for\ (\textcolor{keywordtype}{int}\ \_k=0;\ \_k<\mbox{\hyperlink{bench_2sparse__product_8cpp_a2c9384c67919c632913b8db2088f8341_a2c9384c67919c632913b8db2088f8341}{REPEAT}};\ ++\_k)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}}\ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \}\ timer.stop();\ \}}
+
+\end{DoxyCode}
+\Hypertarget{bench_2sparse__product_8cpp_a4ba7e63cc7b53c648c5b2d15a2ee6dba_a4ba7e63cc7b53c648c5b2d15a2ee6dba}\index{sparse\_product.cpp@{sparse\_product.cpp}!NBTRIES@{NBTRIES}}
+\index{NBTRIES@{NBTRIES}!sparse\_product.cpp@{sparse\_product.cpp}}
+\doxysubsubsection{\texorpdfstring{NBTRIES}{NBTRIES}}
+{\footnotesize\ttfamily \label{bench_2sparse__product_8cpp_a4ba7e63cc7b53c648c5b2d15a2ee6dba_a4ba7e63cc7b53c648c5b2d15a2ee6dba} 
+\#define NBTRIES~1}
+
+\Hypertarget{bench_2sparse__product_8cpp_a5a59cf75146a7c478b2bc41e70b27f9b_a5a59cf75146a7c478b2bc41e70b27f9b}\index{sparse\_product.cpp@{sparse\_product.cpp}!NNZPERCOL@{NNZPERCOL}}
+\index{NNZPERCOL@{NNZPERCOL}!sparse\_product.cpp@{sparse\_product.cpp}}
+\doxysubsubsection{\texorpdfstring{NNZPERCOL}{NNZPERCOL}}
+{\footnotesize\ttfamily \label{bench_2sparse__product_8cpp_a5a59cf75146a7c478b2bc41e70b27f9b_a5a59cf75146a7c478b2bc41e70b27f9b} 
+\#define NNZPERCOL~6}
+
+\Hypertarget{bench_2sparse__product_8cpp_a2c9384c67919c632913b8db2088f8341_a2c9384c67919c632913b8db2088f8341}\index{sparse\_product.cpp@{sparse\_product.cpp}!REPEAT@{REPEAT}}
+\index{REPEAT@{REPEAT}!sparse\_product.cpp@{sparse\_product.cpp}}
+\doxysubsubsection{\texorpdfstring{REPEAT}{REPEAT}}
+{\footnotesize\ttfamily \label{bench_2sparse__product_8cpp_a2c9384c67919c632913b8db2088f8341_a2c9384c67919c632913b8db2088f8341} 
+\#define REPEAT~1}
+
+\Hypertarget{bench_2sparse__product_8cpp_a70ed59adcb4159ac551058053e649640_a70ed59adcb4159ac551058053e649640}\index{sparse\_product.cpp@{sparse\_product.cpp}!SIZE@{SIZE}}
+\index{SIZE@{SIZE}!sparse\_product.cpp@{sparse\_product.cpp}}
+\doxysubsubsection{\texorpdfstring{SIZE}{SIZE}}
+{\footnotesize\ttfamily \label{bench_2sparse__product_8cpp_a70ed59adcb4159ac551058053e649640_a70ed59adcb4159ac551058053e649640} 
+\#define SIZE~1000000}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{bench_2sparse__product_8cpp_a651dd7860092f31db3b08fe36ed82438_a651dd7860092f31db3b08fe36ed82438}\index{sparse\_product.cpp@{sparse\_product.cpp}!bench\_sort@{bench\_sort}}
+\index{bench\_sort@{bench\_sort}!sparse\_product.cpp@{sparse\_product.cpp}}
+\doxysubsubsection{\texorpdfstring{bench\_sort()}{bench\_sort()}}
+{\footnotesize\ttfamily \label{bench_2sparse__product_8cpp_a651dd7860092f31db3b08fe36ed82438_a651dd7860092f31db3b08fe36ed82438} 
+void bench\+\_\+sort (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{bench_2sparse__product_8cpp_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97}\index{sparse\_product.cpp@{sparse\_product.cpp}!main@{main}}
+\index{main@{main}!sparse\_product.cpp@{sparse\_product.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{bench_2sparse__product_8cpp_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97} 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} main (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{argv}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+

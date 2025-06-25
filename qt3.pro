@@ -9,6 +9,8 @@ INCLUDEPATH += $$PWD/sources/scene
 INCLUDEPATH += $$PWD/sources/animation
 INCLUDEPATH += $$PWD/sources/object
 INCLUDEPATH += $$PWD/sources/camera
+INCLUDEPATH += $$PWD/sources/pass_tracing
+INCLUDEPATH += $$PWD/sources/pass_tracing/film
 
 LIBS += -lopengl32
 LIBS += -lglu32
@@ -28,6 +30,8 @@ SOURCES += \
     sources/main.cpp \
     sources/mainwindow.cpp \
     sources/object/drawObject.cpp \
+    sources/pass_tracing/film/drawfilm.cpp \
+    sources/pass_tracing/film/film_buffer.cpp \
     sources/scene/CustomScene.cpp \
     sources/scene/myopenglwidget.cpp \
     sources/scene/myopenglwidget_camera.cpp
@@ -41,6 +45,8 @@ HEADERS += \
     sources/camera/camera.h \
     sources/mainwindow.h \
     sources/object/drawObject.h \
+    sources/pass_tracing/film/drawfilm.h \
+    sources/pass_tracing/film/film_buffer.h \
     sources/scene/CustomScene.h \
     sources/scene/myopenglwidget.h \
     sources/scene/myopenglwidget_camera.h

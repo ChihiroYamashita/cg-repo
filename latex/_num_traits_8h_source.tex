@@ -1,0 +1,288 @@
+\doxysection{Num\+Traits.\+h}
+\hypertarget{_num_traits_8h_source}{}\label{_num_traits_8h_source}\index{eigen-\/3.4.0/eigen-\/3.4.0/Eigen/src/Core/NumTraits.h@{eigen-\/3.4.0/eigen-\/3.4.0/Eigen/src/Core/NumTraits.h}}
+\mbox{\hyperlink{_num_traits_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ Eigen,\ a\ lightweight\ C++\ template\ library}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ for\ linear\ algebra.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (C)\ 2006-\/2010\ Benoit\ Jacob\ <jacob.benoit.1@gmail.com>}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ This\ Source\ Code\ Form\ is\ subject\ to\ the\ terms\ of\ the\ Mozilla}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Public\ License\ v.\ 2.0.\ If\ a\ copy\ of\ the\ MPL\ was\ not\ distributed}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ with\ this\ file,\ You\ can\ obtain\ one\ at\ http://mozilla.org/MPL/2.0/.}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_NUMTRAITS\_H}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ EIGEN\_NUMTRAITS\_H}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_eigen}{Eigen}}\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceinternal}{internal}}\ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ default\ implementation\ of\ digits10(),\ based\ on\ numeric\_limits\ if\ specialized,}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ 0\ for\ integer\ types,\ and\ log10(epsilon())\ otherwise.}}
+\DoxyCodeLine{00019\ \textcolor{keyword}{template}<\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}},}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ use\_numeric\_limits\ =\ std::numeric\_limits<T>::is\_specialized,}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_integer\ =\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aac6ad7c56a5615fa21f43bc69540334f7}{NumTraits<T>::IsInteger}}>}
+\DoxyCodeLine{00022\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1default__digits10__impl}{default\_digits10\_impl}}}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00025\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1default__digits10__impl_ac9e015cee3b22f949bb98d7633fd1e9a_ac9e015cee3b22f949bb98d7633fd1e9a}{run}}()\ \{\ \textcolor{keywordflow}{return}\ std::numeric\_limits<T>::digits10;\ \}}
+\DoxyCodeLine{00026\ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00029\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1default__digits10__impl}{default\_digits10\_impl}}<\mbox{\hyperlink{class_eigen_1_1_triplet}{T}},false,false>\ \textcolor{comment}{//\ Floating\ point}}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00032\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1default__digits10__impl_3_01_t_00_01false_00_01false_01_4_acd983b96053fd4e7fc03e4da8c29bd29_acd983b96053fd4e7fc03e4da8c29bd29}{run}}()\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{using\ }std::log10;}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{using\ }std::ceil;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{NumTraits<T>::Real}}\ \mbox{\hyperlink{boostmultiprec_8cpp_ad5abe8020ead32dcab5e3c15d6d7c30e_ad5abe8020ead32dcab5e3c15d6d7c30e}{Real}};}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}(\mbox{\hyperlink{_array_cwise_unary_ops_8h_a63043b6807e8e10fb1adf4667e3664d2_a63043b6807e8e10fb1adf4667e3664d2}{ceil}}(-\/\mbox{\hyperlink{_array_cwise_unary_ops_8h_a0c3fefc62276f48a9bb4cd578b3a535d_a0c3fefc62276f48a9bb4cd578b3a535d}{log10}}(\mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<Real>::epsilon}}())));}
+\DoxyCodeLine{00037\ \ \ \}}
+\DoxyCodeLine{00038\ \};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00041\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1default__digits10__impl}{default\_digits10\_impl}}<\mbox{\hyperlink{class_eigen_1_1_triplet}{T}},false,true>\ \textcolor{comment}{//\ Integer}}
+\DoxyCodeLine{00042\ \{}
+\DoxyCodeLine{00043\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00044\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1default__digits10__impl_3_01_t_00_01false_00_01true_01_4_af4658c885a2f33ee62e3852b4fdd184b_af4658c885a2f33ee62e3852b4fdd184b}{run}}()\ \{\ \textcolor{keywordflow}{return}\ 0;\ \}}
+\DoxyCodeLine{00045\ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ default\ implementation\ of\ digits(),\ based\ on\ numeric\_limits\ if\ specialized,}}
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ 0\ for\ integer\ types,\ and\ log2(epsilon())\ otherwise.}}
+\DoxyCodeLine{00050\ \textcolor{keyword}{template}<\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}},}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ use\_numeric\_limits\ =\ std::numeric\_limits<T>::is\_specialized,}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_integer\ =\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<T>::IsInteger}}>}
+\DoxyCodeLine{00053\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1default__digits__impl}{default\_digits\_impl}}}
+\DoxyCodeLine{00054\ \{}
+\DoxyCodeLine{00055\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00056\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1default__digits__impl_ae3283bd19d644ee1a6f313a239637183_ae3283bd19d644ee1a6f313a239637183}{run}}()\ \{\ \textcolor{keywordflow}{return}\ std::numeric\_limits<T>::digits;\ \}}
+\DoxyCodeLine{00057\ \};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00060\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1default__digits__impl}{default\_digits\_impl}}<\mbox{\hyperlink{class_eigen_1_1_triplet}{T}},false,false>\ \textcolor{comment}{//\ Floating\ point}}
+\DoxyCodeLine{00061\ \{}
+\DoxyCodeLine{00062\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00063\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1default__digits__impl_3_01_t_00_01false_00_01false_01_4_a703ca752162752d9babbc88b03e412b0_a703ca752162752d9babbc88b03e412b0}{run}}()\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{using\ }std::log;}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{using\ }std::ceil;}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{NumTraits<T>::Real}}\ \mbox{\hyperlink{boostmultiprec_8cpp_ad5abe8020ead32dcab5e3c15d6d7c30e_ad5abe8020ead32dcab5e3c15d6d7c30e}{Real}};}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}(\mbox{\hyperlink{_array_cwise_unary_ops_8h_a63043b6807e8e10fb1adf4667e3664d2_a63043b6807e8e10fb1adf4667e3664d2}{ceil}}(-\/\mbox{\hyperlink{_array_cwise_unary_ops_8h_a48e72df6412ca98881afcd657352a1d5_a48e72df6412ca98881afcd657352a1d5}{log}}(\mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<Real>::epsilon}}())/\mbox{\hyperlink{_array_cwise_unary_ops_8h_a48e72df6412ca98881afcd657352a1d5_a48e72df6412ca98881afcd657352a1d5}{log}}(\textcolor{keyword}{static\_cast<}\mbox{\hyperlink{boostmultiprec_8cpp_ad5abe8020ead32dcab5e3c15d6d7c30e_ad5abe8020ead32dcab5e3c15d6d7c30e}{Real}}\textcolor{keyword}{>}(2))));}
+\DoxyCodeLine{00068\ \ \ \}}
+\DoxyCodeLine{00069\ \};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00072\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1internal_1_1default__digits__impl}{default\_digits\_impl}}<\mbox{\hyperlink{class_eigen_1_1_triplet}{T}},false,true>\ \textcolor{comment}{//\ Integer}}
+\DoxyCodeLine{00073\ \{}
+\DoxyCodeLine{00074\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00075\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1default__digits__impl_3_01_t_00_01false_00_01true_01_4_a3b870e5fe68bde7b5bf53f9f2a2988dd_a3b870e5fe68bde7b5bf53f9f2a2988dd}{run}}()\ \{\ \textcolor{keywordflow}{return}\ 0;\ \}}
+\DoxyCodeLine{00076\ \};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \}\ \textcolor{comment}{//\ end\ namespace\ internal}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{namespace\ }numext\ \{}
+\DoxyCodeLine{00083\ \textcolor{comment}{//\ TODO:\ Replace\ by\ std::bit\_cast\ (available\ in\ C++20)}}
+\DoxyCodeLine{00084\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Tgt,\ \textcolor{keyword}{typename}\ Src>}
+\DoxyCodeLine{00085\ \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\_STRONG\_INLINE}}\ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ Tgt\ \mbox{\hyperlink{namespace_eigen_1_1numext_aab7215442e6104d49d9c001a8dcd8caf_aab7215442e6104d49d9c001a8dcd8caf}{bit\_cast}}(\textcolor{keyword}{const}\ Src\&\ src)\ \{}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#if\ EIGEN\_HAS\_TYPE\_TRAITS}}
+\DoxyCodeLine{00087\ \ \ \textcolor{comment}{//\ The\ behaviour\ of\ memcpy\ is\ not\ specified\ for\ non-\/trivially\ copyable\ types}}
+\DoxyCodeLine{00088\ \ \ \mbox{\hyperlink{_static_assert_8h_ac95cf960f4a8395b28af90edfda755f0_ac95cf960f4a8395b28af90edfda755f0}{EIGEN\_STATIC\_ASSERT}}(std::is\_trivially\_copyable<Src>::value,\ THIS\_TYPE\_IS\_NOT\_SUPPORTED);}
+\DoxyCodeLine{00089\ \ \ \mbox{\hyperlink{_static_assert_8h_ac95cf960f4a8395b28af90edfda755f0_ac95cf960f4a8395b28af90edfda755f0}{EIGEN\_STATIC\_ASSERT}}(std::is\_trivially\_copyable<Tgt>::value\ \&\&\ std::is\_default\_constructible<Tgt>::value,}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ THIS\_TYPE\_IS\_NOT\_SUPPORTED);}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \mbox{\hyperlink{_static_assert_8h_ac95cf960f4a8395b28af90edfda755f0_ac95cf960f4a8395b28af90edfda755f0}{EIGEN\_STATIC\_ASSERT}}(\textcolor{keyword}{sizeof}(Src)\ ==\ \textcolor{keyword}{sizeof}(Tgt),\ THIS\_TYPE\_IS\_NOT\_SUPPORTED);}
+\DoxyCodeLine{00094\ \ \ Tgt\ tgt;}
+\DoxyCodeLine{00095\ \ \ \mbox{\hyperlink{_macros_8h_a25f979bbb7bb48bdd9486d46c53f461a_a25f979bbb7bb48bdd9486d46c53f461a}{EIGEN\_USING\_STD}}(memcpy)}
+\DoxyCodeLine{00096\ \ \ memcpy(\&tgt,\ \&src,\ \textcolor{keyword}{sizeof}(Tgt));}
+\DoxyCodeLine{00097\ \ \ \textcolor{keywordflow}{return}\ tgt;}
+\DoxyCodeLine{00098\ \}}
+\DoxyCodeLine{00099\ \}\ \ \textcolor{comment}{//\ namespace\ numext}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00152\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_generic_num_traits}{GenericNumTraits}}}
+\DoxyCodeLine{00153\ \{}
+\DoxyCodeLine{00154\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aac6ad7c56a5615fa21f43bc69540334f7}{IsInteger}}\ =\ std::numeric\_limits<T>::is\_integer,}
+\DoxyCodeLine{00156\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aa4d05bdd1a23e7fab4c689cd233a7cc84}{IsSigned}}\ =\ std::numeric\_limits<T>::is\_signed,}
+\DoxyCodeLine{00157\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aadf2f66fe13a7f838f9984a31fea52b61}{IsComplex}}\ =\ 0,}
+\DoxyCodeLine{00158\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aa3076e038003ec0a60ff43bffdcddc2bc}{RequireInitialization}}\ =\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1is__arithmetic}{internal::is\_arithmetic<T>::value}}\ ?\ 0\ :\ 1,}
+\DoxyCodeLine{00159\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aa525a27cb23b875d4d2326804e0ea998a}{ReadCost}}\ =\ 1,}
+\DoxyCodeLine{00160\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aa79172abdc42e530a0bafa06c331cb828}{AddCost}}\ =\ 1,}
+\DoxyCodeLine{00161\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aaedddb713cb504f0be1eabe3aa0918665}{MulCost}}\ =\ 1}
+\DoxyCodeLine{00162\ \ \ \};}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a6e9ee9306607a1a0b4f79be74dca97bb_a6e9ee9306607a1a0b4f79be74dca97bb}{Real}};}
+\DoxyCodeLine{00165\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{internal::conditional}}<}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aac6ad7c56a5615fa21f43bc69540334f7}{IsInteger}},}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{internal::conditional}}<\textcolor{keyword}{sizeof}(\mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}})<=2,\ \textcolor{keywordtype}{float},\ \textcolor{keywordtype}{double}>::type,}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ >::type\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{NonInteger}};}
+\DoxyCodeLine{00170\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a61ed98084f63c09cb9a5082bb8af15f3_a61ed98084f63c09cb9a5082bb8af15f3}{Nested}};}
+\DoxyCodeLine{00171\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a7c9d4a813fbf4c107d20bfc74a88da59_a7c9d4a813fbf4c107d20bfc74a88da59}{Literal}};}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00174\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{Real}}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a3a573c69713fbb143fb49af7db463cee_a3a573c69713fbb143fb49af7db463cee}{epsilon}}()}
+\DoxyCodeLine{00175\ \ \ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordflow}{return}\ numext::numeric\_limits<T>::epsilon();}
+\DoxyCodeLine{00177\ \ \ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00180\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a2ac03afc84ca092917960c95178d3e48_a2ac03afc84ca092917960c95178d3e48}{digits10}}()}
+\DoxyCodeLine{00181\ \ \ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1default__digits10__impl_ac9e015cee3b22f949bb98d7633fd1e9a_ac9e015cee3b22f949bb98d7633fd1e9a}{internal::default\_digits10\_impl<T>::run}}();}
+\DoxyCodeLine{00183\ \ \ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00186\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_acb8ac47ed39f6959a478d567da74cfde_acb8ac47ed39f6959a478d567da74cfde}{digits}}()}
+\DoxyCodeLine{00187\ \ \ \{}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1default__digits__impl_ae3283bd19d644ee1a6f313a239637183_ae3283bd19d644ee1a6f313a239637183}{internal::default\_digits\_impl<T>::run}}();}
+\DoxyCodeLine{00189\ \ \ \}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00192\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a98f60ab4a34645ff2849ddbf51199715_a98f60ab4a34645ff2849ddbf51199715}{min\_exponent}}()}
+\DoxyCodeLine{00193\ \ \ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keywordflow}{return}\ numext::numeric\_limits<T>::min\_exponent;}
+\DoxyCodeLine{00195\ \ \ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00198\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a1126b3c9bd9c2c06b29d5f1459e9c52e_a1126b3c9bd9c2c06b29d5f1459e9c52e}{max\_exponent}}()}
+\DoxyCodeLine{00199\ \ \ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordflow}{return}\ numext::numeric\_limits<T>::max\_exponent;}
+\DoxyCodeLine{00201\ \ \ \}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00204\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{Real}}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_aec48507dff26f2fdbb985a871f7f4eff_aec48507dff26f2fdbb985a871f7f4eff}{dummy\_precision}}()}
+\DoxyCodeLine{00205\ \ \ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{comment}{//\ make\ sure\ to\ override\ this\ for\ floating-\/point\ types}}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a6e9ee9306607a1a0b4f79be74dca97bb_a6e9ee9306607a1a0b4f79be74dca97bb}{Real}}(0);}
+\DoxyCodeLine{00208\ \ \ \}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00211\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_ac8509669719a15051e933e0dc7efd3b6_ac8509669719a15051e933e0dc7efd3b6}{highest}}()\ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordflow}{return}\ (numext::numeric\_limits<T>::max)();}
+\DoxyCodeLine{00213\ \ \ \}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00216\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a63432cfd874a34d02a848cd70e1e9c55_a63432cfd874a34d02a848cd70e1e9c55}{lowest}}()\ \ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aac6ad7c56a5615fa21f43bc69540334f7}{IsInteger}}\ ?\ (numext::numeric\_limits<T>::min)()}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\textcolor{keyword}{>}(-\/(numext::numeric\_limits<T>::max)());}
+\DoxyCodeLine{00219\ \ \ \}}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00222\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_ac0eb6dd89e4229113abf965c2187bccc_ac0eb6dd89e4229113abf965c2187bccc}{infinity}}()\ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keywordflow}{return}\ numext::numeric\_limits<T>::infinity();}
+\DoxyCodeLine{00224\ \ \ \}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00227\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a8ea85f391d7484f0344a6aaa79f7d6a9_a8ea85f391d7484f0344a6aaa79f7d6a9}{quiet\_NaN}}()\ \{}
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keywordflow}{return}\ numext::numeric\_limits<T>::quiet\_NaN();}
+\DoxyCodeLine{00229\ \ \ \}}
+\DoxyCodeLine{00230\ \};}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{struct\ }NumTraits\ :\ GenericNumTraits<T>}
+\DoxyCodeLine{00233\ \{\};}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \textcolor{keyword}{template}<>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits}}<float>}
+\DoxyCodeLine{00236\ \ \ :\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits}{GenericNumTraits}}<float>}
+\DoxyCodeLine{00237\ \{}
+\DoxyCodeLine{00238\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00239\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01float_01_4_afb4a3dbc7e3fa8a7e9e9551d38a4cd3c_afb4a3dbc7e3fa8a7e9e9551d38a4cd3c}{dummy\_precision}}()\ \{\ \textcolor{keywordflow}{return}\ 1e-\/5f;\ \}}
+\DoxyCodeLine{00240\ \};}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \textcolor{keyword}{template}<>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits}}<double>\ :\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits}{GenericNumTraits}}<double>}
+\DoxyCodeLine{00243\ \{}
+\DoxyCodeLine{00244\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00245\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01double_01_4_ab2e6b535663f6bbbc382a10a322401a6_ab2e6b535663f6bbbc382a10a322401a6}{dummy\_precision}}()\ \{\ \textcolor{keywordflow}{return}\ 1\mbox{\hyperlink{_cwise__array__power__array_8cpp_a9cb86ff854760bf91a154f2724a9101d_a9cb86ff854760bf91a154f2724a9101d}{e}}-\/12;\ \}}
+\DoxyCodeLine{00246\ \};}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \textcolor{keyword}{template}<>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits}}<long\ double>}
+\DoxyCodeLine{00249\ \ \ :\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits}{GenericNumTraits}}<long\ double>}
+\DoxyCodeLine{00250\ \{}
+\DoxyCodeLine{00251\ \ \ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00252\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01long_01double_01_4_a1cab3b4a74e860bc973a6925fd0b7af7_a1cab3b4a74e860bc973a6925fd0b7af7}{dummy\_precision}}()\ \{\ \textcolor{keywordflow}{return}\ 1e-\/15l;\ \}}
+\DoxyCodeLine{00253\ \};}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ \_Real>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits}}<\mbox{\hyperlink{namespacestd}{std}}::\mbox{\hyperlink{structcomplex}{complex}}<\_Real>\ >}
+\DoxyCodeLine{00256\ \ \ :\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits}{GenericNumTraits}}<std::complex<\_Real>\ >}
+\DoxyCodeLine{00257\ \{}
+\DoxyCodeLine{00258\ \ \ \textcolor{keyword}{typedef}\ \_Real\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01std_1_1complex_3_01___real_01_4_01_4_aa57fbe8c18e617d8add4d9ad52a35e52_aa57fbe8c18e617d8add4d9ad52a35e52}{Real}};}
+\DoxyCodeLine{00259\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a7c9d4a813fbf4c107d20bfc74a88da59_a7c9d4a813fbf4c107d20bfc74a88da59}{NumTraits<\_Real>::Literal}}\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01std_1_1complex_3_01___real_01_4_01_4_a1410fb237684debb1f67dbd426b8980f_a1410fb237684debb1f67dbd426b8980f}{Literal}};}
+\DoxyCodeLine{00260\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00261\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aadf2f66fe13a7f838f9984a31fea52b61}{IsComplex}}\ =\ 1,}
+\DoxyCodeLine{00262\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aa3076e038003ec0a60ff43bffdcddc2bc}{RequireInitialization}}\ =\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<\_Real>::RequireInitialization}},}
+\DoxyCodeLine{00263\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aa525a27cb23b875d4d2326804e0ea998a}{ReadCost}}\ =\ 2\ *\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<\_Real>::ReadCost}},}
+\DoxyCodeLine{00264\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aa79172abdc42e530a0bafa06c331cb828}{AddCost}}\ =\ 2\ *\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<Real>::AddCost}},}
+\DoxyCodeLine{00265\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aaedddb713cb504f0be1eabe3aa0918665}{MulCost}}\ =\ 4\ *\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<Real>::MulCost}}\ +\ 2\ *\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<Real>::AddCost}}}
+\DoxyCodeLine{00266\ \ \ \};}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00269\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01std_1_1complex_3_01___real_01_4_01_4_aa57fbe8c18e617d8add4d9ad52a35e52_aa57fbe8c18e617d8add4d9ad52a35e52}{Real}}\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01std_1_1complex_3_01___real_01_4_01_4_ac51e12b0a613a4af8ef169072c414dc6_ac51e12b0a613a4af8ef169072c414dc6}{epsilon}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a3a573c69713fbb143fb49af7db463cee_a3a573c69713fbb143fb49af7db463cee}{NumTraits<Real>::epsilon}}();\ \}}
+\DoxyCodeLine{00270\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00271\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01std_1_1complex_3_01___real_01_4_01_4_aa57fbe8c18e617d8add4d9ad52a35e52_aa57fbe8c18e617d8add4d9ad52a35e52}{Real}}\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01std_1_1complex_3_01___real_01_4_01_4_a29a5a4fd7166e7a7e777f2c28d8544a7_a29a5a4fd7166e7a7e777f2c28d8544a7}{dummy\_precision}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_aec48507dff26f2fdbb985a871f7f4eff_aec48507dff26f2fdbb985a871f7f4eff}{NumTraits<Real>::dummy\_precision}}();\ \}}
+\DoxyCodeLine{00272\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00273\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01std_1_1complex_3_01___real_01_4_01_4_a7e046c66e861427b95c5d37aaf077c4e_a7e046c66e861427b95c5d37aaf077c4e}{digits10}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a2ac03afc84ca092917960c95178d3e48_a2ac03afc84ca092917960c95178d3e48}{NumTraits<Real>::digits10}}();\ \}}
+\DoxyCodeLine{00274\ \};}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Scalar,\ \textcolor{keywordtype}{int}\ Rows,\ \textcolor{keywordtype}{int}\ Cols,\ \textcolor{keywordtype}{int}\ Options,\ \textcolor{keywordtype}{int}\ MaxRows,\ \textcolor{keywordtype}{int}\ MaxCols>}
+\DoxyCodeLine{00277\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits}}<\mbox{\hyperlink{class_eigen_1_1_array}{Array}}<\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}},\ Rows,\ Cols,\ Options,\ MaxRows,\ MaxCols>\ >}
+\DoxyCodeLine{00278\ \{}
+\DoxyCodeLine{00279\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_array}{Array<Scalar,\ Rows,\ Cols,\ Options,\ MaxRows,\ MaxCols>}}\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01_array_3_01_scalar_00_01_rows_00_01_cols_00_01_options_00_01_max_rows_00_01_max_cols_01_4_01_4_ac8d87a36e74c98ab64aaf97365c182a1_ac8d87a36e74c98ab64aaf97365c182a1}{ArrayType}};}
+\DoxyCodeLine{00280\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{NumTraits<Scalar>::Real}}\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01_array_3_01_scalar_00_01_rows_00_01_cols_00_01_options_00_01_max_rows_00_01_max_cols_01_4_01_4_a127ff1f6d2e1e53665e0bfa7ef34b521_a127ff1f6d2e1e53665e0bfa7ef34b521}{RealScalar}};}
+\DoxyCodeLine{00281\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_array}{Array<RealScalar,\ Rows,\ Cols,\ Options,\ MaxRows,\ MaxCols>}}\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01_array_3_01_scalar_00_01_rows_00_01_cols_00_01_options_00_01_max_rows_00_01_max_cols_01_4_01_4_abdf2c06e9fe0876310694278278b8b21_abdf2c06e9fe0876310694278278b8b21}{Real}};}
+\DoxyCodeLine{00282\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{NumTraits<Scalar>::NonInteger}}\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01_array_3_01_scalar_00_01_rows_00_01_cols_00_01_options_00_01_max_rows_00_01_max_cols_01_4_01_4_af165194c69850ced78649bcf07e6db44_af165194c69850ced78649bcf07e6db44}{NonIntegerScalar}};}
+\DoxyCodeLine{00283\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_array}{Array<NonIntegerScalar,\ Rows,\ Cols,\ Options,\ MaxRows,\ MaxCols>}}\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01_array_3_01_scalar_00_01_rows_00_01_cols_00_01_options_00_01_max_rows_00_01_max_cols_01_4_01_4_a564afdefcabd9a12315cbff5cf6668ed_a564afdefcabd9a12315cbff5cf6668ed}{NonInteger}};}
+\DoxyCodeLine{00284\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_array}{ArrayType}}\ \&\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01_array_3_01_scalar_00_01_rows_00_01_cols_00_01_options_00_01_max_rows_00_01_max_cols_01_4_01_4_aace7b814aa7738e4a0d3160ba3753c14_aace7b814aa7738e4a0d3160ba3753c14}{Nested}};}
+\DoxyCodeLine{00285\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{NumTraits<Scalar>::Literal}}\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01_array_3_01_scalar_00_01_rows_00_01_cols_00_01_options_00_01_max_rows_00_01_max_cols_01_4_01_4_a9de966ff94d78fa5a49751a906509766_a9de966ff94d78fa5a49751a906509766}{Literal}};}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aadf2f66fe13a7f838f9984a31fea52b61}{IsComplex}}\ =\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<Scalar>::IsComplex}},}
+\DoxyCodeLine{00289\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aac6ad7c56a5615fa21f43bc69540334f7}{IsInteger}}\ =\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<Scalar>::IsInteger}},}
+\DoxyCodeLine{00290\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aa4d05bdd1a23e7fab4c689cd233a7cc84}{IsSigned}}\ \ =\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<Scalar>::IsSigned}},}
+\DoxyCodeLine{00291\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aa3076e038003ec0a60ff43bffdcddc2bc}{RequireInitialization}}\ =\ 1,}
+\DoxyCodeLine{00292\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aa525a27cb23b875d4d2326804e0ea998a}{ReadCost}}\ =\ ArrayType::SizeAtCompileTime==\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}\ ?\ \mbox{\hyperlink{namespace_eigen_a3163430a1c13173faffde69016b48aaf_a3163430a1c13173faffde69016b48aaf}{HugeCost}}\ :\ ArrayType::SizeAtCompileTime\ *\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}(\mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<Scalar>::ReadCost}}),}
+\DoxyCodeLine{00293\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aa79172abdc42e530a0bafa06c331cb828}{AddCost}}\ \ =\ ArrayType::SizeAtCompileTime==\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}\ ?\ \mbox{\hyperlink{namespace_eigen_a3163430a1c13173faffde69016b48aaf_a3163430a1c13173faffde69016b48aaf}{HugeCost}}\ :\ ArrayType::SizeAtCompileTime\ *\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}(\mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<Scalar>::AddCost}}),}
+\DoxyCodeLine{00294\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aaedddb713cb504f0be1eabe3aa0918665}{MulCost}}\ \ =\ ArrayType::SizeAtCompileTime==\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}\ ?\ \mbox{\hyperlink{namespace_eigen_a3163430a1c13173faffde69016b48aaf_a3163430a1c13173faffde69016b48aaf}{HugeCost}}\ :\ ArrayType::SizeAtCompileTime\ *\ \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}(\mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<Scalar>::MulCost}})}
+\DoxyCodeLine{00295\ \ \ \};}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00298\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{RealScalar}}\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01_array_3_01_scalar_00_01_rows_00_01_cols_00_01_options_00_01_max_rows_00_01_max_cols_01_4_01_4_a08e35f935ff963dc9fe3774ef09eed24_a08e35f935ff963dc9fe3774ef09eed24}{epsilon}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a3a573c69713fbb143fb49af7db463cee_a3a573c69713fbb143fb49af7db463cee}{NumTraits<RealScalar>::epsilon}}();\ \}}
+\DoxyCodeLine{00299\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00300\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{RealScalar}}\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01_array_3_01_scalar_00_01_rows_00_01_cols_00_01_options_00_01_max_rows_00_01_max_cols_01_4_01_4_a1c3b3b1207fe3eafec984424b8d7472f_a1c3b3b1207fe3eafec984424b8d7472f}{dummy\_precision}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_aec48507dff26f2fdbb985a871f7f4eff_aec48507dff26f2fdbb985a871f7f4eff}{NumTraits<RealScalar>::dummy\_precision}}();\ \}}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \ \ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00303\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01_array_3_01_scalar_00_01_rows_00_01_cols_00_01_options_00_01_max_rows_00_01_max_cols_01_4_01_4_ac42a505b6455600139fa25a967de04d6_ac42a505b6455600139fa25a967de04d6}{digits10}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a2ac03afc84ca092917960c95178d3e48_a2ac03afc84ca092917960c95178d3e48}{NumTraits<Scalar>::digits10}}();\ \}}
+\DoxyCodeLine{00304\ \};}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \textcolor{keyword}{template}<>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits}}<\mbox{\hyperlink{namespacestd}{std}}::string>}
+\DoxyCodeLine{00307\ \ \ :\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits}{GenericNumTraits}}<std::string>}
+\DoxyCodeLine{00308\ \{}
+\DoxyCodeLine{00309\ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00310\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aa3076e038003ec0a60ff43bffdcddc2bc}{RequireInitialization}}\ =\ 1,}
+\DoxyCodeLine{00311\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aa525a27cb23b875d4d2326804e0ea998a}{ReadCost}}\ =\ \mbox{\hyperlink{namespace_eigen_a3163430a1c13173faffde69016b48aaf_a3163430a1c13173faffde69016b48aaf}{HugeCost}},}
+\DoxyCodeLine{00312\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aa79172abdc42e530a0bafa06c331cb828}{AddCost}}\ \ =\ \mbox{\hyperlink{namespace_eigen_a3163430a1c13173faffde69016b48aaf_a3163430a1c13173faffde69016b48aaf}{HugeCost}},}
+\DoxyCodeLine{00313\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits_a9fae7aa7366da7b3950bbd9ab690185a_a9fae7aa7366da7b3950bbd9ab690185aaedddb713cb504f0be1eabe3aa0918665}{MulCost}}\ \ =\ \mbox{\hyperlink{namespace_eigen_a3163430a1c13173faffde69016b48aaf_a3163430a1c13173faffde69016b48aaf}{HugeCost}}}
+\DoxyCodeLine{00314\ \ \ \};}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \ \ \mbox{\hyperlink{_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c_a62a0d46d3d76fff438aec3b57f29c90c}{EIGEN\_CONSTEXPR}}}
+\DoxyCodeLine{00317\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01std_1_1string_01_4_a832b72d56ca18303fb9589854f82645b_a832b72d56ca18303fb9589854f82645b}{digits10}}()\ \{\ \textcolor{keywordflow}{return}\ 0;\ \}}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00320\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01std_1_1string_01_4_ab74bf4b113a47689cc39ed11bf7b54df_ab74bf4b113a47689cc39ed11bf7b54df}{epsilon}}();}
+\DoxyCodeLine{00321\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01std_1_1string_01_4_a922df2d46e07bd82368dfb8f8a0dc616_a922df2d46e07bd82368dfb8f8a0dc616}{dummy\_precision}}();}
+\DoxyCodeLine{00322\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01std_1_1string_01_4_aeaa8e4063e98c02ba2ba822d4960f002_aeaa8e4063e98c02ba2ba822d4960f002}{lowest}}();}
+\DoxyCodeLine{00323\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01std_1_1string_01_4_acedf5c9ac112bbe77328663a01a0e1a6_acedf5c9ac112bbe77328663a01a0e1a6}{highest}}();}
+\DoxyCodeLine{00324\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01std_1_1string_01_4_a0f2c6bfbd4c3d3f599d9ba5a824b1915_a0f2c6bfbd4c3d3f599d9ba5a824b1915}{infinity}}();}
+\DoxyCodeLine{00325\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{struct_eigen_1_1_num_traits_3_01std_1_1string_01_4_a50b4338b6cef4d96b11233d55b96eaf8_a50b4338b6cef4d96b11233d55b96eaf8}{quiet\_NaN}}();}
+\DoxyCodeLine{00326\ \};}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ \textcolor{comment}{//\ Empty\ specialization\ for\ void\ to\ allow\ template\ specialization\ based\ on\ NumTraits<T>::Real\ with\ T==void\ and\ SFINAE.}}
+\DoxyCodeLine{00329\ \textcolor{keyword}{template}<>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits}}<void>\ \{\};}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00331\ \textcolor{keyword}{template}<>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits}}<bool>\ :\ \mbox{\hyperlink{struct_eigen_1_1_generic_num_traits}{GenericNumTraits}}<bool>\ \{\};}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \}\ \textcolor{comment}{//\ end\ namespace\ Eigen}}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ EIGEN\_NUMTRAITS\_H}}
+
+\end{DoxyCode}

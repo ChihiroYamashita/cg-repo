@@ -1,0 +1,49 @@
+\doxysubsection{Using Eigen in CMake Projects}
+\hypertarget{_topic_c_make_guide}{}\label{_topic_c_make_guide}\index{Using \%Eigen in CMake Projects@{Using \%Eigen in CMake Projects}}
+Eigen provides native CMake support which allows the library to be easily used in CMake projects.
+
+\begin{DoxyNote}{覚え書き}
+CMake 3.\+0 (or later) is required to enable this functionality.
+\end{DoxyNote}
+Eigen exports a CMake target called {\ttfamily Eigen3\+::\+Eigen} which can be imported using the {\ttfamily find\+\_\+package} CMake command and used by calling {\ttfamily target\+\_\+link\+\_\+libraries} as in the following example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cmake\_minimum\_required\ (VERSION\ 3.0)}
+\DoxyCodeLine{project\ (myproject)}
+\DoxyCodeLine{}
+\DoxyCodeLine{find\_package\ (Eigen3\ 3.3\ REQUIRED\ NO\_MODULE)}
+\DoxyCodeLine{}
+\DoxyCodeLine{add\_executable\ (example\ example.cpp)}
+\DoxyCodeLine{target\_link\_libraries\ (example\ Eigen3::Eigen)}
+
+\end{DoxyCode}
+
+
+The above code snippet must be placed in a file called {\ttfamily CMake\+Lists.\+txt} alongside {\ttfamily example.\+cpp}. After running 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ cmake\ path-\/to-\/example-\/directory}
+
+\end{DoxyCode}
+ CMake will produce project files that generate an executable called {\ttfamily example} which requires at least version 3.\+3 of Eigen. Here, {\ttfamily path-\/to-\/example-\/directory} is the path to the directory that contains both {\ttfamily CMake\+Lists.\+txt} and {\ttfamily example.\+cpp}.
+
+Do not forget to set the \href{https://cmake.org/cmake/help/v3.7/variable/CMAKE_PREFIX_PATH.html}{\texttt{ {\ttfamily CMAKE\+\_\+\+PREFIX\+\_\+\+PATH} }} variable if \doxylink{namespace_eigen}{Eigen} is not installed in a default location or if you want to pick a specific version. For instance\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ cmake\ path-\/to-\/example-\/directory\ -\/DCMAKE\_PREFIX\_PATH=\$HOME/mypackages}
+
+\end{DoxyCode}
+ An alternative is to set the {\ttfamily Eigen3\+\_\+\+DIR} cmake\textquotesingle{}s variable to the respective path containing the {\ttfamily Eigen3\texorpdfstring{$\ast$}{*}}.cmake files. For instance\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ cmake\ path-\/to-\/example-\/directory\ -\/DEigen3\_DIR=\$HOME/mypackages/share/eigen3/cmake/}
+
+\end{DoxyCode}
+
+
+If the {\ttfamily REQUIRED} option is omitted when locating Eigen using {\ttfamily find\+\_\+package}, one can check whether the package was found as follows\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{find\_package\ (Eigen3\ 3.3\ NO\_MODULE)}
+\DoxyCodeLine{}
+\DoxyCodeLine{if\ (TARGET\ Eigen3::Eigen)}
+\DoxyCodeLine{\ \ \#\ Use\ the\ imported\ target}
+\DoxyCodeLine{endif\ (TARGET\ Eigen3::Eigen)}
+
+\end{DoxyCode}
+ 

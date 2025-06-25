@@ -1,0 +1,53 @@
+\doxysection{Eigen\+::symbolic 名前空間}
+\hypertarget{namespace_eigen_1_1symbolic}{}\label{namespace_eigen_1_1symbolic}\index{Eigen::symbolic@{Eigen::symbolic}}
+\doxysubsubsection*{クラス}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_eigen_1_1symbolic_1_1_add_expr}{Add\+Expr}}
+\item 
+class \mbox{\hyperlink{class_eigen_1_1symbolic_1_1_base_expr}{Base\+Expr}}
+\item 
+struct \mbox{\hyperlink{struct_eigen_1_1symbolic_1_1is__symbolic}{is\+\_\+symbolic}}
+\item 
+class \mbox{\hyperlink{class_eigen_1_1symbolic_1_1_negate_expr}{Negate\+Expr}}
+\item 
+class \mbox{\hyperlink{class_eigen_1_1symbolic_1_1_product_expr}{Product\+Expr}}
+\item 
+class \mbox{\hyperlink{class_eigen_1_1symbolic_1_1_quotient_expr}{Quotient\+Expr}}
+\item 
+class \mbox{\hyperlink{class_eigen_1_1symbolic_1_1_symbol}{Symbol}}
+\item 
+class \mbox{\hyperlink{class_eigen_1_1symbolic_1_1_symbol_expr}{Symbol\+Expr}}
+\item 
+class \mbox{\hyperlink{class_eigen_1_1symbolic_1_1_symbol_value}{Symbol\+Value}}
+\item 
+class \mbox{\hyperlink{class_eigen_1_1symbolic_1_1_value_expr}{Value\+Expr}}
+\item 
+class \mbox{\hyperlink{class_eigen_1_1symbolic_1_1_value_expr_3_01internal_1_1_fixed_int_3_01_n_01_4_01_4}{Value\+Expr$<$ internal\+::\+Fixed\+Int$<$ N $>$ $>$}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{詳解}
+This namespace defines a set of classes and functions to build and evaluate symbolic expressions of scalar type Index. Here is a simple example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ First\ step,\ defines\ symbols:}}
+\DoxyCodeLine{\textcolor{keyword}{struct\ }x\_tag\ \{\};\ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1symbolic_1_1_symbol_expr}{symbolic::SymbolExpr<x\_tag>}}\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}};}
+\DoxyCodeLine{\textcolor{keyword}{struct\ }y\_tag\ \{\};\ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ symbolic::SymbolExpr<y\_tag>\ \mbox{\hyperlink{level1__cplx__impl_8h_a792f7d150beb978a4945c84df6867679_a792f7d150beb978a4945c84df6867679}{y}};}
+\DoxyCodeLine{\textcolor{keyword}{struct\ }z\_tag\ \{\};\ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ symbolic::SymbolExpr<z\_tag>\ z;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Defines\ an\ expression:}}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ expr\ =\ (\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}+3)/\mbox{\hyperlink{level1__cplx__impl_8h_a792f7d150beb978a4945c84df6867679_a792f7d150beb978a4945c84df6867679}{y}}+z;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ And\ evaluate\ it:\ (c++14)}}
+\DoxyCodeLine{std::cout\ <<\ expr.\mbox{\hyperlink{class_eigen_1_1symbolic_1_1_base_expr_a4149f50157823063e59c18ce04ed2496_a4149f50157823063e59c18ce04ed2496}{eval}}(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}=6,\mbox{\hyperlink{level1__cplx__impl_8h_a792f7d150beb978a4945c84df6867679_a792f7d150beb978a4945c84df6867679}{y}}=3,z=-\/13)\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ In\ c++98/11,\ only\ one\ symbol\ per\ expression\ is\ supported\ for\ now:}}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ expr98\ =\ (3-\/\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}})/2;}
+\DoxyCodeLine{std::cout\ <<\ expr98.eval(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}=6)\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+
+\end{DoxyCode}
+
+
+It is currently only used internally to define and manipulate the Eigen\+::last and Eigen\+::lastp1 symbols in \doxylink{namespace_eigen_a6db24b502633d158c17cb0677e7be4cb_a6db24b502633d158c17cb0677e7be4cb}{Eigen\+::seq} and \doxylink{namespace_eigen_a3a3c346d2a61d1e8e86e6fb4cf57fbda_a3a3c346d2a61d1e8e86e6fb4cf57fbda}{Eigen\+::seqN}. 

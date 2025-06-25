@@ -1,0 +1,273 @@
+\doxysection{Eigen\+::internal\+::Upper\+Bidiagonalization\texorpdfstring{$<$}{<} \+\_\+\+Matrix\+Type \texorpdfstring{$>$}{>} クラステンプレート}
+\hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization}{}\label{class_eigen_1_1internal_1_1_upper_bidiagonalization}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}
+
+
+{\ttfamily \#include $<$Upper\+Bidiagonalization.\+h$>$}
+
+
+
+Eigen\+::internal\+::Upper\+Bidiagonalization\texorpdfstring{$<$}{<} \+\_\+\+Matrix\+Type \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_eigen_1_1internal_1_1_upper_bidiagonalization__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ada96a6c52e43ad66e4b586aa48490949_ada96a6c52e43ad66e4b586aa48490949a1ea2a60f45544862b84f46961c1602a4}{Rows\+At\+Compile\+Time}} = Matrix\+Type\+::Rows\+At\+Compile\+Time
+, \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ada96a6c52e43ad66e4b586aa48490949_ada96a6c52e43ad66e4b586aa48490949a9082921243b60398061924645dfbf51f}{Cols\+At\+Compile\+Time}} = Matrix\+Type\+::Cols\+At\+Compile\+Time
+, \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ada96a6c52e43ad66e4b586aa48490949_ada96a6c52e43ad66e4b586aa48490949a50b56de43e3143a42c25fcb5b6dcff21}{Cols\+At\+Compile\+Time\+Minus\+One}} = internal\+::decrement\+\_\+size\texorpdfstring{$<$}{<}Cols\+At\+Compile\+Time\texorpdfstring{$>$}{>}\+::ret
+ \}
+\item 
+typedef \+\_\+\+Matrix\+Type \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a8ea3397ecd659510da29db7eb8c064d6_a8ea3397ecd659510da29db7eb8c064d6}{Matrix\+Type}}
+\item 
+typedef Matrix\+Type\+::\+Scalar \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_aaa7c115a9d39b8317feaada3c543fa08_aaa7c115a9d39b8317feaada3c543fa08}{Scalar}}
+\item 
+typedef Matrix\+Type\+::\+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ad5630dc82135509e8cf1626012d83390_ad5630dc82135509e8cf1626012d83390}{Real\+Scalar}}
+\item 
+typedef \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a3c587dd4e2d1d3d4d91aba36d18564ab_a3c587dd4e2d1d3d4d91aba36d18564ab}{Index}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_aaa7c115a9d39b8317feaada3c543fa08_aaa7c115a9d39b8317feaada3c543fa08}{Scalar}}, 1, \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ada96a6c52e43ad66e4b586aa48490949_ada96a6c52e43ad66e4b586aa48490949a9082921243b60398061924645dfbf51f}{Cols\+At\+Compile\+Time}} $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a3660bd100dd2fad23f40eb5e3779625c_a3660bd100dd2fad23f40eb5e3779625c}{Row\+Vector\+Type}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_aaa7c115a9d39b8317feaada3c543fa08_aaa7c115a9d39b8317feaada3c543fa08}{Scalar}}, \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ada96a6c52e43ad66e4b586aa48490949_ada96a6c52e43ad66e4b586aa48490949a1ea2a60f45544862b84f46961c1602a4}{Rows\+At\+Compile\+Time}}, 1 $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a0e30fb110b9d166899824aa6f1bdf6de_a0e30fb110b9d166899824aa6f1bdf6de}{Col\+Vector\+Type}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix}{Band\+Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ad5630dc82135509e8cf1626012d83390_ad5630dc82135509e8cf1626012d83390}{Real\+Scalar}}, \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ada96a6c52e43ad66e4b586aa48490949_ada96a6c52e43ad66e4b586aa48490949a9082921243b60398061924645dfbf51f}{Cols\+At\+Compile\+Time}}, \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ada96a6c52e43ad66e4b586aa48490949_ada96a6c52e43ad66e4b586aa48490949a9082921243b60398061924645dfbf51f}{Cols\+At\+Compile\+Time}}, 1, 0, \mbox{\hyperlink{group__enums_gaacded1a18ae58b0f554751f6cdf9eb13_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}} $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ae3d5567e74f43e604632b1322d37e9c1_ae3d5567e74f43e604632b1322d37e9c1}{Bidiagonal\+Type}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_aaa7c115a9d39b8317feaada3c543fa08_aaa7c115a9d39b8317feaada3c543fa08}{Scalar}}, \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ada96a6c52e43ad66e4b586aa48490949_ada96a6c52e43ad66e4b586aa48490949a9082921243b60398061924645dfbf51f}{Cols\+At\+Compile\+Time}}, 1 $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a634b4339e9ab0c1f24f9668045463453_a634b4339e9ab0c1f24f9668045463453}{Diag\+Vector\+Type}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_aaa7c115a9d39b8317feaada3c543fa08_aaa7c115a9d39b8317feaada3c543fa08}{Scalar}}, \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ada96a6c52e43ad66e4b586aa48490949_ada96a6c52e43ad66e4b586aa48490949a50b56de43e3143a42c25fcb5b6dcff21}{Cols\+At\+Compile\+Time\+Minus\+One}}, 1 $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ab8662db1a115c73e911afdc506f0a741_ab8662db1a115c73e911afdc506f0a741}{Super\+Diag\+Vector\+Type}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_householder_sequence}{Householder\+Sequence}}$<$ const \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a8ea3397ecd659510da29db7eb8c064d6_a8ea3397ecd659510da29db7eb8c064d6}{Matrix\+Type}}, const typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ typename \mbox{\hyperlink{class_eigen_1_1_diagonal}{Diagonal}}$<$ const \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a8ea3397ecd659510da29db7eb8c064d6_a8ea3397ecd659510da29db7eb8c064d6}{Matrix\+Type}}, 0 $>$\mbox{\hyperlink{_common_cwise_unary_ops_8h_a21123c01c5afb9e6d99998f52bf07020_a21123c01c5afb9e6d99998f52bf07020}{\+::\+Conjugate\+Return\+Type}} $>$\+::type $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a8cb6307ce11c02dcd4cc91394ea11f44_a8cb6307ce11c02dcd4cc91394ea11f44}{Householder\+USequence\+Type}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_householder_sequence}{Householder\+Sequence}}$<$ const typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ typename Matrix\+Type\+::\+Conjugate\+Return\+Type $>$\+::type, \mbox{\hyperlink{class_eigen_1_1_diagonal}{Diagonal}}$<$ const \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a8ea3397ecd659510da29db7eb8c064d6_a8ea3397ecd659510da29db7eb8c064d6}{Matrix\+Type}}, 1 $>$, \mbox{\hyperlink{group__enums_gac22de43beeac7a78b384f99bed5cee0b_ggac22de43beeac7a78b384f99bed5cee0ba329fc3a54ceb2b6e0e73b400998b8a82}{On\+The\+Right}} $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_aa4bed69b2a7df7f70e5651a4d86b44ad_aa4bed69b2a7df7f70e5651a4d86b44ad}{Householder\+VSequence\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_aa37a7ca5f5e86e3efbc6907d03d89340_aa37a7ca5f5e86e3efbc6907d03d89340}{Upper\+Bidiagonalization}} ()
+\begin{DoxyCompactList}\small\item\em Default Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a0be89ad4d54df169e3607031e0284e20_a0be89ad4d54df169e3607031e0284e20}{Upper\+Bidiagonalization}} (const \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a8ea3397ecd659510da29db7eb8c064d6_a8ea3397ecd659510da29db7eb8c064d6}{Matrix\+Type}} \&\mbox{\hyperlink{common_8h_a2c4e93d1f3604b217c5d0e211def96fb_a2c4e93d1f3604b217c5d0e211def96fb}{matrix}})
+\item 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Upper\+Bidiagonalization}} \& \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a77c1a3dba999febcdd9aa3d8bdb7d8df_a77c1a3dba999febcdd9aa3d8bdb7d8df}{compute}} (const \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a8ea3397ecd659510da29db7eb8c064d6_a8ea3397ecd659510da29db7eb8c064d6}{Matrix\+Type}} \&\mbox{\hyperlink{common_8h_a2c4e93d1f3604b217c5d0e211def96fb_a2c4e93d1f3604b217c5d0e211def96fb}{matrix}})
+\item 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Upper\+Bidiagonalization}} \& \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a9899e0a0ee6bf4771fe4ef2d133e3e72_a9899e0a0ee6bf4771fe4ef2d133e3e72}{compute\+Unblocked}} (const \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a8ea3397ecd659510da29db7eb8c064d6_a8ea3397ecd659510da29db7eb8c064d6}{Matrix\+Type}} \&\mbox{\hyperlink{common_8h_a2c4e93d1f3604b217c5d0e211def96fb_a2c4e93d1f3604b217c5d0e211def96fb}{matrix}})
+\item 
+const \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a8ea3397ecd659510da29db7eb8c064d6_a8ea3397ecd659510da29db7eb8c064d6}{Matrix\+Type}} \& \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a83401b2d6a388dd8a0ccc01e285abb7b_a83401b2d6a388dd8a0ccc01e285abb7b}{householder}} () const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ae3d5567e74f43e604632b1322d37e9c1_ae3d5567e74f43e604632b1322d37e9c1}{Bidiagonal\+Type}} \& \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ad02b11d2cc0e7510ede8fd992e082a08_ad02b11d2cc0e7510ede8fd992e082a08}{bidiagonal}} () const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a8cb6307ce11c02dcd4cc91394ea11f44_a8cb6307ce11c02dcd4cc91394ea11f44}{Householder\+USequence\+Type}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a39887f7712de5be5a0487e9f6357b9da_a39887f7712de5be5a0487e9f6357b9da}{householderU}} () const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_aa4bed69b2a7df7f70e5651a4d86b44ad_aa4bed69b2a7df7f70e5651a4d86b44ad}{Householder\+VSequence\+Type}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a6ab970ae51909e56ceb63a49e06fdc98_a6ab970ae51909e56ceb63a49e06fdc98}{householderV}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{限定公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a8ea3397ecd659510da29db7eb8c064d6_a8ea3397ecd659510da29db7eb8c064d6}{Matrix\+Type}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a40d8ad9af770d519cf1f0c09db49817a_a40d8ad9af770d519cf1f0c09db49817a}{m\+\_\+householder}}
+\item 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ae3d5567e74f43e604632b1322d37e9c1_ae3d5567e74f43e604632b1322d37e9c1}{Bidiagonal\+Type}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ac9fe2868fd468ff98dad66127ae7a7c2_ac9fe2868fd468ff98dad66127ae7a7c2}{m\+\_\+bidiagonal}}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ade33f99ca536721cf4ed69fe68f6dc95_ade33f99ca536721cf4ed69fe68f6dc95}{m\+\_\+is\+Initialized}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{型定義メンバ詳解}
+\Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_ae3d5567e74f43e604632b1322d37e9c1_ae3d5567e74f43e604632b1322d37e9c1}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}!BidiagonalType@{BidiagonalType}}
+\index{BidiagonalType@{BidiagonalType}!Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{BidiagonalType}{BidiagonalType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_upper_bidiagonalization_ae3d5567e74f43e604632b1322d37e9c1_ae3d5567e74f43e604632b1322d37e9c1} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix}{Band\+Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ad5630dc82135509e8cf1626012d83390_ad5630dc82135509e8cf1626012d83390}{Real\+Scalar}}, \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ada96a6c52e43ad66e4b586aa48490949_ada96a6c52e43ad66e4b586aa48490949a9082921243b60398061924645dfbf51f}{Cols\+At\+Compile\+Time}}, \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ada96a6c52e43ad66e4b586aa48490949_ada96a6c52e43ad66e4b586aa48490949a9082921243b60398061924645dfbf51f}{Cols\+At\+Compile\+Time}}, 1, 0, \mbox{\hyperlink{group__enums_gaacded1a18ae58b0f554751f6cdf9eb13_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}}$>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Eigen\+::internal\+::\+Upper\+Bidiagonalization}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Bidiagonal\+Type}
+
+\Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_a0e30fb110b9d166899824aa6f1bdf6de_a0e30fb110b9d166899824aa6f1bdf6de}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}!ColVectorType@{ColVectorType}}
+\index{ColVectorType@{ColVectorType}!Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{ColVectorType}{ColVectorType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_upper_bidiagonalization_a0e30fb110b9d166899824aa6f1bdf6de_a0e30fb110b9d166899824aa6f1bdf6de} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_aaa7c115a9d39b8317feaada3c543fa08_aaa7c115a9d39b8317feaada3c543fa08}{Scalar}}, \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ada96a6c52e43ad66e4b586aa48490949_ada96a6c52e43ad66e4b586aa48490949a1ea2a60f45544862b84f46961c1602a4}{Rows\+At\+Compile\+Time}}, 1$>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Eigen\+::internal\+::\+Upper\+Bidiagonalization}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Col\+Vector\+Type}
+
+\Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_a634b4339e9ab0c1f24f9668045463453_a634b4339e9ab0c1f24f9668045463453}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}!DiagVectorType@{DiagVectorType}}
+\index{DiagVectorType@{DiagVectorType}!Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{DiagVectorType}{DiagVectorType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_upper_bidiagonalization_a634b4339e9ab0c1f24f9668045463453_a634b4339e9ab0c1f24f9668045463453} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_aaa7c115a9d39b8317feaada3c543fa08_aaa7c115a9d39b8317feaada3c543fa08}{Scalar}}, \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ada96a6c52e43ad66e4b586aa48490949_ada96a6c52e43ad66e4b586aa48490949a9082921243b60398061924645dfbf51f}{Cols\+At\+Compile\+Time}}, 1$>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Eigen\+::internal\+::\+Upper\+Bidiagonalization}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Diag\+Vector\+Type}
+
+\Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_a8cb6307ce11c02dcd4cc91394ea11f44_a8cb6307ce11c02dcd4cc91394ea11f44}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}!HouseholderUSequenceType@{HouseholderUSequenceType}}
+\index{HouseholderUSequenceType@{HouseholderUSequenceType}!Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{HouseholderUSequenceType}{HouseholderUSequenceType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_upper_bidiagonalization_a8cb6307ce11c02dcd4cc91394ea11f44_a8cb6307ce11c02dcd4cc91394ea11f44} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_householder_sequence}{Householder\+Sequence}}$<$ const \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a8ea3397ecd659510da29db7eb8c064d6_a8ea3397ecd659510da29db7eb8c064d6}{Matrix\+Type}}, const typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$typename \mbox{\hyperlink{class_eigen_1_1_diagonal}{Diagonal}}$<$const \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a8ea3397ecd659510da29db7eb8c064d6_a8ea3397ecd659510da29db7eb8c064d6}{Matrix\+Type}},0$>$\mbox{\hyperlink{_common_cwise_unary_ops_8h_a21123c01c5afb9e6d99998f52bf07020_a21123c01c5afb9e6d99998f52bf07020}{\+::\+Conjugate\+Return\+Type}}$>$\+::type $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Eigen\+::internal\+::\+Upper\+Bidiagonalization}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Householder\+USequence\+Type}
+
+\Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_aa4bed69b2a7df7f70e5651a4d86b44ad_aa4bed69b2a7df7f70e5651a4d86b44ad}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}!HouseholderVSequenceType@{HouseholderVSequenceType}}
+\index{HouseholderVSequenceType@{HouseholderVSequenceType}!Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{HouseholderVSequenceType}{HouseholderVSequenceType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_upper_bidiagonalization_aa4bed69b2a7df7f70e5651a4d86b44ad_aa4bed69b2a7df7f70e5651a4d86b44ad} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_householder_sequence}{Householder\+Sequence}}$<$ const typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$typename Matrix\+Type\+::\+Conjugate\+Return\+Type$>$\+::type, \mbox{\hyperlink{class_eigen_1_1_diagonal}{Diagonal}}$<$const \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a8ea3397ecd659510da29db7eb8c064d6_a8ea3397ecd659510da29db7eb8c064d6}{Matrix\+Type}},1$>$, \mbox{\hyperlink{group__enums_gac22de43beeac7a78b384f99bed5cee0b_ggac22de43beeac7a78b384f99bed5cee0ba329fc3a54ceb2b6e0e73b400998b8a82}{On\+The\+Right}} $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Eigen\+::internal\+::\+Upper\+Bidiagonalization}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Householder\+VSequence\+Type}
+
+\Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_a3c587dd4e2d1d3d4d91aba36d18564ab_a3c587dd4e2d1d3d4d91aba36d18564ab}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}!Index@{Index}}
+\index{Index@{Index}!Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{Index}{Index}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_upper_bidiagonalization_a3c587dd4e2d1d3d4d91aba36d18564ab_a3c587dd4e2d1d3d4d91aba36d18564ab} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Eigen\+::internal\+::\+Upper\+Bidiagonalization}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Index}
+
+\begin{DoxyRefDesc}{非推奨}
+\item[\mbox{\hyperlink{deprecated__deprecated000037}{非推奨}}]since \doxylink{namespace_eigen}{Eigen} 3.\+3 \end{DoxyRefDesc}
+\Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_a8ea3397ecd659510da29db7eb8c064d6_a8ea3397ecd659510da29db7eb8c064d6}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}!MatrixType@{MatrixType}}
+\index{MatrixType@{MatrixType}!Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{MatrixType}{MatrixType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_upper_bidiagonalization_a8ea3397ecd659510da29db7eb8c064d6_a8ea3397ecd659510da29db7eb8c064d6} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\+\_\+\+Matrix\+Type \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Eigen\+::internal\+::\+Upper\+Bidiagonalization}}$<$ \+\_\+\+Matrix\+Type $>$\mbox{\hyperlink{benchmark-blocking-sizes_8cpp_af5fcaa2ea9f565466ca96c2992ea0771_af5fcaa2ea9f565466ca96c2992ea0771}{\+::\+Matrix\+Type}}}
+
+\Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_ad5630dc82135509e8cf1626012d83390_ad5630dc82135509e8cf1626012d83390}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}!RealScalar@{RealScalar}}
+\index{RealScalar@{RealScalar}!Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{RealScalar}{RealScalar}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_upper_bidiagonalization_ad5630dc82135509e8cf1626012d83390_ad5630dc82135509e8cf1626012d83390} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+Matrix\+Type\+::\+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Eigen\+::internal\+::\+Upper\+Bidiagonalization}}$<$ \+\_\+\+Matrix\+Type $>$\mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{\+::\+Real\+Scalar}}}
+
+\Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_a3660bd100dd2fad23f40eb5e3779625c_a3660bd100dd2fad23f40eb5e3779625c}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}!RowVectorType@{RowVectorType}}
+\index{RowVectorType@{RowVectorType}!Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{RowVectorType}{RowVectorType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_upper_bidiagonalization_a3660bd100dd2fad23f40eb5e3779625c_a3660bd100dd2fad23f40eb5e3779625c} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_aaa7c115a9d39b8317feaada3c543fa08_aaa7c115a9d39b8317feaada3c543fa08}{Scalar}}, 1, \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ada96a6c52e43ad66e4b586aa48490949_ada96a6c52e43ad66e4b586aa48490949a9082921243b60398061924645dfbf51f}{Cols\+At\+Compile\+Time}}$>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Eigen\+::internal\+::\+Upper\+Bidiagonalization}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Row\+Vector\+Type}
+
+\Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_aaa7c115a9d39b8317feaada3c543fa08_aaa7c115a9d39b8317feaada3c543fa08}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_upper_bidiagonalization_aaa7c115a9d39b8317feaada3c543fa08_aaa7c115a9d39b8317feaada3c543fa08} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+Matrix\+Type\+::\+Scalar \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Eigen\+::internal\+::\+Upper\+Bidiagonalization}}$<$ \+\_\+\+Matrix\+Type $>$\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{\+::\+Scalar}}}
+
+\Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_ab8662db1a115c73e911afdc506f0a741_ab8662db1a115c73e911afdc506f0a741}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}!SuperDiagVectorType@{SuperDiagVectorType}}
+\index{SuperDiagVectorType@{SuperDiagVectorType}!Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{SuperDiagVectorType}{SuperDiagVectorType}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_upper_bidiagonalization_ab8662db1a115c73e911afdc506f0a741_ab8662db1a115c73e911afdc506f0a741} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_aaa7c115a9d39b8317feaada3c543fa08_aaa7c115a9d39b8317feaada3c543fa08}{Scalar}}, \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ada96a6c52e43ad66e4b586aa48490949_ada96a6c52e43ad66e4b586aa48490949a50b56de43e3143a42c25fcb5b6dcff21}{Cols\+At\+Compile\+Time\+Minus\+One}}, 1$>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Eigen\+::internal\+::\+Upper\+Bidiagonalization}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Super\+Diag\+Vector\+Type}
+
+
+
+\doxysubsection{列挙型メンバ詳解}
+\Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_ada96a6c52e43ad66e4b586aa48490949_ada96a6c52e43ad66e4b586aa48490949}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_upper_bidiagonalization_ada96a6c52e43ad66e4b586aa48490949_ada96a6c52e43ad66e4b586aa48490949} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RowsAtCompileTime@{RowsAtCompileTime}!Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}!RowsAtCompileTime@{RowsAtCompileTime}}}\Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_ada96a6c52e43ad66e4b586aa48490949_ada96a6c52e43ad66e4b586aa48490949a1ea2a60f45544862b84f46961c1602a4}\label{class_eigen_1_1internal_1_1_upper_bidiagonalization_ada96a6c52e43ad66e4b586aa48490949_ada96a6c52e43ad66e4b586aa48490949} 
+Rows\+At\+Compile\+Time&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ColsAtCompileTime@{ColsAtCompileTime}!Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}!ColsAtCompileTime@{ColsAtCompileTime}}}\Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_ada96a6c52e43ad66e4b586aa48490949_ada96a6c52e43ad66e4b586aa48490949a9082921243b60398061924645dfbf51f}\label{class_eigen_1_1internal_1_1_upper_bidiagonalization_ada96a6c52e43ad66e4b586aa48490949_ada96a6c52e43ad66e4b586aa48490949} 
+Cols\+At\+Compile\+Time&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ColsAtCompileTimeMinusOne@{ColsAtCompileTimeMinusOne}!Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}!ColsAtCompileTimeMinusOne@{ColsAtCompileTimeMinusOne}}}\Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_ada96a6c52e43ad66e4b586aa48490949_ada96a6c52e43ad66e4b586aa48490949a50b56de43e3143a42c25fcb5b6dcff21}\label{class_eigen_1_1internal_1_1_upper_bidiagonalization_ada96a6c52e43ad66e4b586aa48490949_ada96a6c52e43ad66e4b586aa48490949} 
+Cols\+At\+Compile\+Time\+Minus\+One&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{構築子と解体子}
+\Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_aa37a7ca5f5e86e3efbc6907d03d89340_aa37a7ca5f5e86e3efbc6907d03d89340}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}!UpperBidiagonalization@{UpperBidiagonalization}}
+\index{UpperBidiagonalization@{UpperBidiagonalization}!Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{UpperBidiagonalization()}{UpperBidiagonalization()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_upper_bidiagonalization_aa37a7ca5f5e86e3efbc6907d03d89340_aa37a7ca5f5e86e3efbc6907d03d89340} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Eigen\+::internal\+::\+Upper\+Bidiagonalization}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Upper\+Bidiagonalization (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default Constructor. 
+
+The default constructor is useful in cases in which the user intends to perform decompositions via Bidiagonalization\+::compute(const Matrix\+Type\&). \Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_a0be89ad4d54df169e3607031e0284e20_a0be89ad4d54df169e3607031e0284e20}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}!UpperBidiagonalization@{UpperBidiagonalization}}
+\index{UpperBidiagonalization@{UpperBidiagonalization}!Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{UpperBidiagonalization()}{UpperBidiagonalization()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_upper_bidiagonalization_a0be89ad4d54df169e3607031e0284e20_a0be89ad4d54df169e3607031e0284e20} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Eigen\+::internal\+::\+Upper\+Bidiagonalization}}$<$ \+\_\+\+Matrix\+Type $>$\+::\+Upper\+Bidiagonalization (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a8ea3397ecd659510da29db7eb8c064d6_a8ea3397ecd659510da29db7eb8c064d6}{Matrix\+Type}} \&}]{matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_ad02b11d2cc0e7510ede8fd992e082a08_ad02b11d2cc0e7510ede8fd992e082a08}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}!bidiagonal@{bidiagonal}}
+\index{bidiagonal@{bidiagonal}!Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{bidiagonal()}{bidiagonal()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_upper_bidiagonalization_ad02b11d2cc0e7510ede8fd992e082a08_ad02b11d2cc0e7510ede8fd992e082a08} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ae3d5567e74f43e604632b1322d37e9c1_ae3d5567e74f43e604632b1322d37e9c1}{Bidiagonal\+Type}} \& \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Eigen\+::internal\+::\+Upper\+Bidiagonalization}}$<$ \+\_\+\+Matrix\+Type $>$\+::bidiagonal (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_a77c1a3dba999febcdd9aa3d8bdb7d8df_a77c1a3dba999febcdd9aa3d8bdb7d8df}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}!compute@{compute}}
+\index{compute@{compute}!Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_upper_bidiagonalization_a77c1a3dba999febcdd9aa3d8bdb7d8df_a77c1a3dba999febcdd9aa3d8bdb7d8df} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Upper\+Bidiagonalization}}$<$ \+\_\+\+Matrix\+Type $>$ \& \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Eigen\+::internal\+::\+Upper\+Bidiagonalization}}$<$ \+\_\+\+Matrix\+Type $>$\+::compute (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a8ea3397ecd659510da29db7eb8c064d6_a8ea3397ecd659510da29db7eb8c064d6}{Matrix\+Type}} \&}]{matrix}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_a9899e0a0ee6bf4771fe4ef2d133e3e72_a9899e0a0ee6bf4771fe4ef2d133e3e72}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}!computeUnblocked@{computeUnblocked}}
+\index{computeUnblocked@{computeUnblocked}!Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{computeUnblocked()}{computeUnblocked()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_upper_bidiagonalization_a9899e0a0ee6bf4771fe4ef2d133e3e72_a9899e0a0ee6bf4771fe4ef2d133e3e72} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Upper\+Bidiagonalization}}$<$ \+\_\+\+Matrix\+Type $>$ \& \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Eigen\+::internal\+::\+Upper\+Bidiagonalization}}$<$ \+\_\+\+Matrix\+Type $>$\+::compute\+Unblocked (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a8ea3397ecd659510da29db7eb8c064d6_a8ea3397ecd659510da29db7eb8c064d6}{Matrix\+Type}} \&}]{matrix}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_a83401b2d6a388dd8a0ccc01e285abb7b_a83401b2d6a388dd8a0ccc01e285abb7b}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}!householder@{householder}}
+\index{householder@{householder}!Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{householder()}{householder()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_upper_bidiagonalization_a83401b2d6a388dd8a0ccc01e285abb7b_a83401b2d6a388dd8a0ccc01e285abb7b} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a8ea3397ecd659510da29db7eb8c064d6_a8ea3397ecd659510da29db7eb8c064d6}{Matrix\+Type}} \& \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Eigen\+::internal\+::\+Upper\+Bidiagonalization}}$<$ \+\_\+\+Matrix\+Type $>$\+::householder (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_a39887f7712de5be5a0487e9f6357b9da_a39887f7712de5be5a0487e9f6357b9da}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}!householderU@{householderU}}
+\index{householderU@{householderU}!Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{householderU()}{householderU()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_upper_bidiagonalization_a39887f7712de5be5a0487e9f6357b9da_a39887f7712de5be5a0487e9f6357b9da} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a8cb6307ce11c02dcd4cc91394ea11f44_a8cb6307ce11c02dcd4cc91394ea11f44}{Householder\+USequence\+Type}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Eigen\+::internal\+::\+Upper\+Bidiagonalization}}$<$ \+\_\+\+Matrix\+Type $>$\+::householderU (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_a6ab970ae51909e56ceb63a49e06fdc98_a6ab970ae51909e56ceb63a49e06fdc98}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}!householderV@{householderV}}
+\index{householderV@{householderV}!Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{householderV()}{householderV()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_upper_bidiagonalization_a6ab970ae51909e56ceb63a49e06fdc98_a6ab970ae51909e56ceb63a49e06fdc98} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_aa4bed69b2a7df7f70e5651a4d86b44ad_aa4bed69b2a7df7f70e5651a4d86b44ad}{Householder\+VSequence\+Type}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Eigen\+::internal\+::\+Upper\+Bidiagonalization}}$<$ \+\_\+\+Matrix\+Type $>$\+::householderV (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{メンバ詳解}
+\Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_ac9fe2868fd468ff98dad66127ae7a7c2_ac9fe2868fd468ff98dad66127ae7a7c2}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}!m\_bidiagonal@{m\_bidiagonal}}
+\index{m\_bidiagonal@{m\_bidiagonal}!Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{m\_bidiagonal}{m\_bidiagonal}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_upper_bidiagonalization_ac9fe2868fd468ff98dad66127ae7a7c2_ac9fe2868fd468ff98dad66127ae7a7c2} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_ae3d5567e74f43e604632b1322d37e9c1_ae3d5567e74f43e604632b1322d37e9c1}{Bidiagonal\+Type}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Eigen\+::internal\+::\+Upper\+Bidiagonalization}}$<$ \+\_\+\+Matrix\+Type $>$\+::m\+\_\+bidiagonal\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_a40d8ad9af770d519cf1f0c09db49817a_a40d8ad9af770d519cf1f0c09db49817a}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}!m\_householder@{m\_householder}}
+\index{m\_householder@{m\_householder}!Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{m\_householder}{m\_householder}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_upper_bidiagonalization_a40d8ad9af770d519cf1f0c09db49817a_a40d8ad9af770d519cf1f0c09db49817a} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization_a8ea3397ecd659510da29db7eb8c064d6_a8ea3397ecd659510da29db7eb8c064d6}{Matrix\+Type}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Eigen\+::internal\+::\+Upper\+Bidiagonalization}}$<$ \+\_\+\+Matrix\+Type $>$\+::m\+\_\+householder\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_eigen_1_1internal_1_1_upper_bidiagonalization_ade33f99ca536721cf4ed69fe68f6dc95_ade33f99ca536721cf4ed69fe68f6dc95}\index{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}!m\_isInitialized@{m\_isInitialized}}
+\index{m\_isInitialized@{m\_isInitialized}!Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$@{Eigen::internal::UpperBidiagonalization$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{m\_isInitialized}{m\_isInitialized}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_upper_bidiagonalization_ade33f99ca536721cf4ed69fe68f6dc95_ade33f99ca536721cf4ed69fe68f6dc95} 
+template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1internal_1_1_upper_bidiagonalization}{Eigen\+::internal\+::\+Upper\+Bidiagonalization}}$<$ \+\_\+\+Matrix\+Type $>$\+::m\+\_\+is\+Initialized\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+SVD/\mbox{\hyperlink{_upper_bidiagonalization_8h}{Upper\+Bidiagonalization.\+h}}\end{DoxyCompactItemize}

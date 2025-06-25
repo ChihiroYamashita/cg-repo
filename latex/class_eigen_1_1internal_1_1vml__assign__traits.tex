@@ -1,0 +1,111 @@
+\doxysection{Eigen\+::internal\+::vml\+\_\+assign\+\_\+traits\texorpdfstring{$<$}{<} Dst, Src \texorpdfstring{$>$}{>} クラステンプレート}
+\hypertarget{class_eigen_1_1internal_1_1vml__assign__traits}{}\label{class_eigen_1_1internal_1_1vml__assign__traits}\index{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$@{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$}}
+
+
+{\ttfamily \#include $<$Assign\+\_\+\+MKL.\+h$>$}
+
+
+
+Eigen\+::internal\+::vml\+\_\+assign\+\_\+traits\texorpdfstring{$<$}{<} Dst, Src \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{class_eigen_1_1internal_1_1vml__assign__traits__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{class_eigen_1_1internal_1_1vml__assign__traits_ac09c209318aa82f558cb7e1b1372fe3b_ac09c209318aa82f558cb7e1b1372fe3ba2045cf258834f55f052656d20ef5c36f}{Enable\+Vml}} = Might\+Enable\+Vml \&\& Large\+Enough
+, \mbox{\hyperlink{class_eigen_1_1internal_1_1vml__assign__traits_ac09c209318aa82f558cb7e1b1372fe3b_ac09c209318aa82f558cb7e1b1372fe3ba8ac7286dc5158bdac81dc34b408f249d}{Traversal}} = Might\+Linearize ? Linear\+Traversal \+: Default\+Traversal
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{非公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \newline
+\mbox{\hyperlink{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5ae420c54f69b8cb9fd9d92ab142df8144}{Dst\+Has\+Direct\+Access}} = Dst\+::Flags \& Direct\+Access\+Bit
+, \mbox{\hyperlink{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5a08c274c2ccd54af24b0b78d035391711}{Src\+Has\+Direct\+Access}} = Src\+::Flags \& Direct\+Access\+Bit
+, \mbox{\hyperlink{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5a17223e446d1cbf67276830f782992063}{Storage\+Orders\+Agree}} = (int(Dst\+::Is\+Row\+Major) == int(Src\+::Is\+Row\+Major))
+, \mbox{\hyperlink{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5a111550263a698533ec74d6b1a7ca9e6b}{Inner\+Size}}
+, \newline
+\mbox{\hyperlink{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5ace4c71f976195e35d54ab799d3e9805a}{Inner\+Max\+Size}}
+, \mbox{\hyperlink{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5a690bc5fe87e2d9f2060252452baad772}{Max\+Size\+At\+Compile\+Time}} = Dst\+::Size\+At\+Compile\+Time
+, \mbox{\hyperlink{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5ad9aeaf87dbf78cf5c2439c1d8bb09c3a}{Might\+Enable\+Vml}} = Storage\+Orders\+Agree \&\& Dst\+Has\+Direct\+Access \&\& Src\+Has\+Direct\+Access \&\& Src\+::Inner\+Stride\+At\+Compile\+Time==1 \&\& Dst\+::Inner\+Stride\+At\+Compile\+Time==1
+, \mbox{\hyperlink{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5ae57e1ed73daa3015f112499871f23e85}{Might\+Linearize}} = Might\+Enable\+Vml \&\& (int(Dst\+::Flags) \& int(Src\+::Flags) \& Linear\+Access\+Bit)
+, \newline
+\mbox{\hyperlink{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5af86a3e10b23373c1fb4d387077bc332a}{Vml\+Size}} = Might\+Linearize ? Max\+Size\+At\+Compile\+Time \+: Inner\+Max\+Size
+, \mbox{\hyperlink{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5ada4f14fea000ce42a2371dbc691df2d2}{Large\+Enough}} = Vml\+Size==Dynamic \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} Vml\+Size\texorpdfstring{$>$}{>}=EIGEN\+\_\+\+MKL\+\_\+\+VML\+\_\+\+THRESHOLD
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{列挙型メンバ詳解}
+\Hypertarget{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5} 
+template$<$typename Dst , typename Src $>$ \\
+anonymous enum\hspace{0.3cm}{\ttfamily [private]}}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DstHasDirectAccess@{DstHasDirectAccess}!Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$@{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$}}\index{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$@{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$}!DstHasDirectAccess@{DstHasDirectAccess}}}\Hypertarget{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5ae420c54f69b8cb9fd9d92ab142df8144}\label{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5} 
+Dst\+Has\+Direct\+Access&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SrcHasDirectAccess@{SrcHasDirectAccess}!Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$@{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$}}\index{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$@{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$}!SrcHasDirectAccess@{SrcHasDirectAccess}}}\Hypertarget{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5a08c274c2ccd54af24b0b78d035391711}\label{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5} 
+Src\+Has\+Direct\+Access&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{StorageOrdersAgree@{StorageOrdersAgree}!Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$@{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$}}\index{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$@{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$}!StorageOrdersAgree@{StorageOrdersAgree}}}\Hypertarget{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5a17223e446d1cbf67276830f782992063}\label{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5} 
+Storage\+Orders\+Agree&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{InnerSize@{InnerSize}!Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$@{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$}}\index{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$@{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$}!InnerSize@{InnerSize}}}\Hypertarget{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5a111550263a698533ec74d6b1a7ca9e6b}\label{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5} 
+Inner\+Size&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{InnerMaxSize@{InnerMaxSize}!Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$@{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$}}\index{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$@{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$}!InnerMaxSize@{InnerMaxSize}}}\Hypertarget{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5ace4c71f976195e35d54ab799d3e9805a}\label{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5} 
+Inner\+Max\+Size&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MaxSizeAtCompileTime@{MaxSizeAtCompileTime}!Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$@{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$}}\index{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$@{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$}!MaxSizeAtCompileTime@{MaxSizeAtCompileTime}}}\Hypertarget{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5a690bc5fe87e2d9f2060252452baad772}\label{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5} 
+Max\+Size\+At\+Compile\+Time&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MightEnableVml@{MightEnableVml}!Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$@{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$}}\index{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$@{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$}!MightEnableVml@{MightEnableVml}}}\Hypertarget{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5ad9aeaf87dbf78cf5c2439c1d8bb09c3a}\label{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5} 
+Might\+Enable\+Vml&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MightLinearize@{MightLinearize}!Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$@{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$}}\index{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$@{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$}!MightLinearize@{MightLinearize}}}\Hypertarget{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5ae57e1ed73daa3015f112499871f23e85}\label{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5} 
+Might\+Linearize&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VmlSize@{VmlSize}!Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$@{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$}}\index{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$@{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$}!VmlSize@{VmlSize}}}\Hypertarget{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5af86a3e10b23373c1fb4d387077bc332a}\label{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5} 
+Vml\+Size&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LargeEnough@{LargeEnough}!Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$@{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$}}\index{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$@{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$}!LargeEnough@{LargeEnough}}}\Hypertarget{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5ada4f14fea000ce42a2371dbc691df2d2}\label{class_eigen_1_1internal_1_1vml__assign__traits_ab1322d0fefdca562174e45d66c8b35f5_ab1322d0fefdca562174e45d66c8b35f5} 
+Large\+Enough&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{class_eigen_1_1internal_1_1vml__assign__traits_ac09c209318aa82f558cb7e1b1372fe3b_ac09c209318aa82f558cb7e1b1372fe3b}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1vml__assign__traits_ac09c209318aa82f558cb7e1b1372fe3b_ac09c209318aa82f558cb7e1b1372fe3b} 
+template$<$typename Dst , typename Src $>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EnableVml@{EnableVml}!Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$@{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$}}\index{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$@{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$}!EnableVml@{EnableVml}}}\Hypertarget{class_eigen_1_1internal_1_1vml__assign__traits_ac09c209318aa82f558cb7e1b1372fe3b_ac09c209318aa82f558cb7e1b1372fe3ba2045cf258834f55f052656d20ef5c36f}\label{class_eigen_1_1internal_1_1vml__assign__traits_ac09c209318aa82f558cb7e1b1372fe3b_ac09c209318aa82f558cb7e1b1372fe3b} 
+Enable\+Vml&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Traversal@{Traversal}!Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$@{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$}}\index{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$@{Eigen::internal::vml\_assign\_traits$<$ Dst, Src $>$}!Traversal@{Traversal}}}\Hypertarget{class_eigen_1_1internal_1_1vml__assign__traits_ac09c209318aa82f558cb7e1b1372fe3b_ac09c209318aa82f558cb7e1b1372fe3ba8ac7286dc5158bdac81dc34b408f249d}\label{class_eigen_1_1internal_1_1vml__assign__traits_ac09c209318aa82f558cb7e1b1372fe3b_ac09c209318aa82f558cb7e1b1372fe3b} 
+Traversal&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Core/\mbox{\hyperlink{_assign___m_k_l_8h}{Assign\+\_\+\+MKL.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,79 @@
+\doxysection{sources/scene/myopenglwidget.cpp ファイル}
+\hypertarget{myopenglwidget_8cpp}{}\label{myopenglwidget_8cpp}\index{sources/scene/myopenglwidget.cpp@{sources/scene/myopenglwidget.cpp}}
+{\ttfamily \#include "{}myopenglwidget.\+h"{}}\newline
+{\ttfamily \#include $<$QOpen\+GLWidget$>$}\newline
+{\ttfamily \#include $<$QResize\+Event$>$}\newline
+{\ttfamily \#include $<$QApplication$>$}\newline
+{\ttfamily \#include $<$QSurface\+Format$>$}\newline
+{\ttfamily \#include $<$QMatrix4x4$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Dense$>$}\newline
+{\ttfamily \#include $<$QMouse\+Event$>$}\newline
+{\ttfamily \#include $<$QWheel\+Event$>$}\newline
+{\ttfamily \#include $<$QPush\+Button$>$}\newline
+{\ttfamily \#include $<$Qt\+Svg/\+QSvg\+Renderer$>$}\newline
+{\ttfamily \#include $<$QOpen\+GLFunctions$>$}\newline
+{\ttfamily \#include $<$GL/glu.\+h$>$}\newline
+{\ttfamily \#include "{}draw\+Object.\+h"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include "{}Camera.\+h"{}}\newline
+myopenglwidget.\+cpp の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{myopenglwidget_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{myopenglwidget_8cpp_a96733d752f26337e8085e1827258b973_a96733d752f26337e8085e1827258b973}{EIGEN\+\_\+\+DISABLE\+\_\+\+UNALIGNED\+\_\+\+ARRAY\+\_\+\+ASSERT}}
+\item 
+\#define \mbox{\hyperlink{myopenglwidget_8cpp_a4962bceade5775b0464f7b604f886cd4_a4962bceade5775b0464f7b604f886cd4}{EIGEN\+\_\+\+DONT\+\_\+\+VECTORIZE}}
+\item 
+\#define \mbox{\hyperlink{myopenglwidget_8cpp_a525335710b53cb064ca56b936120431e_a525335710b53cb064ca56b936120431e}{\+\_\+\+USE\+\_\+\+MATH\+\_\+\+DEFINES}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{変数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{myopenglwidget_8cpp_a2474a5474cbff19523a51eb1de01cda4_a2474a5474cbff19523a51eb1de01cda4}{width}} = 500
+\item 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{myopenglwidget_8cpp_ad12fc34ce789bce6c8a05d8a17138534_ad12fc34ce789bce6c8a05d8a17138534}{height}} = 480
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{myopenglwidget_8cpp_a525335710b53cb064ca56b936120431e_a525335710b53cb064ca56b936120431e}\index{myopenglwidget.cpp@{myopenglwidget.cpp}!\_USE\_MATH\_DEFINES@{\_USE\_MATH\_DEFINES}}
+\index{\_USE\_MATH\_DEFINES@{\_USE\_MATH\_DEFINES}!myopenglwidget.cpp@{myopenglwidget.cpp}}
+\doxysubsubsection{\texorpdfstring{\_USE\_MATH\_DEFINES}{\_USE\_MATH\_DEFINES}}
+{\footnotesize\ttfamily \label{myopenglwidget_8cpp_a525335710b53cb064ca56b936120431e_a525335710b53cb064ca56b936120431e} 
+\#define \+\_\+\+USE\+\_\+\+MATH\+\_\+\+DEFINES}
+
+\Hypertarget{myopenglwidget_8cpp_a96733d752f26337e8085e1827258b973_a96733d752f26337e8085e1827258b973}\index{myopenglwidget.cpp@{myopenglwidget.cpp}!EIGEN\_DISABLE\_UNALIGNED\_ARRAY\_ASSERT@{EIGEN\_DISABLE\_UNALIGNED\_ARRAY\_ASSERT}}
+\index{EIGEN\_DISABLE\_UNALIGNED\_ARRAY\_ASSERT@{EIGEN\_DISABLE\_UNALIGNED\_ARRAY\_ASSERT}!myopenglwidget.cpp@{myopenglwidget.cpp}}
+\doxysubsubsection{\texorpdfstring{EIGEN\_DISABLE\_UNALIGNED\_ARRAY\_ASSERT}{EIGEN\_DISABLE\_UNALIGNED\_ARRAY\_ASSERT}}
+{\footnotesize\ttfamily \label{myopenglwidget_8cpp_a96733d752f26337e8085e1827258b973_a96733d752f26337e8085e1827258b973} 
+\#define EIGEN\+\_\+\+DISABLE\+\_\+\+UNALIGNED\+\_\+\+ARRAY\+\_\+\+ASSERT}
+
+\Hypertarget{myopenglwidget_8cpp_a4962bceade5775b0464f7b604f886cd4_a4962bceade5775b0464f7b604f886cd4}\index{myopenglwidget.cpp@{myopenglwidget.cpp}!EIGEN\_DONT\_VECTORIZE@{EIGEN\_DONT\_VECTORIZE}}
+\index{EIGEN\_DONT\_VECTORIZE@{EIGEN\_DONT\_VECTORIZE}!myopenglwidget.cpp@{myopenglwidget.cpp}}
+\doxysubsubsection{\texorpdfstring{EIGEN\_DONT\_VECTORIZE}{EIGEN\_DONT\_VECTORIZE}}
+{\footnotesize\ttfamily \label{myopenglwidget_8cpp_a4962bceade5775b0464f7b604f886cd4_a4962bceade5775b0464f7b604f886cd4} 
+\#define EIGEN\+\_\+\+DONT\+\_\+\+VECTORIZE}
+
+
+
+\doxysubsection{変数詳解}
+\Hypertarget{myopenglwidget_8cpp_ad12fc34ce789bce6c8a05d8a17138534_ad12fc34ce789bce6c8a05d8a17138534}\index{myopenglwidget.cpp@{myopenglwidget.cpp}!height@{height}}
+\index{height@{height}!myopenglwidget.cpp@{myopenglwidget.cpp}}
+\doxysubsubsection{\texorpdfstring{height}{height}}
+{\footnotesize\ttfamily \label{myopenglwidget_8cpp_ad12fc34ce789bce6c8a05d8a17138534_ad12fc34ce789bce6c8a05d8a17138534} 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} height = 480}
+
+\Hypertarget{myopenglwidget_8cpp_a2474a5474cbff19523a51eb1de01cda4_a2474a5474cbff19523a51eb1de01cda4}\index{myopenglwidget.cpp@{myopenglwidget.cpp}!width@{width}}
+\index{width@{width}!myopenglwidget.cpp@{myopenglwidget.cpp}}
+\doxysubsubsection{\texorpdfstring{width}{width}}
+{\footnotesize\ttfamily \label{myopenglwidget_8cpp_a2474a5474cbff19523a51eb1de01cda4_a2474a5474cbff19523a51eb1de01cda4} 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} width = 500}
+

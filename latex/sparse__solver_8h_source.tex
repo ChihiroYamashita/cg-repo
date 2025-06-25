@@ -1,0 +1,705 @@
+\doxysection{sparse\+\_\+solver.\+h}
+\hypertarget{sparse__solver_8h_source}{}\label{sparse__solver_8h_source}\index{eigen-\/3.4.0/eigen-\/3.4.0/test/sparse\_solver.h@{eigen-\/3.4.0/eigen-\/3.4.0/test/sparse\_solver.h}}
+\mbox{\hyperlink{sparse__solver_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ Eigen,\ a\ lightweight\ C++\ template\ library}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ for\ linear\ algebra.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (C)\ 2011\ Gael\ Guennebaud\ <g.gael@free.fr>}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ This\ Source\ Code\ Form\ is\ subject\ to\ the\ terms\ of\ the\ Mozilla}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Public\ License\ v.\ 2.0.\ If\ a\ copy\ of\ the\ MPL\ was\ not\ distributed}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ with\ this\ file,\ You\ can\ obtain\ one\ at\ http://mozilla.org/MPL/2.0/.}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sparse_8h}{sparse.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Eigen/SparseCore>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <Eigen/SparseLU>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Solver,\ \textcolor{keyword}{typename}\ Rhs,\ \textcolor{keyword}{typename}\ Guess,\textcolor{keyword}{typename}\ Result>}
+\DoxyCodeLine{00016\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sparse__solver_8h_a61fc17617f5be6e4bac3faa50cd3790c_a61fc17617f5be6e4bac3faa50cd3790c}{solve\_with\_guess}}(\mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{IterativeSolverBase<Solver>}}\&\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_matrix_base}{MatrixBase<Rhs>}}\&\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \textcolor{keyword}{const}\ Guess\&\ g,\ Result\ \&\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}})\ \{}
+\DoxyCodeLine{00017\ \ \ \textcolor{keywordflow}{if}(internal::random<bool>())}
+\DoxyCodeLine{00018\ \ \ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ With\ a\ temporary\ through\ evaluator<SolveWithGuess>}}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}\ =\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.derived().solveWithGuess(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},g)\ +\ Result::Zero(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.rows(),\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.cols());}
+\DoxyCodeLine{00021\ \ \ \}}
+\DoxyCodeLine{00022\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00023\ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ direct\ evaluation\ within\ x\ through\ Assignment<Result,SolveWithGuess>}}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}\ =\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.derived().solveWithGuess(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}.derived(),g);}
+\DoxyCodeLine{00026\ \ \ \}}
+\DoxyCodeLine{00027\ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Solver,\ \textcolor{keyword}{typename}\ Rhs,\ \textcolor{keyword}{typename}\ Guess,\textcolor{keyword}{typename}\ Result>}
+\DoxyCodeLine{00030\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sparse__solver_8h_a61fc17617f5be6e4bac3faa50cd3790c_a61fc17617f5be6e4bac3faa50cd3790c}{solve\_with\_guess}}(\mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{SparseSolverBase<Solver>}}\&\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_matrix_base}{MatrixBase<Rhs>}}\&\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \textcolor{keyword}{const}\ Guess\&\ ,\ Result\&\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}})\ \{}
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordflow}{if}(internal::random<bool>())}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}\ =\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.derived().solve(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})\ +\ Result::Zero(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.rows(),\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.cols());}
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}\ =\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.derived().solve(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00035\ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Solver,\ \textcolor{keyword}{typename}\ Rhs,\ \textcolor{keyword}{typename}\ Guess,\textcolor{keyword}{typename}\ Result>}
+\DoxyCodeLine{00038\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sparse__solver_8h_a61fc17617f5be6e4bac3faa50cd3790c_a61fc17617f5be6e4bac3faa50cd3790c}{solve\_with\_guess}}(\mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{SparseSolverBase<Solver>}}\&\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{SparseMatrixBase<Rhs>}}\&\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \textcolor{keyword}{const}\ Guess\&\ ,\ Result\&\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}})\ \{}
+\DoxyCodeLine{00039\ \ \ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}\ =\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.derived().solve(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00040\ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Solver,\ \textcolor{keyword}{typename}\ Rhs,\ \textcolor{keyword}{typename}\ DenseMat,\ \textcolor{keyword}{typename}\ DenseRhs>}
+\DoxyCodeLine{00043\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sparse__solver_8h_a2f19cda157e1f89db0769de982ecc5fa_a2f19cda157e1f89db0769de982ecc5fa}{check\_sparse\_solving}}(Solver\&\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ Solver::MatrixType\&\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \textcolor{keyword}{const}\ Rhs\&\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \textcolor{keyword}{const}\ DenseMat\&\ dA,\ \textcolor{keyword}{const}\ DenseRhs\&\ db)}
+\DoxyCodeLine{00044\ \{}
+\DoxyCodeLine{00045\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ Solver::MatrixType\ \mbox{\hyperlink{gemm__common_8h_af8aa4e04fe5d1aa229a8909d0c412986_af8aa4e04fe5d1aa229a8909d0c412986}{Mat}};}
+\DoxyCodeLine{00046\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_plain_object_base_ab6f2af41301117f8e71219a95754eed9_ab6f2af41301117f8e71219a95754eed9}{Mat::Scalar}}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}};}
+\DoxyCodeLine{00047\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ Mat::StorageIndex\ StorageIndex;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ DenseRhs\ refX\ =\ dA.householderQr().solve(db);}
+\DoxyCodeLine{00050\ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ Rhs\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_a74176163ce10338f1ea1f3bda5afd78c_a74176163ce10338f1ea1f3bda5afd78c}{cols}}(),\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}.cols());}
+\DoxyCodeLine{00052\ \ \ \ \ Rhs\ oldb\ =\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.compute(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}});}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.info()\ !=\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea671a2aeb0f527802806a441d58a80fcf}{Success}})}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}ERROR\ |\ sparse\ solver\ testing,\ factorization\ failed\ ("{}}\ <<\ \textcolor{keyword}{typeid}(Solver).name()\ <<\ \textcolor{stringliteral}{"{})\(\backslash\)n"{}};}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.info()\ ==\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea671a2aeb0f527802806a441d58a80fcf}{Success}});}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}\ =\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.solve(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.info()\ !=\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea671a2aeb0f527802806a441d58a80fcf}{Success}})}
+\DoxyCodeLine{00062\ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}WARNING:\ sparse\ solver\ testing:\ solving\ failed\ ("{}}\ <<\ \textcolor{keyword}{typeid}(Solver).name()\ <<\ \textcolor{stringliteral}{"{})\(\backslash\)n"{}};}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \textcolor{comment}{//\ dump\ call\ stack:}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ g\_test\_level++;\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.info()\ ==\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea671a2aeb0f527802806a441d58a80fcf}{Success}});}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ g\_test\_level-\/-\/;}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(oldb.isApprox(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})\ \&\&\ \textcolor{stringliteral}{"{}sparse\ solver\ testing:\ the\ rhs\ should\ not\ be\ modified!"{}});}
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.isApprox(refX,\mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<Scalar>}}()));}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.setZero();}
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{sparse__solver_8h_a61fc17617f5be6e4bac3faa50cd3790c_a61fc17617f5be6e4bac3faa50cd3790c}{solve\_with\_guess}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}},\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}});}
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.info()\ ==\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea671a2aeb0f527802806a441d58a80fcf}{Success}}\ \&\&\ \textcolor{stringliteral}{"{}solving\ failed\ when\ using\ solve\_with\_guess\ API"{}});}
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(oldb.isApprox(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})\ \&\&\ \textcolor{stringliteral}{"{}sparse\ solver\ testing:\ the\ rhs\ should\ not\ be\ modified!"{}});}
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.isApprox(refX,\mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<Scalar>}}()));}
+\DoxyCodeLine{00078\ \ \ \ \ }
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.setZero();}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//\ test\ the\ analyze/factorize\ API}}
+\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.analyzePattern(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}});}
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.factorize(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}});}
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.info()\ ==\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea671a2aeb0f527802806a441d58a80fcf}{Success}}\ \&\&\ \textcolor{stringliteral}{"{}factorization\ failed\ when\ using\ analyzePattern/factorize\ API"{}});}
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}\ =\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.solve(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.info()\ ==\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea671a2aeb0f527802806a441d58a80fcf}{Success}}\ \&\&\ \textcolor{stringliteral}{"{}solving\ failed\ when\ using\ analyzePattern/factorize\ API"{}});}
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(oldb.isApprox(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})\ \&\&\ \textcolor{stringliteral}{"{}sparse\ solver\ testing:\ the\ rhs\ should\ not\ be\ modified!"{}});}
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.isApprox(refX,\mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<Scalar>}}()));}
+\DoxyCodeLine{00088\ \ \ \ \ }
+\DoxyCodeLine{00089\ \ \ \ \ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.setZero();}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{//\ test\ with\ Map}}
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_mapped_sparse_matrix}{MappedSparseMatrix<Scalar,Mat::Options,StorageIndex>}}\ Am(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_afbc668abdcb3bda3bc4c58c4d88e9603_afbc668abdcb3bda3bc4c58c4d88e9603}{rows}}(),\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_a74176163ce10338f1ea1f3bda5afd78c_a74176163ce10338f1ea1f3bda5afd78c}{cols}}(),\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.nonZeros(),\ \textcolor{keyword}{const\_cast<}StorageIndex*\textcolor{keyword}{>}(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.outerIndexPtr()),\ \textcolor{keyword}{const\_cast<}StorageIndex*\textcolor{keyword}{>}(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.innerIndexPtr()),\ \textcolor{keyword}{const\_cast<}\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}*\textcolor{keyword}{>}(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.valuePtr()));}
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.compute(Am);}
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.info()\ ==\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea671a2aeb0f527802806a441d58a80fcf}{Success}}\ \&\&\ \textcolor{stringliteral}{"{}factorization\ failed\ when\ using\ Map"{}});}
+\DoxyCodeLine{00094\ \ \ \ \ DenseRhs\ dx(refX);}
+\DoxyCodeLine{00095\ \ \ \ \ dx.setZero();}
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_map}{Map<DenseRhs>}}\ xm(dx.data(),\ dx.rows(),\ dx.cols());}
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_map}{Map<const\ DenseRhs>}}\ bm(db.data(),\ db.rows(),\ db.cols());}
+\DoxyCodeLine{00098\ \ \ \ \ xm\ =\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.solve(bm);}
+\DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.info()\ ==\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea671a2aeb0f527802806a441d58a80fcf}{Success}}\ \&\&\ \textcolor{stringliteral}{"{}solving\ failed\ when\ using\ Map"{}});}
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(oldb.isApprox(bm)\ \&\&\ \textcolor{stringliteral}{"{}sparse\ solver\ testing:\ the\ rhs\ should\ not\ be\ modified!"{}});}
+\DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(xm.isApprox(refX,\mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<Scalar>}}()));}
+\DoxyCodeLine{00102\ \ \ \}}
+\DoxyCodeLine{00103\ \ \ }
+\DoxyCodeLine{00104\ \ \ \textcolor{comment}{//\ if\ not\ too\ large,\ do\ some\ extra\ check:}}
+\DoxyCodeLine{00105\ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_afbc668abdcb3bda3bc4c58c4d88e9603_afbc668abdcb3bda3bc4c58c4d88e9603}{rows}}()<2000)}
+\DoxyCodeLine{00106\ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{comment}{//\ test\ initialization\ ctor}}
+\DoxyCodeLine{00108\ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ Rhs\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}.rows(),\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}.cols());}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ Solver\ solver2(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}});}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(solver2.info()\ ==\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea671a2aeb0f527802806a441d58a80fcf}{Success}});}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}\ =\ solver2.solve(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.isApprox(refX,\mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<Scalar>}}()));}
+\DoxyCodeLine{00114\ \ \ \ \ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{comment}{//\ test\ dense\ Block\ as\ the\ result\ and\ rhs:}}
+\DoxyCodeLine{00117\ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ DenseRhs\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}(refX.rows(),\ refX.cols());}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ DenseRhs\ oldb(db);}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.setZero();}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.block(0,0,\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.rows(),\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.cols())\ =\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.solve(db.block(0,0,db.rows(),db.cols()));}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(oldb.isApprox(db)\ \&\&\ \textcolor{stringliteral}{"{}sparse\ solver\ testing:\ the\ rhs\ should\ not\ be\ modified!"{}});}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.isApprox(refX,\mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<Scalar>}}()));}
+\DoxyCodeLine{00124\ \ \ \ \ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{comment}{//\ test\ uncompressed\ inputs}}
+\DoxyCodeLine{00127\ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{Mat}}\ A2\ =\ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}};}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ A2.reserve((ArrayXf::Random(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.outerSize())+2).template\ \mbox{\hyperlink{_common_cwise_unary_ops_8h_aa89d007196125d10fa7d6e19811aca05_aa89d007196125d10fa7d6e19811aca05}{cast<typename\ Mat::StorageIndex>}}().eval());}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.compute(A2);}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ Rhs\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}\ =\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.solve(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.isApprox(refX,\mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<Scalar>}}()));}
+\DoxyCodeLine{00133\ \ \ \ \ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{comment}{//\ test\ expression\ as\ input}}
+\DoxyCodeLine{00136\ \ \ \ \ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.compute(0.5*(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}+\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}));}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ Rhs\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}\ =\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.solve(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.isApprox(refX,\mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<Scalar>}}()));}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ Solver\ solver2(0.5*(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}+\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}));}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ Rhs\ x2\ =\ solver2.solve(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(x2.isApprox(refX,\mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<Scalar>}}()));}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \}}
+\DoxyCodeLine{00146\ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \textcolor{comment}{//\ specialization\ of\ generic\ check\_sparse\_solving\ for\ SuperLU\ in\ order\ to\ also\ test\ adjoint\ and\ transpose\ solves}}
+\DoxyCodeLine{00149\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Scalar,\ \textcolor{keyword}{typename}\ Rhs,\ \textcolor{keyword}{typename}\ DenseMat,\ \textcolor{keyword}{typename}\ DenseRhs>}
+\DoxyCodeLine{00150\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sparse__solver_8h_a2f19cda157e1f89db0769de982ecc5fa_a2f19cda157e1f89db0769de982ecc5fa}{check\_sparse\_solving}}(\mbox{\hyperlink{class_eigen_1_1_sparse_l_u}{Eigen::SparseLU}}<\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen::SparseMatrix<Scalar>}}\ >\&\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen::SparseMatrix<Scalar>}}\&\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \textcolor{keyword}{const}\ Rhs\&\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \textcolor{keyword}{const}\ DenseMat\&\ dA,\ \textcolor{keyword}{const}\ DenseRhs\&\ db)}
+\DoxyCodeLine{00151\ \{}
+\DoxyCodeLine{00152\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen::SparseMatrix<Scalar>}}\ \mbox{\hyperlink{gemm__common_8h_af8aa4e04fe5d1aa229a8909d0c412986_af8aa4e04fe5d1aa229a8909d0c412986}{Mat}};}
+\DoxyCodeLine{00153\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ Mat::StorageIndex\ StorageIndex;}
+\DoxyCodeLine{00154\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_sparse_l_u}{Eigen::SparseLU<Eigen::SparseMatrix<Scalar>}}\ >\ Solver;}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \textcolor{comment}{//\ reference\ solutions\ computed\ by\ dense\ QR\ solver}}
+\DoxyCodeLine{00157\ \ \ DenseRhs\ refX1\ =\ dA.householderQr().\mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_a57c5b7f5e35274b55b5d57e8c88cc4a6_a57c5b7f5e35274b55b5d57e8c88cc4a6}{solve}}(db);\ \textcolor{comment}{//\ solution\ of\ A\ x\ =\ db}}
+\DoxyCodeLine{00158\ \ \ DenseRhs\ refX2\ =\ dA.transpose().householderQr().solve(db);\ \textcolor{comment}{//\ solution\ of\ A\string^T\ *\ x\ =\ db\ (use\ transposed\ matrix\ A\string^T)}}
+\DoxyCodeLine{00159\ \ \ DenseRhs\ refX3\ =\ dA.adjoint().householderQr().solve(db);\ \ \textcolor{comment}{//\ solution\ of\ A\string^*\ *\ x\ =\ db\ (use\ adjoint\ matrix\ A\string^*)}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \{}
+\DoxyCodeLine{00163\ \ \ \ \ Rhs\ x1(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_a74176163ce10338f1ea1f3bda5afd78c_a74176163ce10338f1ea1f3bda5afd78c}{cols}}(),\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}.cols());}
+\DoxyCodeLine{00164\ \ \ \ \ Rhs\ x2(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_a74176163ce10338f1ea1f3bda5afd78c_a74176163ce10338f1ea1f3bda5afd78c}{cols}}(),\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}.cols());}
+\DoxyCodeLine{00165\ \ \ \ \ Rhs\ x3(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_a74176163ce10338f1ea1f3bda5afd78c_a74176163ce10338f1ea1f3bda5afd78c}{cols}}(),\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}.cols());}
+\DoxyCodeLine{00166\ \ \ \ \ Rhs\ oldb\ =\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}};}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.compute(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}});}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.info()\ !=\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea671a2aeb0f527802806a441d58a80fcf}{Success}})}
+\DoxyCodeLine{00170\ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}ERROR\ |\ sparse\ solver\ testing,\ factorization\ failed\ ("{}}\ <<\ \textcolor{keyword}{typeid}(Solver).name()\ <<\ \textcolor{stringliteral}{"{})\(\backslash\)n"{}};}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.info()\ ==\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea671a2aeb0f527802806a441d58a80fcf}{Success}});}
+\DoxyCodeLine{00173\ \ \ \ \ \}}
+\DoxyCodeLine{00174\ \ \ \ \ x1\ =\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.solve(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.info()\ !=\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea671a2aeb0f527802806a441d58a80fcf}{Success}})}
+\DoxyCodeLine{00176\ \ \ \ \ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}WARNING\ |\ sparse\ solver\ testing:\ solving\ failed\ ("{}}\ <<\ \textcolor{keyword}{typeid}(Solver).name()\ <<\ \textcolor{stringliteral}{"{})\(\backslash\)n"{}};}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00179\ \ \ \ \ \}}
+\DoxyCodeLine{00180\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(oldb.isApprox(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},0.0)\ \&\&\ \textcolor{stringliteral}{"{}sparse\ solver\ testing:\ the\ rhs\ should\ not\ be\ modified!"{}});}
+\DoxyCodeLine{00181\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(x1.isApprox(refX1,\mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<Scalar>}}()));}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{comment}{//\ test\ solve\ with\ transposed}}
+\DoxyCodeLine{00184\ \ \ \ \ x2\ =\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.transpose().solve(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00185\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(oldb.isApprox(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})\ \&\&\ \textcolor{stringliteral}{"{}sparse\ solver\ testing:\ the\ rhs\ should\ not\ be\ modified!"{}});}
+\DoxyCodeLine{00186\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(x2.isApprox(refX2,\mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<Scalar>}}()));}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{comment}{//\ test\ solve\ with\ adjoint}}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{comment}{//solver.template\ \_solve\_impl\_transposed<true>(b,\ x3);}}
+\DoxyCodeLine{00191\ \ \ \ \ x3\ =\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.adjoint().solve(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00192\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(oldb.isApprox(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},0.0)\ \&\&\ \textcolor{stringliteral}{"{}sparse\ solver\ testing:\ the\ rhs\ should\ not\ be\ modified!"{}});}
+\DoxyCodeLine{00193\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(x3.isApprox(refX3,\mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<Scalar>}}()));}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ x1.setZero();}
+\DoxyCodeLine{00196\ \ \ \ \ \mbox{\hyperlink{sparse__solver_8h_a61fc17617f5be6e4bac3faa50cd3790c_a61fc17617f5be6e4bac3faa50cd3790c}{solve\_with\_guess}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ x1,\ x1);}
+\DoxyCodeLine{00197\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.info()\ ==\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea671a2aeb0f527802806a441d58a80fcf}{Success}}\ \&\&\ \textcolor{stringliteral}{"{}solving\ failed\ when\ using\ analyzePattern/factorize\ API"{}});}
+\DoxyCodeLine{00198\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(oldb.isApprox(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},0.0)\ \&\&\ \textcolor{stringliteral}{"{}sparse\ solver\ testing:\ the\ rhs\ should\ not\ be\ modified!"{}});}
+\DoxyCodeLine{00199\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(x1.isApprox(refX1,\mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<Scalar>}}()));}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ x1.setZero();}
+\DoxyCodeLine{00202\ \ \ \ \ x2.setZero();}
+\DoxyCodeLine{00203\ \ \ \ \ x3.setZero();}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{comment}{//\ test\ the\ analyze/factorize\ API}}
+\DoxyCodeLine{00205\ \ \ \ \ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.analyzePattern(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}});}
+\DoxyCodeLine{00206\ \ \ \ \ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.factorize(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}});}
+\DoxyCodeLine{00207\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.info()\ ==\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea671a2aeb0f527802806a441d58a80fcf}{Success}}\ \&\&\ \textcolor{stringliteral}{"{}factorization\ failed\ when\ using\ analyzePattern/factorize\ API"{}});}
+\DoxyCodeLine{00208\ \ \ \ \ x1\ =\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.solve(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00209\ \ \ \ \ x2\ =\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.transpose().solve(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00210\ \ \ \ \ x3\ =\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.adjoint().solve(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.info()\ ==\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea671a2aeb0f527802806a441d58a80fcf}{Success}}\ \&\&\ \textcolor{stringliteral}{"{}solving\ failed\ when\ using\ analyzePattern/factorize\ API"{}});}
+\DoxyCodeLine{00213\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(oldb.isApprox(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},0.0)\ \&\&\ \textcolor{stringliteral}{"{}sparse\ solver\ testing:\ the\ rhs\ should\ not\ be\ modified!"{}});}
+\DoxyCodeLine{00214\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(x1.isApprox(refX1,\mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<Scalar>}}()));}
+\DoxyCodeLine{00215\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(x2.isApprox(refX2,\mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<Scalar>}}()));}
+\DoxyCodeLine{00216\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(x3.isApprox(refX3,\mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<Scalar>}}()));}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ x1.setZero();}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{comment}{//\ test\ with\ Map}}
+\DoxyCodeLine{00220\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_mapped_sparse_matrix}{MappedSparseMatrix<Scalar,Mat::Options,StorageIndex>}}\ Am(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_afbc668abdcb3bda3bc4c58c4d88e9603_afbc668abdcb3bda3bc4c58c4d88e9603}{rows}}(),\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_a74176163ce10338f1ea1f3bda5afd78c_a74176163ce10338f1ea1f3bda5afd78c}{cols}}(),\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.nonZeros(),\ \textcolor{keyword}{const\_cast<}StorageIndex*\textcolor{keyword}{>}(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.outerIndexPtr()),\ \textcolor{keyword}{const\_cast<}StorageIndex*\textcolor{keyword}{>}(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.innerIndexPtr()),\ \textcolor{keyword}{const\_cast<}\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}*\textcolor{keyword}{>}(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.valuePtr()));}
+\DoxyCodeLine{00221\ \ \ \ \ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.compute(Am);}
+\DoxyCodeLine{00222\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.info()\ ==\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea671a2aeb0f527802806a441d58a80fcf}{Success}}\ \&\&\ \textcolor{stringliteral}{"{}factorization\ failed\ when\ using\ Map"{}});}
+\DoxyCodeLine{00223\ \ \ \ \ DenseRhs\ dx(refX1);}
+\DoxyCodeLine{00224\ \ \ \ \ dx.setZero();}
+\DoxyCodeLine{00225\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_map}{Map<DenseRhs>}}\ xm(dx.data(),\ dx.rows(),\ dx.cols());}
+\DoxyCodeLine{00226\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_map}{Map<const\ DenseRhs>}}\ bm(db.data(),\ db.rows(),\ db.cols());}
+\DoxyCodeLine{00227\ \ \ \ \ xm\ =\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.solve(bm);}
+\DoxyCodeLine{00228\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.info()\ ==\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea671a2aeb0f527802806a441d58a80fcf}{Success}}\ \&\&\ \textcolor{stringliteral}{"{}solving\ failed\ when\ using\ Map"{}});}
+\DoxyCodeLine{00229\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(oldb.isApprox(bm,0.0)\ \&\&\ \textcolor{stringliteral}{"{}sparse\ solver\ testing:\ the\ rhs\ should\ not\ be\ modified!"{}});}
+\DoxyCodeLine{00230\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(xm.isApprox(refX1,\mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<Scalar>}}()));}
+\DoxyCodeLine{00231\ \ \ \}}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \textcolor{comment}{//\ if\ not\ too\ large,\ do\ some\ extra\ check:}}
+\DoxyCodeLine{00234\ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_afbc668abdcb3bda3bc4c58c4d88e9603_afbc668abdcb3bda3bc4c58c4d88e9603}{rows}}()<2000)}
+\DoxyCodeLine{00235\ \ \ \{}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{comment}{//\ test\ initialization\ ctor}}
+\DoxyCodeLine{00237\ \ \ \ \ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ Rhs\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}.rows(),\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}.cols());}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ Solver\ solver2(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}});}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(solver2.info()\ ==\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea671a2aeb0f527802806a441d58a80fcf}{Success}});}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}\ =\ solver2.solve(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.isApprox(refX1,\mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<Scalar>}}()));}
+\DoxyCodeLine{00243\ \ \ \ \ \}}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{comment}{//\ test\ dense\ Block\ as\ the\ result\ and\ rhs:}}
+\DoxyCodeLine{00246\ \ \ \ \ \{}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ DenseRhs\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}(refX1.rows(),\ refX1.cols());}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ DenseRhs\ oldb(db);}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.setZero();}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.block(0,0,\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.rows(),\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.cols())\ =\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.solve(db.block(0,0,db.rows(),db.cols()));}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(oldb.isApprox(db,0.0)\ \&\&\ \textcolor{stringliteral}{"{}sparse\ solver\ testing:\ the\ rhs\ should\ not\ be\ modified!"{}});}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.isApprox(refX1,\mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<Scalar>}}()));}
+\DoxyCodeLine{00253\ \ \ \ \ \}}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{comment}{//\ test\ uncompressed\ inputs}}
+\DoxyCodeLine{00256\ \ \ \ \ \{}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{Mat}}\ A2\ =\ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}};}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ A2.reserve((ArrayXf::Random(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.outerSize())+2).template\ \mbox{\hyperlink{_common_cwise_unary_ops_8h_aa89d007196125d10fa7d6e19811aca05_aa89d007196125d10fa7d6e19811aca05}{cast<typename\ Mat::StorageIndex>}}().eval());}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.compute(A2);}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ Rhs\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}\ =\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.solve(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.isApprox(refX1,\mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<Scalar>}}()));}
+\DoxyCodeLine{00262\ \ \ \ \ \}}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \ \ \ \ \textcolor{comment}{//\ test\ expression\ as\ input}}
+\DoxyCodeLine{00265\ \ \ \ \ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.compute(0.5*(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}+\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}));}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ Rhs\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}\ =\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.solve(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}.isApprox(refX1,\mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<Scalar>}}()));}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \ \ \ \ \ \ Solver\ solver2(0.5*(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}+\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}));}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ Rhs\ x2\ =\ solver2.solve(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(x2.isApprox(refX1,\mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<Scalar>}}()));}
+\DoxyCodeLine{00273\ \ \ \ \ \}}
+\DoxyCodeLine{00274\ \ \ \}}
+\DoxyCodeLine{00275\ \}}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Solver,\ \textcolor{keyword}{typename}\ Rhs>}
+\DoxyCodeLine{00279\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sparse__solver_8h_ab2f968e2c551b1869cf26ef5c6b4909e_ab2f968e2c551b1869cf26ef5c6b4909e}{check\_sparse\_solving\_real\_cases}}(Solver\&\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ Solver::MatrixType\&\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \textcolor{keyword}{const}\ Rhs\&\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ Solver::MatrixType\&\ fullA,\ \textcolor{keyword}{const}\ Rhs\&\ refX)}
+\DoxyCodeLine{00280\ \{}
+\DoxyCodeLine{00281\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ Solver::MatrixType\ \mbox{\hyperlink{gemm__common_8h_af8aa4e04fe5d1aa229a8909d0c412986_af8aa4e04fe5d1aa229a8909d0c412986}{Mat}};}
+\DoxyCodeLine{00282\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_plain_object_base_ab6f2af41301117f8e71219a95754eed9_ab6f2af41301117f8e71219a95754eed9}{Mat::Scalar}}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}};}
+\DoxyCodeLine{00283\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_triplet}{Mat::RealScalar}}\ \mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{RealScalar}};}
+\DoxyCodeLine{00284\ \ \ }
+\DoxyCodeLine{00285\ \ \ Rhs\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_a74176163ce10338f1ea1f3bda5afd78c_a74176163ce10338f1ea1f3bda5afd78c}{cols}}(),\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}.cols());}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \ \ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.compute(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}});}
+\DoxyCodeLine{00288\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.info()\ !=\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea671a2aeb0f527802806a441d58a80fcf}{Success}})}
+\DoxyCodeLine{00289\ \ \ \{}
+\DoxyCodeLine{00290\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}ERROR\ |\ sparse\ solver\ testing,\ factorization\ failed\ ("{}}\ <<\ \textcolor{keyword}{typeid}(Solver).name()\ <<\ \textcolor{stringliteral}{"{})\(\backslash\)n"{}};}
+\DoxyCodeLine{00291\ \ \ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.info()\ ==\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea671a2aeb0f527802806a441d58a80fcf}{Success}});}
+\DoxyCodeLine{00292\ \ \ \}}
+\DoxyCodeLine{00293\ \ \ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}\ =\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.solve(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00294\ \ \ }
+\DoxyCodeLine{00295\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.info()\ !=\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea671a2aeb0f527802806a441d58a80fcf}{Success}})}
+\DoxyCodeLine{00296\ \ \ \{}
+\DoxyCodeLine{00297\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}WARNING\ |\ sparse\ solver\ testing,\ solving\ failed\ ("{}}\ <<\ \textcolor{keyword}{typeid}(Solver).name()\ <<\ \textcolor{stringliteral}{"{})\(\backslash\)n"{}};}
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00299\ \ \ \}}
+\DoxyCodeLine{00300\ \ \ }
+\DoxyCodeLine{00301\ \ \ \mbox{\hyperlink{bench__gemm_8cpp_acb5c3dc237f99cf17167e8a629f01b43_acb5c3dc237f99cf17167e8a629f01b43}{RealScalar}}\ res\_error\ =\ (fullA*\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}-\/\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}).norm()/\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}.norm();\ \ }
+\DoxyCodeLine{00302\ \ \ \mbox{\hyperlink{main_8h_a8fd475674858848a6a3fa5e47bde4727_a8fd475674858848a6a3fa5e47bde4727}{VERIFY}}(\ (res\_error\ <=\ \mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<Scalar>}}()\ )\ \&\&\ \textcolor{stringliteral}{"{}sparse\ solver\ failed\ without\ noticing\ it"{}});\ }
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \ \ }
+\DoxyCodeLine{00305\ \ \ \textcolor{keywordflow}{if}(refX.size()\ !=\ 0\ \&\&\ (refX\ -\/\ \mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}).norm()/refX.norm()\ >\ \mbox{\hyperlink{namespace_eigen_a59fa1c0c2d234197bce8d461a4776793_a59fa1c0c2d234197bce8d461a4776793}{test\_precision<Scalar>}}())}
+\DoxyCodeLine{00306\ \ \ \{}
+\DoxyCodeLine{00307\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}WARNING\ |\ found\ solution\ is\ different\ from\ the\ provided\ reference\ one\(\backslash\)n"{}};}
+\DoxyCodeLine{00308\ \ \ \}}
+\DoxyCodeLine{00309\ \ \ }
+\DoxyCodeLine{00310\ \}}
+\DoxyCodeLine{00311\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Solver,\ \textcolor{keyword}{typename}\ DenseMat>}
+\DoxyCodeLine{00312\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sparse__solver_8h_a77821f9c68aee77a3a6709d463b95e02_a77821f9c68aee77a3a6709d463b95e02}{check\_sparse\_determinant}}(Solver\&\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ Solver::MatrixType\&\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \textcolor{keyword}{const}\ DenseMat\&\ dA)}
+\DoxyCodeLine{00313\ \{}
+\DoxyCodeLine{00314\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ Solver::MatrixType\ \mbox{\hyperlink{gemm__common_8h_af8aa4e04fe5d1aa229a8909d0c412986_af8aa4e04fe5d1aa229a8909d0c412986}{Mat}};}
+\DoxyCodeLine{00315\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_plain_object_base_ab6f2af41301117f8e71219a95754eed9_ab6f2af41301117f8e71219a95754eed9}{Mat::Scalar}}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}};}
+\DoxyCodeLine{00316\ \ \ }
+\DoxyCodeLine{00317\ \ \ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.compute(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}});}
+\DoxyCodeLine{00318\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.info()\ !=\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea671a2aeb0f527802806a441d58a80fcf}{Success}})}
+\DoxyCodeLine{00319\ \ \ \{}
+\DoxyCodeLine{00320\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}WARNING\ |\ sparse\ solver\ testing:\ factorization\ failed\ (check\_sparse\_determinant)\(\backslash\)n"{}};}
+\DoxyCodeLine{00321\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00322\ \ \ \}}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \ \ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}\ refDet\ =\ dA.determinant();}
+\DoxyCodeLine{00325\ \ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(refDet,\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.determinant());}
+\DoxyCodeLine{00326\ \}}
+\DoxyCodeLine{00327\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Solver,\ \textcolor{keyword}{typename}\ DenseMat>}
+\DoxyCodeLine{00328\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sparse__solver_8h_a9cd6b2c65f978726c4dd9b1172b2dce2_a9cd6b2c65f978726c4dd9b1172b2dce2}{check\_sparse\_abs\_determinant}}(Solver\&\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ Solver::MatrixType\&\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \textcolor{keyword}{const}\ DenseMat\&\ dA)}
+\DoxyCodeLine{00329\ \{}
+\DoxyCodeLine{00330\ \ \ \textcolor{keyword}{using\ }std::abs;}
+\DoxyCodeLine{00331\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ Solver::MatrixType\ \mbox{\hyperlink{gemm__common_8h_af8aa4e04fe5d1aa229a8909d0c412986_af8aa4e04fe5d1aa229a8909d0c412986}{Mat}};}
+\DoxyCodeLine{00332\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_plain_object_base_ab6f2af41301117f8e71219a95754eed9_ab6f2af41301117f8e71219a95754eed9}{Mat::Scalar}}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}};}
+\DoxyCodeLine{00333\ \ \ }
+\DoxyCodeLine{00334\ \ \ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.compute(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}});}
+\DoxyCodeLine{00335\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.info()\ !=\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea671a2aeb0f527802806a441d58a80fcf}{Success}})}
+\DoxyCodeLine{00336\ \ \ \{}
+\DoxyCodeLine{00337\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}WARNING\ |\ sparse\ solver\ testing:\ factorization\ failed\ (check\_sparse\_abs\_determinant)\(\backslash\)n"{}};}
+\DoxyCodeLine{00338\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00339\ \ \ \}}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \ \ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}\ refDet\ =\ \mbox{\hyperlink{datatypes_8h_a3aa069ac3980707dae1e0530f50d59e4_a3aa069ac3980707dae1e0530f50d59e4}{abs}}(dA.determinant());}
+\DoxyCodeLine{00342\ \ \ \mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(refDet,\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.absDeterminant());}
+\DoxyCodeLine{00343\ \}}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Solver,\ \textcolor{keyword}{typename}\ DenseMat>}
+\DoxyCodeLine{00346\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sparse__solver_8h_a0738bf32820ffdebd9d56c39df80c6a8_a0738bf32820ffdebd9d56c39df80c6a8}{generate\_sparse\_spd\_problem}}(Solver\&\ ,\ \textcolor{keyword}{typename}\ Solver::MatrixType\&\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \textcolor{keyword}{typename}\ Solver::MatrixType\&\ halfA,\ DenseMat\&\ dA,\ \textcolor{keywordtype}{int}\ maxSize\ =\ 300)}
+\DoxyCodeLine{00347\ \{}
+\DoxyCodeLine{00348\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ Solver::MatrixType\ \mbox{\hyperlink{gemm__common_8h_af8aa4e04fe5d1aa229a8909d0c412986_af8aa4e04fe5d1aa229a8909d0c412986}{Mat}};}
+\DoxyCodeLine{00349\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_plain_object_base_ab6f2af41301117f8e71219a95754eed9_ab6f2af41301117f8e71219a95754eed9}{Mat::Scalar}}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}};}
+\DoxyCodeLine{00350\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<Scalar,Dynamic,Dynamic>}}\ \mbox{\hyperlink{_bench_sparse_util_8h_ac8485cdde68067acc4788b568e5a44ef_ac8485cdde68067acc4788b568e5a44ef}{DenseMatrix}};}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}\ =\ internal::random<int>(1,maxSize);}
+\DoxyCodeLine{00353\ \ \ \textcolor{keywordtype}{double}\ density\ =\ (std::max)(8./(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}*\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}),\ 0.01);}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{Mat}}\ \mbox{\hyperlink{bench__gemm_8cpp_ab5dd1f220bc26139711259d5edbc1740_ab5dd1f220bc26139711259d5edbc1740}{M}}(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}});}
+\DoxyCodeLine{00356\ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{DenseMatrix}}\ dM(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}});}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00358\ \ \ \mbox{\hyperlink{sparse_8h_a3ba4abd21a1ace3122406c3b3b27fc5b_a3ba4abd21a1ace3122406c3b3b27fc5b}{initSparse<Scalar>}}(density,\ dM,\ \mbox{\hyperlink{class_eigen_1_1_matrix}{M}},\ \mbox{\hyperlink{sparse_8h_a9f9afaca3bad3b24713219e83615be1a_a9f9afaca3bad3b24713219e83615be1aac57c7eb0d864246e4402f4710e5be051}{ForceNonZeroDiag}});}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{M}}\ *\ \mbox{\hyperlink{class_eigen_1_1_matrix}{M}}.adjoint();}
+\DoxyCodeLine{00361\ \ \ dA\ =\ dM\ *\ dM.adjoint();}
+\DoxyCodeLine{00362\ \ \ }
+\DoxyCodeLine{00363\ \ \ halfA.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_a99d9054ee2d5a40c6e00ded0265e9cea_a99d9054ee2d5a40c6e00ded0265e9cea}{resize}}(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}});}
+\DoxyCodeLine{00364\ \ \ \textcolor{keywordflow}{if}(Solver::UpLo==(\mbox{\hyperlink{group__enums_ga39e3366ff5554d731e7dc8bb642f83cd_gga39e3366ff5554d731e7dc8bb642f83cdaf581029282d421eee5aae14238c6f749}{Lower}}|\mbox{\hyperlink{group__enums_ga39e3366ff5554d731e7dc8bb642f83cd_gga39e3366ff5554d731e7dc8bb642f83cdafca2ccebb604f171656deb53e8c083c1}{Upper}}))}
+\DoxyCodeLine{00365\ \ \ \ \ halfA\ =\ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}};}
+\DoxyCodeLine{00366\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00367\ \ \ \ \ halfA.template\ selfadjointView<Solver::UpLo>().rankUpdate(\mbox{\hyperlink{class_eigen_1_1_matrix}{M}});}
+\DoxyCodeLine{00368\ \ \ }
+\DoxyCodeLine{00369\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}};}
+\DoxyCodeLine{00370\ \}}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ \textcolor{preprocessor}{\#ifdef\ TEST\_REAL\_CASES}}
+\DoxyCodeLine{00374\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00375\ \textcolor{keyword}{inline}\ std::string\ get\_matrixfolder()}
+\DoxyCodeLine{00376\ \{}
+\DoxyCodeLine{00377\ \ \ std::string\ mat\_folder\ =\ TEST\_REAL\_CASES;\ }
+\DoxyCodeLine{00378\ \ \ \textcolor{keywordflow}{if}(\ internal::is\_same<\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}},\ std::complex<float>\ >::value\ ||\ internal::is\_same<\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}},\ std::complex<double>\ >::value\ )}
+\DoxyCodeLine{00379\ \ \ \ \ mat\_folder\ \ =\ mat\_folder\ +\ \textcolor{keyword}{static\_cast<}std::string\textcolor{keyword}{>}(\textcolor{stringliteral}{"{}/complex/"{}});}
+\DoxyCodeLine{00380\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00381\ \ \ \ \ mat\_folder\ =\ mat\_folder\ +\ \textcolor{keyword}{static\_cast<}std::string\textcolor{keyword}{>}(\textcolor{stringliteral}{"{}/real/"{}});}
+\DoxyCodeLine{00382\ \ \ \textcolor{keywordflow}{return}\ mat\_folder;}
+\DoxyCodeLine{00383\ \}}
+\DoxyCodeLine{00384\ std::string\ sym\_to\_string(\textcolor{keywordtype}{int}\ sym)}
+\DoxyCodeLine{00385\ \{}
+\DoxyCodeLine{00386\ \ \ \textcolor{keywordflow}{if}(sym==\mbox{\hyperlink{group__enums_ga39e3366ff5554d731e7dc8bb642f83cd_gga39e3366ff5554d731e7dc8bb642f83cdad5381b2d1c8973a08303c94e7da02333}{Symmetric}})\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Symmetric\ "{}};}
+\DoxyCodeLine{00387\ \ \ \textcolor{keywordflow}{if}(sym==\mbox{\hyperlink{namespace_eigen_a821436e9e9db3f0310aed565115dadc0_a821436e9e9db3f0310aed565115dadc0ac8f4a3e1f6216d1190f8cfcb2a5106f6}{SPD}})\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}SPD\ "{}};}
+\DoxyCodeLine{00388\ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00389\ \}}
+\DoxyCodeLine{00390\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived>}
+\DoxyCodeLine{00391\ std::string\ solver\_stats(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_iterative_solver_base}{IterativeSolverBase<Derived>}}\ \&\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}})}
+\DoxyCodeLine{00392\ \{}
+\DoxyCodeLine{00393\ \ \ std::stringstream\ ss;}
+\DoxyCodeLine{00394\ \ \ ss\ <<\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.iterations()\ <<\ \textcolor{stringliteral}{"{}\ iters,\ error:\ "{}}\ <<\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.error();}
+\DoxyCodeLine{00395\ \ \ \textcolor{keywordflow}{return}\ ss.str();}
+\DoxyCodeLine{00396\ \}}
+\DoxyCodeLine{00397\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived>}
+\DoxyCodeLine{00398\ std::string\ solver\_stats(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{SparseSolverBase<Derived>}}\ \&\textcolor{comment}{/*solver*/})}
+\DoxyCodeLine{00399\ \{}
+\DoxyCodeLine{00400\ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00401\ \}}
+\DoxyCodeLine{00402\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Solver>\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sparse__solver_8h_a684820be3cc94fa2c29ff25d555977c0_a684820be3cc94fa2c29ff25d555977c0}{check\_sparse\_spd\_solving}}(Solver\&\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \textcolor{keywordtype}{int}\ maxSize\ =\ (std::min)(300,\mbox{\hyperlink{boostmultiprec_8cpp_a35acd92ad04929c35c17e12762249b15_a35acd92ad04929c35c17e12762249b15}{EIGEN\_TEST\_MAX\_SIZE}}),\ \textcolor{keywordtype}{int}\ maxRealWorldSize\ =\ 100000)}
+\DoxyCodeLine{00405\ \{}
+\DoxyCodeLine{00406\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ Solver::MatrixType\ \mbox{\hyperlink{gemm__common_8h_af8aa4e04fe5d1aa229a8909d0c412986_af8aa4e04fe5d1aa229a8909d0c412986}{Mat}};}
+\DoxyCodeLine{00407\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_plain_object_base_ab6f2af41301117f8e71219a95754eed9_ab6f2af41301117f8e71219a95754eed9}{Mat::Scalar}}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}};}
+\DoxyCodeLine{00408\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ Mat::StorageIndex\ StorageIndex;}
+\DoxyCodeLine{00409\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{SparseMatrix<Scalar,ColMajor,\ StorageIndex>}}\ \mbox{\hyperlink{_tutorial__sparse__example_8cpp_a04b63929a2578b5ce61f09f0b8b18122_a04b63929a2578b5ce61f09f0b8b18122}{SpMat}};}
+\DoxyCodeLine{00410\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_sparse_vector}{SparseVector<Scalar,\ 0,\ StorageIndex>}}\ SpVec;}
+\DoxyCodeLine{00411\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<Scalar,Dynamic,Dynamic>}}\ \mbox{\hyperlink{_bench_sparse_util_8h_ac8485cdde68067acc4788b568e5a44ef_ac8485cdde68067acc4788b568e5a44ef}{DenseMatrix}};}
+\DoxyCodeLine{00412\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<Scalar,Dynamic,1>}}\ \mbox{\hyperlink{_bench_sparse_util_8h_a2f3f67c514b9315305427f94ed179c53_a2f3f67c514b9315305427f94ed179c53}{DenseVector}};}
+\DoxyCodeLine{00413\ }
+\DoxyCodeLine{00414\ \ \ \textcolor{comment}{//\ generate\ the\ problem}}
+\DoxyCodeLine{00415\ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{Mat}}\ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}},\ halfA;}
+\DoxyCodeLine{00416\ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{DenseMatrix}}\ dA;}
+\DoxyCodeLine{00417\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ <\ g\_repeat;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}++)\ \{}
+\DoxyCodeLine{00418\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}\ =\ \mbox{\hyperlink{sparse__solver_8h_a0738bf32820ffdebd9d56c39df80c6a8_a0738bf32820ffdebd9d56c39df80c6a8}{generate\_sparse\_spd\_problem}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ halfA,\ dA,\ maxSize);}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ \ \ \ \ \textcolor{comment}{//\ generate\ the\ right\ hand\ sides}}
+\DoxyCodeLine{00421\ \ \ \ \ \textcolor{keywordtype}{int}\ rhsCols\ =\ internal::random<int>(1,16);}
+\DoxyCodeLine{00422\ \ \ \ \ \textcolor{keywordtype}{double}\ density\ =\ (std::max)(8./(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}*rhsCols),\ 0.1);}
+\DoxyCodeLine{00423\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{SpMat}}\ \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}}(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},rhsCols);}
+\DoxyCodeLine{00424\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{DenseVector}}\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}\ =\ DenseVector::Random(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}});}
+\DoxyCodeLine{00425\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{DenseMatrix}}\ dB(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},rhsCols);}
+\DoxyCodeLine{00426\ \ \ \ \ \mbox{\hyperlink{sparse_8h_a3ba4abd21a1ace3122406c3b3b27fc5b_a3ba4abd21a1ace3122406c3b3b27fc5b}{initSparse<Scalar>}}(density,\ dB,\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}},\ \mbox{\hyperlink{sparse_8h_a9f9afaca3bad3b24713219e83615be1a_a9f9afaca3bad3b24713219e83615be1aac57c7eb0d864246e4402f4710e5be051}{ForceNonZeroDiag}});}
+\DoxyCodeLine{00427\ \ \ \ \ SpVec\ \mbox{\hyperlink{bench_vec_add_8cpp_a41689956983587b085f9da3e48f31d99_a41689956983587b085f9da3e48f31d99}{c}}\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.col(0);}
+\DoxyCodeLine{00428\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{DenseVector}}\ dc\ =\ dB.col(0);}
+\DoxyCodeLine{00429\ \ \ }
+\DoxyCodeLine{00430\ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}(\ \mbox{\hyperlink{sparse__solver_8h_a2f19cda157e1f89db0769de982ecc5fa_a2f19cda157e1f89db0769de982ecc5fa}{check\_sparse\_solving}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \ \ \ \ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \ dA,\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})\ \ );}
+\DoxyCodeLine{00431\ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}(\ \mbox{\hyperlink{sparse__solver_8h_a2f19cda157e1f89db0769de982ecc5fa_a2f19cda157e1f89db0769de982ecc5fa}{check\_sparse\_solving}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ halfA,\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \ dA,\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})\ \ );}
+\DoxyCodeLine{00432\ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}(\ \mbox{\hyperlink{sparse__solver_8h_a2f19cda157e1f89db0769de982ecc5fa_a2f19cda157e1f89db0769de982ecc5fa}{check\_sparse\_solving}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \ \ \ \ dB,\ dA,\ dB)\ );}
+\DoxyCodeLine{00433\ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}(\ \mbox{\hyperlink{sparse__solver_8h_a2f19cda157e1f89db0769de982ecc5fa_a2f19cda157e1f89db0769de982ecc5fa}{check\_sparse\_solving}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ halfA,\ dB,\ dA,\ dB)\ );}
+\DoxyCodeLine{00434\ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}(\ \mbox{\hyperlink{sparse__solver_8h_a2f19cda157e1f89db0769de982ecc5fa_a2f19cda157e1f89db0769de982ecc5fa}{check\_sparse\_solving}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}},\ \ dA,\ dB)\ );}
+\DoxyCodeLine{00435\ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}(\ \mbox{\hyperlink{sparse__solver_8h_a2f19cda157e1f89db0769de982ecc5fa_a2f19cda157e1f89db0769de982ecc5fa}{check\_sparse\_solving}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ halfA,\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}},\ \ dA,\ dB)\ );}
+\DoxyCodeLine{00436\ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}(\ \mbox{\hyperlink{sparse__solver_8h_a2f19cda157e1f89db0769de982ecc5fa_a2f19cda157e1f89db0769de982ecc5fa}{check\_sparse\_solving}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \ \ \ \ \mbox{\hyperlink{bench_vec_add_8cpp_a41689956983587b085f9da3e48f31d99_a41689956983587b085f9da3e48f31d99}{c}},\ \ dA,\ dc)\ );}
+\DoxyCodeLine{00437\ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}(\ \mbox{\hyperlink{sparse__solver_8h_a2f19cda157e1f89db0769de982ecc5fa_a2f19cda157e1f89db0769de982ecc5fa}{check\_sparse\_solving}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ halfA,\ \mbox{\hyperlink{bench_vec_add_8cpp_a41689956983587b085f9da3e48f31d99_a41689956983587b085f9da3e48f31d99}{c}},\ \ dA,\ dc)\ );}
+\DoxyCodeLine{00438\ \ \ \ \ }
+\DoxyCodeLine{00439\ \ \ \ \ \textcolor{comment}{//\ check\ only\ once}}
+\DoxyCodeLine{00440\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}==0)}
+\DoxyCodeLine{00441\ \ \ \ \ \{}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}\ =\ DenseVector::Zero(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}});}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \mbox{\hyperlink{sparse__solver_8h_a2f19cda157e1f89db0769de982ecc5fa_a2f19cda157e1f89db0769de982ecc5fa}{check\_sparse\_solving}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ dA,\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00444\ \ \ \ \ \}}
+\DoxyCodeLine{00445\ \ \ \}}
+\DoxyCodeLine{00446\ \ \ }
+\DoxyCodeLine{00447\ \ \ \textcolor{comment}{//\ First,\ get\ the\ folder\ }}
+\DoxyCodeLine{00448\ \textcolor{preprocessor}{\#ifdef\ TEST\_REAL\_CASES}}
+\DoxyCodeLine{00449\ \ \ \textcolor{comment}{//\ Test\ real\ problems\ with\ double\ precision\ only}}
+\DoxyCodeLine{00450\ \ \ \textcolor{keywordflow}{if}\ (internal::is\_same<\textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<Scalar>::Real}},\ \textcolor{keywordtype}{double}>::value)}
+\DoxyCodeLine{00451\ \ \ \{}
+\DoxyCodeLine{00452\ \ \ \ \ std::string\ mat\_folder\ =\ get\_matrixfolder<Scalar>();}
+\DoxyCodeLine{00453\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix_market_iterator}{MatrixMarketIterator<Scalar>}}\ it(mat\_folder);}
+\DoxyCodeLine{00454\ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ it;\ ++it)}
+\DoxyCodeLine{00455\ \ \ \ \ \{}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it.\mbox{\hyperlink{class_eigen_1_1_matrix_market_iterator_ace72fd4804dfc9c7fc9018f2712be9fe_ace72fd4804dfc9c7fc9018f2712be9fe}{sym}}()\ ==\ \mbox{\hyperlink{namespace_eigen_a821436e9e9db3f0310aed565115dadc0_a821436e9e9db3f0310aed565115dadc0ac8f4a3e1f6216d1190f8cfcb2a5106f6}{SPD}})\{}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}\ =\ it.\mbox{\hyperlink{class_eigen_1_1_matrix_market_iterator_a225e3e6415b8eb3a709bb8269133f888_a225e3e6415b8eb3a709bb8269133f888}{matrix}}();}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.diagonal().size()\ <=\ maxRealWorldSize)}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{DenseVector}}\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}\ =\ it.\mbox{\hyperlink{class_eigen_1_1_matrix_market_iterator_a7aad817f6e07f11ba3c9139e7e4d02b7_a7aad817f6e07f11ba3c9139e7e4d02b7}{rhs}}();}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{DenseVector}}\ refX\ =\ it.\mbox{\hyperlink{class_eigen_1_1_matrix_market_iterator_a610eb67e066cdd31e6777e070fe1086a_a610eb67e066cdd31e6777e070fe1086a}{refX}}();}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{PermutationMatrix<Dynamic,\ Dynamic,\ StorageIndex>}}\ pnull;}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ halfA.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_a99d9054ee2d5a40c6e00ded0265e9cea_a99d9054ee2d5a40c6e00ded0265e9cea}{resize}}(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_afbc668abdcb3bda3bc4c58c4d88e9603_afbc668abdcb3bda3bc4c58c4d88e9603}{rows}}(),\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_a74176163ce10338f1ea1f3bda5afd78c_a74176163ce10338f1ea1f3bda5afd78c}{cols}}());}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(Solver::UpLo\ ==\ (\mbox{\hyperlink{group__enums_ga39e3366ff5554d731e7dc8bb642f83cd_gga39e3366ff5554d731e7dc8bb642f83cdaf581029282d421eee5aae14238c6f749}{Lower}}|\mbox{\hyperlink{group__enums_ga39e3366ff5554d731e7dc8bb642f83cd_gga39e3366ff5554d731e7dc8bb642f83cdafca2ccebb604f171656deb53e8c083c1}{Upper}}))}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ halfA\ =\ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}};}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ halfA.template\ selfadjointView<Solver::UpLo>()\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.template\ triangularView<Eigen::Lower>().twistedBy(pnull);}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}INFO\ |\ Testing\ "{}}\ <<\ sym\_to\_string(it.\mbox{\hyperlink{class_eigen_1_1_matrix_market_iterator_ace72fd4804dfc9c7fc9018f2712be9fe_ace72fd4804dfc9c7fc9018f2712be9fe}{sym}}())\ <<\ \textcolor{stringliteral}{"{}sparse\ problem\ "{}}\ <<\ it.\mbox{\hyperlink{class_eigen_1_1_matrix_market_iterator_a79b13fa6510e56c071bc463859b1cbe9_a79b13fa6510e56c071bc463859b1cbe9}{matname}}()}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ ("{}}\ <<\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_afbc668abdcb3bda3bc4c58c4d88e9603_afbc668abdcb3bda3bc4c58c4d88e9603}{rows}}()\ <<\ \textcolor{stringliteral}{"{}x"{}}\ <<\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_a74176163ce10338f1ea1f3bda5afd78c_a74176163ce10338f1ea1f3bda5afd78c}{cols}}()\ <<\ \textcolor{stringliteral}{"{})\ using\ "{}}\ <<\ \textcolor{keyword}{typeid}(Solver).name()\ <<\ \textcolor{stringliteral}{"{}..."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}(\ \mbox{\hyperlink{sparse__solver_8h_ab2f968e2c551b1869cf26ef5c6b4909e_ab2f968e2c551b1869cf26ef5c6b4909e}{check\_sparse\_solving\_real\_cases}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \ \ \ \ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ refX)\ );}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \ \ std::string\ stats\ =\ solver\_stats(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}});}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(stats.size()>0)}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}INFO\ |\ \ "{}}\ <<\ stats\ <<\ std::endl;}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}(\ \mbox{\hyperlink{sparse__solver_8h_ab2f968e2c551b1869cf26ef5c6b4909e_ab2f968e2c551b1869cf26ef5c6b4909e}{check\_sparse\_solving\_real\_cases}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ halfA,\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ refX)\ );}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}INFO\ |\ Skip\ sparse\ problem\ \(\backslash\)"{}"{}}\ <<\ it.\mbox{\hyperlink{class_eigen_1_1_matrix_market_iterator_a79b13fa6510e56c071bc463859b1cbe9_a79b13fa6510e56c071bc463859b1cbe9}{matname}}()\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}\ (too\ large)"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00482\ \ \ \ \ \}}
+\DoxyCodeLine{00483\ \ \ \}}
+\DoxyCodeLine{00484\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00485\ \ \ \mbox{\hyperlink{_macros_8h_a7cf6d5b460def34dc4e6acf42889b6a9_a7cf6d5b460def34dc4e6acf42889b6a9}{EIGEN\_UNUSED\_VARIABLE}}(maxRealWorldSize);}
+\DoxyCodeLine{00486\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00487\ \}}
+\DoxyCodeLine{00488\ }
+\DoxyCodeLine{00489\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Solver>\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sparse__solver_8h_a4ab206481ed9b282ac77a44ad3bf7293_a4ab206481ed9b282ac77a44ad3bf7293}{check\_sparse\_spd\_determinant}}(Solver\&\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}})}
+\DoxyCodeLine{00490\ \{}
+\DoxyCodeLine{00491\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ Solver::MatrixType\ \mbox{\hyperlink{gemm__common_8h_af8aa4e04fe5d1aa229a8909d0c412986_af8aa4e04fe5d1aa229a8909d0c412986}{Mat}};}
+\DoxyCodeLine{00492\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_plain_object_base_ab6f2af41301117f8e71219a95754eed9_ab6f2af41301117f8e71219a95754eed9}{Mat::Scalar}}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}};}
+\DoxyCodeLine{00493\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<Scalar,Dynamic,Dynamic>}}\ \mbox{\hyperlink{_bench_sparse_util_8h_ac8485cdde68067acc4788b568e5a44ef_ac8485cdde68067acc4788b568e5a44ef}{DenseMatrix}};}
+\DoxyCodeLine{00494\ }
+\DoxyCodeLine{00495\ \ \ \textcolor{comment}{//\ generate\ the\ problem}}
+\DoxyCodeLine{00496\ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{Mat}}\ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}},\ halfA;}
+\DoxyCodeLine{00497\ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{DenseMatrix}}\ dA;}
+\DoxyCodeLine{00498\ \ \ \mbox{\hyperlink{sparse__solver_8h_a0738bf32820ffdebd9d56c39df80c6a8_a0738bf32820ffdebd9d56c39df80c6a8}{generate\_sparse\_spd\_problem}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ halfA,\ dA,\ 30);}
+\DoxyCodeLine{00499\ \ \ }
+\DoxyCodeLine{00500\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ <\ g\_repeat;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}++)\ \{}
+\DoxyCodeLine{00501\ \ \ \ \ \mbox{\hyperlink{sparse__solver_8h_a77821f9c68aee77a3a6709d463b95e02_a77821f9c68aee77a3a6709d463b95e02}{check\_sparse\_determinant}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \ \ \ \ dA);}
+\DoxyCodeLine{00502\ \ \ \ \ \mbox{\hyperlink{sparse__solver_8h_a77821f9c68aee77a3a6709d463b95e02_a77821f9c68aee77a3a6709d463b95e02}{check\_sparse\_determinant}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ halfA,\ dA\ );}
+\DoxyCodeLine{00503\ \ \ \}}
+\DoxyCodeLine{00504\ \}}
+\DoxyCodeLine{00505\ }
+\DoxyCodeLine{00506\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Solver,\ \textcolor{keyword}{typename}\ DenseMat>}
+\DoxyCodeLine{00507\ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ \mbox{\hyperlink{sparse__solver_8h_a2a636ef2e7efc175344517158b3c2b70_a2a636ef2e7efc175344517158b3c2b70}{generate\_sparse\_square\_problem}}(Solver\&,\ \textcolor{keyword}{typename}\ Solver::MatrixType\&\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ DenseMat\&\ dA,\ \textcolor{keywordtype}{int}\ maxSize\ =\ 300,\ \textcolor{keywordtype}{int}\ options\ =\ \mbox{\hyperlink{sparse_8h_a9f9afaca3bad3b24713219e83615be1a_a9f9afaca3bad3b24713219e83615be1aac57c7eb0d864246e4402f4710e5be051}{ForceNonZeroDiag}})}
+\DoxyCodeLine{00508\ \{}
+\DoxyCodeLine{00509\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ Solver::MatrixType\ \mbox{\hyperlink{gemm__common_8h_af8aa4e04fe5d1aa229a8909d0c412986_af8aa4e04fe5d1aa229a8909d0c412986}{Mat}};}
+\DoxyCodeLine{00510\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_plain_object_base_ab6f2af41301117f8e71219a95754eed9_ab6f2af41301117f8e71219a95754eed9}{Mat::Scalar}}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}};}
+\DoxyCodeLine{00511\ }
+\DoxyCodeLine{00512\ \ \ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}\ =\ internal::random<int>(1,maxSize);}
+\DoxyCodeLine{00513\ \ \ \textcolor{keywordtype}{double}\ density\ =\ (std::max)(8./(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}*\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}),\ 0.01);}
+\DoxyCodeLine{00514\ \ \ }
+\DoxyCodeLine{00515\ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_a99d9054ee2d5a40c6e00ded0265e9cea_a99d9054ee2d5a40c6e00ded0265e9cea}{resize}}(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}});}
+\DoxyCodeLine{00516\ \ \ dA.resize(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}});}
+\DoxyCodeLine{00517\ }
+\DoxyCodeLine{00518\ \ \ \mbox{\hyperlink{sparse_8h_a3ba4abd21a1ace3122406c3b3b27fc5b_a3ba4abd21a1ace3122406c3b3b27fc5b}{initSparse<Scalar>}}(density,\ dA,\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ options);}
+\DoxyCodeLine{00519\ \ \ }
+\DoxyCodeLine{00520\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}};}
+\DoxyCodeLine{00521\ \}}
+\DoxyCodeLine{00522\ }
+\DoxyCodeLine{00523\ }
+\DoxyCodeLine{00524\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structprune__column}{prune\_column}}\ \{}
+\DoxyCodeLine{00525\ \ \ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ \mbox{\hyperlink{structprune__column_a2a1dd613323a26eb4806ecf9d9bcc3cf_a2a1dd613323a26eb4806ecf9d9bcc3cf}{m\_col}};}
+\DoxyCodeLine{00526\ \ \ \mbox{\hyperlink{structprune__column_a90827c1f1498298114fee4b1fee83e80_a90827c1f1498298114fee4b1fee83e80}{prune\_column}}(\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ \mbox{\hyperlink{_matrix_base__col_8cpp_aa168d9544aa6d49fce0cbfc0bec849b0_aa168d9544aa6d49fce0cbfc0bec849b0}{col}})\ :\ \mbox{\hyperlink{structprune__column_a2a1dd613323a26eb4806ecf9d9bcc3cf_a2a1dd613323a26eb4806ecf9d9bcc3cf}{m\_col}}(\mbox{\hyperlink{_matrix_base__col_8cpp_aa168d9544aa6d49fce0cbfc0bec849b0_aa168d9544aa6d49fce0cbfc0bec849b0}{col}})\ \{\}}
+\DoxyCodeLine{00527\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ Scalar>}
+\DoxyCodeLine{00528\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structprune__column_a87671de949eab1099a614e2b6a6c4c23_a87671de949eab1099a614e2b6a6c4c23}{operator()}}(\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}},\ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ \mbox{\hyperlink{_matrix_base__col_8cpp_aa168d9544aa6d49fce0cbfc0bec849b0_aa168d9544aa6d49fce0cbfc0bec849b0}{col}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}\&)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00529\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_matrix_base__col_8cpp_aa168d9544aa6d49fce0cbfc0bec849b0_aa168d9544aa6d49fce0cbfc0bec849b0}{col}}\ !=\ \mbox{\hyperlink{structprune__column_a2a1dd613323a26eb4806ecf9d9bcc3cf_a2a1dd613323a26eb4806ecf9d9bcc3cf}{m\_col}};}
+\DoxyCodeLine{00530\ \ \ \}}
+\DoxyCodeLine{00531\ \};}
+\DoxyCodeLine{00532\ }
+\DoxyCodeLine{00533\ }
+\DoxyCodeLine{00534\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Solver>\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sparse__solver_8h_a12301f6419eb573c0fca674bc589b4f6_a12301f6419eb573c0fca674bc589b4f6}{check\_sparse\_square\_solving}}(Solver\&\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \textcolor{keywordtype}{int}\ maxSize\ =\ 300,\ \textcolor{keywordtype}{int}\ maxRealWorldSize\ =\ 100000,\ \textcolor{keywordtype}{bool}\ checkDeficient\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00535\ \{}
+\DoxyCodeLine{00536\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ Solver::MatrixType\ \mbox{\hyperlink{gemm__common_8h_af8aa4e04fe5d1aa229a8909d0c412986_af8aa4e04fe5d1aa229a8909d0c412986}{Mat}};}
+\DoxyCodeLine{00537\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_plain_object_base_ab6f2af41301117f8e71219a95754eed9_ab6f2af41301117f8e71219a95754eed9}{Mat::Scalar}}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}};}
+\DoxyCodeLine{00538\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{SparseMatrix<Scalar,ColMajor,\ typename\ Mat::StorageIndex>}}\ \mbox{\hyperlink{_tutorial__sparse__example_8cpp_a04b63929a2578b5ce61f09f0b8b18122_a04b63929a2578b5ce61f09f0b8b18122}{SpMat}};}
+\DoxyCodeLine{00539\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_sparse_vector}{SparseVector<Scalar,\ 0,\ typename\ Mat::StorageIndex>}}\ SpVec;}
+\DoxyCodeLine{00540\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<Scalar,Dynamic,Dynamic>}}\ \mbox{\hyperlink{_bench_sparse_util_8h_ac8485cdde68067acc4788b568e5a44ef_ac8485cdde68067acc4788b568e5a44ef}{DenseMatrix}};}
+\DoxyCodeLine{00541\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<Scalar,Dynamic,1>}}\ \mbox{\hyperlink{_bench_sparse_util_8h_a2f3f67c514b9315305427f94ed179c53_a2f3f67c514b9315305427f94ed179c53}{DenseVector}};}
+\DoxyCodeLine{00542\ }
+\DoxyCodeLine{00543\ \ \ \textcolor{keywordtype}{int}\ rhsCols\ =\ internal::random<int>(1,16);}
+\DoxyCodeLine{00544\ }
+\DoxyCodeLine{00545\ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{Mat}}\ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}};}
+\DoxyCodeLine{00546\ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{DenseMatrix}}\ dA;}
+\DoxyCodeLine{00547\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ <\ g\_repeat;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}++)\ \{}
+\DoxyCodeLine{00548\ \ \ \ \ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}\ =\ \mbox{\hyperlink{sparse__solver_8h_a2a636ef2e7efc175344517158b3c2b70_a2a636ef2e7efc175344517158b3c2b70}{generate\_sparse\_square\_problem}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ dA,\ maxSize);}
+\DoxyCodeLine{00549\ }
+\DoxyCodeLine{00550\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.makeCompressed();}
+\DoxyCodeLine{00551\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{DenseVector}}\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}\ =\ DenseVector::Random(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}});}
+\DoxyCodeLine{00552\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{DenseMatrix}}\ dB(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},rhsCols);}
+\DoxyCodeLine{00553\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{SpMat}}\ \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}}(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},rhsCols);}
+\DoxyCodeLine{00554\ \ \ \ \ \textcolor{keywordtype}{double}\ density\ =\ (std::max)(8./(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}*rhsCols),\ 0.1);}
+\DoxyCodeLine{00555\ \ \ \ \ \mbox{\hyperlink{sparse_8h_a3ba4abd21a1ace3122406c3b3b27fc5b_a3ba4abd21a1ace3122406c3b3b27fc5b}{initSparse<Scalar>}}(density,\ dB,\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}},\ \mbox{\hyperlink{sparse_8h_a9f9afaca3bad3b24713219e83615be1a_a9f9afaca3bad3b24713219e83615be1aac57c7eb0d864246e4402f4710e5be051}{ForceNonZeroDiag}});}
+\DoxyCodeLine{00556\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.makeCompressed();}
+\DoxyCodeLine{00557\ \ \ \ \ SpVec\ \mbox{\hyperlink{bench_vec_add_8cpp_a41689956983587b085f9da3e48f31d99_a41689956983587b085f9da3e48f31d99}{c}}\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.col(0);}
+\DoxyCodeLine{00558\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{DenseVector}}\ dc\ =\ dB.col(0);}
+\DoxyCodeLine{00559\ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}(\mbox{\hyperlink{sparse__solver_8h_a2f19cda157e1f89db0769de982ecc5fa_a2f19cda157e1f89db0769de982ecc5fa}{check\_sparse\_solving}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \ dA,\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}));}
+\DoxyCodeLine{00560\ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}(\mbox{\hyperlink{sparse__solver_8h_a2f19cda157e1f89db0769de982ecc5fa_a2f19cda157e1f89db0769de982ecc5fa}{check\_sparse\_solving}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ dB,\ dA,\ dB));}
+\DoxyCodeLine{00561\ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}(\mbox{\hyperlink{sparse__solver_8h_a2f19cda157e1f89db0769de982ecc5fa_a2f19cda157e1f89db0769de982ecc5fa}{check\_sparse\_solving}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}},\ \ dA,\ dB));}
+\DoxyCodeLine{00562\ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}(\mbox{\hyperlink{sparse__solver_8h_a2f19cda157e1f89db0769de982ecc5fa_a2f19cda157e1f89db0769de982ecc5fa}{check\_sparse\_solving}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \mbox{\hyperlink{bench_vec_add_8cpp_a41689956983587b085f9da3e48f31d99_a41689956983587b085f9da3e48f31d99}{c}},\ \ dA,\ dc));}
+\DoxyCodeLine{00563\ \ \ \ \ }
+\DoxyCodeLine{00564\ \ \ \ \ \textcolor{comment}{//\ check\ only\ once}}
+\DoxyCodeLine{00565\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}==0)}
+\DoxyCodeLine{00566\ \ \ \ \ \{}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}(\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}\ =\ DenseVector::Zero(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}});\ \mbox{\hyperlink{sparse__solver_8h_a2f19cda157e1f89db0769de982ecc5fa_a2f19cda157e1f89db0769de982ecc5fa}{check\_sparse\_solving}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ dA,\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}));}
+\DoxyCodeLine{00568\ \ \ \ \ \}}
+\DoxyCodeLine{00569\ \ \ \ \ \textcolor{comment}{//\ regression\ test\ for\ Bug\ 792\ (structurally\ rank\ deficient\ matrices):}}
+\DoxyCodeLine{00570\ \ \ \ \ \textcolor{keywordflow}{if}(checkDeficient\ \&\&\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}>1)\ \{}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ \mbox{\hyperlink{_matrix_base__col_8cpp_aa168d9544aa6d49fce0cbfc0bec849b0_aa168d9544aa6d49fce0cbfc0bec849b0}{col}}\ =\ internal::random<int>(0,\textcolor{keywordtype}{int}(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}-\/1));}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.prune(\mbox{\hyperlink{structprune__column}{prune\_column}}(\mbox{\hyperlink{_matrix_base__col_8cpp_aa168d9544aa6d49fce0cbfc0bec849b0_aa168d9544aa6d49fce0cbfc0bec849b0}{col}}));}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.compute(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}});}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_abc88c5b9b25fb749139e353d6e1e3ba8_abc88c5b9b25fb749139e353d6e1e3ba8}{VERIFY\_IS\_EQUAL}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}}.info(),\ \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e_gga85fad7b87587764e5cf6b513a9e0ee5ea1c6e20706575a629b27a105f07f1883b}{NumericalIssue}});}
+\DoxyCodeLine{00575\ \ \ \ \ \}}
+\DoxyCodeLine{00576\ \ \ \}}
+\DoxyCodeLine{00577\ \ \ }
+\DoxyCodeLine{00578\ \ \ \textcolor{comment}{//\ First,\ get\ the\ folder\ }}
+\DoxyCodeLine{00579\ \textcolor{preprocessor}{\#ifdef\ TEST\_REAL\_CASES}}
+\DoxyCodeLine{00580\ \ \ \textcolor{comment}{//\ Test\ real\ problems\ with\ double\ precision\ only}}
+\DoxyCodeLine{00581\ \ \ \textcolor{keywordflow}{if}\ (internal::is\_same<\textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_eigen_1_1_num_traits}{NumTraits<Scalar>::Real}},\ \textcolor{keywordtype}{double}>::value)}
+\DoxyCodeLine{00582\ \ \ \{}
+\DoxyCodeLine{00583\ \ \ \ \ std::string\ mat\_folder\ =\ get\_matrixfolder<Scalar>();}
+\DoxyCodeLine{00584\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix_market_iterator}{MatrixMarketIterator<Scalar>}}\ it(mat\_folder);}
+\DoxyCodeLine{00585\ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ it;\ ++it)}
+\DoxyCodeLine{00586\ \ \ \ \ \{}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}\ =\ it.\mbox{\hyperlink{class_eigen_1_1_matrix_market_iterator_a225e3e6415b8eb3a709bb8269133f888_a225e3e6415b8eb3a709bb8269133f888}{matrix}}();}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.diagonal().size()\ <=\ maxRealWorldSize)}
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{DenseVector}}\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}\ =\ it.\mbox{\hyperlink{class_eigen_1_1_matrix_market_iterator_a7aad817f6e07f11ba3c9139e7e4d02b7_a7aad817f6e07f11ba3c9139e7e4d02b7}{rhs}}();}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{DenseVector}}\ refX\ =\ it.\mbox{\hyperlink{class_eigen_1_1_matrix_market_iterator_a610eb67e066cdd31e6777e070fe1086a_a610eb67e066cdd31e6777e070fe1086a}{refX}}();}
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}INFO\ |\ Testing\ "{}}\ <<\ sym\_to\_string(it.\mbox{\hyperlink{class_eigen_1_1_matrix_market_iterator_ace72fd4804dfc9c7fc9018f2712be9fe_ace72fd4804dfc9c7fc9018f2712be9fe}{sym}}())\ <<\ \textcolor{stringliteral}{"{}sparse\ problem\ "{}}\ <<\ it.\mbox{\hyperlink{class_eigen_1_1_matrix_market_iterator_a79b13fa6510e56c071bc463859b1cbe9_a79b13fa6510e56c071bc463859b1cbe9}{matname}}()}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ ("{}}\ <<\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_afbc668abdcb3bda3bc4c58c4d88e9603_afbc668abdcb3bda3bc4c58c4d88e9603}{rows}}()\ <<\ \textcolor{stringliteral}{"{}x"{}}\ <<\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_a74176163ce10338f1ea1f3bda5afd78c_a74176163ce10338f1ea1f3bda5afd78c}{cols}}()\ <<\ \textcolor{stringliteral}{"{})\ using\ "{}}\ <<\ \textcolor{keyword}{typeid}(Solver).name()\ <<\ \textcolor{stringliteral}{"{}..."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_ab16051a9c2d2d769e8534211f9198557_ab16051a9c2d2d769e8534211f9198557}{CALL\_SUBTEST}}(\mbox{\hyperlink{sparse__solver_8h_ab2f968e2c551b1869cf26ef5c6b4909e_ab2f968e2c551b1869cf26ef5c6b4909e}{check\_sparse\_solving\_real\_cases}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ refX));}
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ std::string\ stats\ =\ solver\_stats(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}});}
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(stats.size()>0)}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}INFO\ |\ \ "{}}\ <<\ stats\ <<\ std::endl;}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}INFO\ |\ SKIP\ sparse\ problem\ \(\backslash\)"{}"{}}\ <<\ it.\mbox{\hyperlink{class_eigen_1_1_matrix_market_iterator_a79b13fa6510e56c071bc463859b1cbe9_a79b13fa6510e56c071bc463859b1cbe9}{matname}}()\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}\ (too\ large)"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00603\ \ \ \ \ \}}
+\DoxyCodeLine{00604\ \ \ \}}
+\DoxyCodeLine{00605\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00606\ \ \ \mbox{\hyperlink{_macros_8h_a7cf6d5b460def34dc4e6acf42889b6a9_a7cf6d5b460def34dc4e6acf42889b6a9}{EIGEN\_UNUSED\_VARIABLE}}(maxRealWorldSize);}
+\DoxyCodeLine{00607\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00608\ }
+\DoxyCodeLine{00609\ \}}
+\DoxyCodeLine{00610\ }
+\DoxyCodeLine{00611\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Solver>\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sparse__solver_8h_ab6d9eedcbfb7e2042a0fd79c6a9a5159_ab6d9eedcbfb7e2042a0fd79c6a9a5159}{check\_sparse\_square\_determinant}}(Solver\&\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}})}
+\DoxyCodeLine{00612\ \{}
+\DoxyCodeLine{00613\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ Solver::MatrixType\ \mbox{\hyperlink{gemm__common_8h_af8aa4e04fe5d1aa229a8909d0c412986_af8aa4e04fe5d1aa229a8909d0c412986}{Mat}};}
+\DoxyCodeLine{00614\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_plain_object_base_ab6f2af41301117f8e71219a95754eed9_ab6f2af41301117f8e71219a95754eed9}{Mat::Scalar}}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}};}
+\DoxyCodeLine{00615\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<Scalar,Dynamic,Dynamic>}}\ \mbox{\hyperlink{_bench_sparse_util_8h_ac8485cdde68067acc4788b568e5a44ef_ac8485cdde68067acc4788b568e5a44ef}{DenseMatrix}};}
+\DoxyCodeLine{00616\ \ \ }
+\DoxyCodeLine{00617\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ <\ g\_repeat;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}++)\ \{}
+\DoxyCodeLine{00618\ \ \ \ \ \textcolor{comment}{//\ generate\ the\ problem}}
+\DoxyCodeLine{00619\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{Mat}}\ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}};}
+\DoxyCodeLine{00620\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{DenseMatrix}}\ dA;}
+\DoxyCodeLine{00621\ \ \ \ \ }
+\DoxyCodeLine{00622\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}\ =\ internal::random<int>(1,30);}
+\DoxyCodeLine{00623\ \ \ \ \ dA.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_af0e576a0e1aefc9ee346de44cc352ba3_af0e576a0e1aefc9ee346de44cc352ba3}{setRandom}}(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}});}
+\DoxyCodeLine{00624\ \ \ \ \ }
+\DoxyCodeLine{00625\ \ \ \ \ dA\ =\ (dA.array().\mbox{\hyperlink{datatypes_8h_a3aa069ac3980707dae1e0530f50d59e4_a3aa069ac3980707dae1e0530f50d59e4}{abs}}()<0.3).select(0,dA);}
+\DoxyCodeLine{00626\ \ \ \ \ dA.diagonal()\ =\ (dA.diagonal().\mbox{\hyperlink{_map__general__stride_8cpp_a3980e06d64d38c84d1ffc56cc2fd8e33_a3980e06d64d38c84d1ffc56cc2fd8e33}{array}}()==0).select(1,dA.diagonal());}
+\DoxyCodeLine{00627\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}\ =\ dA.sparseView();}
+\DoxyCodeLine{00628\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.makeCompressed();}
+\DoxyCodeLine{00629\ \ \ }
+\DoxyCodeLine{00630\ \ \ \ \ \mbox{\hyperlink{sparse__solver_8h_a77821f9c68aee77a3a6709d463b95e02_a77821f9c68aee77a3a6709d463b95e02}{check\_sparse\_determinant}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ dA);}
+\DoxyCodeLine{00631\ \ \ \}}
+\DoxyCodeLine{00632\ \}}
+\DoxyCodeLine{00633\ }
+\DoxyCodeLine{00634\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Solver>\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sparse__solver_8h_a3e4cd4c7995ac9046c60a5040c1fc429_a3e4cd4c7995ac9046c60a5040c1fc429}{check\_sparse\_square\_abs\_determinant}}(Solver\&\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}})}
+\DoxyCodeLine{00635\ \{}
+\DoxyCodeLine{00636\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ Solver::MatrixType\ \mbox{\hyperlink{gemm__common_8h_af8aa4e04fe5d1aa229a8909d0c412986_af8aa4e04fe5d1aa229a8909d0c412986}{Mat}};}
+\DoxyCodeLine{00637\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_plain_object_base_ab6f2af41301117f8e71219a95754eed9_ab6f2af41301117f8e71219a95754eed9}{Mat::Scalar}}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}};}
+\DoxyCodeLine{00638\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<Scalar,Dynamic,Dynamic>}}\ \mbox{\hyperlink{_bench_sparse_util_8h_ac8485cdde68067acc4788b568e5a44ef_ac8485cdde68067acc4788b568e5a44ef}{DenseMatrix}};}
+\DoxyCodeLine{00639\ }
+\DoxyCodeLine{00640\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ <\ g\_repeat;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}++)\ \{}
+\DoxyCodeLine{00641\ \ \ \ \ \textcolor{comment}{//\ generate\ the\ problem}}
+\DoxyCodeLine{00642\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{Mat}}\ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}};}
+\DoxyCodeLine{00643\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{DenseMatrix}}\ dA;}
+\DoxyCodeLine{00644\ \ \ \ \ \mbox{\hyperlink{sparse__solver_8h_a2a636ef2e7efc175344517158b3c2b70_a2a636ef2e7efc175344517158b3c2b70}{generate\_sparse\_square\_problem}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ dA,\ 30);}
+\DoxyCodeLine{00645\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.makeCompressed();}
+\DoxyCodeLine{00646\ \ \ \ \ \mbox{\hyperlink{sparse__solver_8h_a9cd6b2c65f978726c4dd9b1172b2dce2_a9cd6b2c65f978726c4dd9b1172b2dce2}{check\_sparse\_abs\_determinant}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ dA);}
+\DoxyCodeLine{00647\ \ \ \}}
+\DoxyCodeLine{00648\ \}}
+\DoxyCodeLine{00649\ }
+\DoxyCodeLine{00650\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Solver,\ \textcolor{keyword}{typename}\ DenseMat>}
+\DoxyCodeLine{00651\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sparse__solver_8h_a19f9005edec71898fb0cbac2b70089ca_a19f9005edec71898fb0cbac2b70089ca}{generate\_sparse\_leastsquare\_problem}}(Solver\&,\ \textcolor{keyword}{typename}\ Solver::MatrixType\&\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ DenseMat\&\ dA,\ \textcolor{keywordtype}{int}\ maxSize\ =\ 300,\ \textcolor{keywordtype}{int}\ options\ =\ \mbox{\hyperlink{sparse_8h_a9f9afaca3bad3b24713219e83615be1a_a9f9afaca3bad3b24713219e83615be1aac57c7eb0d864246e4402f4710e5be051}{ForceNonZeroDiag}})}
+\DoxyCodeLine{00652\ \{}
+\DoxyCodeLine{00653\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ Solver::MatrixType\ \mbox{\hyperlink{gemm__common_8h_af8aa4e04fe5d1aa229a8909d0c412986_af8aa4e04fe5d1aa229a8909d0c412986}{Mat}};}
+\DoxyCodeLine{00654\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_plain_object_base_ab6f2af41301117f8e71219a95754eed9_ab6f2af41301117f8e71219a95754eed9}{Mat::Scalar}}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}};}
+\DoxyCodeLine{00655\ }
+\DoxyCodeLine{00656\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}}\ =\ internal::random<int>(1,maxSize);}
+\DoxyCodeLine{00657\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}}\ =\ internal::random<int>(1,\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}});}
+\DoxyCodeLine{00658\ \ \ \textcolor{keywordtype}{double}\ density\ =\ (std::max)(8./(\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}}*\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}}),\ 0.01);}
+\DoxyCodeLine{00659\ \ \ }
+\DoxyCodeLine{00660\ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_a99d9054ee2d5a40c6e00ded0265e9cea_a99d9054ee2d5a40c6e00ded0265e9cea}{resize}}(\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}},\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}});}
+\DoxyCodeLine{00661\ \ \ dA.resize(\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}},\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}});}
+\DoxyCodeLine{00662\ }
+\DoxyCodeLine{00663\ \ \ \mbox{\hyperlink{sparse_8h_a3ba4abd21a1ace3122406c3b3b27fc5b_a3ba4abd21a1ace3122406c3b3b27fc5b}{initSparse<Scalar>}}(density,\ dA,\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ options);}
+\DoxyCodeLine{00664\ \}}
+\DoxyCodeLine{00665\ }
+\DoxyCodeLine{00666\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Solver>\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sparse__solver_8h_aa559b721502e88a13007ed08ab0a8685_aa559b721502e88a13007ed08ab0a8685}{check\_sparse\_leastsquare\_solving}}(Solver\&\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}})}
+\DoxyCodeLine{00667\ \{}
+\DoxyCodeLine{00668\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ Solver::MatrixType\ \mbox{\hyperlink{gemm__common_8h_af8aa4e04fe5d1aa229a8909d0c412986_af8aa4e04fe5d1aa229a8909d0c412986}{Mat}};}
+\DoxyCodeLine{00669\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_plain_object_base_ab6f2af41301117f8e71219a95754eed9_ab6f2af41301117f8e71219a95754eed9}{Mat::Scalar}}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}};}
+\DoxyCodeLine{00670\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{SparseMatrix<Scalar,ColMajor,\ typename\ Mat::StorageIndex>}}\ \mbox{\hyperlink{_tutorial__sparse__example_8cpp_a04b63929a2578b5ce61f09f0b8b18122_a04b63929a2578b5ce61f09f0b8b18122}{SpMat}};}
+\DoxyCodeLine{00671\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<Scalar,Dynamic,Dynamic>}}\ \mbox{\hyperlink{_bench_sparse_util_8h_ac8485cdde68067acc4788b568e5a44ef_ac8485cdde68067acc4788b568e5a44ef}{DenseMatrix}};}
+\DoxyCodeLine{00672\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<Scalar,Dynamic,1>}}\ \mbox{\hyperlink{_bench_sparse_util_8h_a2f3f67c514b9315305427f94ed179c53_a2f3f67c514b9315305427f94ed179c53}{DenseVector}};}
+\DoxyCodeLine{00673\ }
+\DoxyCodeLine{00674\ \ \ \textcolor{keywordtype}{int}\ rhsCols\ =\ internal::random<int>(1,16);}
+\DoxyCodeLine{00675\ }
+\DoxyCodeLine{00676\ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{Mat}}\ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}};}
+\DoxyCodeLine{00677\ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{DenseMatrix}}\ dA;}
+\DoxyCodeLine{00678\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ <\ g\_repeat;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}++)\ \{}
+\DoxyCodeLine{00679\ \ \ \ \ \mbox{\hyperlink{sparse__solver_8h_a19f9005edec71898fb0cbac2b70089ca_a19f9005edec71898fb0cbac2b70089ca}{generate\_sparse\_leastsquare\_problem}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ dA);}
+\DoxyCodeLine{00680\ }
+\DoxyCodeLine{00681\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.makeCompressed();}
+\DoxyCodeLine{00682\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{DenseVector}}\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}\ =\ DenseVector::Random(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_afbc668abdcb3bda3bc4c58c4d88e9603_afbc668abdcb3bda3bc4c58c4d88e9603}{rows}}());}
+\DoxyCodeLine{00683\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{DenseMatrix}}\ dB(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_afbc668abdcb3bda3bc4c58c4d88e9603_afbc668abdcb3bda3bc4c58c4d88e9603}{rows}}(),rhsCols);}
+\DoxyCodeLine{00684\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{SpMat}}\ \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}}(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_afbc668abdcb3bda3bc4c58c4d88e9603_afbc668abdcb3bda3bc4c58c4d88e9603}{rows}}(),rhsCols);}
+\DoxyCodeLine{00685\ \ \ \ \ \textcolor{keywordtype}{double}\ density\ =\ (std::max)(8./(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_afbc668abdcb3bda3bc4c58c4d88e9603_afbc668abdcb3bda3bc4c58c4d88e9603}{rows}}()*rhsCols),\ 0.1);}
+\DoxyCodeLine{00686\ \ \ \ \ \mbox{\hyperlink{sparse_8h_a3ba4abd21a1ace3122406c3b3b27fc5b_a3ba4abd21a1ace3122406c3b3b27fc5b}{initSparse<Scalar>}}(density,\ dB,\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}},\ \mbox{\hyperlink{sparse_8h_a9f9afaca3bad3b24713219e83615be1a_a9f9afaca3bad3b24713219e83615be1aac57c7eb0d864246e4402f4710e5be051}{ForceNonZeroDiag}});}
+\DoxyCodeLine{00687\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.makeCompressed();}
+\DoxyCodeLine{00688\ \ \ \ \ \mbox{\hyperlink{sparse__solver_8h_a2f19cda157e1f89db0769de982ecc5fa_a2f19cda157e1f89db0769de982ecc5fa}{check\_sparse\_solving}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ \ dA,\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00689\ \ \ \ \ \mbox{\hyperlink{sparse__solver_8h_a2f19cda157e1f89db0769de982ecc5fa_a2f19cda157e1f89db0769de982ecc5fa}{check\_sparse\_solving}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ dB,\ dA,\ dB);}
+\DoxyCodeLine{00690\ \ \ \ \ \mbox{\hyperlink{sparse__solver_8h_a2f19cda157e1f89db0769de982ecc5fa_a2f19cda157e1f89db0769de982ecc5fa}{check\_sparse\_solving}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}},\ \ dA,\ dB);}
+\DoxyCodeLine{00691\ \ \ \ \ }
+\DoxyCodeLine{00692\ \ \ \ \ \textcolor{comment}{//\ check\ only\ once}}
+\DoxyCodeLine{00693\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}==0)}
+\DoxyCodeLine{00694\ \ \ \ \ \{}
+\DoxyCodeLine{00695\ \ \ \ \ \ \ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}\ =\ DenseVector::Zero(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_afbc668abdcb3bda3bc4c58c4d88e9603_afbc668abdcb3bda3bc4c58c4d88e9603}{rows}}());}
+\DoxyCodeLine{00696\ \ \ \ \ \ \ \mbox{\hyperlink{sparse__solver_8h_a2f19cda157e1f89db0769de982ecc5fa_a2f19cda157e1f89db0769de982ecc5fa}{check\_sparse\_solving}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a209feb53f749fbb1b8caa36d3ee85979_a209feb53f749fbb1b8caa36d3ee85979}{solver}},\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}},\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}},\ dA,\ \mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}});}
+\DoxyCodeLine{00697\ \ \ \ \ \}}
+\DoxyCodeLine{00698\ \ \ \}}
+\DoxyCodeLine{00699\ \}}
+
+\end{DoxyCode}

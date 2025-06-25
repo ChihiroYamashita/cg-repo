@@ -1,0 +1,603 @@
+\doxysection{tensor\+\_\+benchmarks.\+h}
+\hypertarget{tensor__benchmarks_8h_source}{}\label{tensor__benchmarks_8h_source}\index{eigen-\/3.4.0/eigen-\/3.4.0/bench/tensors/tensor\_benchmarks.h@{eigen-\/3.4.0/eigen-\/3.4.0/bench/tensors/tensor\_benchmarks.h}}
+\mbox{\hyperlink{tensor__benchmarks_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ THIRD\_PARTY\_EIGEN3\_TENSOR\_BENCHMARKS\_H\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ THIRD\_PARTY\_EIGEN3\_TENSOR\_BENCHMARKS\_H\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{TensorIndex}};}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ EIGEN\_DEFAULT\_DENSE\_INDEX\_TYPE\ int}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}unsupported/Eigen/CXX11/Tensor"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{benchmark_8h}{benchmark.h}}"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ BENCHMARK\_RANGE(bench,\ lo,\ hi)\ \(\backslash\)}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\ \ BENCHMARK(bench)-\/>Range(lo,\ hi)}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_eigen_1_1_tensor}{Eigen::Tensor}};}
+\DoxyCodeLine{00014\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_eigen_1_1_tensor_map}{Eigen::TensorMap}};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ TODO(bsteiner):\ also\ templatize\ on\ the\ input\ type\ since\ we\ have\ users}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ for\ int8\ as\ well\ as\ floats.}}
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Device,\ \textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_benchmark_suite}{BenchmarkSuite}}\ \{}
+\DoxyCodeLine{00019\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \mbox{\hyperlink{class_benchmark_suite_a6b9ee7ab131d23fc111d346c5a3c5f02_a6b9ee7ab131d23fc111d346c5a3c5f02}{BenchmarkSuite}}(\textcolor{keyword}{const}\ Device\&\ device,\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ \textcolor{keywordtype}{size\_t}\ k,\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}})}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ :\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}),\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}(k),\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}}(\mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}),\ \mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}}(device)\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_a58a874a55bcecbb62b97ea385db32732_a58a874a55bcecbb62b97ea385db32732}{initialize}}();}
+\DoxyCodeLine{00023\ \ \ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \mbox{\hyperlink{class_benchmark_suite_a9f1263956e5c66e5ecb5aad3f8c8d86b_a9f1263956e5c66e5ecb5aad3f8c8d86b}{BenchmarkSuite}}(\textcolor{keyword}{const}\ Device\&\ device,\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}})}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ :\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}),\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}),\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}),\ \mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}}(device)\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_a58a874a55bcecbb62b97ea385db32732_a58a874a55bcecbb62b97ea385db32732}{initialize}}();}
+\DoxyCodeLine{00028\ \ \ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \mbox{\hyperlink{class_benchmark_suite_a03f43d3da7049428536ff78ee3ce79fd_a03f43d3da7049428536ff78ee3ce79fd}{BenchmarkSuite}}(\textcolor{keyword}{const}\ Device\&\ device,\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}},\ \textcolor{keywordtype}{size\_t}\ k)}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ :\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}(1),\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}(k),\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}}(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}),\ \mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}}(device)\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_a58a874a55bcecbb62b97ea385db32732_a58a874a55bcecbb62b97ea385db32732}{initialize}}();}
+\DoxyCodeLine{00033\ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \mbox{\hyperlink{class_benchmark_suite_a3b39597a8cc64d3a801c6963a88021bc_a3b39597a8cc64d3a801c6963a88021bc}{\string~BenchmarkSuite}}()\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}}.deallocate(\mbox{\hyperlink{class_benchmark_suite_a93253db2189eb3af54ee56ac732c8e84_a93253db2189eb3af54ee56ac732c8e84}{a\_}});}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}}.deallocate(\mbox{\hyperlink{class_benchmark_suite_a6d376d493748274a1314211521b89b34_a6d376d493748274a1314211521b89b34}{b\_}});}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}}.deallocate(\mbox{\hyperlink{class_benchmark_suite_a0b1b8d0aab6e1d9412ec488ef47e57e6_a0b1b8d0aab6e1d9412ec488ef47e57e6}{c\_}});}
+\DoxyCodeLine{00039\ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_benchmark_suite_a71e21f4a518dec18f7b61fe1f90cf4ce_a71e21f4a518dec18f7b61fe1f90cf4ce}{memcpy}}(\textcolor{keywordtype}{int}\ num\_iters)\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{_macros_8h_acaa7ba89800cfe18d5fd6eed620aea9c_acaa7ba89800cfe18d5fd6eed620aea9c}{eigen\_assert}}(\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ ==\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}\ \&\&\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}\ ==\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}});}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_USE\_SYCL\ }\textcolor{comment}{//\ warmup\ for\ sycl}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ 10;\ ++iter)\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}}.memcpy(\mbox{\hyperlink{class_benchmark_suite_a0b1b8d0aab6e1d9412ec488ef47e57e6_a0b1b8d0aab6e1d9412ec488ef47e57e6}{c\_}},\ \mbox{\hyperlink{class_benchmark_suite_a93253db2189eb3af54ee56ac732c8e84_a93253db2189eb3af54ee56ac732c8e84}{a\_}},\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ *\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}));}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{benchmark_8h_af28f64c94251a1241c024a6eaff7fc53_af28f64c94251a1241c024a6eaff7fc53}{StartBenchmarkTiming}}();}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ num\_iters;\ ++iter)\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}}.memcpy(\mbox{\hyperlink{class_benchmark_suite_a0b1b8d0aab6e1d9412ec488ef47e57e6_a0b1b8d0aab6e1d9412ec488ef47e57e6}{c\_}},\ \mbox{\hyperlink{class_benchmark_suite_a93253db2189eb3af54ee56ac732c8e84_a93253db2189eb3af54ee56ac732c8e84}{a\_}},\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ *\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}));}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ Record\ the\ number\ of\ values\ copied\ per\ second}}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_ac849c3bbb9275be401a53262b63a0097_ac849c3bbb9275be401a53262b63a0097}{finalizeBenchmark}}(\textcolor{keyword}{static\_cast<}int64\_t\textcolor{keyword}{>}(\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}})\ *\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ *\ num\_iters);}
+\DoxyCodeLine{00054\ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_benchmark_suite_a0789df8b43b1868fc69286063663e313_a0789df8b43b1868fc69286063663e313}{typeCasting}}(\textcolor{keywordtype}{int}\ num\_iters)\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{_macros_8h_acaa7ba89800cfe18d5fd6eed620aea9c_acaa7ba89800cfe18d5fd6eed620aea9c}{eigen\_assert}}(\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ ==\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}});}
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}};}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_eigen_1_1_triplet}{T}})\ >=\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}))\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}}[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}};}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}}[1]\ =\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}};}
+\DoxyCodeLine{00062\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}}[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}})\ /\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int});}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}}[1]\ =\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}})\ /\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int});}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<int,\ 2,\ 0,\ TensorIndex>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}((\textcolor{keywordtype}{int}*)\mbox{\hyperlink{class_benchmark_suite_a93253db2189eb3af54ee56ac732c8e84_a93253db2189eb3af54ee56ac732c8e84}{a\_}},\ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}});}
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2,\ 0,\ TensorIndex>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}}(\mbox{\hyperlink{class_benchmark_suite_a6d376d493748274a1314211521b89b34_a6d376d493748274a1314211521b89b34}{b\_}},\ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}});}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_USE\_SYCL\ }\textcolor{comment}{//\ warmup\ for\ sycl}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ 10;\ ++iter)\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.template\ \mbox{\hyperlink{_common_cwise_unary_ops_8h_aa89d007196125d10fa7d6e19811aca05_aa89d007196125d10fa7d6e19811aca05}{cast<T>}}();}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{benchmark_8h_af28f64c94251a1241c024a6eaff7fc53_af28f64c94251a1241c024a6eaff7fc53}{StartBenchmarkTiming}}();}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ num\_iters;\ ++iter)\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.template\ \mbox{\hyperlink{_common_cwise_unary_ops_8h_aa89d007196125d10fa7d6e19811aca05_aa89d007196125d10fa7d6e19811aca05}{cast<T>}}();}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{comment}{//\ Record\ the\ number\ of\ values\ copied\ per\ second}}
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_ac849c3bbb9275be401a53262b63a0097_ac849c3bbb9275be401a53262b63a0097}{finalizeBenchmark}}(\textcolor{keyword}{static\_cast<}int64\_t\textcolor{keyword}{>}(\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}})\ *\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}\ *\ num\_iters);}
+\DoxyCodeLine{00079\ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_benchmark_suite_ac0fcdc53056b4b4d05aa32c42e18a555_ac0fcdc53056b4b4d05aa32c42e18a555}{random}}(\textcolor{keywordtype}{int}\ num\_iters)\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{_macros_8h_acaa7ba89800cfe18d5fd6eed620aea9c_acaa7ba89800cfe18d5fd6eed620aea9c}{eigen\_assert}}(\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ ==\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}\ \&\&\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}\ ==\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}});}
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}};}
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}}[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}};}
+\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}}[1]\ =\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}};}
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_aaee470c3acb6b181fd804d072284fbaa_aaee470c3acb6b181fd804d072284fbaa}{C}}(\mbox{\hyperlink{class_benchmark_suite_a0b1b8d0aab6e1d9412ec488ef47e57e6_a0b1b8d0aab6e1d9412ec488ef47e57e6}{c\_}},\ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}});}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_USE\_SYCL\ }\textcolor{comment}{//\ warmup\ for\ sycl}}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ 10;\ ++iter)\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.random();}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{benchmark_8h_af28f64c94251a1241c024a6eaff7fc53_af28f64c94251a1241c024a6eaff7fc53}{StartBenchmarkTiming}}();}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ num\_iters;\ ++iter)\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.random();}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{comment}{//\ Record\ the\ number\ of\ random\ numbers\ generated\ per\ second}}
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_ac849c3bbb9275be401a53262b63a0097_ac849c3bbb9275be401a53262b63a0097}{finalizeBenchmark}}(\textcolor{keyword}{static\_cast<}int64\_t\textcolor{keyword}{>}(\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}})\ *\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ *\ num\_iters);}
+\DoxyCodeLine{00098\ \ \ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_benchmark_suite_a49b8182ae4f802fa8f095ab70a9cba4b_a49b8182ae4f802fa8f095ab70a9cba4b}{slicing}}(\textcolor{keywordtype}{int}\ num\_iters)\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{_macros_8h_acaa7ba89800cfe18d5fd6eed620aea9c_acaa7ba89800cfe18d5fd6eed620aea9c}{eigen\_assert}}(\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ ==\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}\ \&\&\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}\ ==\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}});}
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}};}
+\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}}[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}};}
+\DoxyCodeLine{00104\ \ \ \ \ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}}[1]\ =\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}};}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}(\mbox{\hyperlink{class_benchmark_suite_a93253db2189eb3af54ee56ac732c8e84_a93253db2189eb3af54ee56ac732c8e84}{a\_}},\ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}});}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}}(\mbox{\hyperlink{class_benchmark_suite_a6d376d493748274a1314211521b89b34_a6d376d493748274a1314211521b89b34}{b\_}},\ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}});}
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_aaee470c3acb6b181fd804d072284fbaa_aaee470c3acb6b181fd804d072284fbaa}{C}}(\mbox{\hyperlink{class_benchmark_suite_a0b1b8d0aab6e1d9412ec488ef47e57e6_a0b1b8d0aab6e1d9412ec488ef47e57e6}{c\_}},\ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}});}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_d_sizes}{Eigen::DSizes<TensorIndex,\ 2>}}\ quarter\_sizes(\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}/2,\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}/2);}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_d_sizes}{Eigen::DSizes<TensorIndex,\ 2>}}\ first\_quadrant(0,\ 0);}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_d_sizes}{Eigen::DSizes<TensorIndex,\ 2>}}\ second\_quadrant(0,\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}/2);}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_d_sizes}{Eigen::DSizes<TensorIndex,\ 2>}}\ third\_quadrant(\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}/2,\ 0);}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_d_sizes}{Eigen::DSizes<TensorIndex,\ 2>}}\ fourth\_quadrant(\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}/2,\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}/2);}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_USE\_SYCL\ }\textcolor{comment}{//\ warmup\ for\ sycl}}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ 10;\ ++iter)\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.slice(first\_quadrant,\ quarter\_sizes).device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.slice(first\_quadrant,\ quarter\_sizes);}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.slice(second\_quadrant,\ quarter\_sizes).device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.slice(second\_quadrant,\ quarter\_sizes);}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.slice(third\_quadrant,\ quarter\_sizes).device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.slice(third\_quadrant,\ quarter\_sizes);}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.slice(fourth\_quadrant,\ quarter\_sizes).device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.slice(fourth\_quadrant,\ quarter\_sizes);}
+\DoxyCodeLine{00124\ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00126\ \ \ \ \ \mbox{\hyperlink{benchmark_8h_af28f64c94251a1241c024a6eaff7fc53_af28f64c94251a1241c024a6eaff7fc53}{StartBenchmarkTiming}}();}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ num\_iters;\ ++iter)\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.slice(first\_quadrant,\ quarter\_sizes).device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.slice(first\_quadrant,\ quarter\_sizes);}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.slice(second\_quadrant,\ quarter\_sizes).device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.slice(second\_quadrant,\ quarter\_sizes);}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.slice(third\_quadrant,\ quarter\_sizes).device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.slice(third\_quadrant,\ quarter\_sizes);}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.slice(fourth\_quadrant,\ quarter\_sizes).device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.slice(fourth\_quadrant,\ quarter\_sizes);}
+\DoxyCodeLine{00136\ \ \ \ \ \}}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{comment}{//\ Record\ the\ number\ of\ values\ copied\ from\ the\ rhs\ slice\ to\ the\ lhs\ slice}}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{comment}{//\ each\ second}}
+\DoxyCodeLine{00139\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_ac849c3bbb9275be401a53262b63a0097_ac849c3bbb9275be401a53262b63a0097}{finalizeBenchmark}}(\textcolor{keyword}{static\_cast<}int64\_t\textcolor{keyword}{>}(\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}})\ *\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ *\ num\_iters);}
+\DoxyCodeLine{00140\ \ \ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_benchmark_suite_a313a846461859242eabf7eb4522e6bd8_a313a846461859242eabf7eb4522e6bd8}{rowChip}}(\textcolor{keywordtype}{int}\ num\_iters)\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ input\_size;}
+\DoxyCodeLine{00144\ \ \ \ \ input\_size[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}};}
+\DoxyCodeLine{00145\ \ \ \ \ input\_size[1]\ =\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}};}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2,\ 0,\ TensorIndex>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}}(\mbox{\hyperlink{class_benchmark_suite_a6d376d493748274a1314211521b89b34_a6d376d493748274a1314211521b89b34}{b\_}},\ input\_size);}
+\DoxyCodeLine{00147\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 1>}}\ output\_size;}
+\DoxyCodeLine{00148\ \ \ \ \ output\_size[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}};}
+\DoxyCodeLine{00149\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 1,\ 0,\ TensorIndex>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_aaee470c3acb6b181fd804d072284fbaa_aaee470c3acb6b181fd804d072284fbaa}{C}}(\mbox{\hyperlink{class_benchmark_suite_a0b1b8d0aab6e1d9412ec488ef47e57e6_a0b1b8d0aab6e1d9412ec488ef47e57e6}{c\_}},\ output\_size);}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_USE\_SYCL\ }\textcolor{comment}{//\ warmup\ for\ sycl}}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ 10;\ ++iter)\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.chip(iter\ \%\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}},\ 0);}
+\DoxyCodeLine{00153\ \ \ \ \ \}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00155\ \ \ \ \ \mbox{\hyperlink{benchmark_8h_af28f64c94251a1241c024a6eaff7fc53_af28f64c94251a1241c024a6eaff7fc53}{StartBenchmarkTiming}}();}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ num\_iters;\ ++iter)\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.chip(iter\ \%\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}},\ 0);}
+\DoxyCodeLine{00158\ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{comment}{//\ Record\ the\ number\ of\ values\ copied\ from\ the\ rhs\ chip\ to\ the\ lhs.}}
+\DoxyCodeLine{00160\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_ac849c3bbb9275be401a53262b63a0097_ac849c3bbb9275be401a53262b63a0097}{finalizeBenchmark}}(\textcolor{keyword}{static\_cast<}int64\_t\textcolor{keyword}{>}(\mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}})\ *\ num\_iters);}
+\DoxyCodeLine{00161\ \ \ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_benchmark_suite_acfde6aa82a61fafbc7fc4fc28057e709_acfde6aa82a61fafbc7fc4fc28057e709}{colChip}}(\textcolor{keywordtype}{int}\ num\_iters)\ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ input\_size;}
+\DoxyCodeLine{00165\ \ \ \ \ input\_size[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}};}
+\DoxyCodeLine{00166\ \ \ \ \ input\_size[1]\ =\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}};}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2,\ 0,\ TensorIndex>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}}(\mbox{\hyperlink{class_benchmark_suite_a6d376d493748274a1314211521b89b34_a6d376d493748274a1314211521b89b34}{b\_}},\ input\_size);}
+\DoxyCodeLine{00168\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 1>}}\ output\_size;}
+\DoxyCodeLine{00169\ \ \ \ \ output\_size[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}};}
+\DoxyCodeLine{00170\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 1,\ 0,\ TensorIndex>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_aaee470c3acb6b181fd804d072284fbaa_aaee470c3acb6b181fd804d072284fbaa}{C}}(\mbox{\hyperlink{class_benchmark_suite_a0b1b8d0aab6e1d9412ec488ef47e57e6_a0b1b8d0aab6e1d9412ec488ef47e57e6}{c\_}},\ output\_size);}
+\DoxyCodeLine{00171\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_USE\_SYCL\ }\textcolor{comment}{//\ warmup\ for\ sycl}}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ 10;\ ++iter)\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.chip(iter\ \%\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}},\ 1);}
+\DoxyCodeLine{00174\ \ \ \ \ \}}
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00176\ \ \ \ \ \mbox{\hyperlink{benchmark_8h_af28f64c94251a1241c024a6eaff7fc53_af28f64c94251a1241c024a6eaff7fc53}{StartBenchmarkTiming}}();}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ num\_iters;\ ++iter)\ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.chip(iter\ \%\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}},\ 1);}
+\DoxyCodeLine{00179\ \ \ \ \ \}}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{comment}{//\ Record\ the\ number\ of\ values\ copied\ from\ the\ rhs\ chip\ to\ the\ lhs.}}
+\DoxyCodeLine{00181\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_ac849c3bbb9275be401a53262b63a0097_ac849c3bbb9275be401a53262b63a0097}{finalizeBenchmark}}(\textcolor{keyword}{static\_cast<}int64\_t\textcolor{keyword}{>}(\mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}})\ *\ num\_iters);}
+\DoxyCodeLine{00182\ \ \ \}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_benchmark_suite_abc6c3f1ea3d7637d703fa8f69703af8d_abc6c3f1ea3d7637d703fa8f69703af8d}{shuffling}}(\textcolor{keywordtype}{int}\ num\_iters)\ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \mbox{\hyperlink{_macros_8h_acaa7ba89800cfe18d5fd6eed620aea9c_acaa7ba89800cfe18d5fd6eed620aea9c}{eigen\_assert}}(\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ ==\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}});}
+\DoxyCodeLine{00186\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ size\_a;}
+\DoxyCodeLine{00187\ \ \ \ \ size\_a[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}};}
+\DoxyCodeLine{00188\ \ \ \ \ size\_a[1]\ =\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}};}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}(\mbox{\hyperlink{class_benchmark_suite_a93253db2189eb3af54ee56ac732c8e84_a93253db2189eb3af54ee56ac732c8e84}{a\_}},\ size\_a);}
+\DoxyCodeLine{00190\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ size\_b;}
+\DoxyCodeLine{00191\ \ \ \ \ size\_b[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}};}
+\DoxyCodeLine{00192\ \ \ \ \ size\_b[1]\ =\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}};}
+\DoxyCodeLine{00193\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}}(\mbox{\hyperlink{class_benchmark_suite_a6d376d493748274a1314211521b89b34_a6d376d493748274a1314211521b89b34}{b\_}},\ size\_b);}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<int,\ 2>}}\ shuffle;}
+\DoxyCodeLine{00196\ \ \ \ \ shuffle[0]\ =\ 1;}
+\DoxyCodeLine{00197\ \ \ \ \ shuffle[1]\ =\ 0;}
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_USE\_SYCL\ }\textcolor{comment}{//\ warmup\ for\ sycl}}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ 10;\ ++iter)\ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.shuffle(shuffle);}
+\DoxyCodeLine{00201\ \ \ \ \ \}}
+\DoxyCodeLine{00202\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00203\ \ \ \ \ \mbox{\hyperlink{benchmark_8h_af28f64c94251a1241c024a6eaff7fc53_af28f64c94251a1241c024a6eaff7fc53}{StartBenchmarkTiming}}();}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ num\_iters;\ ++iter)\ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.shuffle(shuffle);}
+\DoxyCodeLine{00206\ \ \ \ \ \}}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{comment}{//\ Record\ the\ number\ of\ values\ shuffled\ from\ A\ and\ copied\ to\ B\ each\ second}}
+\DoxyCodeLine{00208\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_ac849c3bbb9275be401a53262b63a0097_ac849c3bbb9275be401a53262b63a0097}{finalizeBenchmark}}(\textcolor{keyword}{static\_cast<}int64\_t\textcolor{keyword}{>}(\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}})\ *\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}\ *\ num\_iters);}
+\DoxyCodeLine{00209\ \ \ \}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_benchmark_suite_a01d9720c94f4a02cb91d2703df1d7d03_a01d9720c94f4a02cb91d2703df1d7d03}{padding}}(\textcolor{keywordtype}{int}\ num\_iters)\ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \mbox{\hyperlink{_macros_8h_acaa7ba89800cfe18d5fd6eed620aea9c_acaa7ba89800cfe18d5fd6eed620aea9c}{eigen\_assert}}(\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ ==\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}});}
+\DoxyCodeLine{00213\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ size\_a;}
+\DoxyCodeLine{00214\ \ \ \ \ size\_a[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}};}
+\DoxyCodeLine{00215\ \ \ \ \ size\_a[1]\ =\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}-\/3;}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}(\mbox{\hyperlink{class_benchmark_suite_a93253db2189eb3af54ee56ac732c8e84_a93253db2189eb3af54ee56ac732c8e84}{a\_}},\ size\_a);}
+\DoxyCodeLine{00217\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ size\_b;}
+\DoxyCodeLine{00218\ \ \ \ \ size\_b[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}};}
+\DoxyCodeLine{00219\ \ \ \ \ size\_b[1]\ =\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}};}
+\DoxyCodeLine{00220\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}}(\mbox{\hyperlink{class_benchmark_suite_a6d376d493748274a1314211521b89b34_a6d376d493748274a1314211521b89b34}{b\_}},\ size\_b);}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \textcolor{preprocessor}{\#if\ defined(EIGEN\_HAS\_INDEX\_LIST)}}
+\DoxyCodeLine{00223\ \ \ \ \ Eigen::IndexPairList<Eigen::type2indexpair<0,\ 0>,}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Eigen::type2indexpair<2,\ 1>\ >\ paddings;}
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00226\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<Eigen::IndexPair<TensorIndex>}},\ 2>\ paddings;}
+\DoxyCodeLine{00227\ \ \ \ \ paddings[0]\ =\ \mbox{\hyperlink{struct_eigen_1_1_index_pair}{Eigen::IndexPair<TensorIndex>}}(0,\ 0);}
+\DoxyCodeLine{00228\ \ \ \ \ paddings[1]\ =\ \mbox{\hyperlink{struct_eigen_1_1_index_pair}{Eigen::IndexPair<TensorIndex>}}(2,\ 1);}
+\DoxyCodeLine{00229\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00230\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_USE\_SYCL\ }\textcolor{comment}{//\ warmup\ for\ sycl}}
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ 10;\ ++iter)\ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.pad(paddings);}
+\DoxyCodeLine{00233\ \ \ \ \ \}}
+\DoxyCodeLine{00234\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00235\ \ \ \ \ \mbox{\hyperlink{benchmark_8h_af28f64c94251a1241c024a6eaff7fc53_af28f64c94251a1241c024a6eaff7fc53}{StartBenchmarkTiming}}();}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ num\_iters;\ ++iter)\ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.pad(paddings);}
+\DoxyCodeLine{00238\ \ \ \ \ \}}
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{comment}{//\ Record\ the\ number\ of\ values\ copied\ from\ the\ padded\ tensor\ A\ each\ second}}
+\DoxyCodeLine{00240\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_ac849c3bbb9275be401a53262b63a0097_ac849c3bbb9275be401a53262b63a0097}{finalizeBenchmark}}(\textcolor{keyword}{static\_cast<}int64\_t\textcolor{keyword}{>}(\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}})\ *\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}\ *\ num\_iters);}
+\DoxyCodeLine{00241\ \ \ \}}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_benchmark_suite_a42047753fd9853ff243739811c9f145e_a42047753fd9853ff243739811c9f145e}{striding}}(\textcolor{keywordtype}{int}\ num\_iters)\ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \mbox{\hyperlink{_macros_8h_acaa7ba89800cfe18d5fd6eed620aea9c_acaa7ba89800cfe18d5fd6eed620aea9c}{eigen\_assert}}(\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ ==\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}});}
+\DoxyCodeLine{00245\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ size\_a;}
+\DoxyCodeLine{00246\ \ \ \ \ size\_a[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}};}
+\DoxyCodeLine{00247\ \ \ \ \ size\_a[1]\ =\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}};}
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}(\mbox{\hyperlink{class_benchmark_suite_a93253db2189eb3af54ee56ac732c8e84_a93253db2189eb3af54ee56ac732c8e84}{a\_}},\ size\_a);}
+\DoxyCodeLine{00249\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ size\_b;}
+\DoxyCodeLine{00250\ \ \ \ \ size\_b[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}};}
+\DoxyCodeLine{00251\ \ \ \ \ size\_b[1]\ =\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}/2;}
+\DoxyCodeLine{00252\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}}(\mbox{\hyperlink{class_benchmark_suite_a6d376d493748274a1314211521b89b34_a6d376d493748274a1314211521b89b34}{b\_}},\ size\_b);}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_HAS\_INDEX\_LIST}}
+\DoxyCodeLine{00255\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ strides;}
+\DoxyCodeLine{00256\ \ \ \ \ strides[0]\ =\ 1;}
+\DoxyCodeLine{00257\ \ \ \ \ strides[1]\ =\ 2;}
+\DoxyCodeLine{00258\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00259\ \ \ \ \ \textcolor{comment}{//\ Take\ advantage\ of\ cxx11\ to\ give\ the\ compiler\ information\ it\ can\ use\ to}}
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{comment}{//\ optimize\ the\ code.}}
+\DoxyCodeLine{00261\ \ \ \ \ Eigen::IndexList<Eigen::type2index<1>,\ Eigen::type2index<2>\ >\ strides;}
+\DoxyCodeLine{00262\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_USE\_SYCL\ }\textcolor{comment}{//\ warmup\ for\ sycl}}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ 10;\ ++iter)\ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.stride(strides);}
+\DoxyCodeLine{00267\ \ \ \ \ \}}
+\DoxyCodeLine{00268\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00269\ \ \ \ \ \mbox{\hyperlink{benchmark_8h_af28f64c94251a1241c024a6eaff7fc53_af28f64c94251a1241c024a6eaff7fc53}{StartBenchmarkTiming}}();}
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ num\_iters;\ ++iter)\ \{}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.stride(strides);}
+\DoxyCodeLine{00272\ \ \ \ \ \}}
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{comment}{//\ Record\ the\ number\ of\ values\ copied\ from\ the\ padded\ tensor\ A\ each\ second}}
+\DoxyCodeLine{00274\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_ac849c3bbb9275be401a53262b63a0097_ac849c3bbb9275be401a53262b63a0097}{finalizeBenchmark}}(\textcolor{keyword}{static\_cast<}int64\_t\textcolor{keyword}{>}(\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}})\ *\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}\ *\ num\_iters);}
+\DoxyCodeLine{00275\ \ \ \}}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_benchmark_suite_a6c5e0aef280fbded77b7c792715a34f2_a6c5e0aef280fbded77b7c792715a34f2}{broadcasting}}(\textcolor{keywordtype}{int}\ num\_iters)\ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ size\_a;}
+\DoxyCodeLine{00280\ \ \ \ \ size\_a[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}};}
+\DoxyCodeLine{00281\ \ \ \ \ size\_a[1]\ =\ 1;}
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}(\mbox{\hyperlink{class_benchmark_suite_a93253db2189eb3af54ee56ac732c8e84_a93253db2189eb3af54ee56ac732c8e84}{a\_}},\ size\_a);}
+\DoxyCodeLine{00283\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ size\_c;}
+\DoxyCodeLine{00284\ \ \ \ \ size\_c[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}};}
+\DoxyCodeLine{00285\ \ \ \ \ size\_c[1]\ =\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}};}
+\DoxyCodeLine{00286\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_aaee470c3acb6b181fd804d072284fbaa_aaee470c3acb6b181fd804d072284fbaa}{C}}(\mbox{\hyperlink{class_benchmark_suite_a0b1b8d0aab6e1d9412ec488ef47e57e6_a0b1b8d0aab6e1d9412ec488ef47e57e6}{c\_}},\ size\_c);}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_HAS\_INDEX\_LIST}}
+\DoxyCodeLine{00289\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<int,\ 2>}}\ broadcast;}
+\DoxyCodeLine{00290\ \ \ \ \ broadcast[0]\ =\ 1;}
+\DoxyCodeLine{00291\ \ \ \ \ broadcast[1]\ =\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}};}
+\DoxyCodeLine{00292\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{comment}{//\ Take\ advantage\ of\ cxx11\ to\ give\ the\ compiler\ information\ it\ can\ use\ to}}
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{comment}{//\ optimize\ the\ code.}}
+\DoxyCodeLine{00295\ \ \ \ \ Eigen::IndexList<Eigen::type2index<1>,\ \textcolor{keywordtype}{int}>\ broadcast;}
+\DoxyCodeLine{00296\ \ \ \ \ broadcast.set(1,\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}});}
+\DoxyCodeLine{00297\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_USE\_SYCL\ }\textcolor{comment}{//\ warmup\ for\ sycl}}
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ 10;\ ++iter)\ \{}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.broadcast(broadcast);}
+\DoxyCodeLine{00302\ \ \ \ \ \}}
+\DoxyCodeLine{00303\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00304\ \ \ \ \ \mbox{\hyperlink{benchmark_8h_af28f64c94251a1241c024a6eaff7fc53_af28f64c94251a1241c024a6eaff7fc53}{StartBenchmarkTiming}}();}
+\DoxyCodeLine{00305\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ num\_iters;\ ++iter)\ \{}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.broadcast(broadcast);}
+\DoxyCodeLine{00307\ \ \ \ \ \}}
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{comment}{//\ Record\ the\ number\ of\ values\ broadcasted\ from\ A\ and\ copied\ to\ C\ each\ second}}
+\DoxyCodeLine{00309\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_ac849c3bbb9275be401a53262b63a0097_ac849c3bbb9275be401a53262b63a0097}{finalizeBenchmark}}(\textcolor{keyword}{static\_cast<}int64\_t\textcolor{keyword}{>}(\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}})\ *\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}}\ *\ num\_iters);}
+\DoxyCodeLine{00310\ \ \ \}}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_benchmark_suite_a4c50732f7d23e075225a0e6864d24d12_a4c50732f7d23e075225a0e6864d24d12}{coeffWiseOp}}(\textcolor{keywordtype}{int}\ num\_iters)\ \{}
+\DoxyCodeLine{00313\ \ \ \ \ \mbox{\hyperlink{_macros_8h_acaa7ba89800cfe18d5fd6eed620aea9c_acaa7ba89800cfe18d5fd6eed620aea9c}{eigen\_assert}}(\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ ==\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}\ \&\&\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}\ ==\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}});}
+\DoxyCodeLine{00314\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}};}
+\DoxyCodeLine{00315\ \ \ \ \ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}}[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}};}
+\DoxyCodeLine{00316\ \ \ \ \ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}}[1]\ =\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}};}
+\DoxyCodeLine{00317\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}(\mbox{\hyperlink{class_benchmark_suite_a93253db2189eb3af54ee56ac732c8e84_a93253db2189eb3af54ee56ac732c8e84}{a\_}},\ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}});}
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}}(\mbox{\hyperlink{class_benchmark_suite_a6d376d493748274a1314211521b89b34_a6d376d493748274a1314211521b89b34}{b\_}},\ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}});}
+\DoxyCodeLine{00319\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_aaee470c3acb6b181fd804d072284fbaa_aaee470c3acb6b181fd804d072284fbaa}{C}}(\mbox{\hyperlink{class_benchmark_suite_a0b1b8d0aab6e1d9412ec488ef47e57e6_a0b1b8d0aab6e1d9412ec488ef47e57e6}{c\_}},\ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}});}
+\DoxyCodeLine{00320\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_USE\_SYCL\ }\textcolor{comment}{//\ warmup\ for\ sycl}}
+\DoxyCodeLine{00321\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ 10;\ ++iter)\ \{}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}\ *\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.constant(\textcolor{keyword}{static\_cast<}\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\textcolor{keyword}{>}(3.14))\ +\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}\ *\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.constant(\textcolor{keyword}{static\_cast<}\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\textcolor{keyword}{>}(2.7));}
+\DoxyCodeLine{00323\ \ \ \ \ \}}
+\DoxyCodeLine{00324\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00325\ \ \ \ \ \mbox{\hyperlink{benchmark_8h_af28f64c94251a1241c024a6eaff7fc53_af28f64c94251a1241c024a6eaff7fc53}{StartBenchmarkTiming}}();}
+\DoxyCodeLine{00326\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ num\_iters;\ ++iter)\ \{}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}\ *\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.constant(\textcolor{keyword}{static\_cast<}\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\textcolor{keyword}{>}(3.14))\ +\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}\ *\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.constant(\textcolor{keyword}{static\_cast<}\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\textcolor{keyword}{>}(2.7));}
+\DoxyCodeLine{00328\ \ \ \ \ \}}
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{comment}{//\ Record\ the\ number\ of\ FLOP\ executed\ per\ second\ (2\ multiplications\ and}}
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{comment}{//\ 1\ addition\ per\ value)}}
+\DoxyCodeLine{00331\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_ac849c3bbb9275be401a53262b63a0097_ac849c3bbb9275be401a53262b63a0097}{finalizeBenchmark}}(\textcolor{keyword}{static\_cast<}int64\_t\textcolor{keyword}{>}(3)\ *\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ *\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ *\ num\_iters);}
+\DoxyCodeLine{00332\ \ \ \}}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_benchmark_suite_a89d7913590aaec7d04bc6662f246a0ea_a89d7913590aaec7d04bc6662f246a0ea}{algebraicFunc}}(\textcolor{keywordtype}{int}\ num\_iters)\ \{}
+\DoxyCodeLine{00335\ \ \ \ \ \mbox{\hyperlink{_macros_8h_acaa7ba89800cfe18d5fd6eed620aea9c_acaa7ba89800cfe18d5fd6eed620aea9c}{eigen\_assert}}(\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ ==\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}\ \&\&\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}\ ==\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}});}
+\DoxyCodeLine{00336\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}};}
+\DoxyCodeLine{00337\ \ \ \ \ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}}[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}};}
+\DoxyCodeLine{00338\ \ \ \ \ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}}[1]\ =\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}};}
+\DoxyCodeLine{00339\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}(\mbox{\hyperlink{class_benchmark_suite_a93253db2189eb3af54ee56ac732c8e84_a93253db2189eb3af54ee56ac732c8e84}{a\_}},\ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}});}
+\DoxyCodeLine{00340\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}}(\mbox{\hyperlink{class_benchmark_suite_a6d376d493748274a1314211521b89b34_a6d376d493748274a1314211521b89b34}{b\_}},\ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}});}
+\DoxyCodeLine{00341\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_aaee470c3acb6b181fd804d072284fbaa_aaee470c3acb6b181fd804d072284fbaa}{C}}(\mbox{\hyperlink{class_benchmark_suite_a0b1b8d0aab6e1d9412ec488ef47e57e6_a0b1b8d0aab6e1d9412ec488ef47e57e6}{c\_}},\ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}});}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_USE\_SYCL\ }\textcolor{comment}{//\ warmup\ for\ sycl}}
+\DoxyCodeLine{00344\ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ 10;\ ++iter)\ \{}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.rsqrt()\ +\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.sqrt()\ *\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.square();}
+\DoxyCodeLine{00346\ \}}
+\DoxyCodeLine{00347\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00348\ \ \ \ \ \mbox{\hyperlink{benchmark_8h_af28f64c94251a1241c024a6eaff7fc53_af28f64c94251a1241c024a6eaff7fc53}{StartBenchmarkTiming}}();}
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ num\_iters;\ ++iter)\ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.rsqrt()\ +\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.sqrt()\ *\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.square();}
+\DoxyCodeLine{00351\ \ \ \ \ \}}
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{comment}{//\ Record\ the\ number\ of\ FLOP\ executed\ per\ second\ (assuming\ one\ operation}}
+\DoxyCodeLine{00353\ \ \ \ \ \textcolor{comment}{//\ per\ value)}}
+\DoxyCodeLine{00354\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_ac849c3bbb9275be401a53262b63a0097_ac849c3bbb9275be401a53262b63a0097}{finalizeBenchmark}}(\textcolor{keyword}{static\_cast<}int64\_t\textcolor{keyword}{>}(\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}})\ *\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ *\ num\_iters);}
+\DoxyCodeLine{00355\ \ \ \}}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00357\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_benchmark_suite_a5a93f86f9df9d99de1d63db8e5f0b85b_a5a93f86f9df9d99de1d63db8e5f0b85b}{transcendentalFunc}}(\textcolor{keywordtype}{int}\ num\_iters)\ \{}
+\DoxyCodeLine{00358\ \ \ \ \ \mbox{\hyperlink{_macros_8h_acaa7ba89800cfe18d5fd6eed620aea9c_acaa7ba89800cfe18d5fd6eed620aea9c}{eigen\_assert}}(\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ ==\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}\ \&\&\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}\ ==\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}});}
+\DoxyCodeLine{00359\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}};}
+\DoxyCodeLine{00360\ \ \ \ \ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}}[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}};}
+\DoxyCodeLine{00361\ \ \ \ \ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}}[1]\ =\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}};}
+\DoxyCodeLine{00362\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}(\mbox{\hyperlink{class_benchmark_suite_a93253db2189eb3af54ee56ac732c8e84_a93253db2189eb3af54ee56ac732c8e84}{a\_}},\ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}});}
+\DoxyCodeLine{00363\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}}(\mbox{\hyperlink{class_benchmark_suite_a6d376d493748274a1314211521b89b34_a6d376d493748274a1314211521b89b34}{b\_}},\ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}});}
+\DoxyCodeLine{00364\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_aaee470c3acb6b181fd804d072284fbaa_aaee470c3acb6b181fd804d072284fbaa}{C}}(\mbox{\hyperlink{class_benchmark_suite_a0b1b8d0aab6e1d9412ec488ef47e57e6_a0b1b8d0aab6e1d9412ec488ef47e57e6}{c\_}},\ \mbox{\hyperlink{dense__solvers_8cpp_a3988aae35d2c3c4258c27d72f221c707_a3988aae35d2c3c4258c27d72f221c707}{sizes}});}
+\DoxyCodeLine{00365\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_USE\_SYCL\ }\textcolor{comment}{//\ warmup\ for\ sycl}}
+\DoxyCodeLine{00366\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ 10;\ ++iter)\ \{}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.exp()\ +\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.log();}
+\DoxyCodeLine{00368\ \ \ \ \ \}}
+\DoxyCodeLine{00369\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00370\ \ \ \ \ \mbox{\hyperlink{benchmark_8h_af28f64c94251a1241c024a6eaff7fc53_af28f64c94251a1241c024a6eaff7fc53}{StartBenchmarkTiming}}();}
+\DoxyCodeLine{00371\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ num\_iters;\ ++iter)\ \{}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.exp()\ +\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.log();}
+\DoxyCodeLine{00373\ \ \ \ \ \}}
+\DoxyCodeLine{00374\ \ \ \ \ \textcolor{comment}{//\ Record\ the\ number\ of\ FLOP\ executed\ per\ second\ (assuming\ one\ operation}}
+\DoxyCodeLine{00375\ \ \ \ \ \textcolor{comment}{//\ per\ value)}}
+\DoxyCodeLine{00376\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_ac849c3bbb9275be401a53262b63a0097_ac849c3bbb9275be401a53262b63a0097}{finalizeBenchmark}}(\textcolor{keyword}{static\_cast<}int64\_t\textcolor{keyword}{>}(\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}})\ *\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ *\ num\_iters);}
+\DoxyCodeLine{00377\ \ \ \}}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00379\ \ \textcolor{comment}{//\ Row\ reduction}}
+\DoxyCodeLine{00380\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_benchmark_suite_a54d4004f67f2f52bb37886c7a3095225_a54d4004f67f2f52bb37886c7a3095225}{rowReduction}}(\textcolor{keywordtype}{int}\ num\_iters)\ \{}
+\DoxyCodeLine{00381\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ input\_size;}
+\DoxyCodeLine{00382\ \ \ \ \ input\_size[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}};}
+\DoxyCodeLine{00383\ \ \ \ \ input\_size[1]\ =\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}};}
+\DoxyCodeLine{00384\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2,\ 0,\ TensorIndex>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}}(\mbox{\hyperlink{class_benchmark_suite_a6d376d493748274a1314211521b89b34_a6d376d493748274a1314211521b89b34}{b\_}},\ input\_size);}
+\DoxyCodeLine{00385\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 1>}}\ output\_size;}
+\DoxyCodeLine{00386\ \ \ \ \ output\_size[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}};}
+\DoxyCodeLine{00387\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 1,\ 0,\ TensorIndex>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_aaee470c3acb6b181fd804d072284fbaa_aaee470c3acb6b181fd804d072284fbaa}{C}}(\mbox{\hyperlink{class_benchmark_suite_a0b1b8d0aab6e1d9412ec488ef47e57e6_a0b1b8d0aab6e1d9412ec488ef47e57e6}{c\_}},\ output\_size);}
+\DoxyCodeLine{00388\ }
+\DoxyCodeLine{00389\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_HAS\_INDEX\_LIST}}
+\DoxyCodeLine{00390\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 1>}}\ sum\_along\_dim;}
+\DoxyCodeLine{00391\ \ \ \ \ sum\_along\_dim[0]\ =\ 0;}
+\DoxyCodeLine{00392\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00393\ \ \ \ \ \textcolor{comment}{//\ Take\ advantage\ of\ cxx11\ to\ give\ the\ compiler\ information\ it\ can\ use\ to}}
+\DoxyCodeLine{00394\ \ \ \ \ \textcolor{comment}{//\ optimize\ the\ code.}}
+\DoxyCodeLine{00395\ \ \ \ \ Eigen::IndexList<Eigen::type2index<0>>\ sum\_along\_dim;}
+\DoxyCodeLine{00396\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00397\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_USE\_SYCL\ }\textcolor{comment}{//\ warmup\ for\ sycl}}
+\DoxyCodeLine{00398\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ 10;\ ++iter)\ \{}
+\DoxyCodeLine{00399\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.sum(sum\_along\_dim);}
+\DoxyCodeLine{00400\ \ \ \}}
+\DoxyCodeLine{00401\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00402\ \ \ \ \ \mbox{\hyperlink{benchmark_8h_af28f64c94251a1241c024a6eaff7fc53_af28f64c94251a1241c024a6eaff7fc53}{StartBenchmarkTiming}}();}
+\DoxyCodeLine{00403\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ num\_iters;\ ++iter)\ \{}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.sum(sum\_along\_dim);}
+\DoxyCodeLine{00405\ \ \ \ \ \}}
+\DoxyCodeLine{00406\ \ \ \ \ \textcolor{comment}{//\ Record\ the\ number\ of\ FLOP\ executed\ per\ second\ (assuming\ one\ operation}}
+\DoxyCodeLine{00407\ \ \ \ \ \textcolor{comment}{//\ per\ value)}}
+\DoxyCodeLine{00408\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_ac849c3bbb9275be401a53262b63a0097_ac849c3bbb9275be401a53262b63a0097}{finalizeBenchmark}}(\textcolor{keyword}{static\_cast<}int64\_t\textcolor{keyword}{>}(\mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}})\ *\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}}\ *\ num\_iters);}
+\DoxyCodeLine{00409\ \ \ \}}
+\DoxyCodeLine{00410\ }
+\DoxyCodeLine{00411\ \ \ \textcolor{comment}{//\ Column\ reduction}}
+\DoxyCodeLine{00412\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_benchmark_suite_a207ac9706067b08800f3f478a719f274_a207ac9706067b08800f3f478a719f274}{colReduction}}(\textcolor{keywordtype}{int}\ num\_iters)\ \{}
+\DoxyCodeLine{00413\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ input\_size;}
+\DoxyCodeLine{00414\ \ \ \ \ input\_size[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}};}
+\DoxyCodeLine{00415\ \ \ \ \ input\_size[1]\ =\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}};}
+\DoxyCodeLine{00416\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2,\ 0,\ TensorIndex>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}}(}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_a6d376d493748274a1314211521b89b34_a6d376d493748274a1314211521b89b34}{b\_}},\ input\_size);}
+\DoxyCodeLine{00418\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 1>}}\ output\_size;}
+\DoxyCodeLine{00419\ \ \ \ \ output\_size[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}};}
+\DoxyCodeLine{00420\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 1,\ 0,\ TensorIndex>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}(}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_a93253db2189eb3af54ee56ac732c8e84_a93253db2189eb3af54ee56ac732c8e84}{a\_}},\ output\_size);}
+\DoxyCodeLine{00422\ }
+\DoxyCodeLine{00423\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_HAS\_INDEX\_LIST}}
+\DoxyCodeLine{00424\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 1>}}\ sum\_along\_dim;}
+\DoxyCodeLine{00425\ \ \ \ \ sum\_along\_dim[0]\ =\ 1;}
+\DoxyCodeLine{00426\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00427\ \ \ \ \ \textcolor{comment}{//\ Take\ advantage\ of\ cxx11\ to\ give\ the\ compiler\ information\ it\ can\ use\ to}}
+\DoxyCodeLine{00428\ \ \ \ \ \textcolor{comment}{//\ optimize\ the\ code.}}
+\DoxyCodeLine{00429\ \ \ \ \ Eigen::IndexList<Eigen::type2index<1>>\ sum\_along\_dim;}
+\DoxyCodeLine{00430\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00431\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_USE\_SYCL\ }\textcolor{comment}{//\ warmup\ for\ sycl}}
+\DoxyCodeLine{00432\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ 10;\ ++iter)\ \{}
+\DoxyCodeLine{00433\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.sum(sum\_along\_dim);}
+\DoxyCodeLine{00434\ \ \ \}}
+\DoxyCodeLine{00435\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00436\ \ \ \ \ \mbox{\hyperlink{benchmark_8h_af28f64c94251a1241c024a6eaff7fc53_af28f64c94251a1241c024a6eaff7fc53}{StartBenchmarkTiming}}();}
+\DoxyCodeLine{00437\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ num\_iters;\ ++iter)\ \{}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.sum(sum\_along\_dim);}
+\DoxyCodeLine{00439\ \ \ \ \ \}}
+\DoxyCodeLine{00440\ \ \ \ \ \textcolor{comment}{//\ Record\ the\ number\ of\ FLOP\ executed\ per\ second\ (assuming\ one\ operation}}
+\DoxyCodeLine{00441\ \ \ \ \ \textcolor{comment}{//\ per\ value)}}
+\DoxyCodeLine{00442\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_ac849c3bbb9275be401a53262b63a0097_ac849c3bbb9275be401a53262b63a0097}{finalizeBenchmark}}(\textcolor{keyword}{static\_cast<}int64\_t\textcolor{keyword}{>}(\mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}})\ *\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}}\ *\ num\_iters);}
+\DoxyCodeLine{00443\ \ \ \}}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00445\ \ \ \textcolor{comment}{//\ Full\ reduction}}
+\DoxyCodeLine{00446\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_benchmark_suite_a80ac0e92f7d973f3fa24da7fc85582c3_a80ac0e92f7d973f3fa24da7fc85582c3}{fullReduction}}(\textcolor{keywordtype}{int}\ num\_iters)\ \{}
+\DoxyCodeLine{00447\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ input\_size;}
+\DoxyCodeLine{00448\ \ \ \ \ input\_size[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}};}
+\DoxyCodeLine{00449\ \ \ \ \ input\_size[1]\ =\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}};}
+\DoxyCodeLine{00450\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2,\ 0,\ TensorIndex>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}}(}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_a6d376d493748274a1314211521b89b34_a6d376d493748274a1314211521b89b34}{b\_}},\ input\_size);}
+\DoxyCodeLine{00452\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 0>}}\ output\_size;}
+\DoxyCodeLine{00453\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 0,\ 0,\ TensorIndex>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_aaee470c3acb6b181fd804d072284fbaa_aaee470c3acb6b181fd804d072284fbaa}{C}}(}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_a0b1b8d0aab6e1d9412ec488ef47e57e6_a0b1b8d0aab6e1d9412ec488ef47e57e6}{c\_}},\ output\_size);}
+\DoxyCodeLine{00455\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_USE\_SYCL\ }\textcolor{comment}{//\ warmup\ for\ sycl}}
+\DoxyCodeLine{00456\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ 10;\ ++iter)\ \{}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.sum();}
+\DoxyCodeLine{00458\ \ \ \ \ \}}
+\DoxyCodeLine{00459\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00460\ \ \ \ \ \mbox{\hyperlink{benchmark_8h_af28f64c94251a1241c024a6eaff7fc53_af28f64c94251a1241c024a6eaff7fc53}{StartBenchmarkTiming}}();}
+\DoxyCodeLine{00461\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ num\_iters;\ ++iter)\ \{}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{B}}.sum();}
+\DoxyCodeLine{00463\ \ \ \ \ \}}
+\DoxyCodeLine{00464\ \ \ \ \ \textcolor{comment}{//\ Record\ the\ number\ of\ FLOP\ executed\ per\ second\ (assuming\ one\ operation}}
+\DoxyCodeLine{00465\ \ \ \ \ \textcolor{comment}{//\ per\ value)}}
+\DoxyCodeLine{00466\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_ac849c3bbb9275be401a53262b63a0097_ac849c3bbb9275be401a53262b63a0097}{finalizeBenchmark}}(\textcolor{keyword}{static\_cast<}int64\_t\textcolor{keyword}{>}(\mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}})\ *\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}}\ *\ num\_iters);}
+\DoxyCodeLine{00467\ \ \ \}}
+\DoxyCodeLine{00468\ }
+\DoxyCodeLine{00469\ \ \ }
+\DoxyCodeLine{00470\ }
+\DoxyCodeLine{00471\ \ \ \textcolor{comment}{//\ do\ a\ contraction\ which\ is\ equivalent\ to\ a\ matrix\ multiplication}}
+\DoxyCodeLine{00472\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_benchmark_suite_a4e60940b0962859e6bf020bf4f25676f_a4e60940b0962859e6bf020bf4f25676f}{contraction}}(\textcolor{keywordtype}{int}\ num\_iters)\ \{}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_a4e60940b0962859e6bf020bf4f25676f_a4e60940b0962859e6bf020bf4f25676f}{contraction<static\_cast<int>}}(\mbox{\hyperlink{group__enums_gaacded1a18ae58b0f554751f6cdf9eb13_ggaacded1a18ae58b0f554751f6cdf9eb13a0103672ae41005ab03b4176c765afd62}{Eigen::ColMajor}})>(num\_iters,\ \textcolor{keyword}{false},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00474\ \ \ \}}
+\DoxyCodeLine{00475\ }
+\DoxyCodeLine{00476\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_benchmark_suite_a8b9aea9482b44e97c6d82b983a4aff53_a8b9aea9482b44e97c6d82b983a4aff53}{contractionRowMajor}}(\textcolor{keywordtype}{int}\ num\_iters)\ \{}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_a4e60940b0962859e6bf020bf4f25676f_a4e60940b0962859e6bf020bf4f25676f}{contraction<static\_cast<int>}}(\mbox{\hyperlink{group__enums_gaacded1a18ae58b0f554751f6cdf9eb13_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Eigen::RowMajor}})>(num\_iters,\ \textcolor{keyword}{false},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00478\ \ \ \}}
+\DoxyCodeLine{00479\ \ \ \ \ }
+\DoxyCodeLine{00480\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_benchmark_suite_a8e492b000c04db85769f27e86d3c054d_a8e492b000c04db85769f27e86d3c054d}{contractionRowMajorAT}}(\textcolor{keywordtype}{int}\ num\_iters)\ \{}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_a4e60940b0962859e6bf020bf4f25676f_a4e60940b0962859e6bf020bf4f25676f}{contraction<static\_cast<int>}}(\mbox{\hyperlink{group__enums_gaacded1a18ae58b0f554751f6cdf9eb13_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Eigen::RowMajor}})>(num\_iters,\ \textcolor{keyword}{true},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00482\ \ \ \}}
+\DoxyCodeLine{00483\ }
+\DoxyCodeLine{00484\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_benchmark_suite_aa70521cebe3cd4d0d3a94f1e1fbe0f8b_aa70521cebe3cd4d0d3a94f1e1fbe0f8b}{contractionRowMajorBT}}(\textcolor{keywordtype}{int}\ num\_iters)\ \{}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_a4e60940b0962859e6bf020bf4f25676f_a4e60940b0962859e6bf020bf4f25676f}{contraction<static\_cast<int>}}(\mbox{\hyperlink{group__enums_gaacded1a18ae58b0f554751f6cdf9eb13_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Eigen::RowMajor}})>(num\_iters,\ \textcolor{keyword}{false},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00486\ \ \ \}}
+\DoxyCodeLine{00487\ }
+\DoxyCodeLine{00488\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_benchmark_suite_a3572853e4a63ed8398351dfe4f6ad42e_a3572853e4a63ed8398351dfe4f6ad42e}{contractionRowMajorABT}}(\textcolor{keywordtype}{int}\ num\_iters)\ \{}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_a4e60940b0962859e6bf020bf4f25676f_a4e60940b0962859e6bf020bf4f25676f}{contraction<static\_cast<int>}}(\mbox{\hyperlink{group__enums_gaacded1a18ae58b0f554751f6cdf9eb13_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Eigen::RowMajor}})>(num\_iters,\ \textcolor{keyword}{true},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00490\ \ \ \}}
+\DoxyCodeLine{00491\ }
+\DoxyCodeLine{00492\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_benchmark_suite_ae613f9d381021dc15dad6c86f55ee19b_ae613f9d381021dc15dad6c86f55ee19b}{convolution}}(\textcolor{keywordtype}{int}\ num\_iters,\ \textcolor{keywordtype}{int}\ kernel\_x,\ \textcolor{keywordtype}{int}\ kernel\_y)\ \{}
+\DoxyCodeLine{00493\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ input\_sizes;}
+\DoxyCodeLine{00494\ \ \ \ \ input\_sizes[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}};}
+\DoxyCodeLine{00495\ \ \ \ \ input\_sizes[1]\ =\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}};}
+\DoxyCodeLine{00496\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}(\mbox{\hyperlink{class_benchmark_suite_a93253db2189eb3af54ee56ac732c8e84_a93253db2189eb3af54ee56ac732c8e84}{a\_}},\ input\_sizes);}
+\DoxyCodeLine{00497\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ kernel\_sizes;}
+\DoxyCodeLine{00498\ \ \ \ \ kernel\_sizes[0]\ =\ kernel\_x;}
+\DoxyCodeLine{00499\ \ \ \ \ kernel\_sizes[1]\ =\ kernel\_y;}
+\DoxyCodeLine{00500\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}}(\mbox{\hyperlink{class_benchmark_suite_a6d376d493748274a1314211521b89b34_a6d376d493748274a1314211521b89b34}{b\_}},\ kernel\_sizes);}
+\DoxyCodeLine{00501\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ result\_sizes;}
+\DoxyCodeLine{00502\ \ \ \ \ result\_sizes[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ -\/\ kernel\_x\ +\ 1;}
+\DoxyCodeLine{00503\ \ \ \ \ result\_sizes[1]\ =\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}}\ -\/\ kernel\_y\ +\ 1;}
+\DoxyCodeLine{00504\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_aaee470c3acb6b181fd804d072284fbaa_aaee470c3acb6b181fd804d072284fbaa}{C}}(\mbox{\hyperlink{class_benchmark_suite_a0b1b8d0aab6e1d9412ec488ef47e57e6_a0b1b8d0aab6e1d9412ec488ef47e57e6}{c\_}},\ result\_sizes);}
+\DoxyCodeLine{00505\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ dims;}
+\DoxyCodeLine{00506\ \ \ \ \ dims[0]\ =\ 0;}
+\DoxyCodeLine{00507\ \ \ \ \ dims[1]\ =\ 1;}
+\DoxyCodeLine{00508\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_USE\_SYCL\ }\textcolor{comment}{//\ warmup\ for\ sycl}}
+\DoxyCodeLine{00509\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ 10;\ ++iter)\ \{}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.convolve(\mbox{\hyperlink{class_eigen_1_1_matrix}{B}},\ dims);}
+\DoxyCodeLine{00511\ \ \ \ \ \ \}}
+\DoxyCodeLine{00512\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00513\ \ \ \ \ \mbox{\hyperlink{benchmark_8h_af28f64c94251a1241c024a6eaff7fc53_af28f64c94251a1241c024a6eaff7fc53}{StartBenchmarkTiming}}();}
+\DoxyCodeLine{00514\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ num\_iters;\ ++iter)\ \{}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.convolve(\mbox{\hyperlink{class_eigen_1_1_matrix}{B}},\ dims);}
+\DoxyCodeLine{00516\ \ \ \ \ \}}
+\DoxyCodeLine{00517\ \ \ \ \ \textcolor{comment}{//\ Record\ the\ number\ of\ FLOPs\ executed\ per\ second\ (kernel\_size}}
+\DoxyCodeLine{00518\ \ \ \ \ \textcolor{comment}{//\ multiplications\ and\ additions\ for\ each\ value\ in\ the\ resulting\ tensor)}}
+\DoxyCodeLine{00519\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_ac849c3bbb9275be401a53262b63a0097_ac849c3bbb9275be401a53262b63a0097}{finalizeBenchmark}}(\textcolor{keyword}{static\_cast<}int64\_t\textcolor{keyword}{>}(2)\ *}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ -\/\ kernel\_x\ +\ 1)\ *\ (\mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}}\ -\/\ kernel\_y\ +\ 1)\ *\ kernel\_x\ *\ kernel\_y\ *\ num\_iters);}
+\DoxyCodeLine{00521\ \ \ \}}
+\DoxyCodeLine{00522\ }
+\DoxyCodeLine{00523\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00524\ \ \textcolor{comment}{//\ do\ a\ contraction\ which\ is\ equivalent\ to\ a\ matrix\ multiplication}}
+\DoxyCodeLine{00525\ \ \ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ Layout>}
+\DoxyCodeLine{00526\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_benchmark_suite_a41e4261209222f25f8ec2c732aaa808b_a41e4261209222f25f8ec2c732aaa808b}{contraction}}(\textcolor{keywordtype}{int}\ num\_iters,\ \textcolor{keywordtype}{bool}\ trans\_a,\ \textcolor{keywordtype}{bool}\ trans\_b)\ \{}
+\DoxyCodeLine{00527\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ sizeA;}
+\DoxyCodeLine{00528\ \ \ \ \ sizeA[0]\ =\ (trans\_a\ ?\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}:\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}});}
+\DoxyCodeLine{00529\ \ \ \ \ sizeA[1]\ =\ (trans\_a\ ?\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}:\ \ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}});}
+\DoxyCodeLine{00530\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ sizeB;}
+\DoxyCodeLine{00531\ \ \ \ \ sizeB[0]\ =\ (trans\_b\ ?\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}}:\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}});}
+\DoxyCodeLine{00532\ \ \ \ \ sizeB[1]\ =\ (trans\_b\ ?\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}:\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}});}
+\DoxyCodeLine{00533\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<TensorIndex,\ 2>}}\ sizeC;}
+\DoxyCodeLine{00534\ \ \ \ \ sizeC[0]\ =\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}};}
+\DoxyCodeLine{00535\ \ \ \ \ sizeC[1]\ =\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}};}
+\DoxyCodeLine{00536\ }
+\DoxyCodeLine{00537\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2,\ Layout>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}(\mbox{\hyperlink{class_benchmark_suite_a93253db2189eb3af54ee56ac732c8e84_a93253db2189eb3af54ee56ac732c8e84}{a\_}},\ sizeA);}
+\DoxyCodeLine{00538\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2,\ Layout>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}}(\mbox{\hyperlink{class_benchmark_suite_a6d376d493748274a1314211521b89b34_a6d376d493748274a1314211521b89b34}{b\_}},\ sizeB);}
+\DoxyCodeLine{00539\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_tensor_map}{TensorMap<Tensor<T,\ 2,\ Layout>}},\ \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Eigen::Aligned}}>\ \mbox{\hyperlink{bench__gemm_8cpp_aaee470c3acb6b181fd804d072284fbaa_aaee470c3acb6b181fd804d072284fbaa}{C}}(\mbox{\hyperlink{class_benchmark_suite_a0b1b8d0aab6e1d9412ec488ef47e57e6_a0b1b8d0aab6e1d9412ec488ef47e57e6}{c\_}},\ sizeC);}
+\DoxyCodeLine{00540\ }
+\DoxyCodeLine{00541\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_eigen_1_1_tensor}{Tensor<T,\ 2,\ Layout>::DimensionPair}}\ \mbox{\hyperlink{cxx11__tensor__contraction_8cpp_a4e058652ef2d2ca55d9bfdfdef881ab4_a4e058652ef2d2ca55d9bfdfdef881ab4}{DimPair}};}
+\DoxyCodeLine{00542\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1array}{Eigen::array<DimPair,\ 1>}}\ dims;}
+\DoxyCodeLine{00543\ \ \ \ \ \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{TensorIndex}}\ a\_contract\_dim\ =\ (trans\_a\ ?\ 0\ :\ 1);}
+\DoxyCodeLine{00544\ \ \ \ \ \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{TensorIndex}}\ b\_contract\_dim\ =\ (trans\_b\ ?\ 1\ :\ 0);}
+\DoxyCodeLine{00545\ \ \ \ \ dims[0]\ =\ \mbox{\hyperlink{cxx11__tensor__contraction_8cpp_a4e058652ef2d2ca55d9bfdfdef881ab4_a4e058652ef2d2ca55d9bfdfdef881ab4}{DimPair}}(a\_contract\_dim,\ b\_contract\_dim);}
+\DoxyCodeLine{00546\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_USE\_SYCL\ }\textcolor{comment}{//\ warmup\ for\ sycl}}
+\DoxyCodeLine{00547\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ 10;\ ++iter)\ \{}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.contract(\mbox{\hyperlink{class_eigen_1_1_matrix}{B}},\ dims);}
+\DoxyCodeLine{00549\ \ \ \ \ \ \}}
+\DoxyCodeLine{00550\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00551\ \ \ \ \ \mbox{\hyperlink{benchmark_8h_af28f64c94251a1241c024a6eaff7fc53_af28f64c94251a1241c024a6eaff7fc53}{StartBenchmarkTiming}}();}
+\DoxyCodeLine{00552\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ iter\ =\ 0;\ iter\ <\ num\_iters;\ ++iter)\ \{}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{C}}.device(\mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}})\ =\ \mbox{\hyperlink{class_eigen_1_1_matrix}{A}}.contract(\mbox{\hyperlink{class_eigen_1_1_matrix}{B}},\ dims);}
+\DoxyCodeLine{00554\ \ \ \ \ \}}
+\DoxyCodeLine{00555\ \ \ \ \ \textcolor{comment}{//\ Record\ the\ number\ of\ FLOP\ executed\ per\ second\ (size\_\ multiplications\ and}}
+\DoxyCodeLine{00556\ \ \ \ \ \textcolor{comment}{//\ additions\ for\ each\ value\ in\ the\ resulting\ tensor)}}
+\DoxyCodeLine{00557\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_ac849c3bbb9275be401a53262b63a0097_ac849c3bbb9275be401a53262b63a0097}{finalizeBenchmark}}(\textcolor{keyword}{static\_cast<}int64\_t\textcolor{keyword}{>}(2)\ *\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ *\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}}\ *\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}\ *\ num\_iters);}
+\DoxyCodeLine{00558\ \ \ \}}
+\DoxyCodeLine{00559\ }
+\DoxyCodeLine{00560\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_benchmark_suite_a58a874a55bcecbb62b97ea385db32732_a58a874a55bcecbb62b97ea385db32732}{initialize}}()\ \{}
+\DoxyCodeLine{00561\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_a93253db2189eb3af54ee56ac732c8e84_a93253db2189eb3af54ee56ac732c8e84}{a\_}}\ =\ (\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ *)\ \mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}}.allocate(\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ *\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}));}
+\DoxyCodeLine{00562\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_a6d376d493748274a1314211521b89b34_a6d376d493748274a1314211521b89b34}{b\_}}\ =\ (\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ *)\ \mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}}.allocate(\mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}\ *\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}}\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}));}
+\DoxyCodeLine{00563\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_a0b1b8d0aab6e1d9412ec488ef47e57e6_a0b1b8d0aab6e1d9412ec488ef47e57e6}{c\_}}\ =\ (\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}\ *)\ \mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}}.allocate(\mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ *\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}}\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}));}
+\DoxyCodeLine{00564\ }
+\DoxyCodeLine{00565\ \ \ \ \ \textcolor{comment}{//\ Initialize\ the\ content\ of\ the\ memory\ pools\ to\ prevent\ asan\ from}}
+\DoxyCodeLine{00566\ \ \ \ \ \textcolor{comment}{//\ complaining.}}
+\DoxyCodeLine{00567\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}}.memset(\mbox{\hyperlink{class_benchmark_suite_a93253db2189eb3af54ee56ac732c8e84_a93253db2189eb3af54ee56ac732c8e84}{a\_}},\ 12,\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ *\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}));}
+\DoxyCodeLine{00568\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}}.memset(\mbox{\hyperlink{class_benchmark_suite_a6d376d493748274a1314211521b89b34_a6d376d493748274a1314211521b89b34}{b\_}},\ 23,\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}}\ *\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}}\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}));}
+\DoxyCodeLine{00569\ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}}.memset(\mbox{\hyperlink{class_benchmark_suite_a0b1b8d0aab6e1d9412ec488ef47e57e6_a0b1b8d0aab6e1d9412ec488ef47e57e6}{c\_}},\ 31,\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}}\ *\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}}\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}));}
+\DoxyCodeLine{00570\ }
+\DoxyCodeLine{00571\ \ \ \}}
+\DoxyCodeLine{00572\ }
+\DoxyCodeLine{00573\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_benchmark_suite_ac849c3bbb9275be401a53262b63a0097_ac849c3bbb9275be401a53262b63a0097}{finalizeBenchmark}}(int64\_t\ num\_items)\ \{}
+\DoxyCodeLine{00574\ \textcolor{preprocessor}{\#if\ defined(EIGEN\_USE\_GPU)\ \&\&\ defined(\_\_CUDACC\_\_)}}
+\DoxyCodeLine{00575\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{struct_eigen_1_1internal_1_1is__same}{Eigen::internal::is\_same<Device,\ Eigen::GpuDevice>::value}})\ \{}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}}.synchronize();}
+\DoxyCodeLine{00577\ \ \ \ \ \}}
+\DoxyCodeLine{00578\ \textcolor{preprocessor}{\#elif\ defined(EIGEN\_USE\_SYCL)}}
+\DoxyCodeLine{00579\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{struct_eigen_1_1internal_1_1is__same}{Eigen::internal::is\_same<Device,\ Eigen::SyclDevice>::value}})\ \{}
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}}.synchronize();}
+\DoxyCodeLine{00581\ \ \ \ \ \}}
+\DoxyCodeLine{00582\ }
+\DoxyCodeLine{00583\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00584\ \ \ \ \ \mbox{\hyperlink{benchmark_8h_ab6381967bb4cc054c8071f2630990027_ab6381967bb4cc054c8071f2630990027}{StopBenchmarkTiming}}();}
+\DoxyCodeLine{00585\ \ \ \ \ \mbox{\hyperlink{benchmark_8h_a0db372bc3fef73bb26ba7d5e2dbae87b_a0db372bc3fef73bb26ba7d5e2dbae87b}{SetBenchmarkFlopsProcessed}}(num\_items);}
+\DoxyCodeLine{00586\ \ \ \}}
+\DoxyCodeLine{00587\ }
+\DoxyCodeLine{00588\ }
+\DoxyCodeLine{00589\ \ \ \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{TensorIndex}}\ \mbox{\hyperlink{class_benchmark_suite_acac0b99554ceaf4c0d40ab92d70dbacb_acac0b99554ceaf4c0d40ab92d70dbacb}{m\_}};}
+\DoxyCodeLine{00590\ \ \ \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{TensorIndex}}\ \mbox{\hyperlink{class_benchmark_suite_aab673c81c1ad2810896382124b41343d_aab673c81c1ad2810896382124b41343d}{k\_}};}
+\DoxyCodeLine{00591\ \ \ \mbox{\hyperlink{tensor__benchmarks_8h_ae5c08774b4d57ea8ff10377df9780278_ae5c08774b4d57ea8ff10377df9780278}{TensorIndex}}\ \mbox{\hyperlink{class_benchmark_suite_afaf1f7c0d4afb9323b4a1b26a3272e7f_afaf1f7c0d4afb9323b4a1b26a3272e7f}{n\_}};}
+\DoxyCodeLine{00592\ \ \ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\ \mbox{\hyperlink{class_benchmark_suite_a93253db2189eb3af54ee56ac732c8e84_a93253db2189eb3af54ee56ac732c8e84}{a\_}};}
+\DoxyCodeLine{00593\ \ \ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\ \mbox{\hyperlink{class_benchmark_suite_a6d376d493748274a1314211521b89b34_a6d376d493748274a1314211521b89b34}{b\_}};}
+\DoxyCodeLine{00594\ \ \ \mbox{\hyperlink{class_eigen_1_1_triplet}{T}}*\ \mbox{\hyperlink{class_benchmark_suite_a0b1b8d0aab6e1d9412ec488ef47e57e6_a0b1b8d0aab6e1d9412ec488ef47e57e6}{c\_}};}
+\DoxyCodeLine{00595\ \ \ Device\ \mbox{\hyperlink{class_benchmark_suite_a5f01ecbdb445b5b644b99eee9c85f867_a5f01ecbdb445b5b644b99eee9c85f867}{device\_}};}
+\DoxyCodeLine{00596\ \};}
+\DoxyCodeLine{00597\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ THIRD\_PARTY\_EIGEN3\_TENSOR\_BENCHMARKS\_H\_}}
+
+\end{DoxyCode}

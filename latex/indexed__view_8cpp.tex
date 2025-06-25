@@ -1,0 +1,159 @@
+\doxysection{eigen-\/3.4.0/eigen-\/3.4.0/test/indexed\+\_\+view.cpp ファイル}
+\hypertarget{indexed__view_8cpp}{}\label{indexed__view_8cpp}\index{eigen-\/3.4.0/eigen-\/3.4.0/test/indexed\_view.cpp@{eigen-\/3.4.0/eigen-\/3.4.0/test/indexed\_view.cpp}}
+{\ttfamily \#include $<$valarray$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include "{}main.\+h"{}}\newline
+indexed\+\_\+view.\+cpp の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{indexed__view_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{indexed__view_8cpp_a119a664669ab4a6c7abece20216c1e82_a119a664669ab4a6c7abece20216c1e82}{MATCH}}(\mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}},  R)
+\item 
+\#define \mbox{\hyperlink{indexed__view_8cpp_ac7b6e8b9c17e961691489459883b11b0_ac7b6e8b9c17e961691489459883b11b0}{VERIFY\+\_\+\+EQ\+\_\+\+INT}}(\mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}},  \mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{型定義}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::pair$<$ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} $>$ \mbox{\hyperlink{indexed__view_8cpp_ab7c4689c8e72e6060d469810b6cee1fa_ab7c4689c8e72e6060d469810b6cee1fa}{Index\+Pair}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{列挙型}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{indexed__view_8cpp_aa1bc5671973917713ea0c4eccdff4216_aa1bc5671973917713ea0c4eccdff4216}{Dummy\+Enum}} \{ \mbox{\hyperlink{indexed__view_8cpp_aa1bc5671973917713ea0c4eccdff4216_aa1bc5671973917713ea0c4eccdff4216a872a756ecc227f3c58ba33fb2693c93c}{XX}} =0
+, \mbox{\hyperlink{indexed__view_8cpp_aa1bc5671973917713ea0c4eccdff4216_aa1bc5671973917713ea0c4eccdff4216a7839aff0e1cbdb888e2cc2aecb232702}{YY}} =1
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{indexed__view_8cpp_ac57a8d45145beff6d6c40826b81388fa_ac57a8d45145beff6d6c40826b81388fa}{encode}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}})
+\item 
+\mbox{\hyperlink{struct_eigen_1_1_index_pair}{Index\+Pair}} \mbox{\hyperlink{indexed__view_8cpp_a8ad316854fb225b6227366acae873cb8_a8ad316854fb225b6227366acae873cb8}{decode}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} ij)
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} $>$ }\\bool \mbox{\hyperlink{indexed__view_8cpp_a016491f33fba064ce8c619f9c7a7f98a_a016491f33fba064ce8c619f9c7a7f98a}{match}} (const \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} \&xpr, std\+::string ref, std\+::string str\+\_\+xpr="{}"{})
+\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\internal\+::enable\+\_\+if$<$ internal\+::is\+\_\+same$<$ T1, T2 $>$\+::value, bool $>$\+::type \mbox{\hyperlink{indexed__view_8cpp_a2a8c9b713af8ead85daabe2546d9e860_a2a8c9b713af8ead85daabe2546d9e860}{is\+\_\+same\+\_\+eq}} (const T1 \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}, const T2 \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})
+\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\bool \mbox{\hyperlink{indexed__view_8cpp_a22dec22c7cc474f5ba3ca3d5ed0e4966_a22dec22c7cc474f5ba3ca3d5ed0e4966}{is\+\_\+same\+\_\+seq}} (const T1 \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}, const T2 \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})
+\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\internal\+::enable\+\_\+if$<$ internal\+::is\+\_\+same$<$ T1, T2 $>$\+::value, bool $>$\+::type \mbox{\hyperlink{indexed__view_8cpp_a526cf458f9455281a0cf971c42f762c5_a526cf458f9455281a0cf971c42f762c5}{is\+\_\+same\+\_\+seq\+\_\+type}} (const T1 \&\mbox{\hyperlink{_array__initializer__list__23__cxx11_8cpp_ad2cbe4616e813eb9af81732dca777b24_ad2cbe4616e813eb9af81732dca777b24}{a}}, const T2 \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}})
+\item 
+void \mbox{\hyperlink{indexed__view_8cpp_a7b34bf69bae6a709e320cfbd58f43ca7_a7b34bf69bae6a709e320cfbd58f43ca7}{check\+\_\+indexed\+\_\+view}} ()
+\item 
+\mbox{\hyperlink{indexed__view_8cpp_a832d48d4f6e951234e363d7ba45f2196_a832d48d4f6e951234e363d7ba45f2196}{EIGEN\+\_\+\+DECLARE\+\_\+\+TEST}} (indexed\+\_\+view)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{indexed__view_8cpp_a119a664669ab4a6c7abece20216c1e82_a119a664669ab4a6c7abece20216c1e82}\index{indexed\_view.cpp@{indexed\_view.cpp}!MATCH@{MATCH}}
+\index{MATCH@{MATCH}!indexed\_view.cpp@{indexed\_view.cpp}}
+\doxysubsubsection{\texorpdfstring{MATCH}{MATCH}}
+{\footnotesize\ttfamily \label{indexed__view_8cpp_a119a664669ab4a6c7abece20216c1e82_a119a664669ab4a6c7abece20216c1e82} 
+\#define MATCH(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}}}{, }\item[{}]{R}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{indexed__view_8cpp_a016491f33fba064ce8c619f9c7a7f98a_a016491f33fba064ce8c619f9c7a7f98a}{match}}(\mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}},\ R,\ \#\mbox{\hyperlink{icosphere_8cpp_a207fd5507206d307cd63f95374fcd00d_a207fd5507206d307cd63f95374fcd00d}{X}})}
+
+\end{DoxyCode}
+\Hypertarget{indexed__view_8cpp_ac7b6e8b9c17e961691489459883b11b0_ac7b6e8b9c17e961691489459883b11b0}\index{indexed\_view.cpp@{indexed\_view.cpp}!VERIFY\_EQ\_INT@{VERIFY\_EQ\_INT}}
+\index{VERIFY\_EQ\_INT@{VERIFY\_EQ\_INT}!indexed\_view.cpp@{indexed\_view.cpp}}
+\doxysubsubsection{\texorpdfstring{VERIFY\_EQ\_INT}{VERIFY\_EQ\_INT}}
+{\footnotesize\ttfamily \label{indexed__view_8cpp_ac7b6e8b9c17e961691489459883b11b0_ac7b6e8b9c17e961691489459883b11b0} 
+\#define VERIFY\+\_\+\+EQ\+\_\+\+INT(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{bench__gemm_8cpp_addc86e8508f14411ec98f521c520f875_addc86e8508f14411ec98f521c520f875}{A}}}{, }\item[{}]{\mbox{\hyperlink{bench__gemm_8cpp_af60dc8214a22d8dfced07a33ec8e902d_af60dc8214a22d8dfced07a33ec8e902d}{B}}}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{integer__types_8cpp_a5bba36711e335d7eb5793360e7d7b100_a5bba36711e335d7eb5793360e7d7b100}{VERIFY\_IS\_APPROX}}(\textcolor{keywordtype}{int}(\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}),\textcolor{keywordtype}{int}(\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}))}
+
+\end{DoxyCode}
+
+
+\doxysubsection{型定義詳解}
+\Hypertarget{indexed__view_8cpp_ab7c4689c8e72e6060d469810b6cee1fa_ab7c4689c8e72e6060d469810b6cee1fa}\index{indexed\_view.cpp@{indexed\_view.cpp}!IndexPair@{IndexPair}}
+\index{IndexPair@{IndexPair}!indexed\_view.cpp@{indexed\_view.cpp}}
+\doxysubsubsection{\texorpdfstring{IndexPair}{IndexPair}}
+{\footnotesize\ttfamily \label{indexed__view_8cpp_ab7c4689c8e72e6060d469810b6cee1fa_ab7c4689c8e72e6060d469810b6cee1fa} 
+typedef std\+::pair$<$\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}},\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}$>$ \mbox{\hyperlink{struct_eigen_1_1_index_pair}{Index\+Pair}}}
+
+
+
+\doxysubsection{列挙型詳解}
+\Hypertarget{indexed__view_8cpp_aa1bc5671973917713ea0c4eccdff4216_aa1bc5671973917713ea0c4eccdff4216}\index{indexed\_view.cpp@{indexed\_view.cpp}!DummyEnum@{DummyEnum}}
+\index{DummyEnum@{DummyEnum}!indexed\_view.cpp@{indexed\_view.cpp}}
+\doxysubsubsection{\texorpdfstring{DummyEnum}{DummyEnum}}
+{\footnotesize\ttfamily \label{indexed__view_8cpp_aa1bc5671973917713ea0c4eccdff4216_aa1bc5671973917713ea0c4eccdff4216} 
+enum \mbox{\hyperlink{indexed__view_8cpp_aa1bc5671973917713ea0c4eccdff4216_aa1bc5671973917713ea0c4eccdff4216}{Dummy\+Enum}}}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{XX@{XX}!indexed\_view.cpp@{indexed\_view.cpp}}\index{indexed\_view.cpp@{indexed\_view.cpp}!XX@{XX}}}\Hypertarget{indexed__view_8cpp_aa1bc5671973917713ea0c4eccdff4216_aa1bc5671973917713ea0c4eccdff4216a872a756ecc227f3c58ba33fb2693c93c}\label{indexed__view_8cpp_aa1bc5671973917713ea0c4eccdff4216_aa1bc5671973917713ea0c4eccdff4216} 
+XX&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{YY@{YY}!indexed\_view.cpp@{indexed\_view.cpp}}\index{indexed\_view.cpp@{indexed\_view.cpp}!YY@{YY}}}\Hypertarget{indexed__view_8cpp_aa1bc5671973917713ea0c4eccdff4216_aa1bc5671973917713ea0c4eccdff4216a7839aff0e1cbdb888e2cc2aecb232702}\label{indexed__view_8cpp_aa1bc5671973917713ea0c4eccdff4216_aa1bc5671973917713ea0c4eccdff4216} 
+YY&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{indexed__view_8cpp_a7b34bf69bae6a709e320cfbd58f43ca7_a7b34bf69bae6a709e320cfbd58f43ca7}\index{indexed\_view.cpp@{indexed\_view.cpp}!check\_indexed\_view@{check\_indexed\_view}}
+\index{check\_indexed\_view@{check\_indexed\_view}!indexed\_view.cpp@{indexed\_view.cpp}}
+\doxysubsubsection{\texorpdfstring{check\_indexed\_view()}{check\_indexed\_view()}}
+{\footnotesize\ttfamily \label{indexed__view_8cpp_a7b34bf69bae6a709e320cfbd58f43ca7_a7b34bf69bae6a709e320cfbd58f43ca7} 
+void check\+\_\+indexed\+\_\+view (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{indexed__view_8cpp_a8ad316854fb225b6227366acae873cb8_a8ad316854fb225b6227366acae873cb8}\index{indexed\_view.cpp@{indexed\_view.cpp}!decode@{decode}}
+\index{decode@{decode}!indexed\_view.cpp@{indexed\_view.cpp}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}}
+{\footnotesize\ttfamily \label{indexed__view_8cpp_a8ad316854fb225b6227366acae873cb8_a8ad316854fb225b6227366acae873cb8} 
+\mbox{\hyperlink{struct_eigen_1_1_index_pair}{Index\+Pair}} decode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{ij}{}\end{DoxyParamCaption})}
+
+\Hypertarget{indexed__view_8cpp_a832d48d4f6e951234e363d7ba45f2196_a832d48d4f6e951234e363d7ba45f2196}\index{indexed\_view.cpp@{indexed\_view.cpp}!EIGEN\_DECLARE\_TEST@{EIGEN\_DECLARE\_TEST}}
+\index{EIGEN\_DECLARE\_TEST@{EIGEN\_DECLARE\_TEST}!indexed\_view.cpp@{indexed\_view.cpp}}
+\doxysubsubsection{\texorpdfstring{EIGEN\_DECLARE\_TEST()}{EIGEN\_DECLARE\_TEST()}}
+{\footnotesize\ttfamily \label{indexed__view_8cpp_a832d48d4f6e951234e363d7ba45f2196_a832d48d4f6e951234e363d7ba45f2196} 
+EIGEN\+\_\+\+DECLARE\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{indexed\+\_\+view}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{indexed__view_8cpp_ac57a8d45145beff6d6c40826b81388fa_ac57a8d45145beff6d6c40826b81388fa}\index{indexed\_view.cpp@{indexed\_view.cpp}!encode@{encode}}
+\index{encode@{encode}!indexed\_view.cpp@{indexed\_view.cpp}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily \label{indexed__view_8cpp_ac57a8d45145beff6d6c40826b81388fa_ac57a8d45145beff6d6c40826b81388fa} 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} encode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{i}{, }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{j}{}\end{DoxyParamCaption})}
+
+\Hypertarget{indexed__view_8cpp_a2a8c9b713af8ead85daabe2546d9e860_a2a8c9b713af8ead85daabe2546d9e860}\index{indexed\_view.cpp@{indexed\_view.cpp}!is\_same\_eq@{is\_same\_eq}}
+\index{is\_same\_eq@{is\_same\_eq}!indexed\_view.cpp@{indexed\_view.cpp}}
+\doxysubsubsection{\texorpdfstring{is\_same\_eq()}{is\_same\_eq()}}
+{\footnotesize\ttfamily \label{indexed__view_8cpp_a2a8c9b713af8ead85daabe2546d9e860_a2a8c9b713af8ead85daabe2546d9e860} 
+template$<$typename T1 , typename T2 $>$ \\
+internal\+::enable\+\_\+if$<$ internal\+::is\+\_\+same$<$ T1, T2 $>$\+::value, bool $>$\+::type is\+\_\+same\+\_\+eq (\begin{DoxyParamCaption}\item[{const T1 \&}]{a}{, }\item[{const T2 \&}]{b}{}\end{DoxyParamCaption})}
+
+\Hypertarget{indexed__view_8cpp_a22dec22c7cc474f5ba3ca3d5ed0e4966_a22dec22c7cc474f5ba3ca3d5ed0e4966}\index{indexed\_view.cpp@{indexed\_view.cpp}!is\_same\_seq@{is\_same\_seq}}
+\index{is\_same\_seq@{is\_same\_seq}!indexed\_view.cpp@{indexed\_view.cpp}}
+\doxysubsubsection{\texorpdfstring{is\_same\_seq()}{is\_same\_seq()}}
+{\footnotesize\ttfamily \label{indexed__view_8cpp_a22dec22c7cc474f5ba3ca3d5ed0e4966_a22dec22c7cc474f5ba3ca3d5ed0e4966} 
+template$<$typename T1 , typename T2 $>$ \\
+bool is\+\_\+same\+\_\+seq (\begin{DoxyParamCaption}\item[{const T1 \&}]{a}{, }\item[{const T2 \&}]{b}{}\end{DoxyParamCaption})}
+
+\Hypertarget{indexed__view_8cpp_a526cf458f9455281a0cf971c42f762c5_a526cf458f9455281a0cf971c42f762c5}\index{indexed\_view.cpp@{indexed\_view.cpp}!is\_same\_seq\_type@{is\_same\_seq\_type}}
+\index{is\_same\_seq\_type@{is\_same\_seq\_type}!indexed\_view.cpp@{indexed\_view.cpp}}
+\doxysubsubsection{\texorpdfstring{is\_same\_seq\_type()}{is\_same\_seq\_type()}}
+{\footnotesize\ttfamily \label{indexed__view_8cpp_a526cf458f9455281a0cf971c42f762c5_a526cf458f9455281a0cf971c42f762c5} 
+template$<$typename T1 , typename T2 $>$ \\
+internal\+::enable\+\_\+if$<$ internal\+::is\+\_\+same$<$ T1, T2 $>$\+::value, bool $>$\+::type is\+\_\+same\+\_\+seq\+\_\+type (\begin{DoxyParamCaption}\item[{const T1 \&}]{a}{, }\item[{const T2 \&}]{b}{}\end{DoxyParamCaption})}
+
+\Hypertarget{indexed__view_8cpp_a016491f33fba064ce8c619f9c7a7f98a_a016491f33fba064ce8c619f9c7a7f98a}\index{indexed\_view.cpp@{indexed\_view.cpp}!match@{match}}
+\index{match@{match}!indexed\_view.cpp@{indexed\_view.cpp}}
+\doxysubsubsection{\texorpdfstring{match()}{match()}}
+{\footnotesize\ttfamily \label{indexed__view_8cpp_a016491f33fba064ce8c619f9c7a7f98a_a016491f33fba064ce8c619f9c7a7f98a} 
+template$<$typename \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} $>$ \\
+bool match (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} \&}]{xpr}{, }\item[{std\+::string}]{ref}{, }\item[{std\+::string}]{str\+\_\+xpr}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})}
+

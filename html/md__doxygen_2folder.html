@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Qt_project: folder</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Qt_project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div><div class="header">
+  <div class="headertitle"><div class="title">folder</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>レイトレーシング機能を含む既存のコード（<code>main.cpp</code>, <code>Camera.cpp</code>, <code>TriMesh.cpp</code>, <code>GLPreview.cpp</code> など）をQtプロジェクトに段階的に移植する際、**目的別に役割を分けてフォルダ化・整理**することで、将来的な保守性と可読性が大きく向上します。</p>
+<hr  />
+<h2><a class="anchor" id="autotoc_md21"></a>
+✅ 推奨フォルダ構成と役割</h2>
+<div class="fragment"><div class="line">sources/</div>
+<div class="line">├── core/                  # 基本データ構造や汎用ユーティリティ</div>
+<div class="line">│   ├── ray.h/.cpp         # Ray, RayHit, 構造体定義</div>
+<div class="line">│   ├── material.h         # Material定義</div>
+<div class="line">│   └── utility.h/.cpp     # randomMT など</div>
+<div class="line">│</div>
+<div class="line">├── geometry/              # モデル・形状関連</div>
+<div class="line">│   ├── trimesh.h/.cpp     # TriMesh, extendMesh, loadObj など</div>
+<div class="line">│   ├── object.h/.cpp      # Object（複数Meshを含む）構造体と描画</div>
+<div class="line">│   └── light.h/.cpp       # AreaLight などの定義と描画</div>
+<div class="line">│</div>
+<div class="line">├── camera/                # カメラ周り</div>
+<div class="line">│   ├── camera.h/.cpp      # カメラの設定や screenView など</div>
+<div class="line">│   └── projection.h/.cpp  # OpenGL投影処理 (projection_and_modelview)</div>
+<div class="line">│</div>
+<div class="line">├── film/                  # 出力バッファ管理（レンダリング結果の保持）</div>
+<div class="line">│   ├── film_buffer.h/.cpp # g_FilmBuffer, init/reset/updateFilmなど</div>
+<div class="line">│   └── drawfilm.h/.cpp    # drawFilm</div>
+<div class="line">│</div>
+<div class="line">├── rendering/             # レンダリング全般（RT＋OpenGL両対応）</div>
+<div class="line">│   ├── gl_draw.cpp        # OpenGLベースの描画（drawObjectなど）</div>
+<div class="line">│   ├── raytracing.cpp     # rayTracing, rayTriangleIntersect など</div>
+<div class="line">│   └── shading.cpp        # computeShading, sampleRandomPointなど</div>
+<div class="line">│</div>
+<div class="line">└── main/                  # アプリケーションのエントリーポイント</div>
+<div class="line">    └── main.cpp</div>
+</div><!-- fragment --><hr  />
+<h2><a class="anchor" id="autotoc_md23"></a>
+✅ 各ファイルへの分類例</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">関数/構造体   </th><th class="markdownTableHeadNone">移動先ファイル   </th><th class="markdownTableHeadNone">説明    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>Camera::screenView</code>   </td><td class="markdownTableBodyNone"><code>camera/camera.cpp</code>   </td><td class="markdownTableBodyNone">ピクセル座標→レイの生成    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>projection_and_modelview</code>   </td><td class="markdownTableBodyNone"><code>camera/projection.cpp</code>   </td><td class="markdownTableBodyNone">OpenGLの視野投影設定    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>TriMesh</code>, <code>loadObj</code>, <code>extendMesh</code>   </td><td class="markdownTableBodyNone"><code>geometry/trimesh.cpp</code>   </td><td class="markdownTableBodyNone">OBJ読み込み、メッシュ管理    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>Object</code>, <code>drawObject</code>   </td><td class="markdownTableBodyNone"><code>geometry/object.cpp</code>   </td><td class="markdownTableBodyNone">複数メッシュまとめたオブジェクト    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>AreaLight</code>, <code>drawLights</code>   </td><td class="markdownTableBodyNone"><code>geometry/light.cpp</code>   </td><td class="markdownTableBodyNone">エリアライト定義と描画    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>drawFilm</code>, <code>GLPreview.cpp</code>   </td><td class="markdownTableBodyNone"><code>film/drawfilm.cpp</code>   </td><td class="markdownTableBodyNone">描画出力    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>g_FilmBuffer</code>, <code>initFilm</code> 等   </td><td class="markdownTableBodyNone"><code>film/film_buffer.cpp</code>   </td><td class="markdownTableBodyNone">バッファ初期化と管理    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>rayTriangleIntersect</code> 等   </td><td class="markdownTableBodyNone"><code>rendering/raytracing.cpp</code>   </td><td class="markdownTableBodyNone">ジオメトリとのレイ交差    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>computeShading</code>, <code>samplePoint</code>   </td><td class="markdownTableBodyNone"><code>rendering/shading.cpp</code>   </td><td class="markdownTableBodyNone">光の計算・間接照明など    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>main.cpp</code>   </td><td class="markdownTableBodyNone"><code>main/main.cpp</code>   </td><td class="markdownTableBodyNone">GLUTによるループ・イベント処理   </td></tr>
+</table>
+<hr  />
+<h2><a class="anchor" id="autotoc_md25"></a>
+📌 注意点とヒント</h2>
+<ul>
+<li>**描画処理（OpenGL）とレイトレーシング処理（CPU/GPU）を明確に分ける**ことで、将来のGPU化やGUIへの統合が楽になります。</li>
+<li><code>core/</code> フォルダには「どこでも使われるデータ構造（<code>Ray</code>や乱数生成など）」を集めると管理しやすいです。</li>
+<li><code>camera/</code> フォルダは、Qtでの <code>QCamera</code> クラスとは独立した独自カメラ管理クラスとして維持できます。</li>
+</ul>
+<hr  />
+<h2><a class="anchor" id="autotoc_md27"></a>
+✅ .proファイルへの記述例</h2>
+<div class="fragment"><div class="line">INCLUDEPATH += $$PWD/sources \</div>
+<div class="line">               $$PWD/sources/core \</div>
+<div class="line">               $$PWD/sources/geometry \</div>
+<div class="line">               $$PWD/sources/camera \</div>
+<div class="line">               $$PWD/sources/film \</div>
+<div class="line">               $$PWD/sources/rendering</div>
+<div class="line"> </div>
+<div class="line">SOURCES += \</div>
+<div class="line">    sources/main/main.cpp \</div>
+<div class="line">    sources/core/utility.cpp \</div>
+<div class="line">    sources/camera/camera.cpp \</div>
+<div class="line">    sources/camera/projection.cpp \</div>
+<div class="line">    sources/geometry/trimesh.cpp \</div>
+<div class="line">    sources/geometry/object.cpp \</div>
+<div class="line">    sources/geometry/light.cpp \</div>
+<div class="line">    sources/film/film_buffer.cpp \</div>
+<div class="line">    sources/film/drawfilm.cpp \</div>
+<div class="line">    sources/rendering/gl_draw.cpp \</div>
+<div class="line">    sources/rendering/raytracing.cpp \</div>
+<div class="line">    sources/rendering/shading.cpp</div>
+</div><!-- fragment --><hr  />
+<h2><a class="anchor" id="autotoc_md29"></a>
+✅ 今後の発展を見据えて</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">発展項目   </th><th class="markdownTableHeadNone">ヒント    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Qt GUIと連携   </td><td class="markdownTableBodyNone"><code>film_buffer.cpp</code> のテクスチャ出力を <code>QOpenGLWidget</code> にバインド可能    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">マルチスレッド化   </td><td class="markdownTableBodyNone"><code>rayTracing()</code> を1ピクセルずつ処理しているので、スレッドで分割しやすい    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">GPUオフロード   </td><td class="markdownTableBodyNone"><code>rayTracing()</code> や <code>shading</code> を将来的にCUDA/Metalなどへ移行しやすい構成   </td></tr>
+</table>
+<hr  />
+<p>ご希望であれば、この構成に基づいてテンプレートとなる <code>.h/.cpp</code> 雛形をいくつか提示できますので、お気軽にどうぞ。 </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

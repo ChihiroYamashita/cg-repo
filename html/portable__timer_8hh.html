@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Qt_project: eigen-3.4.0/eigen-3.4.0/bench/btl/generic_bench/timers/portable_timer.hh ファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Qt_project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_99e749ba05732fec077a2067ee1b1de1.html">eigen-3.4.0</a></li><li class="navelem"><a class="el" href="dir_832c6680bfa915a2d02af8c09c48c55a.html">eigen-3.4.0</a></li><li class="navelem"><a class="el" href="dir_407aff23a74cbc336b72ea015a9d915b.html">bench</a></li><li class="navelem"><a class="el" href="dir_6d7e6b9a453fc5a275948db8f600ad96.html">btl</a></li><li class="navelem"><a class="el" href="dir_3d5a54dd79975253394641cc0e26ec6a.html">generic_bench</a></li><li class="navelem"><a class="el" href="dir_afe65e6b63ec8d714ef54772ca45b99b.html">timers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">クラス</a> &#124;
+<a href="#define-members">マクロ定義</a>  </div>
+  <div class="headertitle"><div class="title">portable_timer.hh ファイル</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;ctime&gt;</code><br />
+<code>#include &lt;cstdlib&gt;</code><br />
+<code>#include &lt;time.h&gt;</code><br />
+<code>#include &lt;sys/time.h&gt;</code><br />
+<code>#include &lt;sys/resource.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+<code>#include &lt;sys/times.h&gt;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> portable_timer.hh の依存先関係図:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="portable__timer_8hh__incl.png" border="0" usemap="#aeigen-3_84_80_2eigen-3_84_80_2bench_2btl_2generic__bench_2timers_2portable__timer_8hh" alt=""/></div>
+<map name="aeigen-3_84_80_2eigen-3_84_80_2bench_2btl_2generic__bench_2timers_2portable__timer_8hh" id="aeigen-3_84_80_2eigen-3_84_80_2bench_2btl_2generic__bench_2timers_2portable__timer_8hh">
+<area shape="rect" title=" " alt="" coords="205,5,371,64"/>
+<area shape="rect" title=" " alt="" coords="5,112,59,139"/>
+<area shape="poly" title=" " alt="" coords="206,67,74,112,72,107,204,62"/>
+<area shape="rect" title=" " alt="" coords="82,112,142,139"/>
+<area shape="poly" title=" " alt="" coords="232,67,152,107,149,102,230,62"/>
+<area shape="rect" title=" " alt="" coords="166,112,223,139"/>
+<area shape="poly" title=" " alt="" coords="260,66,221,103,217,99,256,62"/>
+<area shape="rect" title=" " alt="" coords="247,112,329,139"/>
+<area shape="poly" title=" " alt="" coords="291,64,291,96,285,96,285,64"/>
+<area shape="rect" title=" " alt="" coords="353,112,460,139"/>
+<area shape="poly" title=" " alt="" coords="328,62,379,100,376,105,325,66"/>
+<area shape="rect" title=" " alt="" coords="485,112,552,139"/>
+<area shape="poly" title=" " alt="" coords="364,62,473,104,471,109,362,67"/>
+<area shape="rect" title=" " alt="" coords="577,112,666,139"/>
+<area shape="poly" title=" " alt="" coords="372,56,562,106,561,111,371,61"/>
+</map>
+</div>
+</div><div class="textblock"><div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> 被依存関係図:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="portable__timer_8hh__dep__incl.png" border="0" usemap="#aeigen-3_84_80_2eigen-3_84_80_2bench_2btl_2generic__bench_2timers_2portable__timer_8hhdep" alt=""/></div>
+<map name="aeigen-3_84_80_2eigen-3_84_80_2bench_2btl_2generic__bench_2timers_2portable__timer_8hhdep" id="aeigen-3_84_80_2eigen-3_84_80_2bench_2btl_2generic__bench_2timers_2portable__timer_8hhdep">
+<area shape="rect" title=" " alt="" coords="3646,5,3812,64"/>
+<area shape="rect" href="portable__perf__analyzer_8hh.html" title=" " alt="" coords="3497,112,3711,171"/>
+<area shape="poly" title=" " alt="" coords="3685,76,3640,114,3637,110,3682,72"/>
+<area shape="rect" href="portable__perf__analyzer__old_8hh.html" title=" " alt="" coords="3736,112,3974,171"/>
+<area shape="poly" title=" " alt="" coords="3777,72,3822,110,3819,114,3774,76"/>
+<area shape="rect" href="bench_8hh.html" title=" " alt="" coords="1673,219,1839,277"/>
+<area shape="poly" title=" " alt="" coords="3481,152,1840,245,1839,239,3481,147"/>
+<area shape="rect" href="bench__static_8hh.html" title=" " alt="" coords="3521,219,3687,277"/>
+<area shape="poly" title=" " alt="" coords="3607,186,3607,218,3601,218,3601,186"/>
+<area shape="rect" href="mixed__perf__analyzer_8hh.html" title=" " alt="" coords="3712,219,3915,277"/>
+<area shape="poly" title=" " alt="" coords="3676,175,3757,216,3755,220,3673,180"/>
+<area shape="rect" href="eigen-3_84_80_2eigen-3_84_80_2bench_2btl_2libs_2_b_l_a_s_2main_8cpp.html" title=" " alt="" coords="5,333,203,376"/>
+<area shape="poly" title=" " alt="" coords="1657,254,1347,263,931,278,517,300,345,313,215,328,177,335,176,330,214,323,345,308,517,295,930,273,1347,258,1657,249"/>
+<area shape="rect" href="eigen-3_84_80_2eigen-3_84_80_2bench_2btl_2libs_2_s_t_l_2main_8cpp.html" title=" " alt="" coords="226,333,414,376"/>
+<area shape="poly" title=" " alt="" coords="1658,251,1436,252,1130,262,958,271,780,285,601,304,426,328,390,335,389,330,425,323,600,298,779,280,957,266,1130,256,1436,247,1658,246"/>
+<area shape="rect" href="eigen-3_84_80_2eigen-3_84_80_2bench_2btl_2libs_2blaze_2main_8cpp.html" title=" " alt="" coords="438,325,591,384"/>
+<area shape="poly" title=" " alt="" coords="1657,255,1115,281,819,302,696,314,603,328,592,330,591,325,602,323,695,309,818,297,1115,275,1657,250"/>
+<area shape="rect" href="btl__blitz_8cpp.html" title=" " alt="" coords="615,325,769,384"/>
+<area shape="poly" title=" " alt="" coords="1657,252,1490,256,1271,268,1026,290,902,307,781,328,770,330,768,325,779,323,901,302,1025,285,1271,262,1490,251,1657,247"/>
+<area shape="rect" href="eigen2_2main__adv_8cpp.html" title=" " alt="" coords="793,325,946,384"/>
+<area shape="poly" title=" " alt="" coords="1657,255,1519,261,1344,274,1151,296,958,328,947,330,946,325,957,323,1150,291,1343,269,1519,256,1657,249"/>
+<area shape="rect" href="eigen2_2main__linear_8cpp.html" title=" " alt="" coords="970,325,1123,384"/>
+<area shape="poly" title=" " alt="" coords="1658,258,1418,282,1276,302,1135,328,1124,331,1123,325,1134,323,1275,296,1418,276,1657,253"/>
+<area shape="rect" href="eigen2_2main__matmat_8cpp.html" title=" " alt="" coords="1147,325,1301,384"/>
+<area shape="poly" title=" " alt="" coords="1658,265,1495,290,1313,328,1302,331,1300,326,1311,323,1494,285,1657,260"/>
+<area shape="rect" href="eigen2_2main__vecmat_8cpp.html" title=" " alt="" coords="1325,325,1478,384"/>
+<area shape="poly" title=" " alt="" coords="1659,279,1490,328,1479,331,1478,326,1489,323,1657,274"/>
+<area shape="rect" href="eigen3_2main__adv_8cpp.html" title=" " alt="" coords="1502,325,1655,384"/>
+<area shape="poly" title=" " alt="" coords="1696,288,1628,327,1626,323,1693,283"/>
+<area shape="rect" href="eigen3_2main__linear_8cpp.html" title=" " alt="" coords="1679,325,1833,384"/>
+<area shape="poly" title=" " alt="" coords="1759,293,1759,325,1753,325,1753,293"/>
+<area shape="rect" href="eigen3_2main__matmat_8cpp.html" title=" " alt="" coords="1857,325,2010,384"/>
+<area shape="poly" title=" " alt="" coords="1819,283,1886,323,1884,327,1816,288"/>
+<area shape="rect" href="eigen3_2main__vecmat_8cpp.html" title=" " alt="" coords="2034,325,2187,384"/>
+<area shape="poly" title=" " alt="" coords="1855,274,2022,323,2034,327,2033,332,2021,328,1854,279"/>
+<area shape="rect" href="eigen-3_84_80_2eigen-3_84_80_2bench_2btl_2libs_2gmm_2main_8cpp.html" title=" " alt="" coords="2212,333,2404,376"/>
+<area shape="poly" title=" " alt="" coords="1855,261,2017,288,2199,323,2231,330,2230,335,2198,328,2016,293,1854,267"/>
+<area shape="rect" href="eigen-3_84_80_2eigen-3_84_80_2bench_2btl_2libs_2mtl4_2main_8cpp.html" title=" " alt="" coords="2428,333,2617,376"/>
+<area shape="poly" title=" " alt="" coords="1855,254,2110,278,2264,298,2417,323,2450,330,2449,335,2415,328,2263,303,2110,283,1854,259"/>
+<area shape="rect" href="tensors_2main__linear_8cpp.html" title=" " alt="" coords="2641,325,2794,384"/>
+<area shape="poly" title=" " alt="" coords="1855,248,2005,254,2199,266,2415,288,2524,304,2630,323,2641,325,2640,330,2629,328,2523,309,2414,294,2199,271,2005,259,1854,253"/>
+<area shape="rect" href="tensors_2main__matmat_8cpp.html" title=" " alt="" coords="2818,325,2971,384"/>
+<area shape="poly" title=" " alt="" coords="1855,246,2034,249,2271,260,2538,283,2674,301,2806,323,2818,325,2817,331,2805,328,2673,306,2537,289,2271,266,2034,255,1855,252"/>
+<area shape="rect" href="tensors_2main__vecmat_8cpp.html" title=" " alt="" coords="2995,325,3149,384"/>
+<area shape="poly" title=" " alt="" coords="1855,250,2107,259,2432,274,2751,296,2883,308,2983,323,2995,325,2994,330,2982,328,2882,314,2751,301,2432,280,2107,264,1855,255"/>
+<area shape="rect" href="eigen-3_84_80_2eigen-3_84_80_2bench_2btl_2libs_2ublas_2main_8cpp.html" title=" " alt="" coords="3173,325,3326,384"/>
+<area shape="poly" title=" " alt="" coords="1855,249,2140,257,2517,271,2889,293,3043,307,3160,323,3173,325,3172,330,3160,328,3043,312,2889,298,2517,276,2140,262,1854,254"/>
+<area shape="rect" href="btl__tiny__blitz_8cpp.html" title=" " alt="" coords="3350,325,3503,384"/>
+<area shape="poly" title=" " alt="" coords="3544,288,3476,327,3474,323,3541,283"/>
+<area shape="rect" href="btl__tiny__eigen2_8cpp.html" title=" " alt="" coords="3527,325,3681,384"/>
+<area shape="poly" title=" " alt="" coords="3607,293,3607,325,3601,325,3601,293"/>
+<area shape="rect" href="btl__tiny__eigen3_8cpp.html" title=" " alt="" coords="3705,325,3858,384"/>
+<area shape="poly" title=" " alt="" coords="3667,283,3734,323,3732,327,3664,288"/>
+<area shape="rect" href="eigen-3_84_80_2eigen-3_84_80_2bench_2btl_2libs_2tvmet_2main_8cpp.html" title=" " alt="" coords="3882,325,4035,384"/>
+<area shape="poly" title=" " alt="" coords="3703,275,3871,323,3882,326,3881,331,3870,328,3701,280"/>
+</map>
+</div>
+</div>
+<p><a href="portable__timer_8hh_source.html">[ソースコード]</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+クラス</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_portable___timer.html">Portable_Timer</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+マクロ定義</h2></td></tr>
+<tr class="memitem:a72467fb3c401ef8777d20cf99416e39e" id="r_a72467fb3c401ef8777d20cf99416e39e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="portable__timer_8hh_a72467fb3c401ef8777d20cf99416e39e.html#a72467fb3c401ef8777d20cf99416e39e">USEC_IN_SEC</a>&#160;&#160;&#160;1000000</td></tr>
+<tr class="separator:a72467fb3c401ef8777d20cf99416e39e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

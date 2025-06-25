@@ -1,0 +1,190 @@
+\doxysection{Bench\+Timer.\+h}
+\hypertarget{_bench_timer_8h_source}{}\label{_bench_timer_8h_source}\index{eigen-\/3.4.0/eigen-\/3.4.0/bench/BenchTimer.h@{eigen-\/3.4.0/eigen-\/3.4.0/bench/BenchTimer.h}}
+\mbox{\hyperlink{_bench_timer_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ Eigen,\ a\ lightweight\ C++\ template\ library}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ for\ linear\ algebra.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (C)\ 2008-\/2010\ Gael\ Guennebaud\ <gael.guennebaud@inria.fr>}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Copyright\ (C)\ 2009\ Benoit\ Jacob\ <jacob.benoit.1@gmail.com>}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ This\ Source\ Code\ Form\ is\ subject\ to\ the\ terms\ of\ the\ Mozilla}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ Public\ License\ v.\ 2.0.\ If\ a\ copy\ of\ the\ MPL\ was\ not\ distributed}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ with\ this\ file,\ You\ can\ obtain\ one\ at\ http://mozilla.org/MPL/2.0/.}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_BENCH\_TIMERR\_H}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ EIGEN\_BENCH\_TIMERR\_H}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#if\ defined(\_WIN32)\ ||\ defined(\_\_CYGWIN\_\_)}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#\ ifndef\ NOMINMAX}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#\ \ \ define\ NOMINMAX}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#\ \ \ define\ EIGEN\_BT\_UNDEF\_NOMINMAX}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#\ endif}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#\ ifndef\ WIN32\_LEAN\_AND\_MEAN}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#\ \ \ define\ WIN32\_LEAN\_AND\_MEAN}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#\ \ \ define\ EIGEN\_BT\_UNDEF\_WIN32\_LEAN\_AND\_MEAN}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#\ endif}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#\ include\ <windows.h>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#elif\ defined(\_\_APPLE\_\_)}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <mach/mach\_time.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#\ include\ <unistd.h>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ escape(\textcolor{keywordtype}{void}\ *\mbox{\hyperlink{_tutorial___map__using_8cpp_a7fe964f6b1afd4591f637999272ab9a2_a7fe964f6b1afd4591f637999272ab9a2}{p}})\ \{}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#if\ EIGEN\_COMP\_GNUC\ ||\ EIGEN\_COMP\_CLANG}}
+\DoxyCodeLine{00032\ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}"{}}\ :\ :\ \textcolor{stringliteral}{"{}g"{}}(\mbox{\hyperlink{_tutorial___map__using_8cpp_a7fe964f6b1afd4591f637999272ab9a2_a7fe964f6b1afd4591f637999272ab9a2}{p}})\ :\ \textcolor{stringliteral}{"{}memory"{}});}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00034\ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ clobber()\ \{}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#if\ EIGEN\_COMP\_GNUC\ ||\ EIGEN\_COMP\_CLANG}}
+\DoxyCodeLine{00038\ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}"{}}\ :\ :\ :\ \textcolor{stringliteral}{"{}memory"{}});}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00040\ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ <Eigen/Core>}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_eigen}{Eigen}}}
+\DoxyCodeLine{00045\ \{}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00048\ \ \ \mbox{\hyperlink{namespace_eigen_ae1624e3211f55e6e6a6b37729c51c37a_ae1624e3211f55e6e6a6b37729c51c37aaf4309780b87c67e629cd0c7254be102f}{CPU\_TIMER}}\ =\ 0,}
+\DoxyCodeLine{00049\ \ \ \mbox{\hyperlink{namespace_eigen_ae1624e3211f55e6e6a6b37729c51c37a_ae1624e3211f55e6e6a6b37729c51c37aa2870a6108f51a4c3133a351dae0be81c}{REAL\_TIMER}}\ =\ 1}
+\DoxyCodeLine{00050\ \};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_bench_timer}{BenchTimer}}}
+\DoxyCodeLine{00060\ \{}
+\DoxyCodeLine{00061\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a0adc618f7a119983861a19f200bc4b9d_a0adc618f7a119983861a19f200bc4b9d}{BenchTimer}}()}
+\DoxyCodeLine{00064\ \ \ \{}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#if\ defined(\_WIN32)\ ||\ defined(\_\_CYGWIN\_\_)}}
+\DoxyCodeLine{00066\ \ \ \ \ LARGE\_INTEGER\ freq;}
+\DoxyCodeLine{00067\ \ \ \ \ QueryPerformanceFrequency(\&freq);}
+\DoxyCodeLine{00068\ \ \ \ \ m\_frequency\ =\ (double)freq.QuadPart;}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a32a7276d10363d2d166234d7fb07182a_a32a7276d10363d2d166234d7fb07182a}{reset}}();}
+\DoxyCodeLine{00071\ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a8d803d095331a06e31da2dba126a51a2_a8d803d095331a06e31da2dba126a51a2}{\string~BenchTimer}}()\ \{\}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a32a7276d10363d2d166234d7fb07182a_a32a7276d10363d2d166234d7fb07182a}{reset}}()}
+\DoxyCodeLine{00076\ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a653eb515f6cc22816aaf89168fce1ebd_a653eb515f6cc22816aaf89168fce1ebd}{m\_bests}}.fill(1e9);}
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a71546a47136d76cec09512ba8304f046_a71546a47136d76cec09512ba8304f046}{m\_worsts}}.fill(0);}
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a11042868e21aa37fb51ca6e02f44bce9_a11042868e21aa37fb51ca6e02f44bce9}{m\_totals}}.setZero();}
+\DoxyCodeLine{00080\ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a6b01cc1c0408353022174b867ab29dc9_a6b01cc1c0408353022174b867ab29dc9}{start}}()}
+\DoxyCodeLine{00082\ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a90c93f01033b77abdb411d1d5caef390_a90c93f01033b77abdb411d1d5caef390}{m\_starts}}[\mbox{\hyperlink{namespace_eigen_ae1624e3211f55e6e6a6b37729c51c37a_ae1624e3211f55e6e6a6b37729c51c37aaf4309780b87c67e629cd0c7254be102f}{CPU\_TIMER}}]\ \ =\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a5e1faf3cf0c7958128fc4ad10377f51c_a5e1faf3cf0c7958128fc4ad10377f51c}{getCpuTime}}();}
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a90c93f01033b77abdb411d1d5caef390_a90c93f01033b77abdb411d1d5caef390}{m\_starts}}[\mbox{\hyperlink{namespace_eigen_ae1624e3211f55e6e6a6b37729c51c37a_ae1624e3211f55e6e6a6b37729c51c37aa2870a6108f51a4c3133a351dae0be81c}{REAL\_TIMER}}]\ =\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_af215200501091952ffa5e919fe31cfca_af215200501091952ffa5e919fe31cfca}{getRealTime}}();}
+\DoxyCodeLine{00085\ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a367e14b2e9c1ab6d3f0ff7bcfcd5ee37_a367e14b2e9c1ab6d3f0ff7bcfcd5ee37}{stop}}()}
+\DoxyCodeLine{00087\ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a3baa66294d6d1a3db98551cd4205a7db_a3baa66294d6d1a3db98551cd4205a7db}{m\_times}}[\mbox{\hyperlink{namespace_eigen_ae1624e3211f55e6e6a6b37729c51c37a_ae1624e3211f55e6e6a6b37729c51c37aaf4309780b87c67e629cd0c7254be102f}{CPU\_TIMER}}]\ =\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a5e1faf3cf0c7958128fc4ad10377f51c_a5e1faf3cf0c7958128fc4ad10377f51c}{getCpuTime}}()\ -\/\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a90c93f01033b77abdb411d1d5caef390_a90c93f01033b77abdb411d1d5caef390}{m\_starts}}[\mbox{\hyperlink{namespace_eigen_ae1624e3211f55e6e6a6b37729c51c37a_ae1624e3211f55e6e6a6b37729c51c37aaf4309780b87c67e629cd0c7254be102f}{CPU\_TIMER}}];}
+\DoxyCodeLine{00089\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a3baa66294d6d1a3db98551cd4205a7db_a3baa66294d6d1a3db98551cd4205a7db}{m\_times}}[\mbox{\hyperlink{namespace_eigen_ae1624e3211f55e6e6a6b37729c51c37a_ae1624e3211f55e6e6a6b37729c51c37aa2870a6108f51a4c3133a351dae0be81c}{REAL\_TIMER}}]\ =\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_af215200501091952ffa5e919fe31cfca_af215200501091952ffa5e919fe31cfca}{getRealTime}}()\ -\/\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a90c93f01033b77abdb411d1d5caef390_a90c93f01033b77abdb411d1d5caef390}{m\_starts}}[\mbox{\hyperlink{namespace_eigen_ae1624e3211f55e6e6a6b37729c51c37a_ae1624e3211f55e6e6a6b37729c51c37aa2870a6108f51a4c3133a351dae0be81c}{REAL\_TIMER}}];}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\ \ \ \ \#if\ EIGEN\_VERSION\_AT\_LEAST(2,90,0)}}
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a653eb515f6cc22816aaf89168fce1ebd_a653eb515f6cc22816aaf89168fce1ebd}{m\_bests}}\ =\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a653eb515f6cc22816aaf89168fce1ebd_a653eb515f6cc22816aaf89168fce1ebd}{m\_bests}}.cwiseMin(\mbox{\hyperlink{class_eigen_1_1_bench_timer_a3baa66294d6d1a3db98551cd4205a7db_a3baa66294d6d1a3db98551cd4205a7db}{m\_times}});}
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a71546a47136d76cec09512ba8304f046_a71546a47136d76cec09512ba8304f046}{m\_worsts}}\ =\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a71546a47136d76cec09512ba8304f046_a71546a47136d76cec09512ba8304f046}{m\_worsts}}.cwiseMax(\mbox{\hyperlink{class_eigen_1_1_bench_timer_a3baa66294d6d1a3db98551cd4205a7db_a3baa66294d6d1a3db98551cd4205a7db}{m\_times}});}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a653eb515f6cc22816aaf89168fce1ebd_a653eb515f6cc22816aaf89168fce1ebd}{m\_bests}}(0)\ =\ std::min(\mbox{\hyperlink{class_eigen_1_1_bench_timer_a653eb515f6cc22816aaf89168fce1ebd_a653eb515f6cc22816aaf89168fce1ebd}{m\_bests}}(0),\mbox{\hyperlink{class_eigen_1_1_bench_timer_a3baa66294d6d1a3db98551cd4205a7db_a3baa66294d6d1a3db98551cd4205a7db}{m\_times}}(0));}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a653eb515f6cc22816aaf89168fce1ebd_a653eb515f6cc22816aaf89168fce1ebd}{m\_bests}}(1)\ =\ std::min(\mbox{\hyperlink{class_eigen_1_1_bench_timer_a653eb515f6cc22816aaf89168fce1ebd_a653eb515f6cc22816aaf89168fce1ebd}{m\_bests}}(1),\mbox{\hyperlink{class_eigen_1_1_bench_timer_a3baa66294d6d1a3db98551cd4205a7db_a3baa66294d6d1a3db98551cd4205a7db}{m\_times}}(1));}
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a71546a47136d76cec09512ba8304f046_a71546a47136d76cec09512ba8304f046}{m\_worsts}}(0)\ =\ std::max(\mbox{\hyperlink{class_eigen_1_1_bench_timer_a71546a47136d76cec09512ba8304f046_a71546a47136d76cec09512ba8304f046}{m\_worsts}}(0),\mbox{\hyperlink{class_eigen_1_1_bench_timer_a3baa66294d6d1a3db98551cd4205a7db_a3baa66294d6d1a3db98551cd4205a7db}{m\_times}}(0));}
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a71546a47136d76cec09512ba8304f046_a71546a47136d76cec09512ba8304f046}{m\_worsts}}(1)\ =\ std::max(\mbox{\hyperlink{class_eigen_1_1_bench_timer_a71546a47136d76cec09512ba8304f046_a71546a47136d76cec09512ba8304f046}{m\_worsts}}(1),\mbox{\hyperlink{class_eigen_1_1_bench_timer_a3baa66294d6d1a3db98551cd4205a7db_a3baa66294d6d1a3db98551cd4205a7db}{m\_times}}(1));}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a11042868e21aa37fb51ca6e02f44bce9_a11042868e21aa37fb51ca6e02f44bce9}{m\_totals}}\ +=\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a3baa66294d6d1a3db98551cd4205a7db_a3baa66294d6d1a3db98551cd4205a7db}{m\_times}};}
+\DoxyCodeLine{00100\ \ \ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00104\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a26760f963ed8b64c126159bfea57735e_a26760f963ed8b64c126159bfea57735e}{value}}(\textcolor{keywordtype}{int}\ TIMER\ =\ \mbox{\hyperlink{namespace_eigen_ae1624e3211f55e6e6a6b37729c51c37a_ae1624e3211f55e6e6a6b37729c51c37aaf4309780b87c67e629cd0c7254be102f}{CPU\_TIMER}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00105\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a3baa66294d6d1a3db98551cd4205a7db_a3baa66294d6d1a3db98551cd4205a7db}{m\_times}}[TIMER];}
+\DoxyCodeLine{00107\ \ \ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00111\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_ae8b673b0fa356d3432c7a65c79e8af0e_ae8b673b0fa356d3432c7a65c79e8af0e}{best}}(\textcolor{keywordtype}{int}\ TIMER\ =\ \mbox{\hyperlink{namespace_eigen_ae1624e3211f55e6e6a6b37729c51c37a_ae1624e3211f55e6e6a6b37729c51c37aaf4309780b87c67e629cd0c7254be102f}{CPU\_TIMER}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00112\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a653eb515f6cc22816aaf89168fce1ebd_a653eb515f6cc22816aaf89168fce1ebd}{m\_bests}}[TIMER];}
+\DoxyCodeLine{00114\ \ \ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00118\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_ab912bf8bcae22898c85d907f0810173e_ab912bf8bcae22898c85d907f0810173e}{worst}}(\textcolor{keywordtype}{int}\ TIMER\ =\ \mbox{\hyperlink{namespace_eigen_ae1624e3211f55e6e6a6b37729c51c37a_ae1624e3211f55e6e6a6b37729c51c37aaf4309780b87c67e629cd0c7254be102f}{CPU\_TIMER}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00119\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a71546a47136d76cec09512ba8304f046_a71546a47136d76cec09512ba8304f046}{m\_worsts}}[TIMER];}
+\DoxyCodeLine{00121\ \ \ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00125\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_af341aa613dba2d4a3d167093197e4e7a_af341aa613dba2d4a3d167093197e4e7a}{total}}(\textcolor{keywordtype}{int}\ TIMER\ =\ \mbox{\hyperlink{namespace_eigen_ae1624e3211f55e6e6a6b37729c51c37a_ae1624e3211f55e6e6a6b37729c51c37aaf4309780b87c67e629cd0c7254be102f}{CPU\_TIMER}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00126\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a11042868e21aa37fb51ca6e02f44bce9_a11042868e21aa37fb51ca6e02f44bce9}{m\_totals}}[TIMER];}
+\DoxyCodeLine{00128\ \ \ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a5e1faf3cf0c7958128fc4ad10377f51c_a5e1faf3cf0c7958128fc4ad10377f51c}{getCpuTime}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00131\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#ifdef\ \_WIN32}}
+\DoxyCodeLine{00133\ \ \ \ \ LARGE\_INTEGER\ query\_ticks;}
+\DoxyCodeLine{00134\ \ \ \ \ QueryPerformanceCounter(\&query\_ticks);}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{return}\ query\_ticks.QuadPart/m\_frequency;}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#elif\ \_\_APPLE\_\_}}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordflow}{return}\ double(mach\_absolute\_time())*1\mbox{\hyperlink{_cwise__array__power__array_8cpp_a9cb86ff854760bf91a154f2724a9101d_a9cb86ff854760bf91a154f2724a9101d}{e}}-\/9;}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00139\ \ \ \ \ timespec\ ts;}
+\DoxyCodeLine{00140\ \ \ \ \ clock\_gettime(CLOCK\_PROCESS\_CPUTIME\_ID,\ \&ts);}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{return}\ double(ts.tv\_sec)\ +\ 1\mbox{\hyperlink{_cwise__array__power__array_8cpp_a9cb86ff854760bf91a154f2724a9101d_a9cb86ff854760bf91a154f2724a9101d}{e}}-\/9\ *\ double(ts.tv\_nsec);}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00143\ \ \ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_af215200501091952ffa5e919fe31cfca_af215200501091952ffa5e919fe31cfca}{getRealTime}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00146\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#ifdef\ \_WIN32}}
+\DoxyCodeLine{00148\ \ \ \ \ SYSTEMTIME\ st;}
+\DoxyCodeLine{00149\ \ \ \ \ GetSystemTime(\&st);}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{double})st.wSecond\ +\ 1.e-\/3\ *\ (double)st.wMilliseconds;}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#elif\ \_\_APPLE\_\_}}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordflow}{return}\ double(mach\_absolute\_time())*1\mbox{\hyperlink{_cwise__array__power__array_8cpp_a9cb86ff854760bf91a154f2724a9101d_a9cb86ff854760bf91a154f2724a9101d}{e}}-\/9;}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00154\ \ \ \ \ timespec\ ts;}
+\DoxyCodeLine{00155\ \ \ \ \ clock\_gettime(CLOCK\_REALTIME,\ \&ts);}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordflow}{return}\ double(ts.tv\_sec)\ +\ 1\mbox{\hyperlink{_cwise__array__power__array_8cpp_a9cb86ff854760bf91a154f2724a9101d_a9cb86ff854760bf91a154f2724a9101d}{e}}-\/9\ *\ double(ts.tv\_nsec);}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00158\ \ \ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#if\ defined(\_WIN32)\ ||\ defined(\_\_CYGWIN\_\_)}}
+\DoxyCodeLine{00162\ \ \ \textcolor{keywordtype}{double}\ m\_frequency;}
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00164\ \ \ Vector2d\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a90c93f01033b77abdb411d1d5caef390_a90c93f01033b77abdb411d1d5caef390}{m\_starts}};}
+\DoxyCodeLine{00165\ \ \ Vector2d\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a3baa66294d6d1a3db98551cd4205a7db_a3baa66294d6d1a3db98551cd4205a7db}{m\_times}};}
+\DoxyCodeLine{00166\ \ \ Vector2d\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a653eb515f6cc22816aaf89168fce1ebd_a653eb515f6cc22816aaf89168fce1ebd}{m\_bests}};}
+\DoxyCodeLine{00167\ \ \ Vector2d\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a71546a47136d76cec09512ba8304f046_a71546a47136d76cec09512ba8304f046}{m\_worsts}};}
+\DoxyCodeLine{00168\ \ \ Vector2d\ \mbox{\hyperlink{class_eigen_1_1_bench_timer_a11042868e21aa37fb51ca6e02f44bce9_a11042868e21aa37fb51ca6e02f44bce9}{m\_totals}};}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00171\ \ \ \mbox{\hyperlink{_memory_8h_a6b556795c1a3aa8156f7b975481b872f_a6b556795c1a3aa8156f7b975481b872f}{EIGEN\_MAKE\_ALIGNED\_OPERATOR\_NEW}}}
+\DoxyCodeLine{00172\ \};}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#define\ BENCH(TIMER,TRIES,REP,CODE)\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\ \ \ \ TIMER.reset();\ \(\backslash\)}}
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\ \ \ \ for(int\ uglyvarname1=0;\ uglyvarname1<TRIES;\ ++uglyvarname1)\{\ \(\backslash\)}}
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\ \ \ \ \ \ TIMER.start();\ \(\backslash\)}}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\ \ \ \ \ \ for(int\ uglyvarname2=0;\ uglyvarname2<REP;\ ++uglyvarname2)\{\ \(\backslash\)}}
+\DoxyCodeLine{00179\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ CODE;\ \(\backslash\)}}
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\ \ \ \ \ \ \}\ \(\backslash\)}}
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\ \ \ \ \ \ TIMER.stop();\ \(\backslash\)}}
+\DoxyCodeLine{00182\ \textcolor{preprocessor}{\ \ \ \ \ \ clobber();\ \(\backslash\)}}
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\ \ \ \ \}\ \(\backslash\)}}
+\DoxyCodeLine{00184\ \textcolor{preprocessor}{\ \ \}}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \textcolor{comment}{//\ clean\ \#defined\ tokens}}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_BT\_UNDEF\_NOMINMAX}}
+\DoxyCodeLine{00190\ \textcolor{preprocessor}{\#\ undef\ EIGEN\_BT\_UNDEF\_NOMINMAX}}
+\DoxyCodeLine{00191\ \textcolor{preprocessor}{\#\ undef\ NOMINMAX}}
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\#ifdef\ EIGEN\_BT\_UNDEF\_WIN32\_LEAN\_AND\_MEAN}}
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\#\ undef\ EIGEN\_BT\_UNDEF\_WIN32\_LEAN\_AND\_MEAN}}
+\DoxyCodeLine{00196\ \textcolor{preprocessor}{\#\ undef\ WIN32\_LEAN\_AND\_MEAN}}
+\DoxyCodeLine{00197\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ EIGEN\_BENCH\_TIMERR\_H}}
+
+\end{DoxyCode}

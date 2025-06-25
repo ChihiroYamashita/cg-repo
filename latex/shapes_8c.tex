@@ -1,0 +1,252 @@
+\doxysection{freeglut-\/2.8.1.tar/freeglut-\/2.8.1/freeglut-\/2.8.1/progs/demos/shapes/shapes.c ファイル}
+\hypertarget{shapes_8c}{}\label{shapes_8c}\index{freeglut-\/2.8.1.tar/freeglut-\/2.8.1/freeglut-\/2.8.1/progs/demos/shapes/shapes.c@{freeglut-\/2.8.1.tar/freeglut-\/2.8.1/freeglut-\/2.8.1/progs/demos/shapes/shapes.c}}
+
+
+This program is a test harness for the various shapes in Open\+GLUT.  
+
+
+{\ttfamily \#include $<$GL/freeglut.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+shapes.\+c の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{shapes_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{クラス}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structentry}{entry}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{shapes_8c_a6408be0d3e3ba71f2b7f25d10f7412ce_a6408be0d3e3ba71f2b7f25d10f7412ce}{NUMBEROF}}(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}})
+\item 
+\#define \mbox{\hyperlink{shapes_8c_abf245effade75812ad22de1f1fcab417_abf245effade75812ad22de1f1fcab417}{GEO\+\_\+\+NO\+\_\+\+SIZE}}~0
+\item 
+\#define \mbox{\hyperlink{shapes_8c_adc6adf1a91cfccbe68e82b4b86bdeff7_adc6adf1a91cfccbe68e82b4b86bdeff7}{GEO\+\_\+\+SIZE}}~1
+\item 
+\#define \mbox{\hyperlink{shapes_8c_a55af985b1b6dac7392b3b96dde3afb49_a55af985b1b6dac7392b3b96dde3afb49}{GEO\+\_\+\+SCALE}}~2
+\item 
+\#define \mbox{\hyperlink{shapes_8c_a79a6ed4af50bd1637b4be667303e4de5_a79a6ed4af50bd1637b4be667303e4de5}{GEO\+\_\+\+INNER\+\_\+\+OUTER\+\_\+\+RAD}}~4
+\item 
+\#define \mbox{\hyperlink{shapes_8c_a3682190cdfcdb7f5f9efa3a71c0463a7_a3682190cdfcdb7f5f9efa3a71c0463a7}{GEO\+\_\+\+RAD}}~8
+\item 
+\#define \mbox{\hyperlink{shapes_8c_a6d85f2c532caa276729587e6b1cc9da7_a6d85f2c532caa276729587e6b1cc9da7}{GEO\+\_\+\+BASE\+\_\+\+HEIGHT}}~16
+\item 
+\#define \mbox{\hyperlink{shapes_8c_a5263bee5dc8aee137266b3ce515ff994_a5263bee5dc8aee137266b3ce515ff994}{GEO\+\_\+\+RAD\+\_\+\+HEIGHT}}~32
+\item 
+\#define \mbox{\hyperlink{shapes_8c_a8b3745e2d90bdaef8410a4cccf0cc464_a8b3745e2d90bdaef8410a4cccf0cc464}{RADIUSFAC}}~0.\+70710678118654752440084436210485f
+\item 
+\#define \mbox{\hyperlink{shapes_8c_a331c511ff794be2fbe106b3cf1a0097f_a331c511ff794be2fbe106b3cf1a0097f}{ENTRY}}(\mbox{\hyperlink{_cwise__array__power__array_8cpp_a9cb86ff854760bf91a154f2724a9101d_a9cb86ff854760bf91a154f2724a9101d}{e}},  f)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{shapes_8c_a0e7e0e55ed3e380332b21f49fb0d4c20_a0e7e0e55ed3e380332b21f49fb0d4c20}{check\+Error}} (const char \texorpdfstring{$\ast$}{*}function\+Name)
+\item 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{shapes_8c_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97}{main}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{変数}
+\begin{DoxyCompactItemize}
+\item 
+const GLfloat \mbox{\hyperlink{shapes_8c_a35b44e70b5291d4c6a2ddfa0ffe062e8_a35b44e70b5291d4c6a2ddfa0ffe062e8}{light\+\_\+ambient}} \mbox{[}$\,$\mbox{]} = \{ 0.\+0f, 0.\+0f, 0.\+0f, 1.\+0f \}
+\item 
+const GLfloat \mbox{\hyperlink{shapes_8c_ad0bc3e49164c7d5d01dd6b4a0d0fff25_ad0bc3e49164c7d5d01dd6b4a0d0fff25}{light\+\_\+diffuse}} \mbox{[}$\,$\mbox{]} = \{ 1.\+0f, 1.\+0f, 1.\+0f, 1.\+0f \}
+\item 
+const GLfloat \mbox{\hyperlink{shapes_8c_a48537988fd7a403709b0a7ffcbebac77_a48537988fd7a403709b0a7ffcbebac77}{light\+\_\+specular}} \mbox{[}$\,$\mbox{]} = \{ 1.\+0f, 1.\+0f, 1.\+0f, 1.\+0f \}
+\item 
+const GLfloat \mbox{\hyperlink{shapes_8c_aea3c4afba5fcc8b77067671d396b577b_aea3c4afba5fcc8b77067671d396b577b}{light\+\_\+position}} \mbox{[}$\,$\mbox{]} = \{ 2.\+0f, 5.\+0f, 5.\+0f, 0.\+0f \}
+\item 
+const GLfloat \mbox{\hyperlink{shapes_8c_adfbd08e06a4a9fc898f6a3b9797316d8_adfbd08e06a4a9fc898f6a3b9797316d8}{mat\+\_\+ambient}} \mbox{[}$\,$\mbox{]} = \{ 0.\+7f, 0.\+7f, 0.\+7f, 1.\+0f \}
+\item 
+const GLfloat \mbox{\hyperlink{shapes_8c_aabea2510d410c6e2c8470a262cdabada_aabea2510d410c6e2c8470a262cdabada}{mat\+\_\+diffuse}} \mbox{[}$\,$\mbox{]} = \{ 0.\+8f, 0.\+8f, 0.\+8f, 1.\+0f \}
+\item 
+const GLfloat \mbox{\hyperlink{shapes_8c_aa024b50a93b02ad54fc180d4729d8735_aa024b50a93b02ad54fc180d4729d8735}{mat\+\_\+specular}} \mbox{[}$\,$\mbox{]} = \{ 1.\+0f, 1.\+0f, 1.\+0f, 1.\+0f \}
+\item 
+const GLfloat \mbox{\hyperlink{shapes_8c_a93c2ee41abd3c06ade37dd87e48a8a33_a93c2ee41abd3c06ade37dd87e48a8a33}{high\+\_\+shininess}} \mbox{[}$\,$\mbox{]} = \{ 100.\+0f \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{詳解}
+This program is a test harness for the various shapes in Open\+GLUT. 
+
+It may also be useful to see which parameters control what behavior in the Open\+GLUT objects.
+
+Spinning wireframe and solid-\/shaded shapes are displayed. Some parameters can be adjusted.
+
+Keys\+:
+\begin{DoxyItemize}
+\item {\ttfamily Esc ~} Quit
+\item {\ttfamily q Q ~} Quit
+\item {\ttfamily i I ~} Show info
+\item {\ttfamily p P ~} Toggle perspective or orthographic projection
+\item {\ttfamily r R ~} Toggle fixed or animated rotation around model X-\/axis
+\item {\ttfamily = + ~} Increase {\itshape slices} 
+\item {\ttfamily -\/ \+\_\+ ~} Decreate {\itshape slices} 
+\item {\ttfamily , \texorpdfstring{$<$}{<} ~} Decreate {\itshape stacks} 
+\item {\ttfamily . \texorpdfstring{$>$}{>} ~} Increase {\itshape stacks} 
+\item {\ttfamily 9 ( ~} Decreate {\itshape depth} (Sierpinski Sponge)
+\item {\ttfamily 0 ) ~} Increase {\itshape depth} (Sierpinski Sponge)
+\item {\ttfamily up~ ~} Increase "{}outer radius"{}
+\item {\ttfamily down~} Decrease "{}outer radius"{}
+\item {\ttfamily left~} Decrease "{}inner radius"{}
+\item {\ttfamily right} Increase "{}inner radius"{}
+\item {\ttfamily Pg\+Up~} Next shape-\/drawing function
+\item {\ttfamily Pg\+Dn~} Prev shape-\/drawing function
+\end{DoxyItemize}
+
+\begin{DoxyAuthor}{著者}
+Written by Nigel Stewart November 2003
+
+Portions Copyright (C) 2004, the Open\+GLUT project contributors. ~\newline
+ Open\+GLUT branched from freeglut in February, 2004.
+\end{DoxyAuthor}
+ 
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ 
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{shapes_8c_a331c511ff794be2fbe106b3cf1a0097f_a331c511ff794be2fbe106b3cf1a0097f}\index{shapes.c@{shapes.c}!ENTRY@{ENTRY}}
+\index{ENTRY@{ENTRY}!shapes.c@{shapes.c}}
+\doxysubsubsection{\texorpdfstring{ENTRY}{ENTRY}}
+{\footnotesize\ttfamily \label{shapes_8c_a331c511ff794be2fbe106b3cf1a0097f_a331c511ff794be2fbe106b3cf1a0097f} 
+\#define ENTRY(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{_cwise__array__power__array_8cpp_a9cb86ff854760bf91a154f2724a9101d_a9cb86ff854760bf91a154f2724a9101d}{e}}}{, }\item[{}]{f}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{\#\mbox{\hyperlink{_cwise__array__power__array_8cpp_a9cb86ff854760bf91a154f2724a9101d_a9cb86ff854760bf91a154f2724a9101d}{e}},\ drawSolid\#\#\mbox{\hyperlink{_cwise__array__power__array_8cpp_a9cb86ff854760bf91a154f2724a9101d_a9cb86ff854760bf91a154f2724a9101d}{e}},\ drawWire\#\#\mbox{\hyperlink{_cwise__array__power__array_8cpp_a9cb86ff854760bf91a154f2724a9101d_a9cb86ff854760bf91a154f2724a9101d}{e}},f\}}
+
+\end{DoxyCode}
+\Hypertarget{shapes_8c_a6d85f2c532caa276729587e6b1cc9da7_a6d85f2c532caa276729587e6b1cc9da7}\index{shapes.c@{shapes.c}!GEO\_BASE\_HEIGHT@{GEO\_BASE\_HEIGHT}}
+\index{GEO\_BASE\_HEIGHT@{GEO\_BASE\_HEIGHT}!shapes.c@{shapes.c}}
+\doxysubsubsection{\texorpdfstring{GEO\_BASE\_HEIGHT}{GEO\_BASE\_HEIGHT}}
+{\footnotesize\ttfamily \label{shapes_8c_a6d85f2c532caa276729587e6b1cc9da7_a6d85f2c532caa276729587e6b1cc9da7} 
+\#define GEO\+\_\+\+BASE\+\_\+\+HEIGHT~16}
+
+\Hypertarget{shapes_8c_a79a6ed4af50bd1637b4be667303e4de5_a79a6ed4af50bd1637b4be667303e4de5}\index{shapes.c@{shapes.c}!GEO\_INNER\_OUTER\_RAD@{GEO\_INNER\_OUTER\_RAD}}
+\index{GEO\_INNER\_OUTER\_RAD@{GEO\_INNER\_OUTER\_RAD}!shapes.c@{shapes.c}}
+\doxysubsubsection{\texorpdfstring{GEO\_INNER\_OUTER\_RAD}{GEO\_INNER\_OUTER\_RAD}}
+{\footnotesize\ttfamily \label{shapes_8c_a79a6ed4af50bd1637b4be667303e4de5_a79a6ed4af50bd1637b4be667303e4de5} 
+\#define GEO\+\_\+\+INNER\+\_\+\+OUTER\+\_\+\+RAD~4}
+
+\Hypertarget{shapes_8c_abf245effade75812ad22de1f1fcab417_abf245effade75812ad22de1f1fcab417}\index{shapes.c@{shapes.c}!GEO\_NO\_SIZE@{GEO\_NO\_SIZE}}
+\index{GEO\_NO\_SIZE@{GEO\_NO\_SIZE}!shapes.c@{shapes.c}}
+\doxysubsubsection{\texorpdfstring{GEO\_NO\_SIZE}{GEO\_NO\_SIZE}}
+{\footnotesize\ttfamily \label{shapes_8c_abf245effade75812ad22de1f1fcab417_abf245effade75812ad22de1f1fcab417} 
+\#define GEO\+\_\+\+NO\+\_\+\+SIZE~0}
+
+\Hypertarget{shapes_8c_a3682190cdfcdb7f5f9efa3a71c0463a7_a3682190cdfcdb7f5f9efa3a71c0463a7}\index{shapes.c@{shapes.c}!GEO\_RAD@{GEO\_RAD}}
+\index{GEO\_RAD@{GEO\_RAD}!shapes.c@{shapes.c}}
+\doxysubsubsection{\texorpdfstring{GEO\_RAD}{GEO\_RAD}}
+{\footnotesize\ttfamily \label{shapes_8c_a3682190cdfcdb7f5f9efa3a71c0463a7_a3682190cdfcdb7f5f9efa3a71c0463a7} 
+\#define GEO\+\_\+\+RAD~8}
+
+\Hypertarget{shapes_8c_a5263bee5dc8aee137266b3ce515ff994_a5263bee5dc8aee137266b3ce515ff994}\index{shapes.c@{shapes.c}!GEO\_RAD\_HEIGHT@{GEO\_RAD\_HEIGHT}}
+\index{GEO\_RAD\_HEIGHT@{GEO\_RAD\_HEIGHT}!shapes.c@{shapes.c}}
+\doxysubsubsection{\texorpdfstring{GEO\_RAD\_HEIGHT}{GEO\_RAD\_HEIGHT}}
+{\footnotesize\ttfamily \label{shapes_8c_a5263bee5dc8aee137266b3ce515ff994_a5263bee5dc8aee137266b3ce515ff994} 
+\#define GEO\+\_\+\+RAD\+\_\+\+HEIGHT~32}
+
+\Hypertarget{shapes_8c_a55af985b1b6dac7392b3b96dde3afb49_a55af985b1b6dac7392b3b96dde3afb49}\index{shapes.c@{shapes.c}!GEO\_SCALE@{GEO\_SCALE}}
+\index{GEO\_SCALE@{GEO\_SCALE}!shapes.c@{shapes.c}}
+\doxysubsubsection{\texorpdfstring{GEO\_SCALE}{GEO\_SCALE}}
+{\footnotesize\ttfamily \label{shapes_8c_a55af985b1b6dac7392b3b96dde3afb49_a55af985b1b6dac7392b3b96dde3afb49} 
+\#define GEO\+\_\+\+SCALE~2}
+
+\Hypertarget{shapes_8c_adc6adf1a91cfccbe68e82b4b86bdeff7_adc6adf1a91cfccbe68e82b4b86bdeff7}\index{shapes.c@{shapes.c}!GEO\_SIZE@{GEO\_SIZE}}
+\index{GEO\_SIZE@{GEO\_SIZE}!shapes.c@{shapes.c}}
+\doxysubsubsection{\texorpdfstring{GEO\_SIZE}{GEO\_SIZE}}
+{\footnotesize\ttfamily \label{shapes_8c_adc6adf1a91cfccbe68e82b4b86bdeff7_adc6adf1a91cfccbe68e82b4b86bdeff7} 
+\#define GEO\+\_\+\+SIZE~1}
+
+\Hypertarget{shapes_8c_a6408be0d3e3ba71f2b7f25d10f7412ce_a6408be0d3e3ba71f2b7f25d10f7412ce}\index{shapes.c@{shapes.c}!NUMBEROF@{NUMBEROF}}
+\index{NUMBEROF@{NUMBEROF}!shapes.c@{shapes.c}}
+\doxysubsubsection{\texorpdfstring{NUMBEROF}{NUMBEROF}}
+{\footnotesize\ttfamily \label{shapes_8c_a6408be0d3e3ba71f2b7f25d10f7412ce_a6408be0d3e3ba71f2b7f25d10f7412ce} 
+\#define NUMBEROF(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((\textcolor{keyword}{sizeof}(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}))/(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}[0])))}
+
+\end{DoxyCode}
+\Hypertarget{shapes_8c_a8b3745e2d90bdaef8410a4cccf0cc464_a8b3745e2d90bdaef8410a4cccf0cc464}\index{shapes.c@{shapes.c}!RADIUSFAC@{RADIUSFAC}}
+\index{RADIUSFAC@{RADIUSFAC}!shapes.c@{shapes.c}}
+\doxysubsubsection{\texorpdfstring{RADIUSFAC}{RADIUSFAC}}
+{\footnotesize\ttfamily \label{shapes_8c_a8b3745e2d90bdaef8410a4cccf0cc464_a8b3745e2d90bdaef8410a4cccf0cc464} 
+\#define RADIUSFAC~0.\+70710678118654752440084436210485f}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{shapes_8c_a0e7e0e55ed3e380332b21f49fb0d4c20_a0e7e0e55ed3e380332b21f49fb0d4c20}\index{shapes.c@{shapes.c}!checkError@{checkError}}
+\index{checkError@{checkError}!shapes.c@{shapes.c}}
+\doxysubsubsection{\texorpdfstring{checkError()}{checkError()}}
+{\footnotesize\ttfamily \label{shapes_8c_a0e7e0e55ed3e380332b21f49fb0d4c20_a0e7e0e55ed3e380332b21f49fb0d4c20} 
+void check\+Error (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{function\+Name}{}\end{DoxyParamCaption})}
+
+\Hypertarget{shapes_8c_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97}\index{shapes.c@{shapes.c}!main@{main}}
+\index{main@{main}!shapes.c@{shapes.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{shapes_8c_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97} 
+\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} main (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{argv}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{変数詳解}
+\Hypertarget{shapes_8c_a93c2ee41abd3c06ade37dd87e48a8a33_a93c2ee41abd3c06ade37dd87e48a8a33}\index{shapes.c@{shapes.c}!high\_shininess@{high\_shininess}}
+\index{high\_shininess@{high\_shininess}!shapes.c@{shapes.c}}
+\doxysubsubsection{\texorpdfstring{high\_shininess}{high\_shininess}}
+{\footnotesize\ttfamily \label{shapes_8c_a93c2ee41abd3c06ade37dd87e48a8a33_a93c2ee41abd3c06ade37dd87e48a8a33} 
+const GLfloat high\+\_\+shininess\mbox{[}$\,$\mbox{]} = \{ 100.\+0f \}}
+
+\Hypertarget{shapes_8c_a35b44e70b5291d4c6a2ddfa0ffe062e8_a35b44e70b5291d4c6a2ddfa0ffe062e8}\index{shapes.c@{shapes.c}!light\_ambient@{light\_ambient}}
+\index{light\_ambient@{light\_ambient}!shapes.c@{shapes.c}}
+\doxysubsubsection{\texorpdfstring{light\_ambient}{light\_ambient}}
+{\footnotesize\ttfamily \label{shapes_8c_a35b44e70b5291d4c6a2ddfa0ffe062e8_a35b44e70b5291d4c6a2ddfa0ffe062e8} 
+const GLfloat light\+\_\+ambient\mbox{[}$\,$\mbox{]} = \{ 0.\+0f, 0.\+0f, 0.\+0f, 1.\+0f \}}
+
+\Hypertarget{shapes_8c_ad0bc3e49164c7d5d01dd6b4a0d0fff25_ad0bc3e49164c7d5d01dd6b4a0d0fff25}\index{shapes.c@{shapes.c}!light\_diffuse@{light\_diffuse}}
+\index{light\_diffuse@{light\_diffuse}!shapes.c@{shapes.c}}
+\doxysubsubsection{\texorpdfstring{light\_diffuse}{light\_diffuse}}
+{\footnotesize\ttfamily \label{shapes_8c_ad0bc3e49164c7d5d01dd6b4a0d0fff25_ad0bc3e49164c7d5d01dd6b4a0d0fff25} 
+const GLfloat light\+\_\+diffuse\mbox{[}$\,$\mbox{]} = \{ 1.\+0f, 1.\+0f, 1.\+0f, 1.\+0f \}}
+
+\Hypertarget{shapes_8c_aea3c4afba5fcc8b77067671d396b577b_aea3c4afba5fcc8b77067671d396b577b}\index{shapes.c@{shapes.c}!light\_position@{light\_position}}
+\index{light\_position@{light\_position}!shapes.c@{shapes.c}}
+\doxysubsubsection{\texorpdfstring{light\_position}{light\_position}}
+{\footnotesize\ttfamily \label{shapes_8c_aea3c4afba5fcc8b77067671d396b577b_aea3c4afba5fcc8b77067671d396b577b} 
+const GLfloat light\+\_\+position\mbox{[}$\,$\mbox{]} = \{ 2.\+0f, 5.\+0f, 5.\+0f, 0.\+0f \}}
+
+\Hypertarget{shapes_8c_a48537988fd7a403709b0a7ffcbebac77_a48537988fd7a403709b0a7ffcbebac77}\index{shapes.c@{shapes.c}!light\_specular@{light\_specular}}
+\index{light\_specular@{light\_specular}!shapes.c@{shapes.c}}
+\doxysubsubsection{\texorpdfstring{light\_specular}{light\_specular}}
+{\footnotesize\ttfamily \label{shapes_8c_a48537988fd7a403709b0a7ffcbebac77_a48537988fd7a403709b0a7ffcbebac77} 
+const GLfloat light\+\_\+specular\mbox{[}$\,$\mbox{]} = \{ 1.\+0f, 1.\+0f, 1.\+0f, 1.\+0f \}}
+
+\Hypertarget{shapes_8c_adfbd08e06a4a9fc898f6a3b9797316d8_adfbd08e06a4a9fc898f6a3b9797316d8}\index{shapes.c@{shapes.c}!mat\_ambient@{mat\_ambient}}
+\index{mat\_ambient@{mat\_ambient}!shapes.c@{shapes.c}}
+\doxysubsubsection{\texorpdfstring{mat\_ambient}{mat\_ambient}}
+{\footnotesize\ttfamily \label{shapes_8c_adfbd08e06a4a9fc898f6a3b9797316d8_adfbd08e06a4a9fc898f6a3b9797316d8} 
+const GLfloat mat\+\_\+ambient\mbox{[}$\,$\mbox{]} = \{ 0.\+7f, 0.\+7f, 0.\+7f, 1.\+0f \}}
+
+\Hypertarget{shapes_8c_aabea2510d410c6e2c8470a262cdabada_aabea2510d410c6e2c8470a262cdabada}\index{shapes.c@{shapes.c}!mat\_diffuse@{mat\_diffuse}}
+\index{mat\_diffuse@{mat\_diffuse}!shapes.c@{shapes.c}}
+\doxysubsubsection{\texorpdfstring{mat\_diffuse}{mat\_diffuse}}
+{\footnotesize\ttfamily \label{shapes_8c_aabea2510d410c6e2c8470a262cdabada_aabea2510d410c6e2c8470a262cdabada} 
+const GLfloat mat\+\_\+diffuse\mbox{[}$\,$\mbox{]} = \{ 0.\+8f, 0.\+8f, 0.\+8f, 1.\+0f \}}
+
+\Hypertarget{shapes_8c_aa024b50a93b02ad54fc180d4729d8735_aa024b50a93b02ad54fc180d4729d8735}\index{shapes.c@{shapes.c}!mat\_specular@{mat\_specular}}
+\index{mat\_specular@{mat\_specular}!shapes.c@{shapes.c}}
+\doxysubsubsection{\texorpdfstring{mat\_specular}{mat\_specular}}
+{\footnotesize\ttfamily \label{shapes_8c_aa024b50a93b02ad54fc180d4729d8735_aa024b50a93b02ad54fc180d4729d8735} 
+const GLfloat mat\+\_\+specular\mbox{[}$\,$\mbox{]} = \{ 1.\+0f, 1.\+0f, 1.\+0f, 1.\+0f \}}
+

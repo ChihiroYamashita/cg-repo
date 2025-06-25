@@ -1,0 +1,37 @@
+\doxysection{Eigen\+::Tensor\+Sycl\+::internal\+::Scan\+Launcher\+\_\+impl\texorpdfstring{$<$}{<} Coeff\+Return\+Type, stp \texorpdfstring{$>$}{>} 構造体テンプレート}
+\hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_scan_launcher__impl}{}\label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_scan_launcher__impl}\index{Eigen::TensorSycl::internal::ScanLauncher\_impl$<$ CoeffReturnType, stp $>$@{Eigen::TensorSycl::internal::ScanLauncher\_impl$<$ CoeffReturnType, stp $>$}}
+
+
+{\ttfamily \#include $<$Tensor\+Scan\+Sycl.\+h$>$}
+
+
+
+Eigen\+::Tensor\+Sycl\+::internal\+::Scan\+Launcher\+\_\+impl\texorpdfstring{$<$}{<} Coeff\+Return\+Type, stp \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=197pt]{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_scan_launcher__impl__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Input , typename Evaluator\+Pointer\+Type , typename Reducer , typename \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} $>$ }\\static \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} void \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_scan_launcher__impl_ac2b3b4877361ee54e75f4ad762b305c1_ac2b3b4877361ee54e75f4ad762b305c1}{scan\+\_\+block}} (Input in\+\_\+ptr, Evaluator\+Pointer\+Type out\+\_\+ptr, Reducer \&accumulator, const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} total\+\_\+size, const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} scan\+\_\+size, const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} panel\+\_\+size, const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} non\+\_\+scan\+\_\+size, const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} scan\+\_\+stride, const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} non\+\_\+scan\+\_\+stride, const bool inclusive, const Eigen\+::\+Sycl\+Device \&dev)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_scan_launcher__impl_ac2b3b4877361ee54e75f4ad762b305c1_ac2b3b4877361ee54e75f4ad762b305c1}\index{Eigen::TensorSycl::internal::ScanLauncher\_impl$<$ CoeffReturnType, stp $>$@{Eigen::TensorSycl::internal::ScanLauncher\_impl$<$ CoeffReturnType, stp $>$}!scan\_block@{scan\_block}}
+\index{scan\_block@{scan\_block}!Eigen::TensorSycl::internal::ScanLauncher\_impl$<$ CoeffReturnType, stp $>$@{Eigen::TensorSycl::internal::ScanLauncher\_impl$<$ CoeffReturnType, stp $>$}}
+\doxysubsubsection{\texorpdfstring{scan\_block()}{scan\_block()}}
+{\footnotesize\ttfamily \label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_scan_launcher__impl_ac2b3b4877361ee54e75f4ad762b305c1_ac2b3b4877361ee54e75f4ad762b305c1} 
+template$<$typename Coeff\+Return\+Type , \mbox{\hyperlink{namespace_eigen_1_1_tensor_sycl_1_1internal_a6b41740eba9ebc06be9bcb82d2ec440f_a6b41740eba9ebc06be9bcb82d2ec440f}{scan\+\_\+step}} stp$>$ \\
+template$<$typename Input , typename Evaluator\+Pointer\+Type , typename Reducer , typename \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}} $>$ \\
+static \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} void \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_scan_launcher__impl}{Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Scan\+Launcher\+\_\+impl}}$<$ Coeff\+Return\+Type, stp $>$\+::scan\+\_\+block (\begin{DoxyParamCaption}\item[{Input}]{in\+\_\+ptr}{, }\item[{Evaluator\+Pointer\+Type}]{out\+\_\+ptr}{, }\item[{Reducer \&}]{accumulator}{, }\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{total\+\_\+size}{, }\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{scan\+\_\+size}{, }\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{panel\+\_\+size}{, }\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{non\+\_\+scan\+\_\+size}{, }\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{scan\+\_\+stride}{, }\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{non\+\_\+scan\+\_\+stride}{, }\item[{const bool}]{inclusive}{, }\item[{const Eigen\+::\+Sycl\+Device \&}]{dev}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+この構造体詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/unsupported/\+Eigen/\+CXX11/src/\+Tensor/\mbox{\hyperlink{_tensor_scan_sycl_8h}{Tensor\+Scan\+Sycl.\+h}}\end{DoxyCompactItemize}

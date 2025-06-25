@@ -1,0 +1,65 @@
+\doxysection{eigen-\/3.4.0/eigen-\/3.4.0/doc/special\+\_\+examples/\+Tutorial\+\_\+sparse\+\_\+example\+\_\+details.cpp ファイル}
+\hypertarget{_tutorial__sparse__example__details_8cpp}{}\label{_tutorial__sparse__example__details_8cpp}\index{eigen-\/3.4.0/eigen-\/3.4.0/doc/special\_examples/Tutorial\_sparse\_example\_details.cpp@{eigen-\/3.4.0/eigen-\/3.4.0/doc/special\_examples/Tutorial\_sparse\_example\_details.cpp}}
+{\ttfamily \#include $<$Eigen/\+Sparse$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$QImage$>$}\newline
+Tutorial\+\_\+sparse\+\_\+example\+\_\+details.\+cpp の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=285pt]{_tutorial__sparse__example__details_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{型定義}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ double $>$ \mbox{\hyperlink{_tutorial__sparse__example__details_8cpp_a04b63929a2578b5ce61f09f0b8b18122_a04b63929a2578b5ce61f09f0b8b18122}{Sp\+Mat}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_triplet}{Eigen\+::\+Triplet}}$<$ double $>$ \mbox{\hyperlink{_tutorial__sparse__example__details_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_tutorial__sparse__example__details_8cpp_abccb5c43c202f29ec7ea865b6a127250_abccb5c43c202f29ec7ea865b6a127250}{insert\+Coefficient}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} id, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{tut__arithmetic__redux__minmax_8cpp_a39513f0f8d942bf9ef17b2e87ac6d34e_a39513f0f8d942bf9ef17b2e87ac6d34e}{j}}, double \mbox{\hyperlink{_matrix__resize__int_8cpp_aab236ce080522c9832217fd5f157541b_aab236ce080522c9832217fd5f157541b}{w}}, std\+::vector$<$ \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} $>$ \&coeffs, Eigen\+::\+Vector\+Xd \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, const Eigen\+::\+Vector\+Xd \&boundary)
+\item 
+void \mbox{\hyperlink{_tutorial__sparse__example__details_8cpp_a2563d84202fb56ea78ca60731badc33f_a2563d84202fb56ea78ca60731badc33f}{build\+Problem}} (std\+::vector$<$ \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} $>$ \&coefficients, Eigen\+::\+Vector\+Xd \&\mbox{\hyperlink{bench_vec_add_8cpp_a846c9667e34d56c560bb7f0ac6e173f6_a846c9667e34d56c560bb7f0ac6e173f6}{b}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}})
+\item 
+void \mbox{\hyperlink{_tutorial__sparse__example__details_8cpp_afef736ce24d71fb43661b8e285578dd5_afef736ce24d71fb43661b8e285578dd5}{save\+As\+Bitmap}} (const Eigen\+::\+Vector\+Xd \&\mbox{\hyperlink{gnuplot__common__settings_8hh_a5fd331c99e778f04762be6d8173eb4d2_a5fd331c99e778f04762be6d8173eb4d2}{x}}, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \mbox{\hyperlink{_bi_c_g_s_t_a_b__simple_8cpp_a5150192f625f4d7970d61169b9567f39_a5150192f625f4d7970d61169b9567f39}{n}}, const char \texorpdfstring{$\ast$}{*}filename)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{型定義詳解}
+\Hypertarget{_tutorial__sparse__example__details_8cpp_a04b63929a2578b5ce61f09f0b8b18122_a04b63929a2578b5ce61f09f0b8b18122}\index{Tutorial\_sparse\_example\_details.cpp@{Tutorial\_sparse\_example\_details.cpp}!SpMat@{SpMat}}
+\index{SpMat@{SpMat}!Tutorial\_sparse\_example\_details.cpp@{Tutorial\_sparse\_example\_details.cpp}}
+\doxysubsubsection{\texorpdfstring{SpMat}{SpMat}}
+{\footnotesize\ttfamily \label{_tutorial__sparse__example__details_8cpp_a04b63929a2578b5ce61f09f0b8b18122_a04b63929a2578b5ce61f09f0b8b18122} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$double$>$ \mbox{\hyperlink{_tutorial__sparse__example_8cpp_a04b63929a2578b5ce61f09f0b8b18122_a04b63929a2578b5ce61f09f0b8b18122}{Sp\+Mat}}}
+
+\Hypertarget{_tutorial__sparse__example__details_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}\index{Tutorial\_sparse\_example\_details.cpp@{Tutorial\_sparse\_example\_details.cpp}!T@{T}}
+\index{T@{T}!Tutorial\_sparse\_example\_details.cpp@{Tutorial\_sparse\_example\_details.cpp}}
+\doxysubsubsection{\texorpdfstring{T}{T}}
+{\footnotesize\ttfamily \label{_tutorial__sparse__example__details_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb} 
+typedef \mbox{\hyperlink{class_eigen_1_1_triplet}{Eigen\+::\+Triplet}}$<$double$>$ \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}}}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{_tutorial__sparse__example__details_8cpp_a2563d84202fb56ea78ca60731badc33f_a2563d84202fb56ea78ca60731badc33f}\index{Tutorial\_sparse\_example\_details.cpp@{Tutorial\_sparse\_example\_details.cpp}!buildProblem@{buildProblem}}
+\index{buildProblem@{buildProblem}!Tutorial\_sparse\_example\_details.cpp@{Tutorial\_sparse\_example\_details.cpp}}
+\doxysubsubsection{\texorpdfstring{buildProblem()}{buildProblem()}}
+{\footnotesize\ttfamily \label{_tutorial__sparse__example__details_8cpp_a2563d84202fb56ea78ca60731badc33f_a2563d84202fb56ea78ca60731badc33f} 
+void build\+Problem (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} $>$ \&}]{coefficients}{, }\item[{Eigen\+::\+Vector\+Xd \&}]{b}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{n}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_tutorial__sparse__example__details_8cpp_abccb5c43c202f29ec7ea865b6a127250_abccb5c43c202f29ec7ea865b6a127250}\index{Tutorial\_sparse\_example\_details.cpp@{Tutorial\_sparse\_example\_details.cpp}!insertCoefficient@{insertCoefficient}}
+\index{insertCoefficient@{insertCoefficient}!Tutorial\_sparse\_example\_details.cpp@{Tutorial\_sparse\_example\_details.cpp}}
+\doxysubsubsection{\texorpdfstring{insertCoefficient()}{insertCoefficient()}}
+{\footnotesize\ttfamily \label{_tutorial__sparse__example__details_8cpp_abccb5c43c202f29ec7ea865b6a127250_abccb5c43c202f29ec7ea865b6a127250} 
+void insert\+Coefficient (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{id}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{i}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{j}{, }\item[{double}]{w}{, }\item[{std\+::vector$<$ \mbox{\hyperlink{_tutorial__sparse__example_8cpp_af639fb96631ba0018f0b2259fc95edfb_af639fb96631ba0018f0b2259fc95edfb}{T}} $>$ \&}]{coeffs}{, }\item[{Eigen\+::\+Vector\+Xd \&}]{b}{, }\item[{const Eigen\+::\+Vector\+Xd \&}]{boundary}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_tutorial__sparse__example__details_8cpp_afef736ce24d71fb43661b8e285578dd5_afef736ce24d71fb43661b8e285578dd5}\index{Tutorial\_sparse\_example\_details.cpp@{Tutorial\_sparse\_example\_details.cpp}!saveAsBitmap@{saveAsBitmap}}
+\index{saveAsBitmap@{saveAsBitmap}!Tutorial\_sparse\_example\_details.cpp@{Tutorial\_sparse\_example\_details.cpp}}
+\doxysubsubsection{\texorpdfstring{saveAsBitmap()}{saveAsBitmap()}}
+{\footnotesize\ttfamily \label{_tutorial__sparse__example__details_8cpp_afef736ce24d71fb43661b8e285578dd5_afef736ce24d71fb43661b8e285578dd5} 
+void save\+As\+Bitmap (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{x}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{n}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{filename}{}\end{DoxyParamCaption})}
+

@@ -1,0 +1,153 @@
+\chapter{Open\+GLの愉快な関数たち}
+\hypertarget{md__doxygen_2_open_g_l__func}{}\label{md__doxygen_2_open_g_l__func}\index{OpenGLの愉快な関数たち@{OpenGLの愉快な関数たち}}
+\label{md__doxygen_2_open_g_l__func_autotoc_md59}%
+\Hypertarget{md__doxygen_2_open_g_l__func_autotoc_md59}%
+\hypertarget{md__doxygen_2_open_g_l__func_autotoc_md60}{}\doxysection{\texorpdfstring{はじめに}{はじめに}}\label{md__doxygen_2_open_g_l__func_autotoc_md60}
+このページでは、ややこしい\+Open\+GLの関数などをまとめます
+
+
+\begin{DoxyItemize}
+\item Open\+GL関数
+\end{DoxyItemize}\hypertarget{md__doxygen_2_open_g_l__func_autotoc_md61}{}\doxysection{\texorpdfstring{Open\+GL関数}{Open\+GL関数}}\label{md__doxygen_2_open_g_l__func_autotoc_md61}
+\hypertarget{md__doxygen_2_open_g_l__func_autotoc_md62}{}\doxysubsection{\texorpdfstring{gl\+Matrix\+Mode}{gl\+Matrix\+Mode}}\label{md__doxygen_2_open_g_l__func_autotoc_md62}
+\hypertarget{md__doxygen_2_open_g_l__func_autotoc_md63}{}\doxysubsection{\texorpdfstring{{\bfseries{{\ttfamily gl\+Matrix\+Mode} 関数の概要}}}{{\bfseries{{\ttfamily gl\+Matrix\+Mode} 関数の概要}}}}\label{md__doxygen_2_open_g_l__func_autotoc_md63}
+{\ttfamily gl\+Matrix\+Mode} は、\+Open\+GL の固定機能パイプライン（古い Open\+GL）で使用される関数で、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}現在操作する行列の種類を設定する\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}ための関数です。この設定により、行列操作（例えば、平行移動や回転、スケーリングなど）が適用される対象が切り替わります。\hypertarget{md__doxygen_2_open_g_l__func_autotoc_md64}{}\doxysubsection{\texorpdfstring{{\bfseries{関数の定義}}}{{\bfseries{関数の定義}}}}\label{md__doxygen_2_open_g_l__func_autotoc_md64}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ glMatrixMode(GLenum\ mode);}
+
+\end{DoxyCode}
+\hypertarget{md__doxygen_2_open_g_l__func_autotoc_md65}{}\doxysubsubsection{\texorpdfstring{{\bfseries{引数}}}{{\bfseries{引数}}}}\label{md__doxygen_2_open_g_l__func_autotoc_md65}
+
+\begin{DoxyItemize}
+\item {\ttfamily mode}\+: 操作対象の行列を指定します。
+\begin{DoxyItemize}
+\item {\bfseries{{\ttfamily GL\+\_\+\+MODELVIEW}}}\+: モデルビュー行列。モデリング変換や視野変換（カメラの視点設定）に使用。
+\item {\bfseries{{\ttfamily GL\+\_\+\+PROJECTION}}}\+: 投影行列。透視投影や平行投影の設定に使用。
+\item {\bfseries{{\ttfamily GL\+\_\+\+TEXTURE}}}\+: テクスチャ行列。テクスチャの変換（スケール、回転、平行移動）に使用。
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__doxygen_2_open_g_l__func_autotoc_md67}{}\doxysubsection{\texorpdfstring{{\bfseries{行列の種類と用途}}}{{\bfseries{行列の種類と用途}}}}\label{md__doxygen_2_open_g_l__func_autotoc_md67}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{{\ttfamily GL\+\_\+\+MODELVIEW}（モデルビュー行列）}}
+\begin{DoxyItemize}
+\item モデリング変換（オブジェクトの平行移動、回転、スケーリング）と視野変換（カメラの視点設定）を行う行列。
+\item 一般的な3\+Dシーンでは、この行列が頻繁に操作されます。
+\end{DoxyItemize}
+\item {\bfseries{{\ttfamily GL\+\_\+\+PROJECTION}（投影行列）}}
+\begin{DoxyItemize}
+\item 投影変換（3\+D空間を2\+Dスクリーンに投影する変換）を行う行列。
+\item 透視投影（{\ttfamily glu\+Perspective}など）や平行投影（{\ttfamily gl\+Ortho}など）に使用されます。
+\end{DoxyItemize}
+\item {\bfseries{{\ttfamily GL\+\_\+\+TEXTURE}（テクスチャ行列）}}
+\begin{DoxyItemize}
+\item テクスチャ座標の変換を行う行列。
+\item テクスチャを拡大・縮小したり、回転させたりする際に使用されます。
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{md__doxygen_2_open_g_l__func_autotoc_md69}{}\doxysubsection{\texorpdfstring{{\bfseries{使用例}}}{{\bfseries{使用例}}}}\label{md__doxygen_2_open_g_l__func_autotoc_md69}
+\hypertarget{md__doxygen_2_open_g_l__func_autotoc_md70}{}\doxysubsubsection{\texorpdfstring{{\bfseries{モデルビュー行列を設定する例}}}{{\bfseries{モデルビュー行列を設定する例}}}}\label{md__doxygen_2_open_g_l__func_autotoc_md70}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{glMatrixMode(GL\_MODELVIEW);\ \ \textcolor{comment}{//\ モデルビュー行列を選択}}
+\DoxyCodeLine{glLoadIdentity();\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ モデルビュー行列を単位行列にリセット}}
+\DoxyCodeLine{glTranslatef(0.0f,\ 0.0f,\ -\/5.0f);\ \textcolor{comment}{//\ カメラを5単位だけ後ろに移動}}
+
+\end{DoxyCode}
+\hypertarget{md__doxygen_2_open_g_l__func_autotoc_md71}{}\doxysubsubsection{\texorpdfstring{{\bfseries{投影行列を設定する例}}}{{\bfseries{投影行列を設定する例}}}}\label{md__doxygen_2_open_g_l__func_autotoc_md71}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{glMatrixMode(GL\_PROJECTION);\ \textcolor{comment}{//\ 投影行列を選択}}
+\DoxyCodeLine{glLoadIdentity();\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 投影行列を単位行列にリセット}}
+\DoxyCodeLine{gluPerspective(45.0,\ 1.33,\ 0.1,\ 100.0);\ \textcolor{comment}{//\ 透視投影を設定}}
+
+\end{DoxyCode}
+\hypertarget{md__doxygen_2_open_g_l__func_autotoc_md72}{}\doxysubsubsection{\texorpdfstring{{\bfseries{テクスチャ行列を操作する例}}}{{\bfseries{テクスチャ行列を操作する例}}}}\label{md__doxygen_2_open_g_l__func_autotoc_md72}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{glMatrixMode(GL\_TEXTURE);\ \ \ \ \textcolor{comment}{//\ テクスチャ行列を選択}}
+\DoxyCodeLine{glLoadIdentity();\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ テクスチャ行列を単位行列にリセット}}
+\DoxyCodeLine{glScalef(2.0f,\ 2.0f,\ 1.0f);\ \ \textcolor{comment}{//\ テクスチャ座標を2倍にスケーリング}}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__doxygen_2_open_g_l__func_autotoc_md74}{}\doxysubsection{\texorpdfstring{{\bfseries{{\ttfamily gl\+Matrix\+Mode} の流れと操作対象}}}{{\bfseries{{\ttfamily gl\+Matrix\+Mode} の流れと操作対象}}}}\label{md__doxygen_2_open_g_l__func_autotoc_md74}
+{\ttfamily gl\+Matrix\+Mode} を使うと、その後に続く行列操作が指定した行列（{\ttfamily GL\+\_\+\+MODELVIEW}, {\ttfamily GL\+\_\+\+PROJECTION}, {\ttfamily GL\+\_\+\+TEXTURE}）に適用されます。\hypertarget{md__doxygen_2_open_g_l__func_autotoc_md75}{}\doxysubsubsection{\texorpdfstring{{\bfseries{具体例}}}{{\bfseries{具体例}}}}\label{md__doxygen_2_open_g_l__func_autotoc_md75}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ 投影行列を設定}}
+\DoxyCodeLine{glMatrixMode(GL\_PROJECTION);}
+\DoxyCodeLine{glLoadIdentity();}
+\DoxyCodeLine{gluPerspective(45.0,\ 1.33,\ 0.1,\ 100.0);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ モデルビュー行列を設定}}
+\DoxyCodeLine{glMatrixMode(GL\_MODELVIEW);}
+\DoxyCodeLine{glLoadIdentity();}
+\DoxyCodeLine{gluLookAt(0.0,\ 0.0,\ 5.0,\ \ \ \textcolor{comment}{//\ カメラ位置}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ 0.0,\ 0.0,\ 0.0,\ \ \ \textcolor{comment}{//\ 注視点}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ 0.0,\ 1.0,\ 0.0);\ \ \textcolor{comment}{//\ 上方向ベクトル}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{{\ttfamily GL\+\_\+\+PROJECTION}}} の操作\+:
+\begin{DoxyItemize}
+\item 透視投影の設定（{\ttfamily glu\+Perspective}）が適用される。
+\end{DoxyItemize}
+\item {\bfseries{{\ttfamily GL\+\_\+\+MODELVIEW}}} の操作\+:
+\begin{DoxyItemize}
+\item カメラ位置と視野方向（{\ttfamily glu\+Look\+At}）の設定が適用される。
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__doxygen_2_open_g_l__func_autotoc_md77}{}\doxysubsection{\texorpdfstring{{\bfseries{注意点}}}{{\bfseries{注意点}}}}\label{md__doxygen_2_open_g_l__func_autotoc_md77}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{モダン\+Open\+GLでは使用されない}}
+\begin{DoxyItemize}
+\item 固定機能パイプラインを使用している場合にのみ有効です。
+\item モダン\+Open\+GL（シェーダーベース）では、行列操作は手動で計算し、シェーダーに渡します。
+\end{DoxyItemize}
+\item {\bfseries{順序に注意}}
+\begin{DoxyItemize}
+\item Open\+GLの行列操作は順序が重要です。投影行列とモデルビュー行列を適切に切り替える必要があります。
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{md__doxygen_2_open_g_l__func_autotoc_md79}{}\doxysubsection{\texorpdfstring{glu\+Look\+At}{glu\+Look\+At}}\label{md__doxygen_2_open_g_l__func_autotoc_md79}
+視線ベクトル、注視点、上方向ベクトルを使ってカメラ行列を設定し、モデルビュー行列に適用します。\hypertarget{md__doxygen_2_open_g_l__func_autotoc_md80}{}\doxysubsection{\texorpdfstring{gl\+Enable(\+GL\+\_\+\+DEPTH\+\_\+\+TEST);}{gl\+Enable(\+GL\+\_\+\+DEPTH\+\_\+\+TEST);}}\label{md__doxygen_2_open_g_l__func_autotoc_md80}
+
+\begin{DoxyItemize}
+\item 深度テスト（\+Depth Test）を有効化します。 
+\end{DoxyItemize}\hypertarget{md__doxygen_2_open_g_l__func_autotoc_md81}{}\doxysection{\texorpdfstring{-\/ 役割\+: オブジェクトの奥行き情報を使って、手前にあるオブジェクトで後ろのオブジェクトを隠すように描画します。}{-\/ 役割\+: オブジェクトの奥行き情報を使って、手前にあるオブジェクトで後ろのオブジェクトを隠すように描画します。}}\label{md__doxygen_2_open_g_l__func_autotoc_md81}
+\hypertarget{md__doxygen_2_open_g_l__func_autotoc_md82}{}\doxysubsection{\texorpdfstring{gl\+Blend\+Func(\+GL\+\_\+\+SRC\+\_\+\+ALPHA, GL\+\_\+\+ONE\+\_\+\+MINUS\+\_\+\+SRC\+\_\+\+ALPHA);}{gl\+Blend\+Func(\+GL\+\_\+\+SRC\+\_\+\+ALPHA, GL\+\_\+\+ONE\+\_\+\+MINUS\+\_\+\+SRC\+\_\+\+ALPHA);}}\label{md__doxygen_2_open_g_l__func_autotoc_md82}
+
+\begin{DoxyItemize}
+\item アルファブレンディング（透明度の計算）の設定を行います。 
+\end{DoxyItemize}\hypertarget{md__doxygen_2_open_g_l__func_autotoc_md83}{}\doxysection{\texorpdfstring{-\/ 役割\+: オブジェクトの透明度（アルファ値）に基づいて、前景と背景をブレンドして描画します。}{-\/ 役割\+: オブジェクトの透明度（アルファ値）に基づいて、前景と背景をブレンドして描画します。}}\label{md__doxygen_2_open_g_l__func_autotoc_md83}
+\hypertarget{md__doxygen_2_open_g_l__func_autotoc_md84}{}\doxysubsection{\texorpdfstring{gl\+Enable(\+GL\+\_\+\+BLEND);}{gl\+Enable(\+GL\+\_\+\+BLEND);}}\label{md__doxygen_2_open_g_l__func_autotoc_md84}
+
+\begin{DoxyItemize}
+\item ブレンディングを有効化します。
+\end{DoxyItemize}\hypertarget{md__doxygen_2_open_g_l__func_autotoc_md85}{}\doxysubsection{\texorpdfstring{gl\+Enable(\+GL\+\_\+\+POINT\+\_\+\+SMOOTH);, gl\+Enable(\+GL\+\_\+\+LINE\+\_\+\+SMOOTH);, gl\+Enable(\+GL\+\_\+\+POLYGON\+\_\+\+SMOOTH);}{gl\+Enable(\+GL\+\_\+\+POINT\+\_\+\+SMOOTH);, gl\+Enable(\+GL\+\_\+\+LINE\+\_\+\+SMOOTH);, gl\+Enable(\+GL\+\_\+\+POLYGON\+\_\+\+SMOOTH);}}\label{md__doxygen_2_open_g_l__func_autotoc_md85}
+
+\begin{DoxyItemize}
+\item 点、線、多角形のスムージング（アンチエイリアス）を有効化します。
+\item 役割\+: 描画結果を滑らかにするための設定。 
+\end{DoxyItemize}\hypertarget{md__doxygen_2_open_g_l__func_autotoc_md86}{}\doxysubsection{\texorpdfstring{gl\+Hint(\+GL\+\_\+\+POINT\+\_\+\+SMOOTH\+\_\+\+HINT, GL\+\_\+\+NICEST); など}{gl\+Hint(\+GL\+\_\+\+POINT\+\_\+\+SMOOTH\+\_\+\+HINT, GL\+\_\+\+NICEST); など}}\label{md__doxygen_2_open_g_l__func_autotoc_md86}
+
+\begin{DoxyItemize}
+\item スムージングの品質を設定します。
+\item GL\+\_\+\+NICEST\+: 可能な限り高品質でスムージングを行う。 
+\end{DoxyItemize}

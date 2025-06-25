@@ -1,0 +1,57 @@
+\doxysection{Eigen\+::internal\+::Tensor\+Executor\texorpdfstring{$<$}{<} Expression, Device, Vectorizable, Tiling \texorpdfstring{$>$}{>} クラステンプレート}
+\hypertarget{class_eigen_1_1internal_1_1_tensor_executor}{}\label{class_eigen_1_1internal_1_1_tensor_executor}\index{Eigen::internal::TensorExecutor$<$ Expression, Device, Vectorizable, Tiling $>$@{Eigen::internal::TensorExecutor$<$ Expression, Device, Vectorizable, Tiling $>$}}
+
+
+{\ttfamily \#include $<$Tensor\+Executor.\+h$>$}
+
+
+
+Eigen\+::internal\+::Tensor\+Executor\texorpdfstring{$<$}{<} Expression, Device, Vectorizable, Tiling \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{class_eigen_1_1internal_1_1_tensor_executor__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+typedef Expression\+::\+Index \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_executor_a6a89ac0bcfa92d286bd261bcfa661198_a6a89ac0bcfa92d286bd261bcfa661198}{Storage\+Index}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} void \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_executor_a50325b41f927e2c29141c7ac671efdec_a50325b41f927e2c29141c7ac671efdec}{run}} (const Expression \&expr, const Device \&device=Device())
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{詳解}
+\subsubsection*{template$<$typename Expression, typename Device, bool Vectorizable = Is\+Vectorizable$<$\+Device, Expression$>$\+::value, \mbox{\hyperlink{namespace_eigen_1_1internal_a131ba611978f02e7ac1c6a0faae2a250_a131ba611978f02e7ac1c6a0faae2a250}{Tiled\+Evaluation}} Tiling = Is\+Tileable$<$\+Device, Expression$>$\+::value$>$\newline
+class Eigen\+::internal\+::\+Tensor\+Executor$<$ Expression, Device, Vectorizable, Tiling $>$}
+Default strategy\+: the expression is evaluated sequentially with a single cpu thread, without vectorization and block evaluation. 
+
+\doxysubsection{型定義メンバ詳解}
+\Hypertarget{class_eigen_1_1internal_1_1_tensor_executor_a6a89ac0bcfa92d286bd261bcfa661198_a6a89ac0bcfa92d286bd261bcfa661198}\index{Eigen::internal::TensorExecutor$<$ Expression, Device, Vectorizable, Tiling $>$@{Eigen::internal::TensorExecutor$<$ Expression, Device, Vectorizable, Tiling $>$}!StorageIndex@{StorageIndex}}
+\index{StorageIndex@{StorageIndex}!Eigen::internal::TensorExecutor$<$ Expression, Device, Vectorizable, Tiling $>$@{Eigen::internal::TensorExecutor$<$ Expression, Device, Vectorizable, Tiling $>$}}
+\doxysubsubsection{\texorpdfstring{StorageIndex}{StorageIndex}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_tensor_executor_a6a89ac0bcfa92d286bd261bcfa661198_a6a89ac0bcfa92d286bd261bcfa661198} 
+template$<$typename Expression , typename Device , bool Vectorizable = Is\+Vectorizable$<$\+Device, Expression$>$\+::value, \mbox{\hyperlink{namespace_eigen_1_1internal_a131ba611978f02e7ac1c6a0faae2a250_a131ba611978f02e7ac1c6a0faae2a250}{Tiled\+Evaluation}} Tiling = Is\+Tileable$<$\+Device, Expression$>$\+::value$>$ \\
+Expression\+::\+Index \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_executor}{Eigen\+::internal\+::\+Tensor\+Executor}}$<$ Expression, Device, Vectorizable, Tiling $>$\+::\+Storage\+Index}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{class_eigen_1_1internal_1_1_tensor_executor_a50325b41f927e2c29141c7ac671efdec_a50325b41f927e2c29141c7ac671efdec}\index{Eigen::internal::TensorExecutor$<$ Expression, Device, Vectorizable, Tiling $>$@{Eigen::internal::TensorExecutor$<$ Expression, Device, Vectorizable, Tiling $>$}!run@{run}}
+\index{run@{run}!Eigen::internal::TensorExecutor$<$ Expression, Device, Vectorizable, Tiling $>$@{Eigen::internal::TensorExecutor$<$ Expression, Device, Vectorizable, Tiling $>$}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1_tensor_executor_a50325b41f927e2c29141c7ac671efdec_a50325b41f927e2c29141c7ac671efdec} 
+template$<$typename Expression , typename Device , bool Vectorizable = Is\+Vectorizable$<$\+Device, Expression$>$\+::value, \mbox{\hyperlink{namespace_eigen_1_1internal_a131ba611978f02e7ac1c6a0faae2a250_a131ba611978f02e7ac1c6a0faae2a250}{Tiled\+Evaluation}} Tiling = Is\+Tileable$<$\+Device, Expression$>$\+::value$>$ \\
+static \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\+\_\+\+DEVICE\+\_\+\+FUNC}} \mbox{\hyperlink{_macros_8h_af2b60117c00a6e75812de43bfe7db3b1_af2b60117c00a6e75812de43bfe7db3b1}{EIGEN\+\_\+\+STRONG\+\_\+\+INLINE}} void \mbox{\hyperlink{class_eigen_1_1internal_1_1_tensor_executor}{Eigen\+::internal\+::\+Tensor\+Executor}}$<$ Expression, Device, Vectorizable, Tiling $>$\+::run (\begin{DoxyParamCaption}\item[{const Expression \&}]{expr}{, }\item[{const Device \&}]{device}{ = {\ttfamily Device()}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/unsupported/\+Eigen/\+CXX11/src/\+Tensor/\mbox{\hyperlink{_tensor_executor_8h}{Tensor\+Executor.\+h}}\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/unsupported/\+Eigen/\+CXX11/src/\+Tensor/\mbox{\hyperlink{_tensor_forward_declarations_8h}{Tensor\+Forward\+Declarations.\+h}}\end{DoxyCompactItemize}

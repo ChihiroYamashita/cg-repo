@@ -1,0 +1,138 @@
+\doxysection{Comma\+Initializer.\+h}
+\hypertarget{_comma_initializer_8h_source}{}\label{_comma_initializer_8h_source}\index{eigen-\/3.4.0/eigen-\/3.4.0/Eigen/src/Core/CommaInitializer.h@{eigen-\/3.4.0/eigen-\/3.4.0/Eigen/src/Core/CommaInitializer.h}}
+\mbox{\hyperlink{_comma_initializer_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ Eigen,\ a\ lightweight\ C++\ template\ library}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ for\ linear\ algebra.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (C)\ 2008\ Gael\ Guennebaud\ <gael.guennebaud@inria.fr>}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Copyright\ (C)\ 2006-\/2008\ Benoit\ Jacob\ <jacob.benoit.1@gmail.com>}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ This\ Source\ Code\ Form\ is\ subject\ to\ the\ terms\ of\ the\ Mozilla}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ Public\ License\ v.\ 2.0.\ If\ a\ copy\ of\ the\ MPL\ was\ not\ distributed}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ with\ this\ file,\ You\ can\ obtain\ one\ at\ http://mozilla.org/MPL/2.0/.}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_COMMAINITIALIZER\_H}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ EIGEN\_COMMAINITIALIZER\_H}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_eigen}{Eigen}}\ \{\ }
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ XprType>}
+\DoxyCodeLine{00028\ \textcolor{keyword}{struct\ }CommaInitializer}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ XprType::Scalar\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_ad1674b40161fa24657df4516bf1f00c8_ad1674b40161fa24657df4516bf1f00c8}{Scalar}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}}
+\DoxyCodeLine{00033\ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_ac33648b940b3c040845d3ce5ffd16b46_ac33648b940b3c040845d3ce5ffd16b46}{CommaInitializer}}(\mbox{\hyperlink{nestbyvalue_8cpp_a5aefae852e88ada71d9dfc8da1fc33bf_a5aefae852e88ada71d9dfc8da1fc33bf}{XprType}}\&\ xpr,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_ad1674b40161fa24657df4516bf1f00c8_ad1674b40161fa24657df4516bf1f00c8}{Scalar}}\&\ \mbox{\hyperlink{level1__cplx__impl_8h_a462761ca92ad97a9a705cb875828b0b8_a462761ca92ad97a9a705cb875828b0b8}{s}})}
+\DoxyCodeLine{00034\ \ \ \ \ :\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a882093eac821fac09b05bc6e88b3d3d3_a882093eac821fac09b05bc6e88b3d3d3}{m\_xpr}}(xpr),\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a4566a1e9fad17ce8c696e34ecb96f210_a4566a1e9fad17ce8c696e34ecb96f210}{m\_row}}(0),\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_aae001bf712615385173f9bb525b74afa_aae001bf712615385173f9bb525b74afa}{m\_col}}(1),\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a61dcf8d63166aa1c15f6044a276cf94f_a61dcf8d63166aa1c15f6044a276cf94f}{m\_currentBlockRows}}(1)}
+\DoxyCodeLine{00035\ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{_macros_8h_acaa7ba89800cfe18d5fd6eed620aea9c_acaa7ba89800cfe18d5fd6eed620aea9c}{eigen\_assert}}(\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a882093eac821fac09b05bc6e88b3d3d3_a882093eac821fac09b05bc6e88b3d3d3}{m\_xpr}}.rows()\ >\ 0\ \&\&\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a882093eac821fac09b05bc6e88b3d3d3_a882093eac821fac09b05bc6e88b3d3d3}{m\_xpr}}.cols()\ >\ 0}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \&\&\ \textcolor{stringliteral}{"{}Cannot\ comma-\/initialize\ a\ 0x0\ matrix\ (operator<<)"{}});}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a882093eac821fac09b05bc6e88b3d3d3_a882093eac821fac09b05bc6e88b3d3d3}{m\_xpr}}.coeffRef(0,0)\ =\ \mbox{\hyperlink{level1__cplx__impl_8h_a462761ca92ad97a9a705cb875828b0b8_a462761ca92ad97a9a705cb875828b0b8}{s}};}
+\DoxyCodeLine{00039\ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OtherDerived>}
+\DoxyCodeLine{00042\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}}
+\DoxyCodeLine{00043\ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_ae49fed423bc9575a26001dab91a23150_ae49fed423bc9575a26001dab91a23150}{CommaInitializer}}(\mbox{\hyperlink{nestbyvalue_8cpp_a5aefae852e88ada71d9dfc8da1fc33bf_a5aefae852e88ada71d9dfc8da1fc33bf}{XprType}}\&\ xpr,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_dense_base}{DenseBase<OtherDerived>}}\&\ other)}
+\DoxyCodeLine{00044\ \ \ \ \ :\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a882093eac821fac09b05bc6e88b3d3d3_a882093eac821fac09b05bc6e88b3d3d3}{m\_xpr}}(xpr),\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a4566a1e9fad17ce8c696e34ecb96f210_a4566a1e9fad17ce8c696e34ecb96f210}{m\_row}}(0),\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_aae001bf712615385173f9bb525b74afa_aae001bf712615385173f9bb525b74afa}{m\_col}}(other.\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a4407a60bc4387adae24cee658711f2d9_a4407a60bc4387adae24cee658711f2d9}{cols}}()),\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a61dcf8d63166aa1c15f6044a276cf94f_a61dcf8d63166aa1c15f6044a276cf94f}{m\_currentBlockRows}}(other.\mbox{\hyperlink{_tutorial__commainit__02_8cpp_a061459acc9e078fa4699e0e349887215_a061459acc9e078fa4699e0e349887215}{rows}}())}
+\DoxyCodeLine{00045\ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{_macros_8h_acaa7ba89800cfe18d5fd6eed620aea9c_acaa7ba89800cfe18d5fd6eed620aea9c}{eigen\_assert}}(\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a882093eac821fac09b05bc6e88b3d3d3_a882093eac821fac09b05bc6e88b3d3d3}{m\_xpr}}.rows()\ >=\ other.rows()\ \&\&\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a882093eac821fac09b05bc6e88b3d3d3_a882093eac821fac09b05bc6e88b3d3d3}{m\_xpr}}.cols()\ >=\ other.cols()}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \&\&\ \textcolor{stringliteral}{"{}Cannot\ comma-\/initialize\ a\ 0x0\ matrix\ (operator<<)"{}});}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a882093eac821fac09b05bc6e88b3d3d3_a882093eac821fac09b05bc6e88b3d3d3}{m\_xpr}}.block(0,\ 0,\ other.rows(),\ other.cols())\ =\ other;}
+\DoxyCodeLine{00049\ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \textcolor{comment}{/*\ Copy/Move\ constructor\ which\ transfers\ ownership.\ This\ is\ crucial\ in\ }}
+\DoxyCodeLine{00052\ \textcolor{comment}{\ \ \ *\ absence\ of\ return\ value\ optimization\ to\ avoid\ assertions\ during\ destruction.\ */}}
+\DoxyCodeLine{00053\ \ \ \textcolor{comment}{//\ FIXME\ in\ C++11\ mode\ this\ could\ be\ replaced\ by\ a\ proper\ RValue\ constructor}}
+\DoxyCodeLine{00054\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}}
+\DoxyCodeLine{00055\ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a93b2ee5dc122b408128a10c7bf6666a0_a93b2ee5dc122b408128a10c7bf6666a0}{CommaInitializer}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer}{CommaInitializer}}\&\ o)}
+\DoxyCodeLine{00056\ \ \ :\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a882093eac821fac09b05bc6e88b3d3d3_a882093eac821fac09b05bc6e88b3d3d3}{m\_xpr}}(o.\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a882093eac821fac09b05bc6e88b3d3d3_a882093eac821fac09b05bc6e88b3d3d3}{m\_xpr}}),\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a4566a1e9fad17ce8c696e34ecb96f210_a4566a1e9fad17ce8c696e34ecb96f210}{m\_row}}(o.\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a4566a1e9fad17ce8c696e34ecb96f210_a4566a1e9fad17ce8c696e34ecb96f210}{m\_row}}),\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_aae001bf712615385173f9bb525b74afa_aae001bf712615385173f9bb525b74afa}{m\_col}}(o.\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_aae001bf712615385173f9bb525b74afa_aae001bf712615385173f9bb525b74afa}{m\_col}}),\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a61dcf8d63166aa1c15f6044a276cf94f_a61dcf8d63166aa1c15f6044a276cf94f}{m\_currentBlockRows}}(o.\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a61dcf8d63166aa1c15f6044a276cf94f_a61dcf8d63166aa1c15f6044a276cf94f}{m\_currentBlockRows}})\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ Mark\ original\ object\ as\ finished.\ In\ absence\ of\ R-\/value\ references\ we\ need\ to\ const\_cast:}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{const\_cast<}\mbox{\hyperlink{struct_eigen_1_1_comma_initializer}{CommaInitializer}}\&\textcolor{keyword}{>}(o).\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a4566a1e9fad17ce8c696e34ecb96f210_a4566a1e9fad17ce8c696e34ecb96f210}{m\_row}}\ =\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a882093eac821fac09b05bc6e88b3d3d3_a882093eac821fac09b05bc6e88b3d3d3}{m\_xpr}}.rows();}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{const\_cast<}\mbox{\hyperlink{struct_eigen_1_1_comma_initializer}{CommaInitializer}}\&\textcolor{keyword}{>}(o).\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_aae001bf712615385173f9bb525b74afa_aae001bf712615385173f9bb525b74afa}{m\_col}}\ =\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a882093eac821fac09b05bc6e88b3d3d3_a882093eac821fac09b05bc6e88b3d3d3}{m\_xpr}}.cols();}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{const\_cast<}\mbox{\hyperlink{struct_eigen_1_1_comma_initializer}{CommaInitializer}}\&\textcolor{keyword}{>}(o).\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a61dcf8d63166aa1c15f6044a276cf94f_a61dcf8d63166aa1c15f6044a276cf94f}{m\_currentBlockRows}}\ =\ 0;}
+\DoxyCodeLine{00061\ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \textcolor{comment}{/*\ inserts\ a\ scalar\ value\ in\ the\ target\ matrix\ */}}
+\DoxyCodeLine{00064\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}}
+\DoxyCodeLine{00065\ \ \ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer}{CommaInitializer}}\&\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a1ea66c51725c17c5c60e241a14ce2c0f_a1ea66c51725c17c5c60e241a14ce2c0f}{operator,}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_ad1674b40161fa24657df4516bf1f00c8_ad1674b40161fa24657df4516bf1f00c8}{Scalar}}\&\ \mbox{\hyperlink{level1__cplx__impl_8h_a462761ca92ad97a9a705cb875828b0b8_a462761ca92ad97a9a705cb875828b0b8}{s}})}
+\DoxyCodeLine{00066\ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_aae001bf712615385173f9bb525b74afa_aae001bf712615385173f9bb525b74afa}{m\_col}}==\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a882093eac821fac09b05bc6e88b3d3d3_a882093eac821fac09b05bc6e88b3d3d3}{m\_xpr}}.cols())}
+\DoxyCodeLine{00068\ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a4566a1e9fad17ce8c696e34ecb96f210_a4566a1e9fad17ce8c696e34ecb96f210}{m\_row}}+=\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a61dcf8d63166aa1c15f6044a276cf94f_a61dcf8d63166aa1c15f6044a276cf94f}{m\_currentBlockRows}};}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_aae001bf712615385173f9bb525b74afa_aae001bf712615385173f9bb525b74afa}{m\_col}}\ =\ 0;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a61dcf8d63166aa1c15f6044a276cf94f_a61dcf8d63166aa1c15f6044a276cf94f}{m\_currentBlockRows}}\ =\ 1;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \mbox{\hyperlink{_macros_8h_acaa7ba89800cfe18d5fd6eed620aea9c_acaa7ba89800cfe18d5fd6eed620aea9c}{eigen\_assert}}(\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a4566a1e9fad17ce8c696e34ecb96f210_a4566a1e9fad17ce8c696e34ecb96f210}{m\_row}}<\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a882093eac821fac09b05bc6e88b3d3d3_a882093eac821fac09b05bc6e88b3d3d3}{m\_xpr}}.rows()}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \&\&\ \textcolor{stringliteral}{"{}Too\ many\ rows\ passed\ to\ comma\ initializer\ (operator<<)"{}});}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{_macros_8h_acaa7ba89800cfe18d5fd6eed620aea9c_acaa7ba89800cfe18d5fd6eed620aea9c}{eigen\_assert}}(\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_aae001bf712615385173f9bb525b74afa_aae001bf712615385173f9bb525b74afa}{m\_col}}<\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a882093eac821fac09b05bc6e88b3d3d3_a882093eac821fac09b05bc6e88b3d3d3}{m\_xpr}}.cols()}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \&\&\ \textcolor{stringliteral}{"{}Too\ many\ coefficients\ passed\ to\ comma\ initializer\ (operator<<)"{}});}
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{_macros_8h_acaa7ba89800cfe18d5fd6eed620aea9c_acaa7ba89800cfe18d5fd6eed620aea9c}{eigen\_assert}}(\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a61dcf8d63166aa1c15f6044a276cf94f_a61dcf8d63166aa1c15f6044a276cf94f}{m\_currentBlockRows}}==1);}
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a882093eac821fac09b05bc6e88b3d3d3_a882093eac821fac09b05bc6e88b3d3d3}{m\_xpr}}.coeffRef(\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a4566a1e9fad17ce8c696e34ecb96f210_a4566a1e9fad17ce8c696e34ecb96f210}{m\_row}},\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_aae001bf712615385173f9bb525b74afa_aae001bf712615385173f9bb525b74afa}{m\_col}}++)\ =\ \mbox{\hyperlink{level1__cplx__impl_8h_a462761ca92ad97a9a705cb875828b0b8_a462761ca92ad97a9a705cb875828b0b8}{s}};}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00080\ \ \ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \textcolor{comment}{/*\ inserts\ a\ matrix\ expression\ in\ the\ target\ matrix\ */}}
+\DoxyCodeLine{00083\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OtherDerived>}
+\DoxyCodeLine{00084\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}}
+\DoxyCodeLine{00085\ \ \ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer}{CommaInitializer}}\&\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_ab91fa908335197aebd6ac25b785a7125_ab91fa908335197aebd6ac25b785a7125}{operator,}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_dense_base}{DenseBase<OtherDerived>}}\&\ other)}
+\DoxyCodeLine{00086\ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_aae001bf712615385173f9bb525b74afa_aae001bf712615385173f9bb525b74afa}{m\_col}}==\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a882093eac821fac09b05bc6e88b3d3d3_a882093eac821fac09b05bc6e88b3d3d3}{m\_xpr}}.cols()\ \&\&\ (other.cols()!=0\ ||\ other.rows()!=\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a61dcf8d63166aa1c15f6044a276cf94f_a61dcf8d63166aa1c15f6044a276cf94f}{m\_currentBlockRows}}))}
+\DoxyCodeLine{00088\ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a4566a1e9fad17ce8c696e34ecb96f210_a4566a1e9fad17ce8c696e34ecb96f210}{m\_row}}+=\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a61dcf8d63166aa1c15f6044a276cf94f_a61dcf8d63166aa1c15f6044a276cf94f}{m\_currentBlockRows}};}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_aae001bf712615385173f9bb525b74afa_aae001bf712615385173f9bb525b74afa}{m\_col}}\ =\ 0;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a61dcf8d63166aa1c15f6044a276cf94f_a61dcf8d63166aa1c15f6044a276cf94f}{m\_currentBlockRows}}\ =\ other.rows();}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \mbox{\hyperlink{_macros_8h_acaa7ba89800cfe18d5fd6eed620aea9c_acaa7ba89800cfe18d5fd6eed620aea9c}{eigen\_assert}}(\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a4566a1e9fad17ce8c696e34ecb96f210_a4566a1e9fad17ce8c696e34ecb96f210}{m\_row}}+\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a61dcf8d63166aa1c15f6044a276cf94f_a61dcf8d63166aa1c15f6044a276cf94f}{m\_currentBlockRows}}<=\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a882093eac821fac09b05bc6e88b3d3d3_a882093eac821fac09b05bc6e88b3d3d3}{m\_xpr}}.rows()}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \&\&\ \textcolor{stringliteral}{"{}Too\ many\ rows\ passed\ to\ comma\ initializer\ (operator<<)"{}});}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{_macros_8h_acaa7ba89800cfe18d5fd6eed620aea9c_acaa7ba89800cfe18d5fd6eed620aea9c}{eigen\_assert}}((\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_aae001bf712615385173f9bb525b74afa_aae001bf712615385173f9bb525b74afa}{m\_col}}\ +\ other.cols()\ <=\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a882093eac821fac09b05bc6e88b3d3d3_a882093eac821fac09b05bc6e88b3d3d3}{m\_xpr}}.cols())}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \&\&\ \textcolor{stringliteral}{"{}Too\ many\ coefficients\ passed\ to\ comma\ initializer\ (operator<<)"{}});}
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{_macros_8h_acaa7ba89800cfe18d5fd6eed620aea9c_acaa7ba89800cfe18d5fd6eed620aea9c}{eigen\_assert}}(\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a61dcf8d63166aa1c15f6044a276cf94f_a61dcf8d63166aa1c15f6044a276cf94f}{m\_currentBlockRows}}==other.rows());}
+\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a882093eac821fac09b05bc6e88b3d3d3_a882093eac821fac09b05bc6e88b3d3d3}{m\_xpr}}.template\ \mbox{\hyperlink{_tutorial__commainit__01b_8cpp_a379f624db323dcf7558d0941192f3f91_a379f624db323dcf7558d0941192f3f91}{block<OtherDerived::RowsAtCompileTime,\ OtherDerived::ColsAtCompileTime>}}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a4566a1e9fad17ce8c696e34ecb96f210_a4566a1e9fad17ce8c696e34ecb96f210}{m\_row}},\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_aae001bf712615385173f9bb525b74afa_aae001bf712615385173f9bb525b74afa}{m\_col}},\ other.rows(),\ other.cols())\ =\ other;}
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_aae001bf712615385173f9bb525b74afa_aae001bf712615385173f9bb525b74afa}{m\_col}}\ +=\ other.cols();}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00102\ \ \ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}}
+\DoxyCodeLine{00105\ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a69a4f88d0041db64247de59e51f7b273_a69a4f88d0041db64247de59e51f7b273}{\string~CommaInitializer}}()}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#if\ defined\ VERIFY\_RAISES\_ASSERT\ \&\&\ (!defined\ EIGEN\_NO\_ASSERTION\_CHECKING)\ \&\&\ defined\ EIGEN\_EXCEPTIONS}}
+\DoxyCodeLine{00107\ \ \ \mbox{\hyperlink{_macros_8h_aa3bf5ffddfa7be9a42c95cf33c737506_aa3bf5ffddfa7be9a42c95cf33c737506}{EIGEN\_EXCEPTION\_SPEC}}(\mbox{\hyperlink{struct_eigen_1_1eigen__assert__exception}{Eigen::eigen\_assert\_exception}})}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00109\ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a0a5f314faf23d0d5ebccfcc29a20779c_a0a5f314faf23d0d5ebccfcc29a20779c}{finished}}();}
+\DoxyCodeLine{00111\ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00120\ \ \ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}}
+\DoxyCodeLine{00121\ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{nestbyvalue_8cpp_a5aefae852e88ada71d9dfc8da1fc33bf_a5aefae852e88ada71d9dfc8da1fc33bf}{XprType}}\&\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a0a5f314faf23d0d5ebccfcc29a20779c_a0a5f314faf23d0d5ebccfcc29a20779c}{finished}}()\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \mbox{\hyperlink{_macros_8h_acaa7ba89800cfe18d5fd6eed620aea9c_acaa7ba89800cfe18d5fd6eed620aea9c}{eigen\_assert}}(((\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a4566a1e9fad17ce8c696e34ecb96f210_a4566a1e9fad17ce8c696e34ecb96f210}{m\_row}}+\mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a61dcf8d63166aa1c15f6044a276cf94f_a61dcf8d63166aa1c15f6044a276cf94f}{m\_currentBlockRows}})\ ==\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a882093eac821fac09b05bc6e88b3d3d3_a882093eac821fac09b05bc6e88b3d3d3}{m\_xpr}}.rows()\ ||\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a882093eac821fac09b05bc6e88b3d3d3_a882093eac821fac09b05bc6e88b3d3d3}{m\_xpr}}.cols()\ ==\ 0)}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \&\&\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_aae001bf712615385173f9bb525b74afa_aae001bf712615385173f9bb525b74afa}{m\_col}}\ ==\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a882093eac821fac09b05bc6e88b3d3d3_a882093eac821fac09b05bc6e88b3d3d3}{m\_xpr}}.cols()}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \&\&\ \textcolor{stringliteral}{"{}Too\ few\ coefficients\ passed\ to\ comma\ initializer\ (operator<<)"{}});}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a882093eac821fac09b05bc6e88b3d3d3_a882093eac821fac09b05bc6e88b3d3d3}{m\_xpr}};}
+\DoxyCodeLine{00126\ \ \ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \mbox{\hyperlink{nestbyvalue_8cpp_a5aefae852e88ada71d9dfc8da1fc33bf_a5aefae852e88ada71d9dfc8da1fc33bf}{XprType}}\&\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a882093eac821fac09b05bc6e88b3d3d3_a882093eac821fac09b05bc6e88b3d3d3}{m\_xpr}};\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ target\ expression}}
+\DoxyCodeLine{00129\ \ \ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a4566a1e9fad17ce8c696e34ecb96f210_a4566a1e9fad17ce8c696e34ecb96f210}{m\_row}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ current\ row\ id}}
+\DoxyCodeLine{00130\ \ \ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_aae001bf712615385173f9bb525b74afa_aae001bf712615385173f9bb525b74afa}{m\_col}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ current\ col\ id}}
+\DoxyCodeLine{00131\ \ \ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer_a61dcf8d63166aa1c15f6044a276cf94f_a61dcf8d63166aa1c15f6044a276cf94f}{m\_currentBlockRows}};\ \textcolor{comment}{//\ current\ block\ height}}
+\DoxyCodeLine{00132\ \};}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00147\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived>}
+\DoxyCodeLine{00148\ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer}{CommaInitializer<Derived>}}\ \mbox{\hyperlink{class_eigen_1_1_dense_base_ae55fbfa5630cabf2a9cba1248581bc66_ae55fbfa5630cabf2a9cba1248581bc66}{DenseBase<Derived>::operator<<\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_dense_base_a4116dfe923b430cc38d03b83d0bca985_a4116dfe923b430cc38d03b83d0bca985}{Scalar}}\&\ \mbox{\hyperlink{level1__cplx__impl_8h_a462761ca92ad97a9a705cb875828b0b8_a462761ca92ad97a9a705cb875828b0b8}{s}})}
+\DoxyCodeLine{00149\ \{}
+\DoxyCodeLine{00150\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer}{CommaInitializer<Derived>}}(*\textcolor{keyword}{static\_cast<}Derived*\textcolor{keyword}{>}(\textcolor{keyword}{this}),\ \mbox{\hyperlink{level1__cplx__impl_8h_a462761ca92ad97a9a705cb875828b0b8_a462761ca92ad97a9a705cb875828b0b8}{s}});}
+\DoxyCodeLine{00151\ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00154\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Derived>}
+\DoxyCodeLine{00155\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OtherDerived>}
+\DoxyCodeLine{00156\ \mbox{\hyperlink{_macros_8h_a9efec3cfd22b9a33bead9c6718d128da_a9efec3cfd22b9a33bead9c6718d128da}{EIGEN\_DEVICE\_FUNC}}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer}{CommaInitializer<Derived>}}}
+\DoxyCodeLine{00157\ \mbox{\hyperlink{class_eigen_1_1_dense_base_ae55fbfa5630cabf2a9cba1248581bc66_ae55fbfa5630cabf2a9cba1248581bc66}{DenseBase<Derived>::operator<<}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_eigen_1_1_dense_base}{DenseBase<OtherDerived>}}\&\ other)}
+\DoxyCodeLine{00158\ \{}
+\DoxyCodeLine{00159\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_eigen_1_1_comma_initializer}{CommaInitializer<Derived>}}(*\textcolor{keyword}{static\_cast<}Derived\ *\textcolor{keyword}{>}(\textcolor{keyword}{this}),\ other);}
+\DoxyCodeLine{00160\ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \}\ \textcolor{comment}{//\ end\ namespace\ Eigen}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ EIGEN\_COMMAINITIALIZER\_H}}
+
+\end{DoxyCode}

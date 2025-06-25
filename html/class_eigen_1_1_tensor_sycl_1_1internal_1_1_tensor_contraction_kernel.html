@@ -1,0 +1,282 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Qt_project: Eigen::TensorSycl::internal::TensorContractionKernel&lt; OutScalar, LhsScalar, RhsScalar, OutAccessor, LhsMapper, RhsMapper, StorageIndex, Properties, TripleDim, Vectorizable, input_mapper_properties, IsFinal, contraction_tp &gt; クラステンプレート</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Qt_project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_eigen.html">Eigen</a></li><li class="navelem"><a class="el" href="namespace_eigen_1_1_tensor_sycl.html">TensorSycl</a></li><li class="navelem"><a class="el" href="namespace_eigen_1_1_tensor_sycl_1_1internal.html">internal</a></li><li class="navelem"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel.html">TensorContractionKernel</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">クラス</a> &#124;
+<a href="#pub-types">公開型</a> &#124;
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pub-static-methods">静的公開メンバ関数</a> &#124;
+<a href="#pub-attribs">公開変数類</a> &#124;
+<a href="#pub-static-attribs">静的公開変数類</a> &#124;
+<a href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle"><div class="title">Eigen::TensorSycl::internal::TensorContractionKernel&lt; OutScalar, LhsScalar, RhsScalar, OutAccessor, LhsMapper, RhsMapper, StorageIndex, Properties, TripleDim, Vectorizable, input_mapper_properties, IsFinal, contraction_tp &gt; クラステンプレート</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel.html" title="TensorContractionKernel is a template class that provides Tensor -Tensor contraction operation.">TensorContractionKernel</a> is a template class that provides <a class="el" href="class_eigen_1_1_tensor.html" title="The tensor class.">Tensor</a> -<a class="el" href="class_eigen_1_1_tensor.html" title="The tensor class.">Tensor</a> contraction operation.  
+ <a href="#details">[詳解]</a></p>
+
+<p><code>#include &lt;<a class="el" href="_tensor_contraction_sycl_8h_source.html">TensorContractionSycl.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Eigen::TensorSycl::internal::TensorContractionKernel&lt; OutScalar, LhsScalar, RhsScalar, OutAccessor, LhsMapper, RhsMapper, StorageIndex, Properties, TripleDim, Vectorizable, input_mapper_properties, IsFinal, contraction_tp &gt; 連携図</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel__coll__graph.png" border="0" usemap="#a_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_3_01_out_scalar_00_01_lhs_scalar_00_01_rhs_scalar_00_01_out_accessor_00_01_lhs_mapper_00_01_rhs_mapper_00_01_storage_index_00_01_properties_00_01_triple_dim_00_01_vectorizable_00_01input__mapper__properties_00_01_is_final_00_01contraction__tp_01_4_coll__map" alt="Collaboration graph"/></div>
+<map name="a_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_3_01_out_scalar_00_01_lhs_scalar_00_01_rhs_scalar_00_01_out_accessor_00_01_lhs_mapper_00_01_rhs_mapper_00_01_storage_index_00_01_properties_00_01_triple_dim_00_01_vectorizable_00_01input__mapper__properties_00_01_is_final_00_01contraction__tp_01_4_coll__map" id="a_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_3_01_out_scalar_00_01_lhs_scalar_00_01_rhs_scalar_00_01_out_accessor_00_01_lhs_mapper_00_01_rhs_mapper_00_01_storage_index_00_01_properties_00_01_triple_dim_00_01_vectorizable_00_01input__mapper__properties_00_01_is_final_00_01contraction__tp_01_4_coll__map">
+<area shape="rect" title="TensorContractionKernel is a template class that provides Tensor &#45;Tensor contraction operation." alt="" coords="5,5,243,789"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+クラス</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_mem_holder.html">MemHolder</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_mem_holder.html" title="MemHolder this is a place holder struct for creating memory hierarchy in SYCL. Inside SYCL kernel it ...">MemHolder</a> this is a place holder struct for creating memory hierarchy in SYCL. Inside SYCL kernel it is not allowed to have dynamic memory allocation. While the local memory is created outside of the kernel and passed to the kernel as an accessor, the private memory can only allowed to be allocated statically. Since we are abstracting the <a class="el" href="struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_tiled_memory.html" title="TiledMemory: contains required memory pointer for loading each tile of the TensorContraction panel fr...">TiledMemory</a> for both local and private memory, the <a class="el" href="struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_mem_holder.html" title="MemHolder this is a place holder struct for creating memory hierarchy in SYCL. Inside SYCL kernel it ...">MemHolder</a> structs is used as a helper to abstract out different type of memory needed when local/no_local memory computation is called.  <a href="struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_mem_holder.html#details">[詳解]</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_mem_holder_3_01contraacbceb3f177887a48bb900a2960a37e5.html">MemHolder&lt; contraction_type::no_local, MemSize &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">specialization of memHolder class when no local memory kernel is used.  <a href="struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_mem_holder_3_01contraacbceb3f177887a48bb900a2960a37e5.html#details">[詳解]</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_tiled_memory.html">TiledMemory</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_tiled_memory.html" title="TiledMemory: contains required memory pointer for loading each tile of the TensorContraction panel fr...">TiledMemory</a>: contains required memory pointer for loading each tile of the <a class="el" href="class_tensor_contraction.html" title="Tensor contraction class.">TensorContraction</a> panel from global memory to local/private memory when local/no_local algorithm used.  <a href="struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_tiled_memory.html#details">[詳解]</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+公開型</h2></td></tr>
+<tr class="memitem:a8da745a6937b94ad6228f4fb94689148" id="r_a8da745a6937b94ad6228f4fb94689148"><td class="memItemLeft" align="right" valign="top">typedef Eigen::TensorSycl::internal::Vectorise&lt; OutScalar, Eigen::SyclDevice, Vectorizable &gt;::PacketReturnType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a8da745a6937b94ad6228f4fb94689148.html#a8da745a6937b94ad6228f4fb94689148">PacketReturnType</a></td></tr>
+<tr class="separator:a8da745a6937b94ad6228f4fb94689148"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a957228ea3dd407468ec8496700457354" id="r_a957228ea3dd407468ec8496700457354"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties.html">BlockProperties</a>&lt; <a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a1876fa3ffe1c52f65dc76b249e46f8ef.html#a1876fa3ffe1c52f65dc76b249e46f8ef">is_lhs_transposed</a>, false, input_mapper_properties::is_lhs_matrix &amp;&amp;Vectorizable, <a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a8da745a6937b94ad6228f4fb94689148.html#a8da745a6937b94ad6228f4fb94689148">PacketReturnType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a957228ea3dd407468ec8496700457354.html#a957228ea3dd407468ec8496700457354">LHSBlockProperties</a></td></tr>
+<tr class="separator:a957228ea3dd407468ec8496700457354"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4576d7b83cdccfe34463eed0472fde64" id="r_a4576d7b83cdccfe34463eed0472fde64"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="struct_eigen_1_1_tensor_sycl_1_1internal_1_1_block_properties.html">BlockProperties</a>&lt; <a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_af9f8aa14ab42ce522c247002e0782182.html#af9f8aa14ab42ce522c247002e0782182">is_rhs_transposed</a>, true, input_mapper_properties::is_rhs_matrix &amp;&amp;Vectorizable, <a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a8da745a6937b94ad6228f4fb94689148.html#a8da745a6937b94ad6228f4fb94689148">PacketReturnType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a4576d7b83cdccfe34463eed0472fde64.html#a4576d7b83cdccfe34463eed0472fde64">RHSBlockProperties</a></td></tr>
+<tr class="separator:a4576d7b83cdccfe34463eed0472fde64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99879a94b3f889ad994e3f73c025c916" id="r_a99879a94b3f889ad994e3f73c025c916"><td class="memItemLeft" align="right" valign="top">typedef cl::sycl::accessor&lt; OutScalar, 1, cl::sycl::access::mode::read_write, cl::sycl::access::target::local &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a99879a94b3f889ad994e3f73c025c916.html#a99879a94b3f889ad994e3f73c025c916">Scratch</a></td></tr>
+<tr class="separator:a99879a94b3f889ad994e3f73c025c916"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee03d8d8d2ef55f23ca86c7f1e1d77bf" id="r_aee03d8d8d2ef55f23ca86c7f1e1d77bf"><td class="memItemLeft" align="right" valign="top">typedef cl::sycl::multi_ptr&lt; OutScalar, cl::sycl::access::address_space::local_space &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_aee03d8d8d2ef55f23ca86c7f1e1d77bf.html#aee03d8d8d2ef55f23ca86c7f1e1d77bf">local_ptr</a></td></tr>
+<tr class="separator:aee03d8d8d2ef55f23ca86c7f1e1d77bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d9c23978e06981f5560ebbc292c67c1" id="r_a1d9c23978e06981f5560ebbc292c67c1"><td class="memItemLeft" align="right" valign="top">typedef OutScalar *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a1d9c23978e06981f5560ebbc292c67c1.html#a1d9c23978e06981f5560ebbc292c67c1">private_ptr</a></td></tr>
+<tr class="separator:a1d9c23978e06981f5560ebbc292c67c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01cf4983047cdc7e5537e3c4260a44b0" id="r_a01cf4983047cdc7e5537e3c4260a44b0"><td class="memItemLeft" align="right" valign="top">typedef typename::Eigen::internal::conditional&lt; contraction_tp==<a class="el" href="namespace_eigen_1_1_tensor_sycl_1_1internal_ae779b94e3f0127525eda5ff1db87719d.html#ae779b94e3f0127525eda5ff1db87719daf5ddaf0ca7929578b408c909429f68f2">contraction_type::local</a>, <a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_aee03d8d8d2ef55f23ca86c7f1e1d77bf.html#aee03d8d8d2ef55f23ca86c7f1e1d77bf">local_ptr</a>, <a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a1d9c23978e06981f5560ebbc292c67c1.html#a1d9c23978e06981f5560ebbc292c67c1">private_ptr</a> &gt;::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a01cf4983047cdc7e5537e3c4260a44b0.html#a01cf4983047cdc7e5537e3c4260a44b0">tile_ptr</a></td></tr>
+<tr class="separator:a01cf4983047cdc7e5537e3c4260a44b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a52195231424f7ce54327bb78949d3199" id="r_a52195231424f7ce54327bb78949d3199"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_macros_8h_a9efec3cfd22b9a33bead9c6718d128da.html#a9efec3cfd22b9a33bead9c6718d128da">EIGEN_DEVICE_FUNC</a> <a class="el" href="_macros_8h_af2b60117c00a6e75812de43bfe7db3b1.html#af2b60117c00a6e75812de43bfe7db3b1">EIGEN_STRONG_INLINE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a52195231424f7ce54327bb78949d3199.html#a52195231424f7ce54327bb78949d3199">TensorContractionKernel</a> (<a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a99879a94b3f889ad994e3f73c025c916.html#a99879a94b3f889ad994e3f73c025c916">Scratch</a> scratch_, const LhsMapper lhs_, const RhsMapper rhs_, OutAccessor out_res_, const StorageIndex groupSizeM_, const StorageIndex groupSizeN_, const StorageIndex numTiles_, const TripleDim triple_dim_)</td></tr>
+<tr class="separator:a52195231424f7ce54327bb78949d3199"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13b11b0aa7be85f764acc1ae033436f5" id="r_a13b11b0aa7be85f764acc1ae033436f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_macros_8h_a9efec3cfd22b9a33bead9c6718d128da.html#a9efec3cfd22b9a33bead9c6718d128da">EIGEN_DEVICE_FUNC</a> <a class="el" href="_macros_8h_af2b60117c00a6e75812de43bfe7db3b1.html#af2b60117c00a6e75812de43bfe7db3b1">EIGEN_STRONG_INLINE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a13b11b0aa7be85f764acc1ae033436f5.html#a13b11b0aa7be85f764acc1ae033436f5">TensorContractionKernel</a> (<a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a99879a94b3f889ad994e3f73c025c916.html#a99879a94b3f889ad994e3f73c025c916">Scratch</a> scratch_, const LhsMapper lhs_, const RhsMapper rhs_, OutAccessor out_res_, const StorageIndex groupSizeM_, const StorageIndex numTiles_, const TripleDim triple_dim_)</td></tr>
+<tr class="separator:a13b11b0aa7be85f764acc1ae033436f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff938847a25a84d5c5b9d5059fec5878" id="r_aff938847a25a84d5c5b9d5059fec5878"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_macros_8h_a9efec3cfd22b9a33bead9c6718d128da.html#a9efec3cfd22b9a33bead9c6718d128da">EIGEN_DEVICE_FUNC</a> <a class="el" href="_macros_8h_af2b60117c00a6e75812de43bfe7db3b1.html#af2b60117c00a6e75812de43bfe7db3b1">EIGEN_STRONG_INLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_aff938847a25a84d5c5b9d5059fec5878.html#aff938847a25a84d5c5b9d5059fec5878">operator()</a> (cl::sycl::nd_item&lt; 1 &gt; itemID)</td></tr>
+<tr class="separator:aff938847a25a84d5c5b9d5059fec5878"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4dab5db8ade549a9c350b82e549f48c9" id="r_a4dab5db8ade549a9c350b82e549f48c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_macros_8h_a9efec3cfd22b9a33bead9c6718d128da.html#a9efec3cfd22b9a33bead9c6718d128da">EIGEN_DEVICE_FUNC</a> <a class="el" href="_macros_8h_af2b60117c00a6e75812de43bfe7db3b1.html#af2b60117c00a6e75812de43bfe7db3b1">EIGEN_STRONG_INLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a4dab5db8ade549a9c350b82e549f48c9.html#a4dab5db8ade549a9c350b82e549f48c9">compute_block_per_tile</a> (OutScalar *lhs_block_ptr, OutScalar *rhs_block_ptr, <a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a8da745a6937b94ad6228f4fb94689148.html#a8da745a6937b94ad6228f4fb94689148">PacketReturnType</a> *privateRes)</td></tr>
+<tr class="separator:a4dab5db8ade549a9c350b82e549f48c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a0b0c042e3126b9d5ca36ec000db8c1" id="r_a4a0b0c042e3126b9d5ca36ec000db8c1"><td class="memTemplParams" colspan="2">template&lt;bool is_internal_block, StorageIndex PrivateNStride, typename OutPtr &gt; </td></tr>
+<tr class="memitem:a4a0b0c042e3126b9d5ca36ec000db8c1"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="_macros_8h_a9efec3cfd22b9a33bead9c6718d128da.html#a9efec3cfd22b9a33bead9c6718d128da">EIGEN_DEVICE_FUNC</a> <a class="el" href="_macros_8h_af2b60117c00a6e75812de43bfe7db3b1.html#af2b60117c00a6e75812de43bfe7db3b1">EIGEN_STRONG_INLINE</a> void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a4a0b0c042e3126b9d5ca36ec000db8c1.html#a4a0b0c042e3126b9d5ca36ec000db8c1">store</a> (OutPtr *out_ptr, <a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a8da745a6937b94ad6228f4fb94689148.html#a8da745a6937b94ad6228f4fb94689148">PacketReturnType</a> *privateRes, StorageIndex mGlobalOffset, StorageIndex nGlobalOffset)</td></tr>
+<tr class="separator:a4a0b0c042e3126b9d5ca36ec000db8c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1d95476a27a108643ae63d01e0de200" id="r_ab1d95476a27a108643ae63d01e0de200"><td class="memTemplParams" colspan="2">template&lt;typename InputBlockProperties , bool is_internal_block, typename Input , typename PrivateReg , <a class="el" href="namespace_eigen_1_1_tensor_sycl_1_1internal_ae779b94e3f0127525eda5ff1db87719d.html#ae779b94e3f0127525eda5ff1db87719d">contraction_type</a> contract_tp = contraction_tp&gt; </td></tr>
+<tr class="memitem:ab1d95476a27a108643ae63d01e0de200"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="_macros_8h_a9efec3cfd22b9a33bead9c6718d128da.html#a9efec3cfd22b9a33bead9c6718d128da">EIGEN_DEVICE_FUNC</a> <a class="el" href="_macros_8h_af2b60117c00a6e75812de43bfe7db3b1.html#af2b60117c00a6e75812de43bfe7db3b1">EIGEN_STRONG_INLINE</a> typename::Eigen::internal::enable_if&lt; contract_tp==<a class="el" href="namespace_eigen_1_1_tensor_sycl_1_1internal_ae779b94e3f0127525eda5ff1db87719d.html#ae779b94e3f0127525eda5ff1db87719da26ff8111dc314a846f011f7e732cb258">contraction_type::no_local</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_ab1d95476a27a108643ae63d01e0de200.html#ab1d95476a27a108643ae63d01e0de200">extract_block</a> (const Input &amp;inpt, PrivateReg <a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a1d9c23978e06981f5560ebbc292c67c1.html#a1d9c23978e06981f5560ebbc292c67c1">private_ptr</a>, const std::pair&lt; StorageIndex, StorageIndex &gt; &amp;, const StorageIndex &amp;ncOffset, const StorageIndex cOffset)</td></tr>
+<tr class="separator:ab1d95476a27a108643ae63d01e0de200"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c773242711bc9d7ccf157d8accf16f1" id="r_a3c773242711bc9d7ccf157d8accf16f1"><td class="memTemplParams" colspan="2">template&lt;bool is_internal_block&gt; </td></tr>
+<tr class="memitem:a3c773242711bc9d7ccf157d8accf16f1"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="_macros_8h_a9efec3cfd22b9a33bead9c6718d128da.html#a9efec3cfd22b9a33bead9c6718d128da">EIGEN_DEVICE_FUNC</a> <a class="el" href="_macros_8h_af2b60117c00a6e75812de43bfe7db3b1.html#af2b60117c00a6e75812de43bfe7db3b1">EIGEN_STRONG_INLINE</a> void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a3c773242711bc9d7ccf157d8accf16f1.html#a3c773242711bc9d7ccf157d8accf16f1">compute_tile_per_panel</a> (const cl::sycl::nd_item&lt; 1 &gt; &amp;itemID, <a class="el" href="struct_eigen_1_1_tensor_sycl_1_1internal_1_1_thread_properties.html">ThreadProperties</a>&lt; StorageIndex &gt; &amp;thread_properties, <a class="el" href="struct_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_1_1_tiled_memory.html">TiledMemory</a> &amp;tiled_input_block, <a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a8da745a6937b94ad6228f4fb94689148.html#a8da745a6937b94ad6228f4fb94689148">PacketReturnType</a> *privateRes, bool &amp;db_offset)</td></tr>
+<tr class="separator:a3c773242711bc9d7ccf157d8accf16f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8e5160f49b2a9fbf153d88d91bdddc5" id="r_ad8e5160f49b2a9fbf153d88d91bdddc5"><td class="memTemplParams" colspan="2">template&lt;bool is_internal_block, typename OutPtr &gt; </td></tr>
+<tr class="memitem:ad8e5160f49b2a9fbf153d88d91bdddc5"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="_macros_8h_a9efec3cfd22b9a33bead9c6718d128da.html#a9efec3cfd22b9a33bead9c6718d128da">EIGEN_DEVICE_FUNC</a> <a class="el" href="_macros_8h_af2b60117c00a6e75812de43bfe7db3b1.html#af2b60117c00a6e75812de43bfe7db3b1">EIGEN_STRONG_INLINE</a> void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_ad8e5160f49b2a9fbf153d88d91bdddc5.html#ad8e5160f49b2a9fbf153d88d91bdddc5">compute_panel</a> (const cl::sycl::nd_item&lt; 1 &gt; &amp;itemID, <a class="el" href="struct_eigen_1_1_tensor_sycl_1_1internal_1_1_thread_properties.html">ThreadProperties</a>&lt; StorageIndex &gt; &amp;thread_properties, OutPtr out_ptr)</td></tr>
+<tr class="separator:ad8e5160f49b2a9fbf153d88d91bdddc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2a2e9dcff79c991f15d0b163325e7d1" id="r_ab2a2e9dcff79c991f15d0b163325e7d1"><td class="memTemplParams" colspan="2">template&lt;typename InputBlockProperties , bool is_internal_block, typename Input , typename Local , <a class="el" href="namespace_eigen_1_1_tensor_sycl_1_1internal_ae779b94e3f0127525eda5ff1db87719d.html#ae779b94e3f0127525eda5ff1db87719d">contraction_type</a> contract_tp = contraction_tp&gt; </td></tr>
+<tr class="memitem:ab2a2e9dcff79c991f15d0b163325e7d1"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="_macros_8h_a9efec3cfd22b9a33bead9c6718d128da.html#a9efec3cfd22b9a33bead9c6718d128da">EIGEN_DEVICE_FUNC</a> <a class="el" href="_macros_8h_af2b60117c00a6e75812de43bfe7db3b1.html#af2b60117c00a6e75812de43bfe7db3b1">EIGEN_STRONG_INLINE</a> typename::Eigen::internal::enable_if&lt; contract_tp==<a class="el" href="namespace_eigen_1_1_tensor_sycl_1_1internal_ae779b94e3f0127525eda5ff1db87719d.html#ae779b94e3f0127525eda5ff1db87719daf5ddaf0ca7929578b408c909429f68f2">contraction_type::local</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_ab2a2e9dcff79c991f15d0b163325e7d1.html#ab2a2e9dcff79c991f15d0b163325e7d1">extract_block</a> (const Input &amp;inpt, Local <a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_aee03d8d8d2ef55f23ca86c7f1e1d77bf.html#aee03d8d8d2ef55f23ca86c7f1e1d77bf">local_ptr</a>, const std::pair&lt; StorageIndex, StorageIndex &gt; &amp;local_index, const StorageIndex &amp;ncOffset, const StorageIndex cOffset)</td></tr>
+<tr class="separator:ab2a2e9dcff79c991f15d0b163325e7d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静的公開メンバ関数</h2></td></tr>
+<tr class="memitem:a5aa834bcc0a453abf04b6981507edd5f" id="r_a5aa834bcc0a453abf04b6981507edd5f"><td class="memTemplParams" colspan="2">template&lt;typename InputBlockProperties , StorageIndex TileSizeDimNC&gt; </td></tr>
+<tr class="memitem:a5aa834bcc0a453abf04b6981507edd5f"><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="_macros_8h_a9efec3cfd22b9a33bead9c6718d128da.html#a9efec3cfd22b9a33bead9c6718d128da">EIGEN_DEVICE_FUNC</a> <a class="el" href="_macros_8h_af2b60117c00a6e75812de43bfe7db3b1.html#af2b60117c00a6e75812de43bfe7db3b1">EIGEN_STRONG_INLINE</a> std::pair&lt; StorageIndex, StorageIndex &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a5aa834bcc0a453abf04b6981507edd5f.html#a5aa834bcc0a453abf04b6981507edd5f">local_id_extract</a> (const StorageIndex &amp;linearLocalThreadId)</td></tr>
+<tr class="separator:a5aa834bcc0a453abf04b6981507edd5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31bb476a71bdc1788efff6203c0dd492" id="r_a31bb476a71bdc1788efff6203c0dd492"><td class="memTemplParams" colspan="2">template&lt;bool db = Properties::DoubleBuffer, <a class="el" href="namespace_eigen_1_1_tensor_sycl_1_1internal_ae779b94e3f0127525eda5ff1db87719d.html#ae779b94e3f0127525eda5ff1db87719d">contraction_type</a> ctp = contraction_tp&gt; </td></tr>
+<tr class="memitem:a31bb476a71bdc1788efff6203c0dd492"><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="_macros_8h_a9efec3cfd22b9a33bead9c6718d128da.html#a9efec3cfd22b9a33bead9c6718d128da">EIGEN_DEVICE_FUNC</a> <a class="el" href="_macros_8h_af2b60117c00a6e75812de43bfe7db3b1.html#af2b60117c00a6e75812de43bfe7db3b1">EIGEN_STRONG_INLINE</a> typename::Eigen::internal::enable_if&lt; db &amp;&amp;ctp==<a class="el" href="namespace_eigen_1_1_tensor_sycl_1_1internal_ae779b94e3f0127525eda5ff1db87719d.html#ae779b94e3f0127525eda5ff1db87719daf5ddaf0ca7929578b408c909429f68f2">contraction_type::local</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a31bb476a71bdc1788efff6203c0dd492.html#a31bb476a71bdc1788efff6203c0dd492">sync_mem</a> (const cl::sycl::nd_item&lt; 1 &gt; &amp;, bool &amp;db_offset) noexcept</td></tr>
+<tr class="separator:a31bb476a71bdc1788efff6203c0dd492"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac76d41752a912680f0738884abaf93c2" id="r_ac76d41752a912680f0738884abaf93c2"><td class="memTemplParams" colspan="2">template&lt;bool db = Properties::DoubleBuffer, <a class="el" href="namespace_eigen_1_1_tensor_sycl_1_1internal_ae779b94e3f0127525eda5ff1db87719d.html#ae779b94e3f0127525eda5ff1db87719d">contraction_type</a> ctp = contraction_tp&gt; </td></tr>
+<tr class="memitem:ac76d41752a912680f0738884abaf93c2"><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="_macros_8h_a9efec3cfd22b9a33bead9c6718d128da.html#a9efec3cfd22b9a33bead9c6718d128da">EIGEN_DEVICE_FUNC</a> <a class="el" href="_macros_8h_af2b60117c00a6e75812de43bfe7db3b1.html#af2b60117c00a6e75812de43bfe7db3b1">EIGEN_STRONG_INLINE</a> typename::Eigen::internal::enable_if&lt;!db &amp;&amp;ctp==<a class="el" href="namespace_eigen_1_1_tensor_sycl_1_1internal_ae779b94e3f0127525eda5ff1db87719d.html#ae779b94e3f0127525eda5ff1db87719daf5ddaf0ca7929578b408c909429f68f2">contraction_type::local</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_ac76d41752a912680f0738884abaf93c2.html#ac76d41752a912680f0738884abaf93c2">sync_mem</a> (const cl::sycl::nd_item&lt; 1 &gt; &amp;itemID, bool &amp;) noexcept</td></tr>
+<tr class="separator:ac76d41752a912680f0738884abaf93c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a8b0941f52aa0ea2e304737e2b57c14" id="r_a0a8b0941f52aa0ea2e304737e2b57c14"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="namespace_eigen_1_1_tensor_sycl_1_1internal_ae779b94e3f0127525eda5ff1db87719d.html#ae779b94e3f0127525eda5ff1db87719d">contraction_type</a> ctp = contraction_tp&gt; </td></tr>
+<tr class="memitem:a0a8b0941f52aa0ea2e304737e2b57c14"><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="_macros_8h_a9efec3cfd22b9a33bead9c6718d128da.html#a9efec3cfd22b9a33bead9c6718d128da">EIGEN_DEVICE_FUNC</a> <a class="el" href="_macros_8h_af2b60117c00a6e75812de43bfe7db3b1.html#af2b60117c00a6e75812de43bfe7db3b1">EIGEN_STRONG_INLINE</a> typename::Eigen::internal::enable_if&lt; ctp==<a class="el" href="namespace_eigen_1_1_tensor_sycl_1_1internal_ae779b94e3f0127525eda5ff1db87719d.html#ae779b94e3f0127525eda5ff1db87719da26ff8111dc314a846f011f7e732cb258">contraction_type::no_local</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a0a8b0941f52aa0ea2e304737e2b57c14.html#a0a8b0941f52aa0ea2e304737e2b57c14">sync_mem</a> (const cl::sycl::nd_item&lt; 1 &gt; &amp;, bool &amp;) noexcept</td></tr>
+<tr class="separator:a0a8b0941f52aa0ea2e304737e2b57c14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a631cda6c1fe7ed0cc49ff8d366361530" id="r_a631cda6c1fe7ed0cc49ff8d366361530"><td class="memTemplParams" colspan="2">template&lt;bool need_sync, <a class="el" href="namespace_eigen_1_1_tensor_sycl_1_1internal_ae779b94e3f0127525eda5ff1db87719d.html#ae779b94e3f0127525eda5ff1db87719d">contraction_type</a> ctp = contraction_tp&gt; </td></tr>
+<tr class="memitem:a631cda6c1fe7ed0cc49ff8d366361530"><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="_macros_8h_a9efec3cfd22b9a33bead9c6718d128da.html#a9efec3cfd22b9a33bead9c6718d128da">EIGEN_DEVICE_FUNC</a> <a class="el" href="_macros_8h_af2b60117c00a6e75812de43bfe7db3b1.html#af2b60117c00a6e75812de43bfe7db3b1">EIGEN_STRONG_INLINE</a> typename::Eigen::internal::enable_if&lt; need_sync &amp;&amp;ctp==<a class="el" href="namespace_eigen_1_1_tensor_sycl_1_1internal_ae779b94e3f0127525eda5ff1db87719d.html#ae779b94e3f0127525eda5ff1db87719da26ff8111dc314a846f011f7e732cb258">contraction_type::no_local</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a631cda6c1fe7ed0cc49ff8d366361530.html#a631cda6c1fe7ed0cc49ff8d366361530">sync_thread</a> (const cl::sycl::nd_item&lt; 1 &gt; &amp;) noexcept</td></tr>
+<tr class="separator:a631cda6c1fe7ed0cc49ff8d366361530"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e02678593de948386b772ba8fc69d89" id="r_a9e02678593de948386b772ba8fc69d89"><td class="memTemplParams" colspan="2">template&lt;bool need_sync, <a class="el" href="namespace_eigen_1_1_tensor_sycl_1_1internal_ae779b94e3f0127525eda5ff1db87719d.html#ae779b94e3f0127525eda5ff1db87719d">contraction_type</a> ctp = contraction_tp&gt; </td></tr>
+<tr class="memitem:a9e02678593de948386b772ba8fc69d89"><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="_macros_8h_a9efec3cfd22b9a33bead9c6718d128da.html#a9efec3cfd22b9a33bead9c6718d128da">EIGEN_DEVICE_FUNC</a> <a class="el" href="_macros_8h_af2b60117c00a6e75812de43bfe7db3b1.html#af2b60117c00a6e75812de43bfe7db3b1">EIGEN_STRONG_INLINE</a> typename::Eigen::internal::enable_if&lt; need_sync &amp;&amp;ctp==<a class="el" href="namespace_eigen_1_1_tensor_sycl_1_1internal_ae779b94e3f0127525eda5ff1db87719d.html#ae779b94e3f0127525eda5ff1db87719daf5ddaf0ca7929578b408c909429f68f2">contraction_type::local</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a9e02678593de948386b772ba8fc69d89.html#a9e02678593de948386b772ba8fc69d89">sync_thread</a> (const cl::sycl::nd_item&lt; 1 &gt; &amp;itemID)</td></tr>
+<tr class="separator:a9e02678593de948386b772ba8fc69d89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe456704bd914319ed5968639c6c0805" id="r_afe456704bd914319ed5968639c6c0805"><td class="memTemplParams" colspan="2">template&lt;bool need_sync&gt; </td></tr>
+<tr class="memitem:afe456704bd914319ed5968639c6c0805"><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="_macros_8h_a9efec3cfd22b9a33bead9c6718d128da.html#a9efec3cfd22b9a33bead9c6718d128da">EIGEN_DEVICE_FUNC</a> <a class="el" href="_macros_8h_af2b60117c00a6e75812de43bfe7db3b1.html#af2b60117c00a6e75812de43bfe7db3b1">EIGEN_STRONG_INLINE</a> <a class="el" href="struct_eigen_1_1internal_1_1enable__if.html">::Eigen::internal::enable_if</a>&lt;!need_sync &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_afe456704bd914319ed5968639c6c0805.html#afe456704bd914319ed5968639c6c0805">sync_thread</a> (const cl::sycl::nd_item&lt; 1 &gt; &amp;)</td></tr>
+<tr class="separator:afe456704bd914319ed5968639c6c0805"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+公開変数類</h2></td></tr>
+<tr class="memitem:ad63f9757743718e78f4f83f361d95e27" id="r_ad63f9757743718e78f4f83f361d95e27"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a99879a94b3f889ad994e3f73c025c916.html#a99879a94b3f889ad994e3f73c025c916">Scratch</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_ad63f9757743718e78f4f83f361d95e27.html#ad63f9757743718e78f4f83f361d95e27">scratch</a></td></tr>
+<tr class="separator:ad63f9757743718e78f4f83f361d95e27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae18a2c02e4480eefef84259c42980524" id="r_ae18a2c02e4480eefef84259c42980524"><td class="memItemLeft" align="right" valign="top">const LhsMapper&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_ae18a2c02e4480eefef84259c42980524.html#ae18a2c02e4480eefef84259c42980524">lhs</a></td></tr>
+<tr class="separator:ae18a2c02e4480eefef84259c42980524"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf0fa30d0f7678c339e6cc6edd2746ee" id="r_aaf0fa30d0f7678c339e6cc6edd2746ee"><td class="memItemLeft" align="right" valign="top">const RhsMapper&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_aaf0fa30d0f7678c339e6cc6edd2746ee.html#aaf0fa30d0f7678c339e6cc6edd2746ee">rhs</a></td></tr>
+<tr class="separator:aaf0fa30d0f7678c339e6cc6edd2746ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6088e8b5c2a9b2d674edda777d1eeb1" id="r_af6088e8b5c2a9b2d674edda777d1eeb1"><td class="memItemLeft" align="right" valign="top">OutAccessor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_af6088e8b5c2a9b2d674edda777d1eeb1.html#af6088e8b5c2a9b2d674edda777d1eeb1">out_res</a></td></tr>
+<tr class="separator:af6088e8b5c2a9b2d674edda777d1eeb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19a51818c29ba1ad67900dafecf58f85" id="r_a19a51818c29ba1ad67900dafecf58f85"><td class="memItemLeft" align="right" valign="top">const StorageIndex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a19a51818c29ba1ad67900dafecf58f85.html#a19a51818c29ba1ad67900dafecf58f85">groupSizeM</a></td></tr>
+<tr class="separator:a19a51818c29ba1ad67900dafecf58f85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9052641c622ae3c31eb39005b436e03" id="r_af9052641c622ae3c31eb39005b436e03"><td class="memItemLeft" align="right" valign="top">const StorageIndex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_af9052641c622ae3c31eb39005b436e03.html#af9052641c622ae3c31eb39005b436e03">groupSizeN</a></td></tr>
+<tr class="separator:af9052641c622ae3c31eb39005b436e03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab51ca4b6906514b17b8ea19c5ef16479" id="r_ab51ca4b6906514b17b8ea19c5ef16479"><td class="memItemLeft" align="right" valign="top">const StorageIndex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_ab51ca4b6906514b17b8ea19c5ef16479.html#ab51ca4b6906514b17b8ea19c5ef16479">numTiles</a></td></tr>
+<tr class="separator:ab51ca4b6906514b17b8ea19c5ef16479"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92a4151d945b4d36f948f125f3f3afcf" id="r_a92a4151d945b4d36f948f125f3f3afcf"><td class="memItemLeft" align="right" valign="top">const TripleDim&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a92a4151d945b4d36f948f125f3f3afcf.html#a92a4151d945b4d36f948f125f3f3afcf">triple_dim</a></td></tr>
+<tr class="separator:a92a4151d945b4d36f948f125f3f3afcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+静的公開変数類</h2></td></tr>
+<tr class="memitem:aed913110b91f6873436ced300b978834" id="r_aed913110b91f6873436ced300b978834"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c.html#a62a0d46d3d76fff438aec3b57f29c90c">EIGEN_CONSTEXPR</a> <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_aed913110b91f6873436ced300b978834.html#aed913110b91f6873436ced300b978834">PacketSize</a></td></tr>
+<tr class="separator:aed913110b91f6873436ced300b978834"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1876fa3ffe1c52f65dc76b249e46f8ef" id="r_a1876fa3ffe1c52f65dc76b249e46f8ef"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c.html#a62a0d46d3d76fff438aec3b57f29c90c">EIGEN_CONSTEXPR</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a1876fa3ffe1c52f65dc76b249e46f8ef.html#a1876fa3ffe1c52f65dc76b249e46f8ef">is_lhs_transposed</a></td></tr>
+<tr class="separator:a1876fa3ffe1c52f65dc76b249e46f8ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9f8aa14ab42ce522c247002e0782182" id="r_af9f8aa14ab42ce522c247002e0782182"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c.html#a62a0d46d3d76fff438aec3b57f29c90c">EIGEN_CONSTEXPR</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_af9f8aa14ab42ce522c247002e0782182.html#af9f8aa14ab42ce522c247002e0782182">is_rhs_transposed</a></td></tr>
+<tr class="separator:af9f8aa14ab42ce522c247002e0782182"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b117a0f6d69a2eb1d811c37cdc94f11" id="r_a9b117a0f6d69a2eb1d811c37cdc94f11"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c.html#a62a0d46d3d76fff438aec3b57f29c90c">EIGEN_CONSTEXPR</a> StorageIndex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a9b117a0f6d69a2eb1d811c37cdc94f11.html#a9b117a0f6d69a2eb1d811c37cdc94f11">NStride</a></td></tr>
+<tr class="separator:a9b117a0f6d69a2eb1d811c37cdc94f11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a8a591a4948d30f6edb68e4450bca53" id="r_a9a8a591a4948d30f6edb68e4450bca53"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c.html#a62a0d46d3d76fff438aec3b57f29c90c">EIGEN_CONSTEXPR</a> StorageIndex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a9a8a591a4948d30f6edb68e4450bca53.html#a9a8a591a4948d30f6edb68e4450bca53">LSDL</a></td></tr>
+<tr class="separator:a9a8a591a4948d30f6edb68e4450bca53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f350a0443c9f3c2366141b8b2298b5a" id="r_a1f350a0443c9f3c2366141b8b2298b5a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c.html#a62a0d46d3d76fff438aec3b57f29c90c">EIGEN_CONSTEXPR</a> StorageIndex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a1f350a0443c9f3c2366141b8b2298b5a.html#a1f350a0443c9f3c2366141b8b2298b5a">LSDR</a></td></tr>
+<tr class="separator:a1f350a0443c9f3c2366141b8b2298b5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a269ccd5f63ccbbc3cd04681464d050c5" id="r_a269ccd5f63ccbbc3cd04681464d050c5"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="_macros_8h_a62a0d46d3d76fff438aec3b57f29c90c.html#a62a0d46d3d76fff438aec3b57f29c90c">EIGEN_CONSTEXPR</a> StorageIndex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel_a269ccd5f63ccbbc3cd04681464d050c5.html#a269ccd5f63ccbbc3cd04681464d050c5">LocalOffset</a> = Properties::LocalThreadSizeM * Properties::LocalThreadSizeN</td></tr>
+<tr class="separator:a269ccd5f63ccbbc3cd04681464d050c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename OutScalar, typename LhsScalar, typename RhsScalar, typename OutAccessor, typename LhsMapper, typename RhsMapper, typename StorageIndex, typename Properties, typename TripleDim, bool Vectorizable, typename input_mapper_properties, bool IsFinal, <a class="el" href="namespace_eigen_1_1_tensor_sycl_1_1internal_ae779b94e3f0127525eda5ff1db87719d.html#ae779b94e3f0127525eda5ff1db87719d">contraction_type</a> contraction_tp&gt;<br />
+class Eigen::TensorSycl::internal::TensorContractionKernel&lt; OutScalar, LhsScalar, RhsScalar, OutAccessor, LhsMapper, RhsMapper, StorageIndex, Properties, TripleDim, Vectorizable, input_mapper_properties, IsFinal, contraction_tp &gt;</div><p><a class="el" href="class_eigen_1_1_tensor_sycl_1_1internal_1_1_tensor_contraction_kernel.html" title="TensorContractionKernel is a template class that provides Tensor -Tensor contraction operation.">TensorContractionKernel</a> is a template class that provides <a class="el" href="class_eigen_1_1_tensor.html" title="The tensor class.">Tensor</a> -<a class="el" href="class_eigen_1_1_tensor.html" title="The tensor class.">Tensor</a> contraction operation. </p>
+<dl class="tparams"><dt>テンプレート引数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">OutScalar</td><td>determines the output scalar type</td></tr>
+    <tr><td class="paramname">LhsScalar</td><td>determines the left-hand-side scalar type</td></tr>
+    <tr><td class="paramname">RhsScalar</td><td>determines the right-hand-side scalar type</td></tr>
+    <tr><td class="paramname">OutAccessor</td><td>determines the sycl accessor type for out put (please see the sycl-1.2.1 specification (<a href="https://www.khronos.org/registry/SYCL/specs/sycl-1.2.1.pdf">https://www.khronos.org/registry/SYCL/specs/sycl-1.2.1.pdf</a>) for accessor definition)</td></tr>
+    <tr><td class="paramname">LhsMapper</td><td>determines the tensor contraction mapper type for left-hand-side matrix</td></tr>
+    <tr><td class="paramname">RhsMapper</td><td>determines the tensor contraction mapper type for right-hand-side matrix</td></tr>
+    <tr><td class="paramname">StorageIndex</td><td>determines the StorageIndex Type</td></tr>
+    <tr><td class="paramname">Properties</td><td>determines the Contraction Panel properties</td></tr>
+    <tr><td class="paramname">TripleDim</td><td>determines the M, K, N dimensions for the flatten tensors in order to treat them as a matrix</td></tr>
+    <tr><td class="paramname">Vectorizable</td><td>determines whether or not the vectorization is enabled for the <a class="el" href="namespace_eigen.html" title="Namespace containing all symbols from the Eigen library.">Eigen</a> expression.</td></tr>
+    <tr><td class="paramname">input_mapper_properties</td><td>: determine if the input tensors are matrix. If they are matrix, special memory access is used to guarantee that always the memory access are coalesced.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>\tptaram IsFinal : determine if this is the final kernel. If so, the result will be written in a final output. Otherwise, the result of contraction will be written iin a temporary buffer. This is the case when Tall/Skinny contraction is used. So in this case, a final reduction step is required to compute final output.</p>
+<dl class="tparams"><dt>テンプレート引数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">contraction_tp</td><td>it is an enum value representing whether the local memroy/no local memory implementation of the algorithm to be used</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scratch</td><td>local memory containing tiles of LHS and RHS tensors for each work-group</td></tr>
+    <tr><td class="paramname">lhs</td><td>determines the left-hand-side flattened tensor (tensor mapper)</td></tr>
+    <tr><td class="paramname">rhs</td><td>determines the right-hand-side flattened tensor (tensor mapper)</td></tr>
+    <tr><td class="paramname">out_res</td><td>determines the output tensor containing the contraction result</td></tr>
+    <tr><td class="paramname">groupSizeM</td><td>a logical number determining the number of work-group for m dimension</td></tr>
+    <tr><td class="paramname">groupSizeN</td><td>a logical number determining the number of work-group for n dimension</td></tr>
+    <tr><td class="paramname">numTiles</td><td>determines total number of tiles on the k dimension</td></tr>
+    <tr><td class="paramname">TripleDim</td><td>determines the M, K, N dimensions for the flatten tensors in order to treat them as a matrix </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>eigen-3.4.0/eigen-3.4.0/unsupported/Eigen/CXX11/src/Tensor/<a class="el" href="_tensor_contraction_sycl_8h_source.html">TensorContractionSycl.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

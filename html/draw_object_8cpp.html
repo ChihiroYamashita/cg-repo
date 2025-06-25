@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Qt_project: sources/object/drawObject.cpp ファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Qt_project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_08d237fc27d4ecd563f71c5d52f2fecc.html">sources</a></li><li class="navelem"><a class="el" href="dir_007acf78d96cd31e8306bb2851944124.html">object</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#define-members">マクロ定義</a> &#124;
+<a href="#func-members">関数</a>  </div>
+  <div class="headertitle"><div class="title">drawObject.cpp ファイル</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="draw_object_8h_source.html">drawObject.h</a>&quot;</code><br />
+<code>#include &lt;QOpenGLFunctions&gt;</code><br />
+<code>#include &quot;<a class="el" href="myopenglwidget_8h_source.html">myopenglwidget.h</a>&quot;</code><br />
+<code>#include &lt;QOpenGLWidget&gt;</code><br />
+<code>#include &lt;QResizeEvent&gt;</code><br />
+<code>#include &lt;QApplication&gt;</code><br />
+<code>#include &lt;QSurfaceFormat&gt;</code><br />
+<code>#include &lt;QMatrix4x4&gt;</code><br />
+<code>#include &lt;Eigen/Dense&gt;</code><br />
+<code>#include &lt;QMouseEvent&gt;</code><br />
+<code>#include &lt;QWheelEvent&gt;</code><br />
+<code>#include &lt;QPushButton&gt;</code><br />
+<code>#include &lt;QtSvg/QSvgRenderer&gt;</code><br />
+<code>#include &lt;GL/glu.h&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &quot;Camera.h&quot;</code><br />
+<code>#include &lt;GL/gl.h&gt;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> drawObject.cpp の依存先関係図:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="draw_object_8cpp__incl.png" border="0" usemap="#asources_2object_2draw_object_8cpp" alt=""/></div>
+<map name="asources_2object_2draw_object_8cpp" id="asources_2object_2draw_object_8cpp">
+<area shape="rect" title=" " alt="" coords="920,5,1122,32"/>
+<area shape="rect" href="draw_object_8h.html" title=" " alt="" coords="354,80,453,107"/>
+<area shape="poly" title=" " alt="" coords="920,32,713,53,472,83,469,83,468,78,471,77,713,47,920,26"/>
+<area shape="rect" title=" " alt="" coords="465,155,601,181"/>
+<area shape="poly" title=" " alt="" coords="920,28,802,35,676,47,571,63,536,72,518,82,511,95,510,109,520,140,515,142,505,110,506,93,514,78,534,67,570,57,675,42,802,30,920,22"/>
+<area shape="rect" href="myopenglwidget_8h.html" title=" " alt="" coords="154,80,280,107"/>
+<area shape="poly" title=" " alt="" coords="920,29,640,50,299,83,296,83,295,78,298,77,640,44,920,24"/>
+<area shape="rect" title=" " alt="" coords="5,155,125,181"/>
+<area shape="poly" title=" " alt="" coords="920,25,717,32,476,44,263,60,187,71,143,82,124,95,108,110,82,143,77,140,104,106,121,90,141,78,186,66,262,55,475,38,717,27,920,20"/>
+<area shape="rect" title=" " alt="" coords="242,155,341,181"/>
+<area shape="poly" title=" " alt="" coords="920,27,583,46,428,62,374,72,344,82,330,94,318,109,302,141,298,138,314,106,326,90,341,78,373,67,427,57,582,41,920,21"/>
+<area shape="rect" title=" " alt="" coords="528,80,634,107"/>
+<area shape="poly" title=" " alt="" coords="939,35,650,82,650,77,938,30"/>
+<area shape="rect" title=" " alt="" coords="659,80,754,107"/>
+<area shape="poly" title=" " alt="" coords="966,35,770,80,768,75,965,30"/>
+<area shape="rect" title=" " alt="" coords="778,80,896,107"/>
+<area shape="poly" title=" " alt="" coords="990,35,884,76,882,71,988,30"/>
+<area shape="rect" title=" " alt="" coords="920,80,1008,107"/>
+<area shape="poly" title=" " alt="" coords="1013,34,985,69,981,66,1009,31"/>
+<area shape="rect" title=" " alt="" coords="1032,80,1128,107"/>
+<area shape="poly" title=" " alt="" coords="1033,31,1062,66,1058,69,1029,34"/>
+<area shape="rect" title=" " alt="" coords="1152,80,1256,107"/>
+<area shape="poly" title=" " alt="" coords="1054,30,1158,71,1156,76,1052,35"/>
+<area shape="rect" title=" " alt="" coords="1280,80,1383,107"/>
+<area shape="poly" title=" " alt="" coords="1076,30,1266,74,1264,79,1075,35"/>
+<area shape="rect" title=" " alt="" coords="1407,80,1555,107"/>
+<area shape="poly" title=" " alt="" coords="1102,30,1392,75,1391,81,1101,35"/>
+<area shape="rect" title=" " alt="" coords="1579,80,1650,107"/>
+<area shape="poly" title=" " alt="" coords="1122,24,1323,43,1442,58,1564,77,1563,82,1441,63,1322,48,1122,29"/>
+<area shape="rect" title=" " alt="" coords="1673,80,1745,107"/>
+<area shape="poly" title=" " alt="" coords="1122,22,1363,40,1509,56,1659,77,1658,83,1508,61,1362,45,1122,27"/>
+<area shape="rect" title=" " alt="" coords="1769,80,1830,107"/>
+<area shape="poly" title=" " alt="" coords="1122,19,1247,24,1403,35,1577,52,1754,77,1753,82,1576,57,1403,40,1247,30,1122,25"/>
+<area shape="rect" title=" " alt="" coords="1854,80,1932,107"/>
+<area shape="poly" title=" " alt="" coords="1122,20,1438,35,1636,52,1839,77,1838,82,1636,57,1438,40,1122,25"/>
+<area shape="rect" title=" " alt="" coords="1956,80,2019,107"/>
+<area shape="poly" title=" " alt="" coords="1122,17,1278,20,1480,29,1708,47,1941,77,1940,83,1708,52,1480,35,1278,26,1122,23"/>
+<area shape="rect" title=" " alt="" coords="366,155,441,181"/>
+<area shape="poly" title=" " alt="" coords="406,107,406,139,401,139,401,107"/>
+<area shape="poly" title=" " alt="" coords="427,105,498,144,496,149,425,110"/>
+<area shape="poly" title=" " alt="" coords="250,105,358,146,356,151,249,110"/>
+<area shape="poly" title=" " alt="" coords="192,110,107,150,104,145,189,105"/>
+<area shape="poly" title=" " alt="" coords="232,105,270,142,266,146,228,109"/>
+<area shape="rect" title=" " alt="" coords="149,155,218,181"/>
+<area shape="poly" title=" " alt="" coords="214,108,198,142,193,139,209,106"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+マクロ定義</h2></td></tr>
+<tr class="memitem:a96733d752f26337e8085e1827258b973" id="r_a96733d752f26337e8085e1827258b973"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_object_8cpp_a96733d752f26337e8085e1827258b973.html#a96733d752f26337e8085e1827258b973">EIGEN_DISABLE_UNALIGNED_ARRAY_ASSERT</a></td></tr>
+<tr class="separator:a96733d752f26337e8085e1827258b973"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4962bceade5775b0464f7b604f886cd4" id="r_a4962bceade5775b0464f7b604f886cd4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_object_8cpp_a4962bceade5775b0464f7b604f886cd4.html#a4962bceade5775b0464f7b604f886cd4">EIGEN_DONT_VECTORIZE</a></td></tr>
+<tr class="separator:a4962bceade5775b0464f7b604f886cd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a525335710b53cb064ca56b936120431e" id="r_a525335710b53cb064ca56b936120431e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_object_8cpp_a525335710b53cb064ca56b936120431e.html#a525335710b53cb064ca56b936120431e">_USE_MATH_DEFINES</a></td></tr>
+<tr class="separator:a525335710b53cb064ca56b936120431e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+関数</h2></td></tr>
+<tr class="memitem:ac54406f1b30290f7d91a1dcb411810a9" id="r_ac54406f1b30290f7d91a1dcb411810a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_object_8cpp_ac54406f1b30290f7d91a1dcb411810a9.html#ac54406f1b30290f7d91a1dcb411810a9">drawFloor</a> ()</td></tr>
+<tr class="separator:ac54406f1b30290f7d91a1dcb411810a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab127d7c13829e0bdce3fc756fc122786" id="r_ab127d7c13829e0bdce3fc756fc122786"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_object_8cpp_ab127d7c13829e0bdce3fc756fc122786.html#ab127d7c13829e0bdce3fc756fc122786">drawcube</a> ()</td></tr>
+<tr class="separator:ab127d7c13829e0bdce3fc756fc122786"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01a438ea9dc43dd7f5b7ac2052836be5" id="r_a01a438ea9dc43dd7f5b7ac2052836be5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_object_8cpp_a01a438ea9dc43dd7f5b7ac2052836be5.html#a01a438ea9dc43dd7f5b7ac2052836be5">drawXYZAxes</a> ()</td></tr>
+<tr class="separator:a01a438ea9dc43dd7f5b7ac2052836be5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a896d5e8972272a259d7c54eb12ce3c8b" id="r_a896d5e8972272a259d7c54eb12ce3c8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_object_8cpp_a896d5e8972272a259d7c54eb12ce3c8b.html#a896d5e8972272a259d7c54eb12ce3c8b">drawcamera</a> (const QVector3D &amp;eyePoint, const QVector3D &amp;lookAtPoint)</td></tr>
+<tr class="separator:a896d5e8972272a259d7c54eb12ce3c8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48bbd693cf150e88aeceea5f9d1a8cdd" id="r_a48bbd693cf150e88aeceea5f9d1a8cdd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_object_8cpp_a48bbd693cf150e88aeceea5f9d1a8cdd.html#a48bbd693cf150e88aeceea5f9d1a8cdd">drawPlaneInCameraCoords</a> (const <a class="el" href="class_camera.html">Camera</a> &amp;camera, float <a class="el" href="bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3.html#acc017e1f28bf1b83809251a830f315c3">size</a>)</td></tr>
+<tr class="separator:a48bbd693cf150e88aeceea5f9d1a8cdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdba6981bb29f21dd9c8cbff3865254c" id="r_afdba6981bb29f21dd9c8cbff3865254c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="draw_object_8cpp_afdba6981bb29f21dd9c8cbff3865254c.html#afdba6981bb29f21dd9c8cbff3865254c">drawXYGrid</a> (float gridSize, <a class="el" href="level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b.html#a4e8e1c1bb9d4e05fc671fc133ec9dc9b">int</a> gridCount)</td></tr>
+<tr class="separator:afdba6981bb29f21dd9c8cbff3865254c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

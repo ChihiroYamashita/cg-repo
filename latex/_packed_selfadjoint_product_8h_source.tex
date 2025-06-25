@@ -1,0 +1,59 @@
+\doxysection{Packed\+Selfadjoint\+Product.\+h}
+\hypertarget{_packed_selfadjoint_product_8h_source}{}\label{_packed_selfadjoint_product_8h_source}\index{eigen-\/3.4.0/eigen-\/3.4.0/blas/PackedSelfadjointProduct.h@{eigen-\/3.4.0/eigen-\/3.4.0/blas/PackedSelfadjointProduct.h}}
+\mbox{\hyperlink{_packed_selfadjoint_product_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ Eigen,\ a\ lightweight\ C++\ template\ library}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ for\ linear\ algebra.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (C)\ 2012\ Chen-\/Pang\ He\ <jdh8@ms63.hinet.net>}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ This\ Source\ Code\ Form\ is\ subject\ to\ the\ terms\ of\ the\ Mozilla}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Public\ License\ v.\ 2.0.\ If\ a\ copy\ of\ the\ MPL\ was\ not\ distributed}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ with\ this\ file,\ You\ can\ obtain\ one\ at\ http://mozilla.org/MPL/2.0/.}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_SELFADJOINT\_PACKED\_PRODUCT\_H}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ EIGEN\_SELFADJOINT\_PACKED\_PRODUCT\_H}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceinternal}{internal}}\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{/*\ Optimized\ matrix\ +=\ alpha\ *\ uv'}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ The\ matrix\ is\ in\ packed\ form.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Scalar,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{int}\ StorageOrder,\ \textcolor{keywordtype}{int}\ UpLo,\ \textcolor{keywordtype}{bool}\ ConjLhs,\ \textcolor{keywordtype}{bool}\ ConjRhs>}
+\DoxyCodeLine{00019\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinternal_1_1selfadjoint__packed__rank1__update}{selfadjoint\_packed\_rank1\_update}};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Scalar,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{int}\ UpLo,\ \textcolor{keywordtype}{bool}\ ConjLhs,\ \textcolor{keywordtype}{bool}\ ConjRhs>}
+\DoxyCodeLine{00022\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinternal_1_1selfadjoint__packed__rank1__update}{selfadjoint\_packed\_rank1\_update}}<\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}},Index,ColMajor,UpLo,ConjLhs,ConjRhs>}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ NumTraits<Scalar>::Real\ \mbox{\hyperlink{structinternal_1_1selfadjoint__packed__rank1__update_3_01_scalar_00_01_index_00_01_col_major_00_cda55a2b2bf1b1755d1ad2703b37584d_a24d795d9bcf6948a21f4c049842682a7_a24d795d9bcf6948a21f4c049842682a7}{RealScalar}};}
+\DoxyCodeLine{00025\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structinternal_1_1selfadjoint__packed__rank1__update_3_01_scalar_00_01_index_00_01_col_major_00_cda55a2b2bf1b1755d1ad2703b37584d_a823db1e9ff13c1fab83dc5513eafa1e8_a823db1e9ff13c1fab83dc5513eafa1e8}{run}}(Index\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}*\ \mbox{\hyperlink{_tutorial___advanced_initialization___comma_temporary_8cpp_a5d2ded7a4c8830608d7b218f5f27c0a0_a5d2ded7a4c8830608d7b218f5f27c0a0}{mat}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}*\ vec,\ \mbox{\hyperlink{structinternal_1_1selfadjoint__packed__rank1__update_3_01_scalar_00_01_index_00_01_col_major_00_cda55a2b2bf1b1755d1ad2703b37584d_a24d795d9bcf6948a21f4c049842682a7_a24d795d9bcf6948a21f4c049842682a7}{RealScalar}}\ \mbox{\hyperlink{level1__cplx__impl_8h_ad64a0b860552910d1ffaf381e5d66e03_ad64a0b860552910d1ffaf381e5d66e03}{alpha}})}
+\DoxyCodeLine{00026\ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{typedef}\ Map<const\ Matrix<Scalar,Dynamic,1>\ >\ OtherMap;}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ conj\_expr\_if<ConjLhs,OtherMap>::type\ ConjRhsType;}
+\DoxyCodeLine{00029\ \ \ \ \ conj\_if<ConjRhs>\ cj;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{for}\ (Index\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}=0;\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}<\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}};\ ++\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}})}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ Map<Matrix<Scalar,Dynamic,1>\ >(\mbox{\hyperlink{_tutorial___advanced_initialization___comma_temporary_8cpp_a5d2ded7a4c8830608d7b218f5f27c0a0_a5d2ded7a4c8830608d7b218f5f27c0a0}{mat}},\ UpLo==Lower\ ?\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}-\/\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ :\ (\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}+1))\ +=\ \mbox{\hyperlink{level1__cplx__impl_8h_ad64a0b860552910d1ffaf381e5d66e03_ad64a0b860552910d1ffaf381e5d66e03}{alpha}}\ *\ cj(vec[\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}])\ *\ ConjRhsType(OtherMap(vec+(UpLo==Lower\ ?\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ :\ 0),\ UpLo==Lower\ ?\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}-\/\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ :\ (\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}+1)));}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \textcolor{comment}{//FIXME\ This\ should\ be\ handled\ outside.}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \mbox{\hyperlink{_tutorial___advanced_initialization___comma_temporary_8cpp_a5d2ded7a4c8830608d7b218f5f27c0a0_a5d2ded7a4c8830608d7b218f5f27c0a0}{mat}}[UpLo==Lower\ ?\ 0\ :\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}]\ =\ numext::real(\mbox{\hyperlink{_tutorial___advanced_initialization___comma_temporary_8cpp_a5d2ded7a4c8830608d7b218f5f27c0a0_a5d2ded7a4c8830608d7b218f5f27c0a0}{mat}}[UpLo==Lower\ ?\ 0\ :\ \mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}]);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \mbox{\hyperlink{_tutorial___advanced_initialization___comma_temporary_8cpp_a5d2ded7a4c8830608d7b218f5f27c0a0_a5d2ded7a4c8830608d7b218f5f27c0a0}{mat}}\ +=\ UpLo==Lower\ ?\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}}-\/\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}\ :\ (\mbox{\hyperlink{_bi_c_g_s_t_a_b__step__by__step_8cpp_acb559820d9ca11295b4500f179ef6392_acb559820d9ca11295b4500f179ef6392}{i}}+1);}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+\DoxyCodeLine{00038\ \ \ \}}
+\DoxyCodeLine{00039\ \};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Scalar,\ \textcolor{keyword}{typename}\ Index,\ \textcolor{keywordtype}{int}\ UpLo,\ \textcolor{keywordtype}{bool}\ ConjLhs,\ \textcolor{keywordtype}{bool}\ ConjRhs>}
+\DoxyCodeLine{00042\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinternal_1_1selfadjoint__packed__rank1__update}{selfadjoint\_packed\_rank1\_update}}<\mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}},Index,RowMajor,UpLo,ConjLhs,ConjRhs>}
+\DoxyCodeLine{00043\ \{}
+\DoxyCodeLine{00044\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ NumTraits<Scalar>::Real\ \mbox{\hyperlink{structinternal_1_1selfadjoint__packed__rank1__update_3_01_scalar_00_01_index_00_01_row_major_00_9e7850f711875a82e66e0710a9772df5_ab246feaaf2edc02847a44235b3ae2a5a_ab246feaaf2edc02847a44235b3ae2a5a}{RealScalar}};}
+\DoxyCodeLine{00045\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structinternal_1_1selfadjoint__packed__rank1__update_3_01_scalar_00_01_index_00_01_row_major_00_9e7850f711875a82e66e0710a9772df5_a7e831a9437e04d28737dddacec8f1b97_a7e831a9437e04d28737dddacec8f1b97}{run}}(Index\ \mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}*\ \mbox{\hyperlink{_tutorial___advanced_initialization___comma_temporary_8cpp_a5d2ded7a4c8830608d7b218f5f27c0a0_a5d2ded7a4c8830608d7b218f5f27c0a0}{mat}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{bench__gemm_8cpp_a052eb942d12b6404aade6fae4b075fb9_a052eb942d12b6404aade6fae4b075fb9}{Scalar}}*\ vec,\ \mbox{\hyperlink{structinternal_1_1selfadjoint__packed__rank1__update_3_01_scalar_00_01_index_00_01_row_major_00_9e7850f711875a82e66e0710a9772df5_ab246feaaf2edc02847a44235b3ae2a5a_ab246feaaf2edc02847a44235b3ae2a5a}{RealScalar}}\ \mbox{\hyperlink{level1__cplx__impl_8h_ad64a0b860552910d1ffaf381e5d66e03_ad64a0b860552910d1ffaf381e5d66e03}{alpha}})}
+\DoxyCodeLine{00046\ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{structinternal_1_1selfadjoint__packed__rank1__update}{selfadjoint\_packed\_rank1\_update<Scalar,Index,ColMajor,UpLo==Lower?Upper:Lower,ConjRhs,ConjLhs>::run}}(\mbox{\hyperlink{bench_vec_add_8cpp_acc017e1f28bf1b83809251a830f315c3_acc017e1f28bf1b83809251a830f315c3}{size}},\mbox{\hyperlink{_tutorial___advanced_initialization___comma_temporary_8cpp_a5d2ded7a4c8830608d7b218f5f27c0a0_a5d2ded7a4c8830608d7b218f5f27c0a0}{mat}},vec,\mbox{\hyperlink{level1__cplx__impl_8h_ad64a0b860552910d1ffaf381e5d66e03_ad64a0b860552910d1ffaf381e5d66e03}{alpha}});}
+\DoxyCodeLine{00048\ \ \ \}}
+\DoxyCodeLine{00049\ \};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \}\ \textcolor{comment}{//\ end\ namespace\ internal}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ EIGEN\_SELFADJOINT\_PACKED\_PRODUCT\_H}}
+
+\end{DoxyCode}

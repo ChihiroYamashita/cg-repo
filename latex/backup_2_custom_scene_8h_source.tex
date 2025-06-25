@@ -1,0 +1,107 @@
+\doxysection{Custom\+Scene.\+h}
+\hypertarget{backup_2_custom_scene_8h_source}{}\label{backup_2_custom_scene_8h_source}\index{backup/CustomScene.h@{backup/CustomScene.h}}
+\mbox{\hyperlink{backup_2_custom_scene_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//タイムラインに関する記述}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ CUSTOMSCENE\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ CUSTOMSCENE\_H}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}qvector3d.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <QGraphicsScene>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <QGraphicsSceneMouseEvent>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <QGraphicsLineItem>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <QList>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <QPair>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_main_window}{MainWindow}};\ \textcolor{comment}{//\ 前方宣言}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ キーフレーム構造体の定義}}
+\DoxyCodeLine{00015\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_camera_keyframe}{CameraKeyframe}}\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_camera_keyframe_ace98e6dca820e62372cf1c8647865f6b_ace98e6dca820e62372cf1c8647865f6b}{frameNumber}};}
+\DoxyCodeLine{00017\ \ \ \ \ QVector3D\ \mbox{\hyperlink{struct_camera_keyframe_a86e0ae8b25dfa4731a870ed7b98cc2c3_a86e0ae8b25dfa4731a870ed7b98cc2c3}{eyePoint}};}
+\DoxyCodeLine{00018\ \ \ \ \ QVector3D\ \mbox{\hyperlink{struct_camera_keyframe_ae958338c7b301667d0622825d46ee24b_ae958338c7b301667d0622825d46ee24b}{lookAtPoint}};}
+\DoxyCodeLine{00019\ \ \ \ \ QVector3D\ \mbox{\hyperlink{struct_camera_keyframe_aa5c2babc1df575c6036fd2901b531cc3_aa5c2babc1df575c6036fd2901b531cc3}{upVector}};}
+\DoxyCodeLine{00020\ \ \ \ \ QVector3D\ \mbox{\hyperlink{struct_camera_keyframe_aa0a913d1aeb0fa49f990e99031999c5d_aa0a913d1aeb0fa49f990e99031999c5d}{xVector}};}
+\DoxyCodeLine{00021\ \ \ \ \ QVector3D\ \mbox{\hyperlink{struct_camera_keyframe_ac3b7b4003d2a41b0e445f5cb477ee666_ac3b7b4003d2a41b0e445f5cb477ee666}{yVector}};}
+\DoxyCodeLine{00022\ \ \ \ \ QVector3D\ \mbox{\hyperlink{struct_camera_keyframe_a2d389011fb33fc564b1cc80eb2022a77_a2d389011fb33fc564b1cc80eb2022a77}{zVector}};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_camera_keyframe_a972b4e115b9eccd742311565741c08e7_a972b4e115b9eccd742311565741c08e7}{fov}};}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{struct_camera_keyframe_a891fc265dfd5c266408b999296acef50_a891fc265dfd5c266408b999296acef50}{zoom}};}
+\DoxyCodeLine{00025\ \};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_custom_scene}{CustomScene}}\ :\ \textcolor{keyword}{public}\ QGraphicsScene}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00034\ \ \ \ \ QGraphicsLineItem*\ \mbox{\hyperlink{class_custom_scene_a16c433119635358d3498a0516dafcd16_a16c433119635358d3498a0516dafcd16}{playhead}}\ ;}
+\DoxyCodeLine{00035\ \ \ \ \ QGraphicsPathItem*\ \mbox{\hyperlink{class_custom_scene_ade97e4eb535a29238b427dbfca43c8a8_ade97e4eb535a29238b427dbfca43c8a8}{backgroundItem}};}
+\DoxyCodeLine{00036\ \ \ \ \ qreal\ \mbox{\hyperlink{class_custom_scene_a405b137c603d6372b507a31d52265304_a405b137c603d6372b507a31d52265304}{playheadPositionX}}\ =\ 10.0;\ \textcolor{comment}{//\ プレイヘッドのX位置を保持する変数}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_custom_scene_ab7448c293519dd849ad8c41ca2f82427_ab7448c293519dd849ad8c41ca2f82427}{playheadBeingDragged}}\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ ドラッグ状態を追跡するための変数}}
+\DoxyCodeLine{00038\ \ \ \ \ QGraphicsTextItem*\ \mbox{\hyperlink{class_custom_scene_afd7420086283348d3d02a187df4618b1_afd7420086283348d3d02a187df4618b1}{playheadText}}\ =\ \textcolor{keyword}{nullptr};\ \textcolor{comment}{//\ playheadのフレーム数を表示するテキスト}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_custom_scene_a7b54991751ed4d0a867b82c2f75ea64e_a7b54991751ed4d0a867b82c2f75ea64e}{frameRate}}\ =\ 30;\ \textcolor{comment}{//\ 1秒あたりのフレーム数}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ qreal\ \mbox{\hyperlink{class_custom_scene_a7ae562d52c0e0b461e60fe0a5a251ffc_a7ae562d52c0e0b461e60fe0a5a251ffc}{m\_currentMouseX}};\ \ \textcolor{comment}{//\ マウスの現在のX座標を保存するメンバ変数}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \textcolor{comment}{/*==========キーフレームアイコンに関する実装===========*/}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ QGraphicsPolygonItem*\ \mbox{\hyperlink{class_custom_scene_a22500fa53b3eb02c7b1f00e907987a81_a22500fa53b3eb02c7b1f00e907987a81}{keyframeItem}};\textcolor{comment}{//キーフレームアイコン}}
+\DoxyCodeLine{00048\ \ \ \ \ \ QList<QGraphicsPolygonItem*>\ \mbox{\hyperlink{class_custom_scene_a55871e4ca5ef095d77fa756a4c98d57a_a55871e4ca5ef095d77fa756a4c98d57a}{keyframeItems}};\ \textcolor{comment}{//\ キーフレームアイコンのリスト}}
+\DoxyCodeLine{00049\ \ \ \ \ \ QList<QPair<QGraphicsPolygonItem*,\ QGraphicsLineItem*>>\ \mbox{\hyperlink{class_custom_scene_ab3f653c107eca540b1a4c25314b06306_ab3f653c107eca540b1a4c25314b06306}{keyframeLines}};\ \textcolor{comment}{//\ キーフレームと線をペアで管理するリスト}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/線形補間-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ QList<CameraKeyframe>\ \mbox{\hyperlink{class_custom_scene_a36ba6a3ad0adf5aea03fada681f84694_a36ba6a3ad0adf5aea03fada681f84694}{keyframes}};\ \textcolor{comment}{//\ カメラデータ構造体CameraKeyframeのリスト}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//mainwindowからスロットをもらうためのポインタ}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \mbox{\hyperlink{class_main_window}{MainWindow}}\ *\mbox{\hyperlink{class_custom_scene_a7a269848be7913c87a852c4b15b1672d_a7a269848be7913c87a852c4b15b1672d}{m\_mainWindow}};\ \textcolor{comment}{//\ メインウィンドウのポインタ}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \textcolor{comment}{//キーフレームアイコンのリスト}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_custom_scene_aad0291a90880d01ad6259721eff34841_aad0291a90880d01ad6259721eff34841}{sceneWidth}};\ \textcolor{comment}{//\ シーンの幅を保存するメンバ変数}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_custom_scene_a76afc0f46f8bb8d952735a45c705d8cb_a76afc0f46f8bb8d952735a45c705d8cb}{CustomScene}}(\mbox{\hyperlink{class_main_window}{MainWindow}}\ *mainWindow,QObject\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_custom_scene_a8d08d1fe3e2a5d2b1985a5014be34e67_a8d08d1fe3e2a5d2b1985a5014be34e67}{setupScene}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{myopenglwidget_8cpp_a2474a5474cbff19523a51eb1de01cda4_a2474a5474cbff19523a51eb1de01cda4}{width}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{myopenglwidget_8cpp_ad12fc34ce789bce6c8a05d8a17138534_ad12fc34ce789bce6c8a05d8a17138534}{height}});\ \textcolor{comment}{//\ サイズをパラメータとして受け取るように変更\ \ //\ シーンのセットアップ関数}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_custom_scene_a83a173bc67b1b7b8b281e192430bf067_a83a173bc67b1b7b8b281e192430bf067}{addKeyframe}}(\textcolor{keywordtype}{int}\ frameNumber,\ \textcolor{keyword}{const}\ QVector3D\&\ eyePoint,\ \textcolor{keyword}{const}\ QVector3D\&\ lookAtPoint,\ \textcolor{keyword}{const}\ QVector3D\&\ upVector,\ \textcolor{keyword}{const}\ QVector3D\&\ xVector,\ \textcolor{keyword}{const}\ QVector3D\&\ yVector,\ \textcolor{keyword}{const}\ QVector3D\&\ zVector,\ \textcolor{keywordtype}{float}\ fov,\ \textcolor{keywordtype}{double}\ zoom);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ qreal\ \mbox{\hyperlink{class_custom_scene_a547635870c2283801596735e59fbf658_a547635870c2283801596735e59fbf658}{currentMousePositionX}}()\ \textcolor{keyword}{const};\ \ \textcolor{comment}{//\ マウス位置を取得するメソッド}}
+\DoxyCodeLine{00069\ \ \ \ \ qreal\ \mbox{\hyperlink{class_custom_scene_a8c573a90a2ca781852c03c5922e2866e_a8c573a90a2ca781852c03c5922e2866e}{getPlayheadPositionX}}()\ \textcolor{keyword}{const};\textcolor{comment}{//クラス外にPlayheadPositionX()を教える}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_custom_scene_a30037db7e5e6de440b09ee4a99ca647a_a30037db7e5e6de440b09ee4a99ca647a}{startpixel}}=10;\textcolor{comment}{//タイムラインの開始位置}}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_custom_scene_a071d9d5303aaa8780cc6c57908f82dbd_a071d9d5303aaa8780cc6c57908f82dbd}{pixelsPerFrame}};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{/*==========線形補間に関する実装===========*/}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{//線形補間した値を適応するメソッド}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_custom_scene_ae098443942eb7ffb9b8a6c8799cfedf8_ae098443942eb7ffb9b8a6c8799cfedf8}{updateCameraForFrame}}(\textcolor{keywordtype}{int}\ frameNumber);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//キーフレムを選択して削除するためのポインタ変数}}
+\DoxyCodeLine{00079\ \ \ \ \ QGraphicsPolygonItem*\ \mbox{\hyperlink{class_custom_scene_ac21d9b92d141f055f57b0d46e171f19a_ac21d9b92d141f055f57b0d46e171f19a}{selectedKeyframe}}\ =\ \textcolor{keyword}{nullptr};\ \textcolor{comment}{//\ 選択されたキーフレーム}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{//キーフレームアイコンとそのデータを削除する変数}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_custom_scene_a1e80ebecf671c608696d91b5c957f6b5_a1e80ebecf671c608696d91b5c957f6b5}{deleteSelectedKeyframe}}(\textcolor{keywordtype}{int}\ frameNumber);}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//mainwidow等に渡すキーフレーム数}}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_custom_scene_ae6d8f7d90fdb140af07acd99cec248f4_ae6d8f7d90fdb140af07acd99cec248f4}{calculateFrameNumberFromPlayhead}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00090\ \ \ \ \textcolor{comment}{//\ イベントハンドラ}}
+\DoxyCodeLine{00091\ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_custom_scene_aad0c880244be42094927e1024b487b6e_aad0c880244be42094927e1024b487b6e}{eventFilter}}(QObject\ *watched,\ QEvent\ *event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00092\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_custom_scene_a5f51d6f3ce39d949a08530ff03426c2d_a5f51d6f3ce39d949a08530ff03426c2d}{mousePressEvent}}(QGraphicsSceneMouseEvent\ *event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00093\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_custom_scene_adda499da620402ce4c0bce53215a22c0_adda499da620402ce4c0bce53215a22c0}{mouseMoveEvent}}(QGraphicsSceneMouseEvent\ *event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00094\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_custom_scene_a2270d9c00a5bbb861869dc569a4389f9_a2270d9c00a5bbb861869dc569a4389f9}{mouseReleaseEvent}}(QGraphicsSceneMouseEvent\ *event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00095\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_custom_scene_a013742784a1d474de3e707d0afdfe841_a013742784a1d474de3e707d0afdfe841}{wheelEvent}}(QGraphicsSceneWheelEvent\ *event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00096\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_custom_scene_a84145e80b4373effadc59ab460033a8e_a84145e80b4373effadc59ab460033a8e}{updatePlayheadText}}(qreal\ newPos);}
+\DoxyCodeLine{00097\ \ \ \ \textcolor{comment}{//線形補間関数}}
+\DoxyCodeLine{00098\ \ \ \ \mbox{\hyperlink{struct_camera_keyframe}{CameraKeyframe}}\ \mbox{\hyperlink{class_custom_scene_a8b32e97d6b29ac997e4611660b052d1c_a8b32e97d6b29ac997e4611660b052d1c}{interpolateKeyframe}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_camera_keyframe}{CameraKeyframe}}\&\ kf1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_camera_keyframe}{CameraKeyframe}}\&\ kf2,\ \textcolor{keywordtype}{float}\ t)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00099\ \};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CUSTOMSCENE\_H}}
+
+\end{DoxyCode}

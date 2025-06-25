@@ -1,0 +1,171 @@
+\doxysection{eigen-\/3.4.0/eigen-\/3.4.0/unsupported/test/openglsupport.cpp ファイル}
+\hypertarget{openglsupport_8cpp}{}\label{openglsupport_8cpp}\index{eigen-\/3.4.0/eigen-\/3.4.0/unsupported/test/openglsupport.cpp@{eigen-\/3.4.0/eigen-\/3.4.0/unsupported/test/openglsupport.cpp}}
+{\ttfamily \#include $<$main.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$GL/glew.\+h$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Open\+GLSupport$>$}\newline
+{\ttfamily \#include $<$GL/freeglut.\+h$>$}\newline
+openglsupport.\+cpp の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{openglsupport_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{openglsupport_8cpp_a051d5fb68eaa9d976a69c362bfa65b26_a051d5fb68eaa9d976a69c362bfa65b26}{VERIFY\+\_\+\+MATRIX}}(CODE,  REF)
+\item 
+\#define \mbox{\hyperlink{openglsupport_8cpp_aa70e0c161d48b03aa10e2d4e1a42c153_aa70e0c161d48b03aa10e2d4e1a42c153}{VERIFY\+\_\+\+UNIFORM}}(SUFFIX,  NAME,  \mbox{\hyperlink{bench_f_f_t_8cpp_a5a392548f2df67370cb15d2a5d75cd7b_a5a392548f2df67370cb15d2a5d75cd7b}{TYPE}})
+\item 
+\#define \mbox{\hyperlink{openglsupport_8cpp_ad1e3f648f023eefd0562b3fcf3b38ebf_ad1e3f648f023eefd0562b3fcf3b38ebf}{VERIFY\+\_\+\+UNIFORMi}}(NAME,  \mbox{\hyperlink{bench_f_f_t_8cpp_a5a392548f2df67370cb15d2a5d75cd7b_a5a392548f2df67370cb15d2a5d75cd7b}{TYPE}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{openglsupport_8cpp_a25f83584f18efd46a6e78b49a4a99f59_a25f83584f18efd46a6e78b49a4a99f59}{print\+Program\+Info\+Log}} (GLuint object\+ID)
+\item 
+void \mbox{\hyperlink{openglsupport_8cpp_add2c0066beead07a33553ddddfc325a1_add2c0066beead07a33553ddddfc325a1}{print\+Shader\+Info\+Log}} (GLuint object\+ID)
+\item 
+GLint \mbox{\hyperlink{openglsupport_8cpp_aa57cf05c20b1813dafb58867ad421da2_aa57cf05c20b1813dafb58867ad421da2}{create\+Program}} (const char \texorpdfstring{$\ast$}{*}vtx, const char \texorpdfstring{$\ast$}{*}frg, bool print\+\_\+errors=true)
+\item 
+GLint \mbox{\hyperlink{openglsupport_8cpp_a742d581a0c7384dfa68fbc7ca75d3c4a_a742d581a0c7384dfa68fbc7ca75d3c4a}{create\+Program}} (const std\+::string \&vtx, const std\+::string \&frg, bool print\+\_\+errors=true)
+\item 
+std\+::string \mbox{\hyperlink{openglsupport_8cpp_ae9ebd8b8f61019efa91bfc9d92c04373_ae9ebd8b8f61019efa91bfc9d92c04373}{get\+Glsl\+Version\+String}} (\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} gl\+\_\+major\+\_\+version, \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} gl\+\_\+minor\+\_\+version)
+\item 
+void \mbox{\hyperlink{openglsupport_8cpp_aa47f75e33f7889ff1ea365bec8a3cc80_aa47f75e33f7889ff1ea365bec8a3cc80}{find\+\_\+and\+\_\+replace}} (std\+::string \&str, const std\+::string \&find, const std\+::string \&replace)
+\item 
+std\+::string \mbox{\hyperlink{openglsupport_8cpp_afb3b8edf3669b067d7266cad3a1b66e7_afb3b8edf3669b067d7266cad3a1b66e7}{format}} (const std\+::string \&str, const std\+::vector$<$ std\+::string $>$ \&find, const std\+::vector$<$ std\+::string $>$ \&replace)
+\item 
+void \mbox{\hyperlink{openglsupport_8cpp_a12a7c6bd39578e2d382f24f2a674fee5_a12a7c6bd39578e2d382f24f2a674fee5}{openglsupport\+\_\+test\+\_\+loop}} ()
+\item 
+\mbox{\hyperlink{openglsupport_8cpp_a4b784828d4675aad073ee41b5acd8a8c_a4b784828d4675aad073ee41b5acd8a8c}{EIGEN\+\_\+\+DECLARE\+\_\+\+TEST}} (openglsupport)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{openglsupport_8cpp_a051d5fb68eaa9d976a69c362bfa65b26_a051d5fb68eaa9d976a69c362bfa65b26}\index{openglsupport.cpp@{openglsupport.cpp}!VERIFY\_MATRIX@{VERIFY\_MATRIX}}
+\index{VERIFY\_MATRIX@{VERIFY\_MATRIX}!openglsupport.cpp@{openglsupport.cpp}}
+\doxysubsubsection{\texorpdfstring{VERIFY\_MATRIX}{VERIFY\_MATRIX}}
+{\footnotesize\ttfamily \label{openglsupport_8cpp_a051d5fb68eaa9d976a69c362bfa65b26_a051d5fb68eaa9d976a69c362bfa65b26} 
+\#define VERIFY\+\_\+\+MATRIX(\begin{DoxyParamCaption}\item[{}]{CODE}{, }\item[{}]{REF}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ glMatrixMode(GL\_MODELVIEW);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ glLoadIdentity();\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ CODE;\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix<float,4,4,ColMajor>}}\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}};\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}.\mbox{\hyperlink{class_eigen_1_1_plain_object_base_ac21ad5f989f320e46958b75ac8d9a1da_ac21ad5f989f320e46958b75ac8d9a1da}{setZero}}();\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ glGet(GL\_MODELVIEW\_MATRIX,\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}});\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ if(!(REF).\mbox{\hyperlink{_common_cwise_unary_ops_8h_aa89d007196125d10fa7d6e19811aca05_aa89d007196125d10fa7d6e19811aca05}{cast<float>}}().isApprox(\mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}))\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Expected:\(\backslash\)n"{}}\ <<\ ((REF).cast<\textcolor{keywordtype}{float}>())\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ <<\ \textcolor{stringliteral}{"{}got\(\backslash\)n"{}}\ <<\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)n"{}};\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ VERIFY\_IS\_APPROX((REF).\mbox{\hyperlink{_common_cwise_unary_ops_8h_aa89d007196125d10fa7d6e19811aca05_aa89d007196125d10fa7d6e19811aca05}{cast<float>}}(),\ \mbox{\hyperlink{_angle_axis__mimic__euler_8cpp_ab3cd915d758008bd19d0f2428fbb354a_ab3cd915d758008bd19d0f2428fbb354a}{m}});\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{openglsupport_8cpp_aa70e0c161d48b03aa10e2d4e1a42c153_aa70e0c161d48b03aa10e2d4e1a42c153}\index{openglsupport.cpp@{openglsupport.cpp}!VERIFY\_UNIFORM@{VERIFY\_UNIFORM}}
+\index{VERIFY\_UNIFORM@{VERIFY\_UNIFORM}!openglsupport.cpp@{openglsupport.cpp}}
+\doxysubsubsection{\texorpdfstring{VERIFY\_UNIFORM}{VERIFY\_UNIFORM}}
+{\footnotesize\ttfamily \label{openglsupport_8cpp_aa70e0c161d48b03aa10e2d4e1a42c153_aa70e0c161d48b03aa10e2d4e1a42c153} 
+\#define VERIFY\+\_\+\+UNIFORM(\begin{DoxyParamCaption}\item[{}]{SUFFIX}{, }\item[{}]{NAME}{, }\item[{}]{\mbox{\hyperlink{bench_f_f_t_8cpp_a5a392548f2df67370cb15d2a5d75cd7b_a5a392548f2df67370cb15d2a5d75cd7b}{TYPE}}}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{bench_f_f_t_8cpp_a5a392548f2df67370cb15d2a5d75cd7b_a5a392548f2df67370cb15d2a5d75cd7b}{TYPE}}\ value;\ value.setRandom();\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{bench_f_f_t_8cpp_a5a392548f2df67370cb15d2a5d75cd7b_a5a392548f2df67370cb15d2a5d75cd7b}{TYPE}}\ \mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}};\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ loc\ =\ glGetUniformLocation(prg\_id,\ \#NAME);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ VERIFY((loc!=-\/1)\ \&\&\ \textcolor{stringliteral}{"{}uniform\ not\ found"{}});\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ glUniform(loc,value);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ EIGEN\_CAT(glGetUniform,SUFFIX)(prg\_id,loc,\mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}}.data());\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ if(!value.isApprox(\mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}}))\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Expected:\(\backslash\)n"{}}\ <<\ value\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ <<\ \textcolor{stringliteral}{"{}got\(\backslash\)n"{}}\ <<\ \mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)n"{}};\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ VERIFY\_IS\_APPROX(value,\ \mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}});\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{openglsupport_8cpp_ad1e3f648f023eefd0562b3fcf3b38ebf_ad1e3f648f023eefd0562b3fcf3b38ebf}\index{openglsupport.cpp@{openglsupport.cpp}!VERIFY\_UNIFORMi@{VERIFY\_UNIFORMi}}
+\index{VERIFY\_UNIFORMi@{VERIFY\_UNIFORMi}!openglsupport.cpp@{openglsupport.cpp}}
+\doxysubsubsection{\texorpdfstring{VERIFY\_UNIFORMi}{VERIFY\_UNIFORMi}}
+{\footnotesize\ttfamily \label{openglsupport_8cpp_ad1e3f648f023eefd0562b3fcf3b38ebf_ad1e3f648f023eefd0562b3fcf3b38ebf} 
+\#define VERIFY\+\_\+\+UNIFORMi(\begin{DoxyParamCaption}\item[{}]{NAME}{, }\item[{}]{\mbox{\hyperlink{bench_f_f_t_8cpp_a5a392548f2df67370cb15d2a5d75cd7b_a5a392548f2df67370cb15d2a5d75cd7b}{TYPE}}}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{bench_f_f_t_8cpp_a5a392548f2df67370cb15d2a5d75cd7b_a5a392548f2df67370cb15d2a5d75cd7b}{TYPE}}\ value\ =\ TYPE::Random().eval().cast<\textcolor{keywordtype}{float}>().\mbox{\hyperlink{_common_cwise_unary_ops_8h_aa89d007196125d10fa7d6e19811aca05_aa89d007196125d10fa7d6e19811aca05}{cast<TYPE::Scalar>}}();\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{bench_f_f_t_8cpp_a5a392548f2df67370cb15d2a5d75cd7b_a5a392548f2df67370cb15d2a5d75cd7b}{TYPE}}\ \mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}};\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ loc\ =\ glGetUniformLocation(prg\_id,\ \#NAME);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ VERIFY((loc!=-\/1)\ \&\&\ \textcolor{stringliteral}{"{}uniform\ not\ found"{}});\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ glUniform(loc,value);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ glGetUniformiv(prg\_id,loc,(GLint*)\mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}}.data());\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ if(!value.isApprox(\mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}}))\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Expected:\(\backslash\)n"{}}\ <<\ value\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ <<\ \textcolor{stringliteral}{"{}got\(\backslash\)n"{}}\ <<\ \mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)n"{}};\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ VERIFY\_IS\_APPROX(value,\ \mbox{\hyperlink{_map__placement__new_8cpp_abe49a82806b5db2e012bc33839af03e6_abe49a82806b5db2e012bc33839af03e6}{data}});\ \(\backslash\)}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{openglsupport_8cpp_aa57cf05c20b1813dafb58867ad421da2_aa57cf05c20b1813dafb58867ad421da2}\index{openglsupport.cpp@{openglsupport.cpp}!createProgram@{createProgram}}
+\index{createProgram@{createProgram}!openglsupport.cpp@{openglsupport.cpp}}
+\doxysubsubsection{\texorpdfstring{createProgram()}{createProgram()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{openglsupport_8cpp_aa57cf05c20b1813dafb58867ad421da2_aa57cf05c20b1813dafb58867ad421da2} 
+GLint create\+Program (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{vtx}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{frg}{, }\item[{bool}]{print\+\_\+errors}{ = {\ttfamily true}}\end{DoxyParamCaption})}
+
+\Hypertarget{openglsupport_8cpp_a742d581a0c7384dfa68fbc7ca75d3c4a_a742d581a0c7384dfa68fbc7ca75d3c4a}\index{openglsupport.cpp@{openglsupport.cpp}!createProgram@{createProgram}}
+\index{createProgram@{createProgram}!openglsupport.cpp@{openglsupport.cpp}}
+\doxysubsubsection{\texorpdfstring{createProgram()}{createProgram()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{openglsupport_8cpp_a742d581a0c7384dfa68fbc7ca75d3c4a_a742d581a0c7384dfa68fbc7ca75d3c4a} 
+GLint create\+Program (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{vtx}{, }\item[{const std\+::string \&}]{frg}{, }\item[{bool}]{print\+\_\+errors}{ = {\ttfamily true}}\end{DoxyParamCaption})}
+
+\Hypertarget{openglsupport_8cpp_a4b784828d4675aad073ee41b5acd8a8c_a4b784828d4675aad073ee41b5acd8a8c}\index{openglsupport.cpp@{openglsupport.cpp}!EIGEN\_DECLARE\_TEST@{EIGEN\_DECLARE\_TEST}}
+\index{EIGEN\_DECLARE\_TEST@{EIGEN\_DECLARE\_TEST}!openglsupport.cpp@{openglsupport.cpp}}
+\doxysubsubsection{\texorpdfstring{EIGEN\_DECLARE\_TEST()}{EIGEN\_DECLARE\_TEST()}}
+{\footnotesize\ttfamily \label{openglsupport_8cpp_a4b784828d4675aad073ee41b5acd8a8c_a4b784828d4675aad073ee41b5acd8a8c} 
+EIGEN\+\_\+\+DECLARE\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{openglsupport}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{openglsupport_8cpp_aa47f75e33f7889ff1ea365bec8a3cc80_aa47f75e33f7889ff1ea365bec8a3cc80}\index{openglsupport.cpp@{openglsupport.cpp}!find\_and\_replace@{find\_and\_replace}}
+\index{find\_and\_replace@{find\_and\_replace}!openglsupport.cpp@{openglsupport.cpp}}
+\doxysubsubsection{\texorpdfstring{find\_and\_replace()}{find\_and\_replace()}}
+{\footnotesize\ttfamily \label{openglsupport_8cpp_aa47f75e33f7889ff1ea365bec8a3cc80_aa47f75e33f7889ff1ea365bec8a3cc80} 
+void find\+\_\+and\+\_\+replace (\begin{DoxyParamCaption}\item[{std\+::string \&}]{str}{, }\item[{const std\+::string \&}]{find}{, }\item[{const std\+::string \&}]{replace}{}\end{DoxyParamCaption})}
+
+\Hypertarget{openglsupport_8cpp_afb3b8edf3669b067d7266cad3a1b66e7_afb3b8edf3669b067d7266cad3a1b66e7}\index{openglsupport.cpp@{openglsupport.cpp}!format@{format}}
+\index{format@{format}!openglsupport.cpp@{openglsupport.cpp}}
+\doxysubsubsection{\texorpdfstring{format()}{format()}}
+{\footnotesize\ttfamily \label{openglsupport_8cpp_afb3b8edf3669b067d7266cad3a1b66e7_afb3b8edf3669b067d7266cad3a1b66e7} 
+std\+::string format (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str}{, }\item[{const std\+::vector$<$ std\+::string $>$ \&}]{find}{, }\item[{const std\+::vector$<$ std\+::string $>$ \&}]{replace}{}\end{DoxyParamCaption})}
+
+\Hypertarget{openglsupport_8cpp_ae9ebd8b8f61019efa91bfc9d92c04373_ae9ebd8b8f61019efa91bfc9d92c04373}\index{openglsupport.cpp@{openglsupport.cpp}!getGlslVersionString@{getGlslVersionString}}
+\index{getGlslVersionString@{getGlslVersionString}!openglsupport.cpp@{openglsupport.cpp}}
+\doxysubsubsection{\texorpdfstring{getGlslVersionString()}{getGlslVersionString()}}
+{\footnotesize\ttfamily \label{openglsupport_8cpp_ae9ebd8b8f61019efa91bfc9d92c04373_ae9ebd8b8f61019efa91bfc9d92c04373} 
+std\+::string get\+Glsl\+Version\+String (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{gl\+\_\+major\+\_\+version}{, }\item[{\mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}}}]{gl\+\_\+minor\+\_\+version}{}\end{DoxyParamCaption})}
+
+\Hypertarget{openglsupport_8cpp_a12a7c6bd39578e2d382f24f2a674fee5_a12a7c6bd39578e2d382f24f2a674fee5}\index{openglsupport.cpp@{openglsupport.cpp}!openglsupport\_test\_loop@{openglsupport\_test\_loop}}
+\index{openglsupport\_test\_loop@{openglsupport\_test\_loop}!openglsupport.cpp@{openglsupport.cpp}}
+\doxysubsubsection{\texorpdfstring{openglsupport\_test\_loop()}{openglsupport\_test\_loop()}}
+{\footnotesize\ttfamily \label{openglsupport_8cpp_a12a7c6bd39578e2d382f24f2a674fee5_a12a7c6bd39578e2d382f24f2a674fee5} 
+void openglsupport\+\_\+test\+\_\+loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{openglsupport_8cpp_a25f83584f18efd46a6e78b49a4a99f59_a25f83584f18efd46a6e78b49a4a99f59}\index{openglsupport.cpp@{openglsupport.cpp}!printProgramInfoLog@{printProgramInfoLog}}
+\index{printProgramInfoLog@{printProgramInfoLog}!openglsupport.cpp@{openglsupport.cpp}}
+\doxysubsubsection{\texorpdfstring{printProgramInfoLog()}{printProgramInfoLog()}}
+{\footnotesize\ttfamily \label{openglsupport_8cpp_a25f83584f18efd46a6e78b49a4a99f59_a25f83584f18efd46a6e78b49a4a99f59} 
+void print\+Program\+Info\+Log (\begin{DoxyParamCaption}\item[{GLuint}]{object\+ID}{}\end{DoxyParamCaption})}
+
+\Hypertarget{openglsupport_8cpp_add2c0066beead07a33553ddddfc325a1_add2c0066beead07a33553ddddfc325a1}\index{openglsupport.cpp@{openglsupport.cpp}!printShaderInfoLog@{printShaderInfoLog}}
+\index{printShaderInfoLog@{printShaderInfoLog}!openglsupport.cpp@{openglsupport.cpp}}
+\doxysubsubsection{\texorpdfstring{printShaderInfoLog()}{printShaderInfoLog()}}
+{\footnotesize\ttfamily \label{openglsupport_8cpp_add2c0066beead07a33553ddddfc325a1_add2c0066beead07a33553ddddfc325a1} 
+void print\+Shader\+Info\+Log (\begin{DoxyParamCaption}\item[{GLuint}]{object\+ID}{}\end{DoxyParamCaption})}
+

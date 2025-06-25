@@ -1,0 +1,122 @@
+\chapter{folder}
+\hypertarget{md__doxygen_2folder}{}\label{md__doxygen_2folder}\index{folder@{folder}}
+レイトレーシング機能を含む既存のコード（{\ttfamily main.\+cpp}, {\ttfamily Camera.\+cpp}, {\ttfamily Tri\+Mesh.\+cpp}, {\ttfamily GLPreview.\+cpp} など）を\+Qtプロジェクトに段階的に移植する際、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}目的別に役割を分けてフォルダ化・整理\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}することで、将来的な保守性と可読性が大きく向上します。
+
+\DoxyHorRuler{0}
+\hypertarget{md__doxygen_2folder_autotoc_md21}{}\doxysubsection{\texorpdfstring{✅ 推奨フォルダ構成と役割}{✅ 推奨フォルダ構成と役割}}\label{md__doxygen_2folder_autotoc_md21}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sources/}
+\DoxyCodeLine{├──\ core/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ 基本データ構造や汎用ユーティリティ}
+\DoxyCodeLine{│\ \ \ ├──\ ray.h/.cpp\ \ \ \ \ \ \ \ \ \#\ Ray,\ RayHit,\ 構造体定義}
+\DoxyCodeLine{│\ \ \ ├──\ material.h\ \ \ \ \ \ \ \ \ \#\ Material定義}
+\DoxyCodeLine{│\ \ \ └──\ utility.h/.cpp\ \ \ \ \ \#\ randomMT\ など}
+\DoxyCodeLine{│}
+\DoxyCodeLine{├──\ geometry/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ モデル・形状関連}
+\DoxyCodeLine{│\ \ \ ├──\ trimesh.h/.cpp\ \ \ \ \ \#\ TriMesh,\ extendMesh,\ loadObj\ など}
+\DoxyCodeLine{│\ \ \ ├──\ object.h/.cpp\ \ \ \ \ \ \#\ Object（複数Meshを含む）構造体と描画}
+\DoxyCodeLine{│\ \ \ └──\ light.h/.cpp\ \ \ \ \ \ \ \#\ AreaLight\ などの定義と描画}
+\DoxyCodeLine{│}
+\DoxyCodeLine{├──\ camera/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ カメラ周り}
+\DoxyCodeLine{│\ \ \ ├──\ camera.h/.cpp\ \ \ \ \ \ \#\ カメラの設定や\ screenView\ など}
+\DoxyCodeLine{│\ \ \ └──\ projection.h/.cpp\ \ \#\ OpenGL投影処理\ (projection\_and\_modelview)}
+\DoxyCodeLine{│}
+\DoxyCodeLine{├──\ film/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ 出力バッファ管理（レンダリング結果の保持）}
+\DoxyCodeLine{│\ \ \ ├──\ film\_buffer.h/.cpp\ \#\ g\_FilmBuffer,\ init/reset/updateFilmなど}
+\DoxyCodeLine{│\ \ \ └──\ drawfilm.h/.cpp\ \ \ \ \#\ drawFilm}
+\DoxyCodeLine{│}
+\DoxyCodeLine{├──\ rendering/\ \ \ \ \ \ \ \ \ \ \ \ \ \#\ レンダリング全般（RT＋OpenGL両対応）}
+\DoxyCodeLine{│\ \ \ ├──\ gl\_draw.cpp\ \ \ \ \ \ \ \ \#\ OpenGLベースの描画（drawObjectなど）}
+\DoxyCodeLine{│\ \ \ ├──\ raytracing.cpp\ \ \ \ \ \#\ rayTracing,\ rayTriangleIntersect\ など}
+\DoxyCodeLine{│\ \ \ └──\ shading.cpp\ \ \ \ \ \ \ \ \#\ computeShading,\ sampleRandomPointなど}
+\DoxyCodeLine{│}
+\DoxyCodeLine{└──\ main/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ アプリケーションのエントリーポイント}
+\DoxyCodeLine{\ \ \ \ └──\ main.cpp}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__doxygen_2folder_autotoc_md23}{}\doxysubsection{\texorpdfstring{✅ 各ファイルへの分類例}{✅ 各ファイルへの分類例}}\label{md__doxygen_2folder_autotoc_md23}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 関数/構造体   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 移動先ファイル   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 説明    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 関数/構造体   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 移動先ファイル   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 説明    }\\\cline{1-3}
+\endhead
+{\ttfamily Camera\+::screen\+View}   &{\ttfamily camera/camera.\+cpp}   &ピクセル座標→レイの生成    \\\cline{1-3}
+{\ttfamily projection\+\_\+and\+\_\+modelview}   &{\ttfamily camera/projection.\+cpp}   &Open\+GLの視野投影設定    \\\cline{1-3}
+{\ttfamily Tri\+Mesh}, {\ttfamily load\+Obj}, {\ttfamily extend\+Mesh}   &{\ttfamily geometry/trimesh.\+cpp}   &OBJ読み込み、メッシュ管理    \\\cline{1-3}
+{\ttfamily Object}, {\ttfamily draw\+Object}   &{\ttfamily geometry/object.\+cpp}   &複数メッシュまとめたオブジェクト    \\\cline{1-3}
+{\ttfamily Area\+Light}, {\ttfamily draw\+Lights}   &{\ttfamily geometry/light.\+cpp}   &エリアライト定義と描画    \\\cline{1-3}
+{\ttfamily draw\+Film}, {\ttfamily GLPreview.\+cpp}   &{\ttfamily film/drawfilm.\+cpp}   &描画出力    \\\cline{1-3}
+{\ttfamily g\+\_\+\+Film\+Buffer}, {\ttfamily init\+Film} 等   &{\ttfamily film/film\+\_\+buffer.\+cpp}   &バッファ初期化と管理    \\\cline{1-3}
+{\ttfamily ray\+Triangle\+Intersect} 等   &{\ttfamily rendering/raytracing.\+cpp}   &ジオメトリとのレイ交差    \\\cline{1-3}
+{\ttfamily compute\+Shading}, {\ttfamily sample\+Point}   &{\ttfamily rendering/shading.\+cpp}   &光の計算・間接照明など    \\\cline{1-3}
+{\ttfamily main.\+cpp}   &{\ttfamily main/main.\+cpp}   &GLUTによるループ・イベント処理   \\\cline{1-3}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__doxygen_2folder_autotoc_md25}{}\doxysubsection{\texorpdfstring{📌 注意点とヒント}{📌 注意点とヒント}}\label{md__doxygen_2folder_autotoc_md25}
+
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}描画処理（\+Open\+GL）とレイトレーシング処理（\+CPU/\+GPU）を明確に分ける\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}ことで、将来の\+GPU化や\+GUIへの統合が楽になります。
+\item {\ttfamily core/} フォルダには「どこでも使われるデータ構造（{\ttfamily Ray}や乱数生成など）」を集めると管理しやすいです。
+\item {\ttfamily camera/} フォルダは、\+Qtでの {\ttfamily QCamera} クラスとは独立した独自カメラ管理クラスとして維持できます。
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__doxygen_2folder_autotoc_md27}{}\doxysubsection{\texorpdfstring{✅ .proファイルへの記述例}{✅ .proファイルへの記述例}}\label{md__doxygen_2folder_autotoc_md27}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{INCLUDEPATH\ +=\ \$\$PWD/sources\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$\$PWD/sources/core\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$\$PWD/sources/geometry\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$\$PWD/sources/camera\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$\$PWD/sources/film\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$\$PWD/sources/rendering}
+\DoxyCodeLine{}
+\DoxyCodeLine{SOURCES\ +=\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ sources/main/main.cpp\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ sources/core/utility.cpp\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ sources/camera/camera.cpp\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ sources/camera/projection.cpp\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ sources/geometry/trimesh.cpp\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ sources/geometry/object.cpp\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ sources/geometry/light.cpp\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ sources/film/film\_buffer.cpp\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ sources/film/drawfilm.cpp\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ sources/rendering/gl\_draw.cpp\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ sources/rendering/raytracing.cpp\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ sources/rendering/shading.cpp}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__doxygen_2folder_autotoc_md29}{}\doxysubsection{\texorpdfstring{✅ 今後の発展を見据えて}{✅ 今後の発展を見据えて}}\label{md__doxygen_2folder_autotoc_md29}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 発展項目   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ ヒント    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 発展項目   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ ヒント    }\\\cline{1-2}
+\endhead
+Qt GUIと連携   &{\ttfamily film\+\_\+buffer.\+cpp} のテクスチャ出力を {\ttfamily QOpen\+GLWidget} にバインド可能    \\\cline{1-2}
+マルチスレッド化   &{\ttfamily ray\+Tracing()} を1ピクセルずつ処理しているので、スレッドで分割しやすい    \\\cline{1-2}
+GPUオフロード   &{\ttfamily ray\+Tracing()} や {\ttfamily shading} を将来的に\+CUDA/\+Metalなどへ移行しやすい構成   \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+
+
+ご希望であれば、この構成に基づいてテンプレートとなる {\ttfamily .h/.cpp} 雛形をいくつか提示できますので、お気軽にどうぞ。 

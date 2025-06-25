@@ -1,0 +1,131 @@
+\doxysection{Eigen\+::internal\+::gemv\+\_\+traits\texorpdfstring{$<$}{<} Lhs\+Scalar, Rhs\+Scalar, \+\_\+\+Packet\+Size \texorpdfstring{$>$}{>} クラステンプレート}
+\hypertarget{class_eigen_1_1internal_1_1gemv__traits}{}\label{class_eigen_1_1internal_1_1gemv__traits}\index{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$@{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$}}
+
+
+{\ttfamily \#include $<$General\+Matrix\+Vector.\+h$>$}
+
+
+
+Eigen\+::internal\+::gemv\+\_\+traits\texorpdfstring{$<$}{<} Lhs\+Scalar, Rhs\+Scalar, \+\_\+\+Packet\+Size \texorpdfstring{$>$}{>} 連携図
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{class_eigen_1_1internal_1_1gemv__traits__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開型}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits_a9e6e2160f107b4d7d5fc8fc77d0868c7_a9e6e2160f107b4d7d5fc8fc77d0868c7aa924da5e2bad99f743b8dc7ee32750c8}{Vectorizable}}
+, \mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits_a9e6e2160f107b4d7d5fc8fc77d0868c7_a9e6e2160f107b4d7d5fc8fc77d0868c7ae1d2f18fa7a1901ac2c20da9f053c973}{Lhs\+Packet\+Size}} = Vectorizable ? unpacket\+\_\+traits\texorpdfstring{$<$}{<}\+\_\+\+Lhs\+Packet\texorpdfstring{$>$}{>}\+::size \+: 1
+, \mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits_a9e6e2160f107b4d7d5fc8fc77d0868c7_a9e6e2160f107b4d7d5fc8fc77d0868c7acfb5bcc19f67a1e9b9a2057b8265881e}{Rhs\+Packet\+Size}} = Vectorizable ? unpacket\+\_\+traits\texorpdfstring{$<$}{<}\+\_\+\+Rhs\+Packet\texorpdfstring{$>$}{>}\+::size \+: 1
+, \mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits_a9e6e2160f107b4d7d5fc8fc77d0868c7_a9e6e2160f107b4d7d5fc8fc77d0868c7ac3d9b6e3fc48be8494c1fb76471a1772}{Res\+Packet\+Size}} = Vectorizable ? unpacket\+\_\+traits\texorpdfstring{$<$}{<}\+\_\+\+Res\+Packet\texorpdfstring{$>$}{>}\+::size \+: 1
+ \}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{conditional}}$<$ \mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits_a9e6e2160f107b4d7d5fc8fc77d0868c7_a9e6e2160f107b4d7d5fc8fc77d0868c7aa924da5e2bad99f743b8dc7ee32750c8}{Vectorizable}}, \+\_\+\+Lhs\+Packet, Lhs\+Scalar $>$\+::type \mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits_ae3742a4388b64583596965fd95e56812_ae3742a4388b64583596965fd95e56812}{Lhs\+Packet}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{conditional}}$<$ \mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits_a9e6e2160f107b4d7d5fc8fc77d0868c7_a9e6e2160f107b4d7d5fc8fc77d0868c7aa924da5e2bad99f743b8dc7ee32750c8}{Vectorizable}}, \+\_\+\+Rhs\+Packet, Rhs\+Scalar $>$\+::type \mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits_a3ae021197766f1a880d1021afeec6b0e_a3ae021197766f1a880d1021afeec6b0e}{Rhs\+Packet}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{conditional}}$<$ \mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits_a9e6e2160f107b4d7d5fc8fc77d0868c7_a9e6e2160f107b4d7d5fc8fc77d0868c7aa924da5e2bad99f743b8dc7ee32750c8}{Vectorizable}}, \+\_\+\+Res\+Packet, \mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits_a031bc4f23d35e7d443742d55075879fe_a031bc4f23d35e7d443742d55075879fe}{Res\+Scalar}} $>$\+::type \mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits_a2d63bff13761592cc04cc7e324c33970_a2d63bff13761592cc04cc7e324c33970}{Res\+Packet}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{非公開型}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1_scalar_binary_op_traits}{Scalar\+Binary\+Op\+Traits}}$<$ Lhs\+Scalar, Rhs\+Scalar $>$\+::\+Return\+Type \mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits_a031bc4f23d35e7d443742d55075879fe_a031bc4f23d35e7d443742d55075879fe}{Res\+Scalar}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{非公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits_a701eb4463ae1ff31a26ac524787e4098_a701eb4463ae1ff31a26ac524787e4098}{PACKET\+\_\+\+DECL\+\_\+\+COND\+\_\+\+PREFIX}} (\+\_\+, \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a1a7f4ccbeaf23168b50a83680f8f35fb}{Lhs}}, \+\_\+\+Packet\+Size)
+\item 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits_a9a80a31122e45587975e3df3f6018955_a9a80a31122e45587975e3df3f6018955}{PACKET\+\_\+\+DECL\+\_\+\+COND\+\_\+\+PREFIX}} (\+\_\+, \mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a6c8de80f9984c6a6da22b7c288fee57d}{Rhs}}, \+\_\+\+Packet\+Size)
+\item 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits_ac65066f63121dca7de74edf48f5e6b05_ac65066f63121dca7de74edf48f5e6b05}{PACKET\+\_\+\+DECL\+\_\+\+COND\+\_\+\+PREFIX}} (\+\_\+, Res, \+\_\+\+Packet\+Size)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{型定義メンバ詳解}
+\Hypertarget{class_eigen_1_1internal_1_1gemv__traits_ae3742a4388b64583596965fd95e56812_ae3742a4388b64583596965fd95e56812}\index{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$@{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$}!LhsPacket@{LhsPacket}}
+\index{LhsPacket@{LhsPacket}!Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$@{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$}}
+\doxysubsubsection{\texorpdfstring{LhsPacket}{LhsPacket}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1gemv__traits_ae3742a4388b64583596965fd95e56812_ae3742a4388b64583596965fd95e56812} 
+template$<$typename Lhs\+Scalar , typename Rhs\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Packet\+Size = GEMVPacket\+Full$>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{conditional}}$<$\mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits_a9e6e2160f107b4d7d5fc8fc77d0868c7_a9e6e2160f107b4d7d5fc8fc77d0868c7aa924da5e2bad99f743b8dc7ee32750c8}{Vectorizable}},\+\_\+\+Lhs\+Packet,Lhs\+Scalar$>$\+::type \mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits}{Eigen\+::internal\+::gemv\+\_\+traits}}$<$ Lhs\+Scalar, Rhs\+Scalar, \+\_\+\+Packet\+Size $>$\+::\+Lhs\+Packet}
+
+\Hypertarget{class_eigen_1_1internal_1_1gemv__traits_a2d63bff13761592cc04cc7e324c33970_a2d63bff13761592cc04cc7e324c33970}\index{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$@{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$}!ResPacket@{ResPacket}}
+\index{ResPacket@{ResPacket}!Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$@{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$}}
+\doxysubsubsection{\texorpdfstring{ResPacket}{ResPacket}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1gemv__traits_a2d63bff13761592cc04cc7e324c33970_a2d63bff13761592cc04cc7e324c33970} 
+template$<$typename Lhs\+Scalar , typename Rhs\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Packet\+Size = GEMVPacket\+Full$>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{conditional}}$<$\mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits_a9e6e2160f107b4d7d5fc8fc77d0868c7_a9e6e2160f107b4d7d5fc8fc77d0868c7aa924da5e2bad99f743b8dc7ee32750c8}{Vectorizable}},\+\_\+\+Res\+Packet,\mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits_a031bc4f23d35e7d443742d55075879fe_a031bc4f23d35e7d443742d55075879fe}{Res\+Scalar}}$>$\+::type \mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits}{Eigen\+::internal\+::gemv\+\_\+traits}}$<$ Lhs\+Scalar, Rhs\+Scalar, \+\_\+\+Packet\+Size $>$\+::\+Res\+Packet}
+
+\Hypertarget{class_eigen_1_1internal_1_1gemv__traits_a031bc4f23d35e7d443742d55075879fe_a031bc4f23d35e7d443742d55075879fe}\index{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$@{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$}!ResScalar@{ResScalar}}
+\index{ResScalar@{ResScalar}!Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$@{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$}}
+\doxysubsubsection{\texorpdfstring{ResScalar}{ResScalar}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1gemv__traits_a031bc4f23d35e7d443742d55075879fe_a031bc4f23d35e7d443742d55075879fe} 
+template$<$typename Lhs\+Scalar , typename Rhs\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Packet\+Size = GEMVPacket\+Full$>$ \\
+\mbox{\hyperlink{struct_eigen_1_1_scalar_binary_op_traits}{Scalar\+Binary\+Op\+Traits}}$<$Lhs\+Scalar,Rhs\+Scalar$>$\+::\+Return\+Type \mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits}{Eigen\+::internal\+::gemv\+\_\+traits}}$<$ Lhs\+Scalar, Rhs\+Scalar, \+\_\+\+Packet\+Size $>$\+::\+Res\+Scalar\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eigen_1_1internal_1_1gemv__traits_a3ae021197766f1a880d1021afeec6b0e_a3ae021197766f1a880d1021afeec6b0e}\index{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$@{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$}!RhsPacket@{RhsPacket}}
+\index{RhsPacket@{RhsPacket}!Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$@{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$}}
+\doxysubsubsection{\texorpdfstring{RhsPacket}{RhsPacket}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1gemv__traits_a3ae021197766f1a880d1021afeec6b0e_a3ae021197766f1a880d1021afeec6b0e} 
+template$<$typename Lhs\+Scalar , typename Rhs\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Packet\+Size = GEMVPacket\+Full$>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{conditional}}$<$\mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits_a9e6e2160f107b4d7d5fc8fc77d0868c7_a9e6e2160f107b4d7d5fc8fc77d0868c7aa924da5e2bad99f743b8dc7ee32750c8}{Vectorizable}},\+\_\+\+Rhs\+Packet,Rhs\+Scalar$>$\+::type \mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits}{Eigen\+::internal\+::gemv\+\_\+traits}}$<$ Lhs\+Scalar, Rhs\+Scalar, \+\_\+\+Packet\+Size $>$\+::\+Rhs\+Packet}
+
+
+
+\doxysubsection{列挙型メンバ詳解}
+\Hypertarget{class_eigen_1_1internal_1_1gemv__traits_a9e6e2160f107b4d7d5fc8fc77d0868c7_a9e6e2160f107b4d7d5fc8fc77d0868c7}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1gemv__traits_a9e6e2160f107b4d7d5fc8fc77d0868c7_a9e6e2160f107b4d7d5fc8fc77d0868c7} 
+template$<$typename Lhs\+Scalar , typename Rhs\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Packet\+Size = GEMVPacket\+Full$>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}[2]{列挙値}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Vectorizable@{Vectorizable}!Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$@{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$}}\index{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$@{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$}!Vectorizable@{Vectorizable}}}\Hypertarget{class_eigen_1_1internal_1_1gemv__traits_a9e6e2160f107b4d7d5fc8fc77d0868c7_a9e6e2160f107b4d7d5fc8fc77d0868c7aa924da5e2bad99f743b8dc7ee32750c8}\label{class_eigen_1_1internal_1_1gemv__traits_a9e6e2160f107b4d7d5fc8fc77d0868c7_a9e6e2160f107b4d7d5fc8fc77d0868c7} 
+Vectorizable&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LhsPacketSize@{LhsPacketSize}!Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$@{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$}}\index{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$@{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$}!LhsPacketSize@{LhsPacketSize}}}\Hypertarget{class_eigen_1_1internal_1_1gemv__traits_a9e6e2160f107b4d7d5fc8fc77d0868c7_a9e6e2160f107b4d7d5fc8fc77d0868c7ae1d2f18fa7a1901ac2c20da9f053c973}\label{class_eigen_1_1internal_1_1gemv__traits_a9e6e2160f107b4d7d5fc8fc77d0868c7_a9e6e2160f107b4d7d5fc8fc77d0868c7} 
+Lhs\+Packet\+Size&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RhsPacketSize@{RhsPacketSize}!Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$@{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$}}\index{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$@{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$}!RhsPacketSize@{RhsPacketSize}}}\Hypertarget{class_eigen_1_1internal_1_1gemv__traits_a9e6e2160f107b4d7d5fc8fc77d0868c7_a9e6e2160f107b4d7d5fc8fc77d0868c7acfb5bcc19f67a1e9b9a2057b8265881e}\label{class_eigen_1_1internal_1_1gemv__traits_a9e6e2160f107b4d7d5fc8fc77d0868c7_a9e6e2160f107b4d7d5fc8fc77d0868c7} 
+Rhs\+Packet\+Size&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ResPacketSize@{ResPacketSize}!Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$@{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$}}\index{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$@{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$}!ResPacketSize@{ResPacketSize}}}\Hypertarget{class_eigen_1_1internal_1_1gemv__traits_a9e6e2160f107b4d7d5fc8fc77d0868c7_a9e6e2160f107b4d7d5fc8fc77d0868c7ac3d9b6e3fc48be8494c1fb76471a1772}\label{class_eigen_1_1internal_1_1gemv__traits_a9e6e2160f107b4d7d5fc8fc77d0868c7_a9e6e2160f107b4d7d5fc8fc77d0868c7} 
+Res\+Packet\+Size&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{class_eigen_1_1internal_1_1gemv__traits_a701eb4463ae1ff31a26ac524787e4098_a701eb4463ae1ff31a26ac524787e4098}\index{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$@{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$}!PACKET\_DECL\_COND\_PREFIX@{PACKET\_DECL\_COND\_PREFIX}}
+\index{PACKET\_DECL\_COND\_PREFIX@{PACKET\_DECL\_COND\_PREFIX}!Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$@{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$}}
+\doxysubsubsection{\texorpdfstring{PACKET\_DECL\_COND\_PREFIX()}{PACKET\_DECL\_COND\_PREFIX()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1gemv__traits_a701eb4463ae1ff31a26ac524787e4098_a701eb4463ae1ff31a26ac524787e4098} 
+template$<$typename Lhs\+Scalar , typename Rhs\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Packet\+Size = GEMVPacket\+Full$>$ \\
+\mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits}{Eigen\+::internal\+::gemv\+\_\+traits}}$<$ Lhs\+Scalar, Rhs\+Scalar, \+\_\+\+Packet\+Size $>$\+::\+PACKET\+\_\+\+DECL\+\_\+\+COND\+\_\+\+PREFIX (\begin{DoxyParamCaption}\item[{\+\_\+}]{}{, }\item[{\mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a1a7f4ccbeaf23168b50a83680f8f35fb}{Lhs}}}]{}{, }\item[{\+\_\+\+Packet\+Size}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eigen_1_1internal_1_1gemv__traits_ac65066f63121dca7de74edf48f5e6b05_ac65066f63121dca7de74edf48f5e6b05}\index{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$@{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$}!PACKET\_DECL\_COND\_PREFIX@{PACKET\_DECL\_COND\_PREFIX}}
+\index{PACKET\_DECL\_COND\_PREFIX@{PACKET\_DECL\_COND\_PREFIX}!Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$@{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$}}
+\doxysubsubsection{\texorpdfstring{PACKET\_DECL\_COND\_PREFIX()}{PACKET\_DECL\_COND\_PREFIX()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1gemv__traits_ac65066f63121dca7de74edf48f5e6b05_ac65066f63121dca7de74edf48f5e6b05} 
+template$<$typename Lhs\+Scalar , typename Rhs\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Packet\+Size = GEMVPacket\+Full$>$ \\
+\mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits}{Eigen\+::internal\+::gemv\+\_\+traits}}$<$ Lhs\+Scalar, Rhs\+Scalar, \+\_\+\+Packet\+Size $>$\+::\+PACKET\+\_\+\+DECL\+\_\+\+COND\+\_\+\+PREFIX (\begin{DoxyParamCaption}\item[{\+\_\+}]{}{, }\item[{Res}]{}{, }\item[{\+\_\+\+Packet\+Size}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_eigen_1_1internal_1_1gemv__traits_a9a80a31122e45587975e3df3f6018955_a9a80a31122e45587975e3df3f6018955}\index{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$@{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$}!PACKET\_DECL\_COND\_PREFIX@{PACKET\_DECL\_COND\_PREFIX}}
+\index{PACKET\_DECL\_COND\_PREFIX@{PACKET\_DECL\_COND\_PREFIX}!Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$@{Eigen::internal::gemv\_traits$<$ LhsScalar, RhsScalar, \_PacketSize $>$}}
+\doxysubsubsection{\texorpdfstring{PACKET\_DECL\_COND\_PREFIX()}{PACKET\_DECL\_COND\_PREFIX()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_eigen_1_1internal_1_1gemv__traits_a9a80a31122e45587975e3df3f6018955_a9a80a31122e45587975e3df3f6018955} 
+template$<$typename Lhs\+Scalar , typename Rhs\+Scalar , \mbox{\hyperlink{level1__cplx__impl_8h_a4e8e1c1bb9d4e05fc671fc133ec9dc9b_a4e8e1c1bb9d4e05fc671fc133ec9dc9b}{int}} \+\_\+\+Packet\+Size = GEMVPacket\+Full$>$ \\
+\mbox{\hyperlink{class_eigen_1_1internal_1_1gemv__traits}{Eigen\+::internal\+::gemv\+\_\+traits}}$<$ Lhs\+Scalar, Rhs\+Scalar, \+\_\+\+Packet\+Size $>$\+::\+PACKET\+\_\+\+DECL\+\_\+\+COND\+\_\+\+PREFIX (\begin{DoxyParamCaption}\item[{\+\_\+}]{}{, }\item[{\mbox{\hyperlink{namespace_eigen_1_1internal_a9351c576b17137d82f7361d819de8152_a9351c576b17137d82f7361d819de8152a6c8de80f9984c6a6da22b7c288fee57d}{Rhs}}}]{}{, }\item[{\+\_\+\+Packet\+Size}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+eigen-\/3.\+4.\+0/eigen-\/3.\+4.\+0/\+Eigen/src/\+Core/products/\mbox{\hyperlink{_general_matrix_vector_8h}{General\+Matrix\+Vector.\+h}}\end{DoxyCompactItemize}

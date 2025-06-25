@@ -1,0 +1,73 @@
+\doxysection{Barrier.\+h}
+\hypertarget{_barrier_8h_source}{}\label{_barrier_8h_source}\index{eigen-\/3.4.0/eigen-\/3.4.0/unsupported/Eigen/CXX11/src/ThreadPool/Barrier.h@{eigen-\/3.4.0/eigen-\/3.4.0/unsupported/Eigen/CXX11/src/ThreadPool/Barrier.h}}
+\mbox{\hyperlink{_barrier_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ Eigen,\ a\ lightweight\ C++\ template\ library}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ for\ linear\ algebra.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (C)\ 2018\ Rasmus\ Munk\ Larsen\ <rmlarsen@google.com>}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ This\ Source\ Code\ Form\ is\ subject\ to\ the\ terms\ of\ the\ Mozilla}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Public\ License\ v.\ 2.0.\ If\ a\ copy\ of\ the\ MPL\ was\ not\ distributed}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ with\ this\ file,\ You\ can\ obtain\ one\ at\ http://mozilla.org/MPL/2.0/.}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ Barrier\ is\ an\ object\ that\ allows\ one\ or\ more\ threads\ to\ wait\ until}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ Notify\ has\ been\ called\ a\ specified\ number\ of\ times.}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifndef\ EIGEN\_CXX11\_THREADPOOL\_BARRIER\_H}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ EIGEN\_CXX11\_THREADPOOL\_BARRIER\_H}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_eigen}{Eigen}}\ \{}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_eigen_1_1_barrier}{Barrier}}\ \{}
+\DoxyCodeLine{00019\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \mbox{\hyperlink{class_eigen_1_1_barrier_aeac5bd590f3a485954bdef8db4aed036_aeac5bd590f3a485954bdef8db4aed036}{Barrier}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ count)\ :\ \mbox{\hyperlink{class_eigen_1_1_barrier_a8c3197175ef70d7849259680324cdec8_a8c3197175ef70d7849259680324cdec8}{state\_}}(count\ <<\ 1),\ \mbox{\hyperlink{class_eigen_1_1_barrier_a1d735204110578bd6f1b5216e35a6727_a1d735204110578bd6f1b5216e35a6727}{notified\_}}(false)\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{_macros_8h_a000d296c3fca8ba6e784bdcc7d01d91d_a000d296c3fca8ba6e784bdcc7d01d91d}{eigen\_plain\_assert}}(((count\ <<\ 1)\ >>\ 1)\ ==\ count);}
+\DoxyCodeLine{00022\ \ \ \}}
+\DoxyCodeLine{00023\ \ \ \mbox{\hyperlink{class_eigen_1_1_barrier_aa20c198cf5ad56b543d58b65d415636f_aa20c198cf5ad56b543d58b65d415636f}{\string~Barrier}}()\ \{\ \mbox{\hyperlink{_macros_8h_a000d296c3fca8ba6e784bdcc7d01d91d_a000d296c3fca8ba6e784bdcc7d01d91d}{eigen\_plain\_assert}}((\mbox{\hyperlink{class_eigen_1_1_barrier_a8c3197175ef70d7849259680324cdec8_a8c3197175ef70d7849259680324cdec8}{state\_}}\ >>\ 1)\ ==\ 0);\ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_barrier_aa26f853ecea0cecdf058e17f4abe26be_aa26f853ecea0cecdf058e17f4abe26be}{Notify}}()\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}}\ =\ \mbox{\hyperlink{class_eigen_1_1_barrier_a8c3197175ef70d7849259680324cdec8_a8c3197175ef70d7849259680324cdec8}{state\_}}.fetch\_sub(2,\ std::memory\_order\_acq\_rel)\ -\/\ 2;}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}}\ !=\ 1)\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \textcolor{comment}{//\ Clear\ the\ lowest\ bit\ (waiter\ flag)\ and\ check\ that\ the\ original\ state}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \textcolor{comment}{//\ value\ was\ not\ zero.\ If\ it\ was\ zero,\ it\ means\ that\ notify\ was\ called}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \textcolor{comment}{//\ more\ times\ than\ the\ original\ count.}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \mbox{\hyperlink{_macros_8h_a000d296c3fca8ba6e784bdcc7d01d91d_a000d296c3fca8ba6e784bdcc7d01d91d}{eigen\_plain\_assert}}(((\mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}}\ +\ 2)\ \&\ \string~1)\ !=\ 0);}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \textcolor{keywordflow}{return};\ \ \textcolor{comment}{//\ either\ count\ has\ not\ dropped\ to\ 0,\ or\ waiter\ is\ not\ waiting}}
+\DoxyCodeLine{00033\ \ \ \ \ \}}
+\DoxyCodeLine{00034\ \ \ \ \ std::unique\_lock<std::mutex>\ l(\mbox{\hyperlink{class_eigen_1_1_barrier_a758bccc241ea3df4241b2fba741f3c57_a758bccc241ea3df4241b2fba741f3c57}{mu\_}});}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{_macros_8h_a000d296c3fca8ba6e784bdcc7d01d91d_a000d296c3fca8ba6e784bdcc7d01d91d}{eigen\_plain\_assert}}(!\mbox{\hyperlink{class_eigen_1_1_barrier_a1d735204110578bd6f1b5216e35a6727_a1d735204110578bd6f1b5216e35a6727}{notified\_}});}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_barrier_a1d735204110578bd6f1b5216e35a6727_a1d735204110578bd6f1b5216e35a6727}{notified\_}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_barrier_a7f659e9f300ed5849e3350a8f167f0cd_a7f659e9f300ed5849e3350a8f167f0cd}{cv\_}}.notify\_all();}
+\DoxyCodeLine{00038\ \ \ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_eigen_1_1_barrier_a37d2be190c5e307ba5840dbc5023f9df_a37d2be190c5e307ba5840dbc5023f9df}{Wait}}()\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}}\ =\ \mbox{\hyperlink{class_eigen_1_1_barrier_a8c3197175ef70d7849259680324cdec8_a8c3197175ef70d7849259680324cdec8}{state\_}}.fetch\_or(1,\ std::memory\_order\_acq\_rel);}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{if}\ ((\mbox{\hyperlink{_array__initializer__list__vector__cxx11_8cpp_a32398b762ddd48fa3a6d504de68009f9_a32398b762ddd48fa3a6d504de68009f9}{v}}\ >>\ 1)\ ==\ 0)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00043\ \ \ \ \ std::unique\_lock<std::mutex>\ l(\mbox{\hyperlink{class_eigen_1_1_barrier_a758bccc241ea3df4241b2fba741f3c57_a758bccc241ea3df4241b2fba741f3c57}{mu\_}});}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{while}\ (!\mbox{\hyperlink{class_eigen_1_1_barrier_a1d735204110578bd6f1b5216e35a6727_a1d735204110578bd6f1b5216e35a6727}{notified\_}})\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \mbox{\hyperlink{class_eigen_1_1_barrier_a7f659e9f300ed5849e3350a8f167f0cd_a7f659e9f300ed5849e3350a8f167f0cd}{cv\_}}.wait(l);}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ \ \ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00050\ \ \ std::mutex\ \mbox{\hyperlink{class_eigen_1_1_barrier_a758bccc241ea3df4241b2fba741f3c57_a758bccc241ea3df4241b2fba741f3c57}{mu\_}};}
+\DoxyCodeLine{00051\ \ \ std::condition\_variable\ \mbox{\hyperlink{class_eigen_1_1_barrier_a7f659e9f300ed5849e3350a8f167f0cd_a7f659e9f300ed5849e3350a8f167f0cd}{cv\_}};}
+\DoxyCodeLine{00052\ \ \ std::atomic<unsigned\ int>\ \mbox{\hyperlink{class_eigen_1_1_barrier_a8c3197175ef70d7849259680324cdec8_a8c3197175ef70d7849259680324cdec8}{state\_}};\ \ \textcolor{comment}{//\ low\ bit\ is\ waiter\ flag}}
+\DoxyCodeLine{00053\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_eigen_1_1_barrier_a1d735204110578bd6f1b5216e35a6727_a1d735204110578bd6f1b5216e35a6727}{notified\_}};}
+\DoxyCodeLine{00054\ \};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ Notification\ is\ an\ object\ that\ allows\ a\ user\ to\ to\ wait\ for\ another}}
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ thread\ to\ signal\ a\ notification\ that\ an\ event\ has\ occurred.}}
+\DoxyCodeLine{00058\ \textcolor{comment}{//}}
+\DoxyCodeLine{00059\ \textcolor{comment}{//\ Multiple\ threads\ can\ wait\ on\ the\ same\ Notification\ object,}}
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ but\ only\ one\ caller\ must\ call\ Notify()\ on\ the\ object.}}
+\DoxyCodeLine{00061\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eigen_1_1_notification}{Notification}}\ :\ \mbox{\hyperlink{class_eigen_1_1_barrier}{Barrier}}\ \{}
+\DoxyCodeLine{00062\ \ \ \mbox{\hyperlink{struct_eigen_1_1_notification_a45a0593333baa276a1fbbdc6cf2afc1c_a45a0593333baa276a1fbbdc6cf2afc1c}{Notification}}()\ :\ \mbox{\hyperlink{class_eigen_1_1_barrier}{Barrier}}(1)\{\};}
+\DoxyCodeLine{00063\ \};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \}\ \ \textcolor{comment}{//\ namespace\ Eigen}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ EIGEN\_CXX11\_THREADPOOL\_BARRIER\_H}}
+
+\end{DoxyCode}
