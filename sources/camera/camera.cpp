@@ -30,9 +30,9 @@ Camera::Camera()
 
 }
 
-void Camera::setEyePoint( const QVector3D& in_eyePoint )
+void Camera::setEyePoint( const Eigen::Vector3d& in_eyePoint )
 {
-    m_EyePoint =toEigen(in_eyePoint);//置換
+    m_EyePoint =in_eyePoint;//置換
 
 }
 
@@ -57,12 +57,12 @@ float Camera:: getFov() const {
 
 /*--------------------------------------------------------------*/
 
-void Camera::lookAt( const QVector3D& in_LookAt, const QVector3D& in_Up )
+void Camera::lookAt( const Eigen::Vector3d& in_LookAt, const Eigen::Vector3d& in_Up )
 {
 
     //in_LookAt、in_Up置換
-    const Eigen::Vector3d lookAtEigen = toEigen(in_LookAt); // 変換
-    const Eigen::Vector3d upEigen = toEigen(in_Up);       // 変換
+    const Eigen::Vector3d lookAtEigen = in_LookAt; // 変換
+    const Eigen::Vector3d upEigen = in_Up;       // 変換
 
     //置換終わり
 
@@ -80,30 +80,30 @@ void Camera::lookAt( const QVector3D& in_LookAt, const QVector3D& in_Up )
     m_xVector = m_yVector.cross(m_zVector);
 }
 
-void Camera::moveInGlobalFrame( const QVector3D& in_delta )
+void Camera::moveInGlobalFrame( const Eigen::Vector3d& in_delta )
 {
-    m_EyePoint += toEigen(in_delta);
+    m_EyePoint += in_delta;
 }
 
-void Camera::moveInLocalFrame( const QVector3D& in_delta )
+void Camera::moveInLocalFrame( const Eigen::Vector3d& in_delta )
 {
     m_EyePoint += in_delta.x() * m_xVector + in_delta.y() * m_yVector + in_delta.z() * m_zVector;
 
 }
 
-void Camera::moveInGlobalFrameFixLookAt( const QVector3D& in_delta )
+void Camera::moveInGlobalFrameFixLookAt( const Eigen::Vector3d& in_delta )
 {
-    const QVector3D lookAtPoint = getLookAtPoint();
-    const QVector3D up = toQt(m_yVector);
+    const Eigen::Vector3d lookAtPoint = getLookAtPoint();
+    const Eigen::Vector3d up = m_yVector;
 
     moveInGlobalFrame( in_delta );
     lookAt( lookAtPoint, up );
 }
 
-void Camera::moveInLocalFrameFixLookAt( const QVector3D& in_delta )
+void Camera::moveInLocalFrameFixLookAt( const Eigen::Vector3d& in_delta )
 {
-    const QVector3D lookAtPoint = getLookAtPoint();
-    const QVector3D up = toQt(m_yVector);
+    const Eigen::Vector3d lookAtPoint = getLookAtPoint();
+    const Eigen::Vector3d up = m_yVector;
 
     moveInLocalFrame( in_delta );
     lookAt( lookAtPoint, up );
@@ -117,7 +117,7 @@ void Camera::rotateCameraInLocalFrameFixLookAt( const double& in_HorizontalAngle
 {
 
     /* LookAtポイントの取得　 */
-    const Eigen::Vector3d  lookAtPoint = toEigen(getLookAtPoint());
+    const Eigen::Vector3d  lookAtPoint = getLookAtPoint();
 
     /* m_DistanceToObject(距離のみ) * m_zVector(正規化ベクトル)により、カメラの位置を特定の対象物を中心に回転させる際に使われるベクトル（アーム）を計算　 */
      Eigen::Vector3d arm= m_DistanceToObject * m_zVector;
@@ -167,7 +167,7 @@ void Camera::zoomCamera(const double delta){
 
 
 
-QVector3D Camera::getLookAtPoint() const
+Eigen::Vector3d Camera::getLookAtPoint() const
 {
 
     Eigen::Vector3d currentLookAtPoint = m_EyePoint - m_DistanceToObject * m_zVector;
@@ -175,32 +175,32 @@ QVector3D Camera::getLookAtPoint() const
 
     // 前回のLookAtPointとの差が閾値以下なら、前回の値を返す
     if ((currentLookAtPoint - m_LastLookAtPoint).norm() <= threshold) {
-        return toQt(m_LastLookAtPoint);
+        return m_LastLookAtPoint;
     } else {
         // 変更がある場合は、現在のLookAtPointを保存し、返す
         const_cast<Camera*>(this)->m_LastLookAtPoint = currentLookAtPoint; // constメンバ関数内での値変更のためconst_castを使用
-        return toQt(currentLookAtPoint);
+        return currentLookAtPoint;
     }
 }
 
-QVector3D Camera::getEyePoint() const
+Eigen::Vector3d Camera::getEyePoint() const
 {
-    return toQt(m_EyePoint);
+    return m_EyePoint;
 }
 
-QVector3D Camera::getXVector() const
+Eigen::Vector3d Camera::getXVector() const
 {
-    return toQt(m_xVector);
+    return m_xVector;
 }
 
-QVector3D Camera::getYVector() const
+Eigen::Vector3d Camera::getYVector() const
 {
-    return toQt(m_yVector);
+    return m_yVector;
 }
 
-QVector3D Camera::getZVector() const
+Eigen::Vector3d Camera::getZVector() const
 {
-    return toQt(m_zVector);
+    return m_zVector;
 }
 
 double Camera::getDistanceToObject() const

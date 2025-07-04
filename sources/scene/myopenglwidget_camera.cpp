@@ -17,8 +17,8 @@ void MyOpenGLWidget_camera::initializeGL() {
     //背景色指定
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
     glEnable(GL_DEPTH_TEST); // 深度テストを有効にする
-    g_Camera2.setEyePoint(QVector3D( -1.0, 2.0, 3.0 ));
-    g_Camera2.lookAt(QVector3D{ 0.0, 0.0, 0.0 }, QVector3D{ 0.0, 1.0, 0.0 });
+    g_Camera2.setEyePoint(Eigen::Vector3d( -1.0, 2.0, 3.0 ));
+    g_Camera2.lookAt(Eigen::Vector3d{ 0.0, 0.0, 0.0 }, Eigen::Vector3d{ 0.0, 1.0, 0.0 });
     updatedFov=45;
 
     //checkOpenGLVersion();

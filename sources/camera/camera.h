@@ -25,18 +25,18 @@ class Camera
 public:
     Camera();
 
-    void setEyePoint( const QVector3D& in_eyePoint );
+    void setEyePoint( const Eigen::Vector3d& in_eyePoint );
     void setDistanceToObject( const double& in_DistanceToObject );
     void setFocalLength( const double& in_FocalLength );
-    void lookAt( const QVector3D& in_LookAt, const QVector3D& in_Up );
+    void lookAt( const Eigen::Vector3d& in_LookAt, const Eigen::Vector3d& in_Up );
 
-    void moveInGlobalFrame( const QVector3D& in_delta );
-    void moveInLocalFrame( const QVector3D& in_delta );
+    void moveInGlobalFrame( const Eigen::Vector3d& in_delta );
+    void moveInLocalFrame( const Eigen::Vector3d& in_delta );
 
     void zoomCamera(const double delta);//カメラズーム
 
-    void moveInGlobalFrameFixLookAt( const QVector3D& in_delta );
-    void moveInLocalFrameFixLookAt( const QVector3D& in_delta );
+    void moveInGlobalFrameFixLookAt( const Eigen::Vector3d& in_delta );
+    void moveInLocalFrameFixLookAt( const Eigen::Vector3d& in_delta );
 
     void setFov(const float& in_Fov);
     float getFov() const;
@@ -45,11 +45,11 @@ public:
 
     void rotateCameraInLocalFrameFixLookAt(const double& in_HorizontalAngle, const double& in_VerticalAngle);
 
-    QVector3D getLookAtPoint() const;
-    QVector3D getEyePoint() const;
-    QVector3D getXVector() const;
-    QVector3D getYVector() const;
-    QVector3D getZVector() const;
+    Eigen::Vector3d getLookAtPoint() const;
+    Eigen::Vector3d getEyePoint() const;
+    Eigen::Vector3d getXVector() const;
+    Eigen::Vector3d getYVector() const;
+    Eigen::Vector3d getZVector() const;
 
 
 
