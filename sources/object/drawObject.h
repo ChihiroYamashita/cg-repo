@@ -5,7 +5,7 @@
 
 void drawcube();
 void drawFloor();
-void  drawcamera(const QVector3D &eyePoint, const QVector3D &lookAtPoint);
+void  drawcamera(const Eigen::Vector3d &eyePoint, const Eigen::Vector3d &lookAtPoint);
 void drawPlaneInCameraCoords(const Camera& camera, float size);
 void drawXYZAxes();
 void drawXYGrid(float gridSize, int gridCount) ;

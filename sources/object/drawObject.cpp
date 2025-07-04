@@ -194,13 +194,13 @@ void drawXYZAxes() {
     glEnd();
 }
 
-void  drawcamera(const QVector3D &eyePoint, const QVector3D &lookAtPoint) {};
+void  drawcamera(const Eigen::Vector3d &eyePoint, const Eigen::Vector3d &lookAtPoint) {};
 
 // カメラ座標系のXY平面に平面を描画する関数
 void drawPlaneInCameraCoords(const Camera& camera, float size) {
-    QVector3D eyePoint = camera.getEyePoint();
-    QVector3D lookAtPoint = camera.getLookAtPoint();
-    QVector3D upVector = camera.getYVector();
+    Eigen::Vector3d eyePoint = camera.getEyePoint();
+    Eigen::Vector3d lookAtPoint = camera.getLookAtPoint();
+    Eigen::Vector3d upVector = camera.getYVector();
 
     // カメラ座標系に変換
     glMatrixMode(GL_MODELVIEW);
@@ -208,7 +208,7 @@ void drawPlaneInCameraCoords(const Camera& camera, float size) {
     gluLookAt(eyePoint.x(), eyePoint.y(), eyePoint.z(),
               lookAtPoint.x(), lookAtPoint.y(), lookAtPoint.z(),
               upVector.x(), upVector.y(), upVector.z());
-    qDebug() << "EyePoint:" << eyePoint;
+    //qDebug() << "EyePoint:" << eyePoint;
     // 平面を描画
     glBegin(GL_QUADS);
     glColor3f(1.0, 0.0, 0.0); // 赤色で描画
