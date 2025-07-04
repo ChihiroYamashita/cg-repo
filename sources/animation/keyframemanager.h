@@ -7,11 +7,12 @@
 #include <QGraphicsLineItem>
 #include "CameraKeyframe.h"
 #include "Interpolator.h"
+#include <Eigen/Dense>
 
 class KeyframeManager {
 public:
     KeyframeManager();
-    void addKeyframe(int frameNumber, const QVector3D& eyePoint, const QVector3D& lookAtPoint, const QVector3D& upVector, const QVector3D& xVector, const QVector3D& yVector, const QVector3D& zVector, float fov, double zoom, QGraphicsScene* scene);
+    void addKeyframe(int frameNumber, const Eigen::Vector3d& eyePoint, const Eigen::Vector3d& lookAtPoint, const Eigen::Vector3d& upVector, const Eigen::Vector3d& xVector, const Eigen::Vector3d& yVector, const Eigen::Vector3d& zVector, float fov, double zoom, QGraphicsScene* scene);
     void deleteKeyframe(int frameNumber, QGraphicsScene* scene);
     CameraKeyframe interpolateKeyframe(int frameNumber) const;
     int calculateFrameNumberFromPosition(qreal positionX, int startPixel, int pixelsPerFrame) const;

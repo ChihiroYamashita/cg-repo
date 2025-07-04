@@ -1,18 +1,18 @@
 #ifndef CAMERAC_KEYFRAME_H
 #define CAMERAC_KEYFRAME_H
+#include <Eigen/Dense>
 
-#include <QVector3D>
 #include <QQuaternion>
 
 // キーフレーム構造体の定義
 struct CameraKeyframe {
     int frameNumber;
-    QVector3D eyePoint;
-    QVector3D lookAtPoint;
-    QVector3D upVector;
-    QVector3D xVector;
-    QVector3D yVector;
-    QVector3D zVector;
+    Eigen::Vector3d eyePoint;
+    Eigen::Vector3d lookAtPoint;
+    Eigen::Vector3d upVector;
+    Eigen::Vector3d xVector;
+    Eigen::Vector3d yVector;
+    Eigen::Vector3d zVector;
     float fov;
     double zoom;
 };

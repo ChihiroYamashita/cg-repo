@@ -195,7 +195,7 @@ return playheadPositionX;
 }
 
 /*キーフレーム挿入*/
-void CustomScene::addKeyframe(int frameNumber, const QVector3D& eyePoint, const QVector3D& lookAtPoint, const QVector3D& upVector, const QVector3D& xVector, const QVector3D& yVector, const QVector3D& zVector, float fov, double zoom)  {
+void CustomScene::addKeyframe(int frameNumber, const Eigen::Vector3d& eyePoint, const Eigen::Vector3d& lookAtPoint, const Eigen::Vector3d& upVector, const Eigen::Vector3d& xVector, const Eigen::Vector3d& yVector, const Eigen::Vector3d& zVector, float fov, double zoom)  {
 
 QPolygonF diamond;
 qreal x = currentMousePositionX();
@@ -294,8 +294,7 @@ CameraKeyframe interpolatedKeyframe = interpolator.interpolateKeyframe(kf1, kf2,
 
 
 // メインウィンドウの関数を呼び出してカメラの状態を更新
-m_mainWindow->updateCamera(toEigen(interpolatedKeyframe.eyePoint), toEigen(interpolatedKeyframe.lookAtPoint), toEigen(interpolatedKeyframe.upVector), interpolatedKeyframe.fov, interpolatedKeyframe.zoom);
-}
+  m_mainWindow->updateCamera(interpolatedKeyframe.eyePoint, interpolatedKeyframe.lookAtPoint, interpolatedKeyframe.upVector, interpolatedKeyframe.fov, interpolatedKeyframe.zoom);}
 
 
 /*----------------------キーフレームと周りのデータを削除するメソッド---------------------*/

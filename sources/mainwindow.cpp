@@ -193,7 +193,7 @@ void MainWindow::on_keyframeCameraButton_clicked()
     qreal x = scene->currentMousePositionX();  // 現在のマウスX座標を取得する方法を実装する必要がある
 
     // キーフレームを追加
-    scene->addKeyframe(frameNumber, toQt(EyePoint), toQt(lookAtPoint), toQt(upVector), toQt(xVector), toQt(yVector), toQt(zVector), fov, zoom);
+    scene->addKeyframe(frameNumber, EyePoint, lookAtPoint, upVector, xVector, yVector, zVector, fov, zoom);
 }
 
 

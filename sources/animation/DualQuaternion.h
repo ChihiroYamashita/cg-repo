@@ -1,8 +1,12 @@
+//eigen移行で未使用
+
+/*
 #include <QVector3D>
 #include <QQuaternion>
 
 class DualQuaternion {
 public:
+
     QQuaternion real;
     QQuaternion dual;
 
@@ -45,3 +49,4 @@ public:
         return QVector3D(t.x(), t.y(), t.z());
     }
 };
+*/

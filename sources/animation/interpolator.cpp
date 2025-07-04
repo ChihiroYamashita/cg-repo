@@ -1,13 +1,14 @@
 //Interpolator クラス 線形補間の管理を行うクラス
 
 #include "Interpolator.h"
-#include "DualQuaternion.h"
+//#include "DualQuaternion.h"
 #include "qmath.h"
 
 Interpolator::Interpolator()
 {
 }
-
+/*
+ *
 QQuaternion Interpolator::slerp(const QQuaternion& q1, const QQuaternion& q2, float t) const {
 
     /*球面線形補間
@@ -26,7 +27,6 @@ QQuaternion Interpolator::slerp(const QQuaternion& q1, const QQuaternion& q2, fl
     *           sin(θ)                sin(θ)
     *
  *
-*/
     //<１>クォータニオンの内積を計算:
     float dotProduct = QVector3D::dotProduct(q1.vector(), q2.vector());
     //<2>補間角度 𝜃を計算:
@@ -46,20 +46,22 @@ QQuaternion Interpolator::slerp(const QQuaternion& q1, const QQuaternion& q2, fl
 
     //通常は以下の式で容易に実装できるreturn q1.slerp(q1, q2, t);
 }
+*/
 
+/*
 // 回転ベクトルから回転クォータニオンを生成する関数
 QQuaternion Interpolator::rotationVectorToQuaternion(const QVector3D &vector) const {
     float angle = vector.length();
     QVector3D axis = vector.normalized();
     return QQuaternion::fromAxisAndAngle(axis, qRadiansToDegrees(angle));
 }
-
+*/
 
 
 // interpolateKeyframe関数　ここですべての補完に関する実装を行う　tで何秒ごとの補完なのかを向こうで読み込むだけ
 
 CameraKeyframe Interpolator::interpolateKeyframe(const CameraKeyframe& kf1, const CameraKeyframe& kf2, float t) const {
-    CameraKeyframe result;
+    //CameraKeyframe result;
 
     /*ドゥアルクォータニオン
  * Q=q_1(回転クォータニオン)​+ϵq_2(平行移動クォータニオン）
@@ -89,7 +91,7 @@ CameraKeyframe Interpolator::interpolateKeyframe(const CameraKeyframe& kf1, cons
 ​
 */
 
-
+/*
 
     //<q_1(回転クォータニオン)を求める>
     // 視線ベクトルの計算
@@ -157,6 +159,41 @@ CameraKeyframe Interpolator::interpolateKeyframe(const CameraKeyframe& kf1, cons
     result.fov = kf1.fov * (1 - t) + kf2.fov * t;
     result.zoom = kf1.zoom * (1 - t) + kf2.zoom * t;
 
+
+    return result;*/
+
+    CameraKeyframe result;
+
+    // 平行移動部分の線形補間
+    result.eyePoint = kf1.eyePoint * (1.0 - t) + kf2.eyePoint * t;
+    result.lookAtPoint = kf1.lookAtPoint * (1.0 - t) + kf2.lookAtPoint * t;
+
+    // 回転部分の球面線形補間 (SLERP)
+    // EigenのQuaternionはベクトルから直接初期化できないため、
+    // lookAtベクトルから回転を表現するクォータニオンを生成します。
+    // ここでは単純にup, x, y, zベクトルを直接SLERPします。
+    // DualQuaternionのような複雑な実装は、多くの場合、各基底ベクトルのSLERPで代替できます。
+
+    // 基底ベクトルの正規化
+    Eigen::Quaterniond q_x1 = Eigen::Quaterniond::FromTwoVectors(Eigen::Vector3d::UnitX(), kf1.xVector.normalized());
+    Eigen::Quaterniond q_y1 = Eigen::Quaterniond::FromTwoVectors(Eigen::Vector3d::UnitY(), kf1.yVector.normalized());
+    Eigen::Quaterniond q_z1 = Eigen::Quaterniond::FromTwoVectors(Eigen::Vector3d::UnitZ(), kf1.zVector.normalized());
+    Eigen::Quaterniond q_up1 = Eigen::Quaterniond::FromTwoVectors(Eigen::Vector3d::UnitY(), kf1.upVector.normalized());
+
+    Eigen::Quaterniond q_x2 = Eigen::Quaterniond::FromTwoVectors(Eigen::Vector3d::UnitX(), kf2.xVector.normalized());
+    Eigen::Quaterniond q_y2 = Eigen::Quaterniond::FromTwoVectors(Eigen::Vector3d::UnitY(), kf2.yVector.normalized());
+    Eigen::Quaterniond q_z2 = Eigen::Quaterniond::FromTwoVectors(Eigen::Vector3d::UnitZ(), kf2.zVector.normalized());
+    Eigen::Quaterniond q_up2 = Eigen::Quaterniond::FromTwoVectors(Eigen::Vector3d::UnitY(), kf2.upVector.normalized());
+
+    // 各基底ベクトルをSLERPで補間
+    result.xVector = q_x1.slerp(t, q_x2) * Eigen::Vector3d::UnitX();
+    result.yVector = q_y1.slerp(t, q_y2) * Eigen::Vector3d::UnitY();
+    result.zVector = q_z1.slerp(t, q_z2) * Eigen::Vector3d::UnitZ();
+    result.upVector = q_up1.slerp(t, q_up2) * Eigen::Vector3d::UnitY();
+
+    // fov と zoom の線形補間
+    result.fov = kf1.fov * (1.0f - t) + kf2.fov * t;
+    result.zoom = kf1.zoom * (1.0 - t) + kf2.zoom * t;
 
     return result;
 }
