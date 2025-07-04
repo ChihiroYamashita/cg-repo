@@ -17,10 +17,11 @@
 #define EIGEN_DISABLE_UNALIGNED_ARRAY_ASSERT
 #define EIGEN_DONT_VECTORIZE
 
+#include <Eigen/Dense>
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-#include "Camera.h"
+#include "camera.h"
 
 
 int width = 500;

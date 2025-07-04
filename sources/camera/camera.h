@@ -3,6 +3,8 @@
 #include <QVector3D>
 #include <QtMath> // Qtの数学関数用
 #include <QQuaternion>
+#include "conversion_utils.h"
+
 //
 //  Camera.h
 //
@@ -58,10 +60,10 @@ public:
     double getScreenHeight() const;
 
 protected:
-    QVector3D m_EyePoint;
-    QVector3D m_xVector;
-    QVector3D m_yVector;
-    QVector3D m_zVector;
+    Eigen::Vector3d m_EyePoint;
+    Eigen::Vector3d m_xVector;
+    Eigen::Vector3d m_yVector;
+    Eigen::Vector3d m_zVector;
 
     float m_Fov;
 
@@ -70,7 +72,7 @@ protected:
     double m_ScreenWidth;
     double m_ScreenHeight;
 
-    QVector3D m_LastLookAtPoint;//新規追加　getlookatpointの丸め誤差用
+    Eigen::Vector3d m_LastLookAtPoint;//新規追加　getlookatpointの丸め誤差用
 };
 
 // rotate a given vector in_v around a given axis in_axis for a given angle in_angle_rad,

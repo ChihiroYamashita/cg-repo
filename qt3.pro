@@ -43,6 +43,7 @@ HEADERS += \
     sources/animation/interpolator.h \
     sources/animation/keyframemanager.h \
     sources/camera/camera.h \
+    sources/conversion_utils.h \
     sources/mainwindow.h \
     sources/object/drawObject.h \
     sources/pass_tracing/film/drawfilm.h \
