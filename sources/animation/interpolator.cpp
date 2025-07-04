@@ -134,19 +134,19 @@ CameraKeyframe Interpolator::interpolateKeyframe(const CameraKeyframe& kf1, cons
     // upVector, xVector, yVector, zVector の補間
     QVector3D upVector1 = kf1.upVector.normalized();
     QVector3D upVector2 = kf2.upVector.normalized();
-    QVector3D interpolatedUpVector = rotateVector(upVector1, interpolatedQuaternion.vector(), interpolatedQuaternion.scalar());
+    QVector3D interpolatedUpVector = toQt(rotateVector(toEigen(upVector1), toEigen(interpolatedQuaternion.vector()), interpolatedQuaternion.scalar()));
 
     QVector3D xVector1 = kf1.xVector.normalized();
     QVector3D xVector2 = kf2.xVector.normalized();
-    QVector3D interpolatedXVector = rotateVector(xVector1, interpolatedQuaternion.vector(), interpolatedQuaternion.scalar());
+    QVector3D interpolatedXVector = toQt(rotateVector(toEigen(xVector1), toEigen(interpolatedQuaternion.vector()), interpolatedQuaternion.scalar()));
 
     QVector3D yVector1 = kf1.yVector.normalized();
     QVector3D yVector2 = kf2.yVector.normalized();
-    QVector3D interpolatedYVector = rotateVector(yVector1, interpolatedQuaternion.vector(), interpolatedQuaternion.scalar());
+    QVector3D interpolatedYVector = toQt(rotateVector(toEigen(yVector1), toEigen(interpolatedQuaternion.vector()), interpolatedQuaternion.scalar()));
 
     QVector3D zVector1 = kf1.zVector.normalized();
     QVector3D zVector2 = kf2.zVector.normalized();
-    QVector3D interpolatedZVector = rotateVector(zVector1, interpolatedQuaternion.vector(), interpolatedQuaternion.scalar());
+    QVector3D interpolatedZVector = toQt(rotateVector(toEigen(zVector1), toEigen(interpolatedQuaternion.vector()), interpolatedQuaternion.scalar()));
 
     result.upVector = interpolatedUpVector;
     result.xVector = interpolatedXVector;

@@ -128,10 +128,10 @@ void Camera::rotateCameraInLocalFrameFixLookAt( const double& in_HorizontalAngle
 
     // 入力 ( 回転させたいベクトル, 回転軸を表すベクトル,回転させる角度（ラジアン単位）)
 
-     m_xVector = toEigen(rotateVector( toQt(m_xVector), toQt(worldUp), in_HorizontalAngle ));
-     m_yVector = toEigen(rotateVector( toQt(m_yVector), toQt(worldUp), in_HorizontalAngle ));
-     m_zVector = toEigen(rotateVector( toQt(m_zVector), toQt(worldUp), in_HorizontalAngle ));
-     arm = toEigen(rotateVector(toQt(arm), toQt(worldUp), in_HorizontalAngle));
+     m_xVector = rotateVector(m_xVector, worldUp, in_HorizontalAngle);
+     m_yVector = rotateVector(m_yVector, worldUp, in_HorizontalAngle);
+     m_zVector = rotateVector(m_zVector, worldUp, in_HorizontalAngle);
+     arm       = rotateVector(arm, worldUp, in_HorizontalAngle);
     m_xVector.normalize();
     m_yVector.normalize();
     m_zVector.normalize();
@@ -140,10 +140,10 @@ void Camera::rotateCameraInLocalFrameFixLookAt( const double& in_HorizontalAngle
 
     //arm= arm - lookAtPoint;
 
-    m_xVector = toEigen(rotateVector(toQt(m_xVector), toQt(m_xVector), in_VerticalAngle));
-    m_yVector = toEigen(rotateVector(toQt(m_yVector), toQt(m_xVector), in_VerticalAngle));
-    m_zVector = toEigen(rotateVector(toQt(m_zVector), toQt(m_xVector), in_VerticalAngle));
-    arm = toEigen(rotateVector(toQt(arm), toQt(m_xVector), in_VerticalAngle));
+    // m_yVector, m_zVector, armを、新しいm_xVectorを軸として回転
+    m_yVector = rotateVector(m_yVector, m_xVector, in_VerticalAngle);
+    m_zVector = rotateVector(m_zVector, m_xVector, in_VerticalAngle);
+    arm       = rotateVector(arm, m_xVector, in_VerticalAngle);
     //arm = arm + lookAtPoint;
 
 

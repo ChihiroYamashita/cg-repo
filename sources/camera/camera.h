@@ -4,7 +4,7 @@
 #include <QtMath> // Qtの数学関数用
 #include <QQuaternion>
 #include "conversion_utils.h"
-
+#include <Eigen/Geometry>
 //
 //  Camera.h
 //
@@ -79,7 +79,7 @@ protected:
 // using quaternion
 
 // 入力 ( 回転させたいベクトル, 回転軸を表すベクトル,回転させる角度（ラジアン単位）)
-inline QVector3D rotateVector( const QVector3D& in_v, const QVector3D& in_axis, const double& in_angle_rad )
+inline Eigen::Vector3d rotateVector(const Eigen::Vector3d& in_v, const Eigen::Vector3d& in_axis, const double& in_angle_rad)
 {
     /*QVector3D axis = in_axis.normalized();
 
@@ -96,8 +96,15 @@ inline QVector3D rotateVector( const QVector3D& in_v, const QVector3D& in_axis, 
     const QVector3D r_p  = cos_a * in_v + m_sin_a * QVector3D::crossProduct(axis, in_v);
     return sin_a * r_p_t * axis + cos_a * r_p + sin_a * QVector3D::crossProduct(axis, r_p);*/
 
-    QQuaternion rotation = QQuaternion::fromAxisAndAngle(in_axis, qRadiansToDegrees(in_angle_rad));
-    return rotation.rotatedVector(in_v);
+    //QQuaternion rotation = QQuaternion::fromAxisAndAngle(in_axis, qRadiansToDegrees(in_angle_rad));
+    //return rotation.rotatedVector(in_v);
+    // AngleAxisd(回転角度[rad], 回転軸)で回転を定義
+    // Eigenはラジアンを直接扱えるため、度への変換は不要です
+    const Eigen::AngleAxisd rotation(in_angle_rad, in_axis.normalized());
+
+    // 作成した回転をベクトルに適用して返す
+    return rotation * in_v;
+
 }
 
 
