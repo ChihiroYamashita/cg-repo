@@ -61,7 +61,7 @@ void MyOpenGLWidget_camera::resizeGL(int width, int height)
 
 
 //視点をカメラに変換する
-void MyOpenGLWidget_camera::setCamerakeyframe(const QVector3D& eyePoint,const QVector3D& lookAtPoint){
+void MyOpenGLWidget_camera::setCamerakeyframe(const Eigen::Vector3d& eyePoint,const Eigen::Vector3d& lookAtPoint){
 
     setCameraEyePoint2(eyePoint);
     setlookAtPoint2(lookAtPoint);
@@ -73,16 +73,16 @@ void MyOpenGLWidget_camera::setCamerakeyframe(const QVector3D& eyePoint,const QV
 
 }
 
-void MyOpenGLWidget_camera::setCameraEyePoint2(const QVector3D& eyePoint){
+void MyOpenGLWidget_camera::setCameraEyePoint2(const Eigen::Vector3d& eyePoint){
     g_Camera2.setEyePoint(eyePoint);
     update(); // カメラの状態が変わったら描画を更新する
 }
-void MyOpenGLWidget_camera::setlookAtPoint2(const QVector3D& lookAtPoint){
+void MyOpenGLWidget_camera::setlookAtPoint2(const Eigen::Vector3d& lookAtPoint){
     // 現在のカメラ位置を取得
-    QVector3D eyePoint = g_Camera2.getEyePoint();
+    Eigen::Vector3d eyePoint = g_Camera2.getEyePoint();
 
     // カメラの上方向ベクトルを取得（仮定または既知の値を使用）
-    QVector3D upVector =QVector3D(0.0, 1.0, 0.0);
+    Eigen::Vector3d upVector =Eigen::Vector3d(0.0, 1.0, 0.0);
         //g_Camera.getYVector(); // 通常はY軸方向（0,1,0）が使用される
 
     // CameraクラスのlookAtメソッドを呼び出し、新しい注視点に基づいてカメラの向きを設定
