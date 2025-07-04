@@ -109,40 +109,40 @@ void MainWindow::on_OrthoButton_clicked()
 void MainWindow::on_cameraButtondefalt_clicked()
 {
 
-    ui->openGLWidget_instance->setCameraEyePoint(QVector3D(1.0, 1.0, 3.0));
-    ui->openGLWidget_instance->setlookAtPoint(QVector3D(0.0, 0.0, 0.0));
+    ui->openGLWidget_instance->setCameraEyePoint(Eigen::Vector3d(1.0, 1.0, 3.0));
+    ui->openGLWidget_instance->setlookAtPoint(Eigen::Vector3d(0.0, 0.0, 0.0));
 
 }
 
 void MainWindow::on_cameraButtonup_clicked()
 {
 
-    ui->openGLWidget_instance->setCameraEyePoint(QVector3D(0.00, 3.0, -0.001));
-    ui->openGLWidget_instance->setlookAtPoint(QVector3D(0.0, 0.0, 0.0));
+    ui->openGLWidget_instance->setCameraEyePoint(Eigen::Vector3d(0.00, 3.0, -0.001));
+    ui->openGLWidget_instance->setlookAtPoint(Eigen::Vector3d(0.0, 0.0, 0.0));
 
 }
 
 void MainWindow::on_cameraButtonfront_clicked()
 {
 
-    ui->openGLWidget_instance->setCameraEyePoint(QVector3D(0.0, 0.0, 3.0));
-    ui->openGLWidget_instance->setlookAtPoint(QVector3D(0.0, 0.0, 0.0));
+    ui->openGLWidget_instance->setCameraEyePoint(Eigen::Vector3d(0.0, 0.0, 3.0));
+    ui->openGLWidget_instance->setlookAtPoint(Eigen::Vector3d(0.0, 0.0, 0.0));
 
 }
 
 void MainWindow::on_cameraButtonright_clicked()
 {
 
-    ui->openGLWidget_instance->setCameraEyePoint(QVector3D(2.0, 0.0, 0.0));
-    ui->openGLWidget_instance->setlookAtPoint(QVector3D(0.0, 0.0, 0.0));
+    ui->openGLWidget_instance->setCameraEyePoint(Eigen::Vector3d(2.0, 0.0, 0.0));
+    ui->openGLWidget_instance->setlookAtPoint(Eigen::Vector3d(0.0, 0.0, 0.0));
 
 }
 
 void MainWindow::on_cameraButtonleft_clicked()
 {
 
-    ui->openGLWidget_instance->setCameraEyePoint(QVector3D(-2.0, 0.0, 0.0));
-    ui->openGLWidget_instance->setlookAtPoint(QVector3D(0.0, 0.0, 0.0));
+    ui->openGLWidget_instance->setCameraEyePoint(Eigen::Vector3d(-2.0, 0.0, 0.0));
+    ui->openGLWidget_instance->setlookAtPoint(Eigen::Vector3d(0.0, 0.0, 0.0));
 
 }
 
@@ -169,13 +169,13 @@ void MainWindow::on_keyframeCameraButton_clicked()
 {
 
 
-    QVector3D EyePoint=(ui->openGLWidget_instance->getEyePoint());
-    QVector3D lookAtPoint=(ui->openGLWidget_instance->getlookAtPoint());
+    Eigen::Vector3d EyePoint=(ui->openGLWidget_instance->getEyePoint());
+    Eigen::Vector3d lookAtPoint=(ui->openGLWidget_instance->getlookAtPoint());
 
-    QVector3D upVector = ui->openGLWidget_instance->getUpVector();
-    QVector3D xVector = ui->openGLWidget_instance->getXVector();
-    QVector3D yVector = ui->openGLWidget_instance->getYVector();
-    QVector3D zVector =( ui->openGLWidget_instance->getZVector());
+    Eigen::Vector3d upVector = ui->openGLWidget_instance->getUpVector();
+    Eigen::Vector3d xVector = ui->openGLWidget_instance->getXVector();
+    Eigen::Vector3d yVector = ui->openGLWidget_instance->getYVector();
+    Eigen::Vector3d zVector =( ui->openGLWidget_instance->getZVector());
     float fov = ui->openGLWidget_instance->getCameraFov();
     double zoom = ui->openGLWidget_instance->getZoom();
     int frameNumber = static_cast<int>((scene->getPlayheadPositionX() - scene->startpixel) / scene->pixelsPerFrame);
@@ -193,7 +193,7 @@ void MainWindow::on_keyframeCameraButton_clicked()
     qreal x = scene->currentMousePositionX();  // 現在のマウスX座標を取得する方法を実装する必要がある
 
     // キーフレームを追加
-    scene->addKeyframe(frameNumber, EyePoint, lookAtPoint, upVector, xVector, yVector, zVector, fov, zoom);
+    scene->addKeyframe(frameNumber, toQt(EyePoint), toQt(lookAtPoint), toQt(upVector), toQt(xVector), toQt(yVector), toQt(zVector), fov, zoom);
 }
 
 
@@ -254,7 +254,7 @@ void MainWindow::showEvent(QShowEvent *event) {
 
 /*----------線形補間に関係する関数------------*/
 
-void MainWindow::updateCamera(const QVector3D& eyePoint, const QVector3D& lookAtPoint, const QVector3D& upVector, float fov, double zoom) {
+void MainWindow::updateCamera(const Eigen::Vector3d& eyePoint, const Eigen::Vector3d& lookAtPoint, const Eigen::Vector3d& upVector, float fov, double zoom) {
     ui->openGLWidget_camera_instance->setCamerakeyframe( eyePoint,lookAtPoint);
 
     ui->openGLWidget_camera_instance->update();

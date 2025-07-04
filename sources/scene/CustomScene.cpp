@@ -294,7 +294,7 @@ CameraKeyframe interpolatedKeyframe = interpolator.interpolateKeyframe(kf1, kf2,
 
 
 // メインウィンドウの関数を呼び出してカメラの状態を更新
-m_mainWindow->updateCamera(interpolatedKeyframe.eyePoint, interpolatedKeyframe.lookAtPoint, interpolatedKeyframe.upVector, interpolatedKeyframe.fov, interpolatedKeyframe.zoom);
+m_mainWindow->updateCamera(toEigen(interpolatedKeyframe.eyePoint), toEigen(interpolatedKeyframe.lookAtPoint), toEigen(interpolatedKeyframe.upVector), interpolatedKeyframe.fov, interpolatedKeyframe.zoom);
 }
 
 
