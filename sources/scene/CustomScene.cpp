@@ -259,11 +259,11 @@ return m_currentMouseX;  // 現在のマウス X 座標を返す
 
 /*==============線形補間=========================================================*/
 
-
+/*
 QQuaternion CustomScene::slerp(const QQuaternion& q1, const QQuaternion& q2, float t) {
 return q1.slerp(q1, q2, t);
 }
-
+*/
 
 
 void CustomScene::updateCameraForFrame(int frameNumber) {

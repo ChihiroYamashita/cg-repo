@@ -9,7 +9,6 @@
 #include <QList>
 #include <QPair>
 #include <Eigen/Geometry> // Eigenライブラリを使用
-#include <QQuaternion>
 #include "Interpolator.h"
 #include "CameraKeyframe.h"
 #include "KeyframeManager.h"

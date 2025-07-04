@@ -1,8 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
-#include <QVector3D>
+
 #include <QtMath> // Qtの数学関数用
-#include <QQuaternion>
 #include "conversion_utils.h"
 #include <Eigen/Geometry>
 //

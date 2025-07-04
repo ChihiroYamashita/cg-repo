@@ -1,8 +1,6 @@
 #ifndef INTERPOLATOR_H
 #define INTERPOLATOR_H
 
-#include <QVector3D>
-#include <QQuaternion>
 #include "CameraKeyframe.h" // CameraKeyframe 構造体を使用するために必要
 #include "camera.h"
 #include <Eigen/Dense>

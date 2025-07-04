@@ -2,7 +2,6 @@
 #define CAMERAC_KEYFRAME_H
 #include <Eigen/Dense>
 
-#include <QQuaternion>
 
 // キーフレーム構造体の定義
 struct CameraKeyframe {
