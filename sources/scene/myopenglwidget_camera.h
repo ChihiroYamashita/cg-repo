@@ -3,7 +3,7 @@
 #include <QOpenGLWidget>
 #include <QObject>
 #include "myopenglwidget.h" // MyOpenGLWidget クラスをインクルード
-
+#include <QOpenGLFunctions>
 
 class MyOpenGLWidget_camera :public MyOpenGLWidget {
     Q_OBJECT
@@ -38,6 +38,11 @@ private:
     int face[6][4];
     GLdouble color[6][3];
     float updatedFov;
+
+    //レイトレ用
+     void initializeFilmTexture();
+     GLuint m_filmTexture = 0; // フィルムテクスチャのID
+     float* m_filmBuffer = nullptr; // テスト用のテクスチャデータ
 };
 
 #endif // MYOPENGLWIDGET_CAMERA_H

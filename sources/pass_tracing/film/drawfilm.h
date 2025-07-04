@@ -2,9 +2,10 @@
 #define DRAWFILM_H
 #include <math.h>
 #include<camera.h>
+#include <qopengl.h>
 #include <Eigen/Dense>
-
-//void drawFilm( const Camera& in_Camera, GLuint in_FilmTexture );
+class Camera;
+void drawFilm( const Camera& in_Camera, GLuint in_FilmTexture );
 //void drawFilm( const Camera& in_Camera, GLuint in_FilmTexture );
 
 #endif // DRAWFILM_H

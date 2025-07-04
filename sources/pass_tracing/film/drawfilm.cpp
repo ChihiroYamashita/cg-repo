@@ -1,5 +1,6 @@
 #include "drawfilm.h"
 #include "camera.h"
+#include<camera.h>
 /**
  * @brief フィルムバッファをスクリーンに描画する関数
  * @details この関数は、カメラの視点を基準にフィルムバッファを四角形（矩形）として3D空間に配置し、
@@ -75,7 +76,7 @@
  * @see glVertex3f
  * @see glDisable
  */
-/*
+
 void drawFilm( const Camera& in_Camera, GLuint in_FilmTexture )
 {
     Eigen::Vector3d screen_center = in_Camera.getEyePoint() - in_Camera.getZVector() * in_Camera.getFocalLength();
@@ -108,4 +109,4 @@ void drawFilm( const Camera& in_Camera, GLuint in_FilmTexture )
 
     glDisable( GL_TEXTURE_2D );
 }
-*/
+

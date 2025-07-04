@@ -2,7 +2,7 @@
 #include "drawObject.h"
 #include "Camera.h"
 #include <GL/glu.h>
-
+#include "drawfilm.h"
 
 
 
@@ -20,6 +20,9 @@ void MyOpenGLWidget_camera::initializeGL() {
     g_Camera2.setEyePoint(Eigen::Vector3d( -1.0, 2.0, 3.0 ));
     g_Camera2.lookAt(Eigen::Vector3d{ 0.0, 0.0, 0.0 }, Eigen::Vector3d{ 0.0, 1.0, 0.0 });
     updatedFov=45;
+
+    // ★レイトレ追加: テスト用テクスチャを初期化
+    initializeFilmTexture();
 
     //checkOpenGLVersion();
 }
@@ -43,6 +46,12 @@ void MyOpenGLWidget_camera::paintGL() {
     drawXYZAxes();
     drawXYGrid(0.5, 50);
     drawcube();
+
+    // ★追加: フィルム（テストテクスチャ）を描画
+    // 深度テストを一時的に無効にして、常に最前面に表示されるようにする
+    glDisable(GL_DEPTH_TEST);
+    drawFilm(g_Camera2, m_filmTexture);
+    glEnable(GL_DEPTH_TEST); // 深度テストを元に戻す
    //qDebug() << "Child sees camerafov as " <<updatedFov;
 }
 
@@ -151,3 +160,38 @@ void MyOpenGLWidget_camera::wheelEvent(QWheelEvent *event)
 {
     // 何もしない
 }
+
+
+/*-----レイトレ用-------------*/
+
+// ★追加: テスト用テクスチャを生成する関数の実装
+void MyOpenGLWidget_camera::initializeFilmTexture() {
+    const int filmWidth = 256;
+    const int filmHeight = 256;
+
+    // 1. テスト用の画像データ（m_filmBuffer）を生成
+    m_filmBuffer = new float[filmWidth * filmHeight * 3];
+    for (int j = 0; j < filmHeight; ++j) {
+        for (int i = 0; i < filmWidth; ++i) {
+            int index = (j * filmWidth + i) * 3;
+            m_filmBuffer[index + 0] = (float)i / (filmWidth - 1);   // Red: 横方向のグラデーション
+            m_filmBuffer[index + 1] = (float)j / (filmHeight - 1);  // Green: 縦方向のグラデーション
+            m_filmBuffer[index + 2] = 0.5f;                         // Blue: 固定
+        }
+    }
+
+    // 2. OpenGLのテクスチャを生成
+    glGenTextures(1, &m_filmTexture);
+    glBindTexture(GL_TEXTURE_2D, m_filmTexture);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, filmWidth, filmHeight, 0, GL_RGB, GL_FLOAT, m_filmBuffer);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+    // テクスチャのバインドを解除
+    glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+
+
