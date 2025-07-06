@@ -11,11 +11,14 @@ INCLUDEPATH += $$PWD/sources/object
 INCLUDEPATH += $$PWD/sources/camera
 INCLUDEPATH += $$PWD/sources/pass_tracing
 INCLUDEPATH += $$PWD/sources/pass_tracing/film
+INCLUDEPATH += $$PWD/jpeg-9c/jpeg-9c
 
 LIBS += -lopengl32
 LIBS += -lglu32
 # LIBS += -L"D:/OneDrive_2/OneDrive/CGProgramings/qt3/freeglut-2.8.1.tar/freeglut-2.8.1/freeglut-2.8.1/lib/x86" -lfreeglut
 LIBS += -L"$$PWD/freeglut-2.8.1.tar/freeglut-2.8.1/freeglut-2.8.1/lib/x86" -lfreeglut
+LIBS += -L$$PWD/jpeg-9c/jpeg-9c/Release
+LIBS += -ljpeg
 
 CONFIG += c++17
 
@@ -27,6 +30,8 @@ SOURCES += \
     sources/animation/interpolator.cpp \
     sources/animation/keyframemanager.cpp \
     sources/camera/camera.cpp \
+    sources/geometry/Light.cpp \
+    sources/geometry/TriMesh.cpp \
     sources/main.cpp \
     sources/mainwindow.cpp \
     sources/object/drawObject.cpp \
@@ -44,6 +49,8 @@ HEADERS += \
     sources/animation/keyframemanager.h \
     sources/camera/camera.h \
     sources/conversion_utils.h \
+    sources/geometry/Light.h \
+    sources/geometry/TriMesh.h \
     sources/mainwindow.h \
     sources/object/drawObject.h \
     sources/pass_tracing/film/drawfilm.h \
@@ -63,3 +70,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     resorce.qrc
+
+DISTFILES += \
+    sources/toQtmemo.md \
+    sources/移植メモ.md \
+    移植メモ.md

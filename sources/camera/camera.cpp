@@ -24,8 +24,11 @@ Camera::Camera()
     , m_DistanceToObject( 1.0 )
     , m_FocalLength( 0.035 )
     , m_ScreenWidth( 0.036 )
-    , m_ScreenHeight( 0.024 )
+
     , m_LastLookAtPoint(0.0, 0.0, 0.0)
+    ,  m_aspectRatio (4.0 / 3.0)// デフォルトのアスペクト比 (例: 4:3)
+    , m_ScreenHeight( m_ScreenWidth / m_aspectRatio )
+
 {
 
 }
@@ -221,5 +224,17 @@ double Camera::getScreenWidth() const
 double Camera::getScreenHeight() const
 {
     return m_ScreenHeight;
+}
+
+/**
+ * @brief カメラのスクリーン平面のアスペクト比を設定します。
+ * @param[in] aspect 新しいアスペクト比 (width / height)
+ */
+void Camera::setAspectRatio(double aspect)
+{
+    if (aspect <= 0) return; // 0以下の無効な値は無視
+
+    m_aspectRatio = aspect;
+    m_ScreenHeight = m_ScreenWidth / m_aspectRatio; // アスペクト比に合わせて高さを再計算
 }
 

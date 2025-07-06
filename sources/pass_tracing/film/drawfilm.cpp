@@ -1,4 +1,5 @@
 #include "drawfilm.h"
+#include <QDebug>
 #include "camera.h"
 #include<camera.h>
 /**
@@ -79,6 +80,10 @@
 
 void drawFilm( const Camera& in_Camera, GLuint in_FilmTexture )
 {
+
+    //qDebug() << "in_Camera.getScreenHeight()"<< in_Camera.getScreenHeight();
+    //qDebug() << "in_Camera.getScreenWidth()"<< in_Camera.getScreenWidth();
+
     Eigen::Vector3d screen_center = in_Camera.getEyePoint() - in_Camera.getZVector() * in_Camera.getFocalLength();
     Eigen::Vector3d p1 = screen_center - in_Camera.getXVector() * in_Camera.getScreenWidth() * 0.5 - in_Camera.getYVector() * in_Camera.getScreenHeight() * 0.5;
     Eigen::Vector3d p2 = screen_center + in_Camera.getXVector() * in_Camera.getScreenWidth() * 0.5 - in_Camera.getYVector() * in_Camera.getScreenHeight() * 0.5;

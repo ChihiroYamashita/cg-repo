@@ -58,6 +58,9 @@ public:
     double getScreenWidth() const;
     double getScreenHeight() const;
 
+    // ★追加: アスペクト比を設定するメソッド
+    void setAspectRatio(double aspect);
+
 protected:
     Eigen::Vector3d m_EyePoint;
     Eigen::Vector3d m_xVector;
@@ -70,6 +73,7 @@ protected:
     double m_FocalLength;
     double m_ScreenWidth;
     double m_ScreenHeight;
+    double m_aspectRatio;
 
     Eigen::Vector3d m_LastLookAtPoint;//新規追加　getlookatpointの丸め誤差用
 };

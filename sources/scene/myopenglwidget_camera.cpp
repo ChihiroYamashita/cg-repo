@@ -61,6 +61,35 @@ void MyOpenGLWidget_camera::resizeGL(int width, int height)
 {
     //width = w;
     //height = h;
+    // メンバ変数のwidthとheightを更新
+    this->width = width;
+    this->height = height;
+
+    qDebug() <<"width"<<width;
+    qDebug() <<"height"<< height;
+
+    // ウィジェットのアスペクト比を計算
+    const float aspect = (height > 0) ? static_cast<float>(width) / static_cast<float>(height) : 1.0f;
+
+    // ★★★★★★★★★★★★★★★★★★★★★★★★★★★
+    // ★ ここでCameraオブジェクトのアスペクト比も更新する ★
+    // ★★★★★★★★★★★★★★★★★★★★★★★★★★★
+    g_Camera2.setAspectRatio(aspect);
+
+
+    // 以前のテクスチャとバッファが存在すれば削除（メモリリーク防止）
+    makeCurrent();
+    if (m_filmTexture != 0) {
+        glDeleteTextures(1, &m_filmTexture);
+        m_filmTexture = 0;
+    }
+    delete[] m_filmBuffer;
+    m_filmBuffer = nullptr;
+    doneCurrent();
+
+    // 新しいサイズでテクスチャを初期化
+    initializeFilmTexture();
+
 
 
     updateProjectionMatrix();
@@ -166,32 +195,29 @@ void MyOpenGLWidget_camera::wheelEvent(QWheelEvent *event)
 
 // ★追加: テスト用テクスチャを生成する関数の実装
 void MyOpenGLWidget_camera::initializeFilmTexture() {
-    const int filmWidth = 256;
-    const int filmHeight = 256;
+    // widthとheightが0以下の場合は何もしない（エラー防止）
+    if (width <= 0 || height <= 0) return;
 
-    // 1. テスト用の画像データ（m_filmBuffer）を生成
-    m_filmBuffer = new float[filmWidth * filmHeight * 3];
-    for (int j = 0; j < filmHeight; ++j) {
-        for (int i = 0; i < filmWidth; ++i) {
-            int index = (j * filmWidth + i) * 3;
-            m_filmBuffer[index + 0] = (float)i / (filmWidth - 1);   // Red: 横方向のグラデーション
-            m_filmBuffer[index + 1] = (float)j / (filmHeight - 1);  // Green: 縦方向のグラデーション
-            m_filmBuffer[index + 2] = 0.5f;                         // Blue: 固定
+    // メンバ変数のwidthとheightを使用
+    m_filmBuffer = new float[width * height * 3];
+    for (int j = 0; j < height; ++j) {
+        for (int i = 0; i < width; ++i) {
+            int index = (j * width + i) * 3;
+            m_filmBuffer[index + 0] = (float)i / (width - 1);
+            m_filmBuffer[index + 1] = (float)j / (height - 1);
+            m_filmBuffer[index + 2] = 0.5f;
         }
     }
 
-    // 2. OpenGLのテクスチャを生成
+    makeCurrent();
     glGenTextures(1, &m_filmTexture);
     glBindTexture(GL_TEXTURE_2D, m_filmTexture);
-
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, filmWidth, filmHeight, 0, GL_RGB, GL_FLOAT, m_filmBuffer);
-
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_FLOAT, m_filmBuffer);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-
-    // テクスチャのバインドを解除
     glBindTexture(GL_TEXTURE_2D, 0);
+    doneCurrent();
 }
 
-
+// ★追加: `drawfilm.cpp`から持ってきた描画関数の実装
 
