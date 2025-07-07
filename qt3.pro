@@ -11,6 +11,8 @@ INCLUDEPATH += $$PWD/sources/object
 INCLUDEPATH += $$PWD/sources/camera
 INCLUDEPATH += $$PWD/sources/pass_tracing
 INCLUDEPATH += $$PWD/sources/pass_tracing/film
+INCLUDEPATH += $$PWD/sources/core
+INCLUDEPATH += $$PWD/sources/geometry
 INCLUDEPATH += $$PWD/jpeg-9c/jpeg-9c
 
 LIBS += -lopengl32
@@ -30,6 +32,7 @@ SOURCES += \
     sources/animation/interpolator.cpp \
     sources/animation/keyframemanager.cpp \
     sources/camera/camera.cpp \
+    sources/core/Jpeg.cpp \
     sources/geometry/Light.cpp \
     sources/geometry/TriMesh.cpp \
     sources/main.cpp \
@@ -38,6 +41,7 @@ SOURCES += \
     sources/pass_tracing/film/drawfilm.cpp \
     sources/pass_tracing/film/film_buffer.cpp \
     sources/scene/CustomScene.cpp \
+    sources/scene/GLPreview.cpp \
     sources/scene/myopenglwidget.cpp \
     sources/scene/myopenglwidget_camera.cpp
 
@@ -49,6 +53,7 @@ HEADERS += \
     sources/animation/keyframemanager.h \
     sources/camera/camera.h \
     sources/conversion_utils.h \
+    sources/core/Jpeg.h \
     sources/geometry/Light.h \
     sources/geometry/TriMesh.h \
     sources/mainwindow.h \
@@ -56,6 +61,7 @@ HEADERS += \
     sources/pass_tracing/film/drawfilm.h \
     sources/pass_tracing/film/film_buffer.h \
     sources/scene/CustomScene.h \
+    sources/scene/GLPreview.h \
     sources/scene/myopenglwidget.h \
     sources/scene/myopenglwidget_camera.h
 

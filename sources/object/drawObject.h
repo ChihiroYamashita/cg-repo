@@ -4,7 +4,6 @@
 #include <QOpenGLFunctions>
 
 void drawcube();
-void drawFloor();
 void  drawcamera(const Eigen::Vector3d &eyePoint, const Eigen::Vector3d &lookAtPoint);
 void drawPlaneInCameraCoords(const Camera& camera, float size);
 void drawXYZAxes();

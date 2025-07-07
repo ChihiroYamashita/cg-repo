@@ -28,30 +28,7 @@
 #include <GL/gl.h>
 
 
-void drawFloor()
-{
-    glBegin(GL_TRIANGLES);
-    for (int j = -20; j < 20; j++)
-    {
-        for (int i = -20; i < 20; i++)
-        {
-            int checker_bw = (i + j) % 2;
-            if (checker_bw == 0)
-            {
-                glColor3f(0.3, 0.3, 0.3);
 
-                glVertex3f(i * 0.5, 0.0, j * 0.5);
-                glVertex3f(i * 0.5, 0.0, (j + 1) * 0.5);
-                glVertex3f((i + 1) * 0.5, 0.0, j * 0.5);
-
-                glVertex3f(i * 0.5, 0.0, (j + 1) * 0.5);
-                glVertex3f((i + 1) * 0.5, 0.0, (j + 1) * 0.5);
-                glVertex3f((i + 1) * 0.5, 0.0, j * 0.5);
-            }
-        }
-    }
-    glEnd();
-}
 
 void drawcube(){
 

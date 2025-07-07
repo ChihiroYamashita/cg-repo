@@ -23,6 +23,6 @@ struct AreaLight
   double intensity;
 };
 
-
+void initAreaLights(std::vector<AreaLight>& lights);
 
 #endif /* Light_h */
