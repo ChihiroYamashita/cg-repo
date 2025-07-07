@@ -6,8 +6,10 @@
 //  Copyright © 2019 Yonghao Yue. All rights reserved.
 //
 
-#include "GLPreview.h"
+//OpenGLによるリアルタイムプレビュー用描画・ライティング処理群のファイル
 
+#include "GLPreview.h"
+/*
 void projection_and_modelview( const Camera& in_Camera, const int width, const int height )
 {
   const double fovy_deg = ( 2.0 * 180.0 / M_PI ) * atan( 0.024 * 0.5 / in_Camera.getFocalLength() );
@@ -22,7 +24,7 @@ void projection_and_modelview( const Camera& in_Camera, const int width, const i
   const Eigen::Vector3d lookAtPoint = in_Camera.getLookAtPoint();
   gluLookAt( in_Camera.getEyePoint().x(), in_Camera.getEyePoint().y(), in_Camera.getEyePoint().z(), lookAtPoint.x(), lookAtPoint.y(), lookAtPoint.z(), in_Camera.getYVector().x(), in_Camera.getYVector().y(), in_Camera.getYVector().z() );
 }
-
+*/
 /*
 void drawLight( const Light& in_Light )
 {

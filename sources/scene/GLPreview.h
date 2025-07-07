@@ -28,7 +28,7 @@
 #include "TriMesh.h"
 #include "Light.h"
 
-void projection_and_modelview( const Camera& in_Camera, const int width, const int height );
+//void projection_and_modelview( const Camera& in_Camera, const int width, const int height );
 
 void drawLights( const std::vector<AreaLight>& in_AreaLights );
 

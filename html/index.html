@@ -92,38 +92,41 @@ $(function(){ initResizable(false); });
 <h2><a class="anchor" id="autotoc_md90"></a>
 リンク</h2>
 <p>openGLのmyopenglwiget.cppの座標変換に関しては <a class="el" href="md__doxygen_2coordinate__transformation1.html">こちら</a> を参照してください。<br  />
- openGLの基本については<a class="el" href="md__doxygen_2open_g_l__basis.html">こちら</a>を参照してください。 レイトレのディレクトリの基本構成は<a class="el" href="md__doxygen_2folder.html">こちら</a>を参照してください。</p>
+ openGLの基本については<a class="el" href="md__doxygen_2open_g_l__basis.html">こちら</a>を参照してください。<br  />
+ レイトレのディレクトリの基本構成は<a class="el" href="md__doxygen_2folder.html">こちら</a>を参照してください。<br  />
+ filmのレイトレース結果等の出力画像を画面に表示する機構の整理は<a class="el" href="md__doxygen_2memo__film.html">こちら</a><br  />
+</p>
 <p>キーフレームカメラの処理については MainWindow::on_keyframeCameraButton_clicked を参照。</p>
 <h2><a class="anchor" id="autotoc_md91"></a>
 全体ざっくり</h2>
 <p>こんな感じのソフト</p>
 <div class="plantumlgraph">
-<img src="inline_umlgraph_1.png" />
+<img src="inline_umlgraph_3.png" />
 </div>
 <h2><a class="anchor" id="autotoc_md92"></a>
 カメラ位置変更後の情報取得フロー</h2>
 <p>挙動～</p>
 <p>QOpenGLWidgetなどのクラスでupdate()を呼び出すと、内部的にOpenGLの再描画メソッド（通常paintGL()）が実行されるため、このような記述になっている。 ここまででカメラの位置情報をどうやって習得するかを記述した。次のセクションでこれらの情報を下にワールド座標系→ビューポート表示までの挙動を記述する。 </p><div class="plantumlgraph">
-<img src="inline_umlgraph_2.png" />
+<img src="inline_umlgraph_4.png" />
 </div>
  <h2><a class="anchor" id="autotoc_md93"></a>
 視野変換→ビューポート変換までのフロー</h2>
 <p>update()関数によってpaintGL()が自動で呼び出されたあとのpaintGL()の挙動<br  />
 <a class="el" href="md__doxygen_2about__convertions.html">基礎情報ページ</a>に変換周りの挙動を記述。 MyOpenGLWidget::projection_and_modelview MyOpenGLWidget::updateProjectionMatrix()　を参照。 </p><div class="plantumlgraph">
-<img src="inline_umlgraph_3.png" />
+<img src="inline_umlgraph_5.png" />
 </div>
 <p> projection_and_modelview</p>
 <h2><a class="anchor" id="autotoc_md94"></a>
 キーフレームの追加</h2>
 <div class="plantumlgraph">
-<img src="inline_umlgraph_4.png" />
+<img src="inline_umlgraph_6.png" />
 </div>
 <h2><a class="anchor" id="autotoc_md95"></a>
 視野角（FOV）の変更</h2>
 <p>FOVを変更するスロット ユーザーがスライダーを操作してカメラの視野角を変更します。</p>
 <p>シーケンス図:</p>
 <div class="plantumlgraph">
-<img src="inline_umlgraph_5.png" />
+<img src="inline_umlgraph_7.png" />
 </div>
  </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>

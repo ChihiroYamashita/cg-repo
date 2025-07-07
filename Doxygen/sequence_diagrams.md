@@ -5,8 +5,9 @@
 
 ### リンク
 openGLのmyopenglwiget.cppの座標変換に関しては [こちら](coordinate_transformation1.md) を参照してください。<br>
-openGLの基本については[こちら](openGL_basis.md)を参照してください。
-レイトレのディレクトリの基本構成は[こちら](folder.md)を参照してください。
+openGLの基本については[こちら](openGL_basis.md)を参照してください。<br>
+レイトレのディレクトリの基本構成は[こちら](folder.md)を参照してください。<br>
+filmのレイトレース結果等の出力画像を画面に表示する機構の整理は[こちら](memo_film.md)<br>
 
 キーフレームカメラの処理については @ref MainWindow::on_keyframeCameraButton_clicked を参照。
 

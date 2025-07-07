@@ -2,7 +2,7 @@ var indexSectionsWithContent =
 {
   0: "12345acdfghilmoprstuv①②③✅✳おさでなのはよアオカキコシテバビモリ今使全具再初各図実座引役投推描普概注結行視関）🎯📌🔁🔵🗺🧭🧱",
   1: "acfmorsu",
-  2: "fhlopシ全座"
+  2: "fhlmopシ全座"
 };
 
 var indexSectionNames =
