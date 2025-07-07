@@ -1,0 +1,121 @@
+\doxysection{Material 構造体}
+\hypertarget{struct_material}{}\label{struct_material}\index{Material@{Material}}
+
+
+オブジェクトの材質を表す構造体  
+
+
+
+
+{\ttfamily \#include $<$Tri\+Mesh.\+h$>$}
+
+
+
+Material 連携図\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=128pt]{struct_material__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+GLuint \mbox{\hyperlink{struct_material_a2c6d6ff284d128bc307fbef90c10b8c0_a2c6d6ff284d128bc307fbef90c10b8c0}{texture}}
+\item 
+Eigen\+::\+Vector3d \mbox{\hyperlink{struct_material_abceeea3a87366989b263c4226779cd88_abceeea3a87366989b263c4226779cd88}{kd}}
+\item 
+Eigen\+::\+Vector3d \mbox{\hyperlink{struct_material_aa696de34f2ab4bcef3878625eab6c8ff_aa696de34f2ab4bcef3878625eab6c8ff}{ks}}
+\item 
+Eigen\+::\+Vector3d \mbox{\hyperlink{struct_material_a48a90572005a0f6be1d2c0b088efacf9_a48a90572005a0f6be1d2c0b088efacf9}{kt}}
+\item 
+double \mbox{\hyperlink{struct_material_a62e8368c76c975790315b16d97558c26_a62e8368c76c975790315b16d97558c26}{eta}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{詳解}
+オブジェクトの材質を表す構造体 
+
+この構造体は、3\+Dオブジェクトの材質（マテリアル）情報を格納します。 材質はオブジェクトの表面の光反射特性や屈折特性、テクスチャ情報などを定義します。\hypertarget{struct_material_autotoc_md6}{}\doxysubsubsubsection{\texorpdfstring{メンバー変数\+:}{メンバー変数\+:}}\label{struct_material_autotoc_md6}
+
+\begin{DoxyItemize}
+\item {\bfseries{texture}}\+:
+\begin{DoxyItemize}
+\item オブジェクト表面に適用されるテクスチャ（画像）データ。
+\item {\ttfamily GLuint} 型でテクスチャ\+IDを管理。
+\item Open\+GLでロードされたテクスチャを識別するために使用されます。
+\end{DoxyItemize}
+\item {\bfseries{kd}} (拡散反射係数)\+:
+\begin{DoxyItemize}
+\item 材質の拡散反射成分を表すベクトル。
+\item 例\+: マットな材質では光が表面全体に均等に散乱する。
+\item 3次元ベクトル (R, G, B) で色を定義。
+\end{DoxyItemize}
+\item {\bfseries{ks}} (鏡面反射係数)\+:
+\begin{DoxyItemize}
+\item 材質の鏡面反射成分を表すベクトル。
+\item 光源からの光が特定の方向に強く反射する性質を制御。
+\item 3次元ベクトル (R, G, B) で色を定義。
+\end{DoxyItemize}
+\item {\bfseries{kt}} (透過率)\+:
+\begin{DoxyItemize}
+\item 材質の透過特性を表すベクトル。
+\item 透明なオブジェクト（例\+: ガラスや水）の光透過性を示す。
+\item 3次元ベクトル (R, G, B) で色を定義。
+\end{DoxyItemize}
+\item {\bfseries{eta}} (屈折率)\+:
+\begin{DoxyItemize}
+\item 材質の屈折率を表すスカラ値。
+\item 光が異なる媒質に入る際の屈折の度合いを示す。
+\item 例\+: 空気の屈折率は約1.0、ガラスは約1.5。
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{struct_material_autotoc_md7}{}\doxysubsubsubsection{\texorpdfstring{主な用途\+:}{主な用途\+:}}\label{struct_material_autotoc_md7}
+この構造体は、光の反射や屈折をシミュレーションするためにレンダリング処理で使用されます。 シェーダーや光線追跡アルゴリズム（レイトレーシング）において、各ピクセルの色を計算する際の基礎情報を提供します。\hypertarget{struct_material_autotoc_md8}{}\doxysubsubsubsection{\texorpdfstring{使用例\+:}{使用例\+:}}\label{struct_material_autotoc_md8}
+材質を設定してオブジェクトに適用\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{struct_material}{Material}}\ material;}
+\DoxyCodeLine{material.\mbox{\hyperlink{struct_material_a2c6d6ff284d128bc307fbef90c10b8c0_a2c6d6ff284d128bc307fbef90c10b8c0}{texture}}\ =\ loadTexture(\textcolor{stringliteral}{"{}example.png"{}});}
+\DoxyCodeLine{material.\mbox{\hyperlink{struct_material_abceeea3a87366989b263c4226779cd88_abceeea3a87366989b263c4226779cd88}{kd}}\ =\ Eigen::Vector3d(0.8,\ 0.8,\ 0.8);\ \textcolor{comment}{//\ 灰色}}
+\DoxyCodeLine{material.\mbox{\hyperlink{struct_material_aa696de34f2ab4bcef3878625eab6c8ff_aa696de34f2ab4bcef3878625eab6c8ff}{ks}}\ =\ Eigen::Vector3d(1.0,\ 1.0,\ 1.0);\ \textcolor{comment}{//\ 鏡面反射（白）}}
+\DoxyCodeLine{material.\mbox{\hyperlink{struct_material_a48a90572005a0f6be1d2c0b088efacf9_a48a90572005a0f6be1d2c0b088efacf9}{kt}}\ =\ Eigen::Vector3d(0.0,\ 0.0,\ 0.0);\ \textcolor{comment}{//\ 透過なし}}
+\DoxyCodeLine{material.\mbox{\hyperlink{struct_material_a62e8368c76c975790315b16d97558c26_a62e8368c76c975790315b16d97558c26}{eta}}\ =\ 1.5;\ \textcolor{comment}{//\ ガラスの屈折率}}
+
+\end{DoxyCode}
+ 
+
+\doxysubsection{メンバ詳解}
+\Hypertarget{struct_material_a62e8368c76c975790315b16d97558c26_a62e8368c76c975790315b16d97558c26}\index{Material@{Material}!eta@{eta}}
+\index{eta@{eta}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{eta}{eta}}
+{\footnotesize\ttfamily \label{struct_material_a62e8368c76c975790315b16d97558c26_a62e8368c76c975790315b16d97558c26} 
+double Material\+::eta}
+
+\Hypertarget{struct_material_abceeea3a87366989b263c4226779cd88_abceeea3a87366989b263c4226779cd88}\index{Material@{Material}!kd@{kd}}
+\index{kd@{kd}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{kd}{kd}}
+{\footnotesize\ttfamily \label{struct_material_abceeea3a87366989b263c4226779cd88_abceeea3a87366989b263c4226779cd88} 
+Eigen\+::\+Vector3d Material\+::kd}
+
+\Hypertarget{struct_material_aa696de34f2ab4bcef3878625eab6c8ff_aa696de34f2ab4bcef3878625eab6c8ff}\index{Material@{Material}!ks@{ks}}
+\index{ks@{ks}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{ks}{ks}}
+{\footnotesize\ttfamily \label{struct_material_aa696de34f2ab4bcef3878625eab6c8ff_aa696de34f2ab4bcef3878625eab6c8ff} 
+Eigen\+::\+Vector3d Material\+::ks}
+
+\Hypertarget{struct_material_a48a90572005a0f6be1d2c0b088efacf9_a48a90572005a0f6be1d2c0b088efacf9}\index{Material@{Material}!kt@{kt}}
+\index{kt@{kt}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{kt}{kt}}
+{\footnotesize\ttfamily \label{struct_material_a48a90572005a0f6be1d2c0b088efacf9_a48a90572005a0f6be1d2c0b088efacf9} 
+Eigen\+::\+Vector3d Material\+::kt}
+
+\Hypertarget{struct_material_a2c6d6ff284d128bc307fbef90c10b8c0_a2c6d6ff284d128bc307fbef90c10b8c0}\index{Material@{Material}!texture@{texture}}
+\index{texture@{texture}!Material@{Material}}
+\doxysubsubsection{\texorpdfstring{texture}{texture}}
+{\footnotesize\ttfamily \label{struct_material_a2c6d6ff284d128bc307fbef90c10b8c0_a2c6d6ff284d128bc307fbef90c10b8c0} 
+GLuint Material\+::texture}
+
+
+
+この構造体詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+sources/geometry/\mbox{\hyperlink{_tri_mesh_8h}{Tri\+Mesh.\+h}}\end{DoxyCompactItemize}

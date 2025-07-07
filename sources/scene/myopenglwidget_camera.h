@@ -4,7 +4,8 @@
 #include <QObject>
 #include "myopenglwidget.h" // MyOpenGLWidget クラスをインクルード
 #include <QOpenGLFunctions>
-
+#include "TriMesh.h"
+#include "Light.h"
 class MyOpenGLWidget_camera :public MyOpenGLWidget {
     Q_OBJECT
 
@@ -25,12 +26,15 @@ protected:
     void wheelEvent(QWheelEvent *event) override;
     void updateProjectionMatrix() override;
 
+
     // カメラの状態を保存・設定するためのメソッド（必要に応じて実装）
 
 
 
     void saveCameraState();
     void loadCameraState();
+    //レイトレ用
+    void initAreaLights();
 private:
     Camera g_Camera2;
     void drawCube();
@@ -43,6 +47,11 @@ private:
      void initializeFilmTexture();
      GLuint m_filmTexture = 0; // フィルムテクスチャのID
      float* m_filmBuffer = nullptr; // テスト用のテクスチャデータ
+
+
+     std::vector<AreaLight> g_AreaLights;// 読み込んだオブジェクトを保持
+     Object g_Obj;// シーンの光源を保持
+
 };
 
 #endif // MYOPENGLWIDGET_CAMERA_H

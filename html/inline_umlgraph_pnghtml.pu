@@ -1,4 +1,28 @@
-@startuml inline_umlgraph_1.png
+@startuml inline_umlgraph_2.png
+participant Main as M
+participant Camera as C
+participant OpenGL as GL
+
+M -> C: スクリーン中心と各ベクトル（X, Y, Z）を取得
+C -> M: スクリーン中心、Xベクトル、Yベクトル、Zベクトルを返す
+M -> GL: GL_TEXTURE_2D を有効化
+M -> GL: in_FilmTexture をバインド（使用するテクスチャを指定）
+M -> GL: 頂点とUV座標を指定して矩形を描画
+GL --> M: 描画完了を返す
+@enduml
+@startuml inline_umlgraph_4.png
+participant Main as M
+participant Camera as C
+participant OpenGL as GL
+
+M -> C: スクリーン中心と各ベクトル（X, Y, Z）を取得
+C -> M: スクリーン中心、Xベクトル、Yベクトル、Zベクトルを返す
+M -> GL: GL_TEXTURE_2D を有効化
+M -> GL: in_FilmTexture をバインド（使用するテクスチャを指定）
+M -> GL: 頂点とUV座標を指定して矩形を描画
+GL --> M: 描画完了を返す
+@enduml
+@startuml inline_umlgraph_5.png
 actor User
 
 User -> MyOpenGLWidget_camera : 初期化 (initializeGL)
@@ -17,7 +41,31 @@ MyOpenGLWidget_camera -> drawFilm : カメラ情報とfilmテクスチャを渡�
 drawFilm -> Camera : getEyePoint(), getX/Y/ZVector(), getFocalLength() など呼び出し
 drawFilm -> OpenGL : テクスチャをバインドし、矩形に貼り付けて描画
 @enduml
-@startuml inline_umlgraph_3.png
+@startuml inline_umlgraph_7.png
+class Object {
+  - List<TriMesh> meshes
+}
+
+class TriMesh {
+  - List<Vector3d> vertices
+  - List<Vector3d> vertex_normals
+  - List<Vector2d> tex_coords
+  - List<int> triangles
+  - Material material
+}
+
+class Material {
+  - GLuint texture
+  - Vector3d kd
+  - Vector3d ks
+  - Vector3d kt
+  - double eta
+}
+
+Object --> "1..* すべて参照" TriMesh
+TriMesh --> "1　マテリアル参照" Material
+@enduml
+@startuml inline_umlgraph_9.png
 actor User
 
 User -> MainWindow : スライダー操作などのユーザー入力
@@ -30,7 +78,7 @@ MyOpenGLWidget -> MyOpenGLWidget : 投影変換を適用（gluPerspective / glOr
 MyOpenGLWidget -> OpenGL : ビューポート変換を適用（glViewport）
 MyOpenGLWidget -> OpenGL : シーンをレンダリング
 @enduml
-@startuml inline_umlgraph_4.png
+@startuml inline_umlgraph_10.png
 actor User
 
 User -> MainWindow : スライダー操作/マウス操作\n（拡縮、回転、平行移動）
@@ -47,7 +95,7 @@ Camera -> Camera  : lookAt( QVector3D in_LookAt, QVector3D in_Up )\nカメラの
 
 MyOpenGLWidget -> OpenGL : update()\nすべての処理が終わったら画面を再描画（正確な記述は次項）
 @enduml
-@startuml inline_umlgraph_5.png
+@startuml inline_umlgraph_11.png
 actor User
 
 
@@ -59,12 +107,12 @@ MyOpenGLWidget -> MyOpenGLWidget : projection_and_modelview(g_Camera);\nカメ�
 MyOpenGLWidget -> OpenGL : glEnable(GL_DEPTH_TEST);\n深度テスト（Depth Test）を有効化\nglBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);\nアルファブレンディング（透明度の計算）\nglEnable(GL_BLEND);ブレンディングを有効化\nglEnable(GL_POINT_SMOOTH);, glEnable(GL_LINE_SMOOTH);, glEnable(GL_POLYGON_SMOOTH);\n（アンチエイリアス）を有効化\nglHint(GL_POINT_SMOOTH_HINT, GL_NICEST);\nスムージング
 MyOpenGLWidget -> drawObject :drawXYZAxes(); drawXYGrid(0.5, 50); drawcube();
 @enduml
-@startuml inline_umlgraph_6.png
+@startuml inline_umlgraph_12.png
 User -> Timeline : Add keyframe
 Timeline -> CustomScene : Insert keyframe
 CustomScene -> MainWindow : Notify keyframe added
 @enduml
-@startuml inline_umlgraph_7.png
+@startuml inline_umlgraph_13.png
  User -> MainWindow : on_fovSlider_valueChanged(int value)\n FOV sliderをいじる
  MainWindow -> MyOpenGLWidget : setCameraFov(float fov)\n カメラFOVを更新
  MyOpenGLWidget -> Camera : setFov(float cameraFov)\n 新しい FOVを設置

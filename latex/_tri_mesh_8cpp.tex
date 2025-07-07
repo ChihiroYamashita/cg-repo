@@ -1,0 +1,141 @@
+\doxysection{sources/geometry/\+Tri\+Mesh.cpp ファイル}
+\hypertarget{_tri_mesh_8cpp}{}\label{_tri_mesh_8cpp}\index{sources/geometry/TriMesh.cpp@{sources/geometry/TriMesh.cpp}}
+{\ttfamily \#include "{}Tri\+Mesh.\+h"{}}\newline
+{\ttfamily \#include "{}Jpeg.\+h"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+Tri\+Mesh.\+cpp の依存先関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_tri_mesh_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{クラス}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_internal_vertices}{Internal\+Vertices}}
+\item 
+struct \mbox{\hyperlink{struct_internal_triangles}{Internal\+Triangles}}
+\item 
+struct \mbox{\hyperlink{struct_internal_material}{Internal\+Material}}
+\item 
+struct \mbox{\hyperlink{struct_vertex_i_ds}{Vertex\+IDs}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_tri_mesh_8cpp_af08ec37a8c99d747fb60fa15bc28678b_af08ec37a8c99d747fb60fa15bc28678b}{\+\_\+\+CRT\+\_\+\+SECURE\+\_\+\+NO\+\_\+\+WARNINGS}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{_tri_mesh_8cpp_ab5fbf1c7f3a903caa90d136417e79f7d_ab5fbf1c7f3a903caa90d136417e79f7d}{operator$<$}} (const \mbox{\hyperlink{struct_vertex_i_ds}{Vertex\+IDs}} \&lhs, const \mbox{\hyperlink{struct_vertex_i_ds}{Vertex\+IDs}} \&rhs)
+\item 
+void \mbox{\hyperlink{_tri_mesh_8cpp_a8cdedef019b9d45805595ae164777255_a8cdedef019b9d45805595ae164777255}{reset\+Internal\+Vertices}} (\mbox{\hyperlink{struct_internal_vertices}{Internal\+Vertices}} \&io\+\_\+vertices)
+\item 
+void \mbox{\hyperlink{_tri_mesh_8cpp_a6260431ed28cec95ba54335647e0fdb3_a6260431ed28cec95ba54335647e0fdb3}{reset\+Internal\+Triangles}} (\mbox{\hyperlink{struct_internal_triangles}{Internal\+Triangles}} \&io\+\_\+triangles)
+\item 
+void \mbox{\hyperlink{_tri_mesh_8cpp_aad1a639108c68c2a286044db34c8f29e_aad1a639108c68c2a286044db34c8f29e}{reset\+Material}} (\mbox{\hyperlink{struct_material}{Material}} \&io\+\_\+\+Material)
+\item 
+void \mbox{\hyperlink{_tri_mesh_8cpp_a5a16859d54ec8442f0f08df47bc2c972_a5a16859d54ec8442f0f08df47bc2c972}{reset\+Mesh}} (\mbox{\hyperlink{struct_tri_mesh}{Tri\+Mesh}} \&io\+\_\+\+Mesh)
+\item 
+void \mbox{\hyperlink{_tri_mesh_8cpp_a74d0bce2decd88b836271a45697fd1b2_a74d0bce2decd88b836271a45697fd1b2}{print\+Mesh}} (const \mbox{\hyperlink{struct_tri_mesh}{Tri\+Mesh}} \&in\+\_\+\+Mesh)
+\item 
+void \mbox{\hyperlink{_tri_mesh_8cpp_a5f346bc885484892a79835290629a9bf_a5f346bc885484892a79835290629a9bf}{extend\+Mesh}} (\mbox{\hyperlink{struct_tri_mesh}{Tri\+Mesh}} \&io\+\_\+\+Base\+Mesh, const \mbox{\hyperlink{struct_tri_mesh}{Tri\+Mesh}} \&in\+\_\+\+Second\+Mesh)
+\item 
+GLuint \mbox{\hyperlink{_tri_mesh_8cpp_aaf909e99de26f7baa9785e2b592e236a_aaf909e99de26f7baa9785e2b592e236a}{prepare\+Texture\+From\+Jpeg\+File}} (const char \texorpdfstring{$\ast$}{*}in\+\_\+\+File\+Name)
+\item 
+bool \mbox{\hyperlink{_tri_mesh_8cpp_a9d511fc46547a6124d320d41441d2d9c_a9d511fc46547a6124d320d41441d2d9c}{load\+Mtl}} (const std\+::string \&in\+\_\+filename, std\+::vector$<$ \mbox{\hyperlink{struct_internal_material}{Internal\+Material}} $>$ \&io\+\_\+internal\+\_\+materials)
+\item 
+bool \mbox{\hyperlink{_tri_mesh_8cpp_a3da1a1770b9c38c2f0928b5203684b00_a3da1a1770b9c38c2f0928b5203684b00}{\+\_\+load\+Obj}} (const std\+::string \&in\+\_\+filename, \mbox{\hyperlink{struct_internal_vertices}{Internal\+Vertices}} \&out\+\_\+internal\+\_\+vertices, std\+::vector$<$ \mbox{\hyperlink{struct_internal_triangles}{Internal\+Triangles}} $>$ \&out\+\_\+internal\+\_\+triangles, std\+::vector$<$ \mbox{\hyperlink{struct_internal_material}{Internal\+Material}} $>$ \&out\+\_\+internal\+\_\+materials)
+\item 
+bool \mbox{\hyperlink{_tri_mesh_8cpp_a5d68f7db28b7475a94bf75add003c051_a5d68f7db28b7475a94bf75add003c051}{load\+Obj}} (const std\+::string \&in\+\_\+filename, \mbox{\hyperlink{struct_object}{Object}} \&out\+\_\+object)
+\item 
+void \mbox{\hyperlink{_tri_mesh_8cpp_a8ffa24ff28fc5442473219498069103e_a8ffa24ff28fc5442473219498069103e}{resize\+Obj}} (\mbox{\hyperlink{struct_object}{Object}} \&io\+\_\+object, const Eigen\+::\+Vector3d \&in\+\_\+min, const Eigen\+::\+Vector3d \&in\+\_\+max)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{_tri_mesh_8cpp_af08ec37a8c99d747fb60fa15bc28678b_af08ec37a8c99d747fb60fa15bc28678b}\index{TriMesh.cpp@{TriMesh.cpp}!\_CRT\_SECURE\_NO\_WARNINGS@{\_CRT\_SECURE\_NO\_WARNINGS}}
+\index{\_CRT\_SECURE\_NO\_WARNINGS@{\_CRT\_SECURE\_NO\_WARNINGS}!TriMesh.cpp@{TriMesh.cpp}}
+\doxysubsubsection{\texorpdfstring{\_CRT\_SECURE\_NO\_WARNINGS}{\_CRT\_SECURE\_NO\_WARNINGS}}
+{\footnotesize\ttfamily \label{_tri_mesh_8cpp_af08ec37a8c99d747fb60fa15bc28678b_af08ec37a8c99d747fb60fa15bc28678b} 
+\#define \+\_\+\+CRT\+\_\+\+SECURE\+\_\+\+NO\+\_\+\+WARNINGS}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{_tri_mesh_8cpp_a3da1a1770b9c38c2f0928b5203684b00_a3da1a1770b9c38c2f0928b5203684b00}\index{TriMesh.cpp@{TriMesh.cpp}!\_loadObj@{\_loadObj}}
+\index{\_loadObj@{\_loadObj}!TriMesh.cpp@{TriMesh.cpp}}
+\doxysubsubsection{\texorpdfstring{\_loadObj()}{\_loadObj()}}
+{\footnotesize\ttfamily \label{_tri_mesh_8cpp_a3da1a1770b9c38c2f0928b5203684b00_a3da1a1770b9c38c2f0928b5203684b00} 
+bool \+\_\+load\+Obj (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{in\+\_\+filename}{, }\item[{\mbox{\hyperlink{struct_internal_vertices}{Internal\+Vertices}} \&}]{out\+\_\+internal\+\_\+vertices}{, }\item[{std\+::vector$<$ \mbox{\hyperlink{struct_internal_triangles}{Internal\+Triangles}} $>$ \&}]{out\+\_\+internal\+\_\+triangles}{, }\item[{std\+::vector$<$ \mbox{\hyperlink{struct_internal_material}{Internal\+Material}} $>$ \&}]{out\+\_\+internal\+\_\+materials}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_tri_mesh_8cpp_a5f346bc885484892a79835290629a9bf_a5f346bc885484892a79835290629a9bf}\index{TriMesh.cpp@{TriMesh.cpp}!extendMesh@{extendMesh}}
+\index{extendMesh@{extendMesh}!TriMesh.cpp@{TriMesh.cpp}}
+\doxysubsubsection{\texorpdfstring{extendMesh()}{extendMesh()}}
+{\footnotesize\ttfamily \label{_tri_mesh_8cpp_a5f346bc885484892a79835290629a9bf_a5f346bc885484892a79835290629a9bf} 
+void extend\+Mesh (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_tri_mesh}{Tri\+Mesh}} \&}]{io\+\_\+\+Base\+Mesh}{, }\item[{const \mbox{\hyperlink{struct_tri_mesh}{Tri\+Mesh}} \&}]{in\+\_\+\+Second\+Mesh}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_tri_mesh_8cpp_a9d511fc46547a6124d320d41441d2d9c_a9d511fc46547a6124d320d41441d2d9c}\index{TriMesh.cpp@{TriMesh.cpp}!loadMtl@{loadMtl}}
+\index{loadMtl@{loadMtl}!TriMesh.cpp@{TriMesh.cpp}}
+\doxysubsubsection{\texorpdfstring{loadMtl()}{loadMtl()}}
+{\footnotesize\ttfamily \label{_tri_mesh_8cpp_a9d511fc46547a6124d320d41441d2d9c_a9d511fc46547a6124d320d41441d2d9c} 
+bool load\+Mtl (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{in\+\_\+filename}{, }\item[{std\+::vector$<$ \mbox{\hyperlink{struct_internal_material}{Internal\+Material}} $>$ \&}]{io\+\_\+internal\+\_\+materials}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_tri_mesh_8cpp_a5d68f7db28b7475a94bf75add003c051_a5d68f7db28b7475a94bf75add003c051}\index{TriMesh.cpp@{TriMesh.cpp}!loadObj@{loadObj}}
+\index{loadObj@{loadObj}!TriMesh.cpp@{TriMesh.cpp}}
+\doxysubsubsection{\texorpdfstring{loadObj()}{loadObj()}}
+{\footnotesize\ttfamily \label{_tri_mesh_8cpp_a5d68f7db28b7475a94bf75add003c051_a5d68f7db28b7475a94bf75add003c051} 
+bool load\+Obj (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{in\+\_\+filename}{, }\item[{\mbox{\hyperlink{struct_object}{Object}} \&}]{out\+\_\+object}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_tri_mesh_8cpp_ab5fbf1c7f3a903caa90d136417e79f7d_ab5fbf1c7f3a903caa90d136417e79f7d}\index{TriMesh.cpp@{TriMesh.cpp}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!TriMesh.cpp@{TriMesh.cpp}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily \label{_tri_mesh_8cpp_ab5fbf1c7f3a903caa90d136417e79f7d_ab5fbf1c7f3a903caa90d136417e79f7d} 
+bool operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_vertex_i_ds}{Vertex\+IDs}} \&}]{lhs}{, }\item[{const \mbox{\hyperlink{struct_vertex_i_ds}{Vertex\+IDs}} \&}]{rhs}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_tri_mesh_8cpp_aaf909e99de26f7baa9785e2b592e236a_aaf909e99de26f7baa9785e2b592e236a}\index{TriMesh.cpp@{TriMesh.cpp}!prepareTextureFromJpegFile@{prepareTextureFromJpegFile}}
+\index{prepareTextureFromJpegFile@{prepareTextureFromJpegFile}!TriMesh.cpp@{TriMesh.cpp}}
+\doxysubsubsection{\texorpdfstring{prepareTextureFromJpegFile()}{prepareTextureFromJpegFile()}}
+{\footnotesize\ttfamily \label{_tri_mesh_8cpp_aaf909e99de26f7baa9785e2b592e236a_aaf909e99de26f7baa9785e2b592e236a} 
+GLuint prepare\+Texture\+From\+Jpeg\+File (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{in\+\_\+\+File\+Name}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_tri_mesh_8cpp_a74d0bce2decd88b836271a45697fd1b2_a74d0bce2decd88b836271a45697fd1b2}\index{TriMesh.cpp@{TriMesh.cpp}!printMesh@{printMesh}}
+\index{printMesh@{printMesh}!TriMesh.cpp@{TriMesh.cpp}}
+\doxysubsubsection{\texorpdfstring{printMesh()}{printMesh()}}
+{\footnotesize\ttfamily \label{_tri_mesh_8cpp_a74d0bce2decd88b836271a45697fd1b2_a74d0bce2decd88b836271a45697fd1b2} 
+void print\+Mesh (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_tri_mesh}{Tri\+Mesh}} \&}]{in\+\_\+\+Mesh}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_tri_mesh_8cpp_a6260431ed28cec95ba54335647e0fdb3_a6260431ed28cec95ba54335647e0fdb3}\index{TriMesh.cpp@{TriMesh.cpp}!resetInternalTriangles@{resetInternalTriangles}}
+\index{resetInternalTriangles@{resetInternalTriangles}!TriMesh.cpp@{TriMesh.cpp}}
+\doxysubsubsection{\texorpdfstring{resetInternalTriangles()}{resetInternalTriangles()}}
+{\footnotesize\ttfamily \label{_tri_mesh_8cpp_a6260431ed28cec95ba54335647e0fdb3_a6260431ed28cec95ba54335647e0fdb3} 
+void reset\+Internal\+Triangles (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_internal_triangles}{Internal\+Triangles}} \&}]{io\+\_\+triangles}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_tri_mesh_8cpp_a8cdedef019b9d45805595ae164777255_a8cdedef019b9d45805595ae164777255}\index{TriMesh.cpp@{TriMesh.cpp}!resetInternalVertices@{resetInternalVertices}}
+\index{resetInternalVertices@{resetInternalVertices}!TriMesh.cpp@{TriMesh.cpp}}
+\doxysubsubsection{\texorpdfstring{resetInternalVertices()}{resetInternalVertices()}}
+{\footnotesize\ttfamily \label{_tri_mesh_8cpp_a8cdedef019b9d45805595ae164777255_a8cdedef019b9d45805595ae164777255} 
+void reset\+Internal\+Vertices (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_internal_vertices}{Internal\+Vertices}} \&}]{io\+\_\+vertices}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_tri_mesh_8cpp_aad1a639108c68c2a286044db34c8f29e_aad1a639108c68c2a286044db34c8f29e}\index{TriMesh.cpp@{TriMesh.cpp}!resetMaterial@{resetMaterial}}
+\index{resetMaterial@{resetMaterial}!TriMesh.cpp@{TriMesh.cpp}}
+\doxysubsubsection{\texorpdfstring{resetMaterial()}{resetMaterial()}}
+{\footnotesize\ttfamily \label{_tri_mesh_8cpp_aad1a639108c68c2a286044db34c8f29e_aad1a639108c68c2a286044db34c8f29e} 
+void reset\+Material (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_material}{Material}} \&}]{io\+\_\+\+Material}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_tri_mesh_8cpp_a5a16859d54ec8442f0f08df47bc2c972_a5a16859d54ec8442f0f08df47bc2c972}\index{TriMesh.cpp@{TriMesh.cpp}!resetMesh@{resetMesh}}
+\index{resetMesh@{resetMesh}!TriMesh.cpp@{TriMesh.cpp}}
+\doxysubsubsection{\texorpdfstring{resetMesh()}{resetMesh()}}
+{\footnotesize\ttfamily \label{_tri_mesh_8cpp_a5a16859d54ec8442f0f08df47bc2c972_a5a16859d54ec8442f0f08df47bc2c972} 
+void reset\+Mesh (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_tri_mesh}{Tri\+Mesh}} \&}]{io\+\_\+\+Mesh}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_tri_mesh_8cpp_a8ffa24ff28fc5442473219498069103e_a8ffa24ff28fc5442473219498069103e}\index{TriMesh.cpp@{TriMesh.cpp}!resizeObj@{resizeObj}}
+\index{resizeObj@{resizeObj}!TriMesh.cpp@{TriMesh.cpp}}
+\doxysubsubsection{\texorpdfstring{resizeObj()}{resizeObj()}}
+{\footnotesize\ttfamily \label{_tri_mesh_8cpp_a8ffa24ff28fc5442473219498069103e_a8ffa24ff28fc5442473219498069103e} 
+void resize\+Obj (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_object}{Object}} \&}]{io\+\_\+object}{, }\item[{const Eigen\+::\+Vector3d \&}]{in\+\_\+min}{, }\item[{const Eigen\+::\+Vector3d \&}]{in\+\_\+max}{}\end{DoxyParamCaption})}
+

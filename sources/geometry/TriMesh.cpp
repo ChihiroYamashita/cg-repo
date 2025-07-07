@@ -13,6 +13,8 @@
 #include <iostream>
 #include <string.h>
 #include <map>
+#include <QDir>
+#include <QDebug>
 
 struct InternalVertices
 {
@@ -176,6 +178,7 @@ bool loadMtl( const std::string& in_filename, std::vector<InternalMaterial>& io_
   if ( !f )
   {
     std::cout << "Could not open mtl file: " << in_filename << std::endl;
+    qDebug() << "Current working directory:" << QDir::currentPath();
     return false;
   }
   

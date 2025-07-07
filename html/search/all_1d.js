@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['なぜこの順でokか：_0',['なぜこの順でOKか：',['../md__doxygen_2coordinate__transformation1.html#autotoc_md13',1,'']]],
-  ['など_1',['glHint(GL_POINT_SMOOTH_HINT, GL_NICEST); など',['../md__doxygen_2_open_g_l__func.html#autotoc_md86',1,'']]]
+  ['yvector_0',['yVector',['../struct_camera_keyframe_a6d6eeea948afd8aeec8e6438db9d6550.html#a6d6eeea948afd8aeec8e6438db9d6550',1,'CameraKeyframe']]]
 ];

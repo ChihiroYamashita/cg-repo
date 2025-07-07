@@ -89,14 +89,14 @@ $(function(){ initResizable(false); });
 <div class="contents">
 <div class="textblock"><p>ここでは「OpenGL の基本的な使い方」を、初心者の方でも理解できるように **ステップごとに分かりやすく整理**します。</p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md38"></a>
+<h2><a class="anchor" id="autotoc_md76"></a>
 🎯 OpenGLとは？</h2>
 <p>OpenGL（Open Graphics Library）は、**GPUを使って2D/3Dグラフィックスを描画するためのクロスプラットフォームなAPI**です。</p>
 <p>OpenGL自体は「何を描くか」や「どう描くか」の命令を出すだけで、「ウィンドウ」や「イベント処理」は行いません。そのため、**GLUT** や <b>Qt</b> などのライブラリと組み合わせて使うことが多いです。</p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md40"></a>
+<h2><a class="anchor" id="autotoc_md78"></a>
 🧭 OpenGLの基本的な使い方：5ステップ</h2>
-<h3><a class="anchor" id="autotoc_md41"></a>
+<h3><a class="anchor" id="autotoc_md79"></a>
 🔵 1. コンテキストとウィンドウの用意</h3>
 <p>OpenGLは単体では動かず、**描画対象（ウィンドウ）とコンテキスト（OpenGL環境）**が必要です。</p>
 <ul>
@@ -104,7 +104,7 @@ $(function(){ initResizable(false); });
 <li>Qtでは <code>QOpenGLWidget</code> を継承したクラスを作成します。</li>
 </ul>
 <hr  />
-<h3><a class="anchor" id="autotoc_md43"></a>
+<h3><a class="anchor" id="autotoc_md81"></a>
 🔵 2. 初期化（<code>initializeGL()</code> / <code>init()</code>）</h3>
 <p>ここで行うこと：</p>
 <ul>
@@ -113,7 +113,7 @@ $(function(){ initResizable(false); });
 <li>ライティングやテクスチャなどの設定（必要に応じて）</li>
 </ul>
 <hr  />
-<h3><a class="anchor" id="autotoc_md45"></a>
+<h3><a class="anchor" id="autotoc_md83"></a>
 🔵 3. 描画（<code>paintGL()</code> / <code>display()</code>）</h3>
 <p>**描画処理の中心**です。</p>
 <div class="fragment"><div class="line">glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); <span class="comment">// バッファクリア</span></div>
@@ -131,7 +131,7 @@ $(function(){ initResizable(false); });
 <div class="line"><span class="comment">// オブジェクトの描画</span></div>
 <div class="line">drawSomething(); <span class="comment">// glBegin〜glEnd など</span></div>
 </div><!-- fragment --><hr  />
-<h3><a class="anchor" id="autotoc_md47"></a>
+<h3><a class="anchor" id="autotoc_md85"></a>
 🔵 4. 再描画要求（<code>update()</code> or <code>glutPostRedisplay()</code>）</h3>
 <p>オブジェクトが動いたり視点が変わったりしたときに、**描画を更新する必要があります**。</p>
 <ul>
@@ -139,7 +139,7 @@ $(function(){ initResizable(false); });
 <li>GLUT：<code>glutPostRedisplay();</code> を呼ぶことで再描画</li>
 </ul>
 <hr  />
-<h3><a class="anchor" id="autotoc_md49"></a>
+<h3><a class="anchor" id="autotoc_md87"></a>
 🔵 5. バッファスワップ（ダブルバッファ）</h3>
 <p>描画内容を「チラつきなく表示する」ために、2枚のバッファを交互に使います。</p>
 <ul>
@@ -147,7 +147,7 @@ $(function(){ initResizable(false); });
 <li>Qt：内部で自動処理、明示的な呼び出しは不要</li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md51"></a>
+<h2><a class="anchor" id="autotoc_md89"></a>
 🗺️ OpenGLにおける座標変換の流れ（重要）</h2>
 <div class="fragment"><div class="line">[モデル座標系] モデル変換（オブジェクトの位置・回転）</div>
 <div class="line">   ↓</div>
@@ -157,7 +157,7 @@ $(function(){ initResizable(false); });
 <div class="line">   ↓</div>
 <div class="line">[クリップ座標系] ビューポート変換（スクリーン上のピクセル位置）</div>
 </div><!-- fragment --><hr  />
-<h2><a class="anchor" id="autotoc_md53"></a>
+<h2><a class="anchor" id="autotoc_md91"></a>
 🧱 図形の描画方法（固定機能パイプラインの例）</h2>
 <div class="fragment"><div class="line">glBegin(GL_TRIANGLES);</div>
 <div class="line">  glColor3f(1.0, 0.0, 0.0); <span class="comment">// 赤</span></div>
@@ -166,7 +166,7 @@ $(function(){ initResizable(false); });
 <div class="line">  glVertex3f(1.0, -1.0, 0.0);</div>
 <div class="line">glEnd();</div>
 </div><!-- fragment --><hr  />
-<h2><a class="anchor" id="autotoc_md55"></a>
+<h2><a class="anchor" id="autotoc_md93"></a>
 ✅ よく使う関数まとめ</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -189,7 +189,7 @@ $(function(){ initResizable(false); });
 <td class="markdownTableBodyNone"><code>gluLookAt()</code>   </td><td class="markdownTableBodyNone">カメラ視点を設定   </td></tr>
 </table>
 <hr  />
-<h2><a class="anchor" id="autotoc_md57"></a>
+<h2><a class="anchor" id="autotoc_md95"></a>
 ✳️ さらに学びたい方向け</h2>
 <ul>
 <li><b>OpenGL 3.x以降ではシェーダープログラミング**が主流（モダンOpenGL）</b></li>

@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Qt_project: シーケンス図一覧</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Qt_project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div><div class="header">
+  <div class="headertitle"><div class="title">シーケンス図一覧</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>プロジェクト内のシーケンス図をまとめたグループ</p>
+<p><a class="anchor" id="autotoc_md113"></a></p>
+<h2><a class="anchor" id="autotoc_md114"></a>
+リンク</h2>
+<p>openGLのmyopenglwiget.cppの座標変換に関しては <a class="el" href="md_sources_2coordinate__transformation1.html">こちら</a> を参照してください。<br  />
+ openGLの基本については<a class="el" href="md_sources_2open_g_l__basis.html">こちら</a>を参照してください。<br  />
+ レイトレのディレクトリの基本構成は<a class="el" href="md_sources_2folder.html">こちら</a>を参照してください。<br  />
+ filmのレイトレース結果等の出力画像を画面に表示する機構の整理は<a class="el" href="md_sources_2memo__film.html">こちら</a><br  />
+</p>
+<p>キーフレームカメラの処理については <a class="el" href="class_main_window_a026991cfbe95c4e6867248d692c15e6b.html#a026991cfbe95c4e6867248d692c15e6b">MainWindow::on_keyframeCameraButton_clicked</a> を参照。</p>
+<h2><a class="anchor" id="autotoc_md115"></a>
+全体ざっくり</h2>
+<p>こんな感じのソフト</p>
+<div class="plantumlgraph">
+<img src="inline_umlgraph_7.png" />
+</div>
+<h2><a class="anchor" id="autotoc_md116"></a>
+カメラ位置変更後の情報取得フロー</h2>
+<p>挙動～</p>
+<p>QOpenGLWidgetなどのクラスでupdate()を呼び出すと、内部的にOpenGLの再描画メソッド（通常paintGL()）が実行されるため、このような記述になっている。 ここまででカメラの位置情報をどうやって習得するかを記述した。次のセクションでこれらの情報を下にワールド座標系→ビューポート表示までの挙動を記述する。 </p><div class="plantumlgraph">
+<img src="inline_umlgraph_8.png" />
+</div>
+ <h2><a class="anchor" id="autotoc_md117"></a>
+視野変換→ビューポート変換までのフロー</h2>
+<p>update()関数によってpaintGL()が自動で呼び出されたあとのpaintGL()の挙動<br  />
+<a class="el" href="md_sources_2about__convertions.html">基礎情報ページ</a>に変換周りの挙動を記述。 <a class="el" href="class_my_open_g_l_widget_a6a59b0003a3c6860ffdfe3fe696488e2.html#a6a59b0003a3c6860ffdfe3fe696488e2">MyOpenGLWidget::projection_and_modelview</a> <a class="el" href="class_my_open_g_l_widget_a481e6f37c00892b3ab5afefdf22715c4.html#a481e6f37c00892b3ab5afefdf22715c4">MyOpenGLWidget::updateProjectionMatrix()</a>　を参照。 </p><div class="plantumlgraph">
+<img src="inline_umlgraph_9.png" />
+</div>
+<p> projection_and_modelview</p>
+<h2><a class="anchor" id="autotoc_md118"></a>
+キーフレームの追加</h2>
+<div class="plantumlgraph">
+<img src="inline_umlgraph_10.png" />
+</div>
+<h2><a class="anchor" id="autotoc_md119"></a>
+視野角（FOV）の変更</h2>
+<p>FOVを変更するスロット ユーザーがスライダーを操作してカメラの視野角を変更します。</p>
+<p>シーケンス図:</p>
+<div class="plantumlgraph">
+<img src="inline_umlgraph_11.png" />
+</div>
+ </div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

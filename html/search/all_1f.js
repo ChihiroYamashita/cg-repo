@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['はじめに_0',['はじめに',['../md__doxygen_2about__convertions.html#autotoc_md1',1,'はじめに'],['../md__doxygen_2_open_g_l__func.html#autotoc_md60',1,'はじめに']]]
+  ['_7emainwindow_0',['~MainWindow',['../class_main_window_ae98d00a93bc118200eeef9f9bba1dba7.html#ae98d00a93bc118200eeef9f9bba1dba7',1,'MainWindow']]]
 ];

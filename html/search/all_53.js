@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🧱_20図形の描画方法（固定機能パイプラインの例）_0',['🧱 図形の描画方法（固定機能パイプラインの例）',['../md__doxygen_2open_g_l__basis.html#autotoc_md42',1,'']]]
+  ['解説_0',['解説',['../md_sources_2to_qtmemo.html#autotoc_md26',1,'']]]
 ];

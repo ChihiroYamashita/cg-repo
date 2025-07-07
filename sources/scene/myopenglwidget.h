@@ -103,6 +103,7 @@ protected slots:
 
 
 
+
 };
 
 #endif // MYOPENGLWIDGET_H

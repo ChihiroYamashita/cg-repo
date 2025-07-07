@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['引数_20strong_0',['&lt;strong&gt;引数&lt;/strong&gt;',['../md__doxygen_2_open_g_l__func.html#autotoc_md65',1,'']]]
+  ['ビューポート変換はいつでもok？_0',['✅ ビューポート変換はいつでもOK？',['../md__doxygen_2coordinate__transformation1.html#autotoc_md53',1,'']]]
 ];

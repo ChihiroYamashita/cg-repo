@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Qt_project: 全体フロー：OpenGL描画の処理の流れ（Qt版）</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Qt_project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div><div class="header">
+  <div class="headertitle"><div class="title">全体フロー：OpenGL描画の処理の流れ（Qt版）</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="autotoc_md14"></a></p>
+<div class="fragment"><div class="line">          QOpenGLWidgetによる初期化 &amp; 描画</div>
+<div class="line">┌─────────────────────────────────────────┐</div>
+<div class="line">│                                        │</div>
+<div class="line">│           1回だけ呼ばれる関数         │</div>
+<div class="line">│   ┌──────────────┐                       │</div>
+<div class="line">│   │ initializeGL()│← OpenGLの初期設定    │</div>
+<div class="line">│   └──────────────┘                       │</div>
+<div class="line">│                                        │</div>
+<div class="line">│         毎フレーム or 明示的再描画で呼ばれる関数 │</div>
+<div class="line">│   ┌──────────────┐                       │</div>
+<div class="line">│   │ resizeGL()    │← リサイズ時に呼ばれる │</div>
+<div class="line">│   └──────────────┘                       │</div>
+<div class="line">│   ┌──────────────┐                       │</div>
+<div class="line">│   │ paintGL()     │← 描画処理の本体        │</div>
+<div class="line">│   └──────────────┘                       │</div>
+<div class="line">└─────────────────────────────────────────┘</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md15"></a>
+普通、視野変換、投影変換、ビューポート変換の順に呼ばれませんか？</h1>
+<p>とても良い視点です。ご指摘の通り、**理論的・概念的には**：</p>
+<blockquote class="doxtable">
+<p>&zwj;<b>視野変換（View） → 投影変換（Projection） → ビューポート変換（Viewport）</b> </p>
+</blockquote>
+<p>の順で処理されるのが自然です。なぜなら、OpenGLのグラフィックスパイプラインは以下のような順番で頂点に対して変換をかけていくからです：</p>
+<div class="fragment"><div class="line">[モデル座標]</div>
+<div class="line"> → モデリング変換</div>
+<div class="line"> → 視野変換（カメラ座標系へ）</div>
+<div class="line"> → 投影変換（視錐台 → 正規化デバイス座標）</div>
+<div class="line"> → ビューポート変換（スクリーン座標へ）</div>
+</div><!-- fragment --><hr  />
+<h1><a class="anchor" id="autotoc_md17"></a>
+✅ ではなぜ <code>paintGL()</code> では投影→ビューポート→視野 の順なのか？</h1>
+<p>これは **OpenGL の状態設定**と**描画タイミング**の関係によるものです。</p>
+<h2><a class="anchor" id="autotoc_md18"></a>
+OpenGLの描画順序（実際の<code>paintGL()</code>）：</h2>
+<div class="fragment"><div class="line">updateProjectionMatrix(); <span class="comment">// ① 投影行列の設定</span></div>
+<div class="line">glViewport(...);          <span class="comment">// ② スクリーンサイズの設定</span></div>
+<div class="line">projection_and_modelview(); <span class="comment">// ③ カメラの視点を設定</span></div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md19"></a>
+なぜこの順でOKか：</h2>
+<ul>
+<li><p class="startli">OpenGLでは、「**行列の設定**」は **描画が始まる前**に行っておけばよく、実際の行列計算は内部で最終的に以下のように合成されます：</p>
+<div class="fragment"><div class="line">gl_Position = ProjectionMatrix × ModelViewMatrix × vertex</div>
+</div><!-- fragment --></li>
+<li>モデルビュー行列（視野変換）は <code>glMatrixMode(GL_MODELVIEW)</code> 時に設定。</li>
+<li>投影行列は <code>glMatrixMode(GL_PROJECTION)</code> 時に設定。</li>
+<li>**それぞれの行列スタックは独立に管理される**ので、順番が逆でも最終的に行列積が正しく合成されればOKです。</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md21"></a>
+✅ ビューポート変換はいつでもOK？</h1>
+<p>はい、<code>glViewport()</code> は **座標変換ではなく「画面にどうマッピングするか」**の設定です。したがって、描画前に呼ばれていれば OK です。行列に関係なく独立に働きます。</p>
+<hr  />
+<h1><a class="anchor" id="autotoc_md23"></a>
+🔁 結論：理論 vs 実装順の違い</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">観点   </th><th class="markdownTableHeadNone">理論的な順序   </th><th class="markdownTableHeadNone">OpenGL 実装での順序（あなたのコード）    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">モデル変換 → 視野変換   </td><td class="markdownTableBodyNone">✅   </td><td class="markdownTableBodyNone">✅ (<code>glLoadIdentity</code> + <code>gluLookAt</code>)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">視野変換 → 投影変換   </td><td class="markdownTableBodyNone">✅   </td><td class="markdownTableBodyNone">❌（逆順でもOK、状態として管理）    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">投影変換 → ビューポート   </td><td class="markdownTableBodyNone">✅   </td><td class="markdownTableBodyNone">✅    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">行列が正しく積まれるか   </td><td class="markdownTableBodyNone">✅   </td><td class="markdownTableBodyNone">✅ 問題なし   </td></tr>
+</table>
+<hr  />
+<p>つまり、</p>
+<blockquote class="doxtable">
+<p>&zwj;<b>理論的には視野→投影→ビューポートが自然ですが、OpenGLでは投影→ビューポート→視野でも動作に問題はありません。</b> </p>
+</blockquote>
+<p>ただし、「理論通りに組むほうが可読性・教育的には望ましい」とされることが多いです。</p>
+<hr  />
+<p>もし視点変換と投影変換を**一つの変換行列に統合したい場合**や、**GLSLで扱いたい場合**なども説明可能です。必要ですか？ </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

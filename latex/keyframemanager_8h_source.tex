@@ -11,24 +11,25 @@
 \DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <QGraphicsLineItem>}}
 \DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_camera_keyframe_8h}{CameraKeyframe.h}}"{}}}
 \DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{interpolator_8h}{Interpolator.h}}"{}}}
-\DoxyCodeLine{00010\ }
-\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_keyframe_manager}{KeyframeManager}}\ \{}
-\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{class_keyframe_manager_ad17977130aa316c01e4e053aee4abd01_ad17977130aa316c01e4e053aee4abd01}{KeyframeManager}}();}
-\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_keyframe_manager_ac89c872ff493024847a2c151f98d34b6_ac89c872ff493024847a2c151f98d34b6}{addKeyframe}}(\textcolor{keywordtype}{int}\ frameNumber,\ \textcolor{keyword}{const}\ QVector3D\&\ eyePoint,\ \textcolor{keyword}{const}\ QVector3D\&\ lookAtPoint,\ \textcolor{keyword}{const}\ QVector3D\&\ upVector,\ \textcolor{keyword}{const}\ QVector3D\&\ xVector,\ \textcolor{keyword}{const}\ QVector3D\&\ yVector,\ \textcolor{keyword}{const}\ QVector3D\&\ zVector,\ \textcolor{keywordtype}{float}\ fov,\ \textcolor{keywordtype}{double}\ zoom,\ QGraphicsScene*\ scene);}
-\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_keyframe_manager_a36e2330b01b241aa52291c0dd091e28f_a36e2330b01b241aa52291c0dd091e28f}{deleteKeyframe}}(\textcolor{keywordtype}{int}\ frameNumber,\ QGraphicsScene*\ scene);}
-\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{struct_camera_keyframe}{CameraKeyframe}}\ \mbox{\hyperlink{class_keyframe_manager_a7e91864a9d25adb2d891a4c87b3e127c_a7e91864a9d25adb2d891a4c87b3e127c}{interpolateKeyframe}}(\textcolor{keywordtype}{int}\ frameNumber)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_keyframe_manager_a71ba5fcf4b2fd1fd3272ab324922b4ad_a71ba5fcf4b2fd1fd3272ab324922b4ad}{calculateFrameNumberFromPosition}}(qreal\ positionX,\ \textcolor{keywordtype}{int}\ startPixel,\ \textcolor{keywordtype}{int}\ pixelsPerFrame)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_keyframe_manager_a5bd70a92d82844b4a0a5986b17e63f31_a5bd70a92d82844b4a0a5986b17e63f31}{updateKeyframeLines}}(QGraphicsScene*\ scene);}
-\DoxyCodeLine{00019\ }
-\DoxyCodeLine{00020\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00021\ \ \ \ \ QList<CameraKeyframe>\ \mbox{\hyperlink{class_keyframe_manager_a4c93871cc2c463f934dbb628cdcc6f81_a4c93871cc2c463f934dbb628cdcc6f81}{keyframes}};}
-\DoxyCodeLine{00022\ \ \ \ \ QList<QGraphicsPolygonItem*>\ \mbox{\hyperlink{class_keyframe_manager_abdb52d0180c3691b086273403ddf67da_abdb52d0180c3691b086273403ddf67da}{keyframeItems}};}
-\DoxyCodeLine{00023\ \ \ \ \ QList<QPair<QGraphicsPolygonItem*,\ QGraphicsLineItem*>>\ \mbox{\hyperlink{class_keyframe_manager_a082f59cac6b05d1bb304cf57da788605_a082f59cac6b05d1bb304cf57da788605}{keyframeLines}};}
-\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{class_interpolator}{Interpolator}}\ \mbox{\hyperlink{class_keyframe_manager_aa101023047854abc4d02d0b1d4108a1f_aa101023047854abc4d02d0b1d4108a1f}{interpolator}};}
-\DoxyCodeLine{00025\ \};}
-\DoxyCodeLine{00026\ }
-\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ KEYFRAMEMANAGER\_H}}
-\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Eigen/Dense>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_keyframe_manager}{KeyframeManager}}\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{class_keyframe_manager_ad17977130aa316c01e4e053aee4abd01_ad17977130aa316c01e4e053aee4abd01}{KeyframeManager}}();}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_keyframe_manager_ac93c0ae613ea85030073ec74f1bfebee_ac93c0ae613ea85030073ec74f1bfebee}{addKeyframe}}(\textcolor{keywordtype}{int}\ frameNumber,\ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ eyePoint,\ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ lookAtPoint,\ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ upVector,\ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ xVector,\ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ yVector,\ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ zVector,\ \textcolor{keywordtype}{float}\ fov,\ \textcolor{keywordtype}{double}\ zoom,\ QGraphicsScene*\ scene);}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_keyframe_manager_a36e2330b01b241aa52291c0dd091e28f_a36e2330b01b241aa52291c0dd091e28f}{deleteKeyframe}}(\textcolor{keywordtype}{int}\ frameNumber,\ QGraphicsScene*\ scene);}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{struct_camera_keyframe}{CameraKeyframe}}\ \mbox{\hyperlink{class_keyframe_manager_a7e91864a9d25adb2d891a4c87b3e127c_a7e91864a9d25adb2d891a4c87b3e127c}{interpolateKeyframe}}(\textcolor{keywordtype}{int}\ frameNumber)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_keyframe_manager_a71ba5fcf4b2fd1fd3272ab324922b4ad_a71ba5fcf4b2fd1fd3272ab324922b4ad}{calculateFrameNumberFromPosition}}(qreal\ positionX,\ \textcolor{keywordtype}{int}\ startPixel,\ \textcolor{keywordtype}{int}\ pixelsPerFrame)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_keyframe_manager_a5bd70a92d82844b4a0a5986b17e63f31_a5bd70a92d82844b4a0a5986b17e63f31}{updateKeyframeLines}}(QGraphicsScene*\ scene);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00022\ \ \ \ \ QList<CameraKeyframe>\ \mbox{\hyperlink{class_keyframe_manager_a4c93871cc2c463f934dbb628cdcc6f81_a4c93871cc2c463f934dbb628cdcc6f81}{keyframes}};}
+\DoxyCodeLine{00023\ \ \ \ \ QList<QGraphicsPolygonItem*>\ \mbox{\hyperlink{class_keyframe_manager_abdb52d0180c3691b086273403ddf67da_abdb52d0180c3691b086273403ddf67da}{keyframeItems}};}
+\DoxyCodeLine{00024\ \ \ \ \ QList<QPair<QGraphicsPolygonItem*,\ QGraphicsLineItem*>>\ \mbox{\hyperlink{class_keyframe_manager_a082f59cac6b05d1bb304cf57da788605_a082f59cac6b05d1bb304cf57da788605}{keyframeLines}};}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{class_interpolator}{Interpolator}}\ \mbox{\hyperlink{class_keyframe_manager_aa101023047854abc4d02d0b1d4108a1f_aa101023047854abc4d02d0b1d4108a1f}{interpolator}};}
+\DoxyCodeLine{00026\ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ KEYFRAMEMANAGER\_H}}
+\DoxyCodeLine{00029\ }
 
 \end{DoxyCode}

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['普通、視野変換、投影変換、ビューポート変換の順に呼ばれませんか？_0',['普通、視野変換、投影変換、ビューポート変換の順に呼ばれませんか？',['../md__doxygen_2coordinate__transformation1.html#autotoc_md9',1,'']]]
+  ['主な用途_3a_0',['主な用途:',['../struct_material.html#autotoc_md7',1,'']]],
+  ['主な関連関数_3a_1',['主な関連関数:',['../struct_object.html#autotoc_md12',1,'']]]
 ];

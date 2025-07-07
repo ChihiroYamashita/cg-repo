@@ -1,0 +1,110 @@
+\doxysection{sources/pass\+\_\+tracing/film/drawfilm.h ファイル}
+\hypertarget{drawfilm_8h}{}\label{drawfilm_8h}\index{sources/pass\_tracing/film/drawfilm.h@{sources/pass\_tracing/film/drawfilm.h}}
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$camera.\+h$>$}\newline
+{\ttfamily \#include $<$qopengl.\+h$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Dense$>$}\newline
+drawfilm.\+h の依存先関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{drawfilm_8h__incl}
+\end{center}
+\end{figure}
+被依存関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{drawfilm_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{drawfilm_8h_a443204766d01c1b7114034c955991bc8_a443204766d01c1b7114034c955991bc8}{draw\+Film}} (const \mbox{\hyperlink{class_camera}{Camera}} \&in\+\_\+\+Camera, GLuint in\+\_\+\+Film\+Texture)
+\begin{DoxyCompactList}\small\item\em フィルムバッファをスクリーンに描画する関数 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{drawfilm_8h_a443204766d01c1b7114034c955991bc8_a443204766d01c1b7114034c955991bc8}\index{drawfilm.h@{drawfilm.h}!drawFilm@{drawFilm}}
+\index{drawFilm@{drawFilm}!drawfilm.h@{drawfilm.h}}
+\doxysubsubsection{\texorpdfstring{drawFilm()}{drawFilm()}}
+{\footnotesize\ttfamily \label{drawfilm_8h_a443204766d01c1b7114034c955991bc8_a443204766d01c1b7114034c955991bc8} 
+void draw\+Film (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_camera}{Camera}} \&}]{in\+\_\+\+Camera}{, }\item[{GLuint}]{in\+\_\+\+Film\+Texture}{}\end{DoxyParamCaption})}
+
+
+
+フィルムバッファをスクリーンに描画する関数 
+
+この関数は、カメラの視点を基準にフィルムバッファを四角形（矩形）として3\+D空間に配置し、 Open\+GL を用いてスクリーンに描画します。フィルムバッファの内容はテクスチャとして貼り付けられます。 フィルムバッファとは、最終的に画面に表示される画像のピクセルごとの色（\+RGBなど）を一時的に格納しておくメモリ領域を指します。簡単に言えば、「完成した画像の画素データの置き場所」です。
+
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Camera} & カメラ情報（視点、スクリーンサイズ、焦点距離などを含む） \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Film\+Texture} & フィルムバッファを格納した Open\+GL のテクスチャオブジェクト\\
+\hline
+\end{DoxyParams}
+{\bfseries{処理の流れ}}\+:\hypertarget{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md14}{}\doxysubsubsubsubsection{\texorpdfstring{1. スクリーンの頂点を計算}{1. スクリーンの頂点を計算}}\label{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md14}
+カメラのスクリーン位置を基準に、四角形の4つの頂点を計算します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Eigen::Vector3d\ screen\_center\ =\ in\_Camera.getEyePoint()\ -\/\ in\_Camera.getZVector()\ *\ in\_Camera.getFocalLength();}
+\DoxyCodeLine{Eigen::Vector3d\ p1\ =\ screen\_center\ -\/\ in\_Camera.getXVector()\ *\ in\_Camera.getScreenWidth()\ *\ 0.5\ -\/\ in\_Camera.getYVector()\ *\ in\_Camera.getScreenHeight()\ *\ 0.5;}
+\DoxyCodeLine{Eigen::Vector3d\ p2\ =\ screen\_center\ +\ in\_Camera.getXVector()\ *\ in\_Camera.getScreenWidth()\ *\ 0.5\ -\/\ in\_Camera.getYVector()\ *\ in\_Camera.getScreenHeight()\ *\ 0.5;}
+\DoxyCodeLine{Eigen::Vector3d\ p3\ =\ screen\_center\ +\ in\_Camera.getXVector()\ *\ in\_Camera.getScreenWidth()\ *\ 0.5\ +\ in\_Camera.getYVector()\ *\ in\_Camera.getScreenHeight()\ *\ 0.5;}
+\DoxyCodeLine{Eigen::Vector3d\ p4\ =\ screen\_center\ -\/\ in\_Camera.getXVector()\ *\ in\_Camera.getScreenWidth()\ *\ 0.5\ +\ in\_Camera.getYVector()\ *\ in\_Camera.getScreenHeight()\ *\ 0.5;}
+
+\end{DoxyCode}
+\hypertarget{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md15}{}\doxysubsubsubsubsection{\texorpdfstring{2. Open\+GL のテクスチャモードを有効化}{2. Open\+GL のテクスチャモードを有効化}}\label{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md15}
+描画対象となるテクスチャを Open\+GL にバインドします。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{glEnable(GL\_TEXTURE\_2D);}
+\DoxyCodeLine{glBindTexture(GL\_TEXTURE\_2D,\ in\_FilmTexture);}
+
+\end{DoxyCode}
+\hypertarget{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md16}{}\doxysubsubsubsubsection{\texorpdfstring{3. テクスチャを貼り付けた四角形を描画}{3. テクスチャを貼り付けた四角形を描画}}\label{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md16}
+テクスチャの UV 座標と対応する頂点座標を指定し、三角形を2つ描画して四角形を形成します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{glBegin(GL\_TRIANGLES);}
+\DoxyCodeLine{glTexCoord2f(0.0,\ 1.0);}
+\DoxyCodeLine{glVertex3f(p1.x(),\ p1.y(),\ p1.z());}
+\DoxyCodeLine{glTexCoord2f(1.0,\ 1.0);}
+\DoxyCodeLine{glVertex3f(p2.x(),\ p2.y(),\ p2.z());}
+\DoxyCodeLine{glTexCoord2f(1.0,\ 0.0);}
+\DoxyCodeLine{glVertex3f(p3.x(),\ p3.y(),\ p3.z());}
+\DoxyCodeLine{}
+\DoxyCodeLine{glTexCoord2f(0.0,\ 1.0);}
+\DoxyCodeLine{glVertex3f(p1.x(),\ p1.y(),\ p1.z());}
+\DoxyCodeLine{glTexCoord2f(1.0,\ 0.0);}
+\DoxyCodeLine{glVertex3f(p3.x(),\ p3.y(),\ p3.z());}
+\DoxyCodeLine{glTexCoord2f(0.0,\ 0.0);}
+\DoxyCodeLine{glVertex3f(p4.x(),\ p4.y(),\ p4.z());}
+\DoxyCodeLine{glEnd();}
+
+\end{DoxyCode}
+\hypertarget{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md17}{}\doxysubsubsubsubsection{\texorpdfstring{4. Open\+GL のテクスチャモードを無効化}{4. Open\+GL のテクスチャモードを無効化}}\label{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md17}
+テクスチャ描画が終了した後、テクスチャモードを無効化します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{glDisable(GL\_TEXTURE\_2D);}
+
+\end{DoxyCode}
+\hypertarget{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md18}{}\doxysubsubsubsection{\texorpdfstring{シーケンス図}{シーケンス図}}\label{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md18}
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_3}}
+\end{DoxyImageNoCaption}
+
+
+\begin{DoxySeeAlso}{参照}
+gl\+Enable 
+
+gl\+Bind\+Texture 
+
+gl\+Begin 
+
+gl\+Tex\+Coord2f 
+
+gl\+Vertex3f 
+
+gl\+Disable 
+\end{DoxySeeAlso}

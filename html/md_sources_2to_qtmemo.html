@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Qt_project: toQtmemo</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Qt_project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div><div class="header">
+  <div class="headertitle"><div class="title">toQtmemo</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>はい、<code><a class="el" href="main_8cpp.html">main.cpp</a></code>のGLUTベースの関数と、Qtウィジェットの各関数との対応関係は以下のようになります。この対応を理解することで、移植作業をスムーズに進められます。</p>
+<h3><a class="anchor" id="autotoc_md24"></a>
+main.cppとQtウィジェットの関数対応</h3>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft"><code><a class="el" href="main_8cpp.html">main.cpp</a></code> (GLUT)   </th><th class="markdownTableHeadLeft"><code><a class="el" href="myopenglwidget__camera_8cpp.html">myopenglwidget_camera.cpp</a></code> (Qt)   </th><th class="markdownTableHeadLeft">役割    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code><a class="el" href="main_8cpp_a0ddf1224851353fc92bfbff6f499fa97.html#a0ddf1224851353fc92bfbff6f499fa97">main()</a></code> 内の初期化処理   </td><td class="markdownTableBodyLeft"><b>コンストラクタ</b> / <b><code>initializeGL()</code></b>   </td><td class="markdownTableBodyLeft">プログラム開始時の1度きりの初期化（オブジェクトロード、バッファ確保など）。    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code>display()</code>   </td><td class="markdownTableBodyLeft"><b><code>paintGL()</code></b>   </td><td class="markdownTableBodyLeft">画面の描画処理。3Dオブジェクトや<code>drawFilm</code>など、**見えるもの全て**を描画します。    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code>resize()</code>   </td><td class="markdownTableBodyLeft"><b><code>resizeGL()</code></b>   </td><td class="markdownTableBodyLeft">ウィンドウのリサイズ処理。ビューポートやプロジェクション行列、**サイズに依存するリソース**（フィルムテクスチャ）を更新します。    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code>idle()</code>   </td><td class="markdownTableBodyLeft"><b><code>QTimer</code></b> + <b>カスタムスロット</b>   </td><td class="markdownTableBodyLeft">バックグラウンド処理。レイトレーシング計算（<code>shadeNextPixel</code>）など、連続して行う重い処理。    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code>mouse()</code>, <code>mouseDrag()</code>   </td><td class="markdownTableBodyLeft"><code>mousePressEvent()</code>, <code>mouseMoveEvent()</code>   </td><td class="markdownTableBodyLeft">マウス入力の処理。   </td></tr>
+</table>
+<hr  />
+<h3><a class="anchor" id="autotoc_md26"></a>
+解説</h3>
+<h4><a class="anchor" id="autotoc_md27"></a>
+<code>display()</code> → <code>paintGL()</code></h4>
+<p><code>paintGL()</code>が、GLUTの<code>display()</code>に相当するメインの描画関数です。シーン内のオブジェクト（座標軸、立方体）を描画し、最後に<code><a class="el" href="drawfilm_8cpp_a443204766d01c1b7114034c955991bc8.html#a443204766d01c1b7114034c955991bc8" title="フィルムバッファをスクリーンに描画する関数">drawFilm()</a></code>でレイトレーシング結果のテクスチャを描画する、という流れは同じです。</p>
+<hr  />
+<h4><a class="anchor" id="autotoc_md29"></a>
+<code>resize()</code> → <code>resizeGL()</code></h4>
+<p>すでに行ったフィルムテクスチャのサイズ調整のように、ウィンドウサイズが変わった際の処理は<code>resizeGL()</code>に記述します。これは<code>resize()</code>の役割と完全に一致します。</p>
+<hr  />
+<h4><a class="anchor" id="autotoc_md31"></a>
+<code>idle()</code> → <code>QTimer</code> + カスタムスロット</h4>
+<p>これが最も重要な違いです。</p>
+<p>GLUTの<code>idle()</code>関数は、イベントがない時に常に呼ばれ続けるため、CPUを消費しながらバックグラウンドで計算を行うのに使われていました。しかし、同じことをQtのメインスレッドで行うと、**GUIが応答しなくなりフリーズします**。</p>
+<p>Qtでは、<code>QTimer</code>を使ってこの処理を実装するのが定石です。</p>
+<p><b>実装の例：</b></p>
+<ol type="1">
+<li><p class="startli"><b><code><a class="el" href="myopenglwidget__camera_8h.html">myopenglwidget_camera.h</a></code>に追記</b></p>
+<p class="startli"><code>cpp private slots: void updateRayTracing(); // タイマーで呼び出すカスタムスロット private: QTimer *m_timer; // タイマーのポインタ </code></p>
+</li>
+<li><p class="startli"><b><code><a class="el" href="myopenglwidget__camera_8cpp.html">myopenglwidget_camera.cpp</a></code>のコンストラクタに追記</b></p>
+<p class="startli">```cpp #include &lt;QTimer&gt;</p>
+<p class="startli"><a class="el" href="class_my_open_g_l_widget__camera_af05302e50ef2aa2f18cde38ad5720ce9.html#af05302e50ef2aa2f18cde38ad5720ce9">MyOpenGLWidget_camera::MyOpenGLWidget_camera(QWidget* parent)</a> : <a class="el" href="class_my_open_g_l_widget.html">MyOpenGLWidget(parent)</a> { // ... 既存の初期化 ...</p>
+<p class="startli">m_timer = new QTimer(this); connect(m_timer, &amp;QTimer::timeout, this, &amp;MyOpenGLWidget_camera::updateRayTracing); m_timer-&gt;start(16); // 約60FPSでタイムアウト信号を出す } ```</p>
+</li>
+<li><p class="startli"><b>カスタムスロットの実装</b></p>
+<p class="startli">```cpp void MyOpenGLWidget_camera::updateRayTracing() { // main.cppのidle()関数のロジックをここに移植 // 例：1フレームで一定数のピクセルを計算する for(int i = 0; i &lt; 1000; ++i) { // 数値は調整可能 shadeNextPixel(); }</p>
+<p class="startli">updateFilm(); // 計算結果をテクスチャバッファに反映</p>
+<p class="startli">update(); // paintGL()の再描画をスケジュールする } ```</p>
+</li>
+</ol>
+<p>このように<code>QTimer</code>を使うことで、GUIの応答性を保ちながら、バックグラウンドでレイトレーシングの計算を継続的に実行できます。</p>
+<h1><a class="anchor" id="autotoc_md32"></a>
+First Level Heading</h1>
+<p>Paragraph.</p>
+<h2><a class="anchor" id="autotoc_md33"></a>
+Second Level Heading</h2>
+<p>Paragraph.</p>
+<ul>
+<li>bullet</li>
+<li>other bullet</li>
+<li>another bullet<ul>
+<li>child bullet</li>
+</ul>
+</li>
+</ul>
+<ol type="1">
+<li>ordered</li>
+<li>next ordered</li>
+</ol>
+<h3><a class="anchor" id="autotoc_md34"></a>
+Third Level Heading</h3>
+<p>Some <em>italic</em> and <b>bold</b> text and <code>inline code</code>.</p>
+<p>An empty line starts a new paragraph.</p>
+<p>Use two spaces at the end <br  />
+ to force a line break.</p>
+<p>A horizontal ruler follows:</p>
+<hr  />
+<p>Add links inline like <a href="https://www.qt.io">this link to the Qt homepage</a>, or with a reference like <a href="https://www.qt.io">this other link to the Qt homepage</a>. </p><pre class="fragment">Add code blocks with
+four spaces at the front.
+</pre><blockquote class="doxtable">
+<p>&zwj;A blockquote starts with &gt;</p>
+<p>and has the same paragraph rules as normal text. </p>
+</blockquote>
+<h1><a class="anchor" id="autotoc_md36"></a>
+First Level Heading in Alternate Style</h1>
+<p>Paragraph.</p>
+<h2><a class="anchor" id="autotoc_md37"></a>
+Second Level Heading in Alternate Style</h2>
+<p>Paragraph. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

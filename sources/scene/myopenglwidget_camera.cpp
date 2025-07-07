@@ -3,13 +3,20 @@
 #include "Camera.h"
 #include <GL/glu.h>
 #include "drawfilm.h"
-
+#include "TriMesh.h"
 
 
 
 MyOpenGLWidget_camera::MyOpenGLWidget_camera(QWidget* parent)
     : MyOpenGLWidget(parent) {
     // 初期化コードをここに記述
+
+    // ★オブジェクトを読み込む
+    if (loadObj( "box.obj", g_Obj)) {
+        qDebug() << "box.obj loaded successfully.";
+    } else {
+        qWarning() << "Failed to load box.obj.";
+    }
 }
 
 
@@ -26,6 +33,55 @@ void MyOpenGLWidget_camera::initializeGL() {
 
     //checkOpenGLVersion();
 }
+
+/**
+ * @brief OpenGLでシーン全体とフィルムバッファを描画する関数
+ * @details この関数は、カメラ設定に基づいたプロジェクション行列の適用、OpenGLバッファの初期化、
+ * 軸やグリッドなどの補助図形、そしてフィルムバッファ（レイトレーシング結果）を描画します。
+ * モデルビュー変換と投影変換を適用後、描画対象をGPU上にレンダリングします。
+ *
+ * @details **処理の流れ**:
+ *
+ * ### 1. 投影行列と視野の更新
+ * カメラ設定に基づいて OpenGL の投影行列を更新します。
+ * @code
+ * updateProjectionMatrix();
+ * @endcode
+ *
+ * ### 2. バッファの初期化
+ * カラーバッファと深度バッファをクリアし、描画領域（ビューポート）を設定します。
+ * @code
+ * glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+ * glViewport(0, 0, width * スケールX, height * スケールY);
+ * @endcode
+ *
+ * ### 3. モデルビュー変換の設定
+ * カメラの位置と注視点に基づいて、モデルビュー変換行列を `gluLookAt` により設定します。
+ * @code
+ * projection_and_modelview(g_Camera2);
+ * @endcode
+ *
+ * ### 4. 補助描画の有効化と描画
+ * アルファブレンドやアンチエイリアスの設定後、軸・グリッド・立方体を描画します。
+ * @code
+ * drawXYZAxes();
+ * drawXYGrid();
+ * drawcube();
+ * @endcode
+ *
+ * ### 5. フィルムバッファの描画
+ * 深度テストを一時的に無効にし、画面前面にフィルムバッファ（レイトレの結果）を貼り付けて表示します。
+ * @code
+ * glDisable(GL_DEPTH_TEST);
+ * drawFilm(g_Camera2, m_filmTexture);
+ * glEnable(GL_DEPTH_TEST);
+ * @endcode
+ *
+ * @see updateProjectionMatrix
+ * @see projection_and_modelview
+ * @see drawXYZAxes
+ * @see drawFilm
+ */
 void MyOpenGLWidget_camera::paintGL() {
     updateProjectionMatrix(); //実際のモデルビュー・視野変換の適用は、オブジェクトが実際に描画される際にGPU内で行われる
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // カラーバッファと深度バッファをクリア
@@ -50,7 +106,7 @@ void MyOpenGLWidget_camera::paintGL() {
     // ★追加: フィルム（テストテクスチャ）を描画
     // 深度テストを一時的に無効にして、常に最前面に表示されるようにする
     glDisable(GL_DEPTH_TEST);
-    drawFilm(g_Camera2, m_filmTexture);
+    //drawFilm(g_Camera2, m_filmTexture);
     glEnable(GL_DEPTH_TEST); // 深度テストを元に戻す
    //qDebug() << "Child sees camerafov as " <<updatedFov;
 }
@@ -191,7 +247,7 @@ void MyOpenGLWidget_camera::wheelEvent(QWheelEvent *event)
 }
 
 
-/*-----レイトレ用-------------*/
+/*-----レイトレ用---------------------------------------*/
 
 // ★追加: テスト用テクスチャを生成する関数の実装
 void MyOpenGLWidget_camera::initializeFilmTexture() {
@@ -219,5 +275,36 @@ void MyOpenGLWidget_camera::initializeFilmTexture() {
     doneCurrent();
 }
 
+void MyOpenGLWidget_camera:: initAreaLights()
+{
+    AreaLight light1;
+    light1.pos << -1.2, 1.2, 1.2;
+    light1.arm_u << 1.0, 0.0, 0.0;
+    light1.arm_v = -light1.pos.cross( light1.arm_u );
+    light1.arm_v.normalize();
+    light1.arm_u = light1.arm_u * 0.3;
+    light1.arm_v = light1.arm_v * 0.2;
+
+    light1.color << 1.0, 0.8, 0.3;
+    //light1.color << 1.0, 1.0, 1.0;
+    //light1.intensity = 64.0;
+    light1.intensity = 48.0;
+
+    AreaLight light2;
+    light2.pos << 1.2, 1.2, 0.0;
+    light2.arm_u << 1.0, 0.0, 0.0;
+    light2.arm_v = -light2.pos.cross( light2.arm_u );
+    light2.arm_v.normalize();
+    light2.arm_u = light2.arm_u * 0.3;
+    light2.arm_v = light2.arm_v * 0.2;
+
+    //light2.color << 0.3, 0.3, 1.0;
+    light2.color << 1.0, 1.0, 1.0;
+    //light2.intensity = 64.0;
+    light2.intensity = 30.0;
+
+    g_AreaLights.push_back( light1 );
+    g_AreaLights.push_back( light2 );
+}
 // ★追加: `drawfilm.cpp`から持ってきた描画関数の実装
 

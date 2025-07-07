@@ -87,9 +87,9 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title">folder</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>レイトレーシング機能を含む既存のコード（<code>main.cpp</code>, <code>Camera.cpp</code>, <code>TriMesh.cpp</code>, <code>GLPreview.cpp</code> など）をQtプロジェクトに段階的に移植する際、**目的別に役割を分けてフォルダ化・整理**することで、将来的な保守性と可読性が大きく向上します。</p>
+<div class="textblock"><p>レイトレーシング機能を含む既存のコード（<code><a class="el" href="main_8cpp.html">main.cpp</a></code>, <code><a class="el" href="camera_8cpp.html">Camera.cpp</a></code>, <code><a class="el" href="_tri_mesh_8cpp.html">TriMesh.cpp</a></code>, <code><a class="el" href="_g_l_preview_8cpp.html">GLPreview.cpp</a></code> など）をQtプロジェクトに段階的に移植する際、**目的別に役割を分けてフォルダ化・整理**することで、将来的な保守性と可読性が大きく向上します。</p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md21"></a>
+<h2><a class="anchor" id="autotoc_md59"></a>
 ✅ 推奨フォルダ構成と役割</h2>
 <div class="fragment"><div class="line">sources/</div>
 <div class="line">├── core/                  # 基本データ構造や汎用ユーティリティ</div>
@@ -118,34 +118,34 @@ $(function(){ initResizable(false); });
 <div class="line">└── main/                  # アプリケーションのエントリーポイント</div>
 <div class="line">    └── main.cpp</div>
 </div><!-- fragment --><hr  />
-<h2><a class="anchor" id="autotoc_md23"></a>
+<h2><a class="anchor" id="autotoc_md61"></a>
 ✅ 各ファイルへの分類例</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">関数/構造体   </th><th class="markdownTableHeadNone">移動先ファイル   </th><th class="markdownTableHeadNone">説明    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>Camera::screenView</code>   </td><td class="markdownTableBodyNone"><code>camera/camera.cpp</code>   </td><td class="markdownTableBodyNone">ピクセル座標→レイの生成    </td></tr>
+<td class="markdownTableBodyNone"><code>Camera::screenView</code>   </td><td class="markdownTableBodyNone"><code><a class="el" href="camera_8cpp.html">camera/camera.cpp</a></code>   </td><td class="markdownTableBodyNone">ピクセル座標→レイの生成    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>projection_and_modelview</code>   </td><td class="markdownTableBodyNone"><code>camera/projection.cpp</code>   </td><td class="markdownTableBodyNone">OpenGLの視野投影設定    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>TriMesh</code>, <code>loadObj</code>, <code>extendMesh</code>   </td><td class="markdownTableBodyNone"><code>geometry/trimesh.cpp</code>   </td><td class="markdownTableBodyNone">OBJ読み込み、メッシュ管理    </td></tr>
+<td class="markdownTableBodyNone"><code><a class="el" href="struct_tri_mesh.html" title="三角形メッシュを表す構造体">TriMesh</a></code>, <code>loadObj</code>, <code>extendMesh</code>   </td><td class="markdownTableBodyNone"><code><a class="el" href="_tri_mesh_8cpp.html">geometry/trimesh.cpp</a></code>   </td><td class="markdownTableBodyNone">OBJ読み込み、メッシュ管理    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>Object</code>, <code>drawObject</code>   </td><td class="markdownTableBodyNone"><code>geometry/object.cpp</code>   </td><td class="markdownTableBodyNone">複数メッシュまとめたオブジェクト    </td></tr>
+<td class="markdownTableBodyNone"><code><a class="el" href="struct_object.html" title="シーン内のオブジェクトを表す構造体">Object</a></code>, <code>drawObject</code>   </td><td class="markdownTableBodyNone"><code>geometry/object.cpp</code>   </td><td class="markdownTableBodyNone">複数メッシュまとめたオブジェクト    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>AreaLight</code>, <code>drawLights</code>   </td><td class="markdownTableBodyNone"><code>geometry/light.cpp</code>   </td><td class="markdownTableBodyNone">エリアライト定義と描画    </td></tr>
+<td class="markdownTableBodyNone"><code><a class="el" href="struct_area_light.html">AreaLight</a></code>, <code>drawLights</code>   </td><td class="markdownTableBodyNone"><code><a class="el" href="_light_8cpp.html">geometry/light.cpp</a></code>   </td><td class="markdownTableBodyNone">エリアライト定義と描画    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>drawFilm</code>, <code>GLPreview.cpp</code>   </td><td class="markdownTableBodyNone"><code>film/drawfilm.cpp</code>   </td><td class="markdownTableBodyNone">描画出力    </td></tr>
+<td class="markdownTableBodyNone"><code>drawFilm</code>, <code><a class="el" href="_g_l_preview_8cpp.html">GLPreview.cpp</a></code>   </td><td class="markdownTableBodyNone"><code><a class="el" href="drawfilm_8cpp.html">film/drawfilm.cpp</a></code>   </td><td class="markdownTableBodyNone">描画出力    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>g_FilmBuffer</code>, <code>initFilm</code> 等   </td><td class="markdownTableBodyNone"><code>film/film_buffer.cpp</code>   </td><td class="markdownTableBodyNone">バッファ初期化と管理    </td></tr>
+<td class="markdownTableBodyNone"><code>g_FilmBuffer</code>, <code>initFilm</code> 等   </td><td class="markdownTableBodyNone"><code><a class="el" href="film__buffer_8cpp.html">film/film_buffer.cpp</a></code>   </td><td class="markdownTableBodyNone">バッファ初期化と管理    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>rayTriangleIntersect</code> 等   </td><td class="markdownTableBodyNone"><code>rendering/raytracing.cpp</code>   </td><td class="markdownTableBodyNone">ジオメトリとのレイ交差    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>computeShading</code>, <code>samplePoint</code>   </td><td class="markdownTableBodyNone"><code>rendering/shading.cpp</code>   </td><td class="markdownTableBodyNone">光の計算・間接照明など    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>main.cpp</code>   </td><td class="markdownTableBodyNone"><code>main/main.cpp</code>   </td><td class="markdownTableBodyNone">GLUTによるループ・イベント処理   </td></tr>
+<td class="markdownTableBodyNone"><code><a class="el" href="main_8cpp.html">main.cpp</a></code>   </td><td class="markdownTableBodyNone"><code>main/main.cpp</code>   </td><td class="markdownTableBodyNone">GLUTによるループ・イベント処理   </td></tr>
 </table>
 <hr  />
-<h2><a class="anchor" id="autotoc_md25"></a>
+<h2><a class="anchor" id="autotoc_md63"></a>
 📌 注意点とヒント</h2>
 <ul>
 <li>**描画処理（OpenGL）とレイトレーシング処理（CPU/GPU）を明確に分ける**ことで、将来のGPU化やGUIへの統合が楽になります。</li>
@@ -153,7 +153,7 @@ $(function(){ initResizable(false); });
 <li><code>camera/</code> フォルダは、Qtでの <code>QCamera</code> クラスとは独立した独自カメラ管理クラスとして維持できます。</li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md27"></a>
+<h2><a class="anchor" id="autotoc_md65"></a>
 ✅ .proファイルへの記述例</h2>
 <div class="fragment"><div class="line">INCLUDEPATH += $$PWD/sources \</div>
 <div class="line">               $$PWD/sources/core \</div>
@@ -176,13 +176,13 @@ $(function(){ initResizable(false); });
 <div class="line">    sources/rendering/raytracing.cpp \</div>
 <div class="line">    sources/rendering/shading.cpp</div>
 </div><!-- fragment --><hr  />
-<h2><a class="anchor" id="autotoc_md29"></a>
+<h2><a class="anchor" id="autotoc_md67"></a>
 ✅ 今後の発展を見据えて</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">発展項目   </th><th class="markdownTableHeadNone">ヒント    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Qt GUIと連携   </td><td class="markdownTableBodyNone"><code>film_buffer.cpp</code> のテクスチャ出力を <code>QOpenGLWidget</code> にバインド可能    </td></tr>
+<td class="markdownTableBodyNone">Qt GUIと連携   </td><td class="markdownTableBodyNone"><code><a class="el" href="film__buffer_8cpp.html">film_buffer.cpp</a></code> のテクスチャ出力を <code>QOpenGLWidget</code> にバインド可能    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">マルチスレッド化   </td><td class="markdownTableBodyNone"><code>rayTracing()</code> を1ピクセルずつ処理しているので、スレッドで分割しやすい    </td></tr>
 <tr class="markdownTableRowOdd">

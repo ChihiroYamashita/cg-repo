@@ -1,0 +1,120 @@
+\doxysection{Object 構造体}
+\hypertarget{struct_object}{}\label{struct_object}\index{Object@{Object}}
+
+
+シーン内のオブジェクトを表す構造体  
+
+
+
+
+{\ttfamily \#include $<$Tri\+Mesh.\+h$>$}
+
+
+
+Object 連携図\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=133pt]{struct_object__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_tri_mesh}{Tri\+Mesh}} $>$ \mbox{\hyperlink{struct_object_a0c2c8f6a945a455dfdccf12e5e463060_a0c2c8f6a945a455dfdccf12e5e463060}{meshes}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{詳解}
+シーン内のオブジェクトを表す構造体 
+
+この構造体は、複数の三角形メッシュ ({\ttfamily \doxylink{struct_tri_mesh}{Tri\+Mesh}}) を持つ3\+Dオブジェクトを表します。 シーン内の物体（例\+: 箱、球、人型モデルなど）を1つのまとまりとして扱うために使用されます。
+
+
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*} 
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_8}}
+\end{DoxyImageNoCaption}
+
+\end{DoxyItemize}\hypertarget{struct_object_autotoc_md11}{}\doxysubsubsubsection{\texorpdfstring{メンバー変数\+:}{メンバー変数\+:}}\label{struct_object_autotoc_md11}
+
+\begin{DoxyItemize}
+\item {\bfseries{meshes}}\+:
+\begin{DoxyItemize}
+\item このオブジェクトを構成する三角形メッシュ ({\ttfamily \doxylink{struct_tri_mesh}{Tri\+Mesh}}) のリスト。
+\item 各メッシュ ({\ttfamily \doxylink{struct_tri_mesh}{Tri\+Mesh}}) は以下の情報を持ちます：
+\begin{DoxyItemize}
+\item 頂点座標 ({\ttfamily vertices})
+\begin{DoxyItemize}
+\item メッシュを構成する3\+D空間内の座標リスト。
+\end{DoxyItemize}
+\item 頂点法線 ({\ttfamily vertex\+\_\+normals})
+\begin{DoxyItemize}
+\item 各頂点の表面の方向を表すベクトル。
+\end{DoxyItemize}
+\item テクスチャ座標 ({\ttfamily tex\+\_\+coords})
+\begin{DoxyItemize}
+\item テクスチャマッピングのための\+UV座標。
+\end{DoxyItemize}
+\item 三角形インデックス ({\ttfamily triangles})
+\begin{DoxyItemize}
+\item メッシュを構成する三角形の頂点インデックス。
+\end{DoxyItemize}
+\item 頂点カラー ({\ttfamily vertex\+\_\+colors})
+\begin{DoxyItemize}
+\item 頂点ごとの色情報（オプション）。
+\end{DoxyItemize}
+\item 材質情報 ({\ttfamily material})
+\begin{DoxyItemize}
+\item 光の反射特性やテクスチャ情報を格納する構造体。
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{struct_object_autotoc_md12}{}\doxysubsubsubsection{\texorpdfstring{主な関連関数\+:}{主な関連関数\+:}}\label{struct_object_autotoc_md12}
+
+\begin{DoxyItemize}
+\item {\bfseries{{\ttfamily load\+Obj}}}\+:
+\begin{DoxyItemize}
+\item 外部の3\+Dモデルファイル（例\+: {\ttfamily .obj} ファイル）を読み込み、{\ttfamily \doxylink{struct_object}{Object}} を初期化します。
+\end{DoxyItemize}
+\item {\bfseries{{\ttfamily resize\+Obj}}}\+:
+\begin{DoxyItemize}
+\item オブジェクトの全体サイズを指定した範囲にスケーリングします。
+\end{DoxyItemize}
+\item {\bfseries{{\ttfamily extend\+Mesh}}}\+:
+\begin{DoxyItemize}
+\item 別のメッシュを現在のメッシュに統合し、ジオメトリを拡張します。
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{struct_object_autotoc_md13}{}\doxysubsubsubsection{\texorpdfstring{使用例\+:}{使用例\+:}}\label{struct_object_autotoc_md13}
+
+\begin{DoxyEnumerate}
+\item {\ttfamily load\+Obj} を用いて {\ttfamily .obj} ファイルからオブジェクトをロード\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{struct_object}{Object}}\ obj;}
+\DoxyCodeLine{\mbox{\hyperlink{_tri_mesh_8h_a5d68f7db28b7475a94bf75add003c051_a5d68f7db28b7475a94bf75add003c051}{loadObj}}(\textcolor{stringliteral}{"{}example.obj"{}},\ obj);}
+
+\end{DoxyCode}
+
+\item {\ttfamily resize\+Obj} でスケールを調整\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Eigen::Vector3d\ min\_bounds(-\/1.0,\ -\/1.0,\ -\/1.0);}
+\DoxyCodeLine{Eigen::Vector3d\ max\_bounds(1.0,\ 1.0,\ 1.0);}
+\DoxyCodeLine{\mbox{\hyperlink{_tri_mesh_8h_a8ffa24ff28fc5442473219498069103e_a8ffa24ff28fc5442473219498069103e}{resizeObj}}(obj,\ min\_bounds,\ max\_bounds);}
+
+\end{DoxyCode}
+ 
+\end{DoxyEnumerate}
+
+\doxysubsection{メンバ詳解}
+\Hypertarget{struct_object_a0c2c8f6a945a455dfdccf12e5e463060_a0c2c8f6a945a455dfdccf12e5e463060}\index{Object@{Object}!meshes@{meshes}}
+\index{meshes@{meshes}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{meshes}{meshes}}
+{\footnotesize\ttfamily \label{struct_object_a0c2c8f6a945a455dfdccf12e5e463060_a0c2c8f6a945a455dfdccf12e5e463060} 
+std\+::vector$<$\mbox{\hyperlink{struct_tri_mesh}{Tri\+Mesh}}$>$ Object\+::meshes}
+
+
+
+この構造体詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+sources/geometry/\mbox{\hyperlink{_tri_mesh_8h}{Tri\+Mesh.\+h}}\end{DoxyCompactItemize}

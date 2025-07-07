@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['投影行列を設定する例_20strong_0',['&lt;strong&gt;投影行列を設定する例&lt;/strong&gt;',['../md__doxygen_2_open_g_l__func.html#autotoc_md71',1,'']]]
+  ['メンバー変数_0',['メンバー変数',['../struct_tri_mesh.html#autotoc_md9',1,'']]],
+  ['メンバー変数_3a_1',['メンバー変数:',['../struct_material.html#autotoc_md6',1,'メンバー変数:'],['../struct_object.html#autotoc_md11',1,'メンバー変数:']]]
 ];

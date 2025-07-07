@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Qt_project: openGL_basis</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Qt_project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div><div class="header">
+  <div class="headertitle"><div class="title">openGL_basis</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>ここでは「OpenGL の基本的な使い方」を、初心者の方でも理解できるように **ステップごとに分かりやすく整理**します。</p>
+<hr  />
+<h2><a class="anchor" id="autotoc_md52"></a>
+🎯 OpenGLとは？</h2>
+<p>OpenGL（Open Graphics Library）は、**GPUを使って2D/3Dグラフィックスを描画するためのクロスプラットフォームなAPI**です。</p>
+<p>OpenGL自体は「何を描くか」や「どう描くか」の命令を出すだけで、「ウィンドウ」や「イベント処理」は行いません。そのため、**GLUT** や <b>Qt</b> などのライブラリと組み合わせて使うことが多いです。</p>
+<hr  />
+<h2><a class="anchor" id="autotoc_md54"></a>
+🧭 OpenGLの基本的な使い方：5ステップ</h2>
+<h3><a class="anchor" id="autotoc_md55"></a>
+🔵 1. コンテキストとウィンドウの用意</h3>
+<p>OpenGLは単体では動かず、**描画対象（ウィンドウ）とコンテキスト（OpenGL環境）**が必要です。</p>
+<ul>
+<li>GLUTでは <code>glutCreateWindow()</code> や <code>glutInitDisplayMode()</code> を使います。</li>
+<li>Qtでは <code>QOpenGLWidget</code> を継承したクラスを作成します。</li>
+</ul>
+<hr  />
+<h3><a class="anchor" id="autotoc_md57"></a>
+🔵 2. 初期化（<code>initializeGL()</code> / <code>init()</code>）</h3>
+<p>ここで行うこと：</p>
+<ul>
+<li>背景色の設定：<code>glClearColor(r, g, b, a);</code></li>
+<li>深度テストの有効化：<code>glEnable(GL_DEPTH_TEST);</code></li>
+<li>ライティングやテクスチャなどの設定（必要に応じて）</li>
+</ul>
+<hr  />
+<h3><a class="anchor" id="autotoc_md59"></a>
+🔵 3. 描画（<code>paintGL()</code> / <code>display()</code>）</h3>
+<p>**描画処理の中心**です。</p>
+<div class="fragment"><div class="line">glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); <span class="comment">// バッファクリア</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// 投影行列の設定</span></div>
+<div class="line">glMatrixMode(GL_PROJECTION);</div>
+<div class="line">glLoadIdentity();</div>
+<div class="line">gluPerspective(...); <span class="comment">// or glOrtho(...)</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// モデルビュー行列の設定（カメラ）</span></div>
+<div class="line">glMatrixMode(GL_MODELVIEW);</div>
+<div class="line">glLoadIdentity();</div>
+<div class="line">gluLookAt(...); <span class="comment">// カメラの位置・注視点・上方向</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// オブジェクトの描画</span></div>
+<div class="line">drawSomething(); <span class="comment">// glBegin〜glEnd など</span></div>
+</div><!-- fragment --><hr  />
+<h3><a class="anchor" id="autotoc_md61"></a>
+🔵 4. 再描画要求（<code>update()</code> or <code>glutPostRedisplay()</code>）</h3>
+<p>オブジェクトが動いたり視点が変わったりしたときに、**描画を更新する必要があります**。</p>
+<ul>
+<li>Qt：<code>update();</code> を呼ぶことで再描画</li>
+<li>GLUT：<code>glutPostRedisplay();</code> を呼ぶことで再描画</li>
+</ul>
+<hr  />
+<h3><a class="anchor" id="autotoc_md63"></a>
+🔵 5. バッファスワップ（ダブルバッファ）</h3>
+<p>描画内容を「チラつきなく表示する」ために、2枚のバッファを交互に使います。</p>
+<ul>
+<li>GLUT：<code>glutSwapBuffers();</code></li>
+<li>Qt：内部で自動処理、明示的な呼び出しは不要</li>
+</ul>
+<hr  />
+<h2><a class="anchor" id="autotoc_md65"></a>
+🗺️ OpenGLにおける座標変換の流れ（重要）</h2>
+<div class="fragment"><div class="line">[モデル座標系] モデル変換（オブジェクトの位置・回転）</div>
+<div class="line">   ↓</div>
+<div class="line">[ワールド座標系] 視野変換（カメラ位置）</div>
+<div class="line">   ↓</div>
+<div class="line">[ビュー座標系] 投影変換（遠近感）</div>
+<div class="line">   ↓</div>
+<div class="line">[クリップ座標系] ビューポート変換（スクリーン上のピクセル位置）</div>
+</div><!-- fragment --><hr  />
+<h2><a class="anchor" id="autotoc_md67"></a>
+🧱 図形の描画方法（固定機能パイプラインの例）</h2>
+<div class="fragment"><div class="line">glBegin(GL_TRIANGLES);</div>
+<div class="line">  glColor3f(1.0, 0.0, 0.0); <span class="comment">// 赤</span></div>
+<div class="line">  glVertex3f(0.0, 1.0, 0.0);</div>
+<div class="line">  glVertex3f(-1.0, -1.0, 0.0);</div>
+<div class="line">  glVertex3f(1.0, -1.0, 0.0);</div>
+<div class="line">glEnd();</div>
+</div><!-- fragment --><hr  />
+<h2><a class="anchor" id="autotoc_md69"></a>
+✅ よく使う関数まとめ</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">関数   </th><th class="markdownTableHeadNone">説明    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>glClearColor()</code>   </td><td class="markdownTableBodyNone">背景色を設定    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>glClear()</code>   </td><td class="markdownTableBodyNone">画面をクリア    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>glEnable(GL_DEPTH_TEST)</code>   </td><td class="markdownTableBodyNone">Zバッファによる奥行き判定を有効化    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>glViewport()</code>   </td><td class="markdownTableBodyNone">ビューポート領域の設定    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>glMatrixMode()</code>   </td><td class="markdownTableBodyNone">行列モードの選択（投影 or モデルビュー）    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>glLoadIdentity()</code>   </td><td class="markdownTableBodyNone">単位行列で初期化    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>gluPerspective()</code> / <code>glOrtho()</code>   </td><td class="markdownTableBodyNone">投影行列を設定（透視投影 / 正射影）    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>gluLookAt()</code>   </td><td class="markdownTableBodyNone">カメラ視点を設定   </td></tr>
+</table>
+<hr  />
+<h2><a class="anchor" id="autotoc_md71"></a>
+✳️ さらに学びたい方向け</h2>
+<ul>
+<li><b>OpenGL 3.x以降ではシェーダープログラミング**が主流（モダンOpenGL）</b></li>
+<li><b>ここで紹介したのは **固定機能パイプライン（レガシーOpenGL）</b></li>
+<li>モダンOpenGLでは <code>glUseProgram()</code> や <code>glDrawArrays()</code>、<code>VBO</code>, <code>VAO</code> などを使います</li>
+</ul>
+<hr  />
+<p>ご希望があれば、**モダンOpenGLとの違いや、Qtでの3D描画の拡張方法**などもお手伝いできます。どこまで掘り下げたいですか？ </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

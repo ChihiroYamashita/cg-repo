@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['関数の定義_20strong_0',['&lt;strong&gt;関数の定義&lt;/strong&gt;',['../md__doxygen_2_open_g_l__func.html#autotoc_md64',1,'']]],
-  ['関数の概要_20strong_1',['&lt;strong&gt;&lt;tt&gt;glMatrixMode&lt;/tt&gt; 関数の概要&lt;/strong&gt;',['../md__doxygen_2_open_g_l__func.html#autotoc_md63',1,'']]]
+  ['初期化（_20tt_20initializegl_20tt_20tt_20init_20tt_20）_0',['🔵 2. 初期化（&lt;tt&gt;initializeGL()&lt;/tt&gt; / &lt;tt&gt;init()&lt;/tt&gt;）',['../md__doxygen_2open_g_l__basis.html#autotoc_md81',1,'']]]
 ];

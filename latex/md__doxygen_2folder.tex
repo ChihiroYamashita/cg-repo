@@ -1,9 +1,9 @@
 \chapter{folder}
 \hypertarget{md__doxygen_2folder}{}\label{md__doxygen_2folder}\index{folder@{folder}}
-レイトレーシング機能を含む既存のコード（{\ttfamily main.\+cpp}, {\ttfamily Camera.\+cpp}, {\ttfamily Tri\+Mesh.\+cpp}, {\ttfamily GLPreview.\+cpp} など）を\+Qtプロジェクトに段階的に移植する際、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}目的別に役割を分けてフォルダ化・整理\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}することで、将来的な保守性と可読性が大きく向上します。
+レイトレーシング機能を含む既存のコード（{\ttfamily \doxylink{main_8cpp}{main.\+cpp}}, {\ttfamily \doxylink{camera_8cpp}{Camera.\+cpp}}, {\ttfamily \doxylink{_tri_mesh_8cpp}{Tri\+Mesh.\+cpp}}, {\ttfamily \doxylink{_g_l_preview_8cpp}{GLPreview.\+cpp}} など）を\+Qtプロジェクトに段階的に移植する際、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}目的別に役割を分けてフォルダ化・整理\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}することで、将来的な保守性と可読性が大きく向上します。
 
 \DoxyHorRuler{0}
-\hypertarget{md__doxygen_2folder_autotoc_md21}{}\doxysubsection{\texorpdfstring{✅ 推奨フォルダ構成と役割}{✅ 推奨フォルダ構成と役割}}\label{md__doxygen_2folder_autotoc_md21}
+\hypertarget{md__doxygen_2folder_autotoc_md59}{}\doxysubsection{\texorpdfstring{✅ 推奨フォルダ構成と役割}{✅ 推奨フォルダ構成と役割}}\label{md__doxygen_2folder_autotoc_md59}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{sources/}
@@ -37,7 +37,7 @@
 
 
 \DoxyHorRuler{0}
-\hypertarget{md__doxygen_2folder_autotoc_md23}{}\doxysubsection{\texorpdfstring{✅ 各ファイルへの分類例}{✅ 各ファイルへの分類例}}\label{md__doxygen_2folder_autotoc_md23}
+\hypertarget{md__doxygen_2folder_autotoc_md61}{}\doxysubsection{\texorpdfstring{✅ 各ファイルへの分類例}{✅ 各ファイルへの分類例}}\label{md__doxygen_2folder_autotoc_md61}
 \tabulinesep=1mm
 \begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
 \hline
@@ -48,21 +48,21 @@
 \hline
 \PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 関数/構造体   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 移動先ファイル   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 説明    }\\\cline{1-3}
 \endhead
-{\ttfamily Camera\+::screen\+View}   &{\ttfamily camera/camera.\+cpp}   &ピクセル座標→レイの生成    \\\cline{1-3}
+{\ttfamily Camera\+::screen\+View}   &{\ttfamily \doxylink{camera_8cpp}{camera/camera.\+cpp}}   &ピクセル座標→レイの生成    \\\cline{1-3}
 {\ttfamily projection\+\_\+and\+\_\+modelview}   &{\ttfamily camera/projection.\+cpp}   &Open\+GLの視野投影設定    \\\cline{1-3}
-{\ttfamily Tri\+Mesh}, {\ttfamily load\+Obj}, {\ttfamily extend\+Mesh}   &{\ttfamily geometry/trimesh.\+cpp}   &OBJ読み込み、メッシュ管理    \\\cline{1-3}
-{\ttfamily Object}, {\ttfamily draw\+Object}   &{\ttfamily geometry/object.\+cpp}   &複数メッシュまとめたオブジェクト    \\\cline{1-3}
-{\ttfamily Area\+Light}, {\ttfamily draw\+Lights}   &{\ttfamily geometry/light.\+cpp}   &エリアライト定義と描画    \\\cline{1-3}
-{\ttfamily draw\+Film}, {\ttfamily GLPreview.\+cpp}   &{\ttfamily film/drawfilm.\+cpp}   &描画出力    \\\cline{1-3}
-{\ttfamily g\+\_\+\+Film\+Buffer}, {\ttfamily init\+Film} 等   &{\ttfamily film/film\+\_\+buffer.\+cpp}   &バッファ初期化と管理    \\\cline{1-3}
+{\ttfamily \doxylink{struct_tri_mesh}{Tri\+Mesh}}, {\ttfamily load\+Obj}, {\ttfamily extend\+Mesh}   &{\ttfamily \doxylink{_tri_mesh_8cpp}{geometry/trimesh.\+cpp}}   &OBJ読み込み、メッシュ管理    \\\cline{1-3}
+{\ttfamily \doxylink{struct_object}{Object}}, {\ttfamily draw\+Object}   &{\ttfamily geometry/object.\+cpp}   &複数メッシュまとめたオブジェクト    \\\cline{1-3}
+{\ttfamily \doxylink{struct_area_light}{Area\+Light}}, {\ttfamily draw\+Lights}   &{\ttfamily \doxylink{_light_8cpp}{geometry/light.\+cpp}}   &エリアライト定義と描画    \\\cline{1-3}
+{\ttfamily draw\+Film}, {\ttfamily \doxylink{_g_l_preview_8cpp}{GLPreview.\+cpp}}   &{\ttfamily \doxylink{drawfilm_8cpp}{film/drawfilm.\+cpp}}   &描画出力    \\\cline{1-3}
+{\ttfamily g\+\_\+\+Film\+Buffer}, {\ttfamily init\+Film} 等   &{\ttfamily \doxylink{film__buffer_8cpp}{film/film\+\_\+buffer.\+cpp}}   &バッファ初期化と管理    \\\cline{1-3}
 {\ttfamily ray\+Triangle\+Intersect} 等   &{\ttfamily rendering/raytracing.\+cpp}   &ジオメトリとのレイ交差    \\\cline{1-3}
 {\ttfamily compute\+Shading}, {\ttfamily sample\+Point}   &{\ttfamily rendering/shading.\+cpp}   &光の計算・間接照明など    \\\cline{1-3}
-{\ttfamily main.\+cpp}   &{\ttfamily main/main.\+cpp}   &GLUTによるループ・イベント処理   \\\cline{1-3}
+{\ttfamily \doxylink{main_8cpp}{main.\+cpp}}   &{\ttfamily main/main.\+cpp}   &GLUTによるループ・イベント処理   \\\cline{1-3}
 \end{longtabu}
 
 
 \DoxyHorRuler{0}
-\hypertarget{md__doxygen_2folder_autotoc_md25}{}\doxysubsection{\texorpdfstring{📌 注意点とヒント}{📌 注意点とヒント}}\label{md__doxygen_2folder_autotoc_md25}
+\hypertarget{md__doxygen_2folder_autotoc_md63}{}\doxysubsection{\texorpdfstring{📌 注意点とヒント}{📌 注意点とヒント}}\label{md__doxygen_2folder_autotoc_md63}
 
 \begin{DoxyItemize}
 \item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}描画処理（\+Open\+GL）とレイトレーシング処理（\+CPU/\+GPU）を明確に分ける\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}ことで、将来の\+GPU化や\+GUIへの統合が楽になります。
@@ -71,7 +71,7 @@
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{md__doxygen_2folder_autotoc_md27}{}\doxysubsection{\texorpdfstring{✅ .proファイルへの記述例}{✅ .proファイルへの記述例}}\label{md__doxygen_2folder_autotoc_md27}
+\hypertarget{md__doxygen_2folder_autotoc_md65}{}\doxysubsection{\texorpdfstring{✅ .proファイルへの記述例}{✅ .proファイルへの記述例}}\label{md__doxygen_2folder_autotoc_md65}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{INCLUDEPATH\ +=\ \$\$PWD/sources\ \(\backslash\)}
@@ -99,7 +99,7 @@
 
 
 \DoxyHorRuler{0}
-\hypertarget{md__doxygen_2folder_autotoc_md29}{}\doxysubsection{\texorpdfstring{✅ 今後の発展を見据えて}{✅ 今後の発展を見据えて}}\label{md__doxygen_2folder_autotoc_md29}
+\hypertarget{md__doxygen_2folder_autotoc_md67}{}\doxysubsection{\texorpdfstring{✅ 今後の発展を見据えて}{✅ 今後の発展を見据えて}}\label{md__doxygen_2folder_autotoc_md67}
 \tabulinesep=1mm
 \begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
 \hline
@@ -110,7 +110,7 @@
 \hline
 \PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 発展項目   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ ヒント    }\\\cline{1-2}
 \endhead
-Qt GUIと連携   &{\ttfamily film\+\_\+buffer.\+cpp} のテクスチャ出力を {\ttfamily QOpen\+GLWidget} にバインド可能    \\\cline{1-2}
+Qt GUIと連携   &{\ttfamily \doxylink{film__buffer_8cpp}{film\+\_\+buffer.\+cpp}} のテクスチャ出力を {\ttfamily QOpen\+GLWidget} にバインド可能    \\\cline{1-2}
 マルチスレッド化   &{\ttfamily ray\+Tracing()} を1ピクセルずつ処理しているので、スレッドで分割しやすい    \\\cline{1-2}
 GPUオフロード   &{\ttfamily ray\+Tracing()} や {\ttfamily shading} を将来的に\+CUDA/\+Metalなどへ移行しやすい構成   \\\cline{1-2}
 \end{longtabu}

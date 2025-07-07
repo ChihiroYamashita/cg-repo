@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['sequence_5fdiagrams_2emd_0',['sequence_diagrams.md',['../sequence__diagrams_8md.html',1,'']]]
+  ['jpeg_2ecpp_0',['Jpeg.cpp',['../_jpeg_8cpp.html',1,'']]],
+  ['jpeg_2eh_1',['Jpeg.h',['../_jpeg_8h.html',1,'']]]
 ];

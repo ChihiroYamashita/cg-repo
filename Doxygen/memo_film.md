@@ -16,8 +16,13 @@
 │   └──────────────┘                       │
 └─────────────────────────────────────────┘
 ```
-
+@details
 MyOpenGLWidget_cameraでは、initializeGL(),paintGL,resizeGL()でのみ呼ばれる。
+
+詳しくは 
+@ref MyOpenGLWidget_camera::paintGL() を参照してください。
+詳しくは [描画関数 paintGL() の詳細](@ref MyOpenGLWidget_camera::paintGL()) をご覧ください。
+
 
 @startuml
 actor User
