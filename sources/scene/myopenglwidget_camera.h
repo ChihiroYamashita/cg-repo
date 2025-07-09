@@ -12,7 +12,7 @@ class MyOpenGLWidget_camera :public MyOpenGLWidget {
     Q_OBJECT
 
 public:
-   explicit MyOpenGLWidget_camera(QWidget* parent = nullptr);
+    explicit MyOpenGLWidget_camera(QWidget* parent = nullptr);
     void setCamerakeyframe(const Eigen::Vector3d& eyePoint,const Eigen::Vector3d& lookAtPoint);//カメラ1からのいち情報をもらう関数（画面2用）
     void setCameraEyePoint2(const Eigen::Vector3d& eyePoint);//MyOpenGLWidgetの外からカメラの画角を設定する関数
     void setlookAtPoint2(const Eigen::Vector3d& lookAtPoint);
@@ -39,13 +39,13 @@ protected:
     //void initAreaLights();
     void resetRendering();
     //レイトレ用Qtimer
-     QTimer *m_timer; // タイマーのポインタ
+    QTimer *m_timer; // タイマーのポインタ
 
 
-     // ★★★ 追加：レンダリングの進捗と状態を管理する変数 ★★★
-     bool m_isDirty;     // 再レンダリングが必要かどうかのフラグ
-     int m_progress_i;   // 次に計算するピクセルの横位置(i)
-     int m_progress_j;   // 次に計算するピクセルの縦位置(j)
+    // ★★★ 追加：レンダリングの進捗と状態を管理する変数 ★★★
+    bool m_isDirty;     // 再レンダリングが必要かどうかのフラグ
+    int m_progress_i;   // 次に計算するピクセルの横位置(i)
+    int m_progress_j;   // 次に計算するピクセルの縦位置(j)
 
 private:
     Camera g_Camera2;
@@ -56,23 +56,24 @@ private:
     float updatedFov;
 
     //--------------レイトレ用---------------------------------------
-     void initializeFilmTexture();
-     GLuint m_filmTexture = 0; // フィルムテクスチャのID
-     float* g_FilmBuffer = nullptr; // テスト用のテクスチャデータ
+    void initializeFilmTexture();
+    GLuint m_filmTexture = 0; // フィルムテクスチャのID
+    //float* g_FilmBuffer = nullptr; // テスト用のテクスチャデータ
 
-
-     std::vector<AreaLight> g_AreaLights;// 読み込んだオブジェクトを保持
-     Object g_Obj;// シーンの光源を保持
      FilmBuffer m_film;
 
+    void createDebugPattern();
+    std::vector<AreaLight> g_AreaLights;// 読み込んだオブジェクトを保持
+    Object g_Obj;// シーンの光源を保持
 
-     //デバッグ用
-     Eigen::Vector3d debug_computeNormalColor(const Ray& ray);
-     //------------------------------------------------------------
 
-     //レイトレ用スロット
- private slots:
-     void updateRayTracing(); // タイマーで呼び出すカスタムスロット
+    //デバッグ用
+    Eigen::Vector3d debug_computeNormalColor(const Ray& ray);
+    //------------------------------------------------------------
+
+    //レイトレ用スロット
+private slots:
+    void updateRayTracing(); // タイマーで呼び出すカスタムスロット
 };
 
 #endif // MYOPENGLWIDGET_CAMERA_H

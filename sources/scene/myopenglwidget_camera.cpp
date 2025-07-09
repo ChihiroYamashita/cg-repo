@@ -48,7 +48,9 @@ void MyOpenGLWidget_camera::initializeGL() {
     updatedFov=45;
 
     // ★レイトレ追加: テスト用テクスチャを初期化
+
     initializeFilmTexture();
+
 
     //checkOpenGLVersion();
 }
@@ -154,6 +156,9 @@ void MyOpenGLWidget_camera::resizeGL(int width, int height)
     qDebug() <<"width"<<width;
     qDebug() <<"height"<< height;
 
+        m_film.init(width, height);
+            createDebugPattern();
+
     // ウィジェットのアスペクト比を計算
     const float aspect = (height > 0) ? static_cast<float>(width) / static_cast<float>(height) : 1.0f;
 
@@ -170,7 +175,7 @@ void MyOpenGLWidget_camera::resizeGL(int width, int height)
         m_filmTexture = 0;
     }
 
-    // !!!実行前に注意
+    // !!!実行前に
     //delete[] g_FilmBuffer;
     //g_FilmBuffer = nullptr;
     doneCurrent();
@@ -303,7 +308,7 @@ void MyOpenGLWidget_camera::updateRayTracing()
         return;
     }
 
-    if (width <= 0 || height <= 0 || !g_FilmBuffer) return;
+    //if (width <= 0 || height <= 0 || !g_FilmBuffer) return;
 
     const int pixelsPerFrame = 2000;
 
@@ -317,9 +322,14 @@ void MyOpenGLWidget_camera::updateRayTracing()
         ray.prev_primitive_idx = -1;
         Eigen::Vector3d color = debug_computeNormalColor(ray);
         int index = (m_progress_j * width + m_progress_i) * 3;
-        g_FilmBuffer[index + 0] = color.x();
-        g_FilmBuffer[index + 1] = color.y();
-        g_FilmBuffer[index + 2] = color.z();
+        //g_FilmBuffer[index + 0] = color.x();
+        //g_FilmBuffer[index + 1] = color.y();
+        //g_FilmBuffer[index + 2] = color.z();
+
+        // ★★★ 新しい方法 ★★★
+        m_film.addSample(m_progress_i, m_progress_j, color);
+        // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+
 
         // 次に計算するピクセルへ
         m_progress_i++;
@@ -335,10 +345,17 @@ void MyOpenGLWidget_camera::updateRayTracing()
         }
     }
 
+    // 蓄積バッファから平均を計算して、描画用バッファを更新
+    m_film.updateFilmBuffer();
+
     // テクスチャ更新と再描画
     makeCurrent();
     glBindTexture(GL_TEXTURE_2D, m_filmTexture);
-    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width, height, GL_RGB, GL_FLOAT, g_FilmBuffer);
+    //glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width, height, GL_RGB, GL_FLOAT, g_FilmBuffer);
+
+    // ★getFilmBufferPtr()で更新されたバッファを取得して転送
+    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_film.getWidth(), m_film.getHeight(), GL_RGB, GL_FLOAT, m_film.getFilmBufferPtr());
+
     glBindTexture(GL_TEXTURE_2D, 0);
     doneCurrent();
 
@@ -349,31 +366,37 @@ void MyOpenGLWidget_camera::updateRayTracing()
 
 /*-----レイトレ用---------------------------------------*/
 
-
 // ★追加: テスト用テクスチャを生成する関数の実装
 void MyOpenGLWidget_camera::initializeFilmTexture() {
     // widthとheightが0以下の場合は何もしない（エラー防止）
     if (width <= 0 || height <= 0) return;
 
-    // メンバ変数のwidthとheightを使用
-    g_FilmBuffer = new float[width * height * 3];
-    for (int j = 0; j < height; ++j) {
-        for (int i = 0; i < width; ++i) {
-            int index = (j * width + i) * 3;
-            g_FilmBuffer[index + 0] = (float)i / (width - 1);
-            g_FilmBuffer[index + 1] = (float)j / (height - 1);
-            g_FilmBuffer[index + 2] = 0.5f;
-        }
+    makeCurrent(); // OpenGLの命令をこのウィジェットで実行するために必須
+
+    // もし既にテクスチャが存在していたら、削除してメモリリークを防ぐ
+    if (m_filmTexture != 0) {
+        glDeleteTextures(1, &m_filmTexture);
     }
 
-    makeCurrent();
+    // 1. 新しいテクスチャを1つ生成し、そのIDを m_filmTexture に格納
     glGenTextures(1, &m_filmTexture);
+
+    // 2. 生成したテクスチャを操作対象として「バインド」する
     glBindTexture(GL_TEXTURE_2D, m_filmTexture);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_FLOAT, g_FilmBuffer);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+    // 3. テクスチャのメモリをGPU上に確保する
+    //    最後の引数をnullptrにすると、データ転送なしで領域だけ確保できる
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_FLOAT, nullptr);
+
+    // 4. テクスチャの拡大・縮小時のフィルタリング方法を設定
+    //    GL_NEAREST にすると、ピクセルがぼやけずクッキリ表示される
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+    // 5. 操作が終わったらテクスチャのバインドを解除（安全のため）
     glBindTexture(GL_TEXTURE_2D, 0);
-    doneCurrent();
+
+    doneCurrent(); // makeCurrentと対になる
 }
 
 
@@ -400,6 +423,43 @@ Eigen::Vector3d MyOpenGLWidget_camera::debug_computeNormalColor(const Ray& ray)
     return Eigen::Vector3d::Zero();
 }
 
+/**
+ * @brief デバッグ用のグラデーションパターンを生成し、フィルムバッファに書き込む関数
+ */
+void MyOpenGLWidget_camera::createDebugPattern() {
+    // ウィジェットのサイズが不正な場合は何もしない
+    if (width <= 0 || height <= 0) return;
+
+    qDebug() << "Generating debug gradient pattern...";
+
+    // フィルムバッファを一旦リセット
+    m_film.reset();
+
+    // 全てのピクセルをループして色を計算
+    for (int j = 0; j < height; ++j) {
+        for (int i = 0; i < width; ++i) {
+            // X座標で赤色、Y座標で緑色が変わるグラデーション
+            Eigen::Vector3d color;
+            color.x() = static_cast<double>(i) / (width - 1);
+            color.y() = static_cast<double>(j) / (height - 1);
+            color.z() = 0.5;
+
+            // FilmBufferクラスのメソッドを使ってピクセルデータを追加
+            m_film.addSample(i, j, color);
+        }
+    }
+
+    // バッファの平均化処理を実行（今回はサンプルが1つなのでそのままの値になる）
+    m_film.updateFilmBuffer();
+
+    // 完成したデータをOpenGLのテクスチャに転送
+    makeCurrent();
+    glBindTexture(GL_TEXTURE_2D, m_filmTexture);
+    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width, height, GL_RGB, GL_FLOAT, m_film.getFilmBufferPtr());
+    glBindTexture(GL_TEXTURE_2D, 0);
+    doneCurrent();
+}
+
 void MyOpenGLWidget_camera::resetRendering()
 {
     m_isDirty = true; // 再レンダリングが必要だとマーク
@@ -407,7 +467,19 @@ void MyOpenGLWidget_camera::resetRendering()
     m_progress_j = 0;
 
     // フィルムバッファをクリアして、前の画像が残らないようにする
-    if (g_FilmBuffer) {
+    /*if (g_FilmBuffer) {
         memset(g_FilmBuffer, 0, sizeof(float) * width * height * 3);
+    }*/
+    // ★フィルムバッファをクリア
+    m_film.reset();
+
+    // OpenGLのテクスチャもクリアしておく
+    if (m_film.getWidth() > 0 && m_film.getHeight() > 0) {
+        std::vector<float> clearBuffer(m_film.getWidth() * m_film.getHeight() * 3, 0.0f);
+        makeCurrent();
+        glBindTexture(GL_TEXTURE_2D, m_filmTexture);
+        glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_film.getWidth(), m_film.getHeight(), GL_RGB, GL_FLOAT, clearBuffer.data());
+        glBindTexture(GL_TEXTURE_2D, 0);
+        doneCurrent();
     }
 }
