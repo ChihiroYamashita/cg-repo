@@ -17,33 +17,17 @@ MyOpenGLWidget_camera::MyOpenGLWidget_camera(QWidget* parent)
     // ★オブジェクトを読み込む
     if (loadObj( m_objFileName, g_Obj)) {
         qDebug() << "sphere.obj loaded successfully.";
-        //applyMaterialColorToVertices(g_Obj);
-        /*
-        // ★★★★★★★★★★★ 詳細デバッグここから ★★★★★★★★★★★
-        qDebug() << "--- Starting Detailed Color Debug ---";
-        qDebug() << "Number of meshes found:" << g_Obj.meshes.size();
 
-        if (!g_Obj.meshes.empty()) {
-            // 最初のメッシュ（meshes[0]）を検査対象にします
-            const auto& first_mesh = g_Obj.meshes[0];
 
-            // 1. applyMaterialColorToVerticesが使うはずの「元の色」をまず確認します
-            const auto& material_kd = first_mesh.material.kd;
-            qDebug() << "[Check 1] Material kd for first mesh:" << material_kd.x() << material_kd.y() << material_kd.z();
+        // レンダリング状態を初期化
+        m_isDirty = false; // ★ 最初は計算しない
+        m_progress_i = 0;
+        m_progress_j = 0;
 
-            // 2. ここで色を適用する関数を呼び出します
-            applyMaterialColorToVertices(g_Obj);
-
-            // 3. 適用後の頂点カラーがどうなったかを確認します
-            const auto& color_after_apply = g_Obj.meshes[0].vertex_colors[0];
-            qDebug() << "[Check 2] Vertex 0 color is now:" << color_after_apply.x() << color_after_apply.y() << color_after_apply.z();
-        }
-        qDebug() << "--- End of Detailed Color Debug ---";*/
-        // ★★★★★★★★★★★ 詳細デバッグここまで ★★★★★★★★★★★
 
         m_timer = new QTimer(this);
         connect(m_timer, &QTimer::timeout, this, &MyOpenGLWidget_camera::updateRayTracing);
-        m_timer->start(16); // 約60FPSでタイムアウト信号を出す
+        m_timer->start(1);// ほぼ最速で実行
 
     } else {
         qWarning() << "Failed to load box.obj.";
@@ -199,8 +183,8 @@ void MyOpenGLWidget_camera::resizeGL(int width, int height)
 
 
 
-
-//視点をカメラ2に変換する
+// ★★★ この関数が再レンダリングのトリガーになる ★★★
+//視点をカメラ1→カメラ2に変換する
 void MyOpenGLWidget_camera::setCamerakeyframe(const Eigen::Vector3d& eyePoint,const Eigen::Vector3d& lookAtPoint){
 
     setCameraEyePoint2(eyePoint);
@@ -210,6 +194,8 @@ void MyOpenGLWidget_camera::setCamerakeyframe(const Eigen::Vector3d& eyePoint,co
 
     updateProjectionMatrix();
     update();
+    // ★ レンダリングをリセットして開始する
+    resetRendering();
 
 }
 
@@ -291,7 +277,7 @@ void MyOpenGLWidget_camera::wheelEvent(QWheelEvent *event)
 {
     // 何もしない
 }
-
+/*-----レイトレ用---------------------------------------*/
 void MyOpenGLWidget_camera::updateRayTracing()
 {
     /*
@@ -305,34 +291,55 @@ void MyOpenGLWidget_camera::updateRayTracing()
 
     // 【注意】この実装は一度に全ピクセルを計算するため、UIが一時的に固まります。
     // 　まずは動作確認のためにこの方法を使い、次のステップで分割計算に改良します。
+    // ★ 再レンダリングが不要な場合は、すぐに処理を抜ける
+    if (!m_isDirty) {
+        return;
+    }
 
-    for (int j = 0; j < height; ++j) {
-        for (int i = 0; i < width; ++i) {
-            // 1. ピクセルに対応するレイを生成
-            double p_x = (double)i / width;
-            double p_y = (double)j / height;
-            Ray ray;
-            g_Camera2.screenView(p_x, p_y, ray);
-            ray.prev_mesh_idx = -99;
-            ray.prev_primitive_idx = -1;
+    // ★ 再レンダリングが不要な場合は、すぐに処理を抜ける
+    if (!m_isDirty) {
+        return;
+    }
 
-            // 2. デバッグ用関数で色を計算
-            Eigen::Vector3d color = debug_computeNormalColor(ray);
+    if (width <= 0 || height <= 0 || !m_filmBuffer) return;
 
-            // 3. 計算結果をフィルムバッファに書き込む
-            int index = (j * width + i) * 3;
-            m_filmBuffer[index + 0] = color.x();
-            m_filmBuffer[index + 1] = color.y();
-            m_filmBuffer[index + 2] = color.z();
+    const int pixelsPerFrame = 2000;
+
+    for (int k = 0; k < pixelsPerFrame; ++k) {
+        // ... (ピクセルごとの計算ロジックは変更なし) ...
+        double p_x = (double)m_progress_i / width;
+        double p_y = (double)m_progress_j / height;
+        Ray ray;
+        g_Camera2.screenView(p_x, p_y, ray);
+        ray.prev_mesh_idx = -99;
+        ray.prev_primitive_idx = -1;
+        Eigen::Vector3d color = debug_computeNormalColor(ray);
+        int index = (m_progress_j * width + m_progress_i) * 3;
+        m_filmBuffer[index + 0] = color.x();
+        m_filmBuffer[index + 1] = color.y();
+        m_filmBuffer[index + 2] = color.z();
+
+        // 次に計算するピクセルへ
+        m_progress_i++;
+        if (m_progress_i >= width) {
+            m_progress_i = 0;
+            m_progress_j++;
+            if (m_progress_j >= height) {
+                // ★ 全ピクセルの計算が終わったら、dirtyフラグをfalseにして計算を停止
+                m_isDirty = false;
+                qDebug() << "Rendering finished.";
+                break; // このフレームのループを抜ける
+            }
         }
     }
 
-    // テクスチャを更新して再描画
+    // テクスチャ更新と再描画
     makeCurrent();
     glBindTexture(GL_TEXTURE_2D, m_filmTexture);
     glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width, height, GL_RGB, GL_FLOAT, m_filmBuffer);
     glBindTexture(GL_TEXTURE_2D, 0);
     doneCurrent();
+
 
     update(); // paintGL()の再描画をスケジュールする
 }
@@ -390,3 +397,14 @@ Eigen::Vector3d MyOpenGLWidget_camera::debug_computeNormalColor(const Ray& ray)
     return Eigen::Vector3d::Zero();
 }
 
+void MyOpenGLWidget_camera::resetRendering()
+{
+    m_isDirty = true; // 再レンダリングが必要だとマーク
+    m_progress_i = 0;
+    m_progress_j = 0;
+
+    // フィルムバッファをクリアして、前の画像が残らないようにする
+    if (m_filmBuffer) {
+        memset(m_filmBuffer, 0, sizeof(float) * width * height * 3);
+    }
+}
