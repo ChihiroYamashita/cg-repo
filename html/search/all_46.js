@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['引数_20strong_0',['&lt;strong&gt;引数&lt;/strong&gt;',['../md__doxygen_2_open_g_l__func.html#autotoc_md103',1,'']]]
+  ['初期化・描画シーケンス_0',['🌐 PlantUML: 初期化・描画シーケンス',['../md__doxygen_2memo__wip__raytracing.html#autotoc_md109',1,'']]],
+  ['初期化（_20tt_20initializegl_20tt_20tt_20init_20tt_20）_1',['🔵 2. 初期化（&lt;tt&gt;initializeGL()&lt;/tt&gt; / &lt;tt&gt;init()&lt;/tt&gt;）',['../md__doxygen_2open_g_l__basis.html#autotoc_md120',1,'']]]
 ];

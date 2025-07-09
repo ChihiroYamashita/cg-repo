@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['g_5fcamera_0',['g_Camera',['../class_my_open_g_l_widget_ab706002c21aac20b5b4216d50c02ceb0.html#ab706002c21aac20b5b4216d50c02ceb0',1,'MyOpenGLWidget']]],
-  ['g_5fcamera2_1',['g_Camera2',['../class_my_open_g_l_widget__camera_adeed8a3966668cf7ca18c2426f0a216b.html#adeed8a3966668cf7ca18c2426f0a216b',1,'MyOpenGLWidget_camera']]],
-  ['g_5fframesize_5fwindowsize_5fscale_5fx_2',['g_FrameSize_WindowSize_Scale_x',['../class_my_open_g_l_widget_af11e158edb17b8e97e1a0f8cef04f9b0.html#af11e158edb17b8e97e1a0f8cef04f9b0',1,'MyOpenGLWidget']]],
-  ['g_5fframesize_5fwindowsize_5fscale_5fy_3',['g_FrameSize_WindowSize_Scale_y',['../class_my_open_g_l_widget_a15032a752a2f8a676faacc50a4ec78cd.html#a15032a752a2f8a676faacc50a4ec78cd',1,'MyOpenGLWidget']]]
+  ['face_0',['face',['../class_my_open_g_l_widget__camera_aaef6a00ab67f3c94ff5fc6d5645a3910.html#aaef6a00ab67f3c94ff5fc6d5645a3910',1,'MyOpenGLWidget_camera']]],
+  ['fixedwidth_1',['fixedWidth',['../class_main_window_a98c156af3c0d0bf6823c27205c891457.html#a98c156af3c0d0bf6823c27205c891457',1,'MainWindow']]],
+  ['fov_2',['fov',['../struct_camera_keyframe_a972b4e115b9eccd742311565741c08e7.html#a972b4e115b9eccd742311565741c08e7',1,'CameraKeyframe']]],
+  ['framenumber_3',['frameNumber',['../struct_camera_keyframe_ace98e6dca820e62372cf1c8647865f6b.html#ace98e6dca820e62372cf1c8647865f6b',1,'CameraKeyframe']]],
+  ['framerate_4',['frameRate',['../class_custom_scene_a7b54991751ed4d0a867b82c2f75ea64e.html#a7b54991751ed4d0a867b82c2f75ea64e',1,'CustomScene']]]
 ];

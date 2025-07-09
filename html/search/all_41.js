@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['初期化（_20tt_20initializegl_20tt_20tt_20init_20tt_20）_0',['🔵 2. 初期化（&lt;tt&gt;initializeGL()&lt;/tt&gt; / &lt;tt&gt;init()&lt;/tt&gt;）',['../md__doxygen_2open_g_l__basis.html#autotoc_md81',1,'']]]
+  ['使用例_20strong_0',['&lt;strong&gt;使用例&lt;/strong&gt;',['../md__doxygen_2_open_g_l__func.html#autotoc_md146',1,'']]],
+  ['使用例_3a_1',['使用例:',['../struct_material.html#autotoc_md10',1,'使用例:'],['../struct_object.html#autotoc_md15',1,'使用例:']]],
+  ['使用構造体・クラス_2',['📦 使用構造体・クラス',['../md__doxygen_2memo__wip__raytracing.html#autotoc_md97',1,'']]]
 ];

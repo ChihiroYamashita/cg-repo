@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['camerafov_0',['cameraFov',['../class_my_open_g_l_widget_ace008c27f545edb38f5ed74a37c30eeb.html#ace008c27f545edb38f5ed74a37c30eeb',1,'MyOpenGLWidget']]],
-  ['ch_1',['ch',['../struct_jpeg_data_a8bcd74725133e1285c1dbafc1c2866bf.html#a8bcd74725133e1285c1dbafc1c2866bf',1,'JpegData']]],
-  ['color_2',['color',['../struct_area_light_ac1ec740855063915f4c397ebdcb08a48.html#ac1ec740855063915f4c397ebdcb08a48',1,'AreaLight::color'],['../class_my_open_g_l_widget__camera_a4a3e2b37507c74dc90fd3aff5b2fefa4.html#a4a3e2b37507c74dc90fd3aff5b2fefa4',1,'MyOpenGLWidget_camera::color']]]
+  ['backgrounditem_0',['backgroundItem',['../class_custom_scene_a7f0c630dcd80560785cfacfecbfb1d36.html#a7f0c630dcd80560785cfacfecbfb1d36',1,'CustomScene']]],
+  ['beta_1',['beta',['../struct_ray_hit_ac90719b0d422effa4fa6b23a3b53b77c.html#ac90719b0d422effa4fa6b23a3b53b77c',1,'RayHit']]],
+  ['button_2',['button',['../class_my_open_g_l_widget_affb94bd1a2c34b0ecb84aa729ea3671b.html#affb94bd1a2c34b0ecb84aa729ea3671b',1,'MyOpenGLWidget']]],
+  ['buttonpressed_3',['ButtonPressed',['../class_my_open_g_l_widget_a5a10ce5247fe114a4b77b36d9a087305.html#a5a10ce5247fe114a4b77b36d9a087305',1,'MyOpenGLWidget']]]
 ];

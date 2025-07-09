@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['バッファの初期化_0',['2. バッファの初期化',['../class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f.html#autotoc_md20',1,'']]],
-  ['バッファスワップ（ダブルバッファ）_1',['🔵 5. バッファスワップ（ダブルバッファ）',['../md__doxygen_2open_g_l__basis.html#autotoc_md87',1,'']]]
+  ['テクスチャを貼り付けた四角形を描画_0',['3. テクスチャを貼り付けた四角形を描画',['../drawfilm_8h_a443204766d01c1b7114034c955991bc8.html#autotoc_md18',1,'']]],
+  ['テクスチャ行列を操作する例_20strong_1',['&lt;strong&gt;テクスチャ行列を操作する例&lt;/strong&gt;',['../md__doxygen_2_open_g_l__func.html#autotoc_md149',1,'']]]
 ];

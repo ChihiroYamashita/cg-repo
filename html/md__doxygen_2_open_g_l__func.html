@@ -87,24 +87,24 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title">OpenGLの愉快な関数たち</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md97"></a></p>
-<h1><a class="anchor" id="autotoc_md98"></a>
+<div class="textblock"><p><a class="anchor" id="autotoc_md136"></a></p>
+<h1><a class="anchor" id="autotoc_md137"></a>
 はじめに</h1>
 <p>このページでは、ややこしいOpenGLの関数などをまとめます</p>
 <ul>
 <li>OpenGL関数</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md99"></a>
+<h1><a class="anchor" id="autotoc_md138"></a>
 OpenGL関数</h1>
-<h2><a class="anchor" id="autotoc_md100"></a>
+<h2><a class="anchor" id="autotoc_md139"></a>
 glMatrixMode</h2>
-<h2><a class="anchor" id="autotoc_md101"></a>
+<h2><a class="anchor" id="autotoc_md140"></a>
 <b><code>glMatrixMode</code> 関数の概要</b></h2>
 <p><code>glMatrixMode</code> は、OpenGL の固定機能パイプライン（古い OpenGL）で使用される関数で、**現在操作する行列の種類を設定する**ための関数です。この設定により、行列操作（例えば、平行移動や回転、スケーリングなど）が適用される対象が切り替わります。</p>
-<h2><a class="anchor" id="autotoc_md102"></a>
+<h2><a class="anchor" id="autotoc_md141"></a>
 <b>関数の定義</b></h2>
 <div class="fragment"><div class="line"><span class="keywordtype">void</span> glMatrixMode(GLenum mode);</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md103"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md142"></a>
 <b>引数</b></h3>
 <ul>
 <li><code>mode</code>: 操作対象の行列を指定します。<ul>
@@ -115,7 +115,7 @@ glMatrixMode</h2>
 </li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md105"></a>
+<h2><a class="anchor" id="autotoc_md144"></a>
 <b>行列の種類と用途</b></h2>
 <ol type="1">
 <li><b><code>GL_MODELVIEW</code>（モデルビュー行列）</b><ul>
@@ -135,28 +135,28 @@ glMatrixMode</h2>
 </li>
 </ol>
 <hr  />
-<h2><a class="anchor" id="autotoc_md107"></a>
+<h2><a class="anchor" id="autotoc_md146"></a>
 <b>使用例</b></h2>
-<h3><a class="anchor" id="autotoc_md108"></a>
+<h3><a class="anchor" id="autotoc_md147"></a>
 <b>モデルビュー行列を設定する例</b></h3>
 <div class="fragment"><div class="line">glMatrixMode(GL_MODELVIEW);  <span class="comment">// モデルビュー行列を選択</span></div>
 <div class="line">glLoadIdentity();            <span class="comment">// モデルビュー行列を単位行列にリセット</span></div>
 <div class="line">glTranslatef(0.0f, 0.0f, -5.0f); <span class="comment">// カメラを5単位だけ後ろに移動</span></div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md109"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md148"></a>
 <b>投影行列を設定する例</b></h3>
 <div class="fragment"><div class="line">glMatrixMode(GL_PROJECTION); <span class="comment">// 投影行列を選択</span></div>
 <div class="line">glLoadIdentity();            <span class="comment">// 投影行列を単位行列にリセット</span></div>
 <div class="line">gluPerspective(45.0, 1.33, 0.1, 100.0); <span class="comment">// 透視投影を設定</span></div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md110"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md149"></a>
 <b>テクスチャ行列を操作する例</b></h3>
 <div class="fragment"><div class="line">glMatrixMode(GL_TEXTURE);    <span class="comment">// テクスチャ行列を選択</span></div>
 <div class="line">glLoadIdentity();            <span class="comment">// テクスチャ行列を単位行列にリセット</span></div>
 <div class="line">glScalef(2.0f, 2.0f, 1.0f);  <span class="comment">// テクスチャ座標を2倍にスケーリング</span></div>
 </div><!-- fragment --><hr  />
-<h2><a class="anchor" id="autotoc_md112"></a>
+<h2><a class="anchor" id="autotoc_md151"></a>
 <b><code>glMatrixMode</code> の流れと操作対象</b></h2>
 <p><code>glMatrixMode</code> を使うと、その後に続く行列操作が指定した行列（<code>GL_MODELVIEW</code>, <code>GL_PROJECTION</code>, <code>GL_TEXTURE</code>）に適用されます。</p>
-<h3><a class="anchor" id="autotoc_md113"></a>
+<h3><a class="anchor" id="autotoc_md152"></a>
 <b>具体例</b></h3>
 <div class="fragment"><div class="line"><span class="comment">// 投影行列を設定</span></div>
 <div class="line">glMatrixMode(GL_PROJECTION);</div>
@@ -180,7 +180,7 @@ glMatrixMode</h2>
 </li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md115"></a>
+<h2><a class="anchor" id="autotoc_md154"></a>
 <b>注意点</b></h2>
 <ol type="1">
 <li><b>モダンOpenGLでは使用されない</b><ul>
@@ -194,35 +194,35 @@ glMatrixMode</h2>
 </li>
 </ol>
 <hr  />
-<h2><a class="anchor" id="autotoc_md117"></a>
+<h2><a class="anchor" id="autotoc_md156"></a>
 gluLookAt</h2>
 <p>視線ベクトル、注視点、上方向ベクトルを使ってカメラ行列を設定し、モデルビュー行列に適用します。</p>
-<h2><a class="anchor" id="autotoc_md118"></a>
+<h2><a class="anchor" id="autotoc_md157"></a>
 glEnable(GL_DEPTH_TEST);</h2>
 <ul>
 <li>深度テスト（Depth Test）を有効化します。 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md119"></a>
+<h1><a class="anchor" id="autotoc_md158"></a>
 - 役割: オブジェクトの奥行き情報を使って、手前にあるオブジェクトで後ろのオブジェクトを隠すように描画します。</h1>
-<h2><a class="anchor" id="autotoc_md120"></a>
+<h2><a class="anchor" id="autotoc_md159"></a>
 glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);</h2>
 <ul>
 <li>アルファブレンディング（透明度の計算）の設定を行います。 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md121"></a>
+<h1><a class="anchor" id="autotoc_md160"></a>
 - 役割: オブジェクトの透明度（アルファ値）に基づいて、前景と背景をブレンドして描画します。</h1>
-<h2><a class="anchor" id="autotoc_md122"></a>
+<h2><a class="anchor" id="autotoc_md161"></a>
 glEnable(GL_BLEND);</h2>
 <ul>
 <li>ブレンディングを有効化します。</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md123"></a>
+<h2><a class="anchor" id="autotoc_md162"></a>
 glEnable(GL_POINT_SMOOTH);, glEnable(GL_LINE_SMOOTH);, glEnable(GL_POLYGON_SMOOTH);</h2>
 <ul>
 <li>点、線、多角形のスムージング（アンチエイリアス）を有効化します。</li>
 <li>役割: 描画結果を滑らかにするための設定。 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md124"></a>
+<h2><a class="anchor" id="autotoc_md163"></a>
 glHint(GL_POINT_SMOOTH_HINT, GL_NICEST); など</h2>
 <ul>
 <li>スムージングの品質を設定します。</li>

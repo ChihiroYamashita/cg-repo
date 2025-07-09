@@ -1,0 +1,122 @@
+\doxysection{Ray\+Hit 構造体}
+\hypertarget{struct_ray_hit}{}\label{struct_ray_hit}\index{RayHit@{RayHit}}
+
+
+レイと三角形の交差点情報を保持する構造体  
+
+
+
+
+{\ttfamily \#include $<$Ray\+Hit.\+h$>$}
+
+
+
+Ray\+Hit 連携図\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=153pt]{struct_ray_hit__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_ray_hit_a35ee4ee3588934877d5e12757646bfd4_a35ee4ee3588934877d5e12757646bfd4}{Ray\+Hit}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{struct_ray_hit_ab7d376ee6622c514e0002d86a7aabe82_ab7d376ee6622c514e0002d86a7aabe82}{t}}
+\item 
+double \mbox{\hyperlink{struct_ray_hit_a5c60901419fcbdb9543efaea5709723f_a5c60901419fcbdb9543efaea5709723f}{alpha}}
+\item 
+double \mbox{\hyperlink{struct_ray_hit_ac90719b0d422effa4fa6b23a3b53b77c_ac90719b0d422effa4fa6b23a3b53b77c}{beta}}
+\item 
+int \mbox{\hyperlink{struct_ray_hit_af3697b9fb22b763d68d9b0fd09d75624_af3697b9fb22b763d68d9b0fd09d75624}{mesh\+\_\+idx}}
+\item 
+int \mbox{\hyperlink{struct_ray_hit_a92c5701fe15dd2715acdcbfda5e170a2_a92c5701fe15dd2715acdcbfda5e170a2}{primitive\+\_\+idx}}
+\item 
+bool \mbox{\hyperlink{struct_ray_hit_ac19cbe82d1b38466b5e1cb930b2d0313_ac19cbe82d1b38466b5e1cb930b2d0313}{is\+Front}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{詳解}
+レイと三角形の交差点情報を保持する構造体 
+
+この構造体には、レイが交差した際の交差点の情報を保持します。交差距離、交差位置、法線、交差したオブジェクトの識別情報などを含みます。
+
+復習 \doxylink{md__doxygen_2technical__terms_barycentric_coordinates}{バリュートリック座標} を参照してください。
+\begin{DoxyItemize}
+\item {\bfseries{t}}\+: 交差点までの距離。交差しない場合は非常に大きな値（例\+: 無限大）。
+\item {\bfseries{alpha}}\+: 交差点におけるバリュートリック座標の第一成分（α）。交差点が三角形のどの位置にあるかを示すために使用されます。 通常、三角形の3つの頂点（v1, v2, v3）に対して、交差点 {\ttfamily x} は {\ttfamily x = alpha \texorpdfstring{$\ast$}{*} v1 + beta \texorpdfstring{$\ast$}{*} v2 + gamma \texorpdfstring{$\ast$}{*} v3} と表現され、 {\ttfamily alpha + beta + gamma = 1} の関係があります。
+\item {\bfseries{beta}}\+: バリュートリック座標 (β)。交差点におけるバリュートリック座標の第二成分（β）。{\ttfamily alpha} と同様に、三角形内の位置を特定するために使用されます。
+
+復習 \doxylink{md__doxygen_2technical__terms_about_index}{インデックス} を参照してください。
+\item {\bfseries{mesh\+\_\+idx}}\+: 交差したメッシュのインデックス。
+\item {\ttfamily \texorpdfstring{$<$}{<} -\/1}\+: レイがどのオブジェクトとも交差していないことを示します。
+\item {\ttfamily -\/1}\+: レイがエリアライトと交差したことを示します。
+\item {\ttfamily \texorpdfstring{$>$}{>}= 0}\+: レイがシーン内の特定のオブジェクトメッシュと交差したことを示し、そのメッシュの配列インデックスが格納されます。
+\item 復習 \doxylink{md__doxygen_2technical__terms_about_primitive}{プリミティブ} を参照してください。~\newline
+
+\item {\bfseries{primitive\+\_\+idx}}\+: 交差したプリミティブ（三角形またはライト）のインデックス。 交差したプリミティブ（個々の三角形またはエリアライト）のインデックス。
+\item {\ttfamily \texorpdfstring{$<$}{<} 0}\+: レイがどのプリミティブとも交差していないことを示します。
+\item {\ttfamily mesh\+\_\+idx = -\/1} の場合：交差したエリアライトの配列インデックスが格納されます。
+\item {\ttfamily mesh\+\_\+idx \texorpdfstring{$>$}{>}= 0} の場合：交差したメッシュ内の三角形の配列インデックスが格納されます。
+\item {\bfseries{is\+Front}}\+: レイが三角形の表面（正面）に当たったかどうか。
+\begin{DoxyItemize}
+\item {\ttfamily true}\+: 表面に交差。
+\item {\ttfamily false}\+: 裏面に交差。 
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\doxysubsection{構築子と解体子}
+\Hypertarget{struct_ray_hit_a35ee4ee3588934877d5e12757646bfd4_a35ee4ee3588934877d5e12757646bfd4}\index{RayHit@{RayHit}!RayHit@{RayHit}}
+\index{RayHit@{RayHit}!RayHit@{RayHit}}
+\doxysubsubsection{\texorpdfstring{RayHit()}{RayHit()}}
+{\footnotesize\ttfamily \label{struct_ray_hit_a35ee4ee3588934877d5e12757646bfd4_a35ee4ee3588934877d5e12757646bfd4} 
+Ray\+Hit\+::\+Ray\+Hit (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{メンバ詳解}
+\Hypertarget{struct_ray_hit_a5c60901419fcbdb9543efaea5709723f_a5c60901419fcbdb9543efaea5709723f}\index{RayHit@{RayHit}!alpha@{alpha}}
+\index{alpha@{alpha}!RayHit@{RayHit}}
+\doxysubsubsection{\texorpdfstring{alpha}{alpha}}
+{\footnotesize\ttfamily \label{struct_ray_hit_a5c60901419fcbdb9543efaea5709723f_a5c60901419fcbdb9543efaea5709723f} 
+double Ray\+Hit\+::alpha}
+
+\Hypertarget{struct_ray_hit_ac90719b0d422effa4fa6b23a3b53b77c_ac90719b0d422effa4fa6b23a3b53b77c}\index{RayHit@{RayHit}!beta@{beta}}
+\index{beta@{beta}!RayHit@{RayHit}}
+\doxysubsubsection{\texorpdfstring{beta}{beta}}
+{\footnotesize\ttfamily \label{struct_ray_hit_ac90719b0d422effa4fa6b23a3b53b77c_ac90719b0d422effa4fa6b23a3b53b77c} 
+double Ray\+Hit\+::beta}
+
+\Hypertarget{struct_ray_hit_ac19cbe82d1b38466b5e1cb930b2d0313_ac19cbe82d1b38466b5e1cb930b2d0313}\index{RayHit@{RayHit}!isFront@{isFront}}
+\index{isFront@{isFront}!RayHit@{RayHit}}
+\doxysubsubsection{\texorpdfstring{isFront}{isFront}}
+{\footnotesize\ttfamily \label{struct_ray_hit_ac19cbe82d1b38466b5e1cb930b2d0313_ac19cbe82d1b38466b5e1cb930b2d0313} 
+bool Ray\+Hit\+::is\+Front}
+
+\Hypertarget{struct_ray_hit_af3697b9fb22b763d68d9b0fd09d75624_af3697b9fb22b763d68d9b0fd09d75624}\index{RayHit@{RayHit}!mesh\_idx@{mesh\_idx}}
+\index{mesh\_idx@{mesh\_idx}!RayHit@{RayHit}}
+\doxysubsubsection{\texorpdfstring{mesh\_idx}{mesh\_idx}}
+{\footnotesize\ttfamily \label{struct_ray_hit_af3697b9fb22b763d68d9b0fd09d75624_af3697b9fb22b763d68d9b0fd09d75624} 
+int Ray\+Hit\+::mesh\+\_\+idx}
+
+\Hypertarget{struct_ray_hit_a92c5701fe15dd2715acdcbfda5e170a2_a92c5701fe15dd2715acdcbfda5e170a2}\index{RayHit@{RayHit}!primitive\_idx@{primitive\_idx}}
+\index{primitive\_idx@{primitive\_idx}!RayHit@{RayHit}}
+\doxysubsubsection{\texorpdfstring{primitive\_idx}{primitive\_idx}}
+{\footnotesize\ttfamily \label{struct_ray_hit_a92c5701fe15dd2715acdcbfda5e170a2_a92c5701fe15dd2715acdcbfda5e170a2} 
+int Ray\+Hit\+::primitive\+\_\+idx}
+
+\Hypertarget{struct_ray_hit_ab7d376ee6622c514e0002d86a7aabe82_ab7d376ee6622c514e0002d86a7aabe82}\index{RayHit@{RayHit}!t@{t}}
+\index{t@{t}!RayHit@{RayHit}}
+\doxysubsubsection{\texorpdfstring{t}{t}}
+{\footnotesize\ttfamily \label{struct_ray_hit_ab7d376ee6622c514e0002d86a7aabe82_ab7d376ee6622c514e0002d86a7aabe82} 
+double Ray\+Hit\+::t}
+
+
+
+この構造体詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+sources/pass\+\_\+tracing/core/\mbox{\hyperlink{_ray_hit_8h}{Ray\+Hit.\+h}}\end{DoxyCompactItemize}

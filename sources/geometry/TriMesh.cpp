@@ -545,3 +545,5 @@ void resizeObj( Object& io_object, const Eigen::Vector3d& in_min, const Eigen::V
     }
   }
 }
+
+

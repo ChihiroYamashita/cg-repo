@@ -5,7 +5,10 @@
 #include <QOpenGLWidget>
 #include <QPushButton>
 #include <QDebug>       // QDebugのために追加
-
+#include <QOpenGLFunctions>
+#include <QString>
+#include "TriMesh.h"
+#include "Light.h"
 class Camera; // 前方宣言
 
 class MyOpenGLWidget : public QOpenGLWidget
@@ -59,6 +62,10 @@ public:
     float getHeight() const { return this->height; }
     float getCameraFov() const;
 
+    //objファイルの名前
+
+
+
 signals:
     void cameraFovChanged(float newFov); // 新しいcameraFovの値を通知するシグナル
 protected slots:
@@ -92,6 +99,14 @@ protected slots:
     void projection_and_modelview(const Camera& in_Camera);
 
     void initializeButtons();
+
+    //レイトレ用
+    void MyOpenGLWidget::initAreaLights(std::vector<AreaLight>& lights);
+    std::vector<AreaLight> g_AreaLights_preview;// 読み込んだオブジェクトを保持
+    Object g_Obj_preview;// シーンの光源を保持
+
+    //Obj名
+    const std::string m_objFileName = "box2.obj";
 
 
 

@@ -1,0 +1,185 @@
+\doxysection{sources/pass\+\_\+tracing/intersectors/\+Intersection.cpp ファイル}
+\hypertarget{_intersection_8cpp}{}\label{_intersection_8cpp}\index{sources/pass\_tracing/intersectors/Intersection.cpp@{sources/pass\_tracing/intersectors/Intersection.cpp}}
+{\ttfamily \#include "{}Intersection.\+h"{}}\newline
+{\ttfamily \#include $<$QDebug$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+Intersection.\+cpp の依存先関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_intersection_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_intersection_8cpp_ad82e0c87acfec4f2eb0a1a711299fd52_ad82e0c87acfec4f2eb0a1a711299fd52}{ray\+Tracing}} (const \mbox{\hyperlink{struct_object}{Object}} \&in\+\_\+\+Object, const std\+::vector$<$ \mbox{\hyperlink{struct_area_light}{Area\+Light}} $>$ \&in\+\_\+\+Area\+Lights, const \mbox{\hyperlink{struct_ray}{Ray}} \&in\+\_\+\+Ray, \mbox{\hyperlink{struct_ray_hit}{Ray\+Hit}} \&io\+\_\+\+Hit)
+\begin{DoxyCompactList}\small\item\em レイとシーン内のオブジェクトやライトとの最短交差点を計算する関数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_intersection_8cpp_a79b65c78a76c1b3033a5e2711aa3350a_a79b65c78a76c1b3033a5e2711aa3350a}{ray\+Triangle\+Intersect}} (const \mbox{\hyperlink{struct_tri_mesh}{Tri\+Mesh}} \&in\+\_\+\+Mesh, const int in\+\_\+\+Triangle\+\_\+idx, const \mbox{\hyperlink{struct_ray}{Ray}} \&in\+\_\+\+Ray, \mbox{\hyperlink{struct_ray_hit}{Ray\+Hit}} \&out\+\_\+\+Result)
+\begin{DoxyCompactList}\small\item\em レイが指定された三角形と交差するかどうかを判定する。交差している場合、その交差点の情報（交差距離、位置、法線など）を出力変数 out\+\_\+\+Result に格納する。 \end{DoxyCompactList}\item 
+Eigen\+::\+Vector3d \mbox{\hyperlink{_intersection_8cpp_aca412d913682c6dfd8cd4d63a50a8a21_aca412d913682c6dfd8cd4d63a50a8a21}{compute\+Ray\+Hit\+Normal}} (const \mbox{\hyperlink{struct_object}{Object}} \&in\+\_\+\+Object, const \mbox{\hyperlink{struct_ray_hit}{Ray\+Hit}} \&in\+\_\+\+Hit)
+\begin{DoxyCompactList}\small\item\em レイと交差した点における補間された法線ベクトルを計算する関数 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{変数}
+\begin{DoxyCompactItemize}
+\item 
+const double \mbox{\hyperlink{_intersection_8cpp_a62a10ea7a0afe51a72f689b89cbf1121_a62a10ea7a0afe51a72f689b89cbf1121}{\+\_\+\+\_\+\+FAR\+\_\+\+\_\+}} = 1.\+0e33
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{_intersection_8cpp_aca412d913682c6dfd8cd4d63a50a8a21_aca412d913682c6dfd8cd4d63a50a8a21}\index{Intersection.cpp@{Intersection.cpp}!computeRayHitNormal@{computeRayHitNormal}}
+\index{computeRayHitNormal@{computeRayHitNormal}!Intersection.cpp@{Intersection.cpp}}
+\doxysubsubsection{\texorpdfstring{computeRayHitNormal()}{computeRayHitNormal()}}
+{\footnotesize\ttfamily \label{_intersection_8cpp_aca412d913682c6dfd8cd4d63a50a8a21_aca412d913682c6dfd8cd4d63a50a8a21} 
+Eigen\+::\+Vector3d compute\+Ray\+Hit\+Normal (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_object}{Object}} \&}]{in\+\_\+\+Object}{, }\item[{const \mbox{\hyperlink{struct_ray_hit}{Ray\+Hit}} \&}]{in\+\_\+\+Hit}{}\end{DoxyParamCaption})}
+
+
+
+レイと交差した点における補間された法線ベクトルを計算する関数 
+
+この関数は、指定された交差情報（\+Ray\+Hit）に基づいて、交差した三角形の各頂点の法線をバリュートリック座標で補間し、 法線ベクトルを得ます。補間後、単位ベクトルに正規化し、裏面からの交差の場合は反転して返します。
+
+復習 \doxylink{md__doxygen_2technical__terms_barycentric_coordinates}{バリュートリック座標} を参照してください。
+
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Object} & レイが交差したオブジェクト情報。メッシュと頂点法線情報を含む。 \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Hit} & 交差点の情報（交差位置のバリュートリック座標 alpha, beta、三角形インデックス、交差面の向きなど）\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+Eigen\+::\+Vector3d 補間された交差点での法線ベクトル（単位ベクトル）
+\end{DoxyReturn}
+\hypertarget{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md21}{}\doxysubsubsubsection{\texorpdfstring{処理の流れ}{処理の流れ}}\label{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md21}
+\hypertarget{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md22}{}\doxysubsubsubsubsection{\texorpdfstring{1. 対象三角形の頂点インデックスを取得}{1. 対象三角形の頂点インデックスを取得}}\label{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md22}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ v1\_idx\ =\ in\_Object.meshes\ ;}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ v2\_idx\ =\ in\_Object.meshes\ ;}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ v3\_idx\ =\ in\_Object.meshes\ ;}
+
+\end{DoxyCode}
+\hypertarget{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md23}{}\doxysubsubsubsubsection{\texorpdfstring{2. 各頂点の法線ベクトルを取得}{2. 各頂点の法線ベクトルを取得}}\label{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md23}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{const}\ Eigen::Vector3d\ n1\ =\ in\_Object.meshes[in\_Hit.mesh\_idx].vertex\_normals[v1\_idx];}
+\DoxyCodeLine{\textcolor{keyword}{const}\ Eigen::Vector3d\ n2\ =\ in\_Object.meshes[in\_Hit.mesh\_idx].vertex\_normals[v2\_idx];}
+\DoxyCodeLine{\textcolor{keyword}{const}\ Eigen::Vector3d\ n3\ =\ in\_Object.meshes[in\_Hit.mesh\_idx].vertex\_normals[v3\_idx];}
+
+\end{DoxyCode}
+\hypertarget{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md24}{}\doxysubsubsubsubsection{\texorpdfstring{3. バリュートリック補間を用いて交差点での法線を計算}{3. バリュートリック補間を用いて交差点での法線を計算}}\label{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md24}
+\[
+n = \alpha n_1 + \beta n_2 + \gamma n_3 \quad (\gamma = 1 - \alpha - \beta)
+\] 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ gamma\ =\ 1.0\ -\/\ in\_Hit.alpha\ -\/\ in\_Hit.beta;}
+\DoxyCodeLine{Eigen::Vector3d\ n\ =\ in\_Hit.alpha\ *\ n1\ +\ in\_Hit.beta\ *\ n2\ +\ gamma\ *\ n3;}
+\DoxyCodeLine{n.normalize();}
+
+\end{DoxyCode}
+\hypertarget{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md25}{}\doxysubsubsubsubsection{\texorpdfstring{4. 裏面からの交差であれば法線を反転}{4. 裏面からの交差であれば法線を反転}}\label{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md25}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (!in\_Hit.isFront)\ n\ =\ -\/n;}
+
+\end{DoxyCode}
+\hypertarget{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md26}{}\doxysubsubsubsubsection{\texorpdfstring{5. 結果を返却}{5. 結果を返却}}\label{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md26}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{return}\ n;}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{参照}
+\doxylink{struct_ray_hit}{Ray\+Hit} 
+
+\doxylink{_intersection_8cpp_ad82e0c87acfec4f2eb0a1a711299fd52_ad82e0c87acfec4f2eb0a1a711299fd52}{ray\+Tracing} 
+
+compute\+Shading 
+\end{DoxySeeAlso}
+\Hypertarget{_intersection_8cpp_ad82e0c87acfec4f2eb0a1a711299fd52_ad82e0c87acfec4f2eb0a1a711299fd52}\index{Intersection.cpp@{Intersection.cpp}!rayTracing@{rayTracing}}
+\index{rayTracing@{rayTracing}!Intersection.cpp@{Intersection.cpp}}
+\doxysubsubsection{\texorpdfstring{rayTracing()}{rayTracing()}}
+{\footnotesize\ttfamily \label{_intersection_8cpp_ad82e0c87acfec4f2eb0a1a711299fd52_ad82e0c87acfec4f2eb0a1a711299fd52} 
+void ray\+Tracing (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_object}{Object}} \&}]{in\+\_\+\+Object}{, }\item[{const std\+::vector$<$ \mbox{\hyperlink{struct_area_light}{Area\+Light}} $>$ \&}]{in\+\_\+\+Area\+Lights}{, }\item[{const \mbox{\hyperlink{struct_ray}{Ray}} \&}]{in\+\_\+\+Ray}{, }\item[{\mbox{\hyperlink{struct_ray_hit}{Ray\+Hit}} \&}]{io\+\_\+\+Hit}{}\end{DoxyParamCaption})}
+
+
+
+レイとシーン内のオブジェクトやライトとの最短交差点を計算する関数 
+
+与えられたレイ (in\+\_\+\+Ray) がシーン内のオブジェクト（in\+\_\+\+Object）およびエリアライト（in\+\_\+\+Area\+Lights）と交差する場合、最も近い交差点を見つけ、その情報を出力パラメータ (io\+\_\+\+Hit) に格納する処理を行います。
+
+\begin{DoxySeeAlso}{参照}
+\doxylink{struct_ray_hit}{Ray\+Hit} temp\+\_\+hit.\+t\+: レイの始点から交差点までの距離、temp\+\_\+hit.\+alpha, temp\+\_\+hit.\+beta\+:交差点の\+UV座標、 temp\+\_\+hit.\+is\+Front\+: レイが三角形の正面に当たったか（true）または背面に当たったか 
+
+\doxylink{_intersection_8cpp_a79b65c78a76c1b3033a5e2711aa3350a_a79b65c78a76c1b3033a5e2711aa3350a}{ray\+Triangle\+Intersect} 
+
+ray\+Area\+Light\+Intersect 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Object} & シーン内のオブジェクト（複数のメッシュを含む） \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Area\+Lights} & シーン内のエリアライト \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Ray} & レイ（始点と方向を持つ） \\
+\hline
+\mbox{\texttt{ out}}  & {\em io\+\_\+\+Hit} & 交差点の情報（交差距離、三角形インデックス、交差位置、法線などを含む）\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_5}}
+\end{DoxyImageNoCaption}
+
+
+ 
+
+オブジェクトは、通常、多数の三角形で構成される複雑な形状であり、それぞれの三角形について交差計算を行う必要があるためループが必要です。 エリアライトは、単一の幾何学的形状として扱われ、すべてのライトと交差計算を行うだけで十分であり、三角形ごとのループは不要です。
+
+最短交差点の情報を{\ttfamily io\+\_\+\+Hit}に保存し、交差がない場合は初期値のままになります。 \Hypertarget{_intersection_8cpp_a79b65c78a76c1b3033a5e2711aa3350a_a79b65c78a76c1b3033a5e2711aa3350a}\index{Intersection.cpp@{Intersection.cpp}!rayTriangleIntersect@{rayTriangleIntersect}}
+\index{rayTriangleIntersect@{rayTriangleIntersect}!Intersection.cpp@{Intersection.cpp}}
+\doxysubsubsection{\texorpdfstring{rayTriangleIntersect()}{rayTriangleIntersect()}}
+{\footnotesize\ttfamily \label{_intersection_8cpp_a79b65c78a76c1b3033a5e2711aa3350a_a79b65c78a76c1b3033a5e2711aa3350a} 
+void ray\+Triangle\+Intersect (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_tri_mesh}{Tri\+Mesh}} \&}]{in\+\_\+\+Mesh}{, }\item[{const int}]{in\+\_\+\+Triangle\+\_\+idx}{, }\item[{const \mbox{\hyperlink{struct_ray}{Ray}} \&}]{in\+\_\+\+Ray}{, }\item[{\mbox{\hyperlink{struct_ray_hit}{Ray\+Hit}} \&}]{out\+\_\+\+Result}{}\end{DoxyParamCaption})}
+
+
+
+レイが指定された三角形と交差するかどうかを判定する。交差している場合、その交差点の情報（交差距離、位置、法線など）を出力変数 out\+\_\+\+Result に格納する。 
+
+指定された三角形（{\ttfamily in\+\_\+\+Triangle\+\_\+idx}）とレイ（{\ttfamily in\+\_\+\+Ray}）の交差を計算し、交差点情報を{\ttfamily out\+\_\+\+Result}に保存します。交差しない場合、{\ttfamily out\+\_\+\+Result.\+t}は初期値のままになります。
+
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Mesh} & メッシュデータ（三角形の頂点とインデックスを含む） \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Triangle\+\_\+idx} & 交差計算を行う三角形のインデックス \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Ray} & レイの情報（始点{\ttfamily o}と方向{\ttfamily d}） \\
+\hline
+\mbox{\texttt{ out}}  & {\em out\+\_\+\+Result} & 交差点の情報（交差距離{\ttfamily t}、\+UV座標{\ttfamily alpha}と{\ttfamily beta}、表面交差フラグ{\ttfamily is\+Front}）\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{参照}
+\doxylink{struct_ray_hit}{Ray\+Hit}
+\end{DoxySeeAlso}
+
+
+{\bfseries{処理の概要}}\+:
+\begin{DoxyItemize}
+\item メッシュから三角形の頂点（{\ttfamily v1}, {\ttfamily v2}, {\ttfamily v3}）を取得。
+\item 三角形の法線を計算し、レイが表面に当たるか（{\ttfamily is\+Front}）を判定。
+\item レイと三角形の平面との交差点を計算（{\ttfamily t}）。
+\item 交差点が三角形内にある場合、バリュートリック座標（{\ttfamily alpha}, {\ttfamily beta}）を用いて交差位置を確認。
+\item 結果を{\ttfamily out\+\_\+\+Result}に保存。 
+\end{DoxyItemize}
+
+\doxysubsection{変数詳解}
+\Hypertarget{_intersection_8cpp_a62a10ea7a0afe51a72f689b89cbf1121_a62a10ea7a0afe51a72f689b89cbf1121}\index{Intersection.cpp@{Intersection.cpp}!\_\_FAR\_\_@{\_\_FAR\_\_}}
+\index{\_\_FAR\_\_@{\_\_FAR\_\_}!Intersection.cpp@{Intersection.cpp}}
+\doxysubsubsection{\texorpdfstring{\_\_FAR\_\_}{\_\_FAR\_\_}}
+{\footnotesize\ttfamily \label{_intersection_8cpp_a62a10ea7a0afe51a72f689b89cbf1121_a62a10ea7a0afe51a72f689b89cbf1121} 
+const double \+\_\+\+\_\+\+FAR\+\_\+\+\_\+ = 1.\+0e33}
+

@@ -13,6 +13,9 @@
 #include <GL/glu.h>
 #include "drawObject.h"
 #include <iostream>
+#include "drawfilm.h"
+#include "TriMesh.h"
+#include "GLPreview.h"
 
 #define EIGEN_DISABLE_UNALIGNED_ARRAY_ASSERT
 #define EIGEN_DONT_VECTORIZE
@@ -36,10 +39,21 @@ MyOpenGLWidget::MyOpenGLWidget(QWidget *parent):
     QSurfaceFormat format;
     cameraFov=45;
 
+    if (loadObj( m_objFileName, g_Obj_preview)) {
+        qDebug() << "sphere.obj loaded successfully.";
+        // ★★★ マテリアル情報をリセットする ★★★
+        //resetObjectMaterial(g_Obj_preview);
 
+        // ★★★ スケールも調整しておくと安全 ★★★
+        //resizeObj(g_Obj_preview, Eigen::Vector3d(-0.5, -0.5, -0.5), Eigen::Vector3d(0.5, 0.5, 0.5));
+
+    } else {
+        qWarning() << "Failed to load box.obj.";
+    }
     format.setSamples(4); // MSAA(マルチサンプリングアンチエイリアス)を有効にする
 
     setFormat(format); // このウィジェットにフォーマットを設定
+    initAreaLights(g_AreaLights_preview);
 
 
 }
@@ -117,9 +131,20 @@ glEnable(GL_POLYGON_SMOOTH);
 glHint(GL_POINT_SMOOTH_HINT, GL_NICEST);
 glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
 glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
+drawLights(g_AreaLights_preview);
 drawXYZAxes();
 drawXYGrid(0.5, 50);
-drawcube();
+//drawcube();
+
+// 1. オブジェクトの色をグレー(0.8, 0.8, 0.8)に設定する
+//Eigen::Vector3d objectColor(0.8, 0.8, 0.8);
+//setObjectConstantColor(g_Obj_preview, objectColor);
+
+// 2. その色でオブジェクトを描画する
+// drawObjectは g_Obj.vertex_colors に設定された色を使うので、グレーで描画される
+applyMaterialColorToVertices(g_Obj_preview);
+drawObject(g_Obj_preview);
+
 
 //drawPlaneInCameraCoords(g_Camera, 1);
 
@@ -493,4 +518,39 @@ void MyOpenGLWidget::initializeButtons(){
     }*/
     //イベントフィルタを有効にする
     zoombutton->installEventFilter(this);
+}
+
+
+//レイトレ用-----------------------
+
+void MyOpenGLWidget::initAreaLights(std::vector<AreaLight>& lights)
+{
+    AreaLight light1;
+    light1.pos << -1.2, 1.2, 1.2;
+    light1.arm_u << 1.0, 0.0, 0.0;
+    light1.arm_v = -light1.pos.cross( light1.arm_u );
+    light1.arm_v.normalize();
+    light1.arm_u = light1.arm_u * 0.3;
+    light1.arm_v = light1.arm_v * 0.2;
+
+    light1.color << 1.0, 0.8, 0.3;
+    //light1.color << 1.0, 1.0, 1.0;
+    //light1.intensity = 64.0;
+    light1.intensity = 48.0;
+
+    AreaLight light2;
+    light2.pos << 1.2, 1.2, 0.0;
+    light2.arm_u << 1.0, 0.0, 0.0;
+    light2.arm_v = -light2.pos.cross( light2.arm_u );
+    light2.arm_v.normalize();
+    light2.arm_u = light2.arm_u * 0.3;
+    light2.arm_v = light2.arm_v * 0.2;
+
+    //light2.color << 0.3, 0.3, 1.0;
+    light2.color << 1.0, 1.0, 1.0;
+    //light2.intensity = 64.0;
+    light2.intensity = 30.0;
+
+    lights.push_back( light1 );
+    lights.push_back( light2 );
 }

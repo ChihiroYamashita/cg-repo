@@ -38,4 +38,6 @@ void drawObject( const Object& in_Object );
 
 void computeGLShading( Object& io_Object, const std::vector<AreaLight>& lights );
 
+
+
 #endif /* GLPreview_h */

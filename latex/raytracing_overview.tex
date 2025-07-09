@@ -1,0 +1,22 @@
+\chapter{レイトレーシング機構の概要}
+\hypertarget{raytracing_overview}{}\label{raytracing_overview}\index{レイトレーシング機構の概要@{レイトレーシング機構の概要}}
+このページでは、レイトレーシング機能の段階的な移植とその構成を解説します。\hypertarget{raytracing_overview_autotoc_md89}{}\doxysubsubsection{\texorpdfstring{現在の構成}{現在の構成}}\label{raytracing_overview_autotoc_md89}
+
+\begin{DoxyItemize}
+\item \doxylink{class_my_open_g_l_widget__camera}{My\+Open\+GLWidget\+\_\+camera} \+: Open\+GLレンダリングとレイトレーサのインタフェース
+\item \doxylink{_intersection_8cpp_ad82e0c87acfec4f2eb0a1a711299fd52_ad82e0c87acfec4f2eb0a1a711299fd52}{ray\+Tracing} \+: オブジェクトおよびライトとの交差を求めるコア関数
+\item \doxylink{_intersection_8cpp_a79b65c78a76c1b3033a5e2711aa3350a_a79b65c78a76c1b3033a5e2711aa3350a}{ray\+Triangle\+Intersect} \+: 三角形との交差判定
+\item \doxylink{drawfilm_8cpp_a443204766d01c1b7114034c955991bc8_a443204766d01c1b7114034c955991bc8}{draw\+Film} \+: レイトレース結果の出力（テクスチャ描画）
+\end{DoxyItemize}\hypertarget{raytracing_overview_autotoc_md90}{}\doxysubsubsection{\texorpdfstring{移植段階}{移植段階}}\label{raytracing_overview_autotoc_md90}
+
+\begin{DoxyEnumerate}
+\item {\ttfamily draw\+Film} の実装完了
+\item {\ttfamily ray\+Tracing}, {\ttfamily ray\+Triangle\+Intersect}, {\ttfamily compute\+Ray\+Hit\+Normal} の最低限機能を {\ttfamily \doxylink{_intersection_8cpp}{Intersection.\+cpp}} に実装
+\item {\ttfamily debug\+\_\+compute\+Normal\+Color()} により法線の可視化を実現
+\item {\ttfamily update\+Ray\+Tracing()} により1フレームごとのレイトレ結果を描画バッファに書き込み
+\end{DoxyEnumerate}\hypertarget{raytracing_overview_autotoc_md91}{}\doxysubsubsection{\texorpdfstring{ディレクトリ構成（分類案）}{ディレクトリ構成（分類案）}}\label{raytracing_overview_autotoc_md91}
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{dot_inline_dotgraph_1}}
+\end{DoxyImageNoCaption}
+ 

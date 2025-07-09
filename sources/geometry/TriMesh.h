@@ -214,4 +214,6 @@ void resizeObj( Object& io_object, const Eigen::Vector3d& in_min, const Eigen::V
 
 bool loadObj( const std::string& in_filename, Object& out_object );
 
+void applyMaterialColorToVertices(Object& io_Object);
+
 #endif /* TriMesh_h */

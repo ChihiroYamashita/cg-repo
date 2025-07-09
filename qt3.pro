@@ -11,6 +11,8 @@ INCLUDEPATH += $$PWD/sources/object
 INCLUDEPATH += $$PWD/sources/camera
 INCLUDEPATH += $$PWD/sources/pass_tracing
 INCLUDEPATH += $$PWD/sources/pass_tracing/film
+INCLUDEPATH += $$PWD/sources/pass_tracing/core
+INCLUDEPATH += $$PWD/sources/pass_tracing/intersectors
 INCLUDEPATH += $$PWD/sources/core
 INCLUDEPATH += $$PWD/sources/geometry
 INCLUDEPATH += $$PWD/jpeg-9c/jpeg-9c
@@ -40,6 +42,7 @@ SOURCES += \
     sources/object/drawObject.cpp \
     sources/pass_tracing/film/drawfilm.cpp \
     sources/pass_tracing/film/film_buffer.cpp \
+    sources/pass_tracing/intersectors/Intersection.cpp \
     sources/scene/CustomScene.cpp \
     sources/scene/GLPreview.cpp \
     sources/scene/myopenglwidget.cpp \
@@ -58,8 +61,11 @@ HEADERS += \
     sources/geometry/TriMesh.h \
     sources/mainwindow.h \
     sources/object/drawObject.h \
+    sources/pass_tracing/core/Ray.h \
+    sources/pass_tracing/core/RayHit.h \
     sources/pass_tracing/film/drawfilm.h \
     sources/pass_tracing/film/film_buffer.h \
+    sources/pass_tracing/intersectors/Intersection.h \
     sources/scene/CustomScene.h \
     sources/scene/GLPreview.h \
     sources/scene/myopenglwidget.h \
@@ -78,6 +84,8 @@ RESOURCES += \
     resorce.qrc
 
 DISTFILES += \
+    sources/Doxygenmemo.md \
     sources/toQtmemo.md \
+    sources/updatesandmemo.md \
     sources/移植メモ.md \
     移植メモ.md

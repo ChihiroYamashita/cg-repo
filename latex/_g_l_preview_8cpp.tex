@@ -24,10 +24,27 @@ Eigen\+::\+Vector3d \mbox{\hyperlink{_g_l_preview_8cpp_a1216bf4dbd77debe9c7dc07e
 void \mbox{\hyperlink{_g_l_preview_8cpp_a73d95295e4fdd4102c15884f7723b9e6_a73d95295e4fdd4102c15884f7723b9e6}{compute\+GLShading}} (\mbox{\hyperlink{struct_tri_mesh}{Tri\+Mesh}} \&io\+\_\+\+Mesh, const std\+::vector$<$ \mbox{\hyperlink{struct_area_light}{Area\+Light}} $>$ \&lights)
 \item 
 void \mbox{\hyperlink{_g_l_preview_8cpp_a72057be7fc7f26f9defc3d4f119ed0a9_a72057be7fc7f26f9defc3d4f119ed0a9}{compute\+GLShading}} (\mbox{\hyperlink{struct_object}{Object}} \&io\+\_\+\+Object, const std\+::vector$<$ \mbox{\hyperlink{struct_area_light}{Area\+Light}} $>$ \&lights)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em オブジェクト全体に対して簡易な Open\+GL 向け直接照明カラーを計算する \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_g_l_preview_8cpp_ab150a519b260bbec1165328468935af2_ab150a519b260bbec1165328468935af2}{apply\+Material\+Color\+To\+Vertices}} (\mbox{\hyperlink{struct_object}{Object}} \&io\+\_\+\+Object)
+\begin{DoxyCompactList}\small\item\em 各メッシュのマテリアル色(kd)を、そのメッシュの全頂点カラーに適用する \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{関数詳解}
+\Hypertarget{_g_l_preview_8cpp_ab150a519b260bbec1165328468935af2_ab150a519b260bbec1165328468935af2}\index{GLPreview.cpp@{GLPreview.cpp}!applyMaterialColorToVertices@{applyMaterialColorToVertices}}
+\index{applyMaterialColorToVertices@{applyMaterialColorToVertices}!GLPreview.cpp@{GLPreview.cpp}}
+\doxysubsubsection{\texorpdfstring{applyMaterialColorToVertices()}{applyMaterialColorToVertices()}}
+{\footnotesize\ttfamily \label{_g_l_preview_8cpp_ab150a519b260bbec1165328468935af2_ab150a519b260bbec1165328468935af2} 
+void apply\+Material\+Color\+To\+Vertices (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_object}{Object}} \&}]{io\+\_\+\+Object}{}\end{DoxyParamCaption})}
+
+
+
+各メッシュのマテリアル色(kd)を、そのメッシュの全頂点カラーに適用する 
+
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\texttt{ out}}  & {\em io\+\_\+\+Object} & 対象となる\+Object \\
+\hline
+\end{DoxyParams}
 \Hypertarget{_g_l_preview_8cpp_a1216bf4dbd77debe9c7dc07ef04f0812_a1216bf4dbd77debe9c7dc07ef04f0812}\index{GLPreview.cpp@{GLPreview.cpp}!computeGLDirectShading@{computeGLDirectShading}}
 \index{computeGLDirectShading@{computeGLDirectShading}!GLPreview.cpp@{GLPreview.cpp}}
 \doxysubsubsection{\texorpdfstring{computeGLDirectShading()}{computeGLDirectShading()}}
@@ -40,6 +57,41 @@ Eigen\+::\+Vector3d compute\+GLDirect\+Shading (\begin{DoxyParamCaption}\item[{c
 {\footnotesize\ttfamily \label{_g_l_preview_8cpp_a72057be7fc7f26f9defc3d4f119ed0a9_a72057be7fc7f26f9defc3d4f119ed0a9} 
 void compute\+GLShading (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_object}{Object}} \&}]{io\+\_\+\+Object}{, }\item[{const std\+::vector$<$ \mbox{\hyperlink{struct_area_light}{Area\+Light}} $>$ \&}]{lights}{}\end{DoxyParamCaption})}
 
+
+
+オブジェクト全体に対して簡易な Open\+GL 向け直接照明カラーを計算する 
+
+各メッシュごとに頂点のワールド座標と法線方向を使い、エリアライトからの直接光の影響を評価し、 頂点カラー（vertex\+\_\+colors）として格納します。このカラーは Open\+GL によるリアルタイム描画時に使用され、 レイトレーシングとは異なる即時レンダリング用の擬似ライティング結果です。
+
+ライトとの距離と法線の角度に基づいた Lambertian 反射モデルで強度を計算します。 テクスチャがないメッシュや、確認用のリアルタイム描画に便利です。
+
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\texttt{ out}}  & {\em io\+\_\+\+Object} & 対象となる 3D オブジェクト。各メッシュに対して頂点カラーが上書きされます。 \\
+\hline
+\mbox{\texttt{ in}}  & {\em lights} & 照明として使われるエリアライトのリスト。\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{参照}
+\doxylink{_g_l_preview_8cpp_a73d95295e4fdd4102c15884f7723b9e6_a73d95295e4fdd4102c15884f7723b9e6}{compute\+GLShading(\+Tri\+Mesh\&, const std\+::vector$<$\+Area\+Light$>$\&)} 
+
+\doxylink{_g_l_preview_8cpp_a1216bf4dbd77debe9c7dc07ef04f0812_a1216bf4dbd77debe9c7dc07ef04f0812}{compute\+GLDirect\+Shading}
+\end{DoxySeeAlso}
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_9}}
+\end{DoxyImageNoCaption}
+\hypertarget{_g_l_preview_8h_a72057be7fc7f26f9defc3d4f119ed0a9_autotoc_md27}{}\doxysubsubsubsection{\texorpdfstring{処理の流れ（簡易版）}{処理の流れ（簡易版）}}\label{_g_l_preview_8h_a72057be7fc7f26f9defc3d4f119ed0a9_autotoc_md27}
+
+\begin{DoxyEnumerate}
+\item 各メッシュに対してループ
+\item メッシュ内の各頂点の位置と法線をもとに光強度を計算
+\item 結果を {\ttfamily vertex\+\_\+colors} に書き込む
+\end{DoxyEnumerate}
+
+\begin{DoxyNote}{覚え書き}
+この関数は Open\+GL 用の描画結果にしか影響を与えません。レイトレーシングとは無関係です。 
+\end{DoxyNote}
 \Hypertarget{_g_l_preview_8cpp_a73d95295e4fdd4102c15884f7723b9e6_a73d95295e4fdd4102c15884f7723b9e6}\index{GLPreview.cpp@{GLPreview.cpp}!computeGLShading@{computeGLShading}}
 \index{computeGLShading@{computeGLShading}!GLPreview.cpp@{GLPreview.cpp}}
 \doxysubsubsection{\texorpdfstring{computeGLShading()}{computeGLShading()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}

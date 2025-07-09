@@ -238,3 +238,37 @@ void Camera::setAspectRatio(double aspect)
     m_ScreenHeight = m_ScreenWidth / m_aspectRatio; // アスペクト比に合わせて高さを再計算
 }
 
+
+/**
+* @brief カメラのスクリーン座標に基づいてレイを生成する関数
+* @details 画面上の2D座標（in_x, in_y）を受け取り、その座標を基準にしたレイの起点（`out_Ray.o`）と方向（`out_Ray.d`）を計算します。
+* カメラの現在の視点（`m_EyePoint`）とスクリーンの寸法（`m_ScreenWidth`, `m_ScreenHeight`）、焦点距離（`m_FocalLength`）を使用してレイを生成します。
+* スクリーン上の座標が正規化されている（0.0 ～ 1.0）ことを前提としています。
+*
+* @param[in] in_x スクリーン上のx座標（スクリーン座標系: 0.0 ～ 1.0の値を持つ）
+* @param[in] in_y スクリーン上のy座標（スクリーン座標系: 0.0 ～ 1.0の値を持つ）
+* @param[out] out_Ray 計算されたレイ 始点(orgin)と方向(direction)を持つ
+*
+* @startuml
+*
+* main -> Camera : screenView(in_x, in_y, out_Ray)
+* Camera -> Camera : レイ生成処理を開始
+* Camera -> Camera : s = (in_x - 0.5) * m_ScreenWidth \nスクリーン上のx座標(0~1)をカメラ空間の物理的な横の長さに変換
+* Camera -> Camera : t = (0.5 - in_y) * m_ScreenHeight \nスクリーン上のy座標をカメラ空間の物理的な縦方向距離に変換
+* Camera -> Camera : out_Ray.o = m_EyePoint \nレイの起点（origin）をカメラの視点位置（m_EyePoint）に設定
+* Camera -> Camera : out_Ray.d = m_xVector * s + m_yVector * t - m_zVector * m_FocalLength \nレイの方向ベクトルを計算
+* Camera -> Camera : out_Ray.d.normalize() \nレイの方向ベクトルを正規化し、単位ベクトルに変換
+*
+* @enduml
+*
+* レイの起点（`out_Ray.o`）と方向（`out_Ray.d`）を保存
+*/
+void Camera::screenView( const double in_x, const double in_y, Ray& out_Ray )
+{
+    const double s = ( in_x - 0.5 ) * m_ScreenWidth;
+    const double t = ( 0.5 - in_y ) * m_ScreenHeight;
+
+    out_Ray.o = m_EyePoint;
+    out_Ray.d = m_xVector * s + m_yVector * t - m_zVector * m_FocalLength;
+    out_Ray.d.normalize();
+}

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['主な用途_3a_0',['主な用途:',['../struct_material.html#autotoc_md7',1,'']]],
-  ['主な関連関数_3a_1',['主な関連関数:',['../struct_object.html#autotoc_md12',1,'']]]
+  ['メンバー変数_0',['メンバー変数',['../struct_tri_mesh.html#autotoc_md11',1,'']]],
+  ['メンバー変数_3a_1',['メンバー変数:',['../struct_material.html#autotoc_md8',1,'メンバー変数:'],['../struct_object.html#autotoc_md13',1,'メンバー変数:']]]
 ];

@@ -97,6 +97,10 @@ $(function(){ initResizable(false); });
 <code>#include &lt;QOpenGLWidget&gt;</code><br />
 <code>#include &lt;QPushButton&gt;</code><br />
 <code>#include &lt;QDebug&gt;</code><br />
+<code>#include &lt;QOpenGLFunctions&gt;</code><br />
+<code>#include &lt;QString&gt;</code><br />
+<code>#include &quot;<a class="el" href="_tri_mesh_8h_source.html">TriMesh.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_light_8h_source.html">Light.h</a>&quot;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> myopenglwidget.h の依存先関係図:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -104,27 +108,45 @@ $(function(){ initResizable(false); });
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="myopenglwidget_8h__incl.png" border="0" usemap="#asources_2scene_2myopenglwidget_8h" alt=""/></div>
 <map name="asources_2scene_2myopenglwidget_8h" id="asources_2scene_2myopenglwidget_8h">
-<area shape="rect" title=" " alt="" coords="422,5,637,32"/>
-<area shape="rect" href="camera_8h.html" title=" " alt="" coords="261,80,336,107"/>
-<area shape="poly" title=" " alt="" coords="490,35,352,78,351,73,489,30"/>
-<area shape="rect" title=" " alt="" coords="340,229,410,256"/>
-<area shape="poly" title=" " alt="" coords="527,33,496,111,476,153,458,183,436,205,412,223,409,219,433,201,454,180,471,151,491,109,522,31"/>
-<area shape="rect" title=" " alt="" coords="519,80,638,107"/>
-<area shape="poly" title=" " alt="" coords="540,31,564,66,560,69,536,34"/>
-<area shape="rect" title=" " alt="" coords="662,80,762,107"/>
-<area shape="poly" title=" " alt="" coords="562,30,667,71,665,76,560,35"/>
-<area shape="rect" title=" " alt="" coords="380,155,444,181"/>
-<area shape="poly" title=" " alt="" coords="320,105,381,144,378,148,317,109"/>
-<area shape="rect" href="conversion__utils_8h.html" title=" " alt="" coords="90,155,217,181"/>
-<area shape="poly" title=" " alt="" coords="275,110,194,150,191,145,272,105"/>
-<area shape="rect" title=" " alt="" coords="5,229,102,256"/>
-<area shape="poly" title=" " alt="" coords="261,97,219,100,171,110,122,128,100,140,81,157,71,169,64,184,57,214,52,213,59,182,66,166,77,153,97,136,120,123,169,104,218,95,260,92"/>
-<area shape="rect" title=" " alt="" coords="241,155,356,181"/>
-<area shape="poly" title=" " alt="" coords="302,107,302,139,296,139,296,107"/>
-<area shape="rect" title=" " alt="" coords="126,229,211,256"/>
-<area shape="poly" title=" " alt="" coords="159,181,165,214,160,215,153,182"/>
-<area shape="poly" title=" " alt="" coords="138,184,85,222,82,218,135,180"/>
-<area shape="poly" title=" " alt="" coords="193,179,326,223,324,228,191,184"/>
+<area shape="rect" title=" " alt="" coords="403,5,618,32"/>
+<area shape="rect" href="camera_8h.html" title=" " alt="" coords="148,80,223,107"/>
+<area shape="poly" title=" " alt="" coords="451,35,239,82,237,77,450,30"/>
+<area shape="rect" title=" " alt="" coords="5,229,75,256"/>
+<area shape="poly" title=" " alt="" coords="403,28,273,45,204,61,137,83,70,108,45,125,24,156,19,170,19,185,28,215,23,216,14,186,14,169,19,153,42,122,67,103,135,77,202,56,272,40,402,23"/>
+<area shape="rect" title=" " alt="" coords="247,80,366,107"/>
+<area shape="poly" title=" " alt="" coords="476,35,358,77,356,72,474,30"/>
+<area shape="rect" title=" " alt="" coords="390,80,490,107"/>
+<area shape="poly" title=" " alt="" coords="500,34,465,71,461,67,496,31"/>
+<area shape="rect" title=" " alt="" coords="513,80,650,107"/>
+<area shape="poly" title=" " alt="" coords="525,31,561,67,557,71,521,34"/>
+<area shape="rect" title=" " alt="" coords="674,80,739,107"/>
+<area shape="poly" title=" " alt="" coords="546,30,660,72,658,77,544,35"/>
+<area shape="rect" href="_tri_mesh_8h.html" title=" " alt="" coords="847,80,926,107"/>
+<area shape="poly" title=" " alt="" coords="586,30,833,77,832,82,585,35"/>
+<area shape="rect" href="_light_8h.html" title=" " alt="" coords="763,80,824,107"/>
+<area shape="poly" title=" " alt="" coords="565,30,749,76,748,82,563,35"/>
+<area shape="rect" title=" " alt="" coords="33,155,98,181"/>
+<area shape="poly" title=" " alt="" coords="166,109,101,149,98,144,163,105"/>
+<area shape="rect" href="conversion__utils_8h.html" title=" " alt="" coords="122,155,248,181"/>
+<area shape="poly" title=" " alt="" coords="188,107,188,139,183,139,183,107"/>
+<area shape="rect" title=" " alt="" coords="424,229,520,256"/>
+<area shape="poly" title=" " alt="" coords="224,102,235,104,274,109,309,109,371,105,400,105,428,112,455,127,482,153,490,168,492,184,486,215,481,215,487,184,485,169,478,156,452,131,426,117,400,111,372,110,309,115,273,115,234,109,223,107"/>
+<area shape="rect" title=" " alt="" coords="273,155,388,181"/>
+<area shape="poly" title=" " alt="" coords="212,105,293,145,291,150,209,110"/>
+<area shape="rect" href="_ray_8h.html" title=" " alt="" coords="412,155,468,181"/>
+<area shape="poly" title=" " alt="" coords="224,103,398,151,397,157,223,108"/>
+<area shape="rect" title=" " alt="" coords="143,229,228,256"/>
+<area shape="poly" title=" " alt="" coords="188,182,188,214,183,214,183,182"/>
+<area shape="poly" title=" " alt="" coords="236,179,409,223,408,228,235,184"/>
+<area shape="poly" title=" " alt="" coords="161,184,80,224,78,220,159,179"/>
+<area shape="poly" title=" " alt="" coords="448,181,463,214,458,216,443,183"/>
+<area shape="rect" title=" " alt="" coords="940,155,1036,181"/>
+<area shape="poly" title=" " alt="" coords="906,105,959,143,956,147,903,109"/>
+<area shape="rect" title=" " alt="" coords="748,155,834,181"/>
+<area shape="poly" title=" " alt="" coords="872,109,821,147,818,143,868,105"/>
+<area shape="rect" title=" " alt="" coords="858,155,915,181"/>
+<area shape="poly" title=" " alt="" coords="889,107,889,139,884,139,884,107"/>
+<area shape="poly" title=" " alt="" coords="767,110,514,225,512,220,765,105"/>
 </map>
 </div>
 </div><div class="textblock"><div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">

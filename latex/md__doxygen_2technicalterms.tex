@@ -1,0 +1,41 @@
+\chapter{用語集}
+\hypertarget{md__doxygen_2technicalterms}{}\label{md__doxygen_2technicalterms}\index{用語集@{用語集}}
+\label{md__doxygen_2technicalterms_autotoc_md147}%
+\Hypertarget{md__doxygen_2technicalterms_autotoc_md147}%
+\hypertarget{md__doxygen_2technicalterms_autotoc_md148}{}\doxysubsection{\texorpdfstring{バリュートリック座標（\+Barycentric coordinates）}{バリュートリック座標（\+Barycentric coordinates）}}\label{md__doxygen_2technicalterms_autotoc_md148}
+三角形の内部の点を表現するための座標系です。三角形の3つの頂点と、それに対する重み付けによって、任意の点の位置を表すことができます。
+
+簡単な概念だから大丈夫
+
+\begin{quote}
+\href{https://zellij.hatenablog.com/entry/20131207/p1}{\texttt{ https\+://zellij.\+hatenablog.\+com/entry/20131207/p1}} \end{quote}
+\hypertarget{md__doxygen_2technicalterms_autotoc_md149}{}\doxysubsection{\texorpdfstring{①モデリング変換}{①モデリング変換}}\label{md__doxygen_2technicalterms_autotoc_md149}
+void \doxylink{draw_object_8cpp_ab127d7c13829e0bdce3fc756fc122786_ab127d7c13829e0bdce3fc756fc122786}{drawcube()}で行う。
+
+\begin{quote}
+gl\+Translate()やgl\+Rotate()を使いオブジェクトを任意の場所に配置するが，2\+Dグラフィックスや前項で述べた通り，アフィン変換によって，「オブジェクトのローカル座標系」を「移動・回転・拡大縮小」させるために「ワールド座標系」に変換した状態である． \href{https://cad.lolipop.jp/work/class/OpenGL/1_OpenGL1x/CoordinateSystemsCamera.htm}{\texttt{ https\+://cad.\+lolipop.\+jp/work/class/\+Open\+GL/1\+\_\+\+Open\+GL1x/\+Coordinate\+Systems\+Camera.\+htm}} \end{quote}
+平行移動などの処理をすると\+Open\+GLが勝手にワールド座標系に変換してくれる。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ 1.\ オブジェクトを平行移動する}
+\DoxyCodeLine{glTranslatef(1.0f,\ 1.0f,\ -\/0.0f);}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ 2.\ オブジェクトをY軸周りに45度回転する}
+\DoxyCodeLine{glRotatef(45.0f,\ 0.0f,\ 1.0f,\ 0.0f);}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ 3.\ オブジェクトのサイズを倍に拡大する}
+\DoxyCodeLine{glScalef(2.0f,\ 2.0f,\ 2.0f);}
+
+\end{DoxyCode}
+ \hypertarget{md__doxygen_2technicalterms_autotoc_md150}{}\doxysubsection{\texorpdfstring{②視野変換}{②視野変換}}\label{md__doxygen_2technicalterms_autotoc_md150}
+\begin{quote}
+モデリング変換が行われた段階では，世界(ワールド座標系)の中心を基準としてモデルが描かれるが，これを投影する前に，カメラを原点としてレンズの傾きなどカメラから見える状態の座標系に変換する．これが視野変換である． 本来なら視野変換もアフィン変換同様行列演算で行うが，\+Open\+GL 1.\+x系ではこの部分はglu\+Look\+At()を使いカメラの位置を指定することで，自動的に行われる． \end{quote}
+\hypertarget{md__doxygen_2technicalterms_autotoc_md151}{}\doxysubsection{\texorpdfstring{③投影変換}{③投影変換}}\label{md__doxygen_2technicalterms_autotoc_md151}
+\doxylink{class_my_open_g_l_widget_a481e6f37c00892b3ab5afefdf22715c4_a481e6f37c00892b3ab5afefdf22715c4}{My\+Open\+GLWidget\+::update\+Projection\+Matrix()}内で行う。  投影変換とは \begin{quote}
+-\/ 視野変換で得られた「カメラを原点とした座標系で表現された世界(これはまだ3次元)」を2次元に落とし込む変換である．いわゆる {\bfseries{「パース図を描く」}} 作業に相当する ~\newline
+ Open\+GL 1.\+x系では，この作業はgl\+Ortho()(平行投影) もしくはglu\+Perspective()(透視投影)により，自動的に行われる． ~\newline
+ この投影変換も，本質的には行列演算で行われる． \end{quote}
+
+
+このため、\+Open\+GL内ではただgl\+Ortho()かglu\+Perspective()を設定すれば\+OK ここで初期設定されたwidth、height,orthoモードなどの情報を参考にモデルビュー行列を計算して\+GPUに送信する。\hypertarget{md__doxygen_2technicalterms_autotoc_md152}{}\doxysection{\texorpdfstring{おもろい話}{おもろい話}}\label{md__doxygen_2technicalterms_autotoc_md152}
+\hypertarget{md__doxygen_2technicalterms_autotoc_md153}{}\doxysubsection{\texorpdfstring{Open\+GLでは①モデリング変換と②視野変換のモードを区別しない}{Open\+GLでは①モデリング変換と②視野変換のモードを区別しない}}\label{md__doxygen_2technicalterms_autotoc_md153}
+両方gl\+Matrix\+Mode(\+GL\+\_\+\+MODELVIEW);モードを使う　なんでかはなんとな～く 

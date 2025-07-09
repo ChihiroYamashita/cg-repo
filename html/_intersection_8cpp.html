@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Qt_project: sources/pass_tracing/intersectors/Intersection.cpp ファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Qt_project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_08d237fc27d4ecd563f71c5d52f2fecc.html">sources</a></li><li class="navelem"><a class="el" href="dir_064db83d96816af0f227e8c5c68efacb.html">pass_tracing</a></li><li class="navelem"><a class="el" href="dir_11b67f2000d783126debe598c99c8ebf.html">intersectors</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#func-members">関数</a> &#124;
+<a href="#var-members">変数</a>  </div>
+  <div class="headertitle"><div class="title">Intersection.cpp ファイル</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="_intersection_8h_source.html">Intersection.h</a>&quot;</code><br />
+<code>#include &lt;QDebug&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Intersection.cpp の依存先関係図:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="_intersection_8cpp__incl.png" border="0" usemap="#asources_2pass__tracing_2intersectors_2_intersection_8cpp" alt=""/></div>
+<map name="asources_2pass__tracing_2intersectors_2_intersection_8cpp" id="asources_2pass__tracing_2intersectors_2_intersection_8cpp">
+<area shape="rect" title=" " alt="" coords="395,5,585,48"/>
+<area shape="rect" href="_intersection_8h.html" title=" " alt="" coords="440,96,540,123"/>
+<area shape="poly" title=" " alt="" coords="493,49,493,80,487,80,487,49"/>
+<area shape="rect" title=" " alt="" coords="203,245,265,272"/>
+<area shape="poly" title=" " alt="" coords="395,47,296,69,190,97,99,132,66,152,44,172,37,190,41,204,54,217,75,227,131,242,188,251,187,256,130,248,73,232,51,221,36,207,31,189,40,169,63,148,97,128,189,92,295,64,394,42"/>
+<area shape="rect" title=" " alt="" coords="781,395,850,421"/>
+<area shape="poly" title=" " alt="" coords="586,34,717,51,859,80,921,99,972,122,1006,150,1016,166,1019,182,1019,260,1016,289,1007,310,991,329,969,349,945,366,918,380,866,399,864,394,916,375,942,362,966,345,987,325,1002,308,1011,287,1014,260,1014,183,1011,168,1002,153,969,127,919,104,857,85,716,56,585,39"/>
+<area shape="poly" title=" " alt="" coords="440,125,383,144,325,173,286,203,255,235,251,232,283,199,322,168,381,139,439,120"/>
+<area shape="rect" href="camera_8h.html" title=" " alt="" coords="288,245,364,272"/>
+<area shape="poly" title=" " alt="" coords="440,121,388,138,363,153,343,172,330,200,327,230,321,230,325,199,339,169,360,149,386,133,439,115"/>
+<area shape="rect" title=" " alt="" coords="345,395,441,421"/>
+<area shape="poly" title=" " alt="" coords="541,115,681,140,763,160,841,186,907,217,933,235,953,254,965,275,968,298,961,323,942,349,915,362,864,372,722,385,456,398,456,392,721,379,864,366,913,357,939,345,956,321,962,298,960,277,949,257,930,239,905,222,839,191,762,166,680,145,540,120"/>
+<area shape="rect" href="_ray_8h.html" title=" " alt="" coords="30,320,86,347"/>
+<area shape="poly" title=" " alt="" coords="440,123,366,143,287,173,228,206,171,244,85,312,82,308,168,240,225,202,285,168,365,138,439,118"/>
+<area shape="rect" title=" " alt="" coords="353,171,430,197"/>
+<area shape="poly" title=" " alt="" coords="474,125,422,164,419,159,471,121"/>
+<area shape="rect" title=" " alt="" coords="871,320,928,347"/>
+<area shape="poly" title=" " alt="" coords="541,115,627,134,675,149,721,168,771,199,816,236,882,306,878,309,812,240,767,203,718,173,673,154,626,139,540,120"/>
+<area shape="rect" title=" " alt="" coords="454,171,526,197"/>
+<area shape="poly" title=" " alt="" coords="493,123,493,155,487,155,487,123"/>
+<area shape="rect" href="_ray_hit_8h.html" title=" " alt="" coords="55,171,128,197"/>
+<area shape="poly" title=" " alt="" coords="440,122,148,173,144,174,143,169,147,168,439,116"/>
+<area shape="rect" href="_tri_mesh_8h.html" title=" " alt="" coords="640,245,719,272"/>
+<area shape="poly" title=" " alt="" coords="541,113,571,120,603,131,634,147,660,169,676,198,682,229,676,230,671,200,656,172,631,151,601,136,570,125,540,119"/>
+<area shape="rect" href="_light_8h.html" title=" " alt="" coords="743,245,803,272"/>
+<area shape="poly" title=" " alt="" coords="541,117,611,136,649,150,685,168,724,199,755,231,752,235,721,203,682,173,647,155,610,141,540,122"/>
+<area shape="rect" href="_g_l_preview_8h.html" title=" " alt="" coords="550,171,646,197"/>
+<area shape="poly" title=" " alt="" coords="510,121,568,159,565,164,507,125"/>
+<area shape="rect" title=" " alt="" coords="249,320,313,347"/>
+<area shape="poly" title=" " alt="" coords="320,274,299,308,294,305,316,271"/>
+<area shape="rect" href="conversion__utils_8h.html" title=" " alt="" coords="438,320,564,347"/>
+<area shape="poly" title=" " alt="" coords="357,270,457,311,455,316,355,275"/>
+<area shape="poly" title=" " alt="" coords="334,271,383,379,378,382,329,274"/>
+<area shape="rect" title=" " alt="" coords="110,320,225,347"/>
+<area shape="poly" title=" " alt="" coords="299,275,210,315,208,311,297,270"/>
+<area shape="poly" title=" " alt="" coords="289,272,101,322,100,317,287,267"/>
+<area shape="rect" title=" " alt="" coords="465,395,550,421"/>
+<area shape="poly" title=" " alt="" coords="505,347,507,379,502,379,499,347"/>
+<area shape="poly" title=" " alt="" coords="483,349,426,388,423,383,480,345"/>
+<area shape="poly" title=" " alt="" coords="556,345,766,393,765,398,555,350"/>
+<area shape="poly" title=" " alt="" coords="87,341,99,344,221,372,330,393,328,398,220,377,97,349,86,346"/>
+<area shape="poly" title=" " alt="" coords="79,200,51,229,23,267,13,287,9,308,10,327,20,345,40,360,70,372,152,390,245,399,329,403,329,409,245,405,151,395,69,378,37,365,16,348,5,329,3,307,8,286,19,264,47,225,75,196"/>
+<area shape="poly" title=" " alt="" coords="719,270,857,315,855,320,717,275"/>
+<area shape="rect" title=" " alt="" coords="589,320,685,347"/>
+<area shape="poly" title=" " alt="" coords="674,274,654,308,649,305,670,271"/>
+<area shape="rect" title=" " alt="" coords="710,320,796,347"/>
+<area shape="poly" title=" " alt="" coords="694,271,731,307,727,311,690,274"/>
+<area shape="poly" title=" " alt="" coords="787,271,800,287,812,307,817,329,809,348,783,367,746,379,700,387,650,391,545,393,456,397,456,392,545,388,649,385,700,381,745,374,781,362,805,345,812,328,807,309,796,290,783,274"/>
+<area shape="poly" title=" " alt="" coords="551,198,538,200,411,222,280,247,279,242,410,217,538,195,550,192"/>
+<area shape="poly" title=" " alt="" coords="551,200,379,246,378,241,550,195"/>
+<area shape="poly" title=" " alt="" coords="576,200,504,248,463,282,428,322,412,351,402,381,396,379,407,349,424,318,460,278,501,244,573,196"/>
+<area shape="poly" title=" " alt="" coords="614,196,656,233,652,237,610,200"/>
+<area shape="poly" title=" " alt="" coords="604,197,632,304,627,306,599,199"/>
+<area shape="poly" title=" " alt="" coords="629,195,729,236,727,241,627,200"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+関数</h2></td></tr>
+<tr class="memitem:ad82e0c87acfec4f2eb0a1a711299fd52" id="r_ad82e0c87acfec4f2eb0a1a711299fd52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_intersection_8cpp_ad82e0c87acfec4f2eb0a1a711299fd52.html#ad82e0c87acfec4f2eb0a1a711299fd52">rayTracing</a> (const <a class="el" href="struct_object.html">Object</a> &amp;in_Object, const std::vector&lt; <a class="el" href="struct_area_light.html">AreaLight</a> &gt; &amp;in_AreaLights, const <a class="el" href="struct_ray.html">Ray</a> &amp;in_Ray, <a class="el" href="struct_ray_hit.html">RayHit</a> &amp;io_Hit)</td></tr>
+<tr class="memdesc:ad82e0c87acfec4f2eb0a1a711299fd52"><td class="mdescLeft">&#160;</td><td class="mdescRight">レイとシーン内のオブジェクトやライトとの最短交差点を計算する関数  <br /></td></tr>
+<tr class="separator:ad82e0c87acfec4f2eb0a1a711299fd52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79b65c78a76c1b3033a5e2711aa3350a" id="r_a79b65c78a76c1b3033a5e2711aa3350a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_intersection_8cpp_a79b65c78a76c1b3033a5e2711aa3350a.html#a79b65c78a76c1b3033a5e2711aa3350a">rayTriangleIntersect</a> (const <a class="el" href="struct_tri_mesh.html">TriMesh</a> &amp;in_Mesh, const int in_Triangle_idx, const <a class="el" href="struct_ray.html">Ray</a> &amp;in_Ray, <a class="el" href="struct_ray_hit.html">RayHit</a> &amp;out_Result)</td></tr>
+<tr class="memdesc:a79b65c78a76c1b3033a5e2711aa3350a"><td class="mdescLeft">&#160;</td><td class="mdescRight">レイが指定された三角形と交差するかどうかを判定する。交差している場合、その交差点の情報（交差距離、位置、法線など）を出力変数 out_Result に格納する。  <br /></td></tr>
+<tr class="separator:a79b65c78a76c1b3033a5e2711aa3350a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca412d913682c6dfd8cd4d63a50a8a21" id="r_aca412d913682c6dfd8cd4d63a50a8a21"><td class="memItemLeft" align="right" valign="top">Eigen::Vector3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_intersection_8cpp_aca412d913682c6dfd8cd4d63a50a8a21.html#aca412d913682c6dfd8cd4d63a50a8a21">computeRayHitNormal</a> (const <a class="el" href="struct_object.html">Object</a> &amp;in_Object, const <a class="el" href="struct_ray_hit.html">RayHit</a> &amp;in_Hit)</td></tr>
+<tr class="memdesc:aca412d913682c6dfd8cd4d63a50a8a21"><td class="mdescLeft">&#160;</td><td class="mdescRight">レイと交差した点における補間された法線ベクトルを計算する関数  <br /></td></tr>
+<tr class="separator:aca412d913682c6dfd8cd4d63a50a8a21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+変数</h2></td></tr>
+<tr class="memitem:a62a10ea7a0afe51a72f689b89cbf1121" id="r_a62a10ea7a0afe51a72f689b89cbf1121"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_intersection_8cpp_a62a10ea7a0afe51a72f689b89cbf1121.html#a62a10ea7a0afe51a72f689b89cbf1121">__FAR__</a> = 1.0e33</td></tr>
+<tr class="separator:a62a10ea7a0afe51a72f689b89cbf1121"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

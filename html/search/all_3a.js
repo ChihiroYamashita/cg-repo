@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['リンク_0',['リンク',['../index.html#autotoc_md128',1,'']]]
+  ['ポイント_0',['✅ ポイント',['../md__doxygen_2technical__terms.html#autotoc_md184',1,'']]]
 ];

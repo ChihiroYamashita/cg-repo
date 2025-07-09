@@ -93,6 +93,7 @@ $(function(){ initResizable(false); });
    <td valign="top">
       <div class="navtab">
         <table>
+          <tr><td class="navtab"><a class="navtab" href="_g_l_preview_8cpp_ab150a519b260bbec1165328468935af2.html#ab150a519b260bbec1165328468935af2">applyMaterialColorToVertices</a></td></tr>
           <tr><td class="navtab"><a class="navtab" href="_g_l_preview_8cpp_a1216bf4dbd77debe9c7dc07ef04f0812.html#a1216bf4dbd77debe9c7dc07ef04f0812">computeGLDirectShading</a></td></tr>
           <tr><td class="navtabHL"><a class="navtab" href="_g_l_preview_8cpp_a72057be7fc7f26f9defc3d4f119ed0a9.html#a72057be7fc7f26f9defc3d4f119ed0a9">computeGLShading</a></td></tr>
           <tr><td class="navtab"><a class="navtab" href="_g_l_preview_8cpp_a73d95295e4fdd4102c15884f7723b9e6.html#a73d95295e4fdd4102c15884f7723b9e6">computeGLShading</a></td></tr>
@@ -122,6 +123,31 @@ $(function(){ initResizable(false); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>オブジェクト全体に対して簡易な OpenGL 向け直接照明カラーを計算する </p>
+<p>各メッシュごとに頂点のワールド座標と法線方向を使い、エリアライトからの直接光の影響を評価し、 頂点カラー（vertex_colors）として格納します。このカラーは OpenGL によるリアルタイム描画時に使用され、 レイトレーシングとは異なる即時レンダリング用の擬似ライティング結果です。</p>
+<p>ライトとの距離と法線の角度に基づいた Lambertian 反射モデルで強度を計算します。 テクスチャがないメッシュや、確認用のリアルタイム描画に便利です。</p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">io_Object</td><td>対象となる 3D オブジェクト。各メッシュに対して頂点カラーが上書きされます。 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lights</td><td>照明として使われるエリアライトのリスト。</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>参照</dt><dd><a class="el" href="_g_l_preview_8cpp_a73d95295e4fdd4102c15884f7723b9e6.html#a73d95295e4fdd4102c15884f7723b9e6">computeGLShading(TriMesh&amp;, const std::vector&lt;AreaLight&gt;&amp;)</a> </dd>
+<dd>
+<a class="el" href="_g_l_preview_8cpp_a1216bf4dbd77debe9c7dc07ef04f0812.html#a1216bf4dbd77debe9c7dc07ef04f0812">computeGLDirectShading</a></dd></dl>
+<div class="plantumlgraph">
+<img src="inline_umlgraph_10.png" />
+</div>
+<h3><a class="anchor" id="autotoc_md27"></a>
+処理の流れ（簡易版）</h3>
+<ol type="1">
+<li>各メッシュに対してループ</li>
+<li>メッシュ内の各頂点の位置と法線をもとに光強度を計算</li>
+<li>結果を <code>vertex_colors</code> に書き込む</li>
+</ol>
+<dl class="section note"><dt>覚え書き</dt><dd>この関数は OpenGL 用の描画結果にしか影響を与えません。レイトレーシングとは無関係です。 </dd></dl>
 
 </div>
 </div>

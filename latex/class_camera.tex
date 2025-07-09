@@ -61,7 +61,9 @@ double \mbox{\hyperlink{class_camera_a3e9f8c32d07c418c83ab73eec617f105_a3e9f8c32
 double \mbox{\hyperlink{class_camera_a2782500b14dcfa6ddf9394b71670fc5f_a2782500b14dcfa6ddf9394b71670fc5f}{get\+Screen\+Height}} () const
 \item 
 void \mbox{\hyperlink{class_camera_aa2cc32088c1000c91e4c5c91a9fcefdf_aa2cc32088c1000c91e4c5c91a9fcefdf}{set\+Aspect\+Ratio}} (double aspect)
-\begin{DoxyCompactList}\small\item\em カメラのスクリーン平面のアスペクト比を設定します。 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em カメラのスクリーン平面のアスペクト比を設定します。 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_camera_a20a6e0f56d6531121c0ef4ee8a71a71c_a20a6e0f56d6531121c0ef4ee8a71a71c}{screen\+View}} (const double in\+\_\+x, const double in\+\_\+y, \mbox{\hyperlink{struct_ray}{Ray}} \&out\+\_\+\+Ray)
+\begin{DoxyCompactList}\small\item\em カメラのスクリーン座標に基づいてレイを生成する関数 \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{限定公開変数類}
 \begin{DoxyCompactItemize}
 \item 
@@ -195,7 +197,34 @@ void Camera\+::move\+In\+Local\+Frame\+Fix\+Look\+At (\begin{DoxyParamCaption}\i
 {\footnotesize\ttfamily \label{class_camera_aaf4a66bb0da5e49eb57af4d241cc109e_aaf4a66bb0da5e49eb57af4d241cc109e} 
 void Camera\+::rotate\+Camera\+In\+Local\+Frame\+Fix\+Look\+At (\begin{DoxyParamCaption}\item[{const double \&}]{in\+\_\+\+Horizontal\+Angle}{, }\item[{const double \&}]{in\+\_\+\+Vertical\+Angle}{}\end{DoxyParamCaption})}
 
-\Hypertarget{class_camera_aa2cc32088c1000c91e4c5c91a9fcefdf_aa2cc32088c1000c91e4c5c91a9fcefdf}\index{Camera@{Camera}!setAspectRatio@{setAspectRatio}}
+\Hypertarget{class_camera_a20a6e0f56d6531121c0ef4ee8a71a71c_a20a6e0f56d6531121c0ef4ee8a71a71c}\index{Camera@{Camera}!screenView@{screenView}}
+\index{screenView@{screenView}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{screenView()}{screenView()}}
+{\footnotesize\ttfamily \label{class_camera_a20a6e0f56d6531121c0ef4ee8a71a71c_a20a6e0f56d6531121c0ef4ee8a71a71c} 
+void Camera\+::screen\+View (\begin{DoxyParamCaption}\item[{const double}]{in\+\_\+x}{, }\item[{const double}]{in\+\_\+y}{, }\item[{\mbox{\hyperlink{struct_ray}{Ray}} \&}]{out\+\_\+\+Ray}{}\end{DoxyParamCaption})}
+
+
+
+カメラのスクリーン座標に基づいてレイを生成する関数 
+
+画面上の2\+D座標（in\+\_\+x, in\+\_\+y）を受け取り、その座標を基準にしたレイの起点（{\ttfamily out\+\_\+\+Ray.\+o}）と方向（{\ttfamily out\+\_\+\+Ray.\+d}）を計算します。 カメラの現在の視点（{\ttfamily m\+\_\+\+Eye\+Point}）とスクリーンの寸法（{\ttfamily m\+\_\+\+Screen\+Width}, {\ttfamily m\+\_\+\+Screen\+Height}）、焦点距離（{\ttfamily m\+\_\+\+Focal\+Length}）を使用してレイを生成します。 スクリーン上の座標が正規化されている（0.0 ～ 1.\+0）ことを前提としています。
+
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\texttt{ in}}  & {\em in\+\_\+x} & スクリーン上のx座標（スクリーン座標系\+: 0.\+0 ～ 1.\+0の値を持つ） \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+y} & スクリーン上のy座標（スクリーン座標系\+: 0.\+0 ～ 1.\+0の値を持つ） \\
+\hline
+\mbox{\texttt{ out}}  & {\em out\+\_\+\+Ray} & 計算されたレイ 始点(orgin)と方向(direction)を持つ\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_19}}
+\end{DoxyImageNoCaption}
+
+
+レイの起点（{\ttfamily out\+\_\+\+Ray.\+o}）と方向（{\ttfamily out\+\_\+\+Ray.\+d}）を保存 \Hypertarget{class_camera_aa2cc32088c1000c91e4c5c91a9fcefdf_aa2cc32088c1000c91e4c5c91a9fcefdf}\index{Camera@{Camera}!setAspectRatio@{setAspectRatio}}
 \index{setAspectRatio@{setAspectRatio}!Camera@{Camera}}
 \doxysubsubsection{\texorpdfstring{setAspectRatio()}{setAspectRatio()}}
 {\footnotesize\ttfamily \label{class_camera_aa2cc32088c1000c91e4c5c91a9fcefdf_aa2cc32088c1000c91e4c5c91a9fcefdf} 

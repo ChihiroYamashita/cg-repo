@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['📌_20注意点とヒント_0',['📌 注意点とヒント',['../md__doxygen_2folder.html#autotoc_md63',1,'']]]
+  ['用語集_0',['用語集',['../md__doxygen_2technical__terms.html',1,'']]],
+  ['用途_1',['🔹 用途',['../md__doxygen_2technical__terms.html#autotoc_md182',1,'']]]
 ];

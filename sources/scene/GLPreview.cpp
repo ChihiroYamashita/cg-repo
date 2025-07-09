@@ -193,7 +193,35 @@ void computeGLShading( TriMesh& io_Mesh, const std::vector<AreaLight>& lights )
     io_Mesh.vertex_colors[i] = computeGLDirectShading( p, n, io_Mesh.material, lights );
   }
 }
-
+/**
+ * @brief オブジェクト全体に対して簡易な OpenGL 向け直接照明カラーを計算する
+ * @details 各メッシュごとに頂点のワールド座標と法線方向を使い、エリアライトからの直接光の影響を評価し、
+ * 頂点カラー（vertex_colors）として格納します。このカラーは OpenGL によるリアルタイム描画時に使用され、
+ * レイトレーシングとは異なる即時レンダリング用の擬似ライティング結果です。
+ *
+ * ライトとの距離と法線の角度に基づいた Lambertian 反射モデルで強度を計算します。
+ * テクスチャがないメッシュや、確認用のリアルタイム描画に便利です。
+ *
+ * @param[out] io_Object 対象となる 3D オブジェクト。各メッシュに対して頂点カラーが上書きされます。
+ * @param[in] lights 照明として使われるエリアライトのリスト。
+ *
+ * @see computeGLShading(TriMesh&, const std::vector<AreaLight>&)
+ * @see computeGLDirectShading
+ *
+ * @startuml
+ * loop 各メッシュに対して
+ *     computeGLShading(mesh, lights)
+ * end
+ * @enduml
+ *
+ * ### 処理の流れ（簡易版）
+ *
+ * 1. 各メッシュに対してループ
+ * 2. メッシュ内の各頂点の位置と法線をもとに光強度を計算
+ * 3. 結果を `vertex_colors` に書き込む
+ *
+ * @note この関数は OpenGL 用の描画結果にしか影響を与えません。レイトレーシングとは無関係です。
+ */
 void computeGLShading( Object& io_Object, const std::vector<AreaLight>& lights )
 {
   for( int i=0; i<io_Object.meshes.size(); i++ )
@@ -201,3 +229,23 @@ void computeGLShading( Object& io_Object, const std::vector<AreaLight>& lights )
     computeGLShading( io_Object.meshes[i], lights );
   }
 }
+
+/**
+ * @brief 各メッシュのマテリアル色(kd)を、そのメッシュの全頂点カラーに適用する
+ * @param[out] io_Object 対象となるObject
+ */
+void applyMaterialColorToVertices(Object& io_Object)
+{
+  for (auto& mesh : io_Object.meshes)
+  {
+    const Eigen::Vector3d material_color = mesh.material.kd;
+
+    // assignの代わりに、手動のforループで各要素に代入する
+    for (size_t i = 0; i < mesh.vertex_colors.size(); ++i)
+    {
+      mesh.vertex_colors[i] = material_color;
+    }
+  }
+}
+
+

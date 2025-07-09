@@ -22,7 +22,35 @@ M -> GL: in_FilmTexture をバインド（使用するテクスチャを指定�
 M -> GL: 頂点とUV座標を指定して矩形を描画
 GL --> M: 描画完了を返す
 @enduml
-@startuml inline_umlgraph_6.eps
+@startuml inline_umlgraph_5.eps
+ main -> rayTracing : レイと交差計算開始
+ rayTracing -> rayTriangleIntersect : メッシュの三角形と交差計算
+ rayTriangleIntersect -> rayTracing : 交差情報を取得（temp_hitに保存）
+ rayTracing -> rayAreaLightIntersect : エリアライトとの交差計算
+ rayAreaLightIntersect -> rayTracing : 交差情報を取得（temp_hitに保存）
+ rayTracing -> rayTracing : 最短交差点情報を更新 \n交差距離t_min、インデックスなど
+ rayTracing -> io_Hit : 最短交差点情報を保存
+@enduml
+@startuml inline_umlgraph_7.eps
+ main -> rayTracing : レイと交差計算開始
+ rayTracing -> rayTriangleIntersect : メッシュの三角形と交差計算
+ rayTriangleIntersect -> rayTracing : 交差情報を取得（temp_hitに保存）
+ rayTracing -> rayAreaLightIntersect : エリアライトとの交差計算
+ rayAreaLightIntersect -> rayTracing : 交差情報を取得（temp_hitに保存）
+ rayTracing -> rayTracing : 最短交差点情報を更新 \n交差距離t_min、インデックスなど
+ rayTracing -> io_Hit : 最短交差点情報を保存
+@enduml
+@startuml inline_umlgraph_9.eps
+loop 各メッシュに対して
+    computeGLShading(mesh, lights)
+end
+@enduml
+@startuml inline_umlgraph_11.eps
+loop 各メッシュに対して
+    computeGLShading(mesh, lights)
+end
+@enduml
+@startuml inline_umlgraph_14.eps
 actor User
 
 User -> MyOpenGLWidget_camera : 初期化 (initializeGL)
@@ -41,7 +69,79 @@ MyOpenGLWidget_camera -> drawFilm : カメラ情報とfilmテクスチャを渡�
 drawFilm -> Camera : getEyePoint(), getX/Y/ZVector(), getFocalLength() など呼び出し
 drawFilm -> OpenGL : テクスチャをバインドし、矩形に貼り付けて描画
 @enduml
-@startuml inline_umlgraph_8.eps
+@startuml inline_umlgraph_17.eps
+actor User
+
+participant MyOpenGLWidget_camera
+participant Camera
+participant Ray
+participant Intersection
+participant TriMesh
+participant Geometry as "computeRayHitNormal"
+participant FilmBuffer
+
+== ユーザが描画をトリガー ==
+User -> MyOpenGLWidget_camera : paintGL()
+MyOpenGLWidget_camera -> MyOpenGLWidget_camera : updateRayTracing()
+
+== レイの生成 ==
+loop 各ピクセルごとに
+    MyOpenGLWidget_camera -> Camera : screenView(i, j)
+    Camera --> MyOpenGLWidget_camera : Ray
+
+== レイとシーンの交差判定 ==
+    MyOpenGLWidget_camera -> Intersection : rayTracing(g_Obj, {}, ray, ray_hit)
+
+    loop 各メッシュ
+        Intersection -> TriMesh : meshTriangleIntersect()
+        loop 各三角形
+            TriMesh -> Intersection : intersectTriangle()
+            alt ヒットしたら
+                Intersection --> TriMesh : RayHit (交差情報)
+            end
+        end
+    end
+    Intersection --> MyOpenGLWidget_camera : 最短距離の RayHit
+
+== 法線計算と色変換 ==
+    MyOpenGLWidget_camera -> Geometry : computeRayHitNormal(g_Obj, ray_hit)
+    Geometry --> MyOpenGLWidget_camera : 法線ベクトル
+
+    MyOpenGLWidget_camera -> FilmBuffer : 法線 → 色変換 → m_filmBuffer に格納
+end
+
+== OpenGLで描画 ==
+MyOpenGLWidget_camera -> MyOpenGLWidget_camera : update() → paintGL()
+@enduml
+@startuml inline_umlgraph_18.eps
+actor User
+
+User -> MyOpenGLWidget_camera : 初期化 (initializeGL)
+MyOpenGLWidget_camera -> MyOpenGLWidget_camera : initializeFilmTexture() を呼び出し、filmバッファ作成 (※デバッグ用)
+
+User -> MyOpenGLWidget_camera : ウィンドウリサイズ (resizeGL)
+MyOpenGLWidget_camera -> MyOpenGLWidget_camera : width, height 更新
+MyOpenGLWidget_camera -> Camera : setAspectRatio()
+MyOpenGLWidget_camera -> OpenGL : 古いテクスチャ削除
+MyOpenGLWidget_camera -> MyOpenGLWidget_camera : initializeFilmTexture() 再実行
+MyOpenGLWidget_camera -> MyOpenGLWidget_camera : updateProjectionMatrix()
+
+User -> MyOpenGLWidget_camera : paintGL() を呼び出し
+MyOpenGLWidget_camera -> MyOpenGLWidget_camera : projection_and_modelview(g_Camera2)
+MyOpenGLWidget_camera -> drawFilm : カメラ情報とfilmテクスチャを渡す
+drawFilm -> Camera : getEyePoint(), getX/Y/ZVector(), getFocalLength() を呼び出し
+drawFilm -> OpenGL : テクスチャをバインドし、矩形に貼り付けて描画
+@enduml
+@startuml inline_umlgraph_19.eps
+main -> Camera : screenView(in_x, in_y, out_Ray)
+Camera -> Camera : レイ生成処理を開始
+Camera -> Camera : s = (in_x - 0.5) * m_ScreenWidth \nスクリーン上のx座標(0~1)をカメラ空間の物理的な横の長さに変換
+Camera -> Camera : t = (0.5 - in_y) * m_ScreenHeight \nスクリーン上のy座標をカメラ空間の物理的な縦方向距離に変換
+Camera -> Camera : out_Ray.o = m_EyePoint \nレイの起点（origin）をカメラの視点位置（m_EyePoint）に設定
+Camera -> Camera : out_Ray.d = m_xVector * s + m_yVector * t - m_zVector * m_FocalLength \nレイの方向ベクトルを計算
+Camera -> Camera : out_Ray.d.normalize() \nレイの方向ベクトルを正規化し、単位ベクトルに変換
+@enduml
+@startuml inline_umlgraph_22.eps
 class Object {
   - List<TriMesh> meshes
 }
@@ -65,7 +165,7 @@ class Material {
 Object --> "1..* すべて参照" TriMesh
 TriMesh --> "1　マテリアル参照" Material
 @enduml
-@startuml inline_umlgraph_14.eps
+@startuml inline_umlgraph_28.eps
 actor User
 
 User -> MainWindow : スライダー操作などのユーザー入力
@@ -78,7 +178,7 @@ MyOpenGLWidget -> MyOpenGLWidget : 投影変換を適用（gluPerspective / glOr
 MyOpenGLWidget -> OpenGL : ビューポート変換を適用（glViewport）
 MyOpenGLWidget -> OpenGL : シーンをレンダリング
 @enduml
-@startuml inline_umlgraph_15.eps
+@startuml inline_umlgraph_29.eps
 actor User
 
 User -> MainWindow : スライダー操作/マウス操作\n（拡縮、回転、平行移動）
@@ -95,7 +195,7 @@ Camera -> Camera  : lookAt( QVector3D in_LookAt, QVector3D in_Up )\nカメラの
 
 MyOpenGLWidget -> OpenGL : update()\nすべての処理が終わったら画面を再描画（正確な記述は次項）
 @enduml
-@startuml inline_umlgraph_16.eps
+@startuml inline_umlgraph_30.eps
 actor User
 
 
@@ -107,12 +207,12 @@ MyOpenGLWidget -> MyOpenGLWidget : projection_and_modelview(g_Camera);\nカメ�
 MyOpenGLWidget -> OpenGL : glEnable(GL_DEPTH_TEST);\n深度テスト（Depth Test）を有効化\nglBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);\nアルファブレンディング（透明度の計算）\nglEnable(GL_BLEND);ブレンディングを有効化\nglEnable(GL_POINT_SMOOTH);, glEnable(GL_LINE_SMOOTH);, glEnable(GL_POLYGON_SMOOTH);\n（アンチエイリアス）を有効化\nglHint(GL_POINT_SMOOTH_HINT, GL_NICEST);\nスムージング
 MyOpenGLWidget -> drawObject :drawXYZAxes(); drawXYGrid(0.5, 50); drawcube();
 @enduml
-@startuml inline_umlgraph_17.eps
+@startuml inline_umlgraph_31.eps
 User -> Timeline : Add keyframe
 Timeline -> CustomScene : Insert keyframe
 CustomScene -> MainWindow : Notify keyframe added
 @enduml
-@startuml inline_umlgraph_18.eps
+@startuml inline_umlgraph_32.eps
  User -> MainWindow : on_fovSlider_valueChanged(int value)\n FOV sliderをいじる
  MainWindow -> MyOpenGLWidget : setCameraFov(float fov)\n カメラFOVを更新
  MyOpenGLWidget -> Camera : setFov(float cameraFov)\n 新しい FOVを設置

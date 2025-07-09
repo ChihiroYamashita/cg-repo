@@ -89,44 +89,46 @@ $(function(){ initResizable(false); });
 <div class="contents">
 <div class="textblock"><p>プロジェクト内のシーケンス図をまとめたグループ  </p>
 <p><a class="anchor" id="md__doxygen_2sequence__diagrams"></a></p>
-<h2><a class="anchor" id="autotoc_md128"></a>
+<h2><a class="anchor" id="autotoc_md167"></a>
 リンク</h2>
 <p>openGLのmyopenglwiget.cppの座標変換に関しては <a class="el" href="md__doxygen_2coordinate__transformation1.html">こちら</a> を参照してください。<br  />
  openGLの基本については<a class="el" href="md__doxygen_2open_g_l__basis.html">こちら</a>を参照してください。<br  />
  レイトレのディレクトリの基本構成は<a class="el" href="md__doxygen_2folder.html">こちら</a>を参照してください。<br  />
  filmのレイトレース結果等の出力画像を画面に表示する機構の整理は<a class="el" href="md__doxygen_2memo__film.html">こちら</a><br  />
 </p>
+<p>レイトレ簡易実装のせいりは<a class="el" href="md__doxygen_2memo__wip__raytracing.html">こちら</a><br  />
+</p>
 <p>キーフレームカメラの処理については <a class="el" href="class_main_window_a026991cfbe95c4e6867248d692c15e6b.html#a026991cfbe95c4e6867248d692c15e6b">MainWindow::on_keyframeCameraButton_clicked</a> を参照。</p>
-<h2><a class="anchor" id="autotoc_md129"></a>
+<h2><a class="anchor" id="autotoc_md168"></a>
 全体ざっくり</h2>
 <p>こんな感じのソフト</p>
 <div class="plantumlgraph">
-<img src="inline_umlgraph_9.png" />
+<img src="inline_umlgraph_23.png" />
 </div>
-<h2><a class="anchor" id="autotoc_md130"></a>
+<h2><a class="anchor" id="autotoc_md169"></a>
 カメラ位置変更後の情報取得フロー</h2>
 <p>挙動～</p>
 <p>QOpenGLWidgetなどのクラスでupdate()を呼び出すと、内部的にOpenGLの再描画メソッド（通常paintGL()）が実行されるため、このような記述になっている。 ここまででカメラの位置情報をどうやって習得するかを記述した。次のセクションでこれらの情報を下にワールド座標系→ビューポート表示までの挙動を記述する。 </p><div class="plantumlgraph">
-<img src="inline_umlgraph_10.png" />
+<img src="inline_umlgraph_24.png" />
 </div>
- <h2><a class="anchor" id="autotoc_md131"></a>
+ <h2><a class="anchor" id="autotoc_md170"></a>
 視野変換→ビューポート変換までのフロー</h2>
 <p>update()関数によってpaintGL()が自動で呼び出されたあとのpaintGL()の挙動<br  />
 <a class="el" href="md__doxygen_2about__convertions.html">基礎情報ページ</a>に変換周りの挙動を記述。 <a class="el" href="class_my_open_g_l_widget_a6a59b0003a3c6860ffdfe3fe696488e2.html#a6a59b0003a3c6860ffdfe3fe696488e2">MyOpenGLWidget::projection_and_modelview</a> <a class="el" href="class_my_open_g_l_widget_a481e6f37c00892b3ab5afefdf22715c4.html#a481e6f37c00892b3ab5afefdf22715c4">MyOpenGLWidget::updateProjectionMatrix()</a>　を参照。 </p><div class="plantumlgraph">
-<img src="inline_umlgraph_11.png" />
+<img src="inline_umlgraph_25.png" />
 </div>
 <p> projection_and_modelview</p>
-<h2><a class="anchor" id="autotoc_md132"></a>
+<h2><a class="anchor" id="autotoc_md171"></a>
 キーフレームの追加</h2>
 <div class="plantumlgraph">
-<img src="inline_umlgraph_12.png" />
+<img src="inline_umlgraph_26.png" />
 </div>
-<h2><a class="anchor" id="autotoc_md133"></a>
+<h2><a class="anchor" id="autotoc_md172"></a>
 視野角（FOV）の変更</h2>
 <p>FOVを変更するスロット ユーザーがスライダーを操作してカメラの視野角を変更します。</p>
 <p>シーケンス図:</p>
 <div class="plantumlgraph">
-<img src="inline_umlgraph_13.png" />
+<img src="inline_umlgraph_27.png" />
 </div>
  </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>

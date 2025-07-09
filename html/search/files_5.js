@@ -1,5 +1,7 @@
 var searchData=
 [
   ['interpolator_2ecpp_0',['interpolator.cpp',['../interpolator_8cpp.html',1,'']]],
-  ['interpolator_2eh_1',['interpolator.h',['../interpolator_8h.html',1,'']]]
+  ['interpolator_2eh_1',['interpolator.h',['../interpolator_8h.html',1,'']]],
+  ['intersection_2ecpp_2',['Intersection.cpp',['../_intersection_8cpp.html',1,'']]],
+  ['intersection_2eh_3',['Intersection.h',['../_intersection_8h.html',1,'']]]
 ];

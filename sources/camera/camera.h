@@ -4,6 +4,7 @@
 #include <QtMath> // Qtの数学関数用
 #include "conversion_utils.h"
 #include <Eigen/Geometry>
+#include "Ray.h"
 //
 //  Camera.h
 //
@@ -60,6 +61,9 @@ public:
 
     // ★追加: アスペクト比を設定するメソッド
     void setAspectRatio(double aspect);
+
+    //レイトレ用
+    void screenView( const double in_x, const double in_y, Ray& out_Ray );
 
 protected:
     Eigen::Vector3d m_EyePoint;

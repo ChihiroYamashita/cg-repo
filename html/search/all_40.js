@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['再描画要求（_20tt_20update_20tt_20or_20tt_20glutpostredisplay_20tt_20）_0',['🔵 4. 再描画要求（&lt;tt&gt;update()&lt;/tt&gt; or &lt;tt&gt;glutPostRedisplay()&lt;/tt&gt;）',['../md__doxygen_2open_g_l__basis.html#autotoc_md85',1,'']]]
+  ['今後の発展を見据えて_0',['✅ 今後の発展を見据えて',['../md__doxygen_2folder.html#autotoc_md81',1,'']]]
 ];

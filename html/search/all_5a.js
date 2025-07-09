@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🗺️_20openglにおける座標変換の流れ（重要）_0',['🗺️ OpenGLにおける座標変換の流れ（重要）',['../md__doxygen_2open_g_l__basis.html#autotoc_md89',1,'']]]
+  ['行列の種類と用途_20strong_0',['&lt;strong&gt;行列の種類と用途&lt;/strong&gt;',['../md__doxygen_2_open_g_l__func.html#autotoc_md144',1,'']]]
 ];

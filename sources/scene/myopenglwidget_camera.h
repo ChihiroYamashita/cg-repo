@@ -6,12 +6,13 @@
 #include <QOpenGLFunctions>
 #include "TriMesh.h"
 #include "Light.h"
+#include "Ray.h"
 class MyOpenGLWidget_camera :public MyOpenGLWidget {
     Q_OBJECT
 
 public:
    explicit MyOpenGLWidget_camera(QWidget* parent = nullptr);
-    void setCamerakeyframe(const Eigen::Vector3d& eyePoint,const Eigen::Vector3d& lookAtPoint);//カメラ（画面2用）
+    void setCamerakeyframe(const Eigen::Vector3d& eyePoint,const Eigen::Vector3d& lookAtPoint);//カメラ1からのいち情報をもらう関数（画面2用）
     void setCameraEyePoint2(const Eigen::Vector3d& eyePoint);//MyOpenGLWidgetの外からカメラの画角を設定する関数
     void setlookAtPoint2(const Eigen::Vector3d& lookAtPoint);
 public slots:
@@ -34,7 +35,10 @@ protected:
     void saveCameraState();
     void loadCameraState();
     //レイトレ用
-    void initAreaLights();
+    //void initAreaLights();
+    //レイトレ用Qtimer
+     QTimer *m_timer; // タイマーのポインタ
+
 private:
     Camera g_Camera2;
     void drawCube();
@@ -43,7 +47,7 @@ private:
     GLdouble color[6][3];
     float updatedFov;
 
-    //レイトレ用
+    //--------------レイトレ用---------------------------------------
      void initializeFilmTexture();
      GLuint m_filmTexture = 0; // フィルムテクスチャのID
      float* m_filmBuffer = nullptr; // テスト用のテクスチャデータ
@@ -52,6 +56,13 @@ private:
      std::vector<AreaLight> g_AreaLights;// 読み込んだオブジェクトを保持
      Object g_Obj;// シーンの光源を保持
 
+     //デバッグ用
+     Eigen::Vector3d debug_computeNormalColor(const Ray& ray);
+     //------------------------------------------------------------
+
+     //レイトレ用スロット
+ private slots:
+     void updateRayTracing(); // タイマーで呼び出すカスタムスロット
 };
 
 #endif // MYOPENGLWIDGET_CAMERA_H

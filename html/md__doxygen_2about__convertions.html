@@ -87,17 +87,17 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title">座標変換の話</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md38"></a></p>
-<h1><a class="anchor" id="autotoc_md39"></a>
+<div class="textblock"><p><a class="anchor" id="autotoc_md52"></a></p>
+<h1><a class="anchor" id="autotoc_md53"></a>
 はじめに</h1>
 <p>このページでは、ややこしいOpenGLの挙動などをまとめます</p>
 <ul>
 <li>OpenGL描画の流れ</li>
 <li>おもろい話</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md40"></a>
+<h1><a class="anchor" id="autotoc_md54"></a>
 OpenGL描画の流れ</h1>
-<h2><a class="anchor" id="autotoc_md41"></a>
+<h2><a class="anchor" id="autotoc_md55"></a>
 ①モデリング変換</h2>
 <p>void <a class="el" href="draw_object_8cpp_ab127d7c13829e0bdce3fc756fc122786.html#ab127d7c13829e0bdce3fc756fc122786">drawcube()</a>で行う。</p>
 <blockquote class="doxtable">
@@ -111,12 +111,12 @@ OpenGL描画の流れ</h1>
 <div class="line"> </div>
 <div class="line">// 3. オブジェクトのサイズを倍に拡大する</div>
 <div class="line">glScalef(2.0f, 2.0f, 2.0f);</div>
-</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md42"></a>
+</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md56"></a>
 ②視野変換</h2>
 <blockquote class="doxtable">
 <p>&zwj;モデリング変換が行われた段階では，世界(ワールド座標系)の中心を基準としてモデルが描かれるが，これを投影する前に，カメラを原点としてレンズの傾きなどカメラから見える状態の座標系に変換する．これが視野変換である． 本来なら視野変換もアフィン変換同様行列演算で行うが，OpenGL 1.x系ではこの部分はgluLookAt()を使いカメラの位置を指定することで，自動的に行われる． </p>
 </blockquote>
-<h2><a class="anchor" id="autotoc_md43"></a>
+<h2><a class="anchor" id="autotoc_md57"></a>
 ③投影変換</h2>
 <p><a class="el" href="class_my_open_g_l_widget_a481e6f37c00892b3ab5afefdf22715c4.html#a481e6f37c00892b3ab5afefdf22715c4">MyOpenGLWidget::updateProjectionMatrix()</a>内で行う。  投影変換とは </p><blockquote class="doxtable">
 <p>&zwj;- 視野変換で得られた「カメラを原点とした座標系で表現された世界(これはまだ3次元)」を2次元に落とし込む変換である．いわゆる <b>「パース図を描く」</b> 作業に相当する <br  />
@@ -124,9 +124,9 @@ OpenGL描画の流れ</h1>
  この投影変換も，本質的には行列演算で行われる． </p>
 </blockquote>
 <p>このため、OpenGL内ではただglOrtho()かgluPerspective()を設定すればOK ここで初期設定されたwidth、height,orthoモードなどの情報を参考にモデルビュー行列を計算してGPUに送信する。</p>
-<h1><a class="anchor" id="autotoc_md44"></a>
+<h1><a class="anchor" id="autotoc_md58"></a>
 おもろい話</h1>
-<h2><a class="anchor" id="autotoc_md45"></a>
+<h2><a class="anchor" id="autotoc_md59"></a>
 OpenGLでは①モデリング変換と②視野変換のモードを区別しない</h2>
 <p>両方glMatrixMode(GL_MODELVIEW);モードを使う　なんでかはなんとな～く </p>
 </div></div><!-- contents -->

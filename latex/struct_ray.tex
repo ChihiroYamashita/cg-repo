@@ -1,0 +1,95 @@
+\doxysection{Ray 構造体}
+\hypertarget{struct_ray}{}\label{struct_ray}\index{Ray@{Ray}}
+
+
+レイ（\+Ray）を表す構造体  
+
+
+
+
+{\ttfamily \#include $<$Ray.\+h$>$}
+
+
+
+Ray 連携図\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=177pt]{struct_ray__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Vector3d \mbox{\hyperlink{struct_ray_a2b067c211cfdaf20c2a031d0ea3746d3_a2b067c211cfdaf20c2a031d0ea3746d3}{o}}
+\item 
+Eigen\+::\+Vector3d \mbox{\hyperlink{struct_ray_a36307c27c8ce321fcef70b967710c358_a36307c27c8ce321fcef70b967710c358}{d}}
+\item 
+int \mbox{\hyperlink{struct_ray_ae50cf8ba7ff9a8d640dfc508d4826412_ae50cf8ba7ff9a8d640dfc508d4826412}{depth}}
+\item 
+int \mbox{\hyperlink{struct_ray_a6f252f4aab2df12e0e90981b49bc019b_a6f252f4aab2df12e0e90981b49bc019b}{prev\+\_\+mesh\+\_\+idx}}
+\item 
+int \mbox{\hyperlink{struct_ray_ab13f37ba1722680e0df35350dd2e1145_ab13f37ba1722680e0df35350dd2e1145}{prev\+\_\+primitive\+\_\+idx}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{詳解}
+レイ（\+Ray）を表す構造体 
+
+レイは、光線追跡や可視化においてシーン内を進む光の経路を表します。この構造体は、レイの始点（origin）、方向（direction）、追跡の深さ、直前に交差したオブジェクトの情報を格納します。
+
+
+\begin{DoxyItemize}
+\item {\bfseries{o}}\+: レイの始点。通常はカメラの視点や反射点の位置。
+\item {\bfseries{d}}\+: レイの方向。単位ベクトルとして正規化されていることが望ましい。
+\item {\bfseries{depth}}\+: このレイが何回目の反射・屈折によるものかを示す深さカウント（再帰回数）。
+\item {\bfseries{prev\+\_\+mesh\+\_\+idx}}\+: 直前に交差したメッシュのインデックス。交差の再利用を避けるために用いる。
+\item {\bfseries{prev\+\_\+primitive\+\_\+idx}}\+: 直前に交差したプリミティブ（三角形）のインデックス。これも再交差を防ぐ目的で使用。
+\end{DoxyItemize}
+
+\begin{DoxyNote}{覚え書き}
+{\ttfamily depth}、{\ttfamily prev\+\_\+mesh\+\_\+idx}、{\ttfamily prev\+\_\+primitive\+\_\+idx} は再帰的な光線追跡において重要で、自己交差を防止するために利用されます。
+\end{DoxyNote}
+\begin{DoxySeeAlso}{参照}
+\doxylink{class_camera_a20a6e0f56d6531121c0ef4ee8a71a71c_a20a6e0f56d6531121c0ef4ee8a71a71c}{Camera\+::screen\+View} 
+
+\doxylink{_intersection_8cpp_ad82e0c87acfec4f2eb0a1a711299fd52_ad82e0c87acfec4f2eb0a1a711299fd52}{ray\+Tracing} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{メンバ詳解}
+\Hypertarget{struct_ray_a36307c27c8ce321fcef70b967710c358_a36307c27c8ce321fcef70b967710c358}\index{Ray@{Ray}!d@{d}}
+\index{d@{d}!Ray@{Ray}}
+\doxysubsubsection{\texorpdfstring{d}{d}}
+{\footnotesize\ttfamily \label{struct_ray_a36307c27c8ce321fcef70b967710c358_a36307c27c8ce321fcef70b967710c358} 
+Eigen\+::\+Vector3d Ray\+::d}
+
+\Hypertarget{struct_ray_ae50cf8ba7ff9a8d640dfc508d4826412_ae50cf8ba7ff9a8d640dfc508d4826412}\index{Ray@{Ray}!depth@{depth}}
+\index{depth@{depth}!Ray@{Ray}}
+\doxysubsubsection{\texorpdfstring{depth}{depth}}
+{\footnotesize\ttfamily \label{struct_ray_ae50cf8ba7ff9a8d640dfc508d4826412_ae50cf8ba7ff9a8d640dfc508d4826412} 
+int Ray\+::depth}
+
+\Hypertarget{struct_ray_a2b067c211cfdaf20c2a031d0ea3746d3_a2b067c211cfdaf20c2a031d0ea3746d3}\index{Ray@{Ray}!o@{o}}
+\index{o@{o}!Ray@{Ray}}
+\doxysubsubsection{\texorpdfstring{o}{o}}
+{\footnotesize\ttfamily \label{struct_ray_a2b067c211cfdaf20c2a031d0ea3746d3_a2b067c211cfdaf20c2a031d0ea3746d3} 
+Eigen\+::\+Vector3d Ray\+::o}
+
+\Hypertarget{struct_ray_a6f252f4aab2df12e0e90981b49bc019b_a6f252f4aab2df12e0e90981b49bc019b}\index{Ray@{Ray}!prev\_mesh\_idx@{prev\_mesh\_idx}}
+\index{prev\_mesh\_idx@{prev\_mesh\_idx}!Ray@{Ray}}
+\doxysubsubsection{\texorpdfstring{prev\_mesh\_idx}{prev\_mesh\_idx}}
+{\footnotesize\ttfamily \label{struct_ray_a6f252f4aab2df12e0e90981b49bc019b_a6f252f4aab2df12e0e90981b49bc019b} 
+int Ray\+::prev\+\_\+mesh\+\_\+idx}
+
+\Hypertarget{struct_ray_ab13f37ba1722680e0df35350dd2e1145_ab13f37ba1722680e0df35350dd2e1145}\index{Ray@{Ray}!prev\_primitive\_idx@{prev\_primitive\_idx}}
+\index{prev\_primitive\_idx@{prev\_primitive\_idx}!Ray@{Ray}}
+\doxysubsubsection{\texorpdfstring{prev\_primitive\_idx}{prev\_primitive\_idx}}
+{\footnotesize\ttfamily \label{struct_ray_ab13f37ba1722680e0df35350dd2e1145_ab13f37ba1722680e0df35350dd2e1145} 
+int Ray\+::prev\+\_\+primitive\+\_\+idx}
+
+
+
+この構造体詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+sources/pass\+\_\+tracing/core/\mbox{\hyperlink{_ray_8h}{Ray.\+h}}\end{DoxyCompactItemize}

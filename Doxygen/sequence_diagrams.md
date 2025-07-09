@@ -9,6 +9,10 @@ openGLの基本については[こちら](openGL_basis.md)を参照してくだ�
 レイトレのディレクトリの基本構成は[こちら](folder.md)を参照してください。<br>
 filmのレイトレース結果等の出力画像を画面に表示する機構の整理は[こちら](memo_film.md)<br>
 
+レイトレ簡易実装のせいりは[こちら](memo_wip_raytracing.md)<br>
+
+
+
 キーフレームカメラの処理については @ref MainWindow::on_keyframeCameraButton_clicked を参照。
 
 ### 全体ざっくり
