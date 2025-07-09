@@ -169,8 +169,10 @@ void MyOpenGLWidget_camera::resizeGL(int width, int height)
         glDeleteTextures(1, &m_filmTexture);
         m_filmTexture = 0;
     }
-    delete[] m_filmBuffer;
-    m_filmBuffer = nullptr;
+
+    // !!!実行前に注意
+    //delete[] g_FilmBuffer;
+    //g_FilmBuffer = nullptr;
     doneCurrent();
 
     // 新しいサイズでテクスチャを初期化
@@ -301,7 +303,7 @@ void MyOpenGLWidget_camera::updateRayTracing()
         return;
     }
 
-    if (width <= 0 || height <= 0 || !m_filmBuffer) return;
+    if (width <= 0 || height <= 0 || !g_FilmBuffer) return;
 
     const int pixelsPerFrame = 2000;
 
@@ -315,9 +317,9 @@ void MyOpenGLWidget_camera::updateRayTracing()
         ray.prev_primitive_idx = -1;
         Eigen::Vector3d color = debug_computeNormalColor(ray);
         int index = (m_progress_j * width + m_progress_i) * 3;
-        m_filmBuffer[index + 0] = color.x();
-        m_filmBuffer[index + 1] = color.y();
-        m_filmBuffer[index + 2] = color.z();
+        g_FilmBuffer[index + 0] = color.x();
+        g_FilmBuffer[index + 1] = color.y();
+        g_FilmBuffer[index + 2] = color.z();
 
         // 次に計算するピクセルへ
         m_progress_i++;
@@ -336,7 +338,7 @@ void MyOpenGLWidget_camera::updateRayTracing()
     // テクスチャ更新と再描画
     makeCurrent();
     glBindTexture(GL_TEXTURE_2D, m_filmTexture);
-    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width, height, GL_RGB, GL_FLOAT, m_filmBuffer);
+    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width, height, GL_RGB, GL_FLOAT, g_FilmBuffer);
     glBindTexture(GL_TEXTURE_2D, 0);
     doneCurrent();
 
@@ -347,26 +349,27 @@ void MyOpenGLWidget_camera::updateRayTracing()
 
 /*-----レイトレ用---------------------------------------*/
 
+
 // ★追加: テスト用テクスチャを生成する関数の実装
 void MyOpenGLWidget_camera::initializeFilmTexture() {
     // widthとheightが0以下の場合は何もしない（エラー防止）
     if (width <= 0 || height <= 0) return;
 
     // メンバ変数のwidthとheightを使用
-    m_filmBuffer = new float[width * height * 3];
+    g_FilmBuffer = new float[width * height * 3];
     for (int j = 0; j < height; ++j) {
         for (int i = 0; i < width; ++i) {
             int index = (j * width + i) * 3;
-            m_filmBuffer[index + 0] = (float)i / (width - 1);
-            m_filmBuffer[index + 1] = (float)j / (height - 1);
-            m_filmBuffer[index + 2] = 0.5f;
+            g_FilmBuffer[index + 0] = (float)i / (width - 1);
+            g_FilmBuffer[index + 1] = (float)j / (height - 1);
+            g_FilmBuffer[index + 2] = 0.5f;
         }
     }
 
     makeCurrent();
     glGenTextures(1, &m_filmTexture);
     glBindTexture(GL_TEXTURE_2D, m_filmTexture);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_FLOAT, m_filmBuffer);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_FLOAT, g_FilmBuffer);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glBindTexture(GL_TEXTURE_2D, 0);
@@ -404,7 +407,7 @@ void MyOpenGLWidget_camera::resetRendering()
     m_progress_j = 0;
 
     // フィルムバッファをクリアして、前の画像が残らないようにする
-    if (m_filmBuffer) {
-        memset(m_filmBuffer, 0, sizeof(float) * width * height * 3);
+    if (g_FilmBuffer) {
+        memset(g_FilmBuffer, 0, sizeof(float) * width * height * 3);
     }
 }

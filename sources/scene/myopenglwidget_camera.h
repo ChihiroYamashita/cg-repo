@@ -7,6 +7,7 @@
 #include "TriMesh.h"
 #include "Light.h"
 #include "Ray.h"
+#include "film_buffer.h"
 class MyOpenGLWidget_camera :public MyOpenGLWidget {
     Q_OBJECT
 
@@ -57,11 +58,13 @@ private:
     //--------------レイトレ用---------------------------------------
      void initializeFilmTexture();
      GLuint m_filmTexture = 0; // フィルムテクスチャのID
-     float* m_filmBuffer = nullptr; // テスト用のテクスチャデータ
+     float* g_FilmBuffer = nullptr; // テスト用のテクスチャデータ
 
 
      std::vector<AreaLight> g_AreaLights;// 読み込んだオブジェクトを保持
      Object g_Obj;// シーンの光源を保持
+     FilmBuffer m_film;
+
 
      //デバッグ用
      Eigen::Vector3d debug_computeNormalColor(const Ray& ray);
