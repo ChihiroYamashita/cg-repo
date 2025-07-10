@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['keyframemanager_0',['KeyframeManager',['../class_keyframe_manager.html',1,'']]]
+  ['jpegdata_0',['JpegData',['../struct_jpeg_data.html',1,'']]]
 ];

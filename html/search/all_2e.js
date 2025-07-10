@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['インデックス_0',['インデックス',['../md__doxygen_2technical__terms.html#autotoc_md175',1,'']]]
+  ['アプデ_0',['アプデ',['../md__doxygen_2updates.html#autotoc_md220',1,'']]]
 ];

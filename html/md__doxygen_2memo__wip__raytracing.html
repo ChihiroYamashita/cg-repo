@@ -89,20 +89,20 @@ $(function(){ initResizable(false); });
 <div class="contents">
 <div class="textblock"><p>全ピクセルに対してレイを発射し、法線色をフィルムバッファに記録 <br  />
 </p>
-<p><a class="anchor" id="autotoc_md89"></a></p>
+<p><a class="anchor" id="autotoc_md107"></a></p>
 <p>このドキュメントは、MyOpenGLWidget_cameraベースで段階的にレイトレーシング機能を移植していく際の設計方針と、クラス・関数・ファイル構成を整理したものです。</p>
 <hr  />
 <hr  />
-<h1><a class="anchor" id="autotoc_md92"></a>
+<h1><a class="anchor" id="autotoc_md110"></a>
 ✅ 現在の移植状況（関数・構造体）</h1>
-<h2><a class="anchor" id="autotoc_md93"></a>
+<h2><a class="anchor" id="autotoc_md111"></a>
 🎨 表示・描画関連</h2>
 <ul>
 <li>✅ <code><a class="el" href="drawfilm_8cpp_a443204766d01c1b7114034c955991bc8.html#a443204766d01c1b7114034c955991bc8" title="フィルムバッファをスクリーンに描画する関数">drawFilm()</a></code> によるフィルム表示機能 → 完了</li>
 <li>✅ <code>paintGL()</code> → Qt側の描画呼び出しを確認・対応済み</li>
 <li>✅ <code>updateRayTracing()</code> → 全ピクセル一括更新による可視化テスト完了</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md94"></a>
+<h2><a class="anchor" id="autotoc_md112"></a>
 📡 レイ生成・交差関連</h2>
 <ul>
 <li>✅ <code>screenView()</code>（Cameraクラス）→ ピクセル座標からレイ生成済み</li>
@@ -110,14 +110,14 @@ $(function(){ initResizable(false); });
 <li>✅ <code>meshTriangleIntersect()</code> → 移植済み</li>
 <li>✅ <code>intersectTriangle()</code> → 移植済み</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md95"></a>
+<h2><a class="anchor" id="autotoc_md113"></a>
 🧭 法線・色処理</h2>
 <ul>
 <li>✅ <code>debug_computeNormalColor()</code>（法線を色で可視化） → 実装済み</li>
 <li>✅ <code><a class="el" href="_intersection_8cpp_aca412d913682c6dfd8cd4d63a50a8a21.html#aca412d913682c6dfd8cd4d63a50a8a21" title="レイと交差した点における補間された法線ベクトルを計算する関数">computeRayHitNormal()</a></code>（交差点での法線補間） → 実装済み</li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md97"></a>
+<h2><a class="anchor" id="autotoc_md115"></a>
 📦 使用構造体・クラス</h2>
 <ul>
 <li>✅ <code><a class="el" href="struct_ray.html" title="レイ（Ray）を表す構造体">Ray</a></code> → レイの定義構造体（原点、方向、交差履歴含む）</li>
@@ -128,27 +128,27 @@ $(function(){ initResizable(false); });
 </ul>
 <hr  />
 <hr  />
- <h1><a class="anchor" id="autotoc_md100"></a>
+ <h1><a class="anchor" id="autotoc_md118"></a>
 全体フロー</h1>
 <div class="plantumlgraph">
-<img src="inline_umlgraph_15.png" />
+<img src="inline_umlgraph_19.png" />
 </div>
 <hr  />
- <h1><a class="anchor" id="autotoc_md102"></a>
+ <h1><a class="anchor" id="autotoc_md120"></a>
 🔧 関数仕様と目的</h1>
-<h2><a class="anchor" id="autotoc_md103"></a>
+<h2><a class="anchor" id="autotoc_md121"></a>
 <code>MyOpenGLWidget_camera::updateRayTracing()</code></h2>
 <dl class="section see"><dt>参照</dt><dd>debug_computeNormalColor</dd></dl>
 <div class="fragment"><div class="line">Eigen::Vector3d color = debug_computeNormalColor(ray);</div>
 </div><!-- fragment --><hr  />
-<h2><a class="anchor" id="autotoc_md105"></a>
+<h2><a class="anchor" id="autotoc_md123"></a>
 <code>MyOpenGLWidget_camera::debug_computeNormalColor(const Ray&amp; ray)</code></h2>
 <p>オブジェクトとの交差点の法線を色として返す</p>
 <div class="fragment"><div class="line"><span class="keywordflow">return</span> Eigen::Vector3d(normal.x() * 0.5 + 0.5, </div>
 <div class="line">                       normal.y() * 0.5 + 0.5, </div>
 <div class="line">                       normal.z() * 0.5 + 0.5);</div>
 </div><!-- fragment --><hr  />
-<h1><a class="anchor" id="autotoc_md107"></a>
+<h1><a class="anchor" id="autotoc_md125"></a>
 🎯 UML: paintGLまわりの初期化と描画の流れ</h1>
 <p><br  />
  MyOpenGLWidget_cameraでは、initializeGL(), paintGL(), resizeGL() のみがOpenGL描画に関与しています。</p>
@@ -170,13 +170,13 @@ $(function(){ initResizable(false); });
 <div class="line">│   └──────────────┘                       │</div>
 <div class="line">└─────────────────────────────────────────┘</div>
 </div><!-- fragment --><hr  />
-<h1><a class="anchor" id="autotoc_md109"></a>
+<h1><a class="anchor" id="autotoc_md127"></a>
 🌐 PlantUML: 初期化・描画シーケンス</h1>
 <div class="plantumlgraph">
-<img src="inline_umlgraph_16.png" />
+<img src="inline_umlgraph_20.png" />
 </div>
 <hr  />
-<h1><a class="anchor" id="autotoc_md111"></a>
+<h1><a class="anchor" id="autotoc_md129"></a>
 📁 推奨ファイル構成</h1>
 <div class="fragment"><div class="line">sources/</div>
 <div class="line">│</div>
@@ -205,7 +205,7 @@ $(function(){ initResizable(false); });
 <div class="line">│</div>
 <div class="line">└── main.cpp</div>
 </div><!-- fragment --><hr  />
-<h1><a class="anchor" id="autotoc_md113"></a>
+<h1><a class="anchor" id="autotoc_md131"></a>
 📝 次のステップ</h1>
 <ul class="check">
 <li class="unchecked"><code><a class="el" href="_intersection_8cpp_aca412d913682c6dfd8cd4d63a50a8a21.html#aca412d913682c6dfd8cd4d63a50a8a21" title="レイと交差した点における補間された法線ベクトルを計算する関数">computeRayHitNormal()</a></code> の正確な法線補間を実装</li>

@@ -11,64 +11,75 @@
 \DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_tri_mesh_8h}{TriMesh.h}}"{}}}
 \DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_light_8h}{Light.h}}"{}}}
 \DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_ray_8h}{Ray.h}}"{}}}
-\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_my_open_g_l_widget__camera}{MyOpenGLWidget\_camera}}\ :\textcolor{keyword}{public}\ \mbox{\hyperlink{class_my_open_g_l_widget}{MyOpenGLWidget}}\ \{}
-\DoxyCodeLine{00011\ \ \ \ \ Q\_OBJECT}
-\DoxyCodeLine{00012\ }
-\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00014\ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_af05302e50ef2aa2f18cde38ad5720ce9_af05302e50ef2aa2f18cde38ad5720ce9}{MyOpenGLWidget\_camera}}(QWidget*\ parent\ =\ \textcolor{keyword}{nullptr});}
-\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a425691e2aa1e8a7b896a2917c3b709ae_a425691e2aa1e8a7b896a2917c3b709ae}{setCamerakeyframe}}(\textcolor{keyword}{const}\ Eigen::Vector3d\&\ eyePoint,\textcolor{keyword}{const}\ Eigen::Vector3d\&\ lookAtPoint);\textcolor{comment}{//カメラ（画面2用）}}
-\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_ad27ec1744f7fadef11cdaea16bec3a9b_ad27ec1744f7fadef11cdaea16bec3a9b}{setCameraEyePoint2}}(\textcolor{keyword}{const}\ Eigen::Vector3d\&\ eyePoint);\textcolor{comment}{//MyOpenGLWidgetの外からカメラの画角を設定する関数}}
-\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_afe22f0271739a35c7b4d3d310a206d41_afe22f0271739a35c7b4d3d310a206d41}{setlookAtPoint2}}(\textcolor{keyword}{const}\ Eigen::Vector3d\&\ lookAtPoint);}
-\DoxyCodeLine{00018\ \textcolor{keyword}{public}\ slots:}
-\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a3654dd725d10cf0ceaa8de59ae31780b_a3654dd725d10cf0ceaa8de59ae31780b}{onCameraFovChanged}}(\textcolor{keywordtype}{float}\ newFov);\ \textcolor{comment}{//\ シグナルに応答するスロット}}
-\DoxyCodeLine{00020\ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a111447932df8e1bb6eaa4f28faa9e0ea_a111447932df8e1bb6eaa4f28faa9e0ea}{initializeGL}}()\textcolor{keyword}{override};}
-\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_a97469860ecb6dfc1c784c5797854bc2f}{paintGL}}()\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_af13efb9347ccaf2911590bcc2915618c_af13efb9347ccaf2911590bcc2915618c}{resizeGL}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_my_open_g_l_widget_a0169195f42130fa0a1ed1dd607ca2fac_a0169195f42130fa0a1ed1dd607ca2fac}{width}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_my_open_g_l_widget_a82a3a515de41da7166ef55d22467cf09_a82a3a515de41da7166ef55d22467cf09}{height}})\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a58e0869417866df943d685310148d852_a58e0869417866df943d685310148d852}{mouseMoveEvent}}(QMouseEvent\ *event)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a8f746cecf910e8be53c92f91486f2d3a_a8f746cecf910e8be53c92f91486f2d3a}{mousePressEvent}}(QMouseEvent\ *event)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a531ceedd6cede2f15e3f50b0ac5dae35_a531ceedd6cede2f15e3f50b0ac5dae35}{mouseReleaseEvent}}(QMouseEvent\ *event)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a6b28b647e417a9544b475d2ad29739ec_a6b28b647e417a9544b475d2ad29739ec}{wheelEvent}}(QWheelEvent\ *event)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_ae7f3186420867e831b216476b9ef4856_ae7f3186420867e831b216476b9ef4856}{updateProjectionMatrix}}()\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{film__buffer_8h}{film\_buffer.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_my_open_g_l_widget__camera}{MyOpenGLWidget\_camera}}\ :\textcolor{keyword}{public}\ \mbox{\hyperlink{class_my_open_g_l_widget}{MyOpenGLWidget}}\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_af05302e50ef2aa2f18cde38ad5720ce9_af05302e50ef2aa2f18cde38ad5720ce9}{MyOpenGLWidget\_camera}}(QWidget*\ parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a425691e2aa1e8a7b896a2917c3b709ae_a425691e2aa1e8a7b896a2917c3b709ae}{setCamerakeyframe}}(\textcolor{keyword}{const}\ Eigen::Vector3d\&\ eyePoint,\textcolor{keyword}{const}\ Eigen::Vector3d\&\ lookAtPoint);\textcolor{comment}{//カメラ1からのいち情報をもらう関数（画面2用）}}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_ad27ec1744f7fadef11cdaea16bec3a9b_ad27ec1744f7fadef11cdaea16bec3a9b}{setCameraEyePoint2}}(\textcolor{keyword}{const}\ Eigen::Vector3d\&\ eyePoint);\textcolor{comment}{//MyOpenGLWidgetの外からカメラの画角を設定する関数}}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_afe22f0271739a35c7b4d3d310a206d41_afe22f0271739a35c7b4d3d310a206d41}{setlookAtPoint2}}(\textcolor{keyword}{const}\ Eigen::Vector3d\&\ lookAtPoint);}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}\ slots:}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a3654dd725d10cf0ceaa8de59ae31780b_a3654dd725d10cf0ceaa8de59ae31780b}{onCameraFovChanged}}(\textcolor{keywordtype}{float}\ newFov);\ \textcolor{comment}{//\ シグナルに応答するスロット}}
+\DoxyCodeLine{00021\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a111447932df8e1bb6eaa4f28faa9e0ea_a111447932df8e1bb6eaa4f28faa9e0ea}{initializeGL}}()\textcolor{keyword}{override};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_a97469860ecb6dfc1c784c5797854bc2f}{paintGL}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_af13efb9347ccaf2911590bcc2915618c_af13efb9347ccaf2911590bcc2915618c}{resizeGL}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_my_open_g_l_widget_a0169195f42130fa0a1ed1dd607ca2fac_a0169195f42130fa0a1ed1dd607ca2fac}{width}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_my_open_g_l_widget_a82a3a515de41da7166ef55d22467cf09_a82a3a515de41da7166ef55d22467cf09}{height}})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a58e0869417866df943d685310148d852_a58e0869417866df943d685310148d852}{mouseMoveEvent}}(QMouseEvent\ *event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a8f746cecf910e8be53c92f91486f2d3a_a8f746cecf910e8be53c92f91486f2d3a}{mousePressEvent}}(QMouseEvent\ *event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a531ceedd6cede2f15e3f50b0ac5dae35_a531ceedd6cede2f15e3f50b0ac5dae35}{mouseReleaseEvent}}(QMouseEvent\ *event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a6b28b647e417a9544b475d2ad29739ec_a6b28b647e417a9544b475d2ad29739ec}{wheelEvent}}(QWheelEvent\ *event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_ae7f3186420867e831b216476b9ef4856_ae7f3186420867e831b216476b9ef4856}{updateProjectionMatrix}}()\ \textcolor{keyword}{override};}
 \DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ カメラの状態を保存・設定するためのメソッド（必要に応じて実装）}}
-\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ カメラの状態を保存・設定するためのメソッド（必要に応じて実装）}}
 \DoxyCodeLine{00033\ }
 \DoxyCodeLine{00034\ }
-\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_ab290dec13bdf65078d0e5aca6e73ac03_ab290dec13bdf65078d0e5aca6e73ac03}{saveCameraState}}();}
-\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a067a62971c54314c6f0d89ea91e893d8_a067a62971c54314c6f0d89ea91e893d8}{loadCameraState}}();}
-\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//レイトレ用}}
-\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//void\ initAreaLights();}}
-\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//レイトレ用Qtimer}}
-\DoxyCodeLine{00040\ \ \ \ \ \ QTimer\ *\mbox{\hyperlink{class_my_open_g_l_widget__camera_a8dac568dc18efcad174daeccf4367a0c_a8dac568dc18efcad174daeccf4367a0c}{m\_timer}};\ \textcolor{comment}{//\ タイマーのポインタ}}
-\DoxyCodeLine{00041\ }
-\DoxyCodeLine{00042\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{class_camera}{Camera}}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_adeed8a3966668cf7ca18c2426f0a216b_adeed8a3966668cf7ca18c2426f0a216b}{g\_Camera2}};}
-\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_ac52b3c33982976400cce542a538755c5_ac52b3c33982976400cce542a538755c5}{drawCube}}();}
-\DoxyCodeLine{00045\ \ \ \ \ GLdouble\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a268de1c0655b3f1964486b9e2abdf4a3_a268de1c0655b3f1964486b9e2abdf4a3}{vertex}}[8][3];}
-\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_aaef6a00ab67f3c94ff5fc6d5645a3910_aaef6a00ab67f3c94ff5fc6d5645a3910}{face}}[6][4];}
-\DoxyCodeLine{00047\ \ \ \ \ GLdouble\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a4a3e2b37507c74dc90fd3aff5b2fefa4_a4a3e2b37507c74dc90fd3aff5b2fefa4}{color}}[6][3];}
-\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a50465cac8ace45b6d158fe330777e841_a50465cac8ace45b6d158fe330777e841}{updatedFov}};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_ab290dec13bdf65078d0e5aca6e73ac03_ab290dec13bdf65078d0e5aca6e73ac03}{saveCameraState}}();}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a067a62971c54314c6f0d89ea91e893d8_a067a62971c54314c6f0d89ea91e893d8}{loadCameraState}}();}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//レイトレ用}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//void\ initAreaLights();}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a9a97066bf19ceff0b8c45a16f1decb53_a9a97066bf19ceff0b8c45a16f1decb53}{resetRendering}}();}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//レイトレ用Qtimer}}
+\DoxyCodeLine{00042\ \ \ \ \ QTimer\ *\mbox{\hyperlink{class_my_open_g_l_widget__camera_a8dac568dc18efcad174daeccf4367a0c_a8dac568dc18efcad174daeccf4367a0c}{m\_timer}};\ \textcolor{comment}{//\ タイマーのポインタ}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ ★★★\ 追加：レンダリングの進捗と状態を管理する変数\ ★★★}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a3ec86200711f5087008a4bedfdb30b97_a3ec86200711f5087008a4bedfdb30b97}{m\_isDirty}};\ \ \ \ \ \textcolor{comment}{//\ 再レンダリングが必要かどうかのフラグ}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a19ea10625e1f5fd36faf9c595da1eb59_a19ea10625e1f5fd36faf9c595da1eb59}{m\_progress\_i}};\ \ \ \textcolor{comment}{//\ 次に計算するピクセルの横位置(i)}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_aa162062d870af2bfde6c0590f2ea4ae9_aa162062d870af2bfde6c0590f2ea4ae9}{m\_progress\_j}};\ \ \ \textcolor{comment}{//\ 次に計算するピクセルの縦位置(j)}}
 \DoxyCodeLine{00049\ }
-\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/レイトレ用-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{00051\ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_aea8492059c59fc5c9a349a147c70f34d_aea8492059c59fc5c9a349a147c70f34d}{initializeFilmTexture}}();}
-\DoxyCodeLine{00052\ \ \ \ \ \ GLuint\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a3232de492c59c779e8133feb06ad0db1_a3232de492c59c779e8133feb06ad0db1}{m\_filmTexture}}\ =\ 0;\ \textcolor{comment}{//\ フィルムテクスチャのID}}
-\DoxyCodeLine{00053\ \ \ \ \ \ \textcolor{keywordtype}{float}*\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a450ad08a4c45c92e5819323ca6fba204_a450ad08a4c45c92e5819323ca6fba204}{m\_filmBuffer}}\ =\ \textcolor{keyword}{nullptr};\ \textcolor{comment}{//\ テスト用のテクスチャデータ}}
-\DoxyCodeLine{00054\ }
-\DoxyCodeLine{00055\ }
-\DoxyCodeLine{00056\ \ \ \ \ \ std::vector<AreaLight>\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_ac73e321181a45fbfc9a3ca4c5041a473_ac73e321181a45fbfc9a3ca4c5041a473}{g\_AreaLights}};\textcolor{comment}{//\ 読み込んだオブジェクトを保持}}
-\DoxyCodeLine{00057\ \ \ \ \ \ \mbox{\hyperlink{struct_object}{Object}}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a9b3b7f4bef5859794197cb2a1e413cc3_a9b3b7f4bef5859794197cb2a1e413cc3}{g\_Obj}};\textcolor{comment}{//\ シーンの光源を保持}}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00059\ \ \ \ \ \ \textcolor{comment}{//デバッグ用}}
-\DoxyCodeLine{00060\ \ \ \ \ \ Eigen::Vector3d\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a99f7ad86efe9c9ea0c7e3b36b6768022_a99f7ad86efe9c9ea0c7e3b36b6768022}{debug\_computeNormalColor}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_ray}{Ray}}\&\ ray);}
-\DoxyCodeLine{00061\ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00050\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{class_camera}{Camera}}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_adeed8a3966668cf7ca18c2426f0a216b_adeed8a3966668cf7ca18c2426f0a216b}{g\_Camera2}};}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_ac52b3c33982976400cce542a538755c5_ac52b3c33982976400cce542a538755c5}{drawCube}}();}
+\DoxyCodeLine{00053\ \ \ \ \ GLdouble\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a268de1c0655b3f1964486b9e2abdf4a3_a268de1c0655b3f1964486b9e2abdf4a3}{vertex}}[8][3];}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_aaef6a00ab67f3c94ff5fc6d5645a3910_aaef6a00ab67f3c94ff5fc6d5645a3910}{face}}[6][4];}
+\DoxyCodeLine{00055\ \ \ \ \ GLdouble\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a4a3e2b37507c74dc90fd3aff5b2fefa4_a4a3e2b37507c74dc90fd3aff5b2fefa4}{color}}[6][3];}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a50465cac8ace45b6d158fe330777e841_a50465cac8ace45b6d158fe330777e841}{updatedFov}};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/レイトレ用-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_aea8492059c59fc5c9a349a147c70f34d_aea8492059c59fc5c9a349a147c70f34d}{initializeFilmTexture}}();}
+\DoxyCodeLine{00060\ \ \ \ \ GLuint\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a3232de492c59c779e8133feb06ad0db1_a3232de492c59c779e8133feb06ad0db1}{m\_filmTexture}}\ =\ 0;\ \textcolor{comment}{//\ フィルムテクスチャのID}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//float*\ g\_FilmBuffer\ =\ nullptr;\ //\ テスト用のテクスチャデータ}}
 \DoxyCodeLine{00062\ }
-\DoxyCodeLine{00063\ \ \ \ \ \ \textcolor{comment}{//レイトレ用スロット}}
-\DoxyCodeLine{00064\ \ \textcolor{keyword}{private}\ slots:}
-\DoxyCodeLine{00065\ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a793d75fe6991830c9cc4a54e393c870a_a793d75fe6991830c9cc4a54e393c870a}{updateRayTracing}}();\ \textcolor{comment}{//\ タイマーで呼び出すカスタムスロット}}
-\DoxyCodeLine{00066\ \};}
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MYOPENGLWIDGET\_CAMERA\_H}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \mbox{\hyperlink{class_film_buffer}{FilmBuffer}}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a05fd185e0948937785417017d71618b9_a05fd185e0948937785417017d71618b9}{m\_film}};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a180aadc11075a9056de02a195277b3bd_a180aadc11075a9056de02a195277b3bd}{createDebugPattern}}();}
+\DoxyCodeLine{00066\ \ \ \ \ std::vector<AreaLight>\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_ac73e321181a45fbfc9a3ca4c5041a473_ac73e321181a45fbfc9a3ca4c5041a473}{g\_AreaLights}};\textcolor{comment}{//\ 読み込んだオブジェクトを保持}}
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{struct_object}{Object}}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a9b3b7f4bef5859794197cb2a1e413cc3_a9b3b7f4bef5859794197cb2a1e413cc3}{g\_Obj}};\textcolor{comment}{//\ シーンの光源を保持}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{//デバッグ用}}
+\DoxyCodeLine{00071\ \ \ \ \ Eigen::Vector3d\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a99f7ad86efe9c9ea0c7e3b36b6768022_a99f7ad86efe9c9ea0c7e3b36b6768022}{debug\_computeNormalColor}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_ray}{Ray}}\&\ ray);}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//レイトレ用スロット}}
+\DoxyCodeLine{00075\ \textcolor{keyword}{private}\ slots:}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_my_open_g_l_widget__camera_a793d75fe6991830c9cc4a54e393c870a_a793d75fe6991830c9cc4a54e393c870a}{updateRayTracing}}();\ \textcolor{comment}{//\ タイマーで呼び出すカスタムスロット}}
+\DoxyCodeLine{00077\ \};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MYOPENGLWIDGET\_CAMERA\_H}}
 
 \end{DoxyCode}

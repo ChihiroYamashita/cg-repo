@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['🔧_20関数仕様と目的_0',['🔧 関数仕様と目的',['../md__doxygen_2memo__wip__raytracing.html#autotoc_md102',1,'']]]
+  ['🎯_20openglとは？_0',['🎯 OpenGLとは？',['../md__doxygen_2open_g_l__basis.html#autotoc_md133',1,'']]],
+  ['🎯_20uml_3a_20paintglまわりの初期化と描画の流れ_1',['🎯 UML: paintGLまわりの初期化と描画の流れ',['../md__doxygen_2memo__wip__raytracing.html#autotoc_md125',1,'']]]
 ];

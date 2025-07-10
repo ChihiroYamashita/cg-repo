@@ -71,6 +71,36 @@ drawFilm -> OpenGL : テクスチャをバインドし、矩形に貼り付け�
 @enduml
 @startuml inline_umlgraph_15.png
 actor User
+User -> MyOpenGLWidget_camera : paintGL()
+MyOpenGLWidget_camera -> MyOpenGLWidget_camera : updateRayTracing()
+
+loop 各ピクセル
+    MyOpenGLWidget_camera -> Camera : screenView(i, j) -> Ray
+    MyOpenGLWidget_camera -> rayTracing : 交差判定
+    MyOpenGLWidget_camera -> computeRayHitNormal : 法線取得
+    MyOpenGLWidget_camera -> debug_computeNormalColor : 色取得
+    MyOpenGLWidget_camera -> FilmBuffer : addSample(i, j, color)
+end
+
+MyOpenGLWidget_camera -> FilmBuffer : updateFilmBuffer()
+MyOpenGLWidget_camera -> OpenGL : glTexSubImage2D() による描画更新
+@enduml
+@startuml inline_umlgraph_16.png
+class FilmBuffer {
+    - int m_width, m_height
+    - vector<float> m_filmBuffer
+    - vector<float> m_accumulationBuffer
+    - vector<int>   m_countBuffer
+
+    + init(width, height)
+    + reset()
+    + addSample(i, j, color)
+    + updateFilmBuffer()
+    + getFilmBufferPtr()
+}
+@enduml
+@startuml inline_umlgraph_19.png
+actor User
 
 participant MyOpenGLWidget_camera
 participant Camera
@@ -113,7 +143,7 @@ end
 == OpenGLで描画 ==
 MyOpenGLWidget_camera -> MyOpenGLWidget_camera : update() → paintGL()
 @enduml
-@startuml inline_umlgraph_16.png
+@startuml inline_umlgraph_20.png
 actor User
 
 User -> MyOpenGLWidget_camera : 初期化 (initializeGL)
@@ -132,7 +162,7 @@ MyOpenGLWidget_camera -> drawFilm : カメラ情報とfilmテクスチャを渡�
 drawFilm -> Camera : getEyePoint(), getX/Y/ZVector(), getFocalLength() を呼び出し
 drawFilm -> OpenGL : テクスチャをバインドし、矩形に貼り付けて描画
 @enduml
-@startuml inline_umlgraph_20.png
+@startuml inline_umlgraph_24.png
 main -> Camera : screenView(in_x, in_y, out_Ray)
 Camera -> Camera : レイ生成処理を開始
 Camera -> Camera : s = (in_x - 0.5) * m_ScreenWidth \nスクリーン上のx座標(0~1)をカメラ空間の物理的な横の長さに変換
@@ -141,7 +171,41 @@ Camera -> Camera : out_Ray.o = m_EyePoint \nレイの起点（origin）をカメ
 Camera -> Camera : out_Ray.d = m_xVector * s + m_yVector * t - m_zVector * m_FocalLength \nレイの方向ベクトルを計算
 Camera -> Camera : out_Ray.d.normalize() \nレイの方向ベクトルを正規化し、単位ベクトルに変換
 @enduml
-@startuml inline_umlgraph_21.png
+@startuml add_sample_simple.png
+class FilmBuffer {
+  + void addSample(int i, int j, const Eigen::Vector3d& color)
+}
+FilmBuffer -> m_accumulationBuffer : 色を加算
+FilmBuffer -> m_countBuffer : サンプル数を+1
+@enduml
+@startuml film_buffer_init.png
+class FilmBuffer {
+  - int m_width
+  - int m_height
+  - std::vector<float> m_filmBuffer
+  - std::vector<float> m_accumulationBuffer
+  - std::vector<int> m_countBuffer
+  --
+  + void init(int width, int height)
+  + void reset()
+  + void addSample(int i, int j, const Eigen::Vector3d& color)
+  + void updateFilmBuffer()
+}
+FilmBuffer -> m_filmBuffer : resize()
+FilmBuffer -> m_accumulationBuffer : resize()
+FilmBuffer -> m_countBuffer : resize()
+@enduml
+@startuml update_film.png
+participant App as A
+participant FilmBuffer as FB
+
+A -> FB: addSample(i, j, color)（複数回）
+A -> FB: updateFilmBuffer()
+loop すべてのピクセル
+    FB -> FB: accumulationBuffer ÷ countBuffer → filmBuffer に保存
+end
+@enduml
+@startuml inline_umlgraph_25.png
 class Object {
   - List<TriMesh> meshes
 }
@@ -165,7 +229,7 @@ class Material {
 Object --> "1..* すべて参照" TriMesh
 TriMesh --> "1　マテリアル参照" Material
 @enduml
-@startuml inline_umlgraph_23.png
+@startuml inline_umlgraph_27.png
 actor User
 
 User -> MainWindow : スライダー操作などのユーザー入力
@@ -178,7 +242,7 @@ MyOpenGLWidget -> MyOpenGLWidget : 投影変換を適用（gluPerspective / glOr
 MyOpenGLWidget -> OpenGL : ビューポート変換を適用（glViewport）
 MyOpenGLWidget -> OpenGL : シーンをレンダリング
 @enduml
-@startuml inline_umlgraph_24.png
+@startuml inline_umlgraph_28.png
 actor User
 
 User -> MainWindow : スライダー操作/マウス操作\n（拡縮、回転、平行移動）
@@ -195,7 +259,7 @@ Camera -> Camera  : lookAt( QVector3D in_LookAt, QVector3D in_Up )\nカメラの
 
 MyOpenGLWidget -> OpenGL : update()\nすべての処理が終わったら画面を再描画（正確な記述は次項）
 @enduml
-@startuml inline_umlgraph_25.png
+@startuml inline_umlgraph_29.png
 actor User
 
 
@@ -207,12 +271,12 @@ MyOpenGLWidget -> MyOpenGLWidget : projection_and_modelview(g_Camera);\nカメ�
 MyOpenGLWidget -> OpenGL : glEnable(GL_DEPTH_TEST);\n深度テスト（Depth Test）を有効化\nglBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);\nアルファブレンディング（透明度の計算）\nglEnable(GL_BLEND);ブレンディングを有効化\nglEnable(GL_POINT_SMOOTH);, glEnable(GL_LINE_SMOOTH);, glEnable(GL_POLYGON_SMOOTH);\n（アンチエイリアス）を有効化\nglHint(GL_POINT_SMOOTH_HINT, GL_NICEST);\nスムージング
 MyOpenGLWidget -> drawObject :drawXYZAxes(); drawXYGrid(0.5, 50); drawcube();
 @enduml
-@startuml inline_umlgraph_26.png
+@startuml inline_umlgraph_30.png
 User -> Timeline : Add keyframe
 Timeline -> CustomScene : Insert keyframe
 CustomScene -> MainWindow : Notify keyframe added
 @enduml
-@startuml inline_umlgraph_27.png
+@startuml inline_umlgraph_31.png
  User -> MainWindow : on_fovSlider_valueChanged(int value)\n FOV sliderをいじる
  MainWindow -> MyOpenGLWidget : setCameraFov(float fov)\n カメラFOVを更新
  MyOpenGLWidget -> Camera : setFov(float cameraFov)\n 新しい FOVを設置

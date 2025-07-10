@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['なぜこの順でokか：_0',['なぜこの順でOKか：',['../md__doxygen_2coordinate__transformation1.html#autotoc_md65',1,'']]],
-  ['など_1',['glHint(GL_POINT_SMOOTH_HINT, GL_NICEST); など',['../md__doxygen_2_open_g_l__func.html#autotoc_md163',1,'']]]
+  ['ではなぜ_20tt_20paintgl_20tt_20では投影→ビューポート→視野_20の順なのか？_0',['✅ ではなぜ &lt;tt&gt;paintGL()&lt;/tt&gt; では投影→ビューポート→視野 の順なのか？',['../md__doxygen_2coordinate__transformation1.html#autotoc_md67',1,'']]],
+  ['では投影→ビューポート→視野_20の順なのか？_1',['✅ ではなぜ &lt;tt&gt;paintGL()&lt;/tt&gt; では投影→ビューポート→視野 の順なのか？',['../md__doxygen_2coordinate__transformation1.html#autotoc_md67',1,'']]]
 ];

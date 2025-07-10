@@ -1,0 +1,278 @@
+\doxysection{Film\+Buffer クラス}
+\hypertarget{class_film_buffer}{}\label{class_film_buffer}\index{FilmBuffer@{FilmBuffer}}
+
+
+{\ttfamily \#include $<$film\+\_\+buffer.\+h$>$}
+
+
+
+Film\+Buffer 連携図\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=195pt]{class_film_buffer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_film_buffer_a5b9ca0989a163aa478df51da6e14119d_a5b9ca0989a163aa478df51da6e14119d}{Film\+Buffer}} ()
+\item 
+\mbox{\hyperlink{class_film_buffer_aa175c2c6f47063649d19a1e7514a63c9_aa175c2c6f47063649d19a1e7514a63c9}{\texorpdfstring{$\sim$}{\string~}\+Film\+Buffer}} ()
+\item 
+void \mbox{\hyperlink{class_film_buffer_ab223f9d1044dc52fffc911bc4c95fc98_ab223f9d1044dc52fffc911bc4c95fc98}{init}} (int \mbox{\hyperlink{myopenglwidget_8cpp_a2474a5474cbff19523a51eb1de01cda4_a2474a5474cbff19523a51eb1de01cda4}{width}}, int \mbox{\hyperlink{myopenglwidget_8cpp_ad12fc34ce789bce6c8a05d8a17138534_ad12fc34ce789bce6c8a05d8a17138534}{height}})
+\begin{DoxyCompactList}\small\item\em フィルムバッファを指定サイズで初期化する関数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_film_buffer_add7c58f589349748d71db3ccf78f62bc_add7c58f589349748d71db3ccf78f62bc}{reset}} ()
+\item 
+void \mbox{\hyperlink{class_film_buffer_a24bfbefb4b00652f446797c3ed5d544a_a24bfbefb4b00652f446797c3ed5d544a}{add\+Sample}} (int i, int j, const Eigen\+::\+Vector3d \&color)
+\begin{DoxyCompactList}\small\item\em 指定された位置に1つの色サンプルを追加します。 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_film_buffer_a6514b00ae55e6d3cf9d329a2deae1f9c_a6514b00ae55e6d3cf9d329a2deae1f9c}{update\+Film\+Buffer}} ()
+\begin{DoxyCompactList}\small\item\em フィルムバッファに最終的な色を計算して格納する関数 \end{DoxyCompactList}\item 
+const float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_film_buffer_aa69ac45360df7c2a58e0fb10eb1eb789_aa69ac45360df7c2a58e0fb10eb1eb789}{get\+Film\+Buffer\+Ptr}} () const
+\item 
+int \mbox{\hyperlink{class_film_buffer_ad94b2670714cd586be554fd4a2c22eae_ad94b2670714cd586be554fd4a2c22eae}{get\+Width}} () const
+\item 
+int \mbox{\hyperlink{class_film_buffer_ade4a051012ae166c00fd3c72df5922d1_ade4a051012ae166c00fd3c72df5922d1}{get\+Height}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{非公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_film_buffer_adabac2eb20495627ba3f397fc93dfc80_adabac2eb20495627ba3f397fc93dfc80}{m\+\_\+width}}
+\item 
+int \mbox{\hyperlink{class_film_buffer_a2489da8cea073fff78eab9b17175134b_a2489da8cea073fff78eab9b17175134b}{m\+\_\+height}}
+\item 
+std\+::vector$<$ float $>$ \mbox{\hyperlink{class_film_buffer_ad039ea1ef012e46b2bdcb43e36d1e480_ad039ea1ef012e46b2bdcb43e36d1e480}{m\+\_\+film\+Buffer}}
+\item 
+std\+::vector$<$ float $>$ \mbox{\hyperlink{class_film_buffer_a0e3450720e8b1edb7ec797408f2305f3_a0e3450720e8b1edb7ec797408f2305f3}{m\+\_\+accumulation\+Buffer}}
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{class_film_buffer_a8fd9c44584d72157b247f135e07c17bd_a8fd9c44584d72157b247f135e07c17bd}{m\+\_\+count\+Buffer}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{構築子と解体子}
+\Hypertarget{class_film_buffer_a5b9ca0989a163aa478df51da6e14119d_a5b9ca0989a163aa478df51da6e14119d}\index{FilmBuffer@{FilmBuffer}!FilmBuffer@{FilmBuffer}}
+\index{FilmBuffer@{FilmBuffer}!FilmBuffer@{FilmBuffer}}
+\doxysubsubsection{\texorpdfstring{FilmBuffer()}{FilmBuffer()}}
+{\footnotesize\ttfamily \label{class_film_buffer_a5b9ca0989a163aa478df51da6e14119d_a5b9ca0989a163aa478df51da6e14119d} 
+Film\+Buffer\+::\+Film\+Buffer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_film_buffer_aa175c2c6f47063649d19a1e7514a63c9_aa175c2c6f47063649d19a1e7514a63c9}\index{FilmBuffer@{FilmBuffer}!````~FilmBuffer@{\texorpdfstring{$\sim$}{\string~}FilmBuffer}}
+\index{````~FilmBuffer@{\texorpdfstring{$\sim$}{\string~}FilmBuffer}!FilmBuffer@{FilmBuffer}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}FilmBuffer()}{\string~FilmBuffer()}}
+{\footnotesize\ttfamily \label{class_film_buffer_aa175c2c6f47063649d19a1e7514a63c9_aa175c2c6f47063649d19a1e7514a63c9} 
+Film\+Buffer\+::\texorpdfstring{$\sim$}{\string~}\+Film\+Buffer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{class_film_buffer_a24bfbefb4b00652f446797c3ed5d544a_a24bfbefb4b00652f446797c3ed5d544a}\index{FilmBuffer@{FilmBuffer}!addSample@{addSample}}
+\index{addSample@{addSample}!FilmBuffer@{FilmBuffer}}
+\doxysubsubsection{\texorpdfstring{addSample()}{addSample()}}
+{\footnotesize\ttfamily \label{class_film_buffer_a24bfbefb4b00652f446797c3ed5d544a_a24bfbefb4b00652f446797c3ed5d544a} 
+void Film\+Buffer\+::add\+Sample (\begin{DoxyParamCaption}\item[{int}]{i}{, }\item[{int}]{j}{, }\item[{const Eigen\+::\+Vector3d \&}]{color}{}\end{DoxyParamCaption})}
+
+
+
+指定された位置に1つの色サンプルを追加します。 
+
+ピクセルの位置 (i, j) に対して、渡された色をバッファに加えます。 追加された色は、あとで平均化されて最終画像になります。 この関数は、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}プログレッシブレンダリング\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}でよく使われる「色の積み重ね」を行う処理です。
+
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\texttt{ in}}  & {\em i} & 横方向のピクセル位置（0 ～ 幅-\/1） \\
+\hline
+\mbox{\texttt{ in}}  & {\em j} & 縦方向のピクセル位置（0 ～ 高さ-\/1） \\
+\hline
+\mbox{\texttt{ in}}  & {\em color} & 追加する色（赤、緑、青の値を持つベクトル。0.0～1.0の範囲）\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{覚え書き}
+座標が画面の外（範囲外）の場合は何もしません。
+\end{DoxyNote}
+{\bfseries{処理のステップ}}
+\begin{DoxyEnumerate}
+\item 座標 (i, j) が範囲内かチェックします。
+\item バッファ上の対応する位置を1次元インデックスに変換します。
+\item その位置に、色（\+R/\+G/\+B）をそれぞれ加算します。
+\item そのピクセルに加えたサンプル数（カウント）を1つ増やします。
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Eigen::Vector3d\ color(0.3,\ 0.6,\ 0.9);\ \ \textcolor{comment}{//\ 薄い青色}}
+\DoxyCodeLine{buffer.addSample(100,\ 50,\ color);\ \ \ \ \ \ \textcolor{comment}{//\ 画面の(100,\ 50)番目のピクセルに色を追加}}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{参照}
+\doxylink{class_film_buffer_ab223f9d1044dc52fffc911bc4c95fc98_ab223f9d1044dc52fffc911bc4c95fc98}{Film\+Buffer\+::init()} 
+
+\doxylink{class_film_buffer_a6514b00ae55e6d3cf9d329a2deae1f9c_a6514b00ae55e6d3cf9d329a2deae1f9c}{Film\+Buffer\+::update\+Film\+Buffer()} 
+
+\doxylink{class_film_buffer_add7c58f589349748d71db3ccf78f62bc_add7c58f589349748d71db3ccf78f62bc}{Film\+Buffer\+::reset()}
+\end{DoxySeeAlso}
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{add_sample_simple}}
+\end{DoxyImageNoCaption}
+ \Hypertarget{class_film_buffer_aa69ac45360df7c2a58e0fb10eb1eb789_aa69ac45360df7c2a58e0fb10eb1eb789}\index{FilmBuffer@{FilmBuffer}!getFilmBufferPtr@{getFilmBufferPtr}}
+\index{getFilmBufferPtr@{getFilmBufferPtr}!FilmBuffer@{FilmBuffer}}
+\doxysubsubsection{\texorpdfstring{getFilmBufferPtr()}{getFilmBufferPtr()}}
+{\footnotesize\ttfamily \label{class_film_buffer_aa69ac45360df7c2a58e0fb10eb1eb789_aa69ac45360df7c2a58e0fb10eb1eb789} 
+const float \texorpdfstring{$\ast$}{*} Film\+Buffer\+::get\+Film\+Buffer\+Ptr (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_film_buffer_ade4a051012ae166c00fd3c72df5922d1_ade4a051012ae166c00fd3c72df5922d1}\index{FilmBuffer@{FilmBuffer}!getHeight@{getHeight}}
+\index{getHeight@{getHeight}!FilmBuffer@{FilmBuffer}}
+\doxysubsubsection{\texorpdfstring{getHeight()}{getHeight()}}
+{\footnotesize\ttfamily \label{class_film_buffer_ade4a051012ae166c00fd3c72df5922d1_ade4a051012ae166c00fd3c72df5922d1} 
+int Film\+Buffer\+::get\+Height (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_film_buffer_ad94b2670714cd586be554fd4a2c22eae_ad94b2670714cd586be554fd4a2c22eae}\index{FilmBuffer@{FilmBuffer}!getWidth@{getWidth}}
+\index{getWidth@{getWidth}!FilmBuffer@{FilmBuffer}}
+\doxysubsubsection{\texorpdfstring{getWidth()}{getWidth()}}
+{\footnotesize\ttfamily \label{class_film_buffer_ad94b2670714cd586be554fd4a2c22eae_ad94b2670714cd586be554fd4a2c22eae} 
+int Film\+Buffer\+::get\+Width (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_film_buffer_ab223f9d1044dc52fffc911bc4c95fc98_ab223f9d1044dc52fffc911bc4c95fc98}\index{FilmBuffer@{FilmBuffer}!init@{init}}
+\index{init@{init}!FilmBuffer@{FilmBuffer}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{class_film_buffer_ab223f9d1044dc52fffc911bc4c95fc98_ab223f9d1044dc52fffc911bc4c95fc98} 
+void Film\+Buffer\+::init (\begin{DoxyParamCaption}\item[{int}]{width}{, }\item[{int}]{height}{}\end{DoxyParamCaption})}
+
+
+
+フィルムバッファを指定サイズで初期化する関数 
+
+復習 \doxylink{md__doxygen_2technical__terms_about_buffer}{バッファとは} を参照してください。 この関数は、フィルムバッファ（平均色）、アキュムレーションバッファ（積算値）、カウントバッファ（サンプル数）を 与えられた解像度でリサイズし、すべての要素を初期値（0）でクリアします。
+
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\texttt{ in}}  & {\em width} & フィルムの横幅（ピクセル単位） \\
+\hline
+\mbox{\texttt{ in}}  & {\em height} & フィルムの縦幅（ピクセル単位）\\
+\hline
+\end{DoxyParams}
+{\bfseries{処理の流れ}}\+:\hypertarget{class_film_buffer_ab223f9d1044dc52fffc911bc4c95fc98_autotoc_md21}{}\doxysubsubsubsubsection{\texorpdfstring{1. メンバ変数の設定}{1. メンバ変数の設定}}\label{class_film_buffer_ab223f9d1044dc52fffc911bc4c95fc98_autotoc_md21}
+
+\begin{DoxyItemize}
+\item 与えられた width, height をクラスのメンバに格納します。
+\end{DoxyItemize}\hypertarget{class_film_buffer_ab223f9d1044dc52fffc911bc4c95fc98_autotoc_md22}{}\doxysubsubsubsubsection{\texorpdfstring{2. バッファの初期化}{2. バッファの初期化}}\label{class_film_buffer_ab223f9d1044dc52fffc911bc4c95fc98_autotoc_md22}
+
+\begin{DoxyItemize}
+\item {\ttfamily std\+::vector\+::resize()} を使って、各バッファを動的にリサイズし、初期値で埋めます。
+\begin{DoxyItemize}
+\item {\ttfamily m\+\_\+film\+Buffer}\+: 平均色を格納（float × 3 チャンネル）
+\item {\ttfamily m\+\_\+accumulation\+Buffer}\+: サンプルの積算値を格納（float × 3）
+\item {\ttfamily m\+\_\+count\+Buffer}\+: サンプル数（int）を格納
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{class_film_buffer}{FilmBuffer}}\ buffer;}
+\DoxyCodeLine{buffer.\mbox{\hyperlink{class_film_buffer_ab223f9d1044dc52fffc911bc4c95fc98_ab223f9d1044dc52fffc911bc4c95fc98}{init}}(800,\ 600);\ \textcolor{comment}{//\ 800x600のバッファを準備}}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{参照}
+\doxylink{class_film_buffer_add7c58f589349748d71db3ccf78f62bc_add7c58f589349748d71db3ccf78f62bc}{Film\+Buffer\+::reset()} 
+
+\doxylink{class_film_buffer_a24bfbefb4b00652f446797c3ed5d544a_a24bfbefb4b00652f446797c3ed5d544a}{Film\+Buffer\+::add\+Sample()} 
+
+\doxylink{class_film_buffer_a6514b00ae55e6d3cf9d329a2deae1f9c_a6514b00ae55e6d3cf9d329a2deae1f9c}{Film\+Buffer\+::update\+Film\+Buffer()}
+\end{DoxySeeAlso}
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{film_buffer_init}}
+\end{DoxyImageNoCaption}
+ \Hypertarget{class_film_buffer_add7c58f589349748d71db3ccf78f62bc_add7c58f589349748d71db3ccf78f62bc}\index{FilmBuffer@{FilmBuffer}!reset@{reset}}
+\index{reset@{reset}!FilmBuffer@{FilmBuffer}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{class_film_buffer_add7c58f589349748d71db3ccf78f62bc_add7c58f589349748d71db3ccf78f62bc} 
+void Film\+Buffer\+::reset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_film_buffer_a6514b00ae55e6d3cf9d329a2deae1f9c_a6514b00ae55e6d3cf9d329a2deae1f9c}\index{FilmBuffer@{FilmBuffer}!updateFilmBuffer@{updateFilmBuffer}}
+\index{updateFilmBuffer@{updateFilmBuffer}!FilmBuffer@{FilmBuffer}}
+\doxysubsubsection{\texorpdfstring{updateFilmBuffer()}{updateFilmBuffer()}}
+{\footnotesize\ttfamily \label{class_film_buffer_a6514b00ae55e6d3cf9d329a2deae1f9c_a6514b00ae55e6d3cf9d329a2deae1f9c} 
+void Film\+Buffer\+::update\+Film\+Buffer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+フィルムバッファに最終的な色を計算して格納する関数 
+
+この関数は、ピクセルごとにサンプルされた色の合計（積算バッファ）を、 サンプル数（カウントバッファ）で割ることで平均色を求め、最終的な画像（フィルムバッファ）に格納します。
+
+この処理は、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}プログレッシブレンダリング\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}において、各ピクセルに対して複数サンプルを取った後に 色の平均を出すために必要です。
+
+\begin{DoxyNote}{覚え書き}
+Open\+GLへの転送処理は行いません。バッファ更新のみを行います。
+\end{DoxyNote}
+{\bfseries{処理の流れ}}\+:\hypertarget{class_film_buffer_a6514b00ae55e6d3cf9d329a2deae1f9c_autotoc_md23}{}\doxysubsubsubsubsection{\texorpdfstring{1. 各ピクセルに対して繰り返す}{1. 各ピクセルに対して繰り返す}}\label{class_film_buffer_a6514b00ae55e6d3cf9d329a2deae1f9c_autotoc_md23}
+
+\begin{DoxyItemize}
+\item 蓄積された\+RGB値（{\ttfamily m\+\_\+accumulation\+Buffer}）をサンプル数（{\ttfamily m\+\_\+count\+Buffer}）で割り、 フィルムバッファ（{\ttfamily m\+\_\+film\+Buffer}）に平均色を保存します。
+\item サンプル数が0の場合は、そのピクセルは黒 (0,0,0) に初期化されます。
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ サンプル追加後に平均色を計算}}
+\DoxyCodeLine{buffer.updateFilmBuffer();}
+
+\end{DoxyCode}
+\hypertarget{class_film_buffer_a6514b00ae55e6d3cf9d329a2deae1f9c_autotoc_md24}{}\doxysubsubsubsubsection{\texorpdfstring{2. シーケンス図（処理の全体の流れ）}{2. シーケンス図（処理の全体の流れ）}}\label{class_film_buffer_a6514b00ae55e6d3cf9d329a2deae1f9c_autotoc_md24}
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{update_film}}
+\end{DoxyImageNoCaption}
+
+
+\begin{DoxySeeAlso}{参照}
+\doxylink{class_film_buffer_a24bfbefb4b00652f446797c3ed5d544a_a24bfbefb4b00652f446797c3ed5d544a}{Film\+Buffer\+::add\+Sample()} 
+
+\doxylink{class_film_buffer_ab223f9d1044dc52fffc911bc4c95fc98_ab223f9d1044dc52fffc911bc4c95fc98}{Film\+Buffer\+::init()} 
+
+\doxylink{class_film_buffer_aa69ac45360df7c2a58e0fb10eb1eb789_aa69ac45360df7c2a58e0fb10eb1eb789}{Film\+Buffer\+::get\+Film\+Buffer\+Ptr()} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{メンバ詳解}
+\Hypertarget{class_film_buffer_a0e3450720e8b1edb7ec797408f2305f3_a0e3450720e8b1edb7ec797408f2305f3}\index{FilmBuffer@{FilmBuffer}!m\_accumulationBuffer@{m\_accumulationBuffer}}
+\index{m\_accumulationBuffer@{m\_accumulationBuffer}!FilmBuffer@{FilmBuffer}}
+\doxysubsubsection{\texorpdfstring{m\_accumulationBuffer}{m\_accumulationBuffer}}
+{\footnotesize\ttfamily \label{class_film_buffer_a0e3450720e8b1edb7ec797408f2305f3_a0e3450720e8b1edb7ec797408f2305f3} 
+std\+::vector$<$float$>$ Film\+Buffer\+::m\+\_\+accumulation\+Buffer\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_film_buffer_a8fd9c44584d72157b247f135e07c17bd_a8fd9c44584d72157b247f135e07c17bd}\index{FilmBuffer@{FilmBuffer}!m\_countBuffer@{m\_countBuffer}}
+\index{m\_countBuffer@{m\_countBuffer}!FilmBuffer@{FilmBuffer}}
+\doxysubsubsection{\texorpdfstring{m\_countBuffer}{m\_countBuffer}}
+{\footnotesize\ttfamily \label{class_film_buffer_a8fd9c44584d72157b247f135e07c17bd_a8fd9c44584d72157b247f135e07c17bd} 
+std\+::vector$<$int$>$ Film\+Buffer\+::m\+\_\+count\+Buffer\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_film_buffer_ad039ea1ef012e46b2bdcb43e36d1e480_ad039ea1ef012e46b2bdcb43e36d1e480}\index{FilmBuffer@{FilmBuffer}!m\_filmBuffer@{m\_filmBuffer}}
+\index{m\_filmBuffer@{m\_filmBuffer}!FilmBuffer@{FilmBuffer}}
+\doxysubsubsection{\texorpdfstring{m\_filmBuffer}{m\_filmBuffer}}
+{\footnotesize\ttfamily \label{class_film_buffer_ad039ea1ef012e46b2bdcb43e36d1e480_ad039ea1ef012e46b2bdcb43e36d1e480} 
+std\+::vector$<$float$>$ Film\+Buffer\+::m\+\_\+film\+Buffer\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_film_buffer_a2489da8cea073fff78eab9b17175134b_a2489da8cea073fff78eab9b17175134b}\index{FilmBuffer@{FilmBuffer}!m\_height@{m\_height}}
+\index{m\_height@{m\_height}!FilmBuffer@{FilmBuffer}}
+\doxysubsubsection{\texorpdfstring{m\_height}{m\_height}}
+{\footnotesize\ttfamily \label{class_film_buffer_a2489da8cea073fff78eab9b17175134b_a2489da8cea073fff78eab9b17175134b} 
+int Film\+Buffer\+::m\+\_\+height\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_film_buffer_adabac2eb20495627ba3f397fc93dfc80_adabac2eb20495627ba3f397fc93dfc80}\index{FilmBuffer@{FilmBuffer}!m\_width@{m\_width}}
+\index{m\_width@{m\_width}!FilmBuffer@{FilmBuffer}}
+\doxysubsubsection{\texorpdfstring{m\_width}{m\_width}}
+{\footnotesize\ttfamily \label{class_film_buffer_adabac2eb20495627ba3f397fc93dfc80_adabac2eb20495627ba3f397fc93dfc80} 
+int Film\+Buffer\+::m\+\_\+width\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+sources/pass\+\_\+tracing/film/\mbox{\hyperlink{film__buffer_8h}{film\+\_\+buffer.\+h}}\item 
+sources/pass\+\_\+tracing/film/\mbox{\hyperlink{film__buffer_8cpp}{film\+\_\+buffer.\+cpp}}\end{DoxyCompactItemize}

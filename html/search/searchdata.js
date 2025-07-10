@@ -1,13 +1,13 @@
 var indexSectionsWithContent =
 {
-  0: "12345_abcdefghijklmopqrstuvwxyz~→①②③✅✳おさでなのはよアイオカキコシステバビフプポメモリレ主今使全具再処初各図実対座引役投推描普概次法注現用移結行表裏補視解関）🌐🎨🎯📁📌📝📡📦🔁🔧🔵🔹🗺🧭🧱",
-  1: "acijkmortv",
+  0: "12345_abcdefghijklmopqrstuvwxyz~→①②③✅✨✳おさでなのはよアイオカキクコシステバビフプポメモリレ主今使例備全具再処初動各図実対座引役投推描普更概次法注現用移結行表裏補視解関）🌐🌟🎨🎯💡📁📂📌📝📡📦🔁🔄🔍🔧🔵🔹🖥🗺🧠🧭🧱",
+  1: "acfijkmortv",
   2: "u",
   3: "acdfgijklmorstu移",
   4: "_acdefgijklmoprstuwz~",
   5: "_abcdefghiklmopstuvwxyz",
   6: "_e",
-  7: "dfhlmoptuシレ全座用"
+  7: "dfhlmoptuシプレ全座用🌟"
 };
 
 var indexSectionNames =

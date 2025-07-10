@@ -1,0 +1,68 @@
+\chapter{🌟 プログレッシブ・レンダリング仕様メモ}
+\hypertarget{md__doxygen_2memo__progressive__rendering}{}\label{md__doxygen_2memo__progressive__rendering}\index{🌟 プログレッシブ・レンダリング仕様メモ@{🌟 プログレッシブ・レンダリング仕様メモ}}
+\label{md__doxygen_2memo__progressive__rendering_autotoc_md93}%
+\Hypertarget{md__doxygen_2memo__progressive__rendering_autotoc_md93}%
+\hypertarget{md__doxygen_2memo__progressive__rendering_autotoc_md94}{}\doxysection{\texorpdfstring{📌 概要}{📌 概要}}\label{md__doxygen_2memo__progressive__rendering_autotoc_md94}
+本プロジェクトでは、レイトレーシングによる可視化に対して「\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}プログレッシブ・レンダリング\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}」を導入しました。 これは、各ピクセルに対して複数回のサンプルを蓄積することにより、時間と共に画質を向上させる手法です。
+
+\DoxyHorRuler{0}
+\hypertarget{md__doxygen_2memo__progressive__rendering_autotoc_md96}{}\doxysection{\texorpdfstring{✅ 現在の対応内容}{✅ 現在の対応内容}}\label{md__doxygen_2memo__progressive__rendering_autotoc_md96}
+
+\begin{DoxyItemize}
+\item ✅ {\ttfamily \doxylink{class_film_buffer_a24bfbefb4b00652f446797c3ed5d544a_a24bfbefb4b00652f446797c3ed5d544a}{Film\+Buffer\+::add\+Sample()}} によるピクセルごとの色蓄積処理の導入
+\item ✅ {\ttfamily \doxylink{class_film_buffer_a6514b00ae55e6d3cf9d329a2deae1f9c_a6514b00ae55e6d3cf9d329a2deae1f9c}{Film\+Buffer\+::update\+Film\+Buffer()}} による平均色の更新処理の導入
+\item ✅ {\ttfamily std\+::vector} による蓄積バッファ（{\ttfamily m\+\_\+accumulation\+Buffer}）とカウントバッファ（{\ttfamily m\+\_\+count\+Buffer}）の導入
+\item ✅ {\ttfamily get\+Film\+Buffer\+Ptr()} を用いた {\ttfamily Open\+GL} へのバッファ転送対応
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__doxygen_2memo__progressive__rendering_autotoc_md98}{}\doxysection{\texorpdfstring{📂 関連ファイル}{📂 関連ファイル}}\label{md__doxygen_2memo__progressive__rendering_autotoc_md98}
+
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{film__buffer_8h}{film\+\_\+buffer.\+h} / .cpp}\+: プログレッシブ蓄積処理の本体クラス
+\item {\ttfamily \doxylink{myopenglwidget__camera_8cpp}{myopenglwidget\+\_\+camera.\+cpp}}\+: {\ttfamily update\+Ray\+Tracing()} によって {\ttfamily add\+Sample()} を呼び出し、{\ttfamily update\+Film\+Buffer()} で色を平均化して描画
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__doxygen_2memo__progressive__rendering_autotoc_md100}{}\doxysection{\texorpdfstring{🧠 動作の流れ}{🧠 動作の流れ}}\label{md__doxygen_2memo__progressive__rendering_autotoc_md100}
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_17}}
+\end{DoxyImageNoCaption}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__doxygen_2memo__progressive__rendering_autotoc_md102}{}\doxysection{\texorpdfstring{🧱 クラス構成（簡易）}{🧱 クラス構成（簡易）}}\label{md__doxygen_2memo__progressive__rendering_autotoc_md102}
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_18}}
+\end{DoxyImageNoCaption}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__doxygen_2memo__progressive__rendering_autotoc_md104}{}\doxysection{\texorpdfstring{🔄 更新すべき関数（ステップ案）}{🔄 更新すべき関数（ステップ案）}}\label{md__doxygen_2memo__progressive__rendering_autotoc_md104}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ ステップ   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 関数名   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 内容    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ ステップ   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 関数名   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 内容    }\\\cline{1-3}
+\endhead
+1   &{\ttfamily add\+Sample()}   &ピクセルごとに色を加算（合計）    \\\cline{1-3}
+2   &{\ttfamily update\+Film\+Buffer()}   &サンプル数で割って平均色に変換    \\\cline{1-3}
+3   &{\ttfamily get\+Film\+Buffer\+Ptr()}   &Open\+GL描画用にバッファを取得    \\\cline{1-3}
+4   &{\ttfamily reset()}   &描画開始時にバッファ初期化（任意）   \\\cline{1-3}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__doxygen_2memo__progressive__rendering_autotoc_md106}{}\doxysection{\texorpdfstring{🔍 備考}{🔍 備考}}\label{md__doxygen_2memo__progressive__rendering_autotoc_md106}
+
+\begin{DoxyItemize}
+\item 各ピクセルのサンプル数が異なるため、{\ttfamily count\+Buffer} により平均計算を適切に行う。
+\item {\ttfamily float} による色バッファの扱いにより、任意精度のサンプリングが可能。
+\item サンプル数を変数で制御すれば、将来的に「適応的サンプリング」にも応用可能。 
+\end{DoxyItemize}

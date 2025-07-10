@@ -87,9 +87,9 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title">用語集</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md173"></a></p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md191"></a></p>
 <p><a class="anchor" id="barycentric_coordinates"></a></p>
-<h2><a class="anchor" id="autotoc_md174"></a>
+<h2><a class="anchor" id="autotoc_md192"></a>
 バリュートリック座標（Barycentric Coordinates）</h2>
 <p>三角形の内部の点を表現するための座標系です。三角形の3つの頂点と、それに対する重み付けによって、任意の点の位置を表すことができます。</p>
 <p>簡単な概念だから大丈夫</p>
@@ -97,7 +97,7 @@ $(function(){ initResizable(false); });
 <p>&zwj;<a href="https://zellij.hatenablog.com/entry/20131207/p1">https://zellij.hatenablog.com/entry/20131207/p1</a> </p>
 </blockquote>
 <p><a class="anchor" id="about_index"></a></p>
-<h2><a class="anchor" id="autotoc_md175"></a>
+<h2><a class="anchor" id="autotoc_md193"></a>
 インデックス</h2>
 <p>**インデックス**とは、配列やリストの**要素の位置を示す番号**です。 多くの言語で **0から始まります**。</p>
 <p>例：</p>
@@ -106,17 +106,17 @@ $(function(){ initResizable(false); });
 </div><!-- fragment --><p>こちらが「プリミティブ（primitive）」に関する簡潔でわかりやすい説明です。Markdown 用にそのまま貼れます：</p>
 <hr  />
 <p> <a class="anchor" id="about_primitive"></a></p>
-<h2><a class="anchor" id="autotoc_md177"></a>
+<h2><a class="anchor" id="autotoc_md195"></a>
 プリミティブとは</h2>
 <p>**プリミティブ（primitive）**は、**基本的な構成要素**を意味します。 文脈によって意味が異なりますが、共通して「もっとも小さく単純な単位」を指します。</p>
 <hr  />
-<h3><a class="anchor" id="autotoc_md179"></a>
+<h3><a class="anchor" id="autotoc_md197"></a>
 🔹 プログラミングでの意味</h3>
 <ul>
 <li><b>プリミティブ型（基本データ型）</b> 言語に最初から備わっている基本の型 例：<code>int</code>（整数）、<code>float</code>（小数）、<code>char</code>（文字）、<code>bool</code>（真偽値）など</li>
 </ul>
 <hr  />
-<h3><a class="anchor" id="autotoc_md181"></a>
+<h3><a class="anchor" id="autotoc_md199"></a>
 🔹 CGや3Dでの意味</h3>
 <p><b>CGや3Dにおける「プリミティブ」とは、基本的な図形や構造のこと。</b></p>
 <ul>
@@ -130,19 +130,79 @@ $(function(){ initResizable(false); });
 <li>四角形（Quad）</li>
 <li>球、立方体、円柱 など（3Dモデリングでの「基本形」） </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md182"></a>
+<h2><a class="anchor" id="autotoc_md200"></a>
 🔹 用途</h2>
 <ul>
 <li>モデルの構成要素（例：三角形の集合でポリゴンモデルを作る）</li>
 <li>レンダリング単位（例：三角形単位で描画される） </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md183"></a>
+<h1><a class="anchor" id="autotoc_md201"></a>
 * シェーダー処理の単位（例：1つのプリミティブに対して頂点シェーダーが走る）</h1>
-<h3><a class="anchor" id="autotoc_md184"></a>
+<h3><a class="anchor" id="autotoc_md202"></a>
 ✅ ポイント</h3>
 <p>プリミティブは「最小単位」。 大きくて複雑なものを作る土台になります。</p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md186"></a>
+<p><a class="anchor" id="about_buffer"></a></p>
+<h1><a class="anchor" id="autotoc_md204"></a>
+✅ バッファとは？</h1>
+<blockquote class="doxtable">
+<p>&zwj;<b>「一時的にデータをためておく場所」</b> のことです。 </p>
+</blockquote>
+<p>コンピュータで何かを「すぐに処理できない」「時間がかかる」「まとめて処理したい」というときに、**いったんデータをためる**ための箱や倉庫のようなものです。</p>
+<hr  />
+<h1><a class="anchor" id="autotoc_md206"></a>
+🖥️ 例2：画像を描画するレイトレーシング</h1>
+<p>今あなたのコードでやっていることは、次のような流れです：</p>
+<ol type="1">
+<li>ピクセルごとにサンプルをたくさん取って（ノイズを減らすため）</li>
+<li>各サンプルの色を合計して（アキュムレーションバッファ）</li>
+<li>サンプル数で割って平均して（カウントバッファ）</li>
+<li>最終的な色を画面に表示（フィルムバッファ）</li>
+</ol>
+<hr  />
+<h1><a class="anchor" id="autotoc_md208"></a>
+🔁 各バッファの役割（もう一度、バッファ視点で）</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">バッファ名   </th><th class="markdownTableHeadNone">意味と目的    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">フィルムバッファ   </td><td class="markdownTableBodyNone">**最終結果を保存**：平均された画像（RGB）の最終版を格納    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">アキュムレーションバッファ   </td><td class="markdownTableBodyNone">**一時的な色の合計**をためておく：サンプルを全部足し算してる箱    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">カウントバッファ   </td><td class="markdownTableBodyNone">**何回サンプリングしたか**を保存する：割り算で平均を出すために必要   </td></tr>
+</table>
+<hr  />
+<h1><a class="anchor" id="autotoc_md210"></a>
+💡 なぜこんなに分けてるの？</h1>
+<p>1回だけレイを飛ばした色では **ノイズが多すぎる**からです。</p>
+<p>何回も飛ばして平均を取ることで、滑らかできれいな画像になります。だから：</p>
+<ul>
+<li><b>何回飛ばしたか覚える（カウントバッファ）</b></li>
+<li><b>色を合計する（アキュムレーションバッファ）</b></li>
+<li><b>あとで平均して表示する（フィルムバッファ）</b></li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md212"></a>
+✨イメージ図</h1>
+<div class="fragment"><div class="line">┌──────────────┐</div>
+<div class="line">│  レイを飛ばす   │</div>
+<div class="line">└────┬───────┘</div>
+<div class="line">     ↓（何回も繰り返す）</div>
+<div class="line"> </div>
+<div class="line">┌──────────────┐</div>
+<div class="line">│ アキュムレーション │ ← RGBの合計</div>
+<div class="line">└────┬───────┘</div>
+<div class="line">     ↓</div>
+<div class="line">┌──────────────┐</div>
+<div class="line">│ カウントバッファ  │ ← サンプル数</div>
+<div class="line">└────┬───────┘</div>
+<div class="line">     ↓</div>
+<div class="line">┌──────────────┐</div>
+<div class="line">│ フィルムバッファ  │ ← 平均して表示</div>
+<div class="line">└──────────────┘</div>
+</div><!-- fragment --><hr  />
+<h2><a class="anchor" id="autotoc_md214"></a>
 ①モデリング変換</h2>
 <p>void <a class="el" href="draw_object_8cpp_ab127d7c13829e0bdce3fc756fc122786.html#ab127d7c13829e0bdce3fc756fc122786">drawcube()</a>で行う。</p>
 <blockquote class="doxtable">
@@ -156,12 +216,12 @@ $(function(){ initResizable(false); });
 <div class="line"> </div>
 <div class="line">// 3. オブジェクトのサイズを倍に拡大する</div>
 <div class="line">glScalef(2.0f, 2.0f, 2.0f);</div>
-</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md187"></a>
+</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md215"></a>
 ②視野変換</h2>
 <blockquote class="doxtable">
 <p>&zwj;モデリング変換が行われた段階では，世界(ワールド座標系)の中心を基準としてモデルが描かれるが，これを投影する前に，カメラを原点としてレンズの傾きなどカメラから見える状態の座標系に変換する．これが視野変換である． 本来なら視野変換もアフィン変換同様行列演算で行うが，OpenGL 1.x系ではこの部分はgluLookAt()を使いカメラの位置を指定することで，自動的に行われる． </p>
 </blockquote>
-<h2><a class="anchor" id="autotoc_md188"></a>
+<h2><a class="anchor" id="autotoc_md216"></a>
 ③投影変換</h2>
 <p><a class="el" href="class_my_open_g_l_widget_a481e6f37c00892b3ab5afefdf22715c4.html#a481e6f37c00892b3ab5afefdf22715c4">MyOpenGLWidget::updateProjectionMatrix()</a>内で行う。  投影変換とは </p><blockquote class="doxtable">
 <p>&zwj;- 視野変換で得られた「カメラを原点とした座標系で表現された世界(これはまだ3次元)」を2次元に落とし込む変換である．いわゆる <b>「パース図を描く」</b> 作業に相当する <br  />
@@ -169,9 +229,9 @@ $(function(){ initResizable(false); });
  この投影変換も，本質的には行列演算で行われる． </p>
 </blockquote>
 <p>このため、OpenGL内ではただglOrtho()かgluPerspective()を設定すればOK ここで初期設定されたwidth、height,orthoモードなどの情報を参考にモデルビュー行列を計算してGPUに送信する。</p>
-<h1><a class="anchor" id="autotoc_md189"></a>
+<h1><a class="anchor" id="autotoc_md217"></a>
 おもろい話</h1>
-<h2><a class="anchor" id="autotoc_md190"></a>
+<h2><a class="anchor" id="autotoc_md218"></a>
 OpenGLでは①モデリング変換と②視野変換のモードを区別しない</h2>
 <p>両方glMatrixMode(GL_MODELVIEW);モードを使う　なんでかはなんとな～く </p>
 </div></div><!-- contents -->

@@ -91,8 +91,8 @@ Eigen\+::\+Vector3d compute\+Ray\+Hit\+Normal (\begin{DoxyParamCaption}\item[{co
 \begin{DoxyReturn}{戻り値}
 Eigen\+::\+Vector3d 補間された交差点での法線ベクトル（単位ベクトル）
 \end{DoxyReturn}
-\hypertarget{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md21}{}\doxysubsubsubsection{\texorpdfstring{処理の流れ}{処理の流れ}}\label{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md21}
-\hypertarget{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md22}{}\doxysubsubsubsubsection{\texorpdfstring{1. 対象三角形の頂点インデックスを取得}{1. 対象三角形の頂点インデックスを取得}}\label{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md22}
+\hypertarget{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md25}{}\doxysubsubsubsection{\texorpdfstring{処理の流れ}{処理の流れ}}\label{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md25}
+\hypertarget{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md26}{}\doxysubsubsubsubsection{\texorpdfstring{1. 対象三角形の頂点インデックスを取得}{1. 対象三角形の頂点インデックスを取得}}\label{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md26}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ v1\_idx\ =\ in\_Object.meshes\ ;}
@@ -100,7 +100,7 @@ Eigen\+::\+Vector3d 補間された交差点での法線ベクトル（単位ベ
 \DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ v3\_idx\ =\ in\_Object.meshes\ ;}
 
 \end{DoxyCode}
-\hypertarget{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md23}{}\doxysubsubsubsubsection{\texorpdfstring{2. 各頂点の法線ベクトルを取得}{2. 各頂点の法線ベクトルを取得}}\label{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md23}
+\hypertarget{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md27}{}\doxysubsubsubsubsection{\texorpdfstring{2. 各頂点の法線ベクトルを取得}{2. 各頂点の法線ベクトルを取得}}\label{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md27}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\textcolor{keyword}{const}\ Eigen::Vector3d\ n1\ =\ in\_Object.meshes[in\_Hit.mesh\_idx].vertex\_normals[v1\_idx];}
@@ -108,7 +108,7 @@ Eigen\+::\+Vector3d 補間された交差点での法線ベクトル（単位ベ
 \DoxyCodeLine{\textcolor{keyword}{const}\ Eigen::Vector3d\ n3\ =\ in\_Object.meshes[in\_Hit.mesh\_idx].vertex\_normals[v3\_idx];}
 
 \end{DoxyCode}
-\hypertarget{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md24}{}\doxysubsubsubsubsection{\texorpdfstring{3. バリュートリック補間を用いて交差点での法線を計算}{3. バリュートリック補間を用いて交差点での法線を計算}}\label{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md24}
+\hypertarget{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md28}{}\doxysubsubsubsubsection{\texorpdfstring{3. バリュートリック補間を用いて交差点での法線を計算}{3. バリュートリック補間を用いて交差点での法線を計算}}\label{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md28}
 \[
 n = \alpha n_1 + \beta n_2 + \gamma n_3 \quad (\gamma = 1 - \alpha - \beta)
 \] 
@@ -118,13 +118,13 @@ n = \alpha n_1 + \beta n_2 + \gamma n_3 \quad (\gamma = 1 - \alpha - \beta)
 \DoxyCodeLine{n.normalize();}
 
 \end{DoxyCode}
-\hypertarget{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md25}{}\doxysubsubsubsubsection{\texorpdfstring{4. 裏面からの交差であれば法線を反転}{4. 裏面からの交差であれば法線を反転}}\label{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md25}
+\hypertarget{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md29}{}\doxysubsubsubsubsection{\texorpdfstring{4. 裏面からの交差であれば法線を反転}{4. 裏面からの交差であれば法線を反転}}\label{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md29}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\textcolor{keywordflow}{if}\ (!in\_Hit.isFront)\ n\ =\ -\/n;}
 
 \end{DoxyCode}
-\hypertarget{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md26}{}\doxysubsubsubsubsection{\texorpdfstring{5. 結果を返却}{5. 結果を返却}}\label{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md26}
+\hypertarget{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md30}{}\doxysubsubsubsubsection{\texorpdfstring{5. 結果を返却}{5. 結果を返却}}\label{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_autotoc_md30}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\textcolor{keywordflow}{return}\ n;}

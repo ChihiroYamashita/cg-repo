@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['おもろい話_0',['おもろい話',['../md__doxygen_2about__convertions.html#autotoc_md58',1,'おもろい話'],['../md__doxygen_2technical__terms.html#autotoc_md189',1,'おもろい話']]]
+  ['✳️_20さらに学びたい方向け_0',['✳️ さらに学びたい方向け',['../md__doxygen_2open_g_l__basis.html#autotoc_md152',1,'']]]
 ];

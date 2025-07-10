@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['ではなぜ_20tt_20paintgl_20tt_20では投影→ビューポート→視野_20の順なのか？_0',['✅ ではなぜ &lt;tt&gt;paintGL()&lt;/tt&gt; では投影→ビューポート→視野 の順なのか？',['../md__doxygen_2coordinate__transformation1.html#autotoc_md63',1,'']]],
-  ['では投影→ビューポート→視野_20の順なのか？_1',['✅ ではなぜ &lt;tt&gt;paintGL()&lt;/tt&gt; では投影→ビューポート→視野 の順なのか？',['../md__doxygen_2coordinate__transformation1.html#autotoc_md63',1,'']]]
+  ['さらに学びたい方向け_0',['✳️ さらに学びたい方向け',['../md__doxygen_2open_g_l__basis.html#autotoc_md152',1,'']]]
 ];

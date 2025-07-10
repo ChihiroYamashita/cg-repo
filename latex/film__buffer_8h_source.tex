@@ -2,6 +2,48 @@
 \hypertarget{film__buffer_8h_source}{}\label{film__buffer_8h_source}\index{sources/pass\_tracing/film/film\_buffer.h@{sources/pass\_tracing/film/film\_buffer.h}}
 \mbox{\hyperlink{film__buffer_8h}{\mbox{[}詳解\mbox{]}}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ FILM\_BUFFER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ FILM\_BUFFER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Eigen/Dense>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}\ \textcolor{comment}{//\ ポインタの代わりにvectorを使うとメモリ管理が楽になります}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_film_buffer}{FilmBuffer}}\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{comment}{//\ コンストラクタ・デストラクタ}}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{class_film_buffer_a5b9ca0989a163aa478df51da6e14119d_a5b9ca0989a163aa478df51da6e14119d}{FilmBuffer}}();}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{class_film_buffer_aa175c2c6f47063649d19a1e7514a63c9_aa175c2c6f47063649d19a1e7514a63c9}{\string~FilmBuffer}}();}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{comment}{//\ バッファの初期化（リサイズ）}}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_film_buffer_ab223f9d1044dc52fffc911bc4c95fc98_ab223f9d1044dc52fffc911bc4c95fc98}{init}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{myopenglwidget_8cpp_a2474a5474cbff19523a51eb1de01cda4_a2474a5474cbff19523a51eb1de01cda4}{width}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{myopenglwidget_8cpp_ad12fc34ce789bce6c8a05d8a17138534_ad12fc34ce789bce6c8a05d8a17138534}{height}});}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{comment}{//\ バッファのリセット}}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_film_buffer_add7c58f589349748d71db3ccf78f62bc_add7c58f589349748d71db3ccf78f62bc}{reset}}();}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ 【重要】ピクセルに計算結果（サンプル）を追加するメソッド}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_film_buffer_a24bfbefb4b00652f446797c3ed5d544a_a24bfbefb4b00652f446797c3ed5d544a}{addSample}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j,\ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ color);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ 【重要】蓄積バッファから平均を計算し、フィルムバッファを更新するメソッド}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_film_buffer_a6514b00ae55e6d3cf9d329a2deae1f9c_a6514b00ae55e6d3cf9d329a2deae1f9c}{updateFilmBuffer}}();}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//\ 描画用のフィルムバッファへのポインタを返すGetter}}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ \mbox{\hyperlink{class_film_buffer_aa69ac45360df7c2a58e0fb10eb1eb789_aa69ac45360df7c2a58e0fb10eb1eb789}{getFilmBufferPtr}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ 現在のバッファの幅と高さを取得する}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_film_buffer_ad94b2670714cd586be554fd4a2c22eae_ad94b2670714cd586be554fd4a2c22eae}{getWidth}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_film_buffer_ade4a051012ae166c00fd3c72df5922d1_ade4a051012ae166c00fd3c72df5922d1}{getHeight}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_film_buffer_adabac2eb20495627ba3f397fc93dfc80_adabac2eb20495627ba3f397fc93dfc80}{m\_width}};}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_film_buffer_a2489da8cea073fff78eab9b17175134b_a2489da8cea073fff78eab9b17175134b}{m\_height}};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ 生ポインタの代わりにstd::vectorを使うと自動でメモリ解放してくれて安全です}}
+\DoxyCodeLine{00038\ \ \ \ \ std::vector<float>\ \mbox{\hyperlink{class_film_buffer_ad039ea1ef012e46b2bdcb43e36d1e480_ad039ea1ef012e46b2bdcb43e36d1e480}{m\_filmBuffer}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 表示用バッファ\ (平均化された色)}}
+\DoxyCodeLine{00039\ \ \ \ \ std::vector<float>\ \mbox{\hyperlink{class_film_buffer_a0e3450720e8b1edb7ec797408f2305f3_a0e3450720e8b1edb7ec797408f2305f3}{m\_accumulationBuffer}};\ \textcolor{comment}{//\ 色の合計値を蓄積}}
+\DoxyCodeLine{00040\ \ \ \ \ std::vector<int>\ \mbox{\hyperlink{class_film_buffer_a8fd9c44584d72157b247f135e07c17bd_a8fd9c44584d72157b247f135e07c17bd}{m\_countBuffer}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ サンプル数をカウント}}
+\DoxyCodeLine{00041\ \};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ FILM\_BUFFER\_H}}
 
 \end{DoxyCode}

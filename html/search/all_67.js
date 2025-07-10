@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['📝_20次のステップ_0',['📝 次のステップ',['../md__doxygen_2memo__wip__raytracing.html#autotoc_md113',1,'']]]
+  ['）：_0',['OpenGLの描画順序（実際の&lt;tt&gt;paintGL()&lt;/tt&gt;）：',['../md__doxygen_2coordinate__transformation1.html#autotoc_md68',1,'']]],
+  ['）_1',['）',['../md__doxygen_2open_g_l__basis.html#autotoc_md138',1,'🔵 2. 初期化（&lt;tt&gt;initializeGL()&lt;/tt&gt; / &lt;tt&gt;init()&lt;/tt&gt;）'],['../md__doxygen_2open_g_l__basis.html#autotoc_md140',1,'🔵 3. 描画（&lt;tt&gt;paintGL()&lt;/tt&gt; / &lt;tt&gt;display()&lt;/tt&gt;）'],['../md__doxygen_2open_g_l__basis.html#autotoc_md142',1,'🔵 4. 再描画要求（&lt;tt&gt;update()&lt;/tt&gt; or &lt;tt&gt;glutPostRedisplay()&lt;/tt&gt;）']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['レイトレーシング移植仕様メモ_0',['レイトレーシング移植仕様メモ',['../md__doxygen_2memo__wip__raytracing.html',1,'']]],
-  ['レイ生成・交差関連_1',['📡 レイ生成・交差関連',['../md__doxygen_2memo__wip__raytracing.html#autotoc_md94',1,'']]]
+  ['モデルビュー変換の設定_0',['3. モデルビュー変換の設定',['../class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f.html#autotoc_md34',1,'']]],
+  ['モデルビュー行列を設定する例_20strong_1',['&lt;strong&gt;モデルビュー行列を設定する例&lt;/strong&gt;',['../md__doxygen_2_open_g_l__func.html#autotoc_md165',1,'']]]
 ];

@@ -89,7 +89,7 @@ $(function(){ initResizable(false); });
 <div class="contents">
 <div class="textblock"><p>レイトレーシング機能を含む既存のコード（<code><a class="el" href="main_8cpp.html">main.cpp</a></code>, <code><a class="el" href="camera_8cpp.html">Camera.cpp</a></code>, <code><a class="el" href="_tri_mesh_8cpp.html">TriMesh.cpp</a></code>, <code><a class="el" href="_g_l_preview_8cpp.html">GLPreview.cpp</a></code> など）をQtプロジェクトに段階的に移植する際、**目的別に役割を分けてフォルダ化・整理**することで、将来的な保守性と可読性が大きく向上します。</p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md73"></a>
+<h2><a class="anchor" id="autotoc_md77"></a>
 ✅ 推奨フォルダ構成と役割</h2>
 <div class="fragment"><div class="line">sources/</div>
 <div class="line">├── core/                  # 基本データ構造や汎用ユーティリティ</div>
@@ -118,7 +118,7 @@ $(function(){ initResizable(false); });
 <div class="line">└── main/                  # アプリケーションのエントリーポイント</div>
 <div class="line">    └── main.cpp</div>
 </div><!-- fragment --><hr  />
-<h2><a class="anchor" id="autotoc_md75"></a>
+<h2><a class="anchor" id="autotoc_md79"></a>
 ✅ 各ファイルへの分類例</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -145,7 +145,7 @@ $(function(){ initResizable(false); });
 <td class="markdownTableBodyNone"><code><a class="el" href="main_8cpp.html">main.cpp</a></code>   </td><td class="markdownTableBodyNone"><code>main/main.cpp</code>   </td><td class="markdownTableBodyNone">GLUTによるループ・イベント処理   </td></tr>
 </table>
 <hr  />
-<h2><a class="anchor" id="autotoc_md77"></a>
+<h2><a class="anchor" id="autotoc_md81"></a>
 📌 注意点とヒント</h2>
 <ul>
 <li>**描画処理（OpenGL）とレイトレーシング処理（CPU/GPU）を明確に分ける**ことで、将来のGPU化やGUIへの統合が楽になります。</li>
@@ -153,7 +153,7 @@ $(function(){ initResizable(false); });
 <li><code>camera/</code> フォルダは、Qtでの <code>QCamera</code> クラスとは独立した独自カメラ管理クラスとして維持できます。</li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md79"></a>
+<h2><a class="anchor" id="autotoc_md83"></a>
 ✅ .proファイルへの記述例</h2>
 <div class="fragment"><div class="line">INCLUDEPATH += $$PWD/sources \</div>
 <div class="line">               $$PWD/sources/core \</div>
@@ -176,7 +176,7 @@ $(function(){ initResizable(false); });
 <div class="line">    sources/rendering/raytracing.cpp \</div>
 <div class="line">    sources/rendering/shading.cpp</div>
 </div><!-- fragment --><hr  />
-<h2><a class="anchor" id="autotoc_md81"></a>
+<h2><a class="anchor" id="autotoc_md85"></a>
 ✅ 今後の発展を見据えて</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">

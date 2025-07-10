@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['プリミティブとは_0',['プリミティブとは',['../md__doxygen_2technical__terms.html#autotoc_md177',1,'']]],
-  ['プログラミングでの意味_1',['🔹 プログラミングでの意味',['../md__doxygen_2technical__terms.html#autotoc_md179',1,'']]]
+  ['ビューポート変換はいつでもok？_0',['✅ ビューポート変換はいつでもOK？',['../md__doxygen_2coordinate__transformation1.html#autotoc_md71',1,'']]]
 ];

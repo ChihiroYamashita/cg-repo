@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['用語集_0',['用語集',['../md__doxygen_2technical__terms.html',1,'']]],
-  ['用途_1',['🔹 用途',['../md__doxygen_2technical__terms.html#autotoc_md182',1,'']]]
+  ['更新すべき関数（ステップ案）_0',['🔄 更新すべき関数（ステップ案）',['../md__doxygen_2memo__progressive__rendering.html#autotoc_md104',1,'']]]
 ];
