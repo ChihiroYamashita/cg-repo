@@ -8,6 +8,7 @@
 #include "Light.h"
 #include "Ray.h"
 #include "film_buffer.h"
+#include <QElapsedTimer>
 class MyOpenGLWidget_camera :public MyOpenGLWidget {
     Q_OBJECT
 
@@ -108,6 +109,9 @@ private:
     void createDebugPattern();
     std::vector<AreaLight> g_AreaLights;// 読み込んだオブジェクトを保持
     Object g_Obj;// シーンの光源を保持
+
+    int m_targetSamplesPerPixel; // 目標とする1ピクセルあたりのサンプル数
+    int m_currentSampleCount;    // 現在の蓄積サンプル数
 
 
     //デバッグ用

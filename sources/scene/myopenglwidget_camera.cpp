@@ -6,6 +6,7 @@
 #include "TriMesh.h"
 #include "GLPreview.h"
 #include "Intersection.h"
+#include "PathTracer.h"
 #include "Ray.h"
 #include "RayHit.h"
 #include <QTimer>
@@ -23,6 +24,10 @@ MyOpenGLWidget_camera::MyOpenGLWidget_camera(QWidget* parent)
         m_isDirty = false; // ★ 最初は計算しない
         m_progress_i = 0;
         m_progress_j = 0;
+
+
+        m_targetSamplesPerPixel = 10; // 目標サンプル数を設定 (UIなどで変更可能にすると良い)
+        m_currentSampleCount = 0;//今のサンプル数
 
 
         m_timer = new QTimer(this);
@@ -299,8 +304,6 @@ void MyOpenGLWidget_camera::wheelEvent(QWheelEvent *event)
 void MyOpenGLWidget_camera::updateRayTracing()
 {
 
-    // main.cppのidle()関数のロジックをここに移植
-
 
     // 【注意】この実装は一度に全ピクセルを計算するため、UIが一時的に固まります。
     // 　まずは動作確認のためにこの方法を使い、次のステップで分割計算に改良します。
@@ -311,14 +314,18 @@ void MyOpenGLWidget_camera::updateRayTracing()
         return;
     }
 
-
-    //if (width <= 0 || height <= 0 || !g_FilmBuffer) return;
-
     // ★ 1フレームで処理するピクセル数（パフォーマンスと滑らかさのバランス）
-    const int pixelsPerFrame = 4000;
+    const int pixelsPerFrame = 20000;
 
     // ★ width分だけあるピクセルの内pixelsPerFrame 分だけピクセルごとにレイを飛ばす
     for (int k = 0; k < pixelsPerFrame; ++k) {
+
+        // ★ 各ピクセルがサンプル数までレンダリングが完了しているか、毎ピクセルチェックする
+        if (m_currentSampleCount >= m_targetSamplesPerPixel) {
+            m_isDirty = false; // 目標に達したらレンダリングを停止
+            qDebug() << "Rendering finished. (" << m_currentSampleCount << " samples)";
+            break; // このフレームの処理を中断
+        }
 
         //★今どこのピクセルを処理中かを0～1に正規化する。
         double p_x = (double)m_progress_i / width;
@@ -329,13 +336,21 @@ void MyOpenGLWidget_camera::updateRayTracing()
         g_Camera2.screenView(p_x, p_y, ray);
         ray.prev_mesh_idx = -99;
         ray.prev_primitive_idx = -1;
+        ray.depth = 0; // ★深度を初期化
+
+        RayHit ray_hit;
+        rayTracing(g_Obj, g_AreaLights, ray, ray_hit); // ★g_AreaLightsを渡す
+        Eigen::Vector3d color = Eigen::Vector3d::Zero();
+        // ★ヒットした場合のみシェーディングを計算
+        if (ray_hit.primitive_idx >= 0) {
+            color = computeShading(ray, ray_hit, g_Obj, g_AreaLights);
+        }
 
         //★レイがシーンとぶつかった場所の法線ベクトルをRGB色にして取得。
-        Eigen::Vector3d color = debug_computeNormalColor(ray);
+        //Eigen::Vector3d color = debug_computeNormalColor(ray);
         //int index = (m_progress_j * width + m_progress_i) * 3;
 
-        //そのピクセルに色を記録（フィルムバッファに追加）
-        // ★★★ 新しい方法 ★★★
+        //★そのピクセルに色を記録（フィルムバッファに追加）
         m_film.addSample(m_progress_i, m_progress_j, color);
         // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 
@@ -349,9 +364,10 @@ void MyOpenGLWidget_camera::updateRayTracing()
             m_progress_j++;
             if (m_progress_j >= height) {
                 // ★ 全ピクセルの計算が終わったら、dirtyフラグをfalseにして計算を停止
-                m_isDirty = false;
-                qDebug() << "Rendering finished.";
-                break; // このフレームのループを抜ける
+                // 画像の最後まで到達した時の処理
+                m_progress_j = 0; // ピクセル座標をリセット
+                m_currentSampleCount++; // サンプル数を1増やす
+                qDebug() << "Sample pass" << m_currentSampleCount << "/" << m_targetSamplesPerPixel << "done.";
             }
         }
     }
@@ -419,21 +435,24 @@ Eigen::Vector3d MyOpenGLWidget_camera::debug_computeNormalColor(const Ray& ray)
     RayHit ray_hit;
     // ★レイがシーン内のどの三角形（またはエリアライト）と最初に交差するかを探す
     //第2引数のAreaLightsはまだ使わないので空でOK
-    rayTracing(g_Obj, {}, ray, ray_hit);
+    rayTracing(g_Obj, g_AreaLights, ray, ray_hit);
 
-    // ★ここでヒットしたかどうかをチェックする
-    if (ray_hit.mesh_idx >= 0) {
-        // ヒットした場合のみ、法線を計算して色として返す
-        Eigen::Vector3d normal = computeRayHitNormal(g_Obj, ray_hit);
-        //出力色（RGB）を返す
-        return Eigen::Vector3d(normal.x() * 0.5 + 0.5, normal.y() * 0.5 + 0.5, normal.z() * 0.5 + 0.5);
-    } else {
-        // 何にも当たらなかった場合は背景色（黒）を返す
+    // 最初に、そもそも何かにヒットしたかをチェックする
+    if (ray_hit.primitive_idx < 0) {
+        // ヒットなし: 背景色（黒）を返す
         return Eigen::Vector3d::Zero();
     }
 
-    // 何にも当たらなかった場合は背景色（黒）
-    return Eigen::Vector3d::Zero();
+    // ヒットした場合、それがオブジェクトかライトかを判別する
+    if (ray_hit.mesh_idx >= 0) {
+        // オブジェクトにヒット (mesh_idxが0以上): 法線ベクトルを色として返す
+        Eigen::Vector3d normal = computeRayHitNormal(g_Obj, ray_hit);
+        return Eigen::Vector3d(normal.x() * 0.5 + 0.5, normal.y() * 0.5 + 0.5, normal.z() * 0.5 + 0.5);
+    } else {
+        // エリアライトにヒット (mesh_idxが-1): ライトの色を返す
+        // primitive_idx にヒットしたライトのインデックスが格納されている
+        return g_AreaLights[ray_hit.primitive_idx].color;
+    }
 }
 
 /**

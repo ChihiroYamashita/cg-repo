@@ -41,6 +41,8 @@ void \mbox{\hyperlink{_intersection_8h_ad82e0c87acfec4f2eb0a1a711299fd52_ad82e0c
 \begin{DoxyCompactList}\small\item\em レイとシーン内のオブジェクトやライトとの最短交差点を計算する関数 \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_intersection_8h_a79b65c78a76c1b3033a5e2711aa3350a_a79b65c78a76c1b3033a5e2711aa3350a}{ray\+Triangle\+Intersect}} (const \mbox{\hyperlink{struct_tri_mesh}{Tri\+Mesh}} \&in\+\_\+\+Mesh, const int in\+\_\+\+Triangle\+\_\+idx, const \mbox{\hyperlink{struct_ray}{Ray}} \&in\+\_\+\+Ray, \mbox{\hyperlink{struct_ray_hit}{Ray\+Hit}} \&out\+\_\+\+Result)
 \begin{DoxyCompactList}\small\item\em レイが指定された三角形と交差するかどうかを判定する。交差している場合、その交差点の情報（交差距離、位置、法線など）を出力変数 out\+\_\+\+Result に格納する。 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_intersection_8h_a4d6ae7cffcd1a23cd6c3053fa0e7d0bb_a4d6ae7cffcd1a23cd6c3053fa0e7d0bb}{ray\+Area\+Light\+Intersect}} (const std\+::vector$<$ \mbox{\hyperlink{struct_area_light}{Area\+Light}} $>$ \&in\+\_\+\+Area\+Lights, const int in\+\_\+\+Light\+\_\+idx, const \mbox{\hyperlink{struct_ray}{Ray}} \&in\+\_\+\+Ray, \mbox{\hyperlink{struct_ray_hit}{Ray\+Hit}} \&out\+\_\+\+Result)
+\begin{DoxyCompactList}\small\item\em レイが指定されたエリアライトと交差するかどうかを判定する関数 \end{DoxyCompactList}\item 
 Eigen\+::\+Vector3d \mbox{\hyperlink{_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21_aca412d913682c6dfd8cd4d63a50a8a21}{compute\+Ray\+Hit\+Normal}} (const \mbox{\hyperlink{struct_object}{Object}} \&in\+\_\+\+Object, const \mbox{\hyperlink{struct_ray_hit}{Ray\+Hit}} \&in\+\_\+\+Hit)
 \begin{DoxyCompactList}\small\item\em レイと交差した点における補間された法線ベクトルを計算する関数 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -139,6 +141,52 @@ n = \alpha n_1 + \beta n_2 + \gamma n_3 \quad (\gamma = 1 - \alpha - \beta)
 
 compute\+Shading 
 \end{DoxySeeAlso}
+\Hypertarget{_intersection_8h_a4d6ae7cffcd1a23cd6c3053fa0e7d0bb_a4d6ae7cffcd1a23cd6c3053fa0e7d0bb}\index{Intersection.h@{Intersection.h}!rayAreaLightIntersect@{rayAreaLightIntersect}}
+\index{rayAreaLightIntersect@{rayAreaLightIntersect}!Intersection.h@{Intersection.h}}
+\doxysubsubsection{\texorpdfstring{rayAreaLightIntersect()}{rayAreaLightIntersect()}}
+{\footnotesize\ttfamily \label{_intersection_8h_a4d6ae7cffcd1a23cd6c3053fa0e7d0bb_a4d6ae7cffcd1a23cd6c3053fa0e7d0bb} 
+void ray\+Area\+Light\+Intersect (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{struct_area_light}{Area\+Light}} $>$ \&}]{in\+\_\+\+Area\+Lights}{, }\item[{const int}]{in\+\_\+\+Light\+\_\+idx}{, }\item[{const \mbox{\hyperlink{struct_ray}{Ray}} \&}]{in\+\_\+\+Ray}{, }\item[{\mbox{\hyperlink{struct_ray_hit}{Ray\+Hit}} \&}]{out\+\_\+\+Result}{}\end{DoxyParamCaption})}
+
+
+
+レイが指定されたエリアライトと交差するかどうかを判定する関数 
+
+与えられたエリアライト（{\ttfamily in\+\_\+\+Area\+Lights\mbox{[}in\+\_\+\+Light\+\_\+idx\mbox{]}}）とレイ（{\ttfamily in\+\_\+\+Ray}）の交差を計算し、交差点情報を {\ttfamily out\+\_\+\+Result} に格納します。エリアライトの形状は平面四角形と仮定され、交差判定には平面法線と2つのエッジベクトルを使用します。
+
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Area\+Lights} & エリアライトのリスト \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Light\+\_\+idx} & チェック対象のエリアライトのインデックス \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Ray} & レイの情報（始点 {\ttfamily o} と方向 {\ttfamily d}） \\
+\hline
+\mbox{\texttt{ out}}  & {\em out\+\_\+\+Result} & 交差点の情報（交差距離 {\ttfamily t}、\+UV座標 {\ttfamily alpha} と {\ttfamily beta}、表面判定 {\ttfamily is\+Front}）\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{参照}
+\doxylink{struct_ray_hit}{Ray\+Hit}
+\end{DoxySeeAlso}
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_9}}
+\end{DoxyImageNoCaption}
+
+
+　保存のところのα、β→u,vです　誤植です
+
+{\bfseries{処理の概要}}\+:
+\begin{DoxyItemize}
+\item エリアライトの中心座標 {\ttfamily pos} と辺ベクトル {\ttfamily arm\+\_\+u}、{\ttfamily arm\+\_\+v} を取得。
+\item 法線ベクトル {\ttfamily light\+\_\+normal} を計算し、レイが裏面か表面に当たるかを判定（{\ttfamily is\+Front}）。
+\item レイとライトの平面との交差点を計算し、交差距離 {\ttfamily t} を取得。
+\item 交差点の位置をライトのローカル\+UV座標に変換し、範囲 (\mbox{[}-\/1, 1\mbox{]}) 内にあるかを確認。
+\item 交差が有効であれば、交差点情報（{\ttfamily t}、{\ttfamily alpha}、{\ttfamily beta}、{\ttfamily is\+Front}）を {\ttfamily out\+\_\+\+Result} に保存。
+\end{DoxyItemize}
+
+\begin{DoxyNote}{覚え書き}
+エリアライトは平面四角形と仮定し、\+UV座標を (\mbox{[}-\/1, 1\mbox{]}) の範囲に正規化しています。 
+\end{DoxyNote}
 \Hypertarget{_intersection_8h_ad82e0c87acfec4f2eb0a1a711299fd52_ad82e0c87acfec4f2eb0a1a711299fd52}\index{Intersection.h@{Intersection.h}!rayTracing@{rayTracing}}
 \index{rayTracing@{rayTracing}!Intersection.h@{Intersection.h}}
 \doxysubsubsection{\texorpdfstring{rayTracing()}{rayTracing()}}
@@ -156,7 +204,7 @@ void ray\+Tracing (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_
 
 \doxylink{_intersection_8cpp_a79b65c78a76c1b3033a5e2711aa3350a_a79b65c78a76c1b3033a5e2711aa3350a}{ray\+Triangle\+Intersect} 
 
-ray\+Area\+Light\+Intersect 
+\doxylink{_intersection_8cpp_a4d6ae7cffcd1a23cd6c3053fa0e7d0bb_a4d6ae7cffcd1a23cd6c3053fa0e7d0bb}{ray\+Area\+Light\+Intersect} 
 \end{DoxySeeAlso}
 
 \begin{DoxyParams}[1]{引数}
@@ -171,7 +219,7 @@ ray\+Area\+Light\+Intersect
 \end{DoxyParams}
 
 \begin{DoxyImageNoCaption}
-  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_7}}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_10}}
 \end{DoxyImageNoCaption}
 
 

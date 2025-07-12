@@ -105,6 +105,8 @@ protected slots:
     std::vector<AreaLight> g_AreaLights_preview;// 読み込んだオブジェクトを保持
     Object g_Obj_preview;// シーンの光源を保持
 
+
+
     //Obj名
     const std::string m_objFileName = "box2.obj";
 

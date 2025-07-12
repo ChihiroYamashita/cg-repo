@@ -156,13 +156,20 @@ Widget -> Widget : debug_computeNormalColor(ray)
 activate Widget #LightBlue
 note right of Widget: debug_computeNormalColor(ray)
 
-== レイとオブジェクトの交差計算 ==
-Widget -> Isect : rayTracing(g_Obj, {}, ray, ray_hit)
+== レイとオブジェクト・ライトの交差計算 ==
+Widget -> Isect : rayTracing(g_Obj, g_AreaLights, ray, ray_hit)
 activate Isect #Coral
 note left of Isect #lightyellow: Intersection.cpp内rayTracingの処理
 
 loop 各メッシュの各三角形に対して交差計算
     Isect -> Isect : rayTriangleIntersect(mesh, k, in_Ray, temp_hit)
+    activate Isect #DarkSalmon
+    Isect --> Isect : temp_hit
+    deactivate Isect #DarkSalmon
+end
+
+loop 各エリアライトに対して交差計算
+    Isect -> Isect : rayAreaLightIntersect(g_AreaLights, l, in_Ray, temp_hit)
     activate Isect #DarkSalmon
     Isect --> Isect : temp_hit
     deactivate Isect #DarkSalmon

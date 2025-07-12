@@ -13,6 +13,8 @@ INCLUDEPATH += $$PWD/sources/pass_tracing
 INCLUDEPATH += $$PWD/sources/pass_tracing/film
 INCLUDEPATH += $$PWD/sources/pass_tracing/core
 INCLUDEPATH += $$PWD/sources/pass_tracing/intersectors
+INCLUDEPATH += $$PWD/sources/pass_tracing/integrators
+INCLUDEPATH += $$PWD/sources/pass_tracing/samplers
 INCLUDEPATH += $$PWD/sources/core
 INCLUDEPATH += $$PWD/sources/geometry
 INCLUDEPATH += $$PWD/jpeg-9c/jpeg-9c
@@ -42,7 +44,9 @@ SOURCES += \
     sources/object/drawObject.cpp \
     sources/pass_tracing/film/drawfilm.cpp \
     sources/pass_tracing/film/film_buffer.cpp \
+    sources/pass_tracing/integrators/PathTracer.cpp \
     sources/pass_tracing/intersectors/Intersection.cpp \
+    sources/pass_tracing/samplers/random.c \
     sources/scene/CustomScene.cpp \
     sources/scene/GLPreview.cpp \
     sources/scene/myopenglwidget.cpp \
@@ -65,7 +69,9 @@ HEADERS += \
     sources/pass_tracing/core/RayHit.h \
     sources/pass_tracing/film/drawfilm.h \
     sources/pass_tracing/film/film_buffer.h \
+    sources/pass_tracing/integrators/PathTracer.h \
     sources/pass_tracing/intersectors/Intersection.h \
+    sources/pass_tracing/samplers/random.h \
     sources/scene/CustomScene.h \
     sources/scene/GLPreview.h \
     sources/scene/myopenglwidget.h \
