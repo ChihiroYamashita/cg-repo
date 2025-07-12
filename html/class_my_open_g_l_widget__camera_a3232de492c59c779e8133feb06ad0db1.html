@@ -151,6 +151,52 @@ $(function(){ initResizable(false); });
 </table>
 </div><div class="memdoc">
 
+<p>フィルム画像を表示するためのOpenGLテクスチャID </p>
+<pre class="fragment">@var m_filmTexture
+</pre> <p>この変数は、OpenGLのテクスチャオブジェクトを識別する「番号（ID）」です。 実際の色データがこの変数に格納されるわけではなく、このIDが指し示す**GPU上のテクスチャ領域**に、 色のピクセル情報（m_filmBuffer）を転送します。</p>
+<h3><a class="anchor" id="autotoc_md40"></a>
+🎨 フィルムテクスチャって何？</h3>
+<ul>
+<li>レイトレーシングで計算された画像（<code>m_filmBuffer</code>）を画面に映すために必要な、 **GPU上の画像メモリ**です。</li>
+<li>このID（<code>m_filmTexture</code>）は「どのテクスチャか」を指定するための**番号ラベル**のようなものです。</li>
+<li>正確には、色データが直接 int 型の m_filmTexture に送り込まれるわけではありません。 m_filmTexture はテクスチャの「ID」や「名前」であり、そのIDが指し示すOpenGLのテクスチャオブジェクト（GPU上のメモリ領域）に色データが送り込まれます。</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md41"></a>
+🔁 どうやって使われるの？</h3>
+<ol type="1">
+<li><code>glGenTextures()</code> で新しいテクスチャID（番号）を作成し、<code>m_filmTexture</code> に格納します。</li>
+<li><code>glBindTexture()</code> でそのIDを「今から操作するテクスチャ」として選択します。</li>
+<li><code>glTexImage2D()</code> や <code>glTexSubImage2D()</code> を使って、<code>m_filmBuffer</code> にあるピクセルの色データをそのテクスチャに転送します。</li>
+<li><code><a class="el" href="class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f.html#a97469860ecb6dfc1c784c5797854bc2f" title="OpenGLでシーン全体とフィルムバッファを描画する関数">paintGL()</a></code> の中でこのテクスチャを画面いっぱいに描画します（<code><a class="el" href="drawfilm_8cpp_a443204766d01c1b7114034c955991bc8.html#a443204766d01c1b7114034c955991bc8" title="フィルムバッファをスクリーンに描画する関数">drawFilm()</a></code> 関数などを通じて）。</li>
+</ol>
+<ul>
+<li><div class="fragment"><div class="line">glGenTextures(1, &amp;<a class="code hl_variable" href="#a3232de492c59c779e8133feb06ad0db1">m_filmTexture</a>);              <span class="comment">// テクスチャIDの生成</span></div>
+<div class="line">glBindTexture(GL_TEXTURE_2D, <a class="code hl_variable" href="#a3232de492c59c779e8133feb06ad0db1">m_filmTexture</a>);   <span class="comment">// このIDのテクスチャを選択</span></div>
+<div class="line">glTexSubImage2D(..., m_filmBuffer);            <span class="comment">// 色データをGPUに送る</span></div>
+<div class="ttc" id="aclass_my_open_g_l_widget__camera_a3232de492c59c779e8133feb06ad0db1_html_a3232de492c59c779e8133feb06ad0db1"><div class="ttname"><a href="#a3232de492c59c779e8133feb06ad0db1">MyOpenGLWidget_camera::m_filmTexture</a></div><div class="ttdeci">GLuint m_filmTexture</div><div class="ttdoc">フィルム画像を表示するためのOpenGLテクスチャID</div><div class="ttdef"><b>Definition</b> myopenglwidget_camera.h:104</div></div>
+</div><!-- fragment --></li>
+</ul>
+<h3><a class="anchor" id="autotoc_md42"></a>
+🧠 よくある誤解</h3>
+<ul>
+<li><code>m_filmTexture</code> は <code>GLuint</code> 型（ただの数値）で、**データ本体ではありません**。</li>
+<li>データは <code>glTexSubImage2D()</code> などを使って、このIDが指すGPUメモリに転送されます。</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md43"></a>
+✨ 例えると...</h3>
+<ul>
+<li><code>m_filmBuffer</code> は <b>絵の具で描いた絵**、</b></li>
+<li><b><code>m_filmTexture</code> は **その絵を貼るためのスクリーン番号**、</b></li>
+<li><b>OpenGLの関数は **そのスクリーンに絵を貼って、画面に表示してくれるスタッフ</b> のようなものです。</li>
+</ul>
+<dl class="section see"><dt>参照</dt><dd><a class="el" href="class_film_buffer_aa69ac45360df7c2a58e0fb10eb1eb789.html#aa69ac45360df7c2a58e0fb10eb1eb789">FilmBuffer::getFilmBufferPtr()</a> </dd>
+<dd>
+<a class="el" href="drawfilm_8cpp_a443204766d01c1b7114034c955991bc8.html#a443204766d01c1b7114034c955991bc8" title="フィルムバッファをスクリーンに描画する関数">drawFilm()</a> </dd>
+<dd>
+glBindTexture() </dd>
+<dd>
+glTexSubImage2D() </dd></dl>
+
 </div>
 </div>
     </td>

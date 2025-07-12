@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['🎯_20openglとは？_0',['🎯 OpenGLとは？',['../md__doxygen_2open_g_l__basis.html#autotoc_md133',1,'']]],
-  ['🎯_20uml_3a_20paintglまわりの初期化と描画の流れ_1',['🎯 UML: paintGLまわりの初期化と描画の流れ',['../md__doxygen_2memo__wip__raytracing.html#autotoc_md125',1,'']]]
+  ['描画（_20tt_20paintgl_20tt_20tt_20display_20tt_20）_0',['🔵 3. 描画（&lt;tt&gt;paintGL()&lt;/tt&gt; / &lt;tt&gt;display()&lt;/tt&gt;）',['../md__doxygen_2open_g_l__basis.html#autotoc_md293',1,'']]]
 ];

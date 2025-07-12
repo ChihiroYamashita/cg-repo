@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['実装順の違い_0',['🔁 結論：理論 vs 実装順の違い',['../md__doxygen_2coordinate__transformation1.html#autotoc_md73',1,'']]]
+  ['プリミティブとは_0',['プリミティブとは',['../md__doxygen_2technical__terms.html#autotoc_md348',1,'']]],
+  ['プログラミングでの意味_1',['🔹 プログラミングでの意味',['../md__doxygen_2technical__terms.html#autotoc_md350',1,'']]],
+  ['プログレッシブ・レンダリング仕様メモ_2',['🌟 プログレッシブ・レンダリング仕様メモ',['../md__doxygen_2memo__progressive__rendering.html',1,'']]]
 ];

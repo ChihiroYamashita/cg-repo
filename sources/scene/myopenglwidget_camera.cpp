@@ -26,7 +26,12 @@ MyOpenGLWidget_camera::MyOpenGLWidget_camera(QWidget* parent)
 
 
         m_timer = new QTimer(this);
+
+        //✅ QTimer が一定間隔で時間切れ（timeout）になるたびに
+        //✅ MyOpenGLWidget_camera::updateRayTracing() 関数を自動的に呼び出す
         connect(m_timer, &QTimer::timeout, this, &MyOpenGLWidget_camera::updateRayTracing);
+
+        //1ミリ秒ごとに timeout シグナルが発生。
         m_timer->start(1);// ほぼ最速で実行
 
     } else {
@@ -285,54 +290,60 @@ void MyOpenGLWidget_camera::wheelEvent(QWheelEvent *event)
     // 何もしない
 }
 /*-----レイトレ用---------------------------------------*/
+ // main.cppのidle()関数のロジックをここに移植
+
+/**
+ * @brief レイトレーシングを1フレーム分進める
+ * 詳細は @ref updateRayTracing_doxygen "updateRayTracing()" を参照。
+ */
 void MyOpenGLWidget_camera::updateRayTracing()
 {
-    /*
-    // main.cppのidle()関数のロジックをここに移植
-    // 例：1フレームで一定数のピクセルを計算する
-    for(int i = 0; i < 1000; ++i) { // 数値は調整可能
-        shadeNextPixel();
-    }
 
-    updateFilm(); // 計算結果をテクスチャバッファに反映*/
+    // main.cppのidle()関数のロジックをここに移植
+
 
     // 【注意】この実装は一度に全ピクセルを計算するため、UIが一時的に固まります。
     // 　まずは動作確認のためにこの方法を使い、次のステップで分割計算に改良します。
-    // ★ 再レンダリングが不要な場合は、すぐに処理を抜ける
+
+    // ★ 再レンダリングが不要な場合は、スキップ（何もしない）
+    //if m_isDirty is false,quit
     if (!m_isDirty) {
         return;
     }
 
-    // ★ 再レンダリングが不要な場合は、すぐに処理を抜ける
-    if (!m_isDirty) {
-        return;
-    }
 
     //if (width <= 0 || height <= 0 || !g_FilmBuffer) return;
 
-    const int pixelsPerFrame = 2000;
+    // ★ 1フレームで処理するピクセル数（パフォーマンスと滑らかさのバランス）
+    const int pixelsPerFrame = 4000;
 
+    // ★ width分だけあるピクセルの内pixelsPerFrame 分だけピクセルごとにレイを飛ばす
     for (int k = 0; k < pixelsPerFrame; ++k) {
-        // ... (ピクセルごとの計算ロジックは変更なし) ...
+
+        //★今どこのピクセルを処理中かを0～1に正規化する。
         double p_x = (double)m_progress_i / width;
         double p_y = (double)m_progress_j / height;
+
+        //★OutRay作成
         Ray ray;
         g_Camera2.screenView(p_x, p_y, ray);
         ray.prev_mesh_idx = -99;
         ray.prev_primitive_idx = -1;
-        Eigen::Vector3d color = debug_computeNormalColor(ray);
-        int index = (m_progress_j * width + m_progress_i) * 3;
-        //g_FilmBuffer[index + 0] = color.x();
-        //g_FilmBuffer[index + 1] = color.y();
-        //g_FilmBuffer[index + 2] = color.z();
 
+        //★レイがシーンとぶつかった場所の法線ベクトルをRGB色にして取得。
+        Eigen::Vector3d color = debug_computeNormalColor(ray);
+        //int index = (m_progress_j * width + m_progress_i) * 3;
+
+        //そのピクセルに色を記録（フィルムバッファに追加）
         // ★★★ 新しい方法 ★★★
         m_film.addSample(m_progress_i, m_progress_j, color);
         // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 
 
         // 次に計算するピクセルへ
+        //m_progress_i と m_progress_j によって、「どこまで処理したか」が記録されている
         m_progress_i++;
+
         if (m_progress_i >= width) {
             m_progress_i = 0;
             m_progress_j++;
@@ -406,13 +417,15 @@ void MyOpenGLWidget_camera::initializeFilmTexture() {
 Eigen::Vector3d MyOpenGLWidget_camera::debug_computeNormalColor(const Ray& ray)
 {
     RayHit ray_hit;
-    // 第2引数のAreaLightsはまだ使わないので空でOK
+    // ★レイがシーン内のどの三角形（またはエリアライト）と最初に交差するかを探す
+    //第2引数のAreaLightsはまだ使わないので空でOK
     rayTracing(g_Obj, {}, ray, ray_hit);
 
-    // ★★★ 修正：ここでヒットしたかどうかをチェックする ★★★
+    // ★ここでヒットしたかどうかをチェックする
     if (ray_hit.mesh_idx >= 0) {
         // ヒットした場合のみ、法線を計算して色として返す
         Eigen::Vector3d normal = computeRayHitNormal(g_Obj, ray_hit);
+        //出力色（RGB）を返す
         return Eigen::Vector3d(normal.x() * 0.5 + 0.5, normal.y() * 0.5 + 0.5, normal.z() * 0.5 + 0.5);
     } else {
         // 何にも当たらなかった場合は背景色（黒）を返す

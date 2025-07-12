@@ -3,8 +3,8 @@
 全ピクセルに対してレイを発射し、法線色をフィルムバッファに記録 ~\newline
 
 
-\label{md__doxygen_2memo__wip__raytracing_autotoc_md107}%
-\Hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md107}%
+\label{md__doxygen_2memo__wip__raytracing_autotoc_md239}%
+\Hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md239}%
 
 
 このドキュメントは、\+My\+Open\+GLWidget\+\_\+cameraベースで段階的にレイトレーシング機能を移植していく際の設計方針と、クラス・関数・ファイル構成を整理したものです。
@@ -13,52 +13,157 @@
 
 
 \DoxyHorRuler{0}
-\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md110}{}\doxysection{\texorpdfstring{✅ 現在の移植状況（関数・構造体）}{✅ 現在の移植状況（関数・構造体）}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md110}
-\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md111}{}\doxysubsection{\texorpdfstring{🎨 表示・描画関連}{🎨 表示・描画関連}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md111}
+
+
+はい、可能です。以下のようにすべての関数に Doxygen の {\ttfamily @ref} リンクを埋め込んだ形式に書き換えました：
+
+\DoxyHorRuler{0}
+\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md243}{}\doxysection{\texorpdfstring{✅ 現在の移植状況（関数・構造体）}{✅ 現在の移植状況（関数・構造体）}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md243}
+\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md244}{}\doxysubsection{\texorpdfstring{🎨 表示・描画関連}{🎨 表示・描画関連}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md244}
 
 \begin{DoxyItemize}
-\item ✅ {\ttfamily \doxylink{drawfilm_8cpp_a443204766d01c1b7114034c955991bc8_a443204766d01c1b7114034c955991bc8}{draw\+Film()}} によるフィルム表示機能 → 完了
-\item ✅ {\ttfamily paint\+GL()} → Qt側の描画呼び出しを確認・対応済み
-\item ✅ {\ttfamily update\+Ray\+Tracing()} → 全ピクセル一括更新による可視化テスト完了
-\end{DoxyItemize}\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md112}{}\doxysubsection{\texorpdfstring{📡 レイ生成・交差関連}{📡 レイ生成・交差関連}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md112}
+\item ✅ draw\+Film() によるフィルム表示機能 → 完了
+\item ✅ \doxylink{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_a97469860ecb6dfc1c784c5797854bc2f}{paint\+GL()} → Qt側の描画呼び出しを確認・対応済み
+\item ✅ \doxylink{class_my_open_g_l_widget__camera_a793d75fe6991830c9cc4a54e393c870a_a793d75fe6991830c9cc4a54e393c870a}{update\+Ray\+Tracing()} → 全ピクセル一括更新による可視化テスト完了
+\end{DoxyItemize}\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md245}{}\doxysubsection{\texorpdfstring{📡 レイ生成・交差関連}{📡 レイ生成・交差関連}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md245}
 
 \begin{DoxyItemize}
-\item ✅ {\ttfamily screen\+View()}（\+Cameraクラス）→ ピクセル座標からレイ生成済み
-\item ✅ {\ttfamily \doxylink{_intersection_8cpp_ad82e0c87acfec4f2eb0a1a711299fd52_ad82e0c87acfec4f2eb0a1a711299fd52}{ray\+Tracing()}} → 最小限版を移植済み（光源処理は除外）
-\item ✅ {\ttfamily mesh\+Triangle\+Intersect()} → 移植済み
-\item ✅ {\ttfamily intersect\+Triangle()} → 移植済み
-\end{DoxyItemize}\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md113}{}\doxysubsection{\texorpdfstring{🧭 法線・色処理}{🧭 法線・色処理}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md113}
+\item ✅ \doxylink{class_camera_a20a6e0f56d6531121c0ef4ee8a71a71c_a20a6e0f56d6531121c0ef4ee8a71a71c}{screen\+View()}（\+Cameraクラス）→ ピクセル座標からレイ生成済み
+\item ✅ \doxylink{_intersection_8cpp_ad82e0c87acfec4f2eb0a1a711299fd52_ad82e0c87acfec4f2eb0a1a711299fd52}{ray\+Tracing()} → 最小限版を移植済み（光源処理は除外）
+\item ✅ mesh\+Triangle\+Intersect() → 移植済み
+\item ✅ intersect\+Triangle() → 移植済み
+\end{DoxyItemize}\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md246}{}\doxysubsection{\texorpdfstring{🧭 法線・色処理}{🧭 法線・色処理}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md246}
 
 \begin{DoxyItemize}
-\item ✅ {\ttfamily debug\+\_\+compute\+Normal\+Color()}（法線を色で可視化） → 実装済み
-\item ✅ {\ttfamily \doxylink{_intersection_8cpp_aca412d913682c6dfd8cd4d63a50a8a21_aca412d913682c6dfd8cd4d63a50a8a21}{compute\+Ray\+Hit\+Normal()}}（交差点での法線補間） → 実装済み
+\item ✅ \doxylink{class_my_open_g_l_widget__camera_a99f7ad86efe9c9ea0c7e3b36b6768022_a99f7ad86efe9c9ea0c7e3b36b6768022}{debug\textbackslash{}\+\_\+compute\+Normal\+Color()}（法線を色で可視化） → 実装済み
+\item ✅ \doxylink{_intersection_8cpp_aca412d913682c6dfd8cd4d63a50a8a21_aca412d913682c6dfd8cd4d63a50a8a21}{compute\+Ray\+Hit\+Normal()}（交差点での法線補間） → 実装済み
+\end{DoxyItemize}\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md247}{}\doxysubsection{\texorpdfstring{🧮 フィルムバッファ関連（\+Film\+Buffer）}{🧮 フィルムバッファ関連（\+Film\+Buffer）}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md247}
+
+\begin{DoxyItemize}
+\item ✅ \doxylink{class_film_buffer_ab223f9d1044dc52fffc911bc4c95fc98_ab223f9d1044dc52fffc911bc4c95fc98}{init()} → バッファ（積算・カウント・平均）をサイズに応じて初期化
+\item ✅ \doxylink{class_film_buffer_a24bfbefb4b00652f446797c3ed5d544a_a24bfbefb4b00652f446797c3ed5d544a}{add\+Sample()} → 指定ピクセルに色を加算し、カウントをインクリメント
+\item ✅ \doxylink{class_film_buffer_a6514b00ae55e6d3cf9d329a2deae1f9c_a6514b00ae55e6d3cf9d329a2deae1f9c}{update\+Film\+Buffer()} → 蓄積値から平均色を求めて最終出力用バッファに格納
+\item ✅ \doxylink{class_film_buffer_aa69ac45360df7c2a58e0fb10eb1eb789_aa69ac45360df7c2a58e0fb10eb1eb789}{get\+Film\+Buffer\+Ptr()} → 平均化バッファ先頭ポインタを\+Open\+GL転送用に取得
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md115}{}\doxysubsection{\texorpdfstring{📦 使用構造体・クラス}{📦 使用構造体・クラス}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md115}
+\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md249}{}\doxysubsection{\texorpdfstring{📦 使用構造体・クラス}{📦 使用構造体・クラス}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md249}
 
 \begin{DoxyItemize}
-\item ✅ {\ttfamily \doxylink{struct_ray}{Ray}} → レイの定義構造体（原点、方向、交差履歴含む）
-\item ✅ {\ttfamily \doxylink{struct_ray_hit}{Ray\+Hit}} → 交差情報（メッシュ番号・三角形番号・距離など）
-\item ✅ {\ttfamily \doxylink{class_camera}{Camera}} → レイ生成処理用クラス（視点・画角など保持）
-\item ✅ {\ttfamily \doxylink{struct_tri_mesh}{Tri\+Mesh}} → メッシュ構造体（頂点・法線・三角形など）
-\item ✅ {\ttfamily \doxylink{class_my_open_g_l_widget__camera}{My\+Open\+GLWidget\+\_\+camera}} → レイ生成・描画処理を統括するクラス
+\item ✅ \doxylink{struct_ray}{Ray} → レイの定義構造体（原点、方向、交差履歴含む）
+\item ✅ \doxylink{struct_ray_hit}{Ray\+Hit} → 交差情報（メッシュ番号・三角形番号・距離など）
+\item ✅ \doxylink{class_camera}{Camera} → レイ生成処理用クラス（視点・画角など保持）
+\item ✅ \doxylink{struct_tri_mesh}{Tri\+Mesh} → メッシュ構造体（頂点・法線・三角形など）
+\item ✅ \doxylink{class_my_open_g_l_widget__camera}{My\+Open\+GLWidget\textbackslash{}\+\_\+camera} → レイ生成・描画処理を統括するクラス
+\item ✅ \doxylink{class_film_buffer}{Film\+Buffer} → 色の蓄積・平均処理を行う描画バッファ管理クラス
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
 
 
 \DoxyHorRuler{0}
- \hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md118}{}\doxysection{\texorpdfstring{全体フロー}{全体フロー}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md118}
+ \hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md252}{}\doxysection{\texorpdfstring{全体フロー}{全体フロー}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md252}
 
 \begin{DoxyImageNoCaption}
-  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_21}}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_26}}
 \end{DoxyImageNoCaption}
 
 
 \DoxyHorRuler{0}
- \hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md120}{}\doxysection{\texorpdfstring{🔧 関数仕様と目的}{🔧 関数仕様と目的}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md120}
-\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md121}{}\doxysubsection{\texorpdfstring{{\ttfamily My\+Open\+GLWidget\+\_\+camera\+::update\+Ray\+Tracing()}}{{\ttfamily My\+Open\+GLWidget\+\_\+camera\+::update\+Ray\+Tracing()}}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md121}
+
+
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_27}}
+\end{DoxyImageNoCaption}
+ \DoxyHorRuler{0}
+
+
+\DoxyHorRuler{0}
+ \hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md256}{}\doxysection{\texorpdfstring{🔧 初期化処理}{🔧 初期化処理}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md256}
+{\ttfamily \doxylink{class_my_open_g_l_widget__camera}{My\+Open\+GLWidget\+\_\+camera}} クラスの\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}コンストラクタ\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}では、主に以下の初期化処理が行われています。
+
+\DoxyHorRuler{0}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{class_my_open_g_l_widget__camera_af05302e50ef2aa2f18cde38ad5720ce9_af05302e50ef2aa2f18cde38ad5720ce9}{MyOpenGLWidget\_camera::MyOpenGLWidget\_camera}}(QWidget*\ parent)}
+\DoxyCodeLine{\ \ \ \ :\ \mbox{\hyperlink{class_my_open_g_l_widget}{MyOpenGLWidget}}(parent)\ \{}
+
+\end{DoxyCode}
+ 以下は、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+Markdown（md）ファイル用の書式\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}で、コンストラクタ内の処理を「説明 ⇄ 対応するコード」を交互に配置したスタイルです。\+Git\+Hubなどの\+Markdownビューアでも見やすく表示されます。
+
+\DoxyHorRuler{0}
+\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md259}{}\doxysection{\texorpdfstring{🔧 コンストラクタの処理内容（やっていること）}{🔧 コンストラクタの処理内容（やっていること）}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md259}
+\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md260}{}\doxysubsection{\texorpdfstring{① モデル（\+OBJファイル）を読み込む}{① モデル（\+OBJファイル）を読み込む}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md260}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_tri_mesh_8cpp_a5d68f7db28b7475a94bf75add003c051_a5d68f7db28b7475a94bf75add003c051}{loadObj}}(m\_objFileName,\ g\_Obj))\ \{}
+\DoxyCodeLine{\ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}sphere.obj\ loaded\ successfully."{}};}
+\DoxyCodeLine{\ \ \ \ ...}
+\DoxyCodeLine{\}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ qWarning()\ <<\ \textcolor{stringliteral}{"{}Failed\ to\ load\ box.obj."{}};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{quote}
+{\ttfamily m\+\_\+obj\+File\+Name} で指定された3\+Dモデルを読み込み、グローバル変数 {\ttfamily g\+\_\+\+Obj} に格納します。 \end{quote}
+\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md261}{}\doxysection{\texorpdfstring{}{}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md261}
+\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md262}{}\doxysubsection{\texorpdfstring{② レンダリング不要フラグを設定}{② レンダリング不要フラグを設定}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md262}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{m\_isDirty\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ ★\ 最初は計算しない}}
+
+\end{DoxyCode}
+
+
+\begin{quote}
+最初は描画処理をスキップするため、{\ttfamily m\+\_\+is\+Dirty} を {\ttfamily false} にします。 \end{quote}
+\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md263}{}\doxysection{\texorpdfstring{}{}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md263}
+\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md264}{}\doxysubsection{\texorpdfstring{③ レイトレ用ピクセル位置の初期化}{③ レイトレ用ピクセル位置の初期化}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md264}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{m\_progress\_i\ =\ 0;}
+\DoxyCodeLine{m\_progress\_j\ =\ 0;}
+
+\end{DoxyCode}
+
+
+\begin{quote}
+次にレンダリングするピクセル座標を {\ttfamily (0, 0)} に初期化します。 \end{quote}
+\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md265}{}\doxysection{\texorpdfstring{}{}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md265}
+\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md266}{}\doxysubsection{\texorpdfstring{④ タイマーを使って非同期レンダリング処理を登録}{④ タイマーを使って非同期レンダリング処理を登録}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md266}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{m\_timer\ =\ \textcolor{keyword}{new}\ QTimer(\textcolor{keyword}{this});}
+\DoxyCodeLine{connect(m\_timer,\ \&QTimer::timeout,\ \textcolor{keyword}{this},\ \&\mbox{\hyperlink{class_my_open_g_l_widget__camera_a793d75fe6991830c9cc4a54e393c870a_a793d75fe6991830c9cc4a54e393c870a}{MyOpenGLWidget\_camera::updateRayTracing}});}
+\DoxyCodeLine{m\_timer-\/>start(1);\ \textcolor{comment}{//\ ほぼ最速で実行}}
+
+\end{DoxyCode}
+ \hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md267}{}\doxysubsection{\texorpdfstring{connect関数；{\ttfamily QTimer} が一定間隔で時間切れ（timeout）になるたびに}{connect関数；{\ttfamily QTimer} が一定間隔で時間切れ（timeout）になるたびに}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md267}
+\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md268}{}\doxysubsection{\texorpdfstring{{\ttfamily My\+Open\+GLWidget\+\_\+camera\+::update\+Ray\+Tracing()} 関数を自動的に呼び出す}{{\ttfamily My\+Open\+GLWidget\+\_\+camera\+::update\+Ray\+Tracing()} 関数を自動的に呼び出す}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md268}
+\begin{quote}
+{\ttfamily QTimer} によって 1ミリ秒ごとに {\ttfamily update\+Ray\+Tracing()} が呼ばれ、滑らかに描画が進みます。 \end{quote}
+\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md269}{}\doxysection{\texorpdfstring{}{}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md269}
+\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md270}{}\doxysubsection{\texorpdfstring{⑤ エリアライトの初期化}{⑤ エリアライトの初期化}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md270}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_light_8cpp_a918c050bf0089f79bcfbd3768e6f10fd_a918c050bf0089f79bcfbd3768e6f10fd}{initAreaLights}}(g\_AreaLights);}
+
+\end{DoxyCode}
+
+
+\begin{quote}
+グローバル変数 {\ttfamily g\+\_\+\+Area\+Lights} にライトを追加し、ライティング処理を有効にします。 \end{quote}
+\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md271}{}\doxysection{\texorpdfstring{}{}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md271}
+必要であれば、\+Doxygen用のスタイルや、表形式に戻したバージョンも用意できます！
+
+\DoxyHorRuler{0}
+ \hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md273}{}\doxysection{\texorpdfstring{🔧 関数仕様と目的}{🔧 関数仕様と目的}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md273}
+\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md274}{}\doxysubsection{\texorpdfstring{{\ttfamily My\+Open\+GLWidget\+\_\+camera\+::update\+Ray\+Tracing()}}{{\ttfamily My\+Open\+GLWidget\+\_\+camera\+::update\+Ray\+Tracing()}}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md274}
 \begin{DoxySeeAlso}{参照}
 debug\+\_\+compute\+Normal\+Color
 \end{DoxySeeAlso}
@@ -70,7 +175,7 @@ debug\+\_\+compute\+Normal\+Color
 
 
 \DoxyHorRuler{0}
-\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md123}{}\doxysubsection{\texorpdfstring{{\ttfamily My\+Open\+GLWidget\+\_\+camera\+::debug\+\_\+compute\+Normal\+Color(const Ray\& ray)}}{{\ttfamily My\+Open\+GLWidget\+\_\+camera\+::debug\+\_\+compute\+Normal\+Color(const Ray\& ray)}}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md123}
+\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md276}{}\doxysubsection{\texorpdfstring{{\ttfamily My\+Open\+GLWidget\+\_\+camera\+::debug\+\_\+compute\+Normal\+Color(const Ray\& ray)}}{{\ttfamily My\+Open\+GLWidget\+\_\+camera\+::debug\+\_\+compute\+Normal\+Color(const Ray\& ray)}}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md276}
 オブジェクトとの交差点の法線を色として返す
 
 
@@ -83,7 +188,7 @@ debug\+\_\+compute\+Normal\+Color
 
 
 \DoxyHorRuler{0}
-\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md125}{}\doxysection{\texorpdfstring{🎯 UML\+: paint\+GLまわりの初期化と描画の流れ}{🎯 UML\+: paint\+GLまわりの初期化と描画の流れ}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md125}
+\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md278}{}\doxysection{\texorpdfstring{🎯 UML\+: paint\+GLまわりの初期化と描画の流れ}{🎯 UML\+: paint\+GLまわりの初期化と描画の流れ}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md278}
 ~\newline
  My\+Open\+GLWidget\+\_\+cameraでは、initialize\+GL(), paint\+GL(), resize\+GL() のみが\+Open\+GL描画に関与しています。
 
@@ -112,15 +217,15 @@ debug\+\_\+compute\+Normal\+Color
 
 
 \DoxyHorRuler{0}
-\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md127}{}\doxysection{\texorpdfstring{🌐 Plant\+UML\+: 初期化・描画シーケンス}{🌐 Plant\+UML\+: 初期化・描画シーケンス}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md127}
+\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md280}{}\doxysection{\texorpdfstring{🌐 Plant\+UML\+: 初期化・描画シーケンス}{🌐 Plant\+UML\+: 初期化・描画シーケンス}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md280}
 
 \begin{DoxyImageNoCaption}
-  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_22}}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_28}}
 \end{DoxyImageNoCaption}
 
 
 \DoxyHorRuler{0}
-\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md129}{}\doxysection{\texorpdfstring{📁 推奨ファイル構成}{📁 推奨ファイル構成}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md129}
+\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md282}{}\doxysection{\texorpdfstring{📁 推奨ファイル構成}{📁 推奨ファイル構成}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md282}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{sources/}
@@ -154,7 +259,7 @@ debug\+\_\+compute\+Normal\+Color
 
 
 \DoxyHorRuler{0}
-\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md131}{}\doxysection{\texorpdfstring{📝 次のステップ}{📝 次のステップ}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md131}
+\hypertarget{md__doxygen_2memo__wip__raytracing_autotoc_md284}{}\doxysection{\texorpdfstring{📝 次のステップ}{📝 次のステップ}}\label{md__doxygen_2memo__wip__raytracing_autotoc_md284}
 
 \begin{DoxyItemize}
 \item[\DoxyUnchecked] {\ttfamily \doxylink{_intersection_8cpp_aca412d913682c6dfd8cd4d63a50a8a21_aca412d913682c6dfd8cd4d63a50a8a21}{compute\+Ray\+Hit\+Normal()}} の正確な法線補間を実装

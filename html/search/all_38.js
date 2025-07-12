@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['バッファとは？_0',['✅ バッファとは？',['../md__doxygen_2technical__terms.html#autotoc_md204',1,'']]],
-  ['バッファの初期化_1',['バッファの初期化',['../class_film_buffer_ab223f9d1044dc52fffc911bc4c95fc98.html#autotoc_md22',1,'2. バッファの初期化'],['../class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f.html#autotoc_md33',1,'2. バッファの初期化']]],
-  ['バッファスワップ（ダブルバッファ）_2',['🔵 5. バッファスワップ（ダブルバッファ）',['../md__doxygen_2open_g_l__basis.html#autotoc_md144',1,'']]],
-  ['バリュートリック座標（barycentric_20coordinates）_3',['バリュートリック座標（Barycentric Coordinates）',['../md__doxygen_2technical__terms.html#autotoc_md192',1,'']]],
-  ['バリュートリック補間を用いて交差点での法線を計算_4',['3. バリュートリック補間を用いて交差点での法線を計算',['../_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21.html#autotoc_md28',1,'']]]
+  ['のテクスチャモードを有効化_0',['2. OpenGL のテクスチャモードを有効化',['../drawfilm_8h_a443204766d01c1b7114034c955991bc8.html#autotoc_md20',1,'']]],
+  ['のテクスチャモードを無効化_1',['4. OpenGL のテクスチャモードを無効化',['../drawfilm_8h_a443204766d01c1b7114034c955991bc8.html#autotoc_md22',1,'']]],
+  ['の呼び出しをスケジュール_2',['12. &lt;tt&gt;paintGL()&lt;/tt&gt; の呼び出しをスケジュール',['../md__doxygen_2function__myopenglwigetcamera.html#autotoc_md194',1,'']]],
+  ['の流れと操作対象_20strong_3',['&lt;strong&gt;&lt;tt&gt;glMatrixMode&lt;/tt&gt; の流れと操作対象&lt;/strong&gt;',['../md__doxygen_2_open_g_l__func.html#autotoc_md322',1,'']]],
+  ['の順なのか？_4',['✅ ではなぜ &lt;tt&gt;paintGL()&lt;/tt&gt; では投影→ビューポート→視野 の順なのか？',['../md__doxygen_2coordinate__transformation1.html#autotoc_md161',1,'']]]
 ];

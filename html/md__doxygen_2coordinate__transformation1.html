@@ -87,7 +87,7 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title">全体フロー：OpenGL描画の処理の流れ（Qt版）</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md64"></a></p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md158"></a></p>
 <div class="fragment"><div class="line">          QOpenGLWidgetによる初期化 &amp; 描画</div>
 <div class="line">┌─────────────────────────────────────────┐</div>
 <div class="line">│                                        │</div>
@@ -104,7 +104,7 @@ $(function(){ initResizable(false); });
 <div class="line">│   │ paintGL()     │← 描画処理の本体        │</div>
 <div class="line">│   └──────────────┘                       │</div>
 <div class="line">└─────────────────────────────────────────┘</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md65"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md159"></a>
 普通、視野変換、投影変換、ビューポート変換の順に呼ばれませんか？</h1>
 <p>とても良い視点です。ご指摘の通り、**理論的・概念的には**：</p>
 <blockquote class="doxtable">
@@ -117,15 +117,15 @@ $(function(){ initResizable(false); });
 <div class="line"> → 投影変換（視錐台 → 正規化デバイス座標）</div>
 <div class="line"> → ビューポート変換（スクリーン座標へ）</div>
 </div><!-- fragment --><hr  />
-<h1><a class="anchor" id="autotoc_md67"></a>
+<h1><a class="anchor" id="autotoc_md161"></a>
 ✅ ではなぜ <code>paintGL()</code> では投影→ビューポート→視野 の順なのか？</h1>
 <p>これは **OpenGL の状態設定**と**描画タイミング**の関係によるものです。</p>
-<h2><a class="anchor" id="autotoc_md68"></a>
+<h2><a class="anchor" id="autotoc_md162"></a>
 OpenGLの描画順序（実際の<code>paintGL()</code>）：</h2>
 <div class="fragment"><div class="line">updateProjectionMatrix(); <span class="comment">// ① 投影行列の設定</span></div>
 <div class="line">glViewport(...);          <span class="comment">// ② スクリーンサイズの設定</span></div>
 <div class="line">projection_and_modelview(); <span class="comment">// ③ カメラの視点を設定</span></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md69"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md163"></a>
 なぜこの順でOKか：</h2>
 <ul>
 <li><p class="startli">OpenGLでは、「**行列の設定**」は **描画が始まる前**に行っておけばよく、実際の行列計算は内部で最終的に以下のように合成されます：</p>
@@ -136,11 +136,11 @@ OpenGLの描画順序（実際の<code>paintGL()</code>）：</h2>
 <li>**それぞれの行列スタックは独立に管理される**ので、順番が逆でも最終的に行列積が正しく合成されればOKです。</li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md71"></a>
+<h1><a class="anchor" id="autotoc_md165"></a>
 ✅ ビューポート変換はいつでもOK？</h1>
 <p>はい、<code>glViewport()</code> は **座標変換ではなく「画面にどうマッピングするか」**の設定です。したがって、描画前に呼ばれていれば OK です。行列に関係なく独立に働きます。</p>
 <hr  />
-<h1><a class="anchor" id="autotoc_md73"></a>
+<h1><a class="anchor" id="autotoc_md167"></a>
 🔁 結論：理論 vs 実装順の違い</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">

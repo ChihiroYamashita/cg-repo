@@ -1,0 +1,103 @@
+\chapter{レイと三角形の交差計算の詳細}
+\hypertarget{additional_inf_1}{}\label{additional_inf_1}\index{レイと三角形の交差計算の詳細@{レイと三角形の交差計算の詳細}}
+わかりやすく初学者向けに説明しますね！
+
+\DoxyHorRuler{0}
+\hypertarget{additional_inf_1_autotoc_md72}{}\doxysubsubsection{\texorpdfstring{これは何？}{これは何？}}\label{additional_inf_1_autotoc_md72}
+{\ttfamily std\+::vector\texorpdfstring{$<$}{<}Eigen\+::\+Vector3d, Eigen\+::aligned\+\_\+allocator\texorpdfstring{$<$}{<}Eigen\+::\+Vector3d\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}} は、 ~\newline
+ 「{\ttfamily Eigen\+::\+Vector3d} という型を使った特別な配列（動的配列）」です。
+
+ここで重要な部分を一つずつ簡単に説明します！
+
+\DoxyHorRuler{0}
+\hypertarget{additional_inf_1_autotoc_md74}{}\doxysubsubsection{\texorpdfstring{1. {\ttfamily std\+::vector\texorpdfstring{$<$}{<}Eigen\+::\+Vector3d\texorpdfstring{$>$}{>}} とは？}{1. {\ttfamily std\+::vector\texorpdfstring{$<$}{<}Eigen\+::\+Vector3d\texorpdfstring{$>$}{>}} とは？}}\label{additional_inf_1_autotoc_md74}
+C++の {\ttfamily std\+::vector} は、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}可変サイズの配列\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}です。
+
+
+\begin{DoxyItemize}
+\item {\bfseries{例}}\+: {\ttfamily std\+::vector\texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>}} は整数のリスト。
+\item ここでは {\ttfamily std\+::vector\texorpdfstring{$<$}{<}Eigen\+::\+Vector3d\texorpdfstring{$>$}{>}} なので、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}3次元のベクトル\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}のリストを作ります。
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{additional_inf_1_autotoc_md76}{}\doxysubsubsection{\texorpdfstring{2. {\ttfamily Eigen\+::\+Vector3d} とは？}{2. {\ttfamily Eigen\+::\+Vector3d} とは？}}\label{additional_inf_1_autotoc_md76}
+{\ttfamily Eigen} は数学計算用のライブラリです。その中の {\ttfamily Vector3d} は：
+
+
+\begin{DoxyItemize}
+\item {\bfseries{3次元のベクトル\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}を表します。}}
+\item {\bfseries{例\+: 「\mbox{[}x, y, z\mbox{]}」みたいな形のデータ。}}
+\item {\bfseries{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}用途}}\+: 3Dグラフィックスや物理計算で座標や方向を表すのによく使います。
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{additional_inf_1_autotoc_md78}{}\doxysubsubsection{\texorpdfstring{3. {\ttfamily Eigen\+::aligned\+\_\+allocator\texorpdfstring{$<$}{<}Eigen\+::\+Vector3d\texorpdfstring{$>$}{>}} は何？}{3. {\ttfamily Eigen\+::aligned\+\_\+allocator\texorpdfstring{$<$}{<}Eigen\+::\+Vector3d\texorpdfstring{$>$}{>}} は何？}}\label{additional_inf_1_autotoc_md78}
+これは少しテクニカルですが、「データの置き方（アライメント）」を調整するためのものです。\hypertarget{additional_inf_1_autotoc_md79}{}\doxysubsubsubsection{\texorpdfstring{どうして必要？}{どうして必要？}}\label{additional_inf_1_autotoc_md79}
+コンピュータが計算を速くするためには、データが特定の並び方でメモリに配置されている必要があります。 ~\newline
+ 例えば、16バイトごとにデータを揃えると、計算が速くなります。
+
+普通の配列（{\ttfamily std\+::vector}）では、この配置がうまく揃わないことがあります。 ~\newline
+ そのため、この {\bfseries{{\ttfamily Eigen\+::aligned\+\_\+allocator}}} を使って、正しく配置するようにしています。
+
+\DoxyHorRuler{0}
+\hypertarget{additional_inf_1_autotoc_md81}{}\doxysubsubsection{\texorpdfstring{わかりやすい例}{わかりやすい例}}\label{additional_inf_1_autotoc_md81}
+\hypertarget{additional_inf_1_autotoc_md82}{}\doxysubsubsubsection{\texorpdfstring{普通の配列の場合：}{普通の配列の場合：}}\label{additional_inf_1_autotoc_md82}
+あなたがノートを取るときに、どこに書いても\+OKとする感じ。 ~\newline
+ ただ、ランダムに書き始めると後で探しにくくなるし、整理も大変。\hypertarget{additional_inf_1_autotoc_md83}{}\doxysubsubsubsection{\texorpdfstring{アライメント付きの場合：}{アライメント付きの場合：}}\label{additional_inf_1_autotoc_md83}
+ノートに「1ページ1テーマ」などのルールを決めて整理する感じ。 ~\newline
+ これだと後で探しやすく、効率が良くなります！
+
+\DoxyHorRuler{0}
+\hypertarget{additional_inf_1_autotoc_md85}{}\doxysubsubsection{\texorpdfstring{全体の意味}{全体の意味}}\label{additional_inf_1_autotoc_md85}
+{\ttfamily std\+::vector\texorpdfstring{$<$}{<}Eigen\+::\+Vector3d, Eigen\+::aligned\+\_\+allocator\texorpdfstring{$<$}{<}Eigen\+::\+Vector3d\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}} は、 ~\newline
+ 「3次元ベクトル（{\ttfamily Eigen\+::\+Vector3d}）を効率よく使うために、特別な整理整頓（アライメント）をした動的配列」です。
+
+\DoxyHorRuler{0}
+\hypertarget{additional_inf_1_autotoc_md87}{}\doxysubsubsection{\texorpdfstring{使い方の例}{使い方の例}}\label{additional_inf_1_autotoc_md87}
+こんな感じで使えます：
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <Eigen/Core>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ アライメント付きの動的配列を作成}}
+\DoxyCodeLine{\ \ \ \ std::vector<Eigen::Vector3d,\ Eigen::aligned\_allocator<Eigen::Vector3d>>\ vertices;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ ベクトルを追加}}
+\DoxyCodeLine{\ \ \ \ vertices.emplace\_back(1.0,\ 0.0,\ 0.0);\ \textcolor{comment}{//\ 点\ (1,\ 0,\ 0)}}
+\DoxyCodeLine{\ \ \ \ vertices.emplace\_back(0.0,\ 1.0,\ 0.0);\ \textcolor{comment}{//\ 点\ (0,\ 1,\ 0)}}
+\DoxyCodeLine{\ \ \ \ vertices.emplace\_back(0.0,\ 0.0,\ 1.0);\ \textcolor{comment}{//\ 点\ (0,\ 0,\ 1)}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 配列の中身を表示}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ v\ :\ vertices)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}ベクトル:\ "{}}\ <<\ v.transpose()\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+出力は： 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ベクトル:\ 1\ 0\ 0}
+\DoxyCodeLine{ベクトル:\ 0\ 1\ 0}
+\DoxyCodeLine{ベクトル:\ 0\ 0\ 1}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{additional_inf_1_autotoc_md89}{}\doxysubsubsection{\texorpdfstring{まとめ}{まとめ}}\label{additional_inf_1_autotoc_md89}
+
+\begin{DoxyEnumerate}
+\item {\ttfamily std\+::vector} → \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}配列\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}。
+\item {\ttfamily Eigen\+::\+Vector3d} → \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}3次元ベクトル\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}。
+\item {\ttfamily Eigen\+::aligned\+\_\+allocator} → \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}データを正しく整理するための道具\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}。
+\end{DoxyEnumerate}
+
+難しい部分（アライメント）は「効率よくするための仕組み」と覚えておけば\+OKです！ 

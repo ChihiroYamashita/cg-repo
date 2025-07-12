@@ -57,10 +57,53 @@ private:
 
     //--------------レイトレ用---------------------------------------
     void initializeFilmTexture();
-    GLuint m_filmTexture = 0; // フィルムテクスチャのID
-    //float* g_FilmBuffer = nullptr; // テスト用のテクスチャデータ
 
-     FilmBuffer m_film;
+    /**
+     * @var m_filmTexture
+ * @brief フィルム画像を表示するためのOpenGLテクスチャID
+ *
+ * @details この変数は、OpenGLのテクスチャオブジェクトを識別する「番号（ID）」です。
+ * 実際の色データがこの変数に格納されるわけではなく、このIDが指し示す**GPU上のテクスチャ領域**に、
+ * 色のピクセル情報（m_filmBuffer）を転送します。
+ *
+ * ### 🎨 フィルムテクスチャって何？
+ * - レイトレーシングで計算された画像（`m_filmBuffer`）を画面に映すために必要な、
+ *   **GPU上の画像メモリ**です。
+ * - このID（`m_filmTexture`）は「どのテクスチャか」を指定するための**番号ラベル**のようなものです。
+ * - 正確には、色データが直接 int 型の m_filmTexture に送り込まれるわけではありません。
+ * m_filmTexture はテクスチャの「ID」や「名前」であり、そのIDが指し示すOpenGLのテクスチャオブジェクト（GPU上のメモリ領域）に色データが送り込まれます。
+ *
+ * ### 🔁 どうやって使われるの？
+ * 1. `glGenTextures()` で新しいテクスチャID（番号）を作成し、`m_filmTexture` に格納します。
+ * 2. `glBindTexture()` でそのIDを「今から操作するテクスチャ」として選択します。
+ * 3. `glTexImage2D()` や `glTexSubImage2D()` を使って、`m_filmBuffer` にあるピクセルの色データをそのテクスチャに転送します。
+ * 4. `paintGL()` の中でこのテクスチャを画面いっぱいに描画します（`drawFilm()` 関数などを通じて）。
+ *
+ * * @code
+ * glGenTextures(1, &m_filmTexture);              // テクスチャIDの生成
+ * glBindTexture(GL_TEXTURE_2D, m_filmTexture);   // このIDのテクスチャを選択
+ * glTexSubImage2D(..., m_filmBuffer);            // 色データをGPUに送る
+ * @endcode
+ *
+ * ### 🧠 よくある誤解
+ * - `m_filmTexture` は `GLuint` 型（ただの数値）で、**データ本体ではありません**。
+ * - データは `glTexSubImage2D()` などを使って、このIDが指すGPUメモリに転送されます。
+ *
+ * ### ✨ 例えると...
+ * - `m_filmBuffer` は **絵の具で描いた絵**、
+ * - `m_filmTexture` は **その絵を貼るためのスクリーン番号**、
+ * - OpenGLの関数は **そのスクリーンに絵を貼って、画面に表示してくれるスタッフ** のようなものです。
+ *
+
+ *
+ * @see FilmBuffer::getFilmBufferPtr()
+ * @see drawFilm()
+ * @see glBindTexture()
+ * @see glTexSubImage2D()
+ */
+    GLuint m_filmTexture = 0; // フィルムテクスチャのID
+
+    FilmBuffer m_film;
 
     void createDebugPattern();
     std::vector<AreaLight> g_AreaLights;// 読み込んだオブジェクトを保持

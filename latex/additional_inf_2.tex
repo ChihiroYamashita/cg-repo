@@ -1,0 +1,157 @@
+\chapter{頂点インデックス}
+\hypertarget{additional_inf_2}{}\label{additional_inf_2}\index{頂点インデックス@{頂点インデックス}}
+\hypertarget{additional_inf_2_autotoc_md90}{}\doxysubsubsection{\texorpdfstring{インデックスとは？}{インデックスとは？}}\label{additional_inf_2_autotoc_md90}
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}インデックス\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}とは、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}データの位置を特定するための「番号」や「ラベル」\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}のことです。 ~\newline
+ 「目次」や「住所」などをイメージするとわかりやすいです。
+
+\DoxyHorRuler{0}
+\hypertarget{additional_inf_2_autotoc_md92}{}\doxysubsubsection{\texorpdfstring{コンピュータにおけるインデックス}{コンピュータにおけるインデックス}}\label{additional_inf_2_autotoc_md92}
+\hypertarget{additional_inf_2_autotoc_md93}{}\doxysubsubsubsection{\texorpdfstring{配列やリストの場合}{配列やリストの場合}}\label{additional_inf_2_autotoc_md93}
+プログラムで使うデータ構造（例\+: 配列やリスト）では、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}インデックスはデータの順序を示す番号\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}です。\hypertarget{additional_inf_2_autotoc_md94}{}\doxysubsubsubsection{\texorpdfstring{例}{例}}\label{additional_inf_2_autotoc_md94}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ numbers[]\ =\ \{10,\ 20,\ 30,\ 40\};}
+
+\end{DoxyCode}
+ この配列には4つのデータが格納されています。
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ インデックス   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ データ (値)    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ インデックス   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ データ (値)    }\\\cline{1-2}
+\endhead
+0   &10    \\\cline{1-2}
+1   &20    \\\cline{1-2}
+2   &30    \\\cline{1-2}
+3   &40   \\\cline{1-2}
+\end{longtabu}
+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{インデックス 0}} → データは 10 ~\newline
+
+\item {\bfseries{インデックス 1}} → データは 20 ~\newline
+
+\item インデックスを使うと、データに直接アクセスできます。
+\end{DoxyItemize}\hypertarget{additional_inf_2_autotoc_md95}{}\doxysubsubsection{\texorpdfstring{頂点インデックスとは？}{頂点インデックスとは？}}\label{additional_inf_2_autotoc_md95}
+3Dグラフィックスで「頂点インデックス」とは、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}三角形やその他の形状を構成する頂点を効率的に参照するための番号\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}です。頂点の位置やその他の情報を使い回しできる仕組みです。
+
+\DoxyHorRuler{0}
+\hypertarget{additional_inf_2_autotoc_md97}{}\doxysubsubsection{\texorpdfstring{背景：頂点データの効率化}{背景：頂点データの効率化}}\label{additional_inf_2_autotoc_md97}
+通常、3\+Dモデルは以下のように構成されます：
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{頂点座標リスト}}\+:
+\begin{DoxyItemize}
+\item モデルを構成する全ての頂点の位置をリストとして保持します。
+\item 例： ~\newline
+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{頂点座標リスト\ =\ [(x1,\ y1,\ z1),\ (x2,\ y2,\ z2),\ (x3,\ y3,\ z3),\ ...]}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}
+\item {\bfseries{三角形の定義}}\+:
+\begin{DoxyItemize}
+\item 3Dモデルの表面を三角形の集合で表します。
+\item 各三角形は、頂点リスト内の「インデックス」で指定します。
+\item 例： ~\newline
+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{三角形\ =\ [頂点1,\ 頂点2,\ 頂点3]}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{additional_inf_2_autotoc_md99}{}\doxysubsubsection{\texorpdfstring{頂点インデックスを使う理由}{頂点インデックスを使う理由}}\label{additional_inf_2_autotoc_md99}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{データの再利用}}\+:
+\begin{DoxyItemize}
+\item 同じ頂点を複数の三角形が共有できる。
+\item 重複する頂点データを省略してメモリ効率を向上。
+\end{DoxyItemize}
+\item {\bfseries{高速処理}}\+:
+\begin{DoxyItemize}
+\item GPU（グラフィックスカード）での描画処理を効率化。
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{additional_inf_2_autotoc_md101}{}\doxysubsubsection{\texorpdfstring{初学者向けの例}{初学者向けの例}}\label{additional_inf_2_autotoc_md101}
+\hypertarget{additional_inf_2_autotoc_md102}{}\doxysubsubsubsection{\texorpdfstring{例1\+: 頂点座標リスト}{例1\+: 頂点座標リスト}}\label{additional_inf_2_autotoc_md102}
+以下のリストが頂点の位置を表しているとします： 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{頂点座標リスト:}
+\DoxyCodeLine{0:\ (0,\ 0,\ 0)\ \ \ \#\ 頂点0}
+\DoxyCodeLine{1:\ (1,\ 0,\ 0)\ \ \ \#\ 頂点1}
+\DoxyCodeLine{2:\ (0,\ 1,\ 0)\ \ \ \#\ 頂点2}
+\DoxyCodeLine{3:\ (1,\ 1,\ 0)\ \ \ \#\ 頂点3}
+
+\end{DoxyCode}
+\hypertarget{additional_inf_2_autotoc_md103}{}\doxysubsubsubsection{\texorpdfstring{例2\+: 三角形の定義}{例2\+: 三角形の定義}}\label{additional_inf_2_autotoc_md103}
+次に、三角形を頂点インデックスで指定します： 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{三角形リスト:}
+\DoxyCodeLine{[0,\ 1,\ 2]\ \ \#\ 頂点0,\ 頂点1,\ 頂点2で構成された三角形}
+\DoxyCodeLine{[1,\ 3,\ 2]\ \ \#\ 頂点1,\ 頂点3,\ 頂点2で構成された三角形}
+
+\end{DoxyCode}
+
+
+これにより、以下のような構造になります：
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{三角形1}}\+: 頂点 (0,0,0), (1,0,0), (0,1,0) ~\newline
+
+\item {\bfseries{三角形2}}\+: 頂点 (1,0,0), (1,1,0), (0,1,0)
+\end{DoxyEnumerate}\hypertarget{additional_inf_2_autotoc_md104}{}\doxysubsubsubsection{\texorpdfstring{図示すると…}{図示すると…}}\label{additional_inf_2_autotoc_md104}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ (2)}
+\DoxyCodeLine{\ \ \ *\ \ }
+\DoxyCodeLine{\ \ /|\(\backslash\)}
+\DoxyCodeLine{\ /\ |\ \(\backslash\)}
+\DoxyCodeLine{*-\/-\/*-\/-\/*}
+\DoxyCodeLine{(0)\ \ (1)\ (3)}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{additional_inf_2_autotoc_md106}{}\doxysubsubsection{\texorpdfstring{頂点インデックスの技術的な利点}{頂点インデックスの技術的な利点}}\label{additional_inf_2_autotoc_md106}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{メモリ削減}}\+:
+\begin{DoxyItemize}
+\item 各三角形ごとに頂点座標を再記述する必要がない。
+\item 大きなモデルでは特に重要。
+\end{DoxyItemize}
+\item {\bfseries{GPUでの高速処理}}\+:
+\begin{DoxyItemize}
+\item 頂点インデックスを使うことで、\+GPUが効率よく形状を再現可能。
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{additional_inf_2_autotoc_md108}{}\doxysubsubsection{\texorpdfstring{初学者へのポイント}{初学者へのポイント}}\label{additional_inf_2_autotoc_md108}
+
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}「頂点インデックス」は「番号」\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}です。
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}「三角形リスト」は「番号で構成された形」\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}です。
+\item 頂点の実際の座標は「頂点座標リスト」に保存されており、インデックスを通して参照します。
+\end{DoxyItemize}
+
+これが「頂点インデックス」の基本的な役割と使用方法です！ 

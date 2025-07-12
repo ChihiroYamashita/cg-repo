@@ -1,6 +1,6 @@
 \chapter{to\+Qtmemo}
 \hypertarget{md_sources_2to_qtmemo}{}\label{md_sources_2to_qtmemo}\index{toQtmemo@{toQtmemo}}
-はい、{\ttfamily \doxylink{main_8cpp}{main.\+cpp}}の\+GLUTベースの関数と、\+Qtウィジェットの各関数との対応関係は以下のようになります。この対応を理解することで、移植作業をスムーズに進められます。\hypertarget{md_sources_2to_qtmemo_autotoc_md37}{}\doxysubsubsection{\texorpdfstring{main.\+cppと\+Qtウィジェットの関数対応}{main.\+cppと\+Qtウィジェットの関数対応}}\label{md_sources_2to_qtmemo_autotoc_md37}
+はい、{\ttfamily \doxylink{main_8cpp}{main.\+cpp}}の\+GLUTベースの関数と、\+Qtウィジェットの各関数との対応関係は以下のようになります。この対応を理解することで、移植作業をスムーズに進められます。\hypertarget{md_sources_2to_qtmemo_autotoc_md44}{}\doxysubsubsection{\texorpdfstring{main.\+cppと\+Qtウィジェットの関数対応}{main.\+cppと\+Qtウィジェットの関数対応}}\label{md_sources_2to_qtmemo_autotoc_md44}
 \tabulinesep=1mm
 \begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
 \hline
@@ -14,22 +14,22 @@
 {\ttfamily \doxylink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97}{main()}} 内の初期化処理   &{\bfseries{コンストラクタ}} / {\bfseries{{\ttfamily initialize\+GL()}}}   &プログラム開始時の1度きりの初期化（オブジェクトロード、バッファ確保など）。    \\\cline{1-3}
 {\ttfamily display()}   &{\bfseries{{\ttfamily paint\+GL()}}}   &画面の描画処理。3\+Dオブジェクトや{\ttfamily draw\+Film}など、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}見えるもの全て\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}を描画します。    \\\cline{1-3}
 {\ttfamily resize()}   &{\bfseries{{\ttfamily resize\+GL()}}}   &ウィンドウのリサイズ処理。ビューポートやプロジェクション行列、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}サイズに依存するリソース\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}（フィルムテクスチャ）を更新します。    \\\cline{1-3}
-{\ttfamily idle()}   &{\bfseries{{\ttfamily QTimer}}} + {\bfseries{カスタムスロット}}   &バックグラウンド処理。レイトレーシング計算（{\ttfamily shade\+Next\+Pixel}）など、連続して行う重い処理。    \\\cline{1-3}
+{\ttfamily idle()}   &{\bfseries{{\ttfamily QTimer}}} + {\bfseries{カスタムスロット(update\+Ray\+Tracing)}}   &バックグラウンド処理。レイトレーシング計算（{\ttfamily shade\+Next\+Pixel}）など、連続して行う重い処理。    \\\cline{1-3}
 {\ttfamily mouse()}, {\ttfamily mouse\+Drag()}   &{\ttfamily mouse\+Press\+Event()}, {\ttfamily mouse\+Move\+Event()}   &マウス入力の処理。   \\\cline{1-3}
 \end{longtabu}
 
 
 \DoxyHorRuler{0}
-\hypertarget{md_sources_2to_qtmemo_autotoc_md39}{}\doxysubsubsection{\texorpdfstring{解説}{解説}}\label{md_sources_2to_qtmemo_autotoc_md39}
-\hypertarget{md_sources_2to_qtmemo_autotoc_md40}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily display()} → {\ttfamily paint\+GL()}}{{\ttfamily display()} → {\ttfamily paint\+GL()}}}\label{md_sources_2to_qtmemo_autotoc_md40}
+\hypertarget{md_sources_2to_qtmemo_autotoc_md46}{}\doxysubsubsection{\texorpdfstring{解説}{解説}}\label{md_sources_2to_qtmemo_autotoc_md46}
+\hypertarget{md_sources_2to_qtmemo_autotoc_md47}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily display()} → {\ttfamily paint\+GL()}}{{\ttfamily display()} → {\ttfamily paint\+GL()}}}\label{md_sources_2to_qtmemo_autotoc_md47}
 {\ttfamily paint\+GL()}が、\+GLUTの{\ttfamily display()}に相当するメインの描画関数です。シーン内のオブジェクト（座標軸、立方体）を描画し、最後に{\ttfamily \doxylink{drawfilm_8cpp_a443204766d01c1b7114034c955991bc8_a443204766d01c1b7114034c955991bc8}{draw\+Film()}}でレイトレーシング結果のテクスチャを描画する、という流れは同じです。
 
 \DoxyHorRuler{0}
-\hypertarget{md_sources_2to_qtmemo_autotoc_md42}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily resize()} → {\ttfamily resize\+GL()}}{{\ttfamily resize()} → {\ttfamily resize\+GL()}}}\label{md_sources_2to_qtmemo_autotoc_md42}
+\hypertarget{md_sources_2to_qtmemo_autotoc_md49}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily resize()} → {\ttfamily resize\+GL()}}{{\ttfamily resize()} → {\ttfamily resize\+GL()}}}\label{md_sources_2to_qtmemo_autotoc_md49}
 すでに行ったフィルムテクスチャのサイズ調整のように、ウィンドウサイズが変わった際の処理は{\ttfamily resize\+GL()}に記述します。これは{\ttfamily resize()}の役割と完全に一致します。
 
 \DoxyHorRuler{0}
-\hypertarget{md_sources_2to_qtmemo_autotoc_md44}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily idle()} → {\ttfamily QTimer} + カスタムスロット}{{\ttfamily idle()} → {\ttfamily QTimer} + カスタムスロット}}\label{md_sources_2to_qtmemo_autotoc_md44}
+\hypertarget{md_sources_2to_qtmemo_autotoc_md51}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily idle()} → {\ttfamily QTimer} + カスタムスロット}{{\ttfamily idle()} → {\ttfamily QTimer} + カスタムスロット}}\label{md_sources_2to_qtmemo_autotoc_md51}
 これが最も重要な違いです。
 
 GLUTの{\ttfamily idle()}関数は、イベントがない時に常に呼ばれ続けるため、\+CPUを消費しながらバックグラウンドで計算を行うのに使われていました。しかし、同じことを\+Qtのメインスレッドで行うと、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+GUIが応答しなくなりフリーズします\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}。
@@ -59,8 +59,8 @@ update\+Film(); // 計算結果をテクスチャバッファに反映
 update(); // paint\+GL()の再描画をスケジュールする \} \`{}\`{}\`{}
 \end{DoxyEnumerate}
 
-このように{\ttfamily QTimer}を使うことで、\+GUIの応答性を保ちながら、バックグラウンドでレイトレーシングの計算を継続的に実行できます。\hypertarget{md_sources_2to_qtmemo_autotoc_md45}{}\doxysection{\texorpdfstring{First Level Heading}{First Level Heading}}\label{md_sources_2to_qtmemo_autotoc_md45}
-Paragraph.\hypertarget{md_sources_2to_qtmemo_autotoc_md46}{}\doxysubsection{\texorpdfstring{Second Level Heading}{Second Level Heading}}\label{md_sources_2to_qtmemo_autotoc_md46}
+このように{\ttfamily QTimer}を使うことで、\+GUIの応答性を保ちながら、バックグラウンドでレイトレーシングの計算を継続的に実行できます。\hypertarget{md_sources_2to_qtmemo_autotoc_md52}{}\doxysection{\texorpdfstring{First Level Heading}{First Level Heading}}\label{md_sources_2to_qtmemo_autotoc_md52}
+Paragraph.\hypertarget{md_sources_2to_qtmemo_autotoc_md53}{}\doxysubsection{\texorpdfstring{Second Level Heading}{Second Level Heading}}\label{md_sources_2to_qtmemo_autotoc_md53}
 Paragraph.
 
 
@@ -75,7 +75,7 @@ Paragraph.
 \begin{DoxyEnumerate}
 \item ordered
 \item next ordered
-\end{DoxyEnumerate}\hypertarget{md_sources_2to_qtmemo_autotoc_md47}{}\doxysubsubsection{\texorpdfstring{Third Level Heading}{Third Level Heading}}\label{md_sources_2to_qtmemo_autotoc_md47}
+\end{DoxyEnumerate}\hypertarget{md_sources_2to_qtmemo_autotoc_md54}{}\doxysubsubsection{\texorpdfstring{Third Level Heading}{Third Level Heading}}\label{md_sources_2to_qtmemo_autotoc_md54}
 Some {\itshape italic} and {\bfseries{bold}} text and {\ttfamily inline code}.
 
 An empty line starts a new paragraph.
@@ -97,6 +97,6 @@ four spaces at the front.
 A blockquote starts with \texorpdfstring{$>$}{>}
 
 and has the same paragraph rules as normal text. \end{quote}
-\hypertarget{md_sources_2to_qtmemo_autotoc_md49}{}\doxysection{\texorpdfstring{First Level Heading in Alternate Style}{First Level Heading in Alternate Style}}\label{md_sources_2to_qtmemo_autotoc_md49}
-Paragraph.\hypertarget{md_sources_2to_qtmemo_autotoc_md50}{}\doxysubsection{\texorpdfstring{Second Level Heading in Alternate Style}{Second Level Heading in Alternate Style}}\label{md_sources_2to_qtmemo_autotoc_md50}
+\hypertarget{md_sources_2to_qtmemo_autotoc_md56}{}\doxysection{\texorpdfstring{First Level Heading in Alternate Style}{First Level Heading in Alternate Style}}\label{md_sources_2to_qtmemo_autotoc_md56}
+Paragraph.\hypertarget{md_sources_2to_qtmemo_autotoc_md57}{}\doxysubsection{\texorpdfstring{Second Level Heading in Alternate Style}{Second Level Heading in Alternate Style}}\label{md_sources_2to_qtmemo_autotoc_md57}
 Paragraph. 

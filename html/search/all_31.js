@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['カスタムスロット_0',['&lt;tt&gt;idle()&lt;/tt&gt; → &lt;tt&gt;QTimer&lt;/tt&gt; + カスタムスロット',['../md_sources_2to_qtmemo.html#autotoc_md44',1,'']]],
-  ['カメラ位置変更後の情報取得フロー_1',['カメラ位置変更後の情報取得フロー',['../index.html#autotoc_md187',1,'']]]
+  ['さらに学びたい方向け_0',['✳️ さらに学びたい方向け',['../md__doxygen_2open_g_l__basis.html#autotoc_md305',1,'']]]
 ];

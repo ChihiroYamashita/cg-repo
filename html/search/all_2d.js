@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['よく使う関数まとめ_0',['✅ よく使う関数まとめ',['../md__doxygen_2open_g_l__basis.html#autotoc_md150',1,'']]]
+  ['✳️_20さらに学びたい方向け_0',['✳️ さらに学びたい方向け',['../md__doxygen_2open_g_l__basis.html#autotoc_md305',1,'']]]
 ];

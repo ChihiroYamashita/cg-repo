@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['初期化・描画シーケンス_0',['🌐 PlantUML: 初期化・描画シーケンス',['../md__doxygen_2memo__wip__raytracing.html#autotoc_md127',1,'']]],
-  ['初期化（_20tt_20initializegl_20tt_20tt_20init_20tt_20）_1',['🔵 2. 初期化（&lt;tt&gt;initializeGL()&lt;/tt&gt; / &lt;tt&gt;init()&lt;/tt&gt;）',['../md__doxygen_2open_g_l__basis.html#autotoc_md138',1,'']]]
+  ['テクスチャに送る_20strong_0',['&lt;strong&gt;3. テクスチャに送る&lt;/strong&gt;',['../additional_info_buffer.html#autotoc_md125',1,'']]],
+  ['テクスチャを貼り付けた四角形を描画_1',['3. テクスチャを貼り付けた四角形を描画',['../drawfilm_8h_a443204766d01c1b7114034c955991bc8.html#autotoc_md21',1,'']]],
+  ['テクスチャ行列を操作する例_20strong_2',['&lt;strong&gt;テクスチャ行列を操作する例&lt;/strong&gt;',['../md__doxygen_2_open_g_l__func.html#autotoc_md320',1,'']]]
 ];

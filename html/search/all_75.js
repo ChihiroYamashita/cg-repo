@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['🔍_20備考_0',['🔍 備考',['../md__doxygen_2memo__progressive__rendering.html#autotoc_md106',1,'']]]
+  ['用語集_0',['用語集',['../md__doxygen_2technical__terms.html',1,'']]],
+  ['用途_1',['🔹 用途',['../md__doxygen_2technical__terms.html#autotoc_md353',1,'']]]
 ];

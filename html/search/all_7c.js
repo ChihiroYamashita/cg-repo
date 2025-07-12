@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['🧭_20法線・色処理_0',['🧭 法線・色処理',['../md__doxygen_2memo__wip__raytracing.html#autotoc_md113',1,'']]],
-  ['🧭_20openglの基本的な使い方：5ステップ_1',['🧭 OpenGLの基本的な使い方：5ステップ',['../md__doxygen_2open_g_l__basis.html#autotoc_md135',1,'']]]
+  ['行列の種類と用途_20strong_0',['&lt;strong&gt;行列の種類と用途&lt;/strong&gt;',['../md__doxygen_2_open_g_l__func.html#autotoc_md315',1,'']]]
 ];

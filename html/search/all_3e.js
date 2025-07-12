@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['モデルビュー変換の設定_0',['3. モデルビュー変換の設定',['../class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f.html#autotoc_md34',1,'']]],
-  ['モデルビュー行列を設定する例_20strong_1',['&lt;strong&gt;モデルビュー行列を設定する例&lt;/strong&gt;',['../md__doxygen_2_open_g_l__func.html#autotoc_md165',1,'']]]
+  ['アプデ_0',['アプデ',['../md__doxygen_2updates.html#autotoc_md373',1,'']]],
+  ['アライメント付きの場合：_1',['アライメント付きの場合：',['../additional_inf_1.html#autotoc_md83',1,'']]]
 ];

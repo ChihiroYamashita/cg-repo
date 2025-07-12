@@ -390,7 +390,35 @@ bool _loadObj( const std::string& in_filename, InternalVertices& out_internal_ve
   fclose( f );
   return true;
 }
-
+/**
+ * @brief OBJファイル（3Dメッシュ）を読み込んで Object に格納する
+ *
+ * @startuml loadObj_sequence
+ * actor User
+ * participant "loadObj" as LO
+ * participant "_loadObj" as _LO
+ * participant "prepareTextureFromJpegFile" as Tex
+ * participant "Object" as Obj
+ * participant "TriMesh" as Mesh
+ *
+ * User -> LO : loadObj("model.obj", out_object)
+ * LO -> _LO : _loadObj(...) // 頂点・三角形・マテリアル読み込み
+ * _LO --> LO : InternalVertices,\nInternalTriangles,\nInternalMaterials
+ *
+ * loop 各マテリアルグループ
+ *     LO -> Mesh : TriMesh作成・データ格納
+ *     alt テクスチャ指定あり
+ *         LO -> Tex : prepareTextureFromJpegFile()
+ *         Tex --> LO : GLuint テクスチャID
+ *     else テクスチャなし
+ *         LO -> Mesh : テクスチャID = 0
+ *     end
+ *     LO -> Obj : meshes.push_back(Mesh)
+ * end
+ *
+ * LO --> User : true / false（成功 or 失敗）
+ * @enduml
+ */
 bool loadObj( const std::string& in_filename, Object& out_object )
 {
   InternalVertices internal_vertices;

@@ -45,7 +45,7 @@ void draw\+Film (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_cam
 \mbox{\texttt{ in}}  & {\em in\+\_\+\+Film\+Texture} & フィルムバッファを格納した Open\+GL のテクスチャオブジェクト\\
 \hline
 \end{DoxyParams}
-{\bfseries{処理の流れ}}\+:\hypertarget{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md16}{}\doxysubsubsubsubsection{\texorpdfstring{1. スクリーンの頂点を計算}{1. スクリーンの頂点を計算}}\label{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md16}
+{\bfseries{処理の流れ}}\+:\hypertarget{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md19}{}\doxysubsubsubsubsection{\texorpdfstring{1. スクリーンの頂点を計算}{1. スクリーンの頂点を計算}}\label{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md19}
 カメラのスクリーン位置を基準に、四角形の4つの頂点を計算します。 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{Eigen::Vector3d\ screen\_center\ =\ in\_Camera.getEyePoint()\ -\/\ in\_Camera.getZVector()\ *\ in\_Camera.getFocalLength();}
@@ -55,14 +55,14 @@ void draw\+Film (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_cam
 \DoxyCodeLine{Eigen::Vector3d\ p4\ =\ screen\_center\ -\/\ in\_Camera.getXVector()\ *\ in\_Camera.getScreenWidth()\ *\ 0.5\ +\ in\_Camera.getYVector()\ *\ in\_Camera.getScreenHeight()\ *\ 0.5;}
 
 \end{DoxyCode}
-\hypertarget{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md17}{}\doxysubsubsubsubsection{\texorpdfstring{2. Open\+GL のテクスチャモードを有効化}{2. Open\+GL のテクスチャモードを有効化}}\label{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md17}
+\hypertarget{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md20}{}\doxysubsubsubsubsection{\texorpdfstring{2. Open\+GL のテクスチャモードを有効化}{2. Open\+GL のテクスチャモードを有効化}}\label{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md20}
 描画対象となるテクスチャを Open\+GL にバインドします。 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{glEnable(GL\_TEXTURE\_2D);}
 \DoxyCodeLine{glBindTexture(GL\_TEXTURE\_2D,\ in\_FilmTexture);}
 
 \end{DoxyCode}
-\hypertarget{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md18}{}\doxysubsubsubsubsection{\texorpdfstring{3. テクスチャを貼り付けた四角形を描画}{3. テクスチャを貼り付けた四角形を描画}}\label{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md18}
+\hypertarget{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md21}{}\doxysubsubsubsubsection{\texorpdfstring{3. テクスチャを貼り付けた四角形を描画}{3. テクスチャを貼り付けた四角形を描画}}\label{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md21}
 テクスチャの UV 座標と対応する頂点座標を指定し、三角形を2つ描画して四角形を形成します。 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{glBegin(GL\_TRIANGLES);}
@@ -82,13 +82,13 @@ void draw\+Film (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_cam
 \DoxyCodeLine{glEnd();}
 
 \end{DoxyCode}
-\hypertarget{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md19}{}\doxysubsubsubsubsection{\texorpdfstring{4. Open\+GL のテクスチャモードを無効化}{4. Open\+GL のテクスチャモードを無効化}}\label{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md19}
+\hypertarget{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md22}{}\doxysubsubsubsubsection{\texorpdfstring{4. Open\+GL のテクスチャモードを無効化}{4. Open\+GL のテクスチャモードを無効化}}\label{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md22}
 テクスチャ描画が終了した後、テクスチャモードを無効化します。 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{glDisable(GL\_TEXTURE\_2D);}
 
 \end{DoxyCode}
-\hypertarget{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md20}{}\doxysubsubsubsection{\texorpdfstring{シーケンス図}{シーケンス図}}\label{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md20}
+\hypertarget{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md23}{}\doxysubsubsubsection{\texorpdfstring{シーケンス図}{シーケンス図}}\label{drawfilm_8h_a443204766d01c1b7114034c955991bc8_autotoc_md23}
 
 \begin{DoxyImageNoCaption}
   \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_3}}

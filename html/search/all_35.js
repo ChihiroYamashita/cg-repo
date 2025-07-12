@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['シェーダー処理の単位（例：1つのプリミティブに対して頂点シェーダーが走る）_0',['* シェーダー処理の単位（例：1つのプリミティブに対して頂点シェーダーが走る）',['../md__doxygen_2technical__terms.html#autotoc_md201',1,'']]],
-  ['シーケンス図一覧_1',['シーケンス図一覧',['../index.html',1,'']]],
-  ['シーケンス図（処理の全体の流れ）_2',['2. シーケンス図（処理の全体の流れ）',['../class_film_buffer_a6514b00ae55e6d3cf9d329a2deae1f9c.html#autotoc_md24',1,'']]],
-  ['シーケンス図_3',['シーケンス図',['../drawfilm_8h_a443204766d01c1b7114034c955991bc8.html#autotoc_md20',1,'']]]
+  ['どうして必要？_0',['どうして必要？',['../additional_inf_1.html#autotoc_md79',1,'']]],
+  ['どうやって使われるの？_1',['🔁 どうやって使われるの？',['../class_my_open_g_l_widget__camera_a3232de492c59c779e8133feb06ad0db1.html#autotoc_md41',1,'']]],
+  ['どうやって色を塗る？_20strong_2',['&lt;strong&gt;どうやって色を塗る？&lt;/strong&gt;',['../additional_info_buffer.html#autotoc_md113',1,'']]]
 ];

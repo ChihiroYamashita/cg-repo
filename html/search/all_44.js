@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['例2：画像を描画するレイトレーシング_0',['🖥️ 例2：画像を描画するレイトレーシング',['../md__doxygen_2technical__terms.html#autotoc_md206',1,'']]]
+  ['クラス構成（簡易）_0',['🧱 クラス構成（簡易）',['../md__doxygen_2memo__progressive__rendering.html#autotoc_md234',1,'']]]
 ];

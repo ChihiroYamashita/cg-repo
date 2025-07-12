@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🧠_20動作の流れ_0',['🧠 動作の流れ',['../md__doxygen_2memo__progressive__rendering.html#autotoc_md100',1,'']]]
+  ['蓄積された色から平均を計算_0',['10. 蓄積された色から平均を計算',['../md__doxygen_2function__myopenglwigetcamera.html#autotoc_md192',1,'']]]
 ];

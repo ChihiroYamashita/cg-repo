@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['🔹_20プログラミングでの意味_0',['🔹 プログラミングでの意味',['../md__doxygen_2technical__terms.html#autotoc_md197',1,'']]],
-  ['🔹_20用途_1',['🔹 用途',['../md__doxygen_2technical__terms.html#autotoc_md200',1,'']]],
-  ['🔹_20cgや3dでの意味_2',['🔹 CGや3Dでの意味',['../md__doxygen_2technical__terms.html#autotoc_md199',1,'']]]
+  ['結果を返却_0',['5. 結果を返却',['../_intersection_8h_aca412d913682c6dfd8cd4d63a50a8a21.html#autotoc_md33',1,'']]],
+  ['結論：理論_20vs_20実装順の違い_1',['🔁 結論：理論 vs 実装順の違い',['../md__doxygen_2coordinate__transformation1.html#autotoc_md167',1,'']]]
 ];

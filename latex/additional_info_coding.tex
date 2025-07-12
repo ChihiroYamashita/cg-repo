@@ -1,0 +1,133 @@
+\chapter{モンテカルロ法をコーディングに落とし込む}
+\hypertarget{additional_info_coding}{}\label{additional_info_coding}\index{モンテカルロ法をコーディングに落とし込む@{モンテカルロ法をコーディングに落とし込む}}
+コード内で積分の処理を実際に行っている箇所は、「ランダムサンプリングとその結果の累積」によって、積分を近似している部分です。積分自体は、解析的に直接計算されるのではなく、モンテカルロ積分によって数値的に近似されています。
+
+以下にコード内で積分がどのように近似されているかを解説します。
+
+\DoxyHorRuler{0}
+\hypertarget{additional_info_coding_autotoc_md142}{}\doxysubsubsection{\texorpdfstring{{\bfseries{数式における積分}}}{{\bfseries{数式における積分}}}}\label{additional_info_coding_autotoc_md142}
+面光源からの光の寄与を計算する積分は次のような形式です：
+
+\[
+L_d(\mathbf{x}, \mathbf{\omega}_o) = \int_A \frac{\mathbf{L}(p, -\mathbf{\omega}_i) \cdot \mathbf{f}_r(\mathbf{\omega}_i, \mathbf{\omega}_o, \mathbf{x}) \cdot \cos \theta_i \cdot \cos \theta_l}{\|\mathbf{x} - p\|^2} \, \mathrm{d}A(p)
+\]
+
+ここでは、エリアライトの面積 $A $ 上で積分を行っています。
+
+\DoxyHorRuler{0}
+\hypertarget{additional_info_coding_autotoc_md144}{}\doxysubsubsection{\texorpdfstring{{\bfseries{コード内で積分を近似している部分}}}{{\bfseries{コード内で積分を近似している部分}}}}\label{additional_info_coding_autotoc_md144}
+コード全体で積分を近似しているのは、以下の部分です：\hypertarget{additional_info_coding_autotoc_md145}{}\doxysubsubsubsection{\texorpdfstring{{\bfseries{1. サンプリングによる積分の分解}}}{{\bfseries{1. サンプリングによる積分の分解}}}}\label{additional_info_coding_autotoc_md145}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{const}\ Eigen::Vector3d\ p\_light\ =\ sampleRandomPoint(\ in\_AreaLights[i]\ );}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{{\ttfamily sample\+Random\+Point}}}\+:
+\begin{DoxyItemize}
+\item 面光源（エリアライト）からランダムな点 $ p $ をサンプリングしています。
+\item これにより、積分の微小面積要素 $mathrm{d}A $ をランダムな点に置き換えます。
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{additional_info_coding_autotoc_md147}{}\doxysubsubsubsection{\texorpdfstring{{\bfseries{2. サンプリング点ごとの寄与計算}}}{{\bfseries{2. サンプリング点ごとの寄与計算}}}}\label{additional_info_coding_autotoc_md147}
+サンプリングした点 $ p $ に基づいて、寄与を計算する部分です。
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ cos\_theta\ =\ std::max<double>(\ 0.0,\ w\_L.dot(\ in\_n\ )\ );}
+\DoxyCodeLine{direct\_light\_contribution\ +=\ area\ *\ in\_AreaLights[i].color.cwiseProduct(\ in\_Material.kd\ )\ *\ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ in\_AreaLights[i].intensity\ *\ cos\_theta\ *\ cosT\_l\ /\ (\ M\_PI\ *\ dist\ *\ dist\ );}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{寄与の計算}}\+:
+\begin{DoxyItemize}
+\item 面光源上のランダムな点 $p $ における寄与を、面積 $mathrm{d}A$ に基づいて計算。
+\item サンプリング点 $ p $ の寄与を式としてモデル化。
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{additional_info_coding_autotoc_md149}{}\doxysubsubsubsection{\texorpdfstring{{\bfseries{3. サンプリング点の寄与を累積}}}{{\bfseries{3. サンプリング点の寄与を累積}}}}\label{additional_info_coding_autotoc_md149}
+以下のコード部分で、すべてのサンプリング点からの寄与を合計しています：
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{int}\ i=0;\ i<in\_AreaLights.size();\ i++\ )}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item 各サンプリング点で計算した光の寄与を {\ttfamily direct\+\_\+light\+\_\+contribution} に足し合わせています。
+\item これにより、面光源全体での寄与が近似的に求められます。
+\item in\+\_\+\+Area\+Lights.\+size()はエリアライトの数。この場合は二個しか無いので二回しかランダムサンプリングさしない。
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{additional_info_coding_autotoc_md151}{}\doxysubsubsection{\texorpdfstring{{\bfseries{積分の近似方法：モンテカルロ法}}}{{\bfseries{積分の近似方法：モンテカルロ法}}}}\label{additional_info_coding_autotoc_md151}
+モンテカルロ積分をコードで近似的に計算している流れは次のようになります：
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{サンプリング}}\+:
+\begin{DoxyItemize}
+\item {\ttfamily sample\+Random\+Point} 関数でエリアライト $ A $ 上の点をランダムに選択。
+\end{DoxyItemize}
+\item {\bfseries{寄与の計算}}\+:
+\begin{DoxyItemize}
+\item 各サンプリング点で光の寄与を計算。
+\end{DoxyItemize}
+\item {\bfseries{累積和}}\+:
+\begin{DoxyItemize}
+\item サンプリング点の寄与を全て合計。
+\item サンプリング点数が多いほど積分の精度が向上。
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{additional_info_coding_autotoc_md153}{}\doxysubsubsection{\texorpdfstring{{\bfseries{積分の結果としての近似式}}}{{\bfseries{積分の結果としての近似式}}}}\label{additional_info_coding_autotoc_md153}
+積分の計算をコードに基づいて近似的に表現すると、次のようになります：
+
+\[
+L_d(\mathbf{x}, \mathbf{\omega}_o) \approx \sum_{i=1}^N \frac{\mathbf{L}(p_i, -\mathbf{\omega}_i) \cdot \mathbf{f}_r(\mathbf{\omega}_i, \mathbf{\omega}_o, \mathbf{x}) \cdot \cos \theta_i \cdot \cos \theta_l}{\|\mathbf{x} - p_i\|^2} \cdot \frac{\mathrm{Area}}{N}
+\]
+
+ここで：
+\begin{DoxyItemize}
+\item $ N $\+: サンプリング数（エリアライト内の点のサンプリング回数）。
+\item $ p_i $\+: サンプリングされたエリアライトの点。
+\item $ \mathrm{Area} $\+: エリアライト全体の面積。
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{additional_info_coding_autotoc_md155}{}\doxysubsubsection{\texorpdfstring{{\bfseries{コード内での積分の具体例}}}{{\bfseries{コード内での積分の具体例}}}}\label{additional_info_coding_autotoc_md155}
+例えば、エリアライトが 10 回サンプリングされる場合：
+\begin{DoxyEnumerate}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}10 個のサンプリング点 $ p $\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} を {\ttfamily sample\+Random\+Point} で生成。
+\item 各点 $ p $ で光の寄与を計算し、{\ttfamily direct\+\_\+light\+\_\+contribution} に加算。
+\item 全体の累積結果がエリアライト全体の寄与の近似値になります。
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{additional_info_coding_autotoc_md157}{}\doxysubsubsection{\texorpdfstring{{\bfseries{まとめ}}}{{\bfseries{まとめ}}}}\label{additional_info_coding_autotoc_md157}
+コード内で積分が直接的に計算されているわけではなく、ランダムサンプリングと寄与の累積を用いてモンテカルロ積分として近似的に計算しています。
+
+
+\begin{DoxyItemize}
+\item {\bfseries{積分処理の要点}}\+:
+\begin{DoxyEnumerate}
+\item ランダムにサンプリングすることで積分領域を近似。
+\item 各サンプリング点で寄与を計算。
+\item 全体の寄与を合計して積分値を近似的に得る。 
+\end{DoxyEnumerate}
+\end{DoxyItemize}

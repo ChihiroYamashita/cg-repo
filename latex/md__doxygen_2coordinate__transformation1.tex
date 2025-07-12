@@ -1,7 +1,7 @@
 \chapter{全体フロー：\+Open\+GL描画の処理の流れ（\+Qt版）}
 \hypertarget{md__doxygen_2coordinate__transformation1}{}\label{md__doxygen_2coordinate__transformation1}\index{全体フロー：OpenGL描画の処理の流れ（Qt版）@{全体フロー：OpenGL描画の処理の流れ（Qt版）}}
-\label{md__doxygen_2coordinate__transformation1_autotoc_md64}%
-\Hypertarget{md__doxygen_2coordinate__transformation1_autotoc_md64}%
+\label{md__doxygen_2coordinate__transformation1_autotoc_md158}%
+\Hypertarget{md__doxygen_2coordinate__transformation1_autotoc_md158}%
 
 
 
@@ -24,7 +24,7 @@
 \DoxyCodeLine{└─────────────────────────────────────────┘}
 
 \end{DoxyCode}
-\hypertarget{md__doxygen_2coordinate__transformation1_autotoc_md65}{}\doxysection{\texorpdfstring{普通、視野変換、投影変換、ビューポート変換の順に呼ばれませんか？}{普通、視野変換、投影変換、ビューポート変換の順に呼ばれませんか？}}\label{md__doxygen_2coordinate__transformation1_autotoc_md65}
+\hypertarget{md__doxygen_2coordinate__transformation1_autotoc_md159}{}\doxysection{\texorpdfstring{普通、視野変換、投影変換、ビューポート変換の順に呼ばれませんか？}{普通、視野変換、投影変換、ビューポート変換の順に呼ばれませんか？}}\label{md__doxygen_2coordinate__transformation1_autotoc_md159}
 とても良い視点です。ご指摘の通り、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}理論的・概念的には\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}：
 
 \begin{quote}
@@ -43,8 +43,8 @@
 
 
 \DoxyHorRuler{0}
-\hypertarget{md__doxygen_2coordinate__transformation1_autotoc_md67}{}\doxysection{\texorpdfstring{✅ ではなぜ {\ttfamily paint\+GL()} では投影→ビューポート→視野 の順なのか？}{✅ ではなぜ {\ttfamily paint\+GL()} では投影→ビューポート→視野 の順なのか？}}\label{md__doxygen_2coordinate__transformation1_autotoc_md67}
-これは \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+Open\+GL の状態設定\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}と\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}描画タイミング\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}の関係によるものです。\hypertarget{md__doxygen_2coordinate__transformation1_autotoc_md68}{}\doxysubsection{\texorpdfstring{Open\+GLの描画順序（実際の{\ttfamily paint\+GL()}）：}{Open\+GLの描画順序（実際の{\ttfamily paint\+GL()}）：}}\label{md__doxygen_2coordinate__transformation1_autotoc_md68}
+\hypertarget{md__doxygen_2coordinate__transformation1_autotoc_md161}{}\doxysection{\texorpdfstring{✅ ではなぜ {\ttfamily paint\+GL()} では投影→ビューポート→視野 の順なのか？}{✅ ではなぜ {\ttfamily paint\+GL()} では投影→ビューポート→視野 の順なのか？}}\label{md__doxygen_2coordinate__transformation1_autotoc_md161}
+これは \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+Open\+GL の状態設定\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}と\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}描画タイミング\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}の関係によるものです。\hypertarget{md__doxygen_2coordinate__transformation1_autotoc_md162}{}\doxysubsection{\texorpdfstring{Open\+GLの描画順序（実際の{\ttfamily paint\+GL()}）：}{Open\+GLの描画順序（実際の{\ttfamily paint\+GL()}）：}}\label{md__doxygen_2coordinate__transformation1_autotoc_md162}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{updateProjectionMatrix();\ \textcolor{comment}{//\ ①\ 投影行列の設定}}
@@ -52,7 +52,7 @@
 \DoxyCodeLine{projection\_and\_modelview();\ \textcolor{comment}{//\ ③\ カメラの視点を設定}}
 
 \end{DoxyCode}
-\hypertarget{md__doxygen_2coordinate__transformation1_autotoc_md69}{}\doxysubsection{\texorpdfstring{なぜこの順で\+OKか：}{なぜこの順で\+OKか：}}\label{md__doxygen_2coordinate__transformation1_autotoc_md69}
+\hypertarget{md__doxygen_2coordinate__transformation1_autotoc_md163}{}\doxysubsection{\texorpdfstring{なぜこの順で\+OKか：}{なぜこの順で\+OKか：}}\label{md__doxygen_2coordinate__transformation1_autotoc_md163}
 
 \begin{DoxyItemize}
 \item Open\+GLでは、「\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}行列の設定\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}」は \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}描画が始まる前\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}に行っておけばよく、実際の行列計算は内部で最終的に以下のように合成されます：
@@ -69,11 +69,11 @@
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{md__doxygen_2coordinate__transformation1_autotoc_md71}{}\doxysection{\texorpdfstring{✅ ビューポート変換はいつでも\+OK？}{✅ ビューポート変換はいつでも\+OK？}}\label{md__doxygen_2coordinate__transformation1_autotoc_md71}
+\hypertarget{md__doxygen_2coordinate__transformation1_autotoc_md165}{}\doxysection{\texorpdfstring{✅ ビューポート変換はいつでも\+OK？}{✅ ビューポート変換はいつでも\+OK？}}\label{md__doxygen_2coordinate__transformation1_autotoc_md165}
 はい、{\ttfamily gl\+Viewport()} は \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}座標変換ではなく「画面にどうマッピングするか」\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}の設定です。したがって、描画前に呼ばれていれば OK です。行列に関係なく独立に働きます。
 
 \DoxyHorRuler{0}
-\hypertarget{md__doxygen_2coordinate__transformation1_autotoc_md73}{}\doxysection{\texorpdfstring{🔁 結論：理論 vs 実装順の違い}{🔁 結論：理論 vs 実装順の違い}}\label{md__doxygen_2coordinate__transformation1_autotoc_md73}
+\hypertarget{md__doxygen_2coordinate__transformation1_autotoc_md167}{}\doxysection{\texorpdfstring{🔁 結論：理論 vs 実装順の違い}{🔁 結論：理論 vs 実装順の違い}}\label{md__doxygen_2coordinate__transformation1_autotoc_md167}
 \tabulinesep=1mm
 \begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
 \hline

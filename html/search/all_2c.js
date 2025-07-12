@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['はじめに_0',['はじめに',['../md__doxygen_2about__convertions.html#autotoc_md57',1,'はじめに'],['../md__doxygen_2_open_g_l__func.html#autotoc_md155',1,'はじめに']]]
+  ['✨イメージ図_0',['✨イメージ図',['../md__doxygen_2technical__terms.html#autotoc_md365',1,'']]],
+  ['✨_20例えると_1',['✨ 例えると...',['../class_my_open_g_l_widget__camera_a3232de492c59c779e8133feb06ad0db1.html#autotoc_md43',1,'']]]
 ];

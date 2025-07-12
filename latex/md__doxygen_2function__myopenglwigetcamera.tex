@@ -1,0 +1,124 @@
+\chapter{function\+\_\+myopenglwigetcamera}
+\hypertarget{md__doxygen_2function__myopenglwigetcamera}{}\label{md__doxygen_2function__myopenglwigetcamera}\index{function\_myopenglwigetcamera@{function\_myopenglwigetcamera}}
+複数フレームに分割して全ピクセルのレイトレーシングを進める関数
+
+\label{md__doxygen_2function__myopenglwigetcamera_updateRayTracing_doxygen}%
+\Hypertarget{md__doxygen_2function__myopenglwigetcamera_updateRayTracing_doxygen}%
+\hypertarget{md__doxygen_2function__myopenglwigetcamera_autotoc_md181}{}\doxysubsubsection{\texorpdfstring{void My\+Open\+GLWidget\+\_\+camera\+::update\+Ray\+Tracing()}{void My\+Open\+GLWidget\+\_\+camera\+::update\+Ray\+Tracing()}}\label{md__doxygen_2function__myopenglwigetcamera_autotoc_md181}
+この関数は、1フレームあたり一定数のピクセル（例：2000個）に対してレイトレーシング計算を実行し、 その結果を {\ttfamily m\+\_\+film} の蓄積バッファに加算します。各ピクセルごとにカメラからレイを発射し、交差した位置の法線情報に基づいて色を決定します。 すべてのピクセルが計算されると、{\ttfamily m\+\_\+is\+Dirty} フラグが false となり、以降のフレームでは再計算をスキップします。
+
+\begin{DoxySeeAlso}{参照}
+\doxylink{class_my_open_g_l_widget__camera_a99f7ad86efe9c9ea0c7e3b36b6768022_a99f7ad86efe9c9ea0c7e3b36b6768022}{My\+Open\+GLWidget\+\_\+camera\+::debug\+\_\+compute\+Normal\+Color} 
+
+\doxylink{class_film_buffer_a24bfbefb4b00652f446797c3ed5d544a_a24bfbefb4b00652f446797c3ed5d544a}{Film\+Buffer\+::add\+Sample} 
+
+\doxylink{class_film_buffer_a6514b00ae55e6d3cf9d329a2deae1f9c_a6514b00ae55e6d3cf9d329a2deae1f9c}{Film\+Buffer\+::update\+Film\+Buffer} 
+
+\doxylink{class_camera_a20a6e0f56d6531121c0ef4ee8a71a71c_a20a6e0f56d6531121c0ef4ee8a71a71c}{Camera\+::screen\+View}
+\end{DoxySeeAlso}
+\hypertarget{md__doxygen_2function__myopenglwigetcamera_autotoc_md182}{}\doxysubsubsection{\texorpdfstring{処理の流れ}{処理の流れ}}\label{md__doxygen_2function__myopenglwigetcamera_autotoc_md182}
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_14}}
+\end{DoxyImageNoCaption}
+\hypertarget{md__doxygen_2function__myopenglwigetcamera_autotoc_md183}{}\doxysubsubsubsection{\texorpdfstring{1. 再レンダリングが必要か確認}{1. 再レンダリングが必要か確認}}\label{md__doxygen_2function__myopenglwigetcamera_autotoc_md183}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (!m\_isDirty)\ \textcolor{keywordflow}{return};}
+
+\end{DoxyCode}
+ すでに全ピクセルの計算が終わっていれば何もしません。\hypertarget{md__doxygen_2function__myopenglwigetcamera_autotoc_md184}{}\doxysubsubsubsection{\texorpdfstring{2. 一度に計算するピクセル数を設定}{2. 一度に計算するピクセル数を設定}}\label{md__doxygen_2function__myopenglwigetcamera_autotoc_md184}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ pixelsPerFrame\ =\ 2000;}
+
+\end{DoxyCode}
+ 1フレームあたりの処理量を決めるパラメータで、描画のスムーズさと進行速度をトレードオフします。\hypertarget{md__doxygen_2function__myopenglwigetcamera_autotoc_md185}{}\doxysubsubsubsection{\texorpdfstring{3. 指定ピクセル数だけレイトレーシングを繰り返す}{3. 指定ピクセル数だけレイトレーシングを繰り返す}}\label{md__doxygen_2function__myopenglwigetcamera_autotoc_md185}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ k\ =\ 0;\ k\ <\ pixelsPerFrame;\ ++k)\ \{}
+
+\end{DoxyCode}
+ ループ内で各ピクセルの処理を順番に進めます。\hypertarget{md__doxygen_2function__myopenglwigetcamera_autotoc_md186}{}\doxysubsubsubsection{\texorpdfstring{4. 正規化スクリーン座標に変換}{4. 正規化スクリーン座標に変換}}\label{md__doxygen_2function__myopenglwigetcamera_autotoc_md186}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{double}\ p\_x\ =\ (double)m\_progress\_i\ /\ \mbox{\hyperlink{myopenglwidget_8cpp_a2474a5474cbff19523a51eb1de01cda4_a2474a5474cbff19523a51eb1de01cda4}{width}};}
+\DoxyCodeLine{\textcolor{keywordtype}{double}\ p\_y\ =\ (double)m\_progress\_j\ /\ \mbox{\hyperlink{myopenglwidget_8cpp_ad12fc34ce789bce6c8a05d8a17138534_ad12fc34ce789bce6c8a05d8a17138534}{height}};}
+
+\end{DoxyCode}
+ スクリーン座標 (i, j) を 0.\+0～1.0 に正規化し、レイの発射に利用します。\hypertarget{md__doxygen_2function__myopenglwigetcamera_autotoc_md187}{}\doxysubsubsubsection{\texorpdfstring{5. カメラからレイを発射}{5. カメラからレイを発射}}\label{md__doxygen_2function__myopenglwigetcamera_autotoc_md187}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{g\_Camera2.screenView(p\_x,\ p\_y,\ ray);}
+
+\end{DoxyCode}
+ カメラからスクリーン上の位置に向けてレイを生成します。\hypertarget{md__doxygen_2function__myopenglwigetcamera_autotoc_md188}{}\doxysubsubsubsection{\texorpdfstring{6. レイに対応する色（法線可視化）を取得}{6. レイに対応する色（法線可視化）を取得}}\label{md__doxygen_2function__myopenglwigetcamera_autotoc_md188}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Eigen::Vector3d\ color\ =\ debug\_computeNormalColor(ray);}
+
+\end{DoxyCode}
+ 三角形とレイの交差を計算し、ヒットした箇所の法線ベクトルを RGB に変換した色を取得します。\hypertarget{md__doxygen_2function__myopenglwigetcamera_autotoc_md189}{}\doxysubsubsubsection{\texorpdfstring{7. {\ttfamily Film\+Buffer} に色を蓄積}{7. {\ttfamily Film\+Buffer} に色を蓄積}}\label{md__doxygen_2function__myopenglwigetcamera_autotoc_md189}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{m\_film.addSample(m\_progress\_i,\ m\_progress\_j,\ color);}
+
+\end{DoxyCode}
+ 同一ピクセルに対して複数サンプルを加算することでアンチエイリアス等も可能になります。\hypertarget{md__doxygen_2function__myopenglwigetcamera_autotoc_md190}{}\doxysubsubsubsection{\texorpdfstring{8. 次のピクセルへ移動}{8. 次のピクセルへ移動}}\label{md__doxygen_2function__myopenglwigetcamera_autotoc_md190}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{m\_progress\_i++;}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (m\_progress\_i\ >=\ \mbox{\hyperlink{myopenglwidget_8cpp_a2474a5474cbff19523a51eb1de01cda4_a2474a5474cbff19523a51eb1de01cda4}{width}})\ \{}
+\DoxyCodeLine{\ \ \ \ m\_progress\_i\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ m\_progress\_j++;}
+
+\end{DoxyCode}
+ 横方向に進み、右端に到達したら次の行へ進みます。\hypertarget{md__doxygen_2function__myopenglwigetcamera_autotoc_md191}{}\doxysubsubsubsection{\texorpdfstring{9. すべてのピクセルが終わったら終了}{9. すべてのピクセルが終わったら終了}}\label{md__doxygen_2function__myopenglwigetcamera_autotoc_md191}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (m\_progress\_j\ >=\ \mbox{\hyperlink{myopenglwidget_8cpp_ad12fc34ce789bce6c8a05d8a17138534_ad12fc34ce789bce6c8a05d8a17138534}{height}})\ \{}
+\DoxyCodeLine{\ \ \ \ m\_isDirty\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Rendering\ finished."{}};}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 全ピクセルの処理が完了したら、dirty フラグを false にして再計算を止めます。\hypertarget{md__doxygen_2function__myopenglwigetcamera_autotoc_md192}{}\doxysubsubsubsection{\texorpdfstring{10. 蓄積された色から平均を計算}{10. 蓄積された色から平均を計算}}\label{md__doxygen_2function__myopenglwigetcamera_autotoc_md192}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{m\_film.updateFilmBuffer();}
+
+\end{DoxyCode}
+ それぞれのピクセルで加算された色の平均を求めて、描画用バッファに展開します。\hypertarget{md__doxygen_2function__myopenglwigetcamera_autotoc_md193}{}\doxysubsubsubsection{\texorpdfstring{11. Open\+GLテクスチャに転送}{11. Open\+GLテクスチャに転送}}\label{md__doxygen_2function__myopenglwigetcamera_autotoc_md193}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{makeCurrent();}
+\DoxyCodeLine{glBindTexture(...);}
+\DoxyCodeLine{glTexSubImage2D(...,\ m\_film.getFilmBufferPtr());}
+\DoxyCodeLine{glBindTexture(...);}
+\DoxyCodeLine{doneCurrent();}
+
+\end{DoxyCode}
+ GPUテクスチャに更新されたフィルムバッファを転送します。\hypertarget{md__doxygen_2function__myopenglwigetcamera_autotoc_md194}{}\doxysubsubsubsection{\texorpdfstring{12. {\ttfamily paint\+GL()} の呼び出しをスケジュール}{12. {\ttfamily paint\+GL()} の呼び出しをスケジュール}}\label{md__doxygen_2function__myopenglwigetcamera_autotoc_md194}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{update();}
+
+\end{DoxyCode}
+ Qt に対して再描画を要求し、画面が更新されます。
+
+\DoxyHorRuler{0}
+
+
+\begin{DoxySeeAlso}{参照}
+\doxylink{class_my_open_g_l_widget__camera_a99f7ad86efe9c9ea0c7e3b36b6768022_a99f7ad86efe9c9ea0c7e3b36b6768022}{My\+Open\+GLWidget\+\_\+camera\+::debug\+\_\+compute\+Normal\+Color} 
+
+\doxylink{class_film_buffer_a24bfbefb4b00652f446797c3ed5d544a_a24bfbefb4b00652f446797c3ed5d544a}{Film\+Buffer\+::add\+Sample} 
+
+\doxylink{class_film_buffer_a6514b00ae55e6d3cf9d329a2deae1f9c_a6514b00ae55e6d3cf9d329a2deae1f9c}{Film\+Buffer\+::update\+Film\+Buffer} 
+
+\doxylink{class_camera_a20a6e0f56d6531121c0ef4ee8a71a71c_a20a6e0f56d6531121c0ef4ee8a71a71c}{Camera\+::screen\+View}
+\end{DoxySeeAlso}
+\begin{DoxyNote}{覚え書き}
+本関数はプログレッシブ・レンダリングを前提としており、\+UIをブロックせず滑らかに描画が進む設計です。 / 
+\end{DoxyNote}

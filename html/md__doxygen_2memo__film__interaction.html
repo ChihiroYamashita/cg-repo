@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Qt_project: 🧪 フィルムバッファとレイトレーシングの関数と相互作用</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Qt_project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div><div class="header">
+  <div class="headertitle"><div class="title">🧪 フィルムバッファとレイトレーシングの関数と相互作用</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>複数フレームに分割して全ピクセルのレイトレーシングを進める関数</p>
+<p><a class="anchor" id="autotoc_md202"></a></p>
+<p>このセクションでは、<code><a class="el" href="class_my_open_g_l_widget__camera.html">MyOpenGLWidget_camera</a></code> によるレイトレーシング描画の際に、<code><a class="el" href="class_film_buffer.html">FilmBuffer</a></code> クラスがどのように活用されるかを関数単位で整理します。プロセス全体を視覚的に示すPlantUMLとともに、関数仕様をDoxygen記述形式で示します。</p>
+<hr  />
+<h1><a class="anchor" id="autotoc_md204"></a>
+📊 全体フロー（初期化〜サンプル蓄積〜テクスチャ表示）</h1>
+<div class="plantumlgraph">
+<img src="inline_umlgraph_17.png" />
+</div>
+<hr  />
+<h1><a class="anchor" id="autotoc_md206"></a>
+🔧 関数仕様と目的（FilmBuffer 関連）</h1>
+<p>以下に、UML図で登場した関数や変数について、Doxygenスタイルの説明と <code>@see</code> リンクを加えたセクションを提示します。これにより、UML図で言及した各要素から対応する関数にジャンプ可能となる Doxygen対応コメントになります。</p>
+<hr  />
+<h1><a class="anchor" id="autotoc_md208"></a>
+🧭 関数・変数概要と参照リンク</h1>
+<h2><a class="anchor" id="autotoc_md209"></a>
+<code>MyOpenGLWidget_camera::updateRayTracing()</code></h2>
+<p>この関数は、1フレームあたり一定数のピクセル（例：2000個）に対してレイトレーシング計算を実行し、その結果を <code>m_film</code> の蓄積バッファに加算します。各ピクセルごとにカメラからレイを発射し、交差した位置の法線情報に基づいて色を決定します。すべてのピクセルが計算されると、<code>m_isDirty</code> フラグが false となり、以降のフレームでは再計算をスキップします。</p>
+<dl class="section see"><dt>参照</dt><dd><a class="el" href="class_my_open_g_l_widget__camera_a99f7ad86efe9c9ea0c7e3b36b6768022.html#a99f7ad86efe9c9ea0c7e3b36b6768022">MyOpenGLWidget_camera::debug_computeNormalColor</a> </dd>
+<dd>
+<a class="el" href="class_film_buffer_a24bfbefb4b00652f446797c3ed5d544a.html#a24bfbefb4b00652f446797c3ed5d544a" title="指定された位置に1つの色サンプルを追加します。">FilmBuffer::addSample</a> </dd>
+<dd>
+<a class="el" href="class_film_buffer_a6514b00ae55e6d3cf9d329a2deae1f9c.html#a6514b00ae55e6d3cf9d329a2deae1f9c" title="フィルムバッファに最終的な色を計算して格納する関数">FilmBuffer::updateFilmBuffer</a> </dd>
+<dd>
+<a class="el" href="class_camera_a20a6e0f56d6531121c0ef4ee8a71a71c.html#a20a6e0f56d6531121c0ef4ee8a71a71c" title="カメラのスクリーン座標に基づいてレイを生成する関数">Camera::screenView</a></dd></dl>
+<hr  />
+<h2><a class="anchor" id="autotoc_md211"></a>
+<code>MyOpenGLWidget_camera::debug_computeNormalColor(const Ray&amp; ray)</code></h2>
+<p>オブジェクト交差点の法線ベクトルを色に変換して返す関数</p>
+<p>法線ベクトルを [-1,1] → [0,1] にマッピングし、RGB値として返します。デバッグ描画向け。</p>
+<dl class="section see"><dt>参照</dt><dd><a class="el" href="struct_ray.html" title="レイ（Ray）を表す構造体">Ray</a> </dd>
+<dd>
+<a class="el" href="_intersection_8cpp_aca412d913682c6dfd8cd4d63a50a8a21.html#aca412d913682c6dfd8cd4d63a50a8a21" title="レイと交差した点における補間された法線ベクトルを計算する関数">computeRayHitNormal</a></dd></dl>
+<hr  />
+<h2><a class="anchor" id="autotoc_md213"></a>
+<code>FilmBuffer::init(int width, int height)</code></h2>
+<p>バッファの初期化（サイズとすべての値を0にリセット）</p>
+<p>蓄積・平均・カウントの3つのバッファをリサイズしてクリアします。</p>
+<dl class="section see"><dt>参照</dt><dd><a class="el" href="class_film_buffer_add7c58f589349748d71db3ccf78f62bc.html#add7c58f589349748d71db3ccf78f62bc">FilmBuffer::reset</a> </dd>
+<dd>
+<a class="el" href="class_film_buffer_a24bfbefb4b00652f446797c3ed5d544a.html#a24bfbefb4b00652f446797c3ed5d544a" title="指定された位置に1つの色サンプルを追加します。">FilmBuffer::addSample</a> </dd>
+<dd>
+<a class="el" href="class_film_buffer_a6514b00ae55e6d3cf9d329a2deae1f9c.html#a6514b00ae55e6d3cf9d329a2deae1f9c" title="フィルムバッファに最終的な色を計算して格納する関数">FilmBuffer::updateFilmBuffer</a></dd></dl>
+<hr  />
+<h2><a class="anchor" id="autotoc_md215"></a>
+<code>FilmBuffer::addSample(int i, int j, const Eigen::Vector3d&amp; color)</code></h2>
+<p>ピクセルにレイトレ結果（色）を加算</p>
+<p>蓄積バッファに色を加算し、カウントをインクリメントします。</p>
+<dl class="section see"><dt>参照</dt><dd><a class="el" href="class_film_buffer_ab223f9d1044dc52fffc911bc4c95fc98.html#ab223f9d1044dc52fffc911bc4c95fc98" title="フィルムバッファを指定サイズで初期化する関数">FilmBuffer::init</a> </dd>
+<dd>
+<a class="el" href="class_film_buffer_a6514b00ae55e6d3cf9d329a2deae1f9c.html#a6514b00ae55e6d3cf9d329a2deae1f9c" title="フィルムバッファに最終的な色を計算して格納する関数">FilmBuffer::updateFilmBuffer</a></dd></dl>
+<hr  />
+<h2><a class="anchor" id="autotoc_md217"></a>
+<code>FilmBuffer::updateFilmBuffer()</code></h2>
+<p>蓄積色とカウントから平均色を計算し、最終出力用バッファに格納</p>
+<p>平均を計算して <code>m_filmBuffer</code> に保存します。OpenGLへの転送準備。</p>
+<dl class="section see"><dt>参照</dt><dd><a class="el" href="class_film_buffer_a24bfbefb4b00652f446797c3ed5d544a.html#a24bfbefb4b00652f446797c3ed5d544a" title="指定された位置に1つの色サンプルを追加します。">FilmBuffer::addSample</a> </dd>
+<dd>
+<a class="el" href="class_film_buffer_aa69ac45360df7c2a58e0fb10eb1eb789.html#aa69ac45360df7c2a58e0fb10eb1eb789">FilmBuffer::getFilmBufferPtr</a></dd></dl>
+<hr  />
+<h2><a class="anchor" id="autotoc_md219"></a>
+<code>FilmBuffer::getFilmBufferPtr() const</code></h2>
+<p>OpenGL に渡すための平均色バッファの先頭ポインタを返す</p>
+<p><code>glTexSubImage2D()</code> で使用される。</p>
+<dl class="section see"><dt>参照</dt><dd><a class="el" href="class_film_buffer_a6514b00ae55e6d3cf9d329a2deae1f9c.html#a6514b00ae55e6d3cf9d329a2deae1f9c" title="フィルムバッファに最終的な色を計算して格納する関数">FilmBuffer::updateFilmBuffer</a></dd></dl>
+<hr  />
+<h2><a class="anchor" id="autotoc_md221"></a>
+<code>Camera::screenView(int i, int j)</code></h2>
+<p>ピクセル位置からレイを生成するカメラ関数</p>
+<p>レイの原点と方向を返し、レイトレーシングの起点となります。</p>
+<dl class="section see"><dt>参照</dt><dd><a class="el" href="struct_ray.html" title="レイ（Ray）を表す構造体">Ray</a></dd></dl>
+<hr  />
+<h2><a class="anchor" id="autotoc_md223"></a>
+<code>MyOpenGLWidget_camera::m_film</code></h2>
+<p>レイトレーシング結果を保持するフィルムバッファ</p>
+<p><code><a class="el" href="class_film_buffer.html">FilmBuffer</a></code> クラスのインスタンス。色加算・平均処理・描画データ保持を担当します。</p>
+<dl class="section see"><dt>参照</dt><dd><a class="el" href="class_film_buffer.html">FilmBuffer</a></dd></dl>
+<hr  />
+ </div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

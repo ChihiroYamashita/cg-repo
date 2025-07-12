@@ -1,3 +1,53 @@
+@startuml loadObj_sequence.png
+actor User
+participant "loadObj" as LO
+participant "_loadObj" as _LO
+participant "prepareTextureFromJpegFile" as Tex
+participant "Object" as Obj
+participant "TriMesh" as Mesh
+
+User -> LO : loadObj("model.obj", out_object)
+LO -> _LO : _loadObj(...) // 頂点・三角形・マテリアル読み込み
+_LO --> LO : InternalVertices,\nInternalTriangles,\nInternalMaterials
+
+loop 各マテリアルグループ
+    LO -> Mesh : TriMesh作成・データ格納
+    alt テクスチャ指定あり
+        LO -> Tex : prepareTextureFromJpegFile()
+        Tex --> LO : GLuint テクスチャID
+    else テクスチャなし
+        LO -> Mesh : テクスチャID = 0
+    end
+    LO -> Obj : meshes.push_back(Mesh)
+end
+
+LO --> User : true / false（成功 or 失敗）
+@enduml
+@startuml loadObj_sequence.png
+actor User
+participant "loadObj" as LO
+participant "_loadObj" as _LO
+participant "prepareTextureFromJpegFile" as Tex
+participant "Object" as Obj
+participant "TriMesh" as Mesh
+
+User -> LO : loadObj("model.obj", out_object)
+LO -> _LO : _loadObj(...) // 頂点・三角形・マテリアル読み込み
+_LO --> LO : InternalVertices,\nInternalTriangles,\nInternalMaterials
+
+loop 各マテリアルグループ
+    LO -> Mesh : TriMesh作成・データ格納
+    alt テクスチャ指定あり
+        LO -> Tex : prepareTextureFromJpegFile()
+        Tex --> LO : GLuint テクスチャID
+    else テクスチャなし
+        LO -> Mesh : テクスチャID = 0
+    end
+    LO -> Obj : meshes.push_back(Mesh)
+end
+
+LO --> User : true / false（成功 or 失敗）
+@enduml
 @startuml inline_umlgraph_2.png
 participant Main as M
 participant Camera as C
@@ -51,6 +101,26 @@ loop 各メッシュに対して
 end
 @enduml
 @startuml inline_umlgraph_13.png
+loop フレーム毎
+  MyOpenGLWidget_camera -> updateRayTracing : レンダリング進行
+  alt m_isDirty == false
+    updateRayTracing --> MyOpenGLWidget_camera : 何もしない
+  else
+    loop pixelsPerFrame回
+      updateRayTracing -> "Camera::screenView" : ピクセルに対応するレイ生成
+      updateRayTracing -> debug_computeNormalColor : 法線ベクトルから色を取得
+      updateRayTracing -> "FilmBuffer::addSample" : 色を蓄積
+      alt 最終ピクセル到達
+        updateRayTracing -> m_isDirty : falseに設定
+      end
+    end
+    updateRayTracing -> "FilmBuffer::updateFilmBuffer" : 平均色に変換
+    updateRayTracing -> OpenGL : glTexSubImage2D によりテクスチャ転送
+    updateRayTracing -> update : 再描画要求
+  end
+end
+@enduml
+@startuml inline_umlgraph_15.png
 actor User
 
 User -> MyOpenGLWidget_camera : 初期化 (initializeGL)
@@ -69,7 +139,34 @@ MyOpenGLWidget_camera -> drawFilm : カメラ情報とfilmテクスチャを渡�
 drawFilm -> Camera : getEyePoint(), getX/Y/ZVector(), getFocalLength() など呼び出し
 drawFilm -> OpenGL : テクスチャをバインドし、矩形に貼り付けて描画
 @enduml
-@startuml inline_umlgraph_15.png
+@startuml inline_umlgraph_17.png
+actor User
+participant MyOpenGLWidget_camera
+participant FilmBuffer
+participant OpenGL
+
+== 初期化処理 ==
+User -> MyOpenGLWidget_camera : initializeGL()
+MyOpenGLWidget_camera -> FilmBuffer : init(width, height)  // バッファを初期化
+
+== レイトレーシング処理開始 ==
+User -> MyOpenGLWidget_camera : ボタンを押すことでupdateRayTracing() を呼び出し
+MyOpenGLWidget_camera -> MyOpenGLWidget_camera : for-loop 各ピクセルに対して処理
+
+== ピクセルごとにレイを発射 ==
+loop 各ピクセル
+    MyOpenGLWidget_camera -> MyOpenGLWidget_camera : debug_computeNormalColor(ray) // 法線を色に変換
+    MyOpenGLWidget_camera -> FilmBuffer : addSample(i, j, color) // 色をバッファに追加
+end
+
+== サンプル蓄積後 ==
+MyOpenGLWidget_camera -> FilmBuffer : updateFilmBuffer() // 積算値から平均色を算出
+
+== OpenGLへ転送 ==
+MyOpenGLWidget_camera -> FilmBuffer : getFilmBufferPtr() // GPU転送用ポインタ取得
+MyOpenGLWidget_camera -> OpenGL : glTexSubImage2D(..., ptr) // GPUに転送して画面描画
+@enduml
+@startuml inline_umlgraph_19.png
 actor User
 User -> MyOpenGLWidget_camera : paintGL()
 MyOpenGLWidget_camera -> MyOpenGLWidget_camera : updateRayTracing()
@@ -85,7 +182,7 @@ end
 MyOpenGLWidget_camera -> FilmBuffer : updateFilmBuffer()
 MyOpenGLWidget_camera -> OpenGL : glTexSubImage2D() による描画更新
 @enduml
-@startuml inline_umlgraph_16.png
+@startuml inline_umlgraph_20.png
 class FilmBuffer {
     - int m_width, m_height
     - vector<float> m_filmBuffer
@@ -99,51 +196,150 @@ class FilmBuffer {
     + getFilmBufferPtr()
 }
 @enduml
-@startuml inline_umlgraph_19.png
+@startuml inline_umlgraph_23.png
 actor User
-
 participant MyOpenGLWidget_camera
 participant Camera
-participant Ray
 participant Intersection
 participant TriMesh
 participant Geometry as "computeRayHitNormal"
 participant FilmBuffer
+participant OpenGL
 
-== ユーザが描画をトリガー ==
-User -> MyOpenGLWidget_camera : paintGL()
-MyOpenGLWidget_camera -> MyOpenGLWidget_camera : updateRayTracing()
+== 初期化処理 ==
+User -> MyOpenGLWidget_camera : initializeGL()
+MyOpenGLWidget_camera -> FilmBuffer : init(width, height) // フィルムバッファを初期化
 
-== レイの生成 ==
-loop 各ピクセルごとに
-    MyOpenGLWidget_camera -> Camera : screenView(i, j)
+== レイトレーシング処理開始 ==
+User -> MyOpenGLWidget_camera : updateRayTracing()
+MyOpenGLWidget_camera -> MyOpenGLWidget_camera : for文で次のピクセル(i, j)へ
+
+loop updateRayTracing() 各ピクセル (1フレームあたり数千個)
+    MyOpenGLWidget_camera -> Camera : screenView(i, j) // カメラからレイ生成
     Camera --> MyOpenGLWidget_camera : Ray
 
-== レイとシーンの交差判定 ==
-    MyOpenGLWidget_camera -> Intersection : rayTracing(g_Obj, {}, ray, ray_hit)
+    MyOpenGLWidget_camera -> Intersection : rayTracing(g_Obj, {}, ray, ray_hit) // レイとシーン交差判定
 
-    loop 各メッシュ
-        Intersection -> TriMesh : meshTriangleIntersect()
-        loop 各三角形
-            TriMesh -> Intersection : intersectTriangle()
-            alt ヒットしたら
-                Intersection --> TriMesh : RayHit (交差情報)
-            end
-        end
+    loop 各メッシュ・各三角形
+    MyOpenGLWidget_camera -> Intersection : rayTriangleIntersect(mesh[m], tri[k], ray, temp_hit)
+    alt ヒットかつ最短距離なら
+        Intersection -> MyOpenGLWidget_camera : RayHit を更新
     end
-    Intersection --> MyOpenGLWidget_camera : 最短距離の RayHit
+end
+    Intersection --> MyOpenGLWidget_camera : 最短距離のRayHit
 
-== 法線計算と色変換 ==
-    MyOpenGLWidget_camera -> Geometry : computeRayHitNormal(g_Obj, ray_hit)
+    MyOpenGLWidget_camera -> Geometry : computeRayHitNormal(g_Obj, ray_hit) // 補間法線を取得
     Geometry --> MyOpenGLWidget_camera : 法線ベクトル
 
-    MyOpenGLWidget_camera -> FilmBuffer : 法線 → 色変換 → m_filmBuffer に格納
+    MyOpenGLWidget_camera -> MyOpenGLWidget_camera : debug_computeNormalColor(ray) // 法線を色に変換
+    MyOpenGLWidget_camera -> FilmBuffer : addSample(i, j, color) // 色をフィルムに加算
 end
 
-== OpenGLで描画 ==
-MyOpenGLWidget_camera -> MyOpenGLWidget_camera : update() → paintGL()
+
+== 全ピクセル終了時 ==
+MyOpenGLWidget_camera -> FilmBuffer : updateFilmBuffer() // 平均色を計算し表示用バッファを更新
+
+== GPU転送・描画 ==
+MyOpenGLWidget_camera -> FilmBuffer : getFilmBufferPtr() // 転送ポインタ取得
+MyOpenGLWidget_camera -> OpenGL : glTexSubImage2D(..., ptr) // OpenGLに描画
 @enduml
-@startuml inline_umlgraph_20.png
+@startuml inline_umlgraph_24.png
+actor User
+participant "MyOpenGLWidget_camera" as Widget
+participant "QTimer" as Timer
+participant "Camera" as Cam
+participant "Intersection" as Isect
+participant "FilmBuffer" as Film
+participant "OpenGL" as GL
+
+
+activate Widget
+== 初期化とタイマー開始 ==
+note right of Widget: MyOpenGLWidget_cameraコンストラクタ
+Widget -> Timer : connect(timeout, updateRayTracing)
+Widget -> Timer : start(1) //タイマーをセット
+Widget -> Widget : m_isDirty = false // 再レンダリングフラグ=false
+deactivate Widget
+
+== レンダリングループ (タイマー駆動) ==
+User -> Widget : フレーム登録する
+activate Widget
+note right of Widget: フレーム登録されるとsetCamerakeyframe→resetRendering() により m_isDirtyフラグ変更
+Widget -> Widget : m_isDirty = true // 再レンダリングフラグ=true
+Widget -> Timer : trueになったことによりupdateRayTracing()の処理開始
+
+
+
+Timer -> Widget : updateRayTracing()
+activate Widget #peachpuff
+note right of Widget: レイトレーシング開始
+
+loop updateRayTracing 
+
+Widget -> Cam : screenView(p_x, p_y, ray)
+activate Cam
+Cam --> Widget : out_Ray生成
+deactivate Cam
+
+Widget -> Widget : debug_computeNormalColor(ray)
+activate Widget #LightBlue
+note right of Widget: debug_computeNormalColor(ray)
+
+== レイとオブジェクトの交差計算 ==
+Widget -> Isect : rayTracing(g_Obj, {}, ray, ray_hit)
+activate Isect #Coral
+note left of Isect #lightyellow: Intersection.cpp内rayTracingの処理
+
+loop 各メッシュの各三角形に対して交差計算
+    Isect -> Isect : rayTriangleIntersect(mesh, k, in_Ray, temp_hit)
+    activate Isect #DarkSalmon
+    Isect --> Isect : temp_hit
+    deactivate Isect #DarkSalmon
+end
+Isect --> Widget : ray_hit (最短交差点)レイがシーン内のどの三角形（またはエリアライト）と最初に交差するかを返す
+deactivate Isect #Coral
+
+
+alt ヒットした場合 (ray_hit.mesh_idx >= 0)
+    == 法線計算と色決定 ==
+    Widget -> Isect : computeRayHitNormal(g_Obj, ray_hit)
+    activate Isect #LightGreen
+    Isect --> Widget : normalを返す
+    deactivate Isect #LightGreen
+
+    Widget --> Widget : color (法線から計算された出力色（RGB）を返す)
+else ヒットしない場合
+    Widget --> Widget : color (背景色)
+end
+deactivate Widget #LightBlue
+
+
+== 計算結果をフィルムに蓄積 ==
+Widget -> Film : addSample(i, j, color)//色をバッファに追加
+activate Film
+deactivate Film
+end
+
+== フィルムバッファ更新と描画 ==
+Widget -> Film : updateFilmBuffer()// 平均色を計算し表示用バッファを更新
+activate Film
+Film --> Widget :
+deactivate Film
+
+Widget -> Film : getFilmBufferPtr()//GPU用転送ポインタ
+activate Film
+Film --> Widget : buffer_ptr
+deactivate Film
+
+Widget -> GL : glBindTexture(m_filmTexture)//GPUに転送して画面描画
+Widget -> GL : glTexSubImage2D(..., buffer_ptr)
+Widget -> GL : glBindTexture(0)
+
+Widget -> Widget : update() // 再描画を要求 (paintGLが呼ばれる)
+deactivate Widget #peachpuff
+deactivate Widget
+@enduml
+@startuml inline_umlgraph_25.png
 actor User
 
 User -> MyOpenGLWidget_camera : 初期化 (initializeGL)
@@ -162,7 +358,7 @@ MyOpenGLWidget_camera -> drawFilm : カメラ情報とfilmテクスチャを渡�
 drawFilm -> Camera : getEyePoint(), getX/Y/ZVector(), getFocalLength() を呼び出し
 drawFilm -> OpenGL : テクスチャをバインドし、矩形に貼り付けて描画
 @enduml
-@startuml inline_umlgraph_24.png
+@startuml inline_umlgraph_30.png
 main -> Camera : screenView(in_x, in_y, out_Ray)
 Camera -> Camera : レイ生成処理を開始
 Camera -> Camera : s = (in_x - 0.5) * m_ScreenWidth \nスクリーン上のx座標(0~1)をカメラ空間の物理的な横の長さに変換
@@ -205,7 +401,7 @@ loop すべてのピクセル
     FB -> FB: accumulationBuffer ÷ countBuffer → filmBuffer に保存
 end
 @enduml
-@startuml inline_umlgraph_25.png
+@startuml inline_umlgraph_31.png
 class Object {
   - List<TriMesh> meshes
 }
@@ -229,7 +425,7 @@ class Material {
 Object --> "1..* すべて参照" TriMesh
 TriMesh --> "1　マテリアル参照" Material
 @enduml
-@startuml inline_umlgraph_27.png
+@startuml inline_umlgraph_33.png
 actor User
 
 User -> MainWindow : スライダー操作などのユーザー入力
@@ -242,7 +438,7 @@ MyOpenGLWidget -> MyOpenGLWidget : 投影変換を適用（gluPerspective / glOr
 MyOpenGLWidget -> OpenGL : ビューポート変換を適用（glViewport）
 MyOpenGLWidget -> OpenGL : シーンをレンダリング
 @enduml
-@startuml inline_umlgraph_28.png
+@startuml inline_umlgraph_34.png
 actor User
 
 User -> MainWindow : スライダー操作/マウス操作\n（拡縮、回転、平行移動）
@@ -259,7 +455,7 @@ Camera -> Camera  : lookAt( QVector3D in_LookAt, QVector3D in_Up )\nカメラの
 
 MyOpenGLWidget -> OpenGL : update()\nすべての処理が終わったら画面を再描画（正確な記述は次項）
 @enduml
-@startuml inline_umlgraph_29.png
+@startuml inline_umlgraph_35.png
 actor User
 
 
@@ -271,12 +467,12 @@ MyOpenGLWidget -> MyOpenGLWidget : projection_and_modelview(g_Camera);\nカメ�
 MyOpenGLWidget -> OpenGL : glEnable(GL_DEPTH_TEST);\n深度テスト（Depth Test）を有効化\nglBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);\nアルファブレンディング（透明度の計算）\nglEnable(GL_BLEND);ブレンディングを有効化\nglEnable(GL_POINT_SMOOTH);, glEnable(GL_LINE_SMOOTH);, glEnable(GL_POLYGON_SMOOTH);\n（アンチエイリアス）を有効化\nglHint(GL_POINT_SMOOTH_HINT, GL_NICEST);\nスムージング
 MyOpenGLWidget -> drawObject :drawXYZAxes(); drawXYGrid(0.5, 50); drawcube();
 @enduml
-@startuml inline_umlgraph_30.png
+@startuml inline_umlgraph_36.png
 User -> Timeline : Add keyframe
 Timeline -> CustomScene : Insert keyframe
 CustomScene -> MainWindow : Notify keyframe added
 @enduml
-@startuml inline_umlgraph_31.png
+@startuml inline_umlgraph_37.png
  User -> MainWindow : on_fovSlider_valueChanged(int value)\n FOV sliderをいじる
  MainWindow -> MyOpenGLWidget : setCameraFov(float fov)\n カメラFOVを更新
  MyOpenGLWidget -> Camera : setFov(float cameraFov)\n 新しい FOVを設置

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['🔁_20各バッファの役割（もう一度、バッファ視点で）_0',['🔁 各バッファの役割（もう一度、バッファ視点で）',['../md__doxygen_2technical__terms.html#autotoc_md208',1,'']]],
-  ['🔁_20結論：理論_20vs_20実装順の違い_1',['🔁 結論：理論 vs 実装順の違い',['../md__doxygen_2coordinate__transformation1.html#autotoc_md73',1,'']]]
+  ['注意点とヒント_0',['📌 注意点とヒント',['../md__doxygen_2folder.html#autotoc_md175',1,'']]],
+  ['注意点_20strong_1',['&lt;strong&gt;注意点&lt;/strong&gt;',['../md__doxygen_2_open_g_l__func.html#autotoc_md325',1,'']]]
 ];

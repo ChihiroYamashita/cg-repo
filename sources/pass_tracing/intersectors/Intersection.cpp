@@ -37,6 +37,9 @@ const double __FAR__ = 1.0e33;
 */
 void rayTracing( const Object& in_Object, const std::vector<AreaLight>& in_AreaLights, const Ray& in_Ray, RayHit& io_Hit )
 {
+
+    //レイがシーン内のどの三角形（またはエリアライト）と最初に交差するかを探す関数
+
     // ★★★ 修正：io_Hitを最初にリセットする ★★★
     // これで、この関数内でヒットが見つからなければ、
     // io_Hitは確実に「ヒットなし」の状態になる。
@@ -78,7 +81,7 @@ void rayTracing( const Object& in_Object, const std::vector<AreaLight>& in_AreaL
         }
     }
 
-    /*デバッグ用一旦削除
+
     //２.エリアライトとの交差計算
     for( int l=0; l<in_AreaLights.size(); l++ )
     {
@@ -95,7 +98,7 @@ void rayTracing( const Object& in_Object, const std::vector<AreaLight>& in_AreaL
             primitive_idx = l;
             isFront = temp_hit.isFront;
         }
-    }*/
+    }
 
     io_Hit.t = t_min;
     io_Hit.alpha = alpha_I;
@@ -184,6 +187,83 @@ void rayTriangleIntersect( const TriMesh& in_Mesh, const int in_Triangle_idx, co
     out_Result.beta = alpha_beta.y();
     out_Result.isFront = isFront;
 }
+
+/**
+ * @brief レイが指定されたエリアライトと交差するかどうかを判定する関数
+ * @details 与えられたエリアライト（`in_AreaLights[in_Light_idx]`）とレイ（`in_Ray`）の交差を計算し、交差点情報を `out_Result` に格納します。エリアライトの形状は平面四角形と仮定され、交差判定には平面法線と2つのエッジベクトルを使用します。
+ *
+ * @param[in] in_AreaLights エリアライトのリスト
+ * @param[in] in_Light_idx チェック対象のエリアライトのインデックス
+ * @param[in] in_Ray レイの情報（始点 `o` と方向 `d`）
+ * @param[out] out_Result 交差点の情報（交差距離 `t`、UV座標 `alpha` と `beta`、表面判定 `isFront`）
+ *
+ * @see RayHit
+ *
+ * @startuml
+ * main -> rayAreaLightIntersect : エリアライトとの交差計算開始
+ * rayAreaLightIntersect -> rayAreaLightIntersect : ライトの中心座標と辺ベクトルを取得
+ * rayAreaLightIntersect -> rayAreaLightIntersect : 法線ベクトルの計算（`light_normal`）
+ * rayAreaLightIntersect -> rayAreaLightIntersect : レイと平面の交差距離 `t` を計算
+ * rayAreaLightIntersect -> rayAreaLightIntersect : UV座標を計算し、エリアライトの範囲を確認
+ * rayAreaLightIntersect -> rayAreaLightIntersect : 交差点情報を保存（`out_Result`）
+ * @enduml
+ *
+ * @image html rayAreaLightIntersect.png "エリアライトとの交差判定フロー"　保存のところのα、β→u,vです　誤植です
+ *
+ * @details **処理の概要**:
+ * - エリアライトの中心座標 `pos` と辺ベクトル `arm_u`、`arm_v` を取得。
+ * - 法線ベクトル `light_normal` を計算し、レイが裏面か表面に当たるかを判定（`isFront`）。
+ * - レイとライトの平面との交差点を計算し、交差距離 `t` を取得。
+ * - 交差点の位置をライトのローカルUV座標に変換し、範囲 \([-1, 1]\) 内にあるかを確認。
+ * - 交差が有効であれば、交差点情報（`t`、`alpha`、`beta`、`isFront`）を `out_Result` に保存。
+ *
+ * @note エリアライトは平面四角形と仮定し、UV座標を \([-1, 1]\) の範囲に正規化しています。
+ */
+void rayAreaLightIntersect( const std::vector<AreaLight>& in_AreaLights, const int in_Light_idx, const Ray& in_Ray, RayHit& out_Result )
+{
+
+
+    // 初期化: tを非常に大きな値に設定し、無効な交差とする
+    out_Result.t = __FAR__;
+
+    // 1. エリアライトの中心座標とエッジベクトルを取得
+    const Eigen::Vector3d pos = in_AreaLights[in_Light_idx].pos;       // ライトの中心座標
+    const Eigen::Vector3d arm_u = in_AreaLights[in_Light_idx].arm_u;   // ライトの横方向のエッジベクトル
+    const Eigen::Vector3d arm_v = in_AreaLights[in_Light_idx].arm_v;   // ライトの縦方向のエッジベクトル
+
+    // 2. ライトの法線ベクトルを計算（エッジベクトルの外積）
+    Eigen::Vector3d light_normal = arm_u.cross(arm_v);
+    light_normal.normalize(); // 法線を正規化して単位ベクトルにする
+
+    bool isFront = true;
+
+    // 3. レイとライトの法線ベクトルの内積を計算し、レイの進行方向を確認
+    const double denominator = light_normal.dot(in_Ray.d);
+    if (denominator >= 0.0)
+        isFront = false; // レイがライトの裏面に当たっている場合、isFrontをfalseに設定
+
+    const double t = light_normal.dot( pos - in_Ray.o ) / denominator;
+
+    if( t <= 0.0 )
+        return;
+
+    // 5. 交差点の位置 x を計算
+    const Eigen::Vector3d x = in_Ray.o + t * in_Ray.d; // 交差点 = レイの始点 + t * レイの方向ベクトル
+
+    // 6. 交差点のUV座標を計算（エリアライトの局所座標系に変換）
+    const double u = (x - pos).dot(arm_u) / arm_u.squaredNorm(); // 横方向の座標
+    const double v = (x - pos).dot(arm_v) / arm_v.squaredNorm(); // 縦方向の座標
+
+
+    if( u < -1.0 || 1.0 < u || v < -1.0 || 1.0 < v ) return;
+
+    out_Result.t = t;
+    out_Result.alpha = u;
+    out_Result.beta = v;
+    out_Result.isFront = isFront;
+}
+
+
 /**
  * @brief レイと交差した点における補間された法線ベクトルを計算する関数
  * @details この関数は、指定された交差情報（RayHit）に基づいて、交差した三角形の各頂点の法線をバリュートリック座標で補間し、
