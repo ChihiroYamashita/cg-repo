@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['カスタムスロット_0',['&lt;tt&gt;idle()&lt;/tt&gt; → &lt;tt&gt;QTimer&lt;/tt&gt; + カスタムスロット',['../md_sources_2to_qtmemo.html#autotoc_md51',1,'']]],
-  ['カメラからレイを発射_1',['5. カメラからレイを発射',['../md__doxygen_2function__myopenglwigetcamera.html#autotoc_md187',1,'']]],
-  ['カメラ位置変更後の情報取得フロー_2',['カメラ位置変更後の情報取得フロー',['../index.html#autotoc_md340',1,'']]]
+  ['オブジェクトの奥行き情報を使って、手前にあるオブジェクトで後ろのオブジェクトを隠すように描画します。_0',['- 役割: オブジェクトの奥行き情報を使って、手前にあるオブジェクトで後ろのオブジェクトを隠すように描画します。',['../md__doxygen_2_open_g_l__func.html#autotoc_md364',1,'']]],
+  ['オブジェクトの透明度（アルファ値）に基づいて、前景と背景をブレンドして描画します。_1',['- 役割: オブジェクトの透明度（アルファ値）に基づいて、前景と背景をブレンドして描画します。',['../md__doxygen_2_open_g_l__func.html#autotoc_md366',1,'']]]
 ];

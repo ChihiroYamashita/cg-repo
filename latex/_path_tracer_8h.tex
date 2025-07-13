@@ -1,0 +1,700 @@
+\doxysection{sources/pass\+\_\+tracing/integrators/\+Path\+Tracer.h ファイル}
+\hypertarget{_path_tracer_8h}{}\label{_path_tracer_8h}\index{sources/pass\_tracing/integrators/PathTracer.h@{sources/pass\_tracing/integrators/PathTracer.h}}
+{\ttfamily \#include "{}Tri\+Mesh.\+h"{}}\newline
+{\ttfamily \#include "{}Light.\+h"{}}\newline
+{\ttfamily \#include "{}Ray.\+h"{}}\newline
+{\ttfamily \#include "{}Ray\+Hit.\+h"{}}\newline
+Path\+Tracer.\+h の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_path_tracer_8h__incl}
+\end{center}
+\end{figure}
+被依存関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_path_tracer_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Vector3d \mbox{\hyperlink{_path_tracer_8h_aa6c8b22ad33abfda330633a7dfcf22af_aa6c8b22ad33abfda330633a7dfcf22af}{sample\+Random\+Point}} (const \mbox{\hyperlink{struct_area_light}{Area\+Light}} \&in\+\_\+\+Light)
+\begin{DoxyCompactList}\small\item\em エリアライト上の中から一つの座標を選ぶ関数 \end{DoxyCompactList}\item 
+Eigen\+::\+Vector3d \mbox{\hyperlink{_path_tracer_8h_a872f5feec54fa665dfa4faec5bcc24a1_a872f5feec54fa665dfa4faec5bcc24a1}{compute\+Direct\+Lighting}} (const std\+::vector$<$ \mbox{\hyperlink{struct_area_light}{Area\+Light}} $>$ \&in\+\_\+\+Area\+Lights, const Eigen\+::\+Vector3d \&in\+\_\+x, const Eigen\+::\+Vector3d \&in\+\_\+n, const Eigen\+::\+Vector3d \&in\+\_\+w\+\_\+eye, const \mbox{\hyperlink{struct_ray_hit}{Ray\+Hit}} \&in\+\_\+ray\+\_\+hit, const \mbox{\hyperlink{struct_object}{Object}} \&in\+\_\+\+Object, const \mbox{\hyperlink{struct_material}{Material}} \&in\+\_\+\+Material, int depth)
+\begin{DoxyCompactList}\small\item\em 直接光（エリアライトの寄与）を計算する関数 \end{DoxyCompactList}\item 
+Eigen\+::\+Vector3d \mbox{\hyperlink{_path_tracer_8h_a4b548eacdb1d58725dda4955727d4abc_a4b548eacdb1d58725dda4955727d4abc}{compute\+Shading}} (const \mbox{\hyperlink{struct_ray}{Ray}} \&in\+\_\+\+Ray, const \mbox{\hyperlink{struct_ray_hit}{Ray\+Hit}} \&in\+\_\+\+Ray\+Hit, const \mbox{\hyperlink{struct_object}{Object}} \&in\+\_\+\+Object, const std\+::vector$<$ \mbox{\hyperlink{struct_area_light}{Area\+Light}} $>$ \&in\+\_\+\+Area\+Lights)
+\begin{DoxyCompactList}\small\item\em レイのシェーディング（光の寄与）を計算する関数 \end{DoxyCompactList}\item 
+Eigen\+::\+Vector3d \mbox{\hyperlink{_path_tracer_8h_aef82830955f56019775e48869a400140_aef82830955f56019775e48869a400140}{compute\+Diffuse\+Reflection}} (const Eigen\+::\+Vector3d \&in\+\_\+x, const Eigen\+::\+Vector3d \&in\+\_\+n, const Eigen\+::\+Vector3d \&in\+\_\+w\+\_\+eye, const \mbox{\hyperlink{struct_ray_hit}{Ray\+Hit}} \&in\+\_\+ray\+\_\+hit, const \mbox{\hyperlink{struct_object}{Object}} \&in\+\_\+\+Object, const \mbox{\hyperlink{struct_material}{Material}} \&in\+\_\+\+Material, const std\+::vector$<$ \mbox{\hyperlink{struct_area_light}{Area\+Light}} $>$ \&in\+\_\+\+Area\+Lights, const int depth)
+\begin{DoxyCompactList}\small\item\em 拡散反射の寄与を計算する関数 \end{DoxyCompactList}\item 
+Eigen\+::\+Vector3d \mbox{\hyperlink{_path_tracer_8h_ac51708d67304d56f21eea48d8f9085f8_ac51708d67304d56f21eea48d8f9085f8}{compute\+Reflection}} (const Eigen\+::\+Vector3d \&in\+\_\+x, const Eigen\+::\+Vector3d \&in\+\_\+n, const Eigen\+::\+Vector3d \&in\+\_\+w\+\_\+eye, const \mbox{\hyperlink{struct_ray_hit}{Ray\+Hit}} \&in\+\_\+ray\+\_\+hit, const \mbox{\hyperlink{struct_object}{Object}} \&in\+\_\+\+Object, const \mbox{\hyperlink{struct_material}{Material}} \&in\+\_\+\+Material, const std\+::vector$<$ \mbox{\hyperlink{struct_area_light}{Area\+Light}} $>$ \&in\+\_\+\+Area\+Lights, const int depth)
+\begin{DoxyCompactList}\small\item\em 鏡面反射（反射光）の寄与を計算する関数 \end{DoxyCompactList}\item 
+Eigen\+::\+Vector3d \mbox{\hyperlink{_path_tracer_8h_adf7ef78807e7fed1207b3f605d96ca25_adf7ef78807e7fed1207b3f605d96ca25}{compute\+Refraction}} (const Eigen\+::\+Vector3d \&in\+\_\+x, const Eigen\+::\+Vector3d \&in\+\_\+n, const Eigen\+::\+Vector3d \&in\+\_\+w\+\_\+eye, const \mbox{\hyperlink{struct_ray_hit}{Ray\+Hit}} \&in\+\_\+ray\+\_\+hit, const \mbox{\hyperlink{struct_object}{Object}} \&in\+\_\+\+Object, const \mbox{\hyperlink{struct_material}{Material}} \&in\+\_\+\+Material, const std\+::vector$<$ \mbox{\hyperlink{struct_area_light}{Area\+Light}} $>$ \&in\+\_\+\+Area\+Lights, const int depth)
+\begin{DoxyCompactList}\small\item\em 屈折光の寄与を計算する関数 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{_path_tracer_8h_aef82830955f56019775e48869a400140_aef82830955f56019775e48869a400140}\index{PathTracer.h@{PathTracer.h}!computeDiffuseReflection@{computeDiffuseReflection}}
+\index{computeDiffuseReflection@{computeDiffuseReflection}!PathTracer.h@{PathTracer.h}}
+\doxysubsubsection{\texorpdfstring{computeDiffuseReflection()}{computeDiffuseReflection()}}
+{\footnotesize\ttfamily \label{_path_tracer_8h_aef82830955f56019775e48869a400140_aef82830955f56019775e48869a400140} 
+Eigen\+::\+Vector3d compute\+Diffuse\+Reflection (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector3d \&}]{in\+\_\+x}{, }\item[{const Eigen\+::\+Vector3d \&}]{in\+\_\+n}{, }\item[{const Eigen\+::\+Vector3d \&}]{in\+\_\+w\+\_\+eye}{, }\item[{const \mbox{\hyperlink{struct_ray_hit}{Ray\+Hit}} \&}]{in\+\_\+ray\+\_\+hit}{, }\item[{const \mbox{\hyperlink{struct_object}{Object}} \&}]{in\+\_\+\+Object}{, }\item[{const \mbox{\hyperlink{struct_material}{Material}} \&}]{in\+\_\+\+Material}{, }\item[{const std\+::vector$<$ \mbox{\hyperlink{struct_area_light}{Area\+Light}} $>$ \&}]{in\+\_\+\+Area\+Lights}{, }\item[{const int}]{depth}{}\end{DoxyParamCaption})}
+
+
+
+拡散反射の寄与を計算する関数 
+
+入射点での拡散反射光の寄与をランダムサンプリングに基づいて計算します。 拡散反射は、表面法線に対するランダムな方向に基づいてサンプリングされます。
+
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\texttt{ in}}  & {\em in\+\_\+x} & 交差点の位置（3\+D座標） \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+n} & 交差点での法線ベクトル \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+w\+\_\+eye} & 視線方向ベクトル（カメラから交差点への方向） \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+ray\+\_\+hit} & 交差情報（交差距離、メッシュ、プリミティブインデックスなど） \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Object} & シーン内のオブジェクト（メッシュ、マテリアル情報を含む） \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Material} & 交差点のマテリアル情報 \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Area\+Lights} & シーン内のエリアライトリスト \\
+\hline
+\mbox{\texttt{ in}}  & {\em depth} & 現在のレイの追跡深度\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+Eigen\+::\+Vector3d 拡散反射光の寄与（\+RGB値）
+\end{DoxyReturn}
+\hypertarget{_path_tracer_8h_aef82830955f56019775e48869a400140_autotoc_md43}{}\doxysubsubsubsection{\texorpdfstring{処理の流れ}{処理の流れ}}\label{_path_tracer_8h_aef82830955f56019775e48869a400140_autotoc_md43}
+\hypertarget{_path_tracer_8h_aef82830955f56019775e48869a400140_autotoc_md44}{}\doxysubsubsubsubsection{\texorpdfstring{1. 接線ベクトルの計算}{1. 接線ベクトルの計算}}\label{_path_tracer_8h_aef82830955f56019775e48869a400140_autotoc_md44}
+法線ベクトルに直交する基底ベクトル（接線ベクトル）を計算します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Eigen::Vector3d\ bn\ =\ in\_Object.meshes[in\_ray\_hit.mesh\_idx].vertices[in\_Object.meshes[in\_ray\_hit.mesh\_idx].triangles[in\_ray\_hit.primitive\_idx].x()]}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ in\_Object.meshes[in\_ray\_hit.mesh\_idx].vertices[in\_Object.meshes[in\_ray\_hit.mesh\_idx].triangles[in\_ray\_hit.primitive\_idx].z()];}
+\DoxyCodeLine{bn.normalize();}
+\DoxyCodeLine{\textcolor{keyword}{const}\ Eigen::Vector3d\ cn\ =\ bn.cross(in\_n);\ \textcolor{comment}{//\ 接線ベクトルを計算}}
+
+\end{DoxyCode}
+\hypertarget{_path_tracer_8h_aef82830955f56019775e48869a400140_autotoc_md45}{}\doxysubsubsubsubsection{\texorpdfstring{2. ランダム方向のサンプリング}{2. ランダム方向のサンプリング}}\label{_path_tracer_8h_aef82830955f56019775e48869a400140_autotoc_md45}
+ランダムな方向を生成し、基底ベクトルに基づいてローカル座標系での拡散方向を計算します。 詳しくはノート参照 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ theta\ =\ acos(sqrt(\mbox{\hyperlink{random_8c_ac230f0a5738783a329d724e45cda3c26_ac230f0a5738783a329d724e45cda3c26}{randomMT}}()));\ \textcolor{comment}{//\ ランダムな角度\ θ}}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ phi\ =\ \mbox{\hyperlink{random_8c_ac230f0a5738783a329d724e45cda3c26_ac230f0a5738783a329d724e45cda3c26}{randomMT}}()\ *\ 2.0\ *\ M\_PI;\ \textcolor{comment}{//\ ランダムな角度\ φ}}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \_dx\ =\ sin(theta)\ *\ cos(phi);}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \_dy\ =\ cos(theta);}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \_dz\ =\ sin(theta)\ *\ sin(phi);}
+\DoxyCodeLine{Eigen::Vector3d\ w\_L\ =\ \_dx\ *\ bn\ +\ \_dy\ *\ in\_n\ +\ \_dz\ *\ cn;\ \textcolor{comment}{//\ ワールド座標系での方向ベクトル}}
+\DoxyCodeLine{w\_L.normalize();}
+
+\end{DoxyCode}
+\hypertarget{_path_tracer_8h_aef82830955f56019775e48869a400140_autotoc_md46}{}\doxysubsubsubsubsection{\texorpdfstring{3. 新しいレイの生成と追跡}{3. 新しいレイの生成と追跡}}\label{_path_tracer_8h_aef82830955f56019775e48869a400140_autotoc_md46}
+サンプリングされた方向に基づいて新しいレイを生成し、交差判定を行います。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{struct_ray}{Ray}}\ ray;}
+\DoxyCodeLine{ray.\mbox{\hyperlink{struct_ray_a2b067c211cfdaf20c2a031d0ea3746d3_a2b067c211cfdaf20c2a031d0ea3746d3}{o}}\ =\ in\_x;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ レイの始点}}
+\DoxyCodeLine{ray.\mbox{\hyperlink{struct_ray_a36307c27c8ce321fcef70b967710c358_a36307c27c8ce321fcef70b967710c358}{d}}\ =\ w\_L;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ レイの方向}}
+\DoxyCodeLine{ray.\mbox{\hyperlink{struct_ray_ae50cf8ba7ff9a8d640dfc508d4826412_ae50cf8ba7ff9a8d640dfc508d4826412}{depth}}\ =\ depth\ +\ 1;\ \ \ \textcolor{comment}{//\ 深度をインクリメント}}
+\DoxyCodeLine{ray.\mbox{\hyperlink{struct_ray_a6f252f4aab2df12e0e90981b49bc019b_a6f252f4aab2df12e0e90981b49bc019b}{prev\_mesh\_idx}}\ =\ in\_ray\_hit.mesh\_idx;\ \textcolor{comment}{//\ 現在の交差情報を保持}}
+\DoxyCodeLine{ray.\mbox{\hyperlink{struct_ray_ab13f37ba1722680e0df35350dd2e1145_ab13f37ba1722680e0df35350dd2e1145}{prev\_primitive\_idx}}\ =\ in\_ray\_hit.primitive\_idx;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{struct_ray_hit}{RayHit}}\ new\_ray\_hit;}
+\DoxyCodeLine{\mbox{\hyperlink{_intersection_8cpp_ad82e0c87acfec4f2eb0a1a711299fd52_ad82e0c87acfec4f2eb0a1a711299fd52}{rayTracing}}(in\_Object,\ in\_AreaLights,\ ray,\ new\_ray\_hit);\ \textcolor{comment}{//\ 新しいレイの追跡}}
+
+\end{DoxyCode}
+\hypertarget{_path_tracer_8h_aef82830955f56019775e48869a400140_autotoc_md47}{}\doxysubsubsubsubsection{\texorpdfstring{4. 二重計算の回避}{4. 二重計算の回避}}\label{_path_tracer_8h_aef82830955f56019775e48869a400140_autotoc_md47}
+\hypertarget{_path_tracer_8h_aef82830955f56019775e48869a400140_autotoc_md48}{}\doxysubsubsubsubsubsection{\texorpdfstring{二重計算の発生}{二重計算の発生}}\label{_path_tracer_8h_aef82830955f56019775e48869a400140_autotoc_md48}
+
+\begin{DoxyItemize}
+\item 間接光のレイ追跡（ray\+Tracing）中に、レイが直接エリアライトに衝突する場合があります。
+\item このエリアライトへの直接衝突は、すでに compute\+Direct\+Lighting で計算されています。
+\item そのため、エリアライトへの直接的な寄与を再度計算すると、光の寄与が重複して加算される（二重計算）問題が発生します。 レイがエリアライトに直接衝突した場合、二重計算を避けるためにゼロを返します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (new\_ray\_hit.\mbox{\hyperlink{struct_ray_hit_af3697b9fb22b763d68d9b0fd09d75624_af3697b9fb22b763d68d9b0fd09d75624}{mesh\_idx}}\ >=\ 0\ \&\&\ new\_ray\_hit.\mbox{\hyperlink{struct_ray_hit_a92c5701fe15dd2715acdcbfda5e170a2_a92c5701fe15dd2715acdcbfda5e170a2}{primitive\_idx}}\ >=\ 0)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_path_tracer_8cpp_a4b548eacdb1d58725dda4955727d4abc_a4b548eacdb1d58725dda4955727d4abc}{computeShading}}(ray,\ new\_ray\_hit,\ in\_Object,\ in\_AreaLights);\ \textcolor{comment}{//\ シェーディングの計算}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}\hypertarget{_path_tracer_8h_aef82830955f56019775e48869a400140_autotoc_md49}{}\doxysubsubsubsubsection{\texorpdfstring{5. 結果を返却}{5. 結果を返却}}\label{_path_tracer_8h_aef82830955f56019775e48869a400140_autotoc_md49}
+レイが交差しない場合はゼロを返します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{return}\ Eigen::Vector3d::Zero();}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{参照}
+\doxylink{_path_tracer_8cpp_a4b548eacdb1d58725dda4955727d4abc_a4b548eacdb1d58725dda4955727d4abc}{compute\+Shading} 
+
+\doxylink{_intersection_8cpp_ad82e0c87acfec4f2eb0a1a711299fd52_ad82e0c87acfec4f2eb0a1a711299fd52}{ray\+Tracing} 
+
+\doxylink{random_8c_ac230f0a5738783a329d724e45cda3c26_ac230f0a5738783a329d724e45cda3c26}{random\+MT} 
+\end{DoxySeeAlso}
+\Hypertarget{_path_tracer_8h_a872f5feec54fa665dfa4faec5bcc24a1_a872f5feec54fa665dfa4faec5bcc24a1}\index{PathTracer.h@{PathTracer.h}!computeDirectLighting@{computeDirectLighting}}
+\index{computeDirectLighting@{computeDirectLighting}!PathTracer.h@{PathTracer.h}}
+\doxysubsubsection{\texorpdfstring{computeDirectLighting()}{computeDirectLighting()}}
+{\footnotesize\ttfamily \label{_path_tracer_8h_a872f5feec54fa665dfa4faec5bcc24a1_a872f5feec54fa665dfa4faec5bcc24a1} 
+Eigen\+::\+Vector3d compute\+Direct\+Lighting (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{struct_area_light}{Area\+Light}} $>$ \&}]{in\+\_\+\+Area\+Lights}{, }\item[{const Eigen\+::\+Vector3d \&}]{in\+\_\+x}{, }\item[{const Eigen\+::\+Vector3d \&}]{in\+\_\+n}{, }\item[{const Eigen\+::\+Vector3d \&}]{in\+\_\+w\+\_\+eye}{, }\item[{const \mbox{\hyperlink{struct_ray_hit}{Ray\+Hit}} \&}]{in\+\_\+ray\+\_\+hit}{, }\item[{const \mbox{\hyperlink{struct_object}{Object}} \&}]{in\+\_\+\+Object}{, }\item[{const \mbox{\hyperlink{struct_material}{Material}} \&}]{in\+\_\+\+Material}{, }\item[{const int}]{depth}{}\end{DoxyParamCaption})}
+
+
+
+直接光（エリアライトの寄与）を計算する関数 
+
+この関数は、指定されたエリアライトのリストに基づき、交差点における直接光の寄与を計算します。 エリアライトの影響をシーン内の各光源について計算し、陰影（影の有無）や法線方向を考慮した寄与を合計します。
+
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Area\+Lights} & エリアライトのリスト（位置、方向、光の色、強度を含む） \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+x} & レイとオブジェクトの交差点（3\+D空間の座標） \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+n} & 交差点での法線ベクトル \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+w\+\_\+eye} & 視線方向（カメラから交差点へのベクトル） \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+ray\+\_\+hit} & 交差情報（交差距離、メッシュのインデックスなど） \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Object} & シーン内のオブジェクト \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Material} & 交差したオブジェクトのマテリアル情報 \\
+\hline
+\mbox{\texttt{ in}}  & {\em depth} & 現在のレイの追跡深度（反射や屈折計算時に再帰的に利用）\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+Eigen\+::\+Vector3d 交差点での直接光の寄与（\+RGB値）
+\end{DoxyReturn}
+{\bfseries{処理の流れ}}\+: \hypertarget{_path_tracer_8h_a872f5feec54fa665dfa4faec5bcc24a1_autotoc_md29}{}\doxysubsubsubsection{\texorpdfstring{処理の流れ}{処理の流れ}}\label{_path_tracer_8h_a872f5feec54fa665dfa4faec5bcc24a1_autotoc_md29}
+\hypertarget{_path_tracer_8h_a872f5feec54fa665dfa4faec5bcc24a1_autotoc_md30}{}\doxysubsubsubsubsection{\texorpdfstring{1. 初期化}{1. 初期化}}\label{_path_tracer_8h_a872f5feec54fa665dfa4faec5bcc24a1_autotoc_md30}
+光の寄与を初期化します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Eigen::Vector3d\ direct\_light\_contribution\ =\ Eigen::Vector3d::Zero();}
+
+\end{DoxyCode}
+\hypertarget{_path_tracer_8h_a872f5feec54fa665dfa4faec5bcc24a1_autotoc_md31}{}\doxysubsubsubsubsection{\texorpdfstring{2. エリアライトの計算ループ}{2. エリアライトの計算ループ}}\label{_path_tracer_8h_a872f5feec54fa665dfa4faec5bcc24a1_autotoc_md31}
+エリアライトごとに以下の処理を繰り返します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ in\_AreaLights.size();\ i++)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{const}\ Eigen::Vector3d\ p\_light\ =\ \mbox{\hyperlink{_path_tracer_8cpp_aa6c8b22ad33abfda330633a7dfcf22af_aa6c8b22ad33abfda330633a7dfcf22af}{sampleRandomPoint}}(in\_AreaLights[i]);\ \textcolor{comment}{//\ ランダムな点をサンプリング}}
+\DoxyCodeLine{\ \ \ \ Eigen::Vector3d\ w\_L\ =\ p\_light\ -\/\ in\_x;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 光源方向のベクトル}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ dist\ =\ w\_L.norm();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 光源までの距離}}
+\DoxyCodeLine{\ \ \ \ w\_L.normalize();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ベクトルを正規化}}
+
+\end{DoxyCode}
+\hypertarget{_path_tracer_8h_a872f5feec54fa665dfa4faec5bcc24a1_autotoc_md32}{}\doxysubsubsubsubsection{\texorpdfstring{3. エリアライトの法線と面積の計算}{3. エリアライトの法線と面積の計算}}\label{_path_tracer_8h_a872f5feec54fa665dfa4faec5bcc24a1_autotoc_md32}
+法線ベクトルと面積を計算し、裏面のライトを除外します。
+
+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ Eigen::Vector3d\ n\_light\ =\ in\_AreaLights[i].arm\_u.cross(in\_AreaLights[i].arm\_v);}
+\DoxyCodeLine{\textcolor{comment}{//外積は大きさが面積、ベクトルが法線になるのがポイント！}}
+\DoxyCodeLine{\ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ area\ =\ n\_light.norm()\ *\ 4.0;\ \textcolor{comment}{//\ 面積計算}}
+\DoxyCodeLine{\ \ n\_light.normalize();}
+\DoxyCodeLine{\ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ cosT\_l\ =\ n\_light.dot(-\/w\_L);\ \textcolor{comment}{//\ 法線と光方向の内積}}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (cosT\_l\ <=\ 0.0)\ \textcolor{keywordflow}{continue};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ライトが裏面の場合はスキップ}}
+
+\end{DoxyCode}
+\hypertarget{_path_tracer_8h_a872f5feec54fa665dfa4faec5bcc24a1_autotoc_md33}{}\doxysubsubsubsubsection{\texorpdfstring{4. シャドウテスト}{4. シャドウテスト}}\label{_path_tracer_8h_a872f5feec54fa665dfa4faec5bcc24a1_autotoc_md33}
+光源に到達する経路が遮られていないかを確認します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{struct_ray}{Ray}}\ ray;}
+\DoxyCodeLine{ray.\mbox{\hyperlink{struct_ray_a2b067c211cfdaf20c2a031d0ea3746d3_a2b067c211cfdaf20c2a031d0ea3746d3}{o}}\ =\ in\_x;\ \textcolor{comment}{//\ レイの始点}}
+\DoxyCodeLine{ray.\mbox{\hyperlink{struct_ray_a36307c27c8ce321fcef70b967710c358_a36307c27c8ce321fcef70b967710c358}{d}}\ =\ w\_L;\ \textcolor{comment}{//\ レイの方向}}
+\DoxyCodeLine{ray.\mbox{\hyperlink{struct_ray_ae50cf8ba7ff9a8d640dfc508d4826412_ae50cf8ba7ff9a8d640dfc508d4826412}{depth}}\ =\ depth\ +\ 1;}
+\DoxyCodeLine{ray.\mbox{\hyperlink{struct_ray_a6f252f4aab2df12e0e90981b49bc019b_a6f252f4aab2df12e0e90981b49bc019b}{prev\_mesh\_idx}}\ =\ in\_ray\_hit.mesh\_idx;\ \textcolor{comment}{//\ 直前の交差情報を保持}}
+\DoxyCodeLine{ray.\mbox{\hyperlink{struct_ray_ab13f37ba1722680e0df35350dd2e1145_ab13f37ba1722680e0df35350dd2e1145}{prev\_primitive\_idx}}\ =\ in\_ray\_hit.primitive\_idx;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{struct_ray_hit}{RayHit}}\ rh;}
+\DoxyCodeLine{\mbox{\hyperlink{_intersection_8cpp_ad82e0c87acfec4f2eb0a1a711299fd52_ad82e0c87acfec4f2eb0a1a711299fd52}{rayTracing}}(in\_Object,\ in\_AreaLights,\ ray,\ rh);}
+
+\end{DoxyCode}
+\hypertarget{_path_tracer_8h_a872f5feec54fa665dfa4faec5bcc24a1_autotoc_md34}{}\doxysubsubsubsubsection{\texorpdfstring{5. 光の寄与を計算}{5. 光の寄与を計算}}\label{_path_tracer_8h_a872f5feec54fa665dfa4faec5bcc24a1_autotoc_md34}
+モンテカルロ法のコーディングの方法については、\doxysectlink{additional_info_coding}{モンテカルロ法のコーディングの方法}{0} を参照してください。 遮られていない場合、光源の寄与を計算して加算します。 レイが交差したオブジェクトのインデックス\+Ray\+Hit rhのmesh\+\_\+idxを参照する rh.\+mesh\+\_\+idx \texorpdfstring{$<$}{<} 0\+: 他のオブジェクトに遮られていない（エリアライトに直接到達した）。 rh.\+primitive\+\_\+idx == i\+: 到達したエリアライトが現在計算中のエリアライト（インデックス i）である。 　width 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (rh.\mbox{\hyperlink{struct_ray_hit_af3697b9fb22b763d68d9b0fd09d75624_af3697b9fb22b763d68d9b0fd09d75624}{mesh\_idx}}\ <\ 0\ \&\&\ rh.\mbox{\hyperlink{struct_ray_hit_a92c5701fe15dd2715acdcbfda5e170a2_a92c5701fe15dd2715acdcbfda5e170a2}{primitive\_idx}}\ ==\ i)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ cos\_theta\ =\ std::max<double>(0.0,\ w\_L.dot(in\_n));\ \textcolor{comment}{//\ 法線と光方向の内積}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ direct\_light\_contribution\ +=}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ area\ *\ in\_AreaLights[i].color.cwiseProduct(in\_Material.kd)\ *}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ in\_AreaLights[i].intensity\ *\ cos\_theta\ *\ cosT\_l\ /\ (M\_PI\ *\ dist\ *\ dist);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{_path_tracer_8h_a872f5feec54fa665dfa4faec5bcc24a1_autotoc_md35}{}\doxysubsubsubsubsection{\texorpdfstring{6. 結果を返却}{6. 結果を返却}}\label{_path_tracer_8h_a872f5feec54fa665dfa4faec5bcc24a1_autotoc_md35}
+最終的な直接光の寄与を返却します。 direct\+\_\+light\+\_\+contribution は 3 次元ベクトル： RGB の色成分を表現するため(各0\texorpdfstring{$\sim$}{\string~}1で表現される) 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{return}\ direct\_light\_contribution;}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{参照}
+\doxylink{_path_tracer_8cpp_aa6c8b22ad33abfda330633a7dfcf22af_aa6c8b22ad33abfda330633a7dfcf22af}{sample\+Random\+Point} 
+
+\doxylink{_intersection_8cpp_ad82e0c87acfec4f2eb0a1a711299fd52_ad82e0c87acfec4f2eb0a1a711299fd52}{ray\+Tracing} 
+
+\doxylink{struct_area_light}{Area\+Light}
+
+\doxylink{struct_area_light}{Area\+Light} 
+
+\doxylink{struct_material}{Material} 
+
+\doxylink{struct_object}{Object} 
+
+\doxylink{struct_ray_hit}{Ray\+Hit} 
+
+\doxylink{_path_tracer_8cpp_aa6c8b22ad33abfda330633a7dfcf22af_aa6c8b22ad33abfda330633a7dfcf22af}{sample\+Random\+Point} 
+\end{DoxySeeAlso}
+\Hypertarget{_path_tracer_8h_ac51708d67304d56f21eea48d8f9085f8_ac51708d67304d56f21eea48d8f9085f8}\index{PathTracer.h@{PathTracer.h}!computeReflection@{computeReflection}}
+\index{computeReflection@{computeReflection}!PathTracer.h@{PathTracer.h}}
+\doxysubsubsection{\texorpdfstring{computeReflection()}{computeReflection()}}
+{\footnotesize\ttfamily \label{_path_tracer_8h_ac51708d67304d56f21eea48d8f9085f8_ac51708d67304d56f21eea48d8f9085f8} 
+Eigen\+::\+Vector3d compute\+Reflection (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector3d \&}]{in\+\_\+x}{, }\item[{const Eigen\+::\+Vector3d \&}]{in\+\_\+n}{, }\item[{const Eigen\+::\+Vector3d \&}]{in\+\_\+w\+\_\+eye}{, }\item[{const \mbox{\hyperlink{struct_ray_hit}{Ray\+Hit}} \&}]{in\+\_\+ray\+\_\+hit}{, }\item[{const \mbox{\hyperlink{struct_object}{Object}} \&}]{in\+\_\+\+Object}{, }\item[{const \mbox{\hyperlink{struct_material}{Material}} \&}]{in\+\_\+\+Material}{, }\item[{const std\+::vector$<$ \mbox{\hyperlink{struct_area_light}{Area\+Light}} $>$ \&}]{in\+\_\+\+Area\+Lights}{, }\item[{const int}]{depth}{}\end{DoxyParamCaption})}
+
+
+
+鏡面反射（反射光）の寄与を計算する関数 
+
+入射点での鏡面反射光の寄与を計算します。 鏡面反射では、反射ベクトルを計算し、その方向に向かうレイを追跡することで寄与を得ます。
+
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\texttt{ in}}  & {\em in\+\_\+x} & 交差点の位置（3\+D座標） \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+n} & 交差点での法線ベクトル \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+w\+\_\+eye} & 視線方向ベクトル（カメラから交差点への方向） \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+ray\+\_\+hit} & 交差情報（交差距離、メッシュ、プリミティブインデックスなど） \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Object} & シーン内のオブジェクト（メッシュ、マテリアル情報を含む） \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Material} & 交差点のマテリアル情報 \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Area\+Lights} & シーン内のエリアライトリスト \\
+\hline
+\mbox{\texttt{ in}}  & {\em depth} & 現在のレイの追跡深度\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+Eigen\+::\+Vector3d 鏡面反射光の寄与（\+RGB値）
+\end{DoxyReturn}
+\hypertarget{_path_tracer_8h_ac51708d67304d56f21eea48d8f9085f8_autotoc_md50}{}\doxysubsubsubsection{\texorpdfstring{処理の流れ}{処理の流れ}}\label{_path_tracer_8h_ac51708d67304d56f21eea48d8f9085f8_autotoc_md50}
+\hypertarget{_path_tracer_8h_ac51708d67304d56f21eea48d8f9085f8_autotoc_md51}{}\doxysubsubsubsubsection{\texorpdfstring{1. 反射ベクトルの計算}{1. 反射ベクトルの計算}}\label{_path_tracer_8h_ac51708d67304d56f21eea48d8f9085f8_autotoc_md51}
+入射方向と法線ベクトルから反射ベクトルを計算します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ e\_dot\_n\ =\ in\_w\_eye.dot(in\_n);\ \textcolor{comment}{//\ 入射方向と法線ベクトルの内積}}
+\DoxyCodeLine{Eigen::Vector3d\ w\_L\ =\ 2.0\ *\ in\_n\ *\ e\_dot\_n\ -\/\ in\_w\_eye;\ \textcolor{comment}{//\ 反射ベクトル}}
+\DoxyCodeLine{w\_L.normalize();\ \textcolor{comment}{//\ ベクトルを正規化}}
+
+\end{DoxyCode}
+
+
+数式で表すと次のようになります：   \[
+\mathbf{w}_L = 2 (\mathbf{n} \cdot \mathbf{w}_\text{eye}) \mathbf{n} - \mathbf{w}_\text{eye}
+\]
+\begin{DoxyItemize}
+\item ${n}$\+: 法線ベクトル
+\item ${w}_\text{eye}$\+: 入射方向（視線方向）
+\item ${w}_L$\+: 反射ベクトル
+\end{DoxyItemize}\hypertarget{_path_tracer_8h_ac51708d67304d56f21eea48d8f9085f8_autotoc_md52}{}\doxysubsubsubsubsection{\texorpdfstring{2. 新しいレイの生成と追跡}{2. 新しいレイの生成と追跡}}\label{_path_tracer_8h_ac51708d67304d56f21eea48d8f9085f8_autotoc_md52}
+計算した反射ベクトルを用いて新しいレイを生成し、そのレイを追跡します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{struct_ray}{Ray}}\ ray;}
+\DoxyCodeLine{ray.\mbox{\hyperlink{struct_ray_a2b067c211cfdaf20c2a031d0ea3746d3_a2b067c211cfdaf20c2a031d0ea3746d3}{o}}\ =\ in\_x;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ レイの始点}}
+\DoxyCodeLine{ray.\mbox{\hyperlink{struct_ray_a36307c27c8ce321fcef70b967710c358_a36307c27c8ce321fcef70b967710c358}{d}}\ =\ w\_L;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ レイの方向}}
+\DoxyCodeLine{ray.\mbox{\hyperlink{struct_ray_ae50cf8ba7ff9a8d640dfc508d4826412_ae50cf8ba7ff9a8d640dfc508d4826412}{depth}}\ =\ depth\ +\ 1;\ \ \ \ \ \ \textcolor{comment}{//\ 深度をインクリメント}}
+\DoxyCodeLine{ray.\mbox{\hyperlink{struct_ray_a6f252f4aab2df12e0e90981b49bc019b_a6f252f4aab2df12e0e90981b49bc019b}{prev\_mesh\_idx}}\ =\ in\_ray\_hit.mesh\_idx;\ \textcolor{comment}{//\ 現在の交差情報を保持}}
+\DoxyCodeLine{ray.\mbox{\hyperlink{struct_ray_ab13f37ba1722680e0df35350dd2e1145_ab13f37ba1722680e0df35350dd2e1145}{prev\_primitive\_idx}}\ =\ in\_ray\_hit.primitive\_idx;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{struct_ray_hit}{RayHit}}\ new\_ray\_hit;}
+\DoxyCodeLine{\mbox{\hyperlink{_intersection_8cpp_ad82e0c87acfec4f2eb0a1a711299fd52_ad82e0c87acfec4f2eb0a1a711299fd52}{rayTracing}}(in\_Object,\ in\_AreaLights,\ ray,\ new\_ray\_hit);\ \textcolor{comment}{//\ 新しいレイの追跡}}
+
+\end{DoxyCode}
+\hypertarget{_path_tracer_8h_ac51708d67304d56f21eea48d8f9085f8_autotoc_md53}{}\doxysubsubsubsubsection{\texorpdfstring{3. 新しい交差点での光の寄与を計算}{3. 新しい交差点での光の寄与を計算}}\label{_path_tracer_8h_ac51708d67304d56f21eea48d8f9085f8_autotoc_md53}
+新しいレイがオブジェクトに衝突した場合、その交差点のシェーディングを計算します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (new\_ray\_hit.\mbox{\hyperlink{struct_ray_hit_a92c5701fe15dd2715acdcbfda5e170a2_a92c5701fe15dd2715acdcbfda5e170a2}{primitive\_idx}}\ >=\ 0)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_path_tracer_8cpp_a4b548eacdb1d58725dda4955727d4abc_a4b548eacdb1d58725dda4955727d4abc}{computeShading}}(ray,\ new\_ray\_hit,\ in\_Object,\ in\_AreaLights);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+\begin{DoxyItemize}
+\item {\ttfamily primitive\+\_\+idx \texorpdfstring{$>$}{>}= 0} は、レイがシーン内のオブジェクトに衝突したことを示します。
+\item 交差点の光の寄与を {\ttfamily compute\+Shading} で計算します。
+\end{DoxyItemize}\hypertarget{_path_tracer_8h_ac51708d67304d56f21eea48d8f9085f8_autotoc_md54}{}\doxysubsubsubsubsection{\texorpdfstring{4. 結果を返却}{4. 結果を返却}}\label{_path_tracer_8h_ac51708d67304d56f21eea48d8f9085f8_autotoc_md54}
+レイがどのオブジェクトにも衝突しなかった場合、ゼロを返します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{return}\ Eigen::Vector3d::Zero();}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{参照}
+\doxylink{_path_tracer_8cpp_a4b548eacdb1d58725dda4955727d4abc_a4b548eacdb1d58725dda4955727d4abc}{compute\+Shading} 
+
+\doxylink{_intersection_8cpp_ad82e0c87acfec4f2eb0a1a711299fd52_ad82e0c87acfec4f2eb0a1a711299fd52}{ray\+Tracing} 
+\end{DoxySeeAlso}
+\Hypertarget{_path_tracer_8h_adf7ef78807e7fed1207b3f605d96ca25_adf7ef78807e7fed1207b3f605d96ca25}\index{PathTracer.h@{PathTracer.h}!computeRefraction@{computeRefraction}}
+\index{computeRefraction@{computeRefraction}!PathTracer.h@{PathTracer.h}}
+\doxysubsubsection{\texorpdfstring{computeRefraction()}{computeRefraction()}}
+{\footnotesize\ttfamily \label{_path_tracer_8h_adf7ef78807e7fed1207b3f605d96ca25_adf7ef78807e7fed1207b3f605d96ca25} 
+Eigen\+::\+Vector3d compute\+Refraction (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector3d \&}]{in\+\_\+x}{, }\item[{const Eigen\+::\+Vector3d \&}]{in\+\_\+n}{, }\item[{const Eigen\+::\+Vector3d \&}]{in\+\_\+w\+\_\+eye}{, }\item[{const \mbox{\hyperlink{struct_ray_hit}{Ray\+Hit}} \&}]{in\+\_\+ray\+\_\+hit}{, }\item[{const \mbox{\hyperlink{struct_object}{Object}} \&}]{in\+\_\+\+Object}{, }\item[{const \mbox{\hyperlink{struct_material}{Material}} \&}]{in\+\_\+\+Material}{, }\item[{const std\+::vector$<$ \mbox{\hyperlink{struct_area_light}{Area\+Light}} $>$ \&}]{in\+\_\+\+Area\+Lights}{, }\item[{const int}]{depth}{}\end{DoxyParamCaption})}
+
+
+
+屈折光の寄与を計算する関数 
+
+入射点での屈折光の寄与を計算します。 屈折光は、スネルの法則に基づき、異なる屈折率を持つ媒質間での光の屈折方向を計算します。 また、全反射が発生する場合には反射光の寄与を計算します。
+
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\texttt{ in}}  & {\em in\+\_\+x} & 交差点の位置（3\+D座標） \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+n} & 交差点での法線ベクトル \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+w\+\_\+eye} & 視線方向ベクトル（カメラから交差点への方向） \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+ray\+\_\+hit} & 交差情報（交差距離、メッシュ、プリミティブインデックスなど） \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Object} & シーン内のオブジェクト（メッシュ、マテリアル情報を含む） \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Material} & 交差点のマテリアル情報 \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Area\+Lights} & シーン内のエリアライトリスト \\
+\hline
+\mbox{\texttt{ in}}  & {\em depth} & 現在のレイの追跡深度\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+Eigen\+::\+Vector3d 屈折光の寄与（\+RGB値）
+\end{DoxyReturn}
+\hypertarget{_path_tracer_8h_adf7ef78807e7fed1207b3f605d96ca25_autotoc_md55}{}\doxysubsubsubsection{\texorpdfstring{処理の流れ}{処理の流れ}}\label{_path_tracer_8h_adf7ef78807e7fed1207b3f605d96ca25_autotoc_md55}
+\hypertarget{_path_tracer_8h_adf7ef78807e7fed1207b3f605d96ca25_autotoc_md56}{}\doxysubsubsubsubsection{\texorpdfstring{1. 入射方向と法線の内積を計算}{1. 入射方向と法線の内積を計算}}\label{_path_tracer_8h_adf7ef78807e7fed1207b3f605d96ca25_autotoc_md56}
+入射方向ベクトルと法線ベクトルの内積を計算します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ e\_dot\_n\ =\ in\_w\_eye.dot(in\_n);}
+
+\end{DoxyCode}
+
+\begin{DoxyItemize}
+\item {\bfseries{{\ttfamily e\+\_\+dot\+\_\+n}}}\+:
+\begin{DoxyItemize}
+\item 入射方向の法線方向へのスカラー成分。
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{_path_tracer_8h_adf7ef78807e7fed1207b3f605d96ca25_autotoc_md57}{}\doxysubsubsubsubsection{\texorpdfstring{2. 屈折率を設定}{2. 屈折率を設定}}\label{_path_tracer_8h_adf7ef78807e7fed1207b3f605d96ca25_autotoc_md57}
+表面の内側から外側へ出る場合と、外側から内側へ入る場合で屈折率を切り替えます。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ eta\ =\ in\_ray\_hit.isFront\ ?\ in\_Material.eta\ :\ 1.0\ /\ in\_Material.eta;}
+
+\end{DoxyCode}
+
+\begin{DoxyItemize}
+\item {\bfseries{{\ttfamily eta}}}\+:
+\begin{DoxyItemize}
+\item 屈折率の比を表します。
+\item 内側から外側の場合：{\ttfamily 1.\+0 / eta}。
+\item 外側から内側の場合：{\ttfamily eta}。
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{_path_tracer_8h_adf7ef78807e7fed1207b3f605d96ca25_autotoc_md58}{}\doxysubsubsubsubsection{\texorpdfstring{3. 判定：全反射が発生するか}{3. 判定：全反射が発生するか}}\label{_path_tracer_8h_adf7ef78807e7fed1207b3f605d96ca25_autotoc_md58}
+スネルの法則に基づいて、全反射が発生するかどうかを判定します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ inside\_sqrt\ =\ 1.0\ -\/\ eta*eta\ *\ (1.0\ -\/\ e\_dot\_n\ *\ e\_dot\_n);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (inside\_sqrt\ <\ 0.0)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_path_tracer_8cpp_ac51708d67304d56f21eea48d8f9085f8_ac51708d67304d56f21eea48d8f9085f8}{computeReflection}}(in\_x,\ in\_n,\ in\_w\_eye,\ in\_ray\_hit,\ in\_Object,\ in\_Material,\ in\_AreaLights,\ depth);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+\begin{DoxyItemize}
+\item {\bfseries{{\ttfamily inside\+\_\+sqrt}}}\+:
+\begin{DoxyItemize}
+\item スネルの法則に基づく計算結果。
+\item ( \textbackslash{}text\{inside\+\_\+sqrt\} \texorpdfstring{$<$}{<} 0 ) の場合、全反射が発生。
+\end{DoxyItemize}
+\item {\bfseries{全反射の場合}}\+:
+\begin{DoxyItemize}
+\item 屈折ベクトルを計算せず、反射ベクトルを計算してその寄与を返します。
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{_path_tracer_8h_adf7ef78807e7fed1207b3f605d96ca25_autotoc_md59}{}\doxysubsubsubsubsection{\texorpdfstring{4. 屈折ベクトルの計算}{4. 屈折ベクトルの計算}}\label{_path_tracer_8h_adf7ef78807e7fed1207b3f605d96ca25_autotoc_md59}
+全反射が発生しない場合、スネルの法則を使って屈折ベクトルを計算します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Eigen::Vector3d\ w\_t\ =\ -\/in\_n\ *\ sqrt(inside\_sqrt)\ -\/\ eta\ *\ (in\_w\_eye\ -\/\ e\_dot\_n\ *\ in\_n);}
+\DoxyCodeLine{w\_t.normalize();}
+
+\end{DoxyCode}
+
+\begin{DoxyItemize}
+\item 数式：   \[
+  \mathbf{w}_t = -\sqrt{1 - \eta^2 (1 - (\mathbf{w}_\text{eye} \cdot \mathbf{n})^2)} \mathbf{n} - \eta (\mathbf{w}_\text{eye} - (\mathbf{w}_\text{eye} \cdot \mathbf{n}) \mathbf{n})
+  \]
+\item {\bfseries{第一項}}\+:
+\begin{DoxyItemize}
+\item 法線方向の成分（曲がり具合を決定）。
+\end{DoxyItemize}
+\item {\bfseries{第二項}}\+:
+\begin{DoxyItemize}
+\item 入射方向の成分を屈折率で調整。
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{_path_tracer_8h_adf7ef78807e7fed1207b3f605d96ca25_autotoc_md60}{}\doxysubsubsubsubsection{\texorpdfstring{5. 新しいレイを生成し追跡}{5. 新しいレイを生成し追跡}}\label{_path_tracer_8h_adf7ef78807e7fed1207b3f605d96ca25_autotoc_md60}
+計算した屈折ベクトルを使って新しいレイを生成し、交差点を追跡します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{struct_ray}{Ray}}\ ray;}
+\DoxyCodeLine{ray.\mbox{\hyperlink{struct_ray_a2b067c211cfdaf20c2a031d0ea3746d3_a2b067c211cfdaf20c2a031d0ea3746d3}{o}}\ =\ in\_x;}
+\DoxyCodeLine{ray.\mbox{\hyperlink{struct_ray_a36307c27c8ce321fcef70b967710c358_a36307c27c8ce321fcef70b967710c358}{d}}\ =\ w\_t;}
+\DoxyCodeLine{ray.\mbox{\hyperlink{struct_ray_ae50cf8ba7ff9a8d640dfc508d4826412_ae50cf8ba7ff9a8d640dfc508d4826412}{depth}}\ =\ depth\ +\ 1;}
+\DoxyCodeLine{ray.\mbox{\hyperlink{struct_ray_a6f252f4aab2df12e0e90981b49bc019b_a6f252f4aab2df12e0e90981b49bc019b}{prev\_mesh\_idx}}\ =\ in\_ray\_hit.mesh\_idx;}
+\DoxyCodeLine{ray.\mbox{\hyperlink{struct_ray_ab13f37ba1722680e0df35350dd2e1145_ab13f37ba1722680e0df35350dd2e1145}{prev\_primitive\_idx}}\ =\ in\_ray\_hit.primitive\_idx;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{struct_ray_hit}{RayHit}}\ new\_ray\_hit;}
+\DoxyCodeLine{\mbox{\hyperlink{_intersection_8cpp_ad82e0c87acfec4f2eb0a1a711299fd52_ad82e0c87acfec4f2eb0a1a711299fd52}{rayTracing}}(in\_Object,\ in\_AreaLights,\ ray,\ new\_ray\_hit);}
+
+\end{DoxyCode}
+\hypertarget{_path_tracer_8h_adf7ef78807e7fed1207b3f605d96ca25_autotoc_md61}{}\doxysubsubsubsubsection{\texorpdfstring{6. 新しい交差点での寄与を計算}{6. 新しい交差点での寄与を計算}}\label{_path_tracer_8h_adf7ef78807e7fed1207b3f605d96ca25_autotoc_md61}
+新しいレイがオブジェクトに衝突した場合、その交差点での寄与を再帰的に計算します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (new\_ray\_hit.\mbox{\hyperlink{struct_ray_hit_a92c5701fe15dd2715acdcbfda5e170a2_a92c5701fe15dd2715acdcbfda5e170a2}{primitive\_idx}}\ >=\ 0)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_path_tracer_8cpp_a4b548eacdb1d58725dda4955727d4abc_a4b548eacdb1d58725dda4955727d4abc}{computeShading}}(ray,\ new\_ray\_hit,\ in\_Object,\ in\_AreaLights);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{_path_tracer_8h_adf7ef78807e7fed1207b3f605d96ca25_autotoc_md62}{}\doxysubsubsubsubsection{\texorpdfstring{7. 結果を返却}{7. 結果を返却}}\label{_path_tracer_8h_adf7ef78807e7fed1207b3f605d96ca25_autotoc_md62}
+レイがどのオブジェクトにも衝突しなかった場合、ゼロを返します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{return}\ Eigen::Vector3d::Zero();}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{参照}
+\doxylink{_path_tracer_8cpp_ac51708d67304d56f21eea48d8f9085f8_ac51708d67304d56f21eea48d8f9085f8}{compute\+Reflection} 
+
+\doxylink{_path_tracer_8cpp_a4b548eacdb1d58725dda4955727d4abc_a4b548eacdb1d58725dda4955727d4abc}{compute\+Shading} 
+
+\doxylink{_intersection_8cpp_ad82e0c87acfec4f2eb0a1a711299fd52_ad82e0c87acfec4f2eb0a1a711299fd52}{ray\+Tracing} 
+\end{DoxySeeAlso}
+\Hypertarget{_path_tracer_8h_a4b548eacdb1d58725dda4955727d4abc_a4b548eacdb1d58725dda4955727d4abc}\index{PathTracer.h@{PathTracer.h}!computeShading@{computeShading}}
+\index{computeShading@{computeShading}!PathTracer.h@{PathTracer.h}}
+\doxysubsubsection{\texorpdfstring{computeShading()}{computeShading()}}
+{\footnotesize\ttfamily \label{_path_tracer_8h_a4b548eacdb1d58725dda4955727d4abc_a4b548eacdb1d58725dda4955727d4abc} 
+Eigen\+::\+Vector3d compute\+Shading (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_ray}{Ray}} \&}]{in\+\_\+\+Ray}{, }\item[{const \mbox{\hyperlink{struct_ray_hit}{Ray\+Hit}} \&}]{in\+\_\+\+Ray\+Hit}{, }\item[{const \mbox{\hyperlink{struct_object}{Object}} \&}]{in\+\_\+\+Object}{, }\item[{const std\+::vector$<$ \mbox{\hyperlink{struct_area_light}{Area\+Light}} $>$ \&}]{in\+\_\+\+Area\+Lights}{}\end{DoxyParamCaption})}
+
+
+
+レイのシェーディング（光の寄与）を計算する関数 
+
+レイがシーン内のオブジェクトやエリアライトと交差した場合に、その交差点での光の寄与（直接光、反射、屈折、拡散反射）を計算します。 交差したオブジェクトのマテリアル特性に基づき、確率的に光の反射や屈折を考慮します。
+
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Ray} & 入射レイ（始点 {\ttfamily o} と方向ベクトル {\ttfamily d}、レイの深度を含む） \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Ray\+Hit} & レイとオブジェクト/エリアライトの交差情報（交差距離 {\ttfamily t}、\+UV座標 {\ttfamily alpha, beta}、表面フラグ {\ttfamily is\+Front}） \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Object} & シーン内のオブジェクト（複数のメッシュとマテリアルを含む） \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Area\+Lights} & シーン内のエリアライト（位置、光の強度、光の色、形状を含む）\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+Eigen\+::\+Vector3d 光の寄与ベクトル 交差点での最終的な光の強度（\+RGBの色ベクトル）
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{参照}
+\doxylink{_path_tracer_8cpp_aef4e08108f31928d04cc64c30c78a6ec_aef4e08108f31928d04cc64c30c78a6ec}{compute\+Direct\+Lighting} 
+
+\doxylink{_path_tracer_8cpp_aef82830955f56019775e48869a400140_aef82830955f56019775e48869a400140}{compute\+Diffuse\+Reflection} 
+
+\doxylink{_path_tracer_8cpp_ac51708d67304d56f21eea48d8f9085f8_ac51708d67304d56f21eea48d8f9085f8}{compute\+Reflection} 
+
+\doxylink{_path_tracer_8cpp_adf7ef78807e7fed1207b3f605d96ca25_adf7ef78807e7fed1207b3f605d96ca25}{compute\+Refraction} 
+
+\doxylink{struct_ray_hit}{Ray\+Hit} 
+
+\doxylink{struct_material}{Material}
+\end{DoxySeeAlso}
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_7}}
+\end{DoxyImageNoCaption}
+
+
+
+
+{\bfseries{処理の概要}}\+:
+\begin{DoxyItemize}
+\item エリアライトとの交差があれば、その光の強度と色を直接返却します。
+\item オブジェクトとの交差があれば、次の手順でシェーディングを計算します：
+\begin{DoxyEnumerate}
+\item {\bfseries{直接光}}\+: エリアライトからの直接光の寄与を計算。
+\item {\bfseries{拡散反射}}\+: オブジェクトの拡散反射を計算（確率的に {\ttfamily kd\+\_\+max} に基づく）。
+\item {\bfseries{鏡面反射}}\+: レイの反射光を計算（確率的に {\ttfamily ks\+\_\+max} に基づく）。
+\item {\bfseries{屈折}}\+: レイの屈折光を計算（確率的に {\ttfamily kt\+\_\+max} に基づく）。
+\end{DoxyEnumerate}
+\item マテリアルの確率的サンプリングを用いて、各光の寄与を統合します。
+\begin{DoxyItemize}
+\item \#\#\# 処理の流れ
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{_path_tracer_8h_a4b548eacdb1d58725dda4955727d4abc_autotoc_md36}{}\doxysubsubsubsubsection{\texorpdfstring{1. エリアライトに直接衝突した場合}{1. エリアライトに直接衝突した場合}}\label{_path_tracer_8h_a4b548eacdb1d58725dda4955727d4abc_autotoc_md36}
+レイがエリアライトに衝突した場合、その光の強度と色を計算します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (in\_RayHit.mesh\_idx\ <\ 0)\ \textcolor{comment}{//\ レイがエリアライトに当たった場合}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (!in\_RayHit.isFront)\ \textcolor{comment}{//\ 裏面に当たった場合は無視}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Eigen::Vector3d::Zero();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ エリアライトの光の強度と色を返す}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ in\_AreaLights[in\_RayHit.primitive\_idx].intensity\ *\ in\_AreaLights[in\_RayHit.primitive\_idx].color;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{_path_tracer_8h_a4b548eacdb1d58725dda4955727d4abc_autotoc_md37}{}\doxysubsubsubsubsection{\texorpdfstring{2. 交差点と法線の計算}{2. 交差点と法線の計算}}\label{_path_tracer_8h_a4b548eacdb1d58725dda4955727d4abc_autotoc_md37}
+交差点とその法線を計算します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{const}\ Eigen::Vector3d\ x\ =\ in\_Ray.o\ +\ in\_RayHit.t\ *\ in\_Ray.d;\ \textcolor{comment}{//\ 交差点の座標}}
+\DoxyCodeLine{\textcolor{keyword}{const}\ Eigen::Vector3d\ n\ =\ \mbox{\hyperlink{_intersection_8cpp_aca412d913682c6dfd8cd4d63a50a8a21_aca412d913682c6dfd8cd4d63a50a8a21}{computeRayHitNormal}}(in\_Object,\ in\_RayHit);\ \textcolor{comment}{//\ 交差点での法線ベクトル}}
+\DoxyCodeLine{Eigen::Vector3d\ I\ =\ Eigen::Vector3d::Zero();\ \textcolor{comment}{//\ 初期化}}
+
+\end{DoxyCode}
+\hypertarget{_path_tracer_8h_a4b548eacdb1d58725dda4955727d4abc_autotoc_md38}{}\doxysubsubsubsubsection{\texorpdfstring{3. マテリアル特性の取得}{3. マテリアル特性の取得}}\label{_path_tracer_8h_a4b548eacdb1d58725dda4955727d4abc_autotoc_md38}
+拡散、鏡面反射、屈折の最大寄与率を取得します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ kd\_max\ =\ in\_Object.meshes[in\_RayHit.mesh\_idx].material.kd.maxCoeff();}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ ks\_max\ =\ in\_Object.meshes[in\_RayHit.mesh\_idx].material.ks.maxCoeff();}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ kt\_max\ =\ in\_Object.meshes[in\_RayHit.mesh\_idx].material.kt.maxCoeff();}
+
+\end{DoxyCode}
+\hypertarget{_path_tracer_8h_a4b548eacdb1d58725dda4955727d4abc_autotoc_md39}{}\doxysubsubsubsubsection{\texorpdfstring{4. 直接光の計算}{4. 直接光の計算}}\label{_path_tracer_8h_a4b548eacdb1d58725dda4955727d4abc_autotoc_md39}
+拡散反射の最大寄与率 {\ttfamily kd\+\_\+max} が正の場合、直接光を計算します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (kd\_max\ >\ 0.0)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ I\ +=\ \mbox{\hyperlink{_path_tracer_8cpp_aef4e08108f31928d04cc64c30c78a6ec_aef4e08108f31928d04cc64c30c78a6ec}{computeDirectLighting}}(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ in\_AreaLights,\ x,\ n,\ -\/in\_Ray.d,\ in\_RayHit,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ in\_Object,\ in\_Object.meshes[in\_RayHit.mesh\_idx].material,\ in\_Ray.depth}
+\DoxyCodeLine{\ \ \ \ );}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{_path_tracer_8h_a4b548eacdb1d58725dda4955727d4abc_autotoc_md40}{}\doxysubsubsubsubsection{\texorpdfstring{5. 間接光のランダムサンプリング}{5. 間接光のランダムサンプリング}}\label{_path_tracer_8h_a4b548eacdb1d58725dda4955727d4abc_autotoc_md40}
+ランダム値に基づいて間接光の寄与を計算します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ r\ =\ \mbox{\hyperlink{random_8c_ac230f0a5738783a329d724e45cda3c26_ac230f0a5738783a329d724e45cda3c26}{randomMT}}();\ \textcolor{comment}{//\ ランダム値\ [0,\ 1)\ を生成}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (r\ <\ kd\_max)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 拡散反射の寄与を計算}}
+\DoxyCodeLine{\ \ \ \ I\ +=\ in\_Object.meshes[in\_RayHit.mesh\_idx].material.kd.cwiseProduct(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{_path_tracer_8cpp_aef82830955f56019775e48869a400140_aef82830955f56019775e48869a400140}{computeDiffuseReflection}}(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ x,\ n,\ -\/in\_Ray.d,\ in\_RayHit,\ in\_Object,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ in\_Object.meshes[in\_RayHit.mesh\_idx].material,\ in\_AreaLights,\ in\_Ray.depth}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\ \ \ \ )\ /\ kd\_max;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (r\ <\ kd\_max\ +\ ks\_max)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 鏡面反射の寄与を計算}}
+\DoxyCodeLine{\ \ \ \ I\ +=\ in\_Object.meshes[in\_RayHit.mesh\_idx].material.ks.cwiseProduct(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{_path_tracer_8cpp_ac51708d67304d56f21eea48d8f9085f8_ac51708d67304d56f21eea48d8f9085f8}{computeReflection}}(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ x,\ n,\ -\/in\_Ray.d,\ in\_RayHit,\ in\_Object,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ in\_Object.meshes[in\_RayHit.mesh\_idx].material,\ in\_AreaLights,\ in\_Ray.depth}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\ \ \ \ )\ /\ ks\_max;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (r\ <\ kd\_max\ +\ ks\_max\ +\ kt\_max)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 屈折の寄与を計算}}
+\DoxyCodeLine{\ \ \ \ I\ +=\ in\_Object.meshes[in\_RayHit.mesh\_idx].material.kt.cwiseProduct(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{_path_tracer_8cpp_adf7ef78807e7fed1207b3f605d96ca25_adf7ef78807e7fed1207b3f605d96ca25}{computeRefraction}}(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ x,\ n,\ -\/in\_Ray.d,\ in\_RayHit,\ in\_Object,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ in\_Object.meshes[in\_RayHit.mesh\_idx].material,\ in\_AreaLights,\ in\_Ray.depth}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\ \ \ \ )\ /\ kt\_max;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{_path_tracer_8h_a4b548eacdb1d58725dda4955727d4abc_autotoc_md41}{}\doxysubsubsubsubsection{\texorpdfstring{6. 結果を返却}{6. 結果を返却}}\label{_path_tracer_8h_a4b548eacdb1d58725dda4955727d4abc_autotoc_md41}
+最終的な光の寄与ベクトルを返却します。 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{return}\ I;}
+
+\end{DoxyCode}
+\hypertarget{_path_tracer_8h_a4b548eacdb1d58725dda4955727d4abc_autotoc_md42}{}\doxysubsubsubsection{\texorpdfstring{コード解説\+:}{コード解説\+:}}\label{_path_tracer_8h_a4b548eacdb1d58725dda4955727d4abc_autotoc_md42}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ kd\_max\ =\ in\_Object.meshes[in\_RayHit.mesh\_idx].material.kd.maxCoeff();}
+
+\end{DoxyCode}
+
+
+ドット演算子は、クラスや構造体の インスタンス のメンバー（変数や関数）にアクセスするために使用 この場合\+Objectのメンバー meshes にアクセス→特定のメッシュ（\+Tri\+Mesh）を取得→ →\+Tri\+Mesh のメンバーである material にアクセス→\+Material 型のメンバーである kd にアクセス kd は Eigen\+::\+Vector3d 型。max\+Coeff()はeigenベクトルで最大値を返す。
+
+\begin{DoxyNote}{覚え書き}
+光の寄与はマテリアルの反射率や屈折率を用いて重み付けされ、確率的にサンプリングされます。 
+\end{DoxyNote}
+\Hypertarget{_path_tracer_8h_aa6c8b22ad33abfda330633a7dfcf22af_aa6c8b22ad33abfda330633a7dfcf22af}\index{PathTracer.h@{PathTracer.h}!sampleRandomPoint@{sampleRandomPoint}}
+\index{sampleRandomPoint@{sampleRandomPoint}!PathTracer.h@{PathTracer.h}}
+\doxysubsubsection{\texorpdfstring{sampleRandomPoint()}{sampleRandomPoint()}}
+{\footnotesize\ttfamily \label{_path_tracer_8h_aa6c8b22ad33abfda330633a7dfcf22af_aa6c8b22ad33abfda330633a7dfcf22af} 
+Eigen\+::\+Vector3d sample\+Random\+Point (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_area_light}{Area\+Light}} \&}]{in\+\_\+\+Light}{}\end{DoxyParamCaption})}
+
+
+
+エリアライト上の中から一つの座標を選ぶ関数 
+
+この関数は、指定されたエリアライト上のランダムな点を一様分布でサンプリングします。 エリアライトの中心位置と2つの方向ベクトル（{\ttfamily arm\+\_\+u}, {\ttfamily arm\+\_\+v}）を利用して、エリア内の任意の点を計算します。
+
+
+\begin{DoxyParams}[1]{引数}
+\mbox{\texttt{ in}}  & {\em in\+\_\+\+Light} & サンプリング対象のエリアライト
+\begin{DoxyItemize}
+\item {\ttfamily pos}\+: ライトの中心位置
+\item {\ttfamily arm\+\_\+u}\+: ライトの一方向のベクトル（ライトの幅を表す）
+\item {\ttfamily arm\+\_\+v}\+: ライトのもう一方向のベクトル（ライトの高さを表す）
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+Eigen\+::\+Vector3d ランダムにサンプリングされた点の3次元座標
+\end{DoxyReturn}
+\begin{DoxyNote}{覚え書き}
+エリアライトの形状は矩形であると仮定しています。
+\end{DoxyNote}
+\hypertarget{_path_tracer_8h_aa6c8b22ad33abfda330633a7dfcf22af_autotoc_md28}{}\doxysubsubsubsection{\texorpdfstring{コード解説\+:}{コード解説\+:}}\label{_path_tracer_8h_aa6c8b22ad33abfda330633a7dfcf22af_autotoc_md28}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ [-\/1,\ 1]\ の範囲で一様分布の乱数を生成します}}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ r1\ =\ 2.0\ *\ \mbox{\hyperlink{random_8c_ac230f0a5738783a329d724e45cda3c26_ac230f0a5738783a329d724e45cda3c26}{randomMT}}()\ -\/\ 1.0;}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ r2\ =\ 2.0\ *\ \mbox{\hyperlink{random_8c_ac230f0a5738783a329d724e45cda3c26_ac230f0a5738783a329d724e45cda3c26}{randomMT}}()\ -\/\ 1.0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ エリアライトの中心位置（in\_Light.pos）を基準に、2つの方向ベクトル（arm\_u,\ arm\_v）をスケールして加算}}
+\DoxyCodeLine{\textcolor{comment}{//\ -\/\ r1\ *\ in\_Light.arm\_u:\ ライトの幅方向のランダムなオフセット}}
+\DoxyCodeLine{\textcolor{comment}{//\ -\/\ r2\ *\ in\_Light.arm\_v:\ ライトの高さ方向のランダムなオフセット}}
+\DoxyCodeLine{\textcolor{keywordflow}{return}\ in\_Light.pos\ +\ r1\ *\ in\_Light.arm\_u\ +\ r2\ *\ in\_Light.arm\_v;}
+
+\end{DoxyCode}
+
+
+上記コードの手順：
+\begin{DoxyEnumerate}
+\item {\ttfamily \doxylink{random_8c_ac230f0a5738783a329d724e45cda3c26_ac230f0a5738783a329d724e45cda3c26}{random\+MT()}} を使って \mbox{[}0, 1\mbox{]} の範囲で乱数を生成。
+\item 範囲を \mbox{[}-\/1, 1\mbox{]} に変換し、それをエリアライトの方向ベクトルにスケール。
+\item 中心位置 {\ttfamily pos} に方向ベクトルのオフセットを加算してランダムな点を生成。
+\end{DoxyEnumerate}
+
+\begin{DoxySeeAlso}{参照}
+\doxylink{random_8c_ac230f0a5738783a329d724e45cda3c26_ac230f0a5738783a329d724e45cda3c26}{random\+MT} 
+
+\doxylink{struct_area_light}{Area\+Light} 
+\end{DoxySeeAlso}

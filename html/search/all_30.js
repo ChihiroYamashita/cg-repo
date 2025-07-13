@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['これは何？_0',['これは何？',['../additional_inf_1.html#autotoc_md72',1,'']]]
+  ['が一定間隔で時間切れ（timeout）になるたびに_0',['connect関数；&lt;tt&gt;QTimer&lt;/tt&gt; が一定間隔で時間切れ（timeout）になるたびに',['../md__doxygen_2memo__wip__raytracing.html#autotoc_md302',1,'']]]
 ];

@@ -87,12 +87,12 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title">🌟 プログレッシブ・レンダリング仕様メモ</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md225"></a></p>
-<h1><a class="anchor" id="autotoc_md226"></a>
+<div class="textblock"><p><a class="anchor" id="autotoc_md260"></a></p>
+<h1><a class="anchor" id="autotoc_md261"></a>
 📌 概要</h1>
 <p>本プロジェクトでは、レイトレーシングによる可視化に対して「**プログレッシブ・レンダリング**」を導入しました。 これは、各ピクセルに対して複数回のサンプルを蓄積することにより、時間と共に画質を向上させる手法です。</p>
 <hr  />
-<h1><a class="anchor" id="autotoc_md228"></a>
+<h1><a class="anchor" id="autotoc_md263"></a>
 ✅ 現在の対応内容</h1>
 <ul>
 <li>✅ <code><a class="el" href="class_film_buffer_a24bfbefb4b00652f446797c3ed5d544a.html#a24bfbefb4b00652f446797c3ed5d544a" title="指定された位置に1つの色サンプルを追加します。">FilmBuffer::addSample()</a></code> によるピクセルごとの色蓄積処理の導入</li>
@@ -101,26 +101,26 @@ $(function(){ initResizable(false); });
 <li>✅ <code>getFilmBufferPtr()</code> を用いた <code>OpenGL</code> へのバッファ転送対応</li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md230"></a>
+<h1><a class="anchor" id="autotoc_md265"></a>
 📂 関連ファイル</h1>
 <ul>
 <li><code><a class="el" href="film__buffer_8h.html">film_buffer.h</a> / .cpp</code>: プログレッシブ蓄積処理の本体クラス</li>
 <li><code><a class="el" href="myopenglwidget__camera_8cpp.html">myopenglwidget_camera.cpp</a></code>: <code>updateRayTracing()</code> によって <code>addSample()</code> を呼び出し、<code>updateFilmBuffer()</code> で色を平均化して描画</li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md232"></a>
+<h1><a class="anchor" id="autotoc_md267"></a>
 🧠 動作の流れ</h1>
 <div class="plantumlgraph">
-<img src="inline_umlgraph_23.png" />
+<img src="inline_umlgraph_27.png" />
 </div>
 <hr  />
-<h1><a class="anchor" id="autotoc_md234"></a>
+<h1><a class="anchor" id="autotoc_md269"></a>
 🧱 クラス構成（簡易）</h1>
 <div class="plantumlgraph">
-<img src="inline_umlgraph_24.png" />
+<img src="inline_umlgraph_28.png" />
 </div>
 <hr  />
-<h1><a class="anchor" id="autotoc_md236"></a>
+<h1><a class="anchor" id="autotoc_md271"></a>
 🔄 更新すべき関数（ステップ案）</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -135,7 +135,7 @@ $(function(){ initResizable(false); });
 <td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone"><code>reset()</code>   </td><td class="markdownTableBodyNone">描画開始時にバッファ初期化（任意）   </td></tr>
 </table>
 <hr  />
-<h1><a class="anchor" id="autotoc_md238"></a>
+<h1><a class="anchor" id="autotoc_md273"></a>
 🔍 備考</h1>
 <ul>
 <li>各ピクセルのサンプル数が異なるため、<code>countBuffer</code> により平均計算を適切に行う。</li>

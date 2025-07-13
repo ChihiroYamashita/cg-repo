@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['積分の結果としての近似式_20strong_0',['&lt;strong&gt;積分の結果としての近似式&lt;/strong&gt;',['../additional_info_coding.html#autotoc_md153',1,'']]],
-  ['積分の近似方法：モンテカルロ法_20strong_1',['&lt;strong&gt;積分の近似方法：モンテカルロ法&lt;/strong&gt;',['../additional_info_coding.html#autotoc_md151',1,'']]]
+  ['数式でまとめる_20strong_0',['&lt;strong&gt;5. 数式でまとめる&lt;/strong&gt;',['../additional_info_buffer.html#autotoc_md173',1,'']]],
+  ['数式における積分_20strong_1',['&lt;strong&gt;数式における積分&lt;/strong&gt;',['../additional_info_coding.html#autotoc_md177',1,'']]]
 ];

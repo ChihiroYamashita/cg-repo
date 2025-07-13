@@ -5,7 +5,7 @@
 以下にコード内で積分がどのように近似されているかを解説します。
 
 \DoxyHorRuler{0}
-\hypertarget{additional_info_coding_autotoc_md142}{}\doxysubsubsection{\texorpdfstring{{\bfseries{数式における積分}}}{{\bfseries{数式における積分}}}}\label{additional_info_coding_autotoc_md142}
+\hypertarget{additional_info_coding_autotoc_md177}{}\doxysubsubsection{\texorpdfstring{{\bfseries{数式における積分}}}{{\bfseries{数式における積分}}}}\label{additional_info_coding_autotoc_md177}
 面光源からの光の寄与を計算する積分は次のような形式です：
 
 \[
@@ -15,11 +15,11 @@ L_d(\mathbf{x}, \mathbf{\omega}_o) = \int_A \frac{\mathbf{L}(p, -\mathbf{\omega}
 ここでは、エリアライトの面積 $A $ 上で積分を行っています。
 
 \DoxyHorRuler{0}
-\hypertarget{additional_info_coding_autotoc_md144}{}\doxysubsubsection{\texorpdfstring{{\bfseries{コード内で積分を近似している部分}}}{{\bfseries{コード内で積分を近似している部分}}}}\label{additional_info_coding_autotoc_md144}
-コード全体で積分を近似しているのは、以下の部分です：\hypertarget{additional_info_coding_autotoc_md145}{}\doxysubsubsubsection{\texorpdfstring{{\bfseries{1. サンプリングによる積分の分解}}}{{\bfseries{1. サンプリングによる積分の分解}}}}\label{additional_info_coding_autotoc_md145}
+\hypertarget{additional_info_coding_autotoc_md179}{}\doxysubsubsection{\texorpdfstring{{\bfseries{コード内で積分を近似している部分}}}{{\bfseries{コード内で積分を近似している部分}}}}\label{additional_info_coding_autotoc_md179}
+コード全体で積分を近似しているのは、以下の部分です：\hypertarget{additional_info_coding_autotoc_md180}{}\doxysubsubsubsection{\texorpdfstring{{\bfseries{1. サンプリングによる積分の分解}}}{{\bfseries{1. サンプリングによる積分の分解}}}}\label{additional_info_coding_autotoc_md180}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\textcolor{keyword}{const}\ Eigen::Vector3d\ p\_light\ =\ sampleRandomPoint(\ in\_AreaLights[i]\ );}
+\DoxyCodeLine{\textcolor{keyword}{const}\ Eigen::Vector3d\ p\_light\ =\ \mbox{\hyperlink{_path_tracer_8cpp_aa6c8b22ad33abfda330633a7dfcf22af_aa6c8b22ad33abfda330633a7dfcf22af}{sampleRandomPoint}}(\ in\_AreaLights[i]\ );}
 
 \end{DoxyCode}
 
@@ -34,7 +34,7 @@ L_d(\mathbf{x}, \mathbf{\omega}_o) = \int_A \frac{\mathbf{L}(p, -\mathbf{\omega}
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{additional_info_coding_autotoc_md147}{}\doxysubsubsubsection{\texorpdfstring{{\bfseries{2. サンプリング点ごとの寄与計算}}}{{\bfseries{2. サンプリング点ごとの寄与計算}}}}\label{additional_info_coding_autotoc_md147}
+\hypertarget{additional_info_coding_autotoc_md182}{}\doxysubsubsubsection{\texorpdfstring{{\bfseries{2. サンプリング点ごとの寄与計算}}}{{\bfseries{2. サンプリング点ごとの寄与計算}}}}\label{additional_info_coding_autotoc_md182}
 サンプリングした点 $ p $ に基づいて、寄与を計算する部分です。
 
 
@@ -56,7 +56,7 @@ L_d(\mathbf{x}, \mathbf{\omega}_o) = \int_A \frac{\mathbf{L}(p, -\mathbf{\omega}
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{additional_info_coding_autotoc_md149}{}\doxysubsubsubsection{\texorpdfstring{{\bfseries{3. サンプリング点の寄与を累積}}}{{\bfseries{3. サンプリング点の寄与を累積}}}}\label{additional_info_coding_autotoc_md149}
+\hypertarget{additional_info_coding_autotoc_md184}{}\doxysubsubsubsection{\texorpdfstring{{\bfseries{3. サンプリング点の寄与を累積}}}{{\bfseries{3. サンプリング点の寄与を累積}}}}\label{additional_info_coding_autotoc_md184}
 以下のコード部分で、すべてのサンプリング点からの寄与を合計しています：
 
 
@@ -74,7 +74,7 @@ L_d(\mathbf{x}, \mathbf{\omega}_o) = \int_A \frac{\mathbf{L}(p, -\mathbf{\omega}
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{additional_info_coding_autotoc_md151}{}\doxysubsubsection{\texorpdfstring{{\bfseries{積分の近似方法：モンテカルロ法}}}{{\bfseries{積分の近似方法：モンテカルロ法}}}}\label{additional_info_coding_autotoc_md151}
+\hypertarget{additional_info_coding_autotoc_md186}{}\doxysubsubsection{\texorpdfstring{{\bfseries{積分の近似方法：モンテカルロ法}}}{{\bfseries{積分の近似方法：モンテカルロ法}}}}\label{additional_info_coding_autotoc_md186}
 モンテカルロ積分をコードで近似的に計算している流れは次のようになります：
 
 
@@ -95,7 +95,7 @@ L_d(\mathbf{x}, \mathbf{\omega}_o) = \int_A \frac{\mathbf{L}(p, -\mathbf{\omega}
 \end{DoxyEnumerate}
 
 \DoxyHorRuler{0}
-\hypertarget{additional_info_coding_autotoc_md153}{}\doxysubsubsection{\texorpdfstring{{\bfseries{積分の結果としての近似式}}}{{\bfseries{積分の結果としての近似式}}}}\label{additional_info_coding_autotoc_md153}
+\hypertarget{additional_info_coding_autotoc_md188}{}\doxysubsubsection{\texorpdfstring{{\bfseries{積分の結果としての近似式}}}{{\bfseries{積分の結果としての近似式}}}}\label{additional_info_coding_autotoc_md188}
 積分の計算をコードに基づいて近似的に表現すると、次のようになります：
 
 \[
@@ -110,7 +110,7 @@ L_d(\mathbf{x}, \mathbf{\omega}_o) \approx \sum_{i=1}^N \frac{\mathbf{L}(p_i, -\
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{additional_info_coding_autotoc_md155}{}\doxysubsubsection{\texorpdfstring{{\bfseries{コード内での積分の具体例}}}{{\bfseries{コード内での積分の具体例}}}}\label{additional_info_coding_autotoc_md155}
+\hypertarget{additional_info_coding_autotoc_md190}{}\doxysubsubsection{\texorpdfstring{{\bfseries{コード内での積分の具体例}}}{{\bfseries{コード内での積分の具体例}}}}\label{additional_info_coding_autotoc_md190}
 例えば、エリアライトが 10 回サンプリングされる場合：
 \begin{DoxyEnumerate}
 \item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}10 個のサンプリング点 $ p $\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} を {\ttfamily sample\+Random\+Point} で生成。
@@ -119,7 +119,7 @@ L_d(\mathbf{x}, \mathbf{\omega}_o) \approx \sum_{i=1}^N \frac{\mathbf{L}(p_i, -\
 \end{DoxyEnumerate}
 
 \DoxyHorRuler{0}
-\hypertarget{additional_info_coding_autotoc_md157}{}\doxysubsubsection{\texorpdfstring{{\bfseries{まとめ}}}{{\bfseries{まとめ}}}}\label{additional_info_coding_autotoc_md157}
+\hypertarget{additional_info_coding_autotoc_md192}{}\doxysubsubsection{\texorpdfstring{{\bfseries{まとめ}}}{{\bfseries{まとめ}}}}\label{additional_info_coding_autotoc_md192}
 コード内で積分が直接的に計算されているわけではなく、ランダムサンプリングと寄与の累積を用いてモンテカルロ積分として近似的に計算しています。
 
 

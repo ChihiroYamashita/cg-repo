@@ -2,27 +2,27 @@
 \hypertarget{md__doxygen_2memo__film__interaction}{}\label{md__doxygen_2memo__film__interaction}\index{🧪 フィルムバッファとレイトレーシングの関数と相互作用@{🧪 フィルムバッファとレイトレーシングの関数と相互作用}}
 複数フレームに分割して全ピクセルのレイトレーシングを進める関数
 
-\label{md__doxygen_2memo__film__interaction_autotoc_md202}%
-\Hypertarget{md__doxygen_2memo__film__interaction_autotoc_md202}%
+\label{md__doxygen_2memo__film__interaction_autotoc_md237}%
+\Hypertarget{md__doxygen_2memo__film__interaction_autotoc_md237}%
 
 
 このセクションでは、{\ttfamily \doxylink{class_my_open_g_l_widget__camera}{My\+Open\+GLWidget\+\_\+camera}} によるレイトレーシング描画の際に、{\ttfamily \doxylink{class_film_buffer}{Film\+Buffer}} クラスがどのように活用されるかを関数単位で整理します。プロセス全体を視覚的に示す\+Plant\+UMLとともに、関数仕様を\+Doxygen記述形式で示します。
 
 \DoxyHorRuler{0}
-\hypertarget{md__doxygen_2memo__film__interaction_autotoc_md204}{}\doxysection{\texorpdfstring{📊 全体フロー（初期化〜サンプル蓄積〜テクスチャ表示）}{📊 全体フロー（初期化〜サンプル蓄積〜テクスチャ表示）}}\label{md__doxygen_2memo__film__interaction_autotoc_md204}
+\hypertarget{md__doxygen_2memo__film__interaction_autotoc_md239}{}\doxysection{\texorpdfstring{📊 全体フロー（初期化〜サンプル蓄積〜テクスチャ表示）}{📊 全体フロー（初期化〜サンプル蓄積〜テクスチャ表示）}}\label{md__doxygen_2memo__film__interaction_autotoc_md239}
 
 \begin{DoxyImageNoCaption}
-  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_22}}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_26}}
 \end{DoxyImageNoCaption}
 
 
 \DoxyHorRuler{0}
-\hypertarget{md__doxygen_2memo__film__interaction_autotoc_md206}{}\doxysection{\texorpdfstring{🔧 関数仕様と目的（\+Film\+Buffer 関連）}{🔧 関数仕様と目的（\+Film\+Buffer 関連）}}\label{md__doxygen_2memo__film__interaction_autotoc_md206}
+\hypertarget{md__doxygen_2memo__film__interaction_autotoc_md241}{}\doxysection{\texorpdfstring{🔧 関数仕様と目的（\+Film\+Buffer 関連）}{🔧 関数仕様と目的（\+Film\+Buffer 関連）}}\label{md__doxygen_2memo__film__interaction_autotoc_md241}
 以下に、\+UML図で登場した関数や変数について、\+Doxygenスタイルの説明と {\ttfamily @see} リンクを加えたセクションを提示します。これにより、\+UML図で言及した各要素から対応する関数にジャンプ可能となる Doxygen対応コメントになります。
 
 \DoxyHorRuler{0}
-\hypertarget{md__doxygen_2memo__film__interaction_autotoc_md208}{}\doxysection{\texorpdfstring{🧭 関数・変数概要と参照リンク}{🧭 関数・変数概要と参照リンク}}\label{md__doxygen_2memo__film__interaction_autotoc_md208}
-\hypertarget{md__doxygen_2memo__film__interaction_autotoc_md209}{}\doxysubsection{\texorpdfstring{{\ttfamily My\+Open\+GLWidget\+\_\+camera\+::update\+Ray\+Tracing()}}{{\ttfamily My\+Open\+GLWidget\+\_\+camera\+::update\+Ray\+Tracing()}}}\label{md__doxygen_2memo__film__interaction_autotoc_md209}
+\hypertarget{md__doxygen_2memo__film__interaction_autotoc_md243}{}\doxysection{\texorpdfstring{🧭 関数・変数概要と参照リンク}{🧭 関数・変数概要と参照リンク}}\label{md__doxygen_2memo__film__interaction_autotoc_md243}
+\hypertarget{md__doxygen_2memo__film__interaction_autotoc_md244}{}\doxysubsection{\texorpdfstring{{\ttfamily My\+Open\+GLWidget\+\_\+camera\+::update\+Ray\+Tracing()}}{{\ttfamily My\+Open\+GLWidget\+\_\+camera\+::update\+Ray\+Tracing()}}}\label{md__doxygen_2memo__film__interaction_autotoc_md244}
 この関数は、1フレームあたり一定数のピクセル（例：2000個）に対してレイトレーシング計算を実行し、その結果を {\ttfamily m\+\_\+film} の蓄積バッファに加算します。各ピクセルごとにカメラからレイを発射し、交差した位置の法線情報に基づいて色を決定します。すべてのピクセルが計算されると、{\ttfamily m\+\_\+is\+Dirty} フラグが false となり、以降のフレームでは再計算をスキップします。
 
 \begin{DoxySeeAlso}{参照}
@@ -35,7 +35,7 @@
 \doxylink{class_camera_a20a6e0f56d6531121c0ef4ee8a71a71c_a20a6e0f56d6531121c0ef4ee8a71a71c}{Camera\+::screen\+View}
 \end{DoxySeeAlso}
 \DoxyHorRuler{0}
-\hypertarget{md__doxygen_2memo__film__interaction_autotoc_md211}{}\doxysubsection{\texorpdfstring{{\ttfamily My\+Open\+GLWidget\+\_\+camera\+::debug\+\_\+compute\+Normal\+Color(const Ray\& ray)}}{{\ttfamily My\+Open\+GLWidget\+\_\+camera\+::debug\+\_\+compute\+Normal\+Color(const Ray\& ray)}}}\label{md__doxygen_2memo__film__interaction_autotoc_md211}
+\hypertarget{md__doxygen_2memo__film__interaction_autotoc_md246}{}\doxysubsection{\texorpdfstring{{\ttfamily My\+Open\+GLWidget\+\_\+camera\+::debug\+\_\+compute\+Normal\+Color(const Ray\& ray)}}{{\ttfamily My\+Open\+GLWidget\+\_\+camera\+::debug\+\_\+compute\+Normal\+Color(const Ray\& ray)}}}\label{md__doxygen_2memo__film__interaction_autotoc_md246}
 オブジェクト交差点の法線ベクトルを色に変換して返す関数
 
 法線ベクトルを \mbox{[}-\/1,1\mbox{]} → \mbox{[}0,1\mbox{]} にマッピングし、\+RGB値として返します。デバッグ描画向け。
@@ -46,7 +46,7 @@
 \doxylink{_intersection_8cpp_aca412d913682c6dfd8cd4d63a50a8a21_aca412d913682c6dfd8cd4d63a50a8a21}{compute\+Ray\+Hit\+Normal}
 \end{DoxySeeAlso}
 \DoxyHorRuler{0}
-\hypertarget{md__doxygen_2memo__film__interaction_autotoc_md213}{}\doxysubsection{\texorpdfstring{{\ttfamily Film\+Buffer\+::init(int width, int height)}}{{\ttfamily Film\+Buffer\+::init(int width, int height)}}}\label{md__doxygen_2memo__film__interaction_autotoc_md213}
+\hypertarget{md__doxygen_2memo__film__interaction_autotoc_md248}{}\doxysubsection{\texorpdfstring{{\ttfamily Film\+Buffer\+::init(int width, int height)}}{{\ttfamily Film\+Buffer\+::init(int width, int height)}}}\label{md__doxygen_2memo__film__interaction_autotoc_md248}
 バッファの初期化（サイズとすべての値を0にリセット）
 
 蓄積・平均・カウントの3つのバッファをリサイズしてクリアします。
@@ -59,7 +59,7 @@
 \doxylink{class_film_buffer_a6514b00ae55e6d3cf9d329a2deae1f9c_a6514b00ae55e6d3cf9d329a2deae1f9c}{Film\+Buffer\+::update\+Film\+Buffer}
 \end{DoxySeeAlso}
 \DoxyHorRuler{0}
-\hypertarget{md__doxygen_2memo__film__interaction_autotoc_md215}{}\doxysubsection{\texorpdfstring{{\ttfamily Film\+Buffer\+::add\+Sample(int i, int j, const Eigen\+::\+Vector3d\& color)}}{{\ttfamily Film\+Buffer\+::add\+Sample(int i, int j, const Eigen\+::\+Vector3d\& color)}}}\label{md__doxygen_2memo__film__interaction_autotoc_md215}
+\hypertarget{md__doxygen_2memo__film__interaction_autotoc_md250}{}\doxysubsection{\texorpdfstring{{\ttfamily Film\+Buffer\+::add\+Sample(int i, int j, const Eigen\+::\+Vector3d\& color)}}{{\ttfamily Film\+Buffer\+::add\+Sample(int i, int j, const Eigen\+::\+Vector3d\& color)}}}\label{md__doxygen_2memo__film__interaction_autotoc_md250}
 ピクセルにレイトレ結果（色）を加算
 
 蓄積バッファに色を加算し、カウントをインクリメントします。
@@ -70,7 +70,7 @@
 \doxylink{class_film_buffer_a6514b00ae55e6d3cf9d329a2deae1f9c_a6514b00ae55e6d3cf9d329a2deae1f9c}{Film\+Buffer\+::update\+Film\+Buffer}
 \end{DoxySeeAlso}
 \DoxyHorRuler{0}
-\hypertarget{md__doxygen_2memo__film__interaction_autotoc_md217}{}\doxysubsection{\texorpdfstring{{\ttfamily Film\+Buffer\+::update\+Film\+Buffer()}}{{\ttfamily Film\+Buffer\+::update\+Film\+Buffer()}}}\label{md__doxygen_2memo__film__interaction_autotoc_md217}
+\hypertarget{md__doxygen_2memo__film__interaction_autotoc_md252}{}\doxysubsection{\texorpdfstring{{\ttfamily Film\+Buffer\+::update\+Film\+Buffer()}}{{\ttfamily Film\+Buffer\+::update\+Film\+Buffer()}}}\label{md__doxygen_2memo__film__interaction_autotoc_md252}
 蓄積色とカウントから平均色を計算し、最終出力用バッファに格納
 
 平均を計算して {\ttfamily m\+\_\+film\+Buffer} に保存します。\+Open\+GLへの転送準備。
@@ -81,7 +81,7 @@
 \doxylink{class_film_buffer_aa69ac45360df7c2a58e0fb10eb1eb789_aa69ac45360df7c2a58e0fb10eb1eb789}{Film\+Buffer\+::get\+Film\+Buffer\+Ptr}
 \end{DoxySeeAlso}
 \DoxyHorRuler{0}
-\hypertarget{md__doxygen_2memo__film__interaction_autotoc_md219}{}\doxysubsection{\texorpdfstring{{\ttfamily Film\+Buffer\+::get\+Film\+Buffer\+Ptr() const}}{{\ttfamily Film\+Buffer\+::get\+Film\+Buffer\+Ptr() const}}}\label{md__doxygen_2memo__film__interaction_autotoc_md219}
+\hypertarget{md__doxygen_2memo__film__interaction_autotoc_md254}{}\doxysubsection{\texorpdfstring{{\ttfamily Film\+Buffer\+::get\+Film\+Buffer\+Ptr() const}}{{\ttfamily Film\+Buffer\+::get\+Film\+Buffer\+Ptr() const}}}\label{md__doxygen_2memo__film__interaction_autotoc_md254}
 Open\+GL に渡すための平均色バッファの先頭ポインタを返す
 
 {\ttfamily gl\+Tex\+Sub\+Image2\+D()} で使用される。
@@ -90,7 +90,7 @@ Open\+GL に渡すための平均色バッファの先頭ポインタを返す
 \doxylink{class_film_buffer_a6514b00ae55e6d3cf9d329a2deae1f9c_a6514b00ae55e6d3cf9d329a2deae1f9c}{Film\+Buffer\+::update\+Film\+Buffer}
 \end{DoxySeeAlso}
 \DoxyHorRuler{0}
-\hypertarget{md__doxygen_2memo__film__interaction_autotoc_md221}{}\doxysubsection{\texorpdfstring{{\ttfamily Camera\+::screen\+View(int i, int j)}}{{\ttfamily Camera\+::screen\+View(int i, int j)}}}\label{md__doxygen_2memo__film__interaction_autotoc_md221}
+\hypertarget{md__doxygen_2memo__film__interaction_autotoc_md256}{}\doxysubsection{\texorpdfstring{{\ttfamily Camera\+::screen\+View(int i, int j)}}{{\ttfamily Camera\+::screen\+View(int i, int j)}}}\label{md__doxygen_2memo__film__interaction_autotoc_md256}
 ピクセル位置からレイを生成するカメラ関数
 
 レイの原点と方向を返し、レイトレーシングの起点となります。
@@ -99,7 +99,7 @@ Open\+GL に渡すための平均色バッファの先頭ポインタを返す
 \doxylink{struct_ray}{Ray}
 \end{DoxySeeAlso}
 \DoxyHorRuler{0}
-\hypertarget{md__doxygen_2memo__film__interaction_autotoc_md223}{}\doxysubsection{\texorpdfstring{{\ttfamily My\+Open\+GLWidget\+\_\+camera\+::m\+\_\+film}}{{\ttfamily My\+Open\+GLWidget\+\_\+camera\+::m\+\_\+film}}}\label{md__doxygen_2memo__film__interaction_autotoc_md223}
+\hypertarget{md__doxygen_2memo__film__interaction_autotoc_md258}{}\doxysubsection{\texorpdfstring{{\ttfamily My\+Open\+GLWidget\+\_\+camera\+::m\+\_\+film}}{{\ttfamily My\+Open\+GLWidget\+\_\+camera\+::m\+\_\+film}}}\label{md__doxygen_2memo__film__interaction_autotoc_md258}
 レイトレーシング結果を保持するフィルムバッファ
 
 {\ttfamily \doxylink{class_film_buffer}{Film\+Buffer}} クラスのインスタンス。色加算・平均処理・描画データ保持を担当します。

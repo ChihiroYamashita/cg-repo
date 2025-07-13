@@ -132,39 +132,39 @@ $(function(){ initResizable(false); });
   </dd>
 </dl>
 <dl class="section return"><dt>戻り値</dt><dd>Eigen::Vector3d 補間された交差点での法線ベクトル（単位ベクトル）</dd></dl>
-<h3><a class="anchor" id="autotoc_md28"></a>
+<h3><a class="anchor" id="autotoc_md63"></a>
 処理の流れ</h3>
-<h4><a class="anchor" id="autotoc_md29"></a>
+<h4><a class="anchor" id="autotoc_md64"></a>
 1. 対象三角形の頂点インデックスを取得</h4>
 <div class="fragment"><div class="line"><span class="keyword">const</span> <span class="keywordtype">int</span> v1_idx = in_Object.meshes ;</div>
 <div class="line"><span class="keyword">const</span> <span class="keywordtype">int</span> v2_idx = in_Object.meshes ;</div>
 <div class="line"><span class="keyword">const</span> <span class="keywordtype">int</span> v3_idx = in_Object.meshes ;</div>
-</div><!-- fragment --><h4><a class="anchor" id="autotoc_md30"></a>
+</div><!-- fragment --><h4><a class="anchor" id="autotoc_md65"></a>
 2. 各頂点の法線ベクトルを取得</h4>
 <div class="fragment"><div class="line"><span class="keyword">const</span> Eigen::Vector3d n1 = in_Object.meshes[in_Hit.mesh_idx].vertex_normals[v1_idx];</div>
 <div class="line"><span class="keyword">const</span> Eigen::Vector3d n2 = in_Object.meshes[in_Hit.mesh_idx].vertex_normals[v2_idx];</div>
 <div class="line"><span class="keyword">const</span> Eigen::Vector3d n3 = in_Object.meshes[in_Hit.mesh_idx].vertex_normals[v3_idx];</div>
-</div><!-- fragment --><h4><a class="anchor" id="autotoc_md31"></a>
+</div><!-- fragment --><h4><a class="anchor" id="autotoc_md66"></a>
 3. バリュートリック補間を用いて交差点での法線を計算</h4>
 <p class="formulaDsp">
-<picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
 n = \alpha n_1 + \beta n_2 + \gamma n_3 \quad (\gamma = 1 - \alpha - \beta)
-\]" src="form_0.png"/></picture>
+\]" src="form_5.png"/></picture>
 </p>
  <div class="fragment"><div class="line"><span class="keyword">const</span> <span class="keywordtype">double</span> gamma = 1.0 - in_Hit.alpha - in_Hit.beta;</div>
 <div class="line">Eigen::Vector3d n = in_Hit.alpha * n1 + in_Hit.beta * n2 + gamma * n3;</div>
 <div class="line">n.normalize();</div>
-</div><!-- fragment --><h4><a class="anchor" id="autotoc_md32"></a>
+</div><!-- fragment --><h4><a class="anchor" id="autotoc_md67"></a>
 4. 裏面からの交差であれば法線を反転</h4>
 <div class="fragment"><div class="line"><span class="keywordflow">if</span> (!in_Hit.isFront) n = -n;</div>
-</div><!-- fragment --><h4><a class="anchor" id="autotoc_md33"></a>
+</div><!-- fragment --><h4><a class="anchor" id="autotoc_md68"></a>
 5. 結果を返却</h4>
 <div class="fragment"><div class="line"><span class="keywordflow">return</span> n;</div>
 </div><!-- fragment --><dl class="section see"><dt>参照</dt><dd><a class="el" href="struct_ray_hit.html" title="レイと三角形の交差点情報を保持する構造体">RayHit</a> </dd>
 <dd>
 <a class="el" href="_intersection_8cpp_ad82e0c87acfec4f2eb0a1a711299fd52.html#ad82e0c87acfec4f2eb0a1a711299fd52" title="レイとシーン内のオブジェクトやライトとの最短交差点を計算する関数">rayTracing</a> </dd>
 <dd>
-computeShading </dd></dl>
+<a class="el" href="_path_tracer_8cpp_a4b548eacdb1d58725dda4955727d4abc.html#a4b548eacdb1d58725dda4955727d4abc" title="レイのシェーディング（光の寄与）を計算する関数">computeShading</a> </dd></dl>
 
 </div>
 </div>

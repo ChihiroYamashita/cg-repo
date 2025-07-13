@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['🌐_20plantuml_3a_20初期化・描画シーケンス_0',['🌐 PlantUML: 初期化・描画シーケンス',['../md__doxygen_2memo__wip__raytracing.html#autotoc_md280',1,'']]]
+  ['色の平均を計算_20strong_0',['&lt;strong&gt;1. 色の平均を計算&lt;/strong&gt;',['../additional_info_buffer.html#autotoc_md156',1,'']]],
+  ['色を計算する（ピクセルごとの計算）_20strong_1',['&lt;strong&gt;1. 色を計算する（ピクセルごとの計算）&lt;/strong&gt;',['../additional_info_buffer.html#autotoc_md151',1,'']]]
 ];

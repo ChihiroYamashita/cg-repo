@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['📦_20使用構造体・クラス_0',['📦 使用構造体・クラス',['../md__doxygen_2memo__wip__raytracing.html#autotoc_md249',1,'']]]
+  ['青（blue）成分_0',['- &lt;strong&gt;&lt;tt&gt;B&lt;/tt&gt;&lt;/strong&gt;: 青（Blue）成分',['../additional_info_buffer.html#autotoc_md149',1,'']]]
 ];

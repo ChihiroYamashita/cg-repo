@@ -1,25 +1,4 @@
 var searchData=
 [
-  ['f16_5fpacket_5ffunction_0',['F16_PACKET_FUNCTION',['../_half_8h_a8f6caae1e4369b482ba19cfe438f922e.html#a8f6caae1e4369b482ba19cfe438f922e',1,'Half.h']]],
-  ['false_1',['FALSE',['../freeglut__internal_8h_aa93f0eb578d23995850d61f7d61c55c1.html#aa93f0eb578d23995850d61f7d61c55c1',1,'freeglut_internal.h']]],
-  ['fetch_5fwcb_2',['FETCH_WCB',['../freeglut__internal_8h_acf9fc00b371f6babd58341a84ff743e2.html#acf9fc00b371f6babd58341a84ff743e2',1,'freeglut_internal.h']]],
-  ['fgapi_3',['FGAPI',['../freeglut__std_8h_a0c13890087e4c32266826db56c710098.html#a0c13890087e4c32266826db56c710098',1,'freeglut_std.h']]],
-  ['fgapientry_4',['FGAPIENTRY',['../freeglut__std_8h_acfe8e7260770f0d6471764f95864489c.html#acfe8e7260770f0d6471764f95864489c',1,'freeglut_std.h']]],
-  ['fgh_5fpi_5',['FGH_PI',['../fractals_8c_a1ab3c65d410473f2ec4368fa97098dbb.html#a1ab3c65d410473f2ec4368fa97098dbb',1,'FGH_PI:&#160;fractals.c'],['../fractals__random_8c_a1ab3c65d410473f2ec4368fa97098dbb.html#a1ab3c65d410473f2ec4368fa97098dbb',1,'FGH_PI:&#160;fractals_random.c']]],
-  ['forbidden_5fidentifier_6',['FORBIDDEN_IDENTIFIER',['../main_8h_aff059c5dcacbe9b0d7eabcd549dde0cd.html#aff059c5dcacbe9b0d7eabcd549dde0cd',1,'main.h']]],
-  ['fov_7',['FOV',['../spaceball_8c_afab1d6380725d86a389fb84b888b091d.html#afab1d6380725d86a389fb84b888b091d',1,'spaceball.c']]],
-  ['freeglut_8',['FREEGLUT',['../freeglut__std_8h_af2f10ad7113ba41fe8ee79a631e890d3.html#af2f10ad7113ba41fe8ee79a631e890d3',1,'freeglut_std.h']]],
-  ['freeglut_5fbuilding_5flib_9',['FREEGLUT_BUILDING_LIB',['../freeglut__init_8c_a4f18da8b3dc1a3dfb9f72d1b70360b94.html#a4f18da8b3dc1a3dfb9f72d1b70360b94',1,'FREEGLUT_BUILDING_LIB:&#160;freeglut_init.c'],['../freeglut__menu_8c_a4f18da8b3dc1a3dfb9f72d1b70360b94.html#a4f18da8b3dc1a3dfb9f72d1b70360b94',1,'FREEGLUT_BUILDING_LIB:&#160;freeglut_menu.c'],['../freeglut__window_8c_a4f18da8b3dc1a3dfb9f72d1b70360b94.html#a4f18da8b3dc1a3dfb9f72d1b70360b94',1,'FREEGLUT_BUILDING_LIB:&#160;freeglut_window.c']]],
-  ['freeglut_5fexit_5fif_5fno_5fwindow_10',['FREEGLUT_EXIT_IF_NO_WINDOW',['../freeglut__internal_8h_a47b0053a51c2a4bc187c7334a0c15535.html#a47b0053a51c2a4bc187c7334a0c15535',1,'freeglut_internal.h']]],
-  ['freeglut_5fexit_5fif_5fnot_5finitialised_11',['FREEGLUT_EXIT_IF_NOT_INITIALISED',['../freeglut__internal_8h_af4fd4b0c5653f18ecfb963ab8678c12a.html#af4fd4b0c5653f18ecfb963ab8678c12a',1,'freeglut_internal.h']]],
-  ['freeglut_5finternal_5ferror_5fexit_12',['FREEGLUT_INTERNAL_ERROR_EXIT',['../freeglut__internal_8h_afc802523019ec0799c0ffc87cdc812c9.html#afc802523019ec0799c0ffc87cdc812c9',1,'freeglut_internal.h']]],
-  ['freeglut_5finternal_5ferror_5fexit_5fif_5fnot_5finitialised_13',['FREEGLUT_INTERNAL_ERROR_EXIT_IF_NOT_INITIALISED',['../freeglut__internal_8h_a3482abb905950d3e54d3db0560f26862.html#a3482abb905950d3e54d3db0560f26862',1,'freeglut_internal.h']]],
-  ['freeglut_5fmax_5fmenus_14',['FREEGLUT_MAX_MENUS',['../freeglut__internal_8h_aa043a37a250dbf46addc5d99e91c6f34.html#aa043a37a250dbf46addc5d99e91c6f34',1,'freeglut_internal.h']]],
-  ['freeglut_5fmenu_5fborder_15',['FREEGLUT_MENU_BORDER',['../freeglut__menu_8c_a295cea0004837b626dd134c5b5a74a53.html#a295cea0004837b626dd134c5b5a74a53',1,'freeglut_menu.c']]],
-  ['freeglut_5fmenu_5ffont_16',['FREEGLUT_MENU_FONT',['../freeglut__menu_8c_a083142a6e608d7c0d22d391150013b2b.html#a083142a6e608d7c0d22d391150013b2b',1,'freeglut_menu.c']]],
-  ['freeglut_5fmenu_5fheight_17',['FREEGLUT_MENU_HEIGHT',['../freeglut__menu_8c_a1d5a9918d91818620f18590f14136c35.html#a1d5a9918d91818620f18590f14136c35',1,'freeglut_menu.c']]],
-  ['freeglut_5freturn_5fif_5ffail_18',['freeglut_return_if_fail',['../freeglut__internal_8h_a00c5c5da425036d1c61f5d4473ab6e79.html#a00c5c5da425036d1c61f5d4473ab6e79',1,'freeglut_internal.h']]],
-  ['freeglut_5freturn_5fval_5fif_5ffail_19',['freeglut_return_val_if_fail',['../freeglut__internal_8h_a8f08a22cfcdcd1f6f85e6b9afa71260e.html#a8f08a22cfcdcd1f6f85e6b9afa71260e',1,'freeglut_internal.h']]],
-  ['freeglut_5fversion_5f2_5f0_20',['FREEGLUT_VERSION_2_0',['../freeglut__std_8h_a8cfa701b92f9fadb221d68c8f830fbbd.html#a8cfa701b92f9fadb221d68c8f830fbbd',1,'freeglut_std.h']]],
-  ['frequency_21',['FREQUENCY',['../x86__timer_8hh_a84142cd3e3bf14c4ecd4b6707a808c39.html#a84142cd3e3bf14c4ecd4b6707a808c39',1,'x86_timer.hh']]]
+  ['upper_5fmask_0',['UPPER_MASK',['../random_8c_a39bc458849360f8f371b54c4365d397f.html#a39bc458849360f8f371b54c4365d397f',1,'random.c']]]
 ];

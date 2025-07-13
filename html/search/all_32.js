@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['すべてのピクセルが終わったら終了_0',['9. すべてのピクセルが終わったら終了',['../md__doxygen_2function__myopenglwigetcamera.html#autotoc_md191',1,'']]]
+  ['さらに学びたい方向け_0',['✳️ さらに学びたい方向け',['../md__doxygen_2open_g_l__basis.html#autotoc_md340',1,'']]]
 ];

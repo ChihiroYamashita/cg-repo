@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['🔹_20プログラミングでの意味_0',['🔹 プログラミングでの意味',['../md__doxygen_2technical__terms.html#autotoc_md350',1,'']]],
-  ['🔹_20用途_1',['🔹 用途',['../md__doxygen_2technical__terms.html#autotoc_md353',1,'']]],
-  ['🔹_20cgや3dでの意味_2',['🔹 CGや3Dでの意味',['../md__doxygen_2technical__terms.html#autotoc_md352',1,'']]]
+  ['🎯_20openglとは？_0',['🎯 OpenGLとは？',['../md__doxygen_2open_g_l__basis.html#autotoc_md321',1,'']]],
+  ['🎯_20uml_3a_20paintglまわりの初期化と描画の流れ_1',['🎯 UML: paintGLまわりの初期化と描画の流れ',['../md__doxygen_2memo__wip__raytracing.html#autotoc_md313',1,'']]]
 ];

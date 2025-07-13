@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['解説_0',['解説',['../md_sources_2to_qtmemo.html#autotoc_md46',1,'']]]
+  ['用語集_0',['用語集',['../md__doxygen_2technical__terms.html',1,'']]],
+  ['用途_1',['🔹 用途',['../md__doxygen_2technical__terms.html#autotoc_md388',1,'']]]
 ];

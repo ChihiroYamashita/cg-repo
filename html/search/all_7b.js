@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['蓄積された色から平均を計算_0',['10. 蓄積された色から平均を計算',['../md__doxygen_2function__myopenglwigetcamera.html#autotoc_md192',1,'']]]
+  ['概要_0',['概要',['../md__doxygen_2_r_e_a_d_m_e.html#autotoc_md371',1,'概要'],['../md__doxygen_2memo__progressive__rendering.html#autotoc_md261',1,'📌 概要']]]
 ];

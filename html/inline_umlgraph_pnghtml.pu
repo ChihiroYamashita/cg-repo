@@ -72,22 +72,27 @@ M -> GL: in_FilmTexture をバインド（使用するテクスチャを指定�
 M -> GL: 頂点とUV座標を指定して矩形を描画
 GL --> M: 描画完了を返す
 @enduml
-@startuml inline_umlgraph_7.png
-main -> rayAreaLightIntersect : エリアライトとの交差計算開始
-rayAreaLightIntersect -> rayAreaLightIntersect : ライトの中心座標と辺ベクトルを取得
-rayAreaLightIntersect -> rayAreaLightIntersect : 法線ベクトルの計算（`light_normal`）
-rayAreaLightIntersect -> rayAreaLightIntersect : レイと平面の交差距離 `t` を計算
-rayAreaLightIntersect -> rayAreaLightIntersect : UV座標を計算し、エリアライトの範囲を確認
-rayAreaLightIntersect -> rayAreaLightIntersect : 交差点情報を保存（`out_Result`）
+@startuml inline_umlgraph_6.png
+main -> computeShading : シェーディング計算開始
+computeShading -> computeRayHitNormal : 法線ベクトルを計算
+computeShading -> computeDirectLighting : 直接光の計算（kd_max > 0）
+computeDirectLighting ->computeShading: RGB値の3次元ベクトルdirect_light_contribution を返却
+computeShading -> computeDiffuseReflection : 拡散反射を計算（確率 kd_max に基づく）
+computeShading -> computeReflection : 鏡面反射を計算（確率 ks_max に基づく）
+computeShading -> computeRefraction : 屈折を計算（確率 kt_max に基づく）
+computeShading -> computeShading : 光の寄与を合算
+computeShading -> main : シェーディング結果を返却
 @enduml
 @startuml inline_umlgraph_8.png
- main -> rayTracing : レイと交差計算開始
- rayTracing -> rayTriangleIntersect : メッシュの三角形と交差計算
- rayTriangleIntersect -> rayTracing : 交差情報を取得（temp_hitに保存）
- rayTracing -> rayAreaLightIntersect : エリアライトとの交差計算
- rayAreaLightIntersect -> rayTracing : 交差情報を取得（temp_hitに保存）
- rayTracing -> rayTracing : 最短交差点情報を更新 \n交差距離t_min、インデックスなど
- rayTracing -> io_Hit : 最短交差点情報を保存
+main -> computeShading : シェーディング計算開始
+computeShading -> computeRayHitNormal : 法線ベクトルを計算
+computeShading -> computeDirectLighting : 直接光の計算（kd_max > 0）
+computeDirectLighting ->computeShading: RGB値の3次元ベクトルdirect_light_contribution を返却
+computeShading -> computeDiffuseReflection : 拡散反射を計算（確率 kd_max に基づく）
+computeShading -> computeReflection : 鏡面反射を計算（確率 ks_max に基づく）
+computeShading -> computeRefraction : 屈折を計算（確率 kt_max に基づく）
+computeShading -> computeShading : 光の寄与を合算
+computeShading -> main : シェーディング結果を返却
 @enduml
 @startuml inline_umlgraph_11.png
 main -> rayAreaLightIntersect : エリアライトとの交差計算開始
@@ -106,17 +111,34 @@ rayAreaLightIntersect -> rayAreaLightIntersect : 交差点情報を保存（`out
  rayTracing -> rayTracing : 最短交差点情報を更新 \n交差距離t_min、インデックスなど
  rayTracing -> io_Hit : 最短交差点情報を保存
 @enduml
-@startuml inline_umlgraph_14.png
-loop 各メッシュに対して
-    computeGLShading(mesh, lights)
-end
+@startuml inline_umlgraph_15.png
+main -> rayAreaLightIntersect : エリアライトとの交差計算開始
+rayAreaLightIntersect -> rayAreaLightIntersect : ライトの中心座標と辺ベクトルを取得
+rayAreaLightIntersect -> rayAreaLightIntersect : 法線ベクトルの計算（`light_normal`）
+rayAreaLightIntersect -> rayAreaLightIntersect : レイと平面の交差距離 `t` を計算
+rayAreaLightIntersect -> rayAreaLightIntersect : UV座標を計算し、エリアライトの範囲を確認
+rayAreaLightIntersect -> rayAreaLightIntersect : 交差点情報を保存（`out_Result`）
 @enduml
 @startuml inline_umlgraph_16.png
+ main -> rayTracing : レイと交差計算開始
+ rayTracing -> rayTriangleIntersect : メッシュの三角形と交差計算
+ rayTriangleIntersect -> rayTracing : 交差情報を取得（temp_hitに保存）
+ rayTracing -> rayAreaLightIntersect : エリアライトとの交差計算
+ rayAreaLightIntersect -> rayTracing : 交差情報を取得（temp_hitに保存）
+ rayTracing -> rayTracing : 最短交差点情報を更新 \n交差距離t_min、インデックスなど
+ rayTracing -> io_Hit : 最短交差点情報を保存
+@enduml
+@startuml inline_umlgraph_18.png
 loop 各メッシュに対して
     computeGLShading(mesh, lights)
 end
 @enduml
-@startuml inline_umlgraph_17.png
+@startuml inline_umlgraph_20.png
+loop 各メッシュに対して
+    computeGLShading(mesh, lights)
+end
+@enduml
+@startuml inline_umlgraph_21.png
 loop フレーム毎
   MyOpenGLWidget_camera -> updateRayTracing : レンダリング進行
   alt m_isDirty == false
@@ -136,7 +158,7 @@ loop フレーム毎
   end
 end
 @enduml
-@startuml inline_umlgraph_19.png
+@startuml inline_umlgraph_23.png
 actor User
 
 User -> MyOpenGLWidget_camera : 初期化 (initializeGL)
@@ -155,7 +177,7 @@ MyOpenGLWidget_camera -> drawFilm : カメラ情報とfilmテクスチャを渡�
 drawFilm -> Camera : getEyePoint(), getX/Y/ZVector(), getFocalLength() など呼び出し
 drawFilm -> OpenGL : テクスチャをバインドし、矩形に貼り付けて描画
 @enduml
-@startuml inline_umlgraph_21.png
+@startuml inline_umlgraph_25.png
 actor User
 participant MyOpenGLWidget_camera
 participant FilmBuffer
@@ -182,7 +204,7 @@ MyOpenGLWidget_camera -> FilmBuffer : updateFilmBuffer() // 積算値から平�
 MyOpenGLWidget_camera -> FilmBuffer : getFilmBufferPtr() // GPU転送用ポインタ取得
 MyOpenGLWidget_camera -> OpenGL : glTexSubImage2D(..., ptr) // GPUに転送して画面描画
 @enduml
-@startuml inline_umlgraph_23.png
+@startuml inline_umlgraph_27.png
 actor User
 User -> MyOpenGLWidget_camera : paintGL()
 MyOpenGLWidget_camera -> MyOpenGLWidget_camera : updateRayTracing()
@@ -198,7 +220,7 @@ end
 MyOpenGLWidget_camera -> FilmBuffer : updateFilmBuffer()
 MyOpenGLWidget_camera -> OpenGL : glTexSubImage2D() による描画更新
 @enduml
-@startuml inline_umlgraph_24.png
+@startuml inline_umlgraph_28.png
 class FilmBuffer {
     - int m_width, m_height
     - vector<float> m_filmBuffer
@@ -212,7 +234,7 @@ class FilmBuffer {
     + getFilmBufferPtr()
 }
 @enduml
-@startuml inline_umlgraph_27.png
+@startuml inline_umlgraph_31.png
 actor User
 participant MyOpenGLWidget_camera
 participant Camera
@@ -259,7 +281,7 @@ MyOpenGLWidget_camera -> FilmBuffer : updateFilmBuffer() // 平均色を計算�
 MyOpenGLWidget_camera -> FilmBuffer : getFilmBufferPtr() // 転送ポインタ取得
 MyOpenGLWidget_camera -> OpenGL : glTexSubImage2D(..., ptr) // OpenGLに描画
 @enduml
-@startuml inline_umlgraph_28.png
+@startuml inline_umlgraph_32.png
 actor User
 participant "MyOpenGLWidget_camera" as Widget
 participant "QTimer" as Timer
@@ -362,7 +384,7 @@ Widget -> Widget : update() // 再描画を要求 (paintGLが呼ばれる)
 deactivate Widget #peachpuff
 deactivate Widget
 @enduml
-@startuml inline_umlgraph_29.png
+@startuml inline_umlgraph_33.png
 actor User
 
 User -> MyOpenGLWidget_camera : 初期化 (initializeGL)
@@ -381,7 +403,7 @@ MyOpenGLWidget_camera -> drawFilm : カメラ情報とfilmテクスチャを渡�
 drawFilm -> Camera : getEyePoint(), getX/Y/ZVector(), getFocalLength() を呼び出し
 drawFilm -> OpenGL : テクスチャをバインドし、矩形に貼り付けて描画
 @enduml
-@startuml inline_umlgraph_34.png
+@startuml inline_umlgraph_38.png
 main -> Camera : screenView(in_x, in_y, out_Ray)
 Camera -> Camera : レイ生成処理を開始
 Camera -> Camera : s = (in_x - 0.5) * m_ScreenWidth \nスクリーン上のx座標(0~1)をカメラ空間の物理的な横の長さに変換
@@ -424,7 +446,7 @@ loop すべてのピクセル
     FB -> FB: accumulationBuffer ÷ countBuffer → filmBuffer に保存
 end
 @enduml
-@startuml inline_umlgraph_35.png
+@startuml inline_umlgraph_39.png
 class Object {
   - List<TriMesh> meshes
 }
@@ -448,7 +470,7 @@ class Material {
 Object --> "1..* すべて参照" TriMesh
 TriMesh --> "1　マテリアル参照" Material
 @enduml
-@startuml inline_umlgraph_37.png
+@startuml inline_umlgraph_41.png
 actor User
 
 User -> MainWindow : スライダー操作などのユーザー入力
@@ -461,7 +483,7 @@ MyOpenGLWidget -> MyOpenGLWidget : 投影変換を適用（gluPerspective / glOr
 MyOpenGLWidget -> OpenGL : ビューポート変換を適用（glViewport）
 MyOpenGLWidget -> OpenGL : シーンをレンダリング
 @enduml
-@startuml inline_umlgraph_38.png
+@startuml inline_umlgraph_42.png
 actor User
 
 User -> MainWindow : スライダー操作/マウス操作\n（拡縮、回転、平行移動）
@@ -478,7 +500,7 @@ Camera -> Camera  : lookAt( QVector3D in_LookAt, QVector3D in_Up )\nカメラの
 
 MyOpenGLWidget -> OpenGL : update()\nすべての処理が終わったら画面を再描画（正確な記述は次項）
 @enduml
-@startuml inline_umlgraph_39.png
+@startuml inline_umlgraph_43.png
 actor User
 
 
@@ -490,12 +512,12 @@ MyOpenGLWidget -> MyOpenGLWidget : projection_and_modelview(g_Camera);\nカメ�
 MyOpenGLWidget -> OpenGL : glEnable(GL_DEPTH_TEST);\n深度テスト（Depth Test）を有効化\nglBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);\nアルファブレンディング（透明度の計算）\nglEnable(GL_BLEND);ブレンディングを有効化\nglEnable(GL_POINT_SMOOTH);, glEnable(GL_LINE_SMOOTH);, glEnable(GL_POLYGON_SMOOTH);\n（アンチエイリアス）を有効化\nglHint(GL_POINT_SMOOTH_HINT, GL_NICEST);\nスムージング
 MyOpenGLWidget -> drawObject :drawXYZAxes(); drawXYGrid(0.5, 50); drawcube();
 @enduml
-@startuml inline_umlgraph_40.png
+@startuml inline_umlgraph_44.png
 User -> Timeline : Add keyframe
 Timeline -> CustomScene : Insert keyframe
 CustomScene -> MainWindow : Notify keyframe added
 @enduml
-@startuml inline_umlgraph_41.png
+@startuml inline_umlgraph_45.png
  User -> MainWindow : on_fovSlider_valueChanged(int value)\n FOV sliderをいじる
  MainWindow -> MyOpenGLWidget : setCameraFov(float fov)\n カメラFOVを更新
  MyOpenGLWidget -> Camera : setFov(float cameraFov)\n 新しい FOVを設置

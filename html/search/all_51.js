@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['モデルビュー変換の設定_0',['3. モデルビュー変換の設定',['../class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f.html#autotoc_md37',1,'']]],
-  ['モデルビュー行列を設定する例_20strong_1',['&lt;strong&gt;モデルビュー行列を設定する例&lt;/strong&gt;',['../md__doxygen_2_open_g_l__func.html#autotoc_md318',1,'']]],
-  ['モデル（objファイル）を読み込む_2',['① モデル（OBJファイル）を読み込む',['../md__doxygen_2memo__wip__raytracing.html#autotoc_md260',1,'']]],
-  ['モンテカルロ法をコーディングに落とし込む_3',['モンテカルロ法をコーディングに落とし込む',['../additional_info_coding.html',1,'']]]
+  ['マテリアル特性の取得_0',['3. マテリアル特性の取得',['../_path_tracer_8h_a4b548eacdb1d58725dda4955727d4abc.html#autotoc_md38',1,'']]]
 ];

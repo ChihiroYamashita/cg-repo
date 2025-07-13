@@ -90,45 +90,46 @@ $(function(){ initResizable(false); });
 <div class="textblock"><p>コード内で積分の処理を実際に行っている箇所は、「ランダムサンプリングとその結果の累積」によって、積分を近似している部分です。積分自体は、解析的に直接計算されるのではなく、モンテカルロ積分によって数値的に近似されています。</p>
 <p>以下にコード内で積分がどのように近似されているかを解説します。</p>
 <hr  />
-<h3><a class="anchor" id="autotoc_md142"></a>
+<h3><a class="anchor" id="autotoc_md177"></a>
 <b>数式における積分</b></h3>
 <p>面光源からの光の寄与を計算する積分は次のような形式です：</p>
 <p class="formulaDsp">
-<picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
 L_d(\mathbf{x}, \mathbf{\omega}_o) = \int_A \frac{\mathbf{L}(p, -\mathbf{\omega}_i) \cdot \mathbf{f}_r(\mathbf{\omega}_i, \mathbf{\omega}_o, \mathbf{x}) \cdot \cos \theta_i \cdot \cos \theta_l}{\|\mathbf{x} - p\|^2} \, \mathrm{d}A(p)
-\]" src="form_15.png"/></picture>
+\]" src="form_20.png"/></picture>
 </p>
-<p>ここでは、エリアライトの面積 <picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$A $" src="form_16.png"/></picture> 上で積分を行っています。</p>
+<p>ここでは、エリアライトの面積 <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$A $" src="form_21.png"/></picture> 上で積分を行っています。</p>
 <hr  />
-<h3><a class="anchor" id="autotoc_md144"></a>
+<h3><a class="anchor" id="autotoc_md179"></a>
 <b>コード内で積分を近似している部分</b></h3>
 <p>コード全体で積分を近似しているのは、以下の部分です：</p>
-<h4><a class="anchor" id="autotoc_md145"></a>
+<h4><a class="anchor" id="autotoc_md180"></a>
 <b>1. サンプリングによる積分の分解</b></h4>
-<div class="fragment"><div class="line"><span class="keyword">const</span> Eigen::Vector3d p_light = sampleRandomPoint( in_AreaLights[i] );</div>
+<div class="fragment"><div class="line"><span class="keyword">const</span> Eigen::Vector3d p_light = <a class="code hl_function" href="_path_tracer_8cpp_aa6c8b22ad33abfda330633a7dfcf22af.html#aa6c8b22ad33abfda330633a7dfcf22af">sampleRandomPoint</a>( in_AreaLights[i] );</div>
+<div class="ttc" id="a_path_tracer_8cpp_aa6c8b22ad33abfda330633a7dfcf22af_html_aa6c8b22ad33abfda330633a7dfcf22af"><div class="ttname"><a href="_path_tracer_8cpp_aa6c8b22ad33abfda330633a7dfcf22af.html#aa6c8b22ad33abfda330633a7dfcf22af">sampleRandomPoint</a></div><div class="ttdeci">Eigen::Vector3d sampleRandomPoint(const AreaLight &amp;in_Light)</div><div class="ttdoc">エリアライト上の中から一つの座標を選ぶ関数</div><div class="ttdef"><b>Definition</b> PathTracer.cpp:40</div></div>
 </div><!-- fragment --><ul>
 <li><b><code>sampleRandomPoint</code></b>:<ul>
-<li>面光源（エリアライト）からランダムな点 <picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p $" src="form_17.png"/></picture> をサンプリングしています。</li>
-<li>これにより、積分の微小面積要素 <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$mathrm{d}A $" src="form_18.png"/></picture> をランダムな点に置き換えます。</li>
+<li>面光源（エリアライト）からランダムな点 <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p $" src="form_22.png"/></picture> をサンプリングしています。</li>
+<li>これにより、積分の微小面積要素 <picture><source srcset="form_23_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$mathrm{d}A $" src="form_23.png"/></picture> をランダムな点に置き換えます。</li>
 </ul>
 </li>
 </ul>
 <hr  />
-<h4><a class="anchor" id="autotoc_md147"></a>
+<h4><a class="anchor" id="autotoc_md182"></a>
 <b>2. サンプリング点ごとの寄与計算</b></h4>
-<p>サンプリングした点 <picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p $" src="form_17.png"/></picture> に基づいて、寄与を計算する部分です。</p>
+<p>サンプリングした点 <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p $" src="form_22.png"/></picture> に基づいて、寄与を計算する部分です。</p>
 <div class="fragment"><div class="line"><span class="keyword">const</span> <span class="keywordtype">double</span> cos_theta = std::max&lt;double&gt;( 0.0, w_L.dot( in_n ) );</div>
 <div class="line">direct_light_contribution += area * in_AreaLights[i].color.cwiseProduct( in_Material.kd ) * </div>
 <div class="line">                             in_AreaLights[i].intensity * cos_theta * cosT_l / ( M_PI * dist * dist );</div>
 </div><!-- fragment --><ul>
 <li><b>寄与の計算</b>:<ul>
-<li>面光源上のランダムな点 <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$p $" src="form_19.png"/></picture> における寄与を、面積 <picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$mathrm{d}A$" src="form_20.png"/></picture> に基づいて計算。</li>
-<li>サンプリング点 <picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p $" src="form_17.png"/></picture> の寄与を式としてモデル化。</li>
+<li>面光源上のランダムな点 <picture><source srcset="form_24_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$p $" src="form_24.png"/></picture> における寄与を、面積 <picture><source srcset="form_25_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$mathrm{d}A$" src="form_25.png"/></picture> に基づいて計算。</li>
+<li>サンプリング点 <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p $" src="form_22.png"/></picture> の寄与を式としてモデル化。</li>
 </ul>
 </li>
 </ul>
 <hr  />
-<h4><a class="anchor" id="autotoc_md149"></a>
+<h4><a class="anchor" id="autotoc_md184"></a>
 <b>3. サンプリング点の寄与を累積</b></h4>
 <p>以下のコード部分で、すべてのサンプリング点からの寄与を合計しています：</p>
 <div class="fragment"><div class="line"><span class="keywordflow">for</span>( <span class="keywordtype">int</span> i=0; i&lt;in_AreaLights.size(); i++ )</div>
@@ -138,12 +139,12 @@ L_d(\mathbf{x}, \mathbf{\omega}_o) = \int_A \frac{\mathbf{L}(p, -\mathbf{\omega}
 <li>in_AreaLights.size()はエリアライトの数。この場合は二個しか無いので二回しかランダムサンプリングさしない。</li>
 </ul>
 <hr  />
-<h3><a class="anchor" id="autotoc_md151"></a>
+<h3><a class="anchor" id="autotoc_md186"></a>
 <b>積分の近似方法：モンテカルロ法</b></h3>
 <p>モンテカルロ積分をコードで近似的に計算している流れは次のようになります：</p>
 <ol type="1">
 <li><b>サンプリング</b>:<ul>
-<li><code>sampleRandomPoint</code> 関数でエリアライト <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ A $" src="form_21.png"/></picture> 上の点をランダムに選択。</li>
+<li><code>sampleRandomPoint</code> 関数でエリアライト <picture><source srcset="form_26_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ A $" src="form_26.png"/></picture> 上の点をランダムに選択。</li>
 </ul>
 </li>
 <li><b>寄与の計算</b>:<ul>
@@ -157,29 +158,29 @@ L_d(\mathbf{x}, \mathbf{\omega}_o) = \int_A \frac{\mathbf{L}(p, -\mathbf{\omega}
 </li>
 </ol>
 <hr  />
-<h3><a class="anchor" id="autotoc_md153"></a>
+<h3><a class="anchor" id="autotoc_md188"></a>
 <b>積分の結果としての近似式</b></h3>
 <p>積分の計算をコードに基づいて近似的に表現すると、次のようになります：</p>
 <p class="formulaDsp">
-<picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<picture><source srcset="form_27_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
 L_d(\mathbf{x}, \mathbf{\omega}_o) \approx \sum_{i=1}^N \frac{\mathbf{L}(p_i, -\mathbf{\omega}_i) \cdot \mathbf{f}_r(\mathbf{\omega}_i, \mathbf{\omega}_o, \mathbf{x}) \cdot \cos \theta_i \cdot \cos \theta_l}{\|\mathbf{x} - p_i\|^2} \cdot \frac{\mathrm{Area}}{N}
-\]" src="form_22.png"/></picture>
+\]" src="form_27.png"/></picture>
 </p>
 <p>ここで：</p><ul>
-<li><picture><source srcset="form_23_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ N $" src="form_23.png"/></picture>: サンプリング数（エリアライト内の点のサンプリング回数）。</li>
-<li><picture><source srcset="form_24_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p_i $" src="form_24.png"/></picture>: サンプリングされたエリアライトの点。</li>
-<li><picture><source srcset="form_25_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mathrm{Area} $" src="form_25.png"/></picture>: エリアライト全体の面積。</li>
+<li><picture><source srcset="form_28_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ N $" src="form_28.png"/></picture>: サンプリング数（エリアライト内の点のサンプリング回数）。</li>
+<li><picture><source srcset="form_29_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p_i $" src="form_29.png"/></picture>: サンプリングされたエリアライトの点。</li>
+<li><picture><source srcset="form_30_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mathrm{Area} $" src="form_30.png"/></picture>: エリアライト全体の面積。</li>
 </ul>
 <hr  />
-<h3><a class="anchor" id="autotoc_md155"></a>
+<h3><a class="anchor" id="autotoc_md190"></a>
 <b>コード内での積分の具体例</b></h3>
 <p>例えば、エリアライトが 10 回サンプリングされる場合：</p><ol type="1">
-<li>**10 個のサンプリング点 <picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p $" src="form_17.png"/></picture>** を <code>sampleRandomPoint</code> で生成。</li>
-<li>各点 <picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p $" src="form_17.png"/></picture> で光の寄与を計算し、<code>direct_light_contribution</code> に加算。</li>
+<li>**10 個のサンプリング点 <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p $" src="form_22.png"/></picture>** を <code>sampleRandomPoint</code> で生成。</li>
+<li>各点 <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p $" src="form_22.png"/></picture> で光の寄与を計算し、<code>direct_light_contribution</code> に加算。</li>
 <li>全体の累積結果がエリアライト全体の寄与の近似値になります。</li>
 </ol>
 <hr  />
-<h3><a class="anchor" id="autotoc_md157"></a>
+<h3><a class="anchor" id="autotoc_md192"></a>
 <b>まとめ</b></h3>
 <p>コード内で積分が直接的に計算されているわけではなく、ランダムサンプリングと寄与の累積を用いてモンテカルロ積分として近似的に計算しています。</p>
 <ul>

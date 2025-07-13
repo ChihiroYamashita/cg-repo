@@ -1,0 +1,58 @@
+\doxysection{Path\+Tracer.\+h}
+\hypertarget{_path_tracer_8h_source}{}\label{_path_tracer_8h_source}\index{sources/pass\_tracing/integrators/PathTracer.h@{sources/pass\_tracing/integrators/PathTracer.h}}
+\mbox{\hyperlink{_path_tracer_8h}{\mbox{[}詳解\mbox{]}}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PATHTRACER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PATHTRACER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_tri_mesh_8h}{TriMesh.h}}"{}}\ \textcolor{comment}{//\ Object,\ AreaLight,\ Ray,\ RayHit\ の定義が含まれるヘッダをインクルード}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_light_8h}{Light.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_ray_8h}{Ray.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_ray_hit_8h}{RayHit.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ main.cppから移植する関数の宣言}}
+\DoxyCodeLine{00010\ Eigen::Vector3d\ \mbox{\hyperlink{_path_tracer_8h_aa6c8b22ad33abfda330633a7dfcf22af_aa6c8b22ad33abfda330633a7dfcf22af}{sampleRandomPoint}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_area_light}{AreaLight}}\&\ in\_Light);}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ Eigen::Vector3d\ \mbox{\hyperlink{_path_tracer_8h_a872f5feec54fa665dfa4faec5bcc24a1_a872f5feec54fa665dfa4faec5bcc24a1}{computeDirectLighting}}(\textcolor{keyword}{const}\ std::vector<AreaLight>\&\ in\_AreaLights,}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ in\_x,}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ in\_n,}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ in\_w\_eye,}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_ray_hit}{RayHit}}\&\ in\_ray\_hit,}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_object}{Object}}\&\ in\_Object,}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_material}{Material}}\&\ in\_Material,}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ depth);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ 最終的に完全な\ computeShading\ になるが、今は直接光のみのシンプルなバージョン}}
+\DoxyCodeLine{00022\ Eigen::Vector3d\ \mbox{\hyperlink{_path_tracer_8h_a4b548eacdb1d58725dda4955727d4abc_a4b548eacdb1d58725dda4955727d4abc}{computeShading}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_ray}{Ray}}\&\ in\_Ray,}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_ray_hit}{RayHit}}\&\ in\_RayHit,}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_object}{Object}}\&\ in\_Object,}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<AreaLight>\&\ in\_AreaLights);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ Eigen::Vector3d\ \mbox{\hyperlink{_path_tracer_8h_aef82830955f56019775e48869a400140_aef82830955f56019775e48869a400140}{computeDiffuseReflection}}(\ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ in\_x,}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ in\_n,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ in\_w\_eye,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_ray_hit}{RayHit}}\&\ in\_ray\_hit,}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_object}{Object}}\&\ in\_Object,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_material}{Material}}\&\ in\_Material,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<AreaLight>\&\ in\_AreaLights,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ depth\ );}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ Eigen::Vector3d\ \mbox{\hyperlink{_path_tracer_8h_ac51708d67304d56f21eea48d8f9085f8_ac51708d67304d56f21eea48d8f9085f8}{computeReflection}}(\ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ in\_x,}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ in\_n,}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ in\_w\_eye,}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_ray_hit}{RayHit}}\&\ in\_ray\_hit,}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_object}{Object}}\&\ in\_Object,}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_material}{Material}}\&\ in\_Material,}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<AreaLight>\&\ in\_AreaLights,}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ depth\ );}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ Eigen::Vector3d\ \mbox{\hyperlink{_path_tracer_8h_adf7ef78807e7fed1207b3f605d96ca25_adf7ef78807e7fed1207b3f605d96ca25}{computeRefraction}}(\ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ in\_x,}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ in\_n,}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Eigen::Vector3d\&\ in\_w\_eye,}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_ray_hit}{RayHit}}\&\ in\_ray\_hit,}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_object}{Object}}\&\ in\_Object,}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_material}{Material}}\&\ in\_Material,}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<AreaLight>\&\ in\_AreaLights,}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ depth\ );}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PATHTRACER\_H}}
+
+\end{DoxyCode}

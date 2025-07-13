@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['なぜこの順でokか：_0',['なぜこの順でOKか：',['../md__doxygen_2coordinate__transformation1.html#autotoc_md163',1,'']]],
-  ['なぜこんなに分けてるの？_1',['💡 なぜこんなに分けてるの？',['../md__doxygen_2technical__terms.html#autotoc_md363',1,'']]],
-  ['なぜ1次元配列を使うのか？_20strong_2',['&lt;strong&gt;4. なぜ1次元配列を使うのか？&lt;/strong&gt;',['../additional_info_buffer.html#autotoc_md136',1,'']]],
-  ['など_3',['glHint(GL_POINT_SMOOTH_HINT, GL_NICEST); など',['../md__doxygen_2_open_g_l__func.html#autotoc_md334',1,'']]]
+  ['どうして必要？_0',['どうして必要？',['../additional_inf_1.html#autotoc_md114',1,'']]],
+  ['どうやって使われるの？_1',['🔁 どうやって使われるの？',['../class_my_open_g_l_widget__camera_a3232de492c59c779e8133feb06ad0db1.html#autotoc_md76',1,'']]],
+  ['どうやって色を塗る？_20strong_2',['&lt;strong&gt;どうやって色を塗る？&lt;/strong&gt;',['../additional_info_buffer.html#autotoc_md148',1,'']]]
 ];

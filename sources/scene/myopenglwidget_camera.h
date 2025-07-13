@@ -9,6 +9,7 @@
 #include "Ray.h"
 #include "film_buffer.h"
 #include <QElapsedTimer>
+#include <QtConcurrent/QtConcurrent>
 class MyOpenGLWidget_camera :public MyOpenGLWidget {
     Q_OBJECT
 
@@ -17,6 +18,12 @@ public:
     void setCamerakeyframe(const Eigen::Vector3d& eyePoint,const Eigen::Vector3d& lookAtPoint);//カメラ1からのいち情報をもらう関数（画面2用）
     void setCameraEyePoint2(const Eigen::Vector3d& eyePoint);//MyOpenGLWidgetの外からカメラの画角を設定する関数
     void setlookAtPoint2(const Eigen::Vector3d& lookAtPoint);
+
+
+signals:
+         // ♥★★★ レンダリングの1パス完了を通知するシグナル ★★★
+    void renderingProgressUpdated();
+
 public slots:
     void onCameraFovChanged(float newFov); // シグナルに応答するスロット
 protected:
@@ -39,17 +46,25 @@ protected:
     //レイトレ用
     //void initAreaLights();
     void resetRendering();
-    //レイトレ用Qtimer
-    QTimer *m_timer; // タイマーのポインタ
+
+
     QElapsedTimer m_renderTimer; // ★★★ 計測用のタイマーを追加 ★★★
 
-
-    // ★★★ 追加：レンダリングの進捗と状態を管理する変数 ★★★
+    // ▼▼▼ 以下のタイマー関連変数は不要になるため削除 ▼▼▼
+    // 追加：レンダリングの進捗と状態を管理する変数
+    //レイトレ用Qtimer
+    QTimer *m_timer; // タイマーのポインタ
     bool m_isDirty;     // 再レンダリングが必要かどうかのフラグ
     int m_progress_i;   // 次に計算するピクセルの横位置(i)
     int m_progress_j;   // 次に計算するピクセルの縦位置(j)
+    // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 
 
+
+
+private slots:
+    // ♥★★★ シグナルを受け取ってUIを更新するスロット ★★★
+    void onRenderingProgressUpdated();
 
 private:
     Camera g_Camera2;
@@ -61,6 +76,8 @@ private:
 
     //--------------レイトレ用---------------------------------------
     void initializeFilmTexture();
+
+    void renderTask(); // ♥★★★ レンダリング処理を行うワーカースレッド用の関数 ★★★
 
     /**
      * @var m_filmTexture
@@ -124,6 +141,8 @@ private:
     //レイトレ用スロット
 private slots:
     void updateRayTracing(); // タイマーで呼び出すカスタムスロット
+
+
 };
 
 #endif // MYOPENGLWIDGET_CAMERA_H

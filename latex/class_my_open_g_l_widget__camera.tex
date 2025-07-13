@@ -6,7 +6,8 @@
 
 
 
-My\+Open\+GLWidget\+\_\+camera の継承関係図\nopagebreak
+My\+Open\+GLWidget\+\_\+camera の継承関係図
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,7 +16,8 @@ My\+Open\+GLWidget\+\_\+camera の継承関係図\nopagebreak
 \end{figure}
 
 
-My\+Open\+GLWidget\+\_\+camera 連携図\nopagebreak
+My\+Open\+GLWidget\+\_\+camera 連携図
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -26,6 +28,16 @@ My\+Open\+GLWidget\+\_\+camera 連携図\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{class_my_open_g_l_widget__camera_a3654dd725d10cf0ceaa8de59ae31780b_a3654dd725d10cf0ceaa8de59ae31780b}{on\+Camera\+Fov\+Changed}} (float new\+Fov)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{シグナル}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_my_open_g_l_widget__camera_aacdbea2057d60863895ad9a6ca40a790_aacdbea2057d60863895ad9a6ca40a790}{rendering\+Progress\+Updated}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{基底クラス \mbox{\hyperlink{class_my_open_g_l_widget}{My\+Open\+GLWidget}} に属する継承シグナル}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_my_open_g_l_widget_a0a6fea64696a34b75cad473437393f34_a0a6fea64696a34b75cad473437393f34}{camera\+Fov\+Changed}} (float new\+Fov)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{公開メンバ関数}
 \begin{DoxyCompactItemize}
@@ -126,6 +138,8 @@ void \mbox{\hyperlink{class_my_open_g_l_widget_a70dc5a02a8d00ef54404c2aab0e10cf4
 \doxysubsubsection*{限定公開変数類}
 \begin{DoxyCompactItemize}
 \item 
+QElapsed\+Timer \mbox{\hyperlink{class_my_open_g_l_widget__camera_a1beff6bb48306c9704bf2bfe87530c53_a1beff6bb48306c9704bf2bfe87530c53}{m\+\_\+render\+Timer}}
+\item 
 QTimer \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_my_open_g_l_widget__camera_a8dac568dc18efcad174daeccf4367a0c_a8dac568dc18efcad174daeccf4367a0c}{m\+\_\+timer}}
 \item 
 bool \mbox{\hyperlink{class_my_open_g_l_widget__camera_a3ec86200711f5087008a4bedfdb30b97_a3ec86200711f5087008a4bedfdb30b97}{m\+\_\+is\+Dirty}}
@@ -156,6 +170,8 @@ const std\+::string \mbox{\hyperlink{class_my_open_g_l_widget_ac56b334dd8c8dd08a
 \doxysubsubsection*{非公開スロット}
 \begin{DoxyCompactItemize}
 \item 
+void \mbox{\hyperlink{class_my_open_g_l_widget__camera_afe1a7601e8d294f7d7458fac1e60fc9c_afe1a7601e8d294f7d7458fac1e60fc9c}{on\+Rendering\+Progress\+Updated}} ()
+\item 
 void \mbox{\hyperlink{class_my_open_g_l_widget__camera_a793d75fe6991830c9cc4a54e393c870a_a793d75fe6991830c9cc4a54e393c870a}{update\+Ray\+Tracing}} ()
 \begin{DoxyCompactList}\small\item\em レイトレーシングを1フレーム分進める 詳細は \doxylink{md__doxygen_2function__myopenglwigetcamera_updateRayTracing_doxygen}{update\+Ray\+Tracing()} を参照。 \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{非公開メンバ関数}
@@ -164,6 +180,8 @@ void \mbox{\hyperlink{class_my_open_g_l_widget__camera_a793d75fe6991830c9cc4a54e
 void \mbox{\hyperlink{class_my_open_g_l_widget__camera_ac52b3c33982976400cce542a538755c5_ac52b3c33982976400cce542a538755c5}{draw\+Cube}} ()
 \item 
 void \mbox{\hyperlink{class_my_open_g_l_widget__camera_aea8492059c59fc5c9a349a147c70f34d_aea8492059c59fc5c9a349a147c70f34d}{initialize\+Film\+Texture}} ()
+\item 
+void \mbox{\hyperlink{class_my_open_g_l_widget__camera_ac2fe6b225c707e62b7db084d7bb43d90_ac2fe6b225c707e62b7db084d7bb43d90}{render\+Task}} ()
 \item 
 void \mbox{\hyperlink{class_my_open_g_l_widget__camera_a180aadc11075a9056de02a195277b3bd_a180aadc11075a9056de02a195277b3bd}{create\+Debug\+Pattern}} ()
 \begin{DoxyCompactList}\small\item\em デバッグ用のグラデーションパターンを生成し、フィルムバッファに書き込む関数 \end{DoxyCompactList}\item 
@@ -189,13 +207,12 @@ GLuint \mbox{\hyperlink{class_my_open_g_l_widget__camera_a3232de492c59c779e8133f
 std\+::vector$<$ \mbox{\hyperlink{struct_area_light}{Area\+Light}} $>$ \mbox{\hyperlink{class_my_open_g_l_widget__camera_ac73e321181a45fbfc9a3ca4c5041a473_ac73e321181a45fbfc9a3ca4c5041a473}{g\+\_\+\+Area\+Lights}}
 \item 
 \mbox{\hyperlink{struct_object}{Object}} \mbox{\hyperlink{class_my_open_g_l_widget__camera_a9b3b7f4bef5859794197cb2a1e413cc3_a9b3b7f4bef5859794197cb2a1e413cc3}{g\+\_\+\+Obj}}
+\item 
+int \mbox{\hyperlink{class_my_open_g_l_widget__camera_a1f28fa89c9b29e446f964afea9d5ac53_a1f28fa89c9b29e446f964afea9d5ac53}{m\+\_\+target\+Samples\+Per\+Pixel}}
+\item 
+int \mbox{\hyperlink{class_my_open_g_l_widget__camera_a65d0c9f09900c6cb77843434e447b14a_a65d0c9f09900c6cb77843434e447b14a}{m\+\_\+current\+Sample\+Count}}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{その他の継承メンバ}
-\doxysubsection*{基底クラス \mbox{\hyperlink{class_my_open_g_l_widget}{My\+Open\+GLWidget}} に属する継承シグナル}
-\begin{DoxyCompactItemize}
-\item 
-void \mbox{\hyperlink{class_my_open_g_l_widget_a0a6fea64696a34b75cad473437393f34_a0a6fea64696a34b75cad473437393f34}{camera\+Fov\+Changed}} (float new\+Fov)
-\end{DoxyCompactItemize}
 \doxysubsection*{基底クラス \mbox{\hyperlink{class_my_open_g_l_widget}{My\+Open\+GLWidget}} に属する継承限定公開スロット}
 \begin{DoxyCompactItemize}
 \item 
@@ -287,6 +304,12 @@ void My\+Open\+GLWidget\+\_\+camera\+::mouse\+Release\+Event (\begin{DoxyParamCa
 {\footnotesize\ttfamily \label{class_my_open_g_l_widget__camera_a3654dd725d10cf0ceaa8de59ae31780b_a3654dd725d10cf0ceaa8de59ae31780b} 
 void My\+Open\+GLWidget\+\_\+camera\+::on\+Camera\+Fov\+Changed (\begin{DoxyParamCaption}\item[{float}]{new\+Fov}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
 
+\Hypertarget{class_my_open_g_l_widget__camera_afe1a7601e8d294f7d7458fac1e60fc9c_afe1a7601e8d294f7d7458fac1e60fc9c}\index{MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}!onRenderingProgressUpdated@{onRenderingProgressUpdated}}
+\index{onRenderingProgressUpdated@{onRenderingProgressUpdated}!MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}}
+\doxysubsubsection{\texorpdfstring{onRenderingProgressUpdated}{onRenderingProgressUpdated}}
+{\footnotesize\ttfamily \label{class_my_open_g_l_widget__camera_afe1a7601e8d294f7d7458fac1e60fc9c_afe1a7601e8d294f7d7458fac1e60fc9c} 
+void My\+Open\+GLWidget\+\_\+camera\+::on\+Rendering\+Progress\+Updated (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
 \Hypertarget{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_a97469860ecb6dfc1c784c5797854bc2f}\index{MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}!paintGL@{paintGL}}
 \index{paintGL@{paintGL}!MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}}
 \doxysubsubsection{\texorpdfstring{paintGL()}{paintGL()}}
@@ -299,26 +322,26 @@ Open\+GLでシーン全体とフィルムバッファを描画する関数
 
 この関数は、カメラ設定に基づいたプロジェクション行列の適用、\+Open\+GLバッファの初期化、 軸やグリッドなどの補助図形、そしてフィルムバッファ（レイトレーシング結果）を描画します。 モデルビュー変換と投影変換を適用後、描画対象を\+GPU上にレンダリングします。
 
-{\bfseries{処理の流れ}}\+:\hypertarget{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md35}{}\doxysubsubsubsection{\texorpdfstring{1. 投影行列と視野の更新}{1. 投影行列と視野の更新}}\label{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md35}
+{\bfseries{処理の流れ}}\+:\hypertarget{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md70}{}\doxysubsubsubsection{\texorpdfstring{1. 投影行列と視野の更新}{1. 投影行列と視野の更新}}\label{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md70}
 カメラ設定に基づいて Open\+GL の投影行列を更新します。 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\mbox{\hyperlink{class_my_open_g_l_widget__camera_ae7f3186420867e831b216476b9ef4856_ae7f3186420867e831b216476b9ef4856}{updateProjectionMatrix}}();}
 
 \end{DoxyCode}
-\hypertarget{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md36}{}\doxysubsubsubsection{\texorpdfstring{2. バッファの初期化}{2. バッファの初期化}}\label{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md36}
+\hypertarget{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md71}{}\doxysubsubsubsection{\texorpdfstring{2. バッファの初期化}{2. バッファの初期化}}\label{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md71}
 カラーバッファと深度バッファをクリアし、描画領域（ビューポート）を設定します。 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{glClear(GL\_COLOR\_BUFFER\_BIT\ |\ GL\_DEPTH\_BUFFER\_BIT);}
 \DoxyCodeLine{glViewport(0,\ 0,\ \mbox{\hyperlink{class_my_open_g_l_widget_a0169195f42130fa0a1ed1dd607ca2fac_a0169195f42130fa0a1ed1dd607ca2fac}{width}}\ *\ スケールX,\ \mbox{\hyperlink{class_my_open_g_l_widget_a82a3a515de41da7166ef55d22467cf09_a82a3a515de41da7166ef55d22467cf09}{height}}\ *\ スケールY);}
 
 \end{DoxyCode}
-\hypertarget{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md37}{}\doxysubsubsubsection{\texorpdfstring{3. モデルビュー変換の設定}{3. モデルビュー変換の設定}}\label{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md37}
+\hypertarget{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md72}{}\doxysubsubsubsection{\texorpdfstring{3. モデルビュー変換の設定}{3. モデルビュー変換の設定}}\label{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md72}
 カメラの位置と注視点に基づいて、モデルビュー変換行列を {\ttfamily glu\+Look\+At} により設定します。 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\mbox{\hyperlink{class_my_open_g_l_widget_a6a59b0003a3c6860ffdfe3fe696488e2_a6a59b0003a3c6860ffdfe3fe696488e2}{projection\_and\_modelview}}(\mbox{\hyperlink{class_my_open_g_l_widget__camera_adeed8a3966668cf7ca18c2426f0a216b_adeed8a3966668cf7ca18c2426f0a216b}{g\_Camera2}});}
 
 \end{DoxyCode}
-\hypertarget{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md38}{}\doxysubsubsubsection{\texorpdfstring{4. 補助描画の有効化と描画}{4. 補助描画の有効化と描画}}\label{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md38}
+\hypertarget{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md73}{}\doxysubsubsubsection{\texorpdfstring{4. 補助描画の有効化と描画}{4. 補助描画の有効化と描画}}\label{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md73}
 アルファブレンドやアンチエイリアスの設定後、軸・グリッド・立方体を描画します。 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\mbox{\hyperlink{draw_object_8cpp_a01a438ea9dc43dd7f5b7ac2052836be5_a01a438ea9dc43dd7f5b7ac2052836be5}{drawXYZAxes}}();}
@@ -326,7 +349,7 @@ Open\+GLでシーン全体とフィルムバッファを描画する関数
 \DoxyCodeLine{\mbox{\hyperlink{draw_object_8cpp_ab127d7c13829e0bdce3fc756fc122786_ab127d7c13829e0bdce3fc756fc122786}{drawcube}}();}
 
 \end{DoxyCode}
-\hypertarget{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md39}{}\doxysubsubsubsection{\texorpdfstring{5. フィルムバッファの描画}{5. フィルムバッファの描画}}\label{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md39}
+\hypertarget{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md74}{}\doxysubsubsubsection{\texorpdfstring{5. フィルムバッファの描画}{5. フィルムバッファの描画}}\label{class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f_autotoc_md74}
 深度テストを一時的に無効にし、画面前面にフィルムバッファ（レイトレの結果）を貼り付けて表示します。 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{glDisable(GL\_DEPTH\_TEST);}
@@ -345,6 +368,18 @@ Open\+GLでシーン全体とフィルムバッファを描画する関数
 
 \doxylink{drawfilm_8cpp_a443204766d01c1b7114034c955991bc8_a443204766d01c1b7114034c955991bc8}{draw\+Film} 
 \end{DoxySeeAlso}
+\Hypertarget{class_my_open_g_l_widget__camera_aacdbea2057d60863895ad9a6ca40a790_aacdbea2057d60863895ad9a6ca40a790}\index{MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}!renderingProgressUpdated@{renderingProgressUpdated}}
+\index{renderingProgressUpdated@{renderingProgressUpdated}!MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}}
+\doxysubsubsection{\texorpdfstring{renderingProgressUpdated}{renderingProgressUpdated}}
+{\footnotesize\ttfamily \label{class_my_open_g_l_widget__camera_aacdbea2057d60863895ad9a6ca40a790_aacdbea2057d60863895ad9a6ca40a790} 
+void My\+Open\+GLWidget\+\_\+camera\+::rendering\+Progress\+Updated (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+\Hypertarget{class_my_open_g_l_widget__camera_ac2fe6b225c707e62b7db084d7bb43d90_ac2fe6b225c707e62b7db084d7bb43d90}\index{MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}!renderTask@{renderTask}}
+\index{renderTask@{renderTask}!MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}}
+\doxysubsubsection{\texorpdfstring{renderTask()}{renderTask()}}
+{\footnotesize\ttfamily \label{class_my_open_g_l_widget__camera_ac2fe6b225c707e62b7db084d7bb43d90_ac2fe6b225c707e62b7db084d7bb43d90} 
+void My\+Open\+GLWidget\+\_\+camera\+::render\+Task (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
 \Hypertarget{class_my_open_g_l_widget__camera_a9a97066bf19ceff0b8c45a16f1decb53_a9a97066bf19ceff0b8c45a16f1decb53}\index{MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}!resetRendering@{resetRendering}}
 \index{resetRendering@{resetRendering}!MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}}
 \doxysubsubsection{\texorpdfstring{resetRendering()}{resetRendering()}}
@@ -444,6 +479,12 @@ std\+::vector$<$\mbox{\hyperlink{struct_area_light}{Area\+Light}}$>$ My\+Open\+G
 {\footnotesize\ttfamily \label{class_my_open_g_l_widget__camera_a9b3b7f4bef5859794197cb2a1e413cc3_a9b3b7f4bef5859794197cb2a1e413cc3} 
 \mbox{\hyperlink{struct_object}{Object}} My\+Open\+GLWidget\+\_\+camera\+::g\+\_\+\+Obj\hspace{0.3cm}{\ttfamily [private]}}
 
+\Hypertarget{class_my_open_g_l_widget__camera_a65d0c9f09900c6cb77843434e447b14a_a65d0c9f09900c6cb77843434e447b14a}\index{MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}!m\_currentSampleCount@{m\_currentSampleCount}}
+\index{m\_currentSampleCount@{m\_currentSampleCount}!MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}}
+\doxysubsubsection{\texorpdfstring{m\_currentSampleCount}{m\_currentSampleCount}}
+{\footnotesize\ttfamily \label{class_my_open_g_l_widget__camera_a65d0c9f09900c6cb77843434e447b14a_a65d0c9f09900c6cb77843434e447b14a} 
+int My\+Open\+GLWidget\+\_\+camera\+::m\+\_\+current\+Sample\+Count\hspace{0.3cm}{\ttfamily [private]}}
+
 \Hypertarget{class_my_open_g_l_widget__camera_a05fd185e0948937785417017d71618b9_a05fd185e0948937785417017d71618b9}\index{MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}!m\_film@{m\_film}}
 \index{m\_film@{m\_film}!MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}}
 \doxysubsubsection{\texorpdfstring{m\_film}{m\_film}}
@@ -464,13 +505,13 @@ GLuint My\+Open\+GLWidget\+\_\+camera\+::m\+\_\+film\+Texture = 0\hspace{0.3cm}{
 \end{DoxyVerb}
  
 
-この変数は、\+Open\+GLのテクスチャオブジェクトを識別する「番号（\+ID）」です。 実際の色データがこの変数に格納されるわけではなく、この\+IDが指し示す\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+GPU上のテクスチャ領域\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}に、 色のピクセル情報（m\+\_\+film\+Buffer）を転送します。\hypertarget{class_my_open_g_l_widget__camera_a3232de492c59c779e8133feb06ad0db1_autotoc_md40}{}\doxysubsubsubsection{\texorpdfstring{🎨 フィルムテクスチャって何？}{🎨 フィルムテクスチャって何？}}\label{class_my_open_g_l_widget__camera_a3232de492c59c779e8133feb06ad0db1_autotoc_md40}
+この変数は、\+Open\+GLのテクスチャオブジェクトを識別する「番号（\+ID）」です。 実際の色データがこの変数に格納されるわけではなく、この\+IDが指し示す\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+GPU上のテクスチャ領域\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}に、 色のピクセル情報（m\+\_\+film\+Buffer）を転送します。\hypertarget{class_my_open_g_l_widget__camera_a3232de492c59c779e8133feb06ad0db1_autotoc_md75}{}\doxysubsubsubsection{\texorpdfstring{🎨 フィルムテクスチャって何？}{🎨 フィルムテクスチャって何？}}\label{class_my_open_g_l_widget__camera_a3232de492c59c779e8133feb06ad0db1_autotoc_md75}
 
 \begin{DoxyItemize}
 \item レイトレーシングで計算された画像（{\ttfamily m\+\_\+film\+Buffer}）を画面に映すために必要な、 \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+GPU上の画像メモリ\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}です。
 \item この\+ID（{\ttfamily m\+\_\+film\+Texture}）は「どのテクスチャか」を指定するための\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}番号ラベル\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}のようなものです。
 \item 正確には、色データが直接 int 型の m\+\_\+film\+Texture に送り込まれるわけではありません。 m\+\_\+film\+Texture はテクスチャの「\+ID」や「名前」であり、その\+IDが指し示す\+Open\+GLのテクスチャオブジェクト（\+GPU上のメモリ領域）に色データが送り込まれます。
-\end{DoxyItemize}\hypertarget{class_my_open_g_l_widget__camera_a3232de492c59c779e8133feb06ad0db1_autotoc_md41}{}\doxysubsubsubsection{\texorpdfstring{🔁 どうやって使われるの？}{🔁 どうやって使われるの？}}\label{class_my_open_g_l_widget__camera_a3232de492c59c779e8133feb06ad0db1_autotoc_md41}
+\end{DoxyItemize}\hypertarget{class_my_open_g_l_widget__camera_a3232de492c59c779e8133feb06ad0db1_autotoc_md76}{}\doxysubsubsubsection{\texorpdfstring{🔁 どうやって使われるの？}{🔁 どうやって使われるの？}}\label{class_my_open_g_l_widget__camera_a3232de492c59c779e8133feb06ad0db1_autotoc_md76}
 
 \begin{DoxyEnumerate}
 \item {\ttfamily gl\+Gen\+Textures()} で新しいテクスチャ\+ID（番号）を作成し、{\ttfamily m\+\_\+film\+Texture} に格納します。
@@ -487,12 +528,12 @@ GLuint My\+Open\+GLWidget\+\_\+camera\+::m\+\_\+film\+Texture = 0\hspace{0.3cm}{
 
 \end{DoxyCode}
 
-\end{DoxyItemize}\hypertarget{class_my_open_g_l_widget__camera_a3232de492c59c779e8133feb06ad0db1_autotoc_md42}{}\doxysubsubsubsection{\texorpdfstring{🧠 よくある誤解}{🧠 よくある誤解}}\label{class_my_open_g_l_widget__camera_a3232de492c59c779e8133feb06ad0db1_autotoc_md42}
+\end{DoxyItemize}\hypertarget{class_my_open_g_l_widget__camera_a3232de492c59c779e8133feb06ad0db1_autotoc_md77}{}\doxysubsubsubsection{\texorpdfstring{🧠 よくある誤解}{🧠 よくある誤解}}\label{class_my_open_g_l_widget__camera_a3232de492c59c779e8133feb06ad0db1_autotoc_md77}
 
 \begin{DoxyItemize}
 \item {\ttfamily m\+\_\+film\+Texture} は {\ttfamily GLuint} 型（ただの数値）で、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}データ本体ではありません\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}。
 \item データは {\ttfamily gl\+Tex\+Sub\+Image2\+D()} などを使って、この\+IDが指す\+GPUメモリに転送されます。
-\end{DoxyItemize}\hypertarget{class_my_open_g_l_widget__camera_a3232de492c59c779e8133feb06ad0db1_autotoc_md43}{}\doxysubsubsubsection{\texorpdfstring{✨ 例えると...}{✨ 例えると...}}\label{class_my_open_g_l_widget__camera_a3232de492c59c779e8133feb06ad0db1_autotoc_md43}
+\end{DoxyItemize}\hypertarget{class_my_open_g_l_widget__camera_a3232de492c59c779e8133feb06ad0db1_autotoc_md78}{}\doxysubsubsubsection{\texorpdfstring{✨ 例えると...}{✨ 例えると...}}\label{class_my_open_g_l_widget__camera_a3232de492c59c779e8133feb06ad0db1_autotoc_md78}
 
 \begin{DoxyItemize}
 \item {\ttfamily m\+\_\+film\+Buffer} は {\bfseries{絵の具で描いた絵\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}、}}
@@ -526,6 +567,18 @@ int My\+Open\+GLWidget\+\_\+camera\+::m\+\_\+progress\+\_\+i\hspace{0.3cm}{\ttfa
 \doxysubsubsection{\texorpdfstring{m\_progress\_j}{m\_progress\_j}}
 {\footnotesize\ttfamily \label{class_my_open_g_l_widget__camera_aa162062d870af2bfde6c0590f2ea4ae9_aa162062d870af2bfde6c0590f2ea4ae9} 
 int My\+Open\+GLWidget\+\_\+camera\+::m\+\_\+progress\+\_\+j\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_my_open_g_l_widget__camera_a1beff6bb48306c9704bf2bfe87530c53_a1beff6bb48306c9704bf2bfe87530c53}\index{MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}!m\_renderTimer@{m\_renderTimer}}
+\index{m\_renderTimer@{m\_renderTimer}!MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}}
+\doxysubsubsection{\texorpdfstring{m\_renderTimer}{m\_renderTimer}}
+{\footnotesize\ttfamily \label{class_my_open_g_l_widget__camera_a1beff6bb48306c9704bf2bfe87530c53_a1beff6bb48306c9704bf2bfe87530c53} 
+QElapsed\+Timer My\+Open\+GLWidget\+\_\+camera\+::m\+\_\+render\+Timer\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_my_open_g_l_widget__camera_a1f28fa89c9b29e446f964afea9d5ac53_a1f28fa89c9b29e446f964afea9d5ac53}\index{MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}!m\_targetSamplesPerPixel@{m\_targetSamplesPerPixel}}
+\index{m\_targetSamplesPerPixel@{m\_targetSamplesPerPixel}!MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}}
+\doxysubsubsection{\texorpdfstring{m\_targetSamplesPerPixel}{m\_targetSamplesPerPixel}}
+{\footnotesize\ttfamily \label{class_my_open_g_l_widget__camera_a1f28fa89c9b29e446f964afea9d5ac53_a1f28fa89c9b29e446f964afea9d5ac53} 
+int My\+Open\+GLWidget\+\_\+camera\+::m\+\_\+target\+Samples\+Per\+Pixel\hspace{0.3cm}{\ttfamily [private]}}
 
 \Hypertarget{class_my_open_g_l_widget__camera_a8dac568dc18efcad174daeccf4367a0c_a8dac568dc18efcad174daeccf4367a0c}\index{MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}!m\_timer@{m\_timer}}
 \index{m\_timer@{m\_timer}!MyOpenGLWidget\_camera@{MyOpenGLWidget\_camera}}

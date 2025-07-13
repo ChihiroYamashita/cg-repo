@@ -29,16 +29,20 @@ MyOpenGLWidget_camera::MyOpenGLWidget_camera(QWidget* parent)
         m_targetSamplesPerPixel = 16; // 目標サンプル数を設定 (UIなどで変更可能にすると良い)
         m_currentSampleCount = 0;//今のサンプル数
 
+        // ★★★ 新しいシグナルとスロットを接続 ★★★
+        // 別スレッドからの描画更新依頼を安全に受け取る
+        connect(this, &MyOpenGLWidget_camera::renderingProgressUpdated, this, &MyOpenGLWidget_camera::onRenderingProgressUpdated);
 
+
+        // ▼▼▼ 従来のタイマー設定は全て削除 ▼▼▼
+        /*
         m_timer = new QTimer(this);
-
         //✅ QTimer が一定間隔で時間切れ（timeout）になるたびに
         //✅ MyOpenGLWidget_camera::updateRayTracing() 関数を自動的に呼び出す
         connect(m_timer, &QTimer::timeout, this, &MyOpenGLWidget_camera::updateRayTracing);
-
         //1ミリ秒ごとに timeout シグナルが発生。
         m_timer->start(1);// ほぼ最速で実行
-
+*/
     } else {
         qWarning() << "Failed to load box.obj.";
     }
@@ -434,7 +438,7 @@ void MyOpenGLWidget_camera::initializeFilmTexture() {
 }
 
 
-// ★追加:デバッグ用
+// ★追加:デバッグ用 法線の色をシンプルに実装する
 
 // myopenglwidget_camera.cpp に追加
 Eigen::Vector3d MyOpenGLWidget_camera::debug_computeNormalColor(const Ray& ray)
@@ -521,6 +525,73 @@ void MyOpenGLWidget_camera::resetRendering()
         glBindTexture(GL_TEXTURE_2D, 0);
         doneCurrent();
     }
-    m_renderTimer.start(); // ★★★ レンダリング開始と同時にタイマーをスタート ★★★
+    //m_renderTimer.start(); // ★★★ レンダリング開始と同時にタイマーをスタート ★★★
+    // ★★★ QtConcurrent::runでrenderTaskをバックグラウンドスレッドで実行 ★★★
+    QtConcurrent::run(this, &MyOpenGLWidget_camera::renderTask);
     qDebug() << "Rendering started...";
+}
+
+// UIスレッドから独立して、バックグラウンドで実行される関数
+void MyOpenGLWidget_camera::renderTask()
+{
+    qDebug() << "Render task started on a background thread.";
+    m_renderTimer.start();
+
+    // 1. レンダリングする全ピクセルのY座標リストを作成
+    QList<int> y_coords;
+    for (int j = 0; j < height; ++j) {
+        y_coords.append(j);
+    }
+
+    // 2. サンプル数だけループ (1パス = 1サンプル)
+    for (int s = 0; s < m_targetSamplesPerPixel; ++s) {
+
+        // 3. QtConcurrent::blockingMap で全ピクセルを並列処理
+        //    y_coordsの各要素(j)に対して、中のラムダ関数が別々のスレッドで実行される
+        QtConcurrent::blockingMap(y_coords, [&](int j) {
+            for (int i = 0; i < width; ++i) {
+                // ピクセル(i, j)の色を計算 (既存のロジックと同じ)
+                double p_x = (double)i / width;
+                double p_y = (double)j / height;
+
+                Ray ray;
+                g_Camera2.screenView(p_x, p_y, ray);
+                ray.prev_mesh_idx = -99;
+                ray.prev_primitive_idx = -1;
+                ray.depth = 0;
+
+                RayHit ray_hit;
+                rayTracing(g_Obj, g_AreaLights, ray, ray_hit);
+                Eigen::Vector3d color = Eigen::Vector3d::Zero();
+                if (ray_hit.primitive_idx >= 0) {
+                    color = computeShading(ray, ray_hit, g_Obj, g_AreaLights);
+                }
+
+                // 計算結果をフィルムバッファに書き込む
+                // 各スレッドが異なるピクセル(i, j)を処理するため、競合は発生せず安全
+                m_film.addSample(i, j, color);
+            }
+        });
+
+        qDebug() << "Sample pass" << s + 1 << "/" << m_targetSamplesPerPixel << "done.";
+
+        // 4. 1パス完了したので、UIスレッドに画面更新を依頼
+        emit renderingProgressUpdated();
+    }
+
+    qint64 elapsed_ms = m_renderTimer.elapsed();
+    float elapsed_s = elapsed_ms / 1000.0f;
+    qDebug() << "Rendering finished. Total time:" << elapsed_s << "seconds.";
+}
+
+// 画面更新用のスロット
+void MyOpenGLWidget_camera::onRenderingProgressUpdated()
+{
+    m_film.updateFilmBuffer();
+    makeCurrent();
+    glBindTexture(GL_TEXTURE_2D, m_filmTexture);
+    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_film.getWidth(), m_film.getHeight(), GL_RGB, GL_FLOAT, m_film.getFilmBufferPtr());
+    glBindTexture(GL_TEXTURE_2D, 0);
+    doneCurrent();
+    update(); // paintGL()を呼び出す
 }

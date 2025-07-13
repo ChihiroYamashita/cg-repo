@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['が一定間隔で時間切れ（timeout）になるたびに_0',['connect関数；&lt;tt&gt;QTimer&lt;/tt&gt; が一定間隔で時間切れ（timeout）になるたびに',['../md__doxygen_2memo__wip__raytracing.html#autotoc_md267',1,'']]]
+  ['おもろい話_0',['おもろい話',['../md__doxygen_2about__convertions.html#autotoc_md104',1,'おもろい話'],['../md__doxygen_2technical__terms.html#autotoc_md405',1,'おもろい話']]]
 ];

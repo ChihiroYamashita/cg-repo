@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['数式でまとめる_20strong_0',['&lt;strong&gt;5. 数式でまとめる&lt;/strong&gt;',['../additional_info_buffer.html#autotoc_md138',1,'']]],
-  ['数式における積分_20strong_1',['&lt;strong&gt;数式における積分&lt;/strong&gt;',['../additional_info_coding.html#autotoc_md142',1,'']]]
+  ['実装順の違い_0',['🔁 結論：理論 vs 実装順の違い',['../md__doxygen_2coordinate__transformation1.html#autotoc_md202',1,'']]],
+  ['実際のコード_1',['実際のコード',['../additional_info_buffer.html#autotoc_md169',1,'']]]
 ];

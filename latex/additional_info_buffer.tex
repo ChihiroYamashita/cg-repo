@@ -3,14 +3,14 @@
 \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}フィルムバッファ\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}は、レンダリングエンジンやグラフィックスプログラムで使用されるデータ構造の一つで、通常は以下の役割を果たします。
 
 \DoxyHorRuler{0}
-\hypertarget{additional_info_buffer_autotoc_md110}{}\doxysubsubsection{\texorpdfstring{{\bfseries{フィルムバッファの役割}}}{{\bfseries{フィルムバッファの役割}}}}\label{additional_info_buffer_autotoc_md110}
+\hypertarget{additional_info_buffer_autotoc_md145}{}\doxysubsubsection{\texorpdfstring{{\bfseries{フィルムバッファの役割}}}{{\bfseries{フィルムバッファの役割}}}}\label{additional_info_buffer_autotoc_md145}
 フィルムバッファは、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}最終的な画面出力（画像）を一時的に保持するメモリ領域\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}として機能します。これは、映画のフィルムに例えられることが多く、レンダリングされたピクセルの色データを保持します。
 
 \DoxyHorRuler{0}
 
 
 \DoxyHorRuler{0}
-\hypertarget{additional_info_buffer_autotoc_md113}{}\doxysubsection{\texorpdfstring{{\bfseries{どうやって色を塗る？}}}{{\bfseries{どうやって色を塗る？}}}}\label{additional_info_buffer_autotoc_md113}
+\hypertarget{additional_info_buffer_autotoc_md148}{}\doxysubsection{\texorpdfstring{{\bfseries{どうやって色を塗る？}}}{{\bfseries{どうやって色を塗る？}}}}\label{additional_info_buffer_autotoc_md148}
 色を塗る仕組みはこうなっています：
 
 
@@ -61,9 +61,9 @@
 \begin{DoxyItemize}
 \item {\bfseries{{\ttfamily R}}}\+: 赤（\+Red）成分
 \item {\bfseries{{\ttfamily G}}}\+: 緑（\+Green）成分 
-\end{DoxyItemize}\hypertarget{additional_info_buffer_autotoc_md114}{}\doxysubsection{\texorpdfstring{-\/ {\bfseries{{\ttfamily B}}}\+: 青（\+Blue）成分}{-\/ {\bfseries{{\ttfamily B}}}\+: 青（\+Blue）成分}}\label{additional_info_buffer_autotoc_md114}
-\hypertarget{additional_info_buffer_autotoc_md115}{}\doxysubsection{\texorpdfstring{{\bfseries{具体的な数式で説明}}}{{\bfseries{具体的な数式で説明}}}}\label{additional_info_buffer_autotoc_md115}
-フィルムバッファのピクセルごとの色は、次の計算で求めます：\hypertarget{additional_info_buffer_autotoc_md116}{}\doxysubsubsection{\texorpdfstring{{\bfseries{1. 色を計算する（ピクセルごとの計算）}}}{{\bfseries{1. 色を計算する（ピクセルごとの計算）}}}}\label{additional_info_buffer_autotoc_md116}
+\end{DoxyItemize}\hypertarget{additional_info_buffer_autotoc_md149}{}\doxysubsection{\texorpdfstring{-\/ {\bfseries{{\ttfamily B}}}\+: 青（\+Blue）成分}{-\/ {\bfseries{{\ttfamily B}}}\+: 青（\+Blue）成分}}\label{additional_info_buffer_autotoc_md149}
+\hypertarget{additional_info_buffer_autotoc_md150}{}\doxysubsection{\texorpdfstring{{\bfseries{具体的な数式で説明}}}{{\bfseries{具体的な数式で説明}}}}\label{additional_info_buffer_autotoc_md150}
+フィルムバッファのピクセルごとの色は、次の計算で求めます：\hypertarget{additional_info_buffer_autotoc_md151}{}\doxysubsubsection{\texorpdfstring{{\bfseries{1. 色を計算する（ピクセルごとの計算）}}}{{\bfseries{1. 色を計算する（ピクセルごとの計算）}}}}\label{additional_info_buffer_autotoc_md151}
 もしそのピクセルに積み上げた色の回数（カウント）が0でなければ：
 
 \[
@@ -81,12 +81,12 @@
 \]
 
 \DoxyHorRuler{0}
-\hypertarget{additional_info_buffer_autotoc_md118}{}\doxysubsubsection{\texorpdfstring{{\bfseries{2. もしカウントが0だったら？}}}{{\bfseries{2. もしカウントが0だったら？}}}}\label{additional_info_buffer_autotoc_md118}
+\hypertarget{additional_info_buffer_autotoc_md153}{}\doxysubsubsection{\texorpdfstring{{\bfseries{2. もしカウントが0だったら？}}}{{\bfseries{2. もしカウントが0だったら？}}}}\label{additional_info_buffer_autotoc_md153}
 計算回数が0のピクセルは「まだ何も計算していない」状態なので、黒色（( (0, 0, 0) )）にします。
 
 \DoxyHorRuler{0}
-\hypertarget{additional_info_buffer_autotoc_md120}{}\doxysubsection{\texorpdfstring{{\bfseries{コードの意味をやさしく解説}}}{{\bfseries{コードの意味をやさしく解説}}}}\label{additional_info_buffer_autotoc_md120}
-コードを分けて説明します：\hypertarget{additional_info_buffer_autotoc_md121}{}\doxysubsubsection{\texorpdfstring{{\bfseries{1. 色の平均を計算}}}{{\bfseries{1. 色の平均を計算}}}}\label{additional_info_buffer_autotoc_md121}
+\hypertarget{additional_info_buffer_autotoc_md155}{}\doxysubsection{\texorpdfstring{{\bfseries{コードの意味をやさしく解説}}}{{\bfseries{コードの意味をやさしく解説}}}}\label{additional_info_buffer_autotoc_md155}
+コードを分けて説明します：\hypertarget{additional_info_buffer_autotoc_md156}{}\doxysubsubsection{\texorpdfstring{{\bfseries{1. 色の平均を計算}}}{{\bfseries{1. 色の平均を計算}}}}\label{additional_info_buffer_autotoc_md156}
 以下の部分で、フィルムバッファに平均化された色を保存しています：
 
 
@@ -111,7 +111,7 @@
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{additional_info_buffer_autotoc_md123}{}\doxysubsubsection{\texorpdfstring{{\bfseries{2. まだ何も計算していない場合（黒色にする）}}}{{\bfseries{2. まだ何も計算していない場合（黒色にする）}}}}\label{additional_info_buffer_autotoc_md123}
+\hypertarget{additional_info_buffer_autotoc_md158}{}\doxysubsubsection{\texorpdfstring{{\bfseries{2. まだ何も計算していない場合（黒色にする）}}}{{\bfseries{2. まだ何も計算していない場合（黒色にする）}}}}\label{additional_info_buffer_autotoc_md158}
 以下の部分で、計算されていないピクセルを黒にしています：
 
 
@@ -134,7 +134,7 @@
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{additional_info_buffer_autotoc_md125}{}\doxysubsubsection{\texorpdfstring{{\bfseries{3. テクスチャに送る}}}{{\bfseries{3. テクスチャに送る}}}}\label{additional_info_buffer_autotoc_md125}
+\hypertarget{additional_info_buffer_autotoc_md160}{}\doxysubsubsection{\texorpdfstring{{\bfseries{3. テクスチャに送る}}}{{\bfseries{3. テクスチャに送る}}}}\label{additional_info_buffer_autotoc_md160}
 以下の部分で、計算したフィルムバッファを画面に表示するために GPU に送信します：
 
 
@@ -160,7 +160,7 @@
 インデックスを3倍している理由は、フィルムバッファやアキュムレーションバッファが\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}1次元配列であり、\+RGBの3つの要素を連続して格納している\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}ためです。
 
 \DoxyHorRuler{0}
-\hypertarget{additional_info_buffer_autotoc_md128}{}\doxysubsubsection{\texorpdfstring{{\bfseries{1. 配列構造のイメージ}}}{{\bfseries{1. 配列構造のイメージ}}}}\label{additional_info_buffer_autotoc_md128}
+\hypertarget{additional_info_buffer_autotoc_md163}{}\doxysubsubsection{\texorpdfstring{{\bfseries{1. 配列構造のイメージ}}}{{\bfseries{1. 配列構造のイメージ}}}}\label{additional_info_buffer_autotoc_md163}
 バッファ（{\ttfamily g\+\_\+\+Film\+Buffer} や {\ttfamily g\+\_\+\+Accumulation\+Buffer}）は、以下のように\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}1次元配列\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}として定義されています。各ピクセルの RGB データが連続して格納されています：
 
 
@@ -180,13 +180,13 @@
 つまり、1つのピクセルに対応するデータが {\bfseries{3つの要素（\+RGB）}} に分かれており、次のピクセルのデータはその次のインデックスから始まります。
 
 \DoxyHorRuler{0}
-\hypertarget{additional_info_buffer_autotoc_md130}{}\doxysubsubsection{\texorpdfstring{{\bfseries{2. インデックス計算}}}{{\bfseries{2. インデックス計算}}}}\label{additional_info_buffer_autotoc_md130}
+\hypertarget{additional_info_buffer_autotoc_md165}{}\doxysubsubsection{\texorpdfstring{{\bfseries{2. インデックス計算}}}{{\bfseries{2. インデックス計算}}}}\label{additional_info_buffer_autotoc_md165}
 例えば、ピクセル ( i ) のデータにアクセスする場合：
 \begin{DoxyItemize}
 \item {\bfseries{赤成分（\+R）}}\+: 配列のインデックスは ( i \textbackslash{}times 3 )
 \item {\bfseries{緑成分（\+G）}}\+: 配列のインデックスは ( i \textbackslash{}times 3 + 1 )
 \item {\bfseries{青成分（\+B）}}\+: 配列のインデックスは ( i \textbackslash{}times 3 + 2 )
-\end{DoxyItemize}\hypertarget{additional_info_buffer_autotoc_md131}{}\doxysubsubsubsection{\texorpdfstring{例：}{例：}}\label{additional_info_buffer_autotoc_md131}
+\end{DoxyItemize}\hypertarget{additional_info_buffer_autotoc_md166}{}\doxysubsubsubsection{\texorpdfstring{例：}{例：}}\label{additional_info_buffer_autotoc_md166}
 配列の構造をイメージすると次のようになります：
 
 \tabulinesep=1mm
@@ -212,7 +212,7 @@
 
 
 \DoxyHorRuler{0}
-\hypertarget{additional_info_buffer_autotoc_md133}{}\doxysubsubsection{\texorpdfstring{{\bfseries{3. インデックス計算の適用}}}{{\bfseries{3. インデックス計算の適用}}}}\label{additional_info_buffer_autotoc_md133}
+\hypertarget{additional_info_buffer_autotoc_md168}{}\doxysubsubsection{\texorpdfstring{{\bfseries{3. インデックス計算の適用}}}{{\bfseries{3. インデックス計算の適用}}}}\label{additional_info_buffer_autotoc_md168}
 次のようにインデックスを計算しています： 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{g\_FilmBuffer[i\ *\ 3]\ \ \ \ \ \textcolor{comment}{//\ ピクセル\ i\ の赤成分}}
@@ -220,7 +220,7 @@
 \DoxyCodeLine{g\_FilmBuffer[i\ *\ 3\ +\ 2]\ \textcolor{comment}{//\ ピクセル\ i\ の青成分}}
 
 \end{DoxyCode}
-\hypertarget{additional_info_buffer_autotoc_md134}{}\doxysubsubsubsection{\texorpdfstring{実際のコード}{実際のコード}}\label{additional_info_buffer_autotoc_md134}
+\hypertarget{additional_info_buffer_autotoc_md169}{}\doxysubsubsubsection{\texorpdfstring{実際のコード}{実際のコード}}\label{additional_info_buffer_autotoc_md169}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{g\_FilmBuffer[i*3]\ =\ g\_AccumulationBuffer[i*3]\ /\ g\_CountBuffer[i];\ \ \ \ \ \ \ \textcolor{comment}{//\ 赤成分}}
@@ -231,7 +231,7 @@
 
 
 \DoxyHorRuler{0}
-\hypertarget{additional_info_buffer_autotoc_md136}{}\doxysubsubsection{\texorpdfstring{{\bfseries{4. なぜ1次元配列を使うのか？}}}{{\bfseries{4. なぜ1次元配列を使うのか？}}}}\label{additional_info_buffer_autotoc_md136}
+\hypertarget{additional_info_buffer_autotoc_md171}{}\doxysubsubsection{\texorpdfstring{{\bfseries{4. なぜ1次元配列を使うのか？}}}{{\bfseries{4. なぜ1次元配列を使うのか？}}}}\label{additional_info_buffer_autotoc_md171}
 1次元配列を使う理由は、\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}メモリ効率\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}や\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}アクセスの簡便さ\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}を考慮した設計が一般的だからです。
 
 
@@ -245,7 +245,7 @@
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{additional_info_buffer_autotoc_md138}{}\doxysubsubsection{\texorpdfstring{{\bfseries{5. 数式でまとめる}}}{{\bfseries{5. 数式でまとめる}}}}\label{additional_info_buffer_autotoc_md138}
+\hypertarget{additional_info_buffer_autotoc_md173}{}\doxysubsubsection{\texorpdfstring{{\bfseries{5. 数式でまとめる}}}{{\bfseries{5. 数式でまとめる}}}}\label{additional_info_buffer_autotoc_md173}
 ピクセル番号  i  の  R, G, B  成分に対応するインデックスは次のようになります：
 
 
@@ -262,7 +262,7 @@
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{additional_info_buffer_autotoc_md140}{}\doxysubsubsection{\texorpdfstring{{\bfseries{まとめ}}}{{\bfseries{まとめ}}}}\label{additional_info_buffer_autotoc_md140}
+\hypertarget{additional_info_buffer_autotoc_md175}{}\doxysubsubsection{\texorpdfstring{{\bfseries{まとめ}}}{{\bfseries{まとめ}}}}\label{additional_info_buffer_autotoc_md175}
 
 \begin{DoxyItemize}
 \item 配列の構造が  [R, G, B, R, G, B, \dots]  のように\+RGBが連続して格納されているため、インデックスを3倍しています。

@@ -88,7 +88,7 @@ $(function(){ initResizable(false); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>はい、<code><a class="el" href="main_8cpp.html">main.cpp</a></code>のGLUTベースの関数と、Qtウィジェットの各関数との対応関係は以下のようになります。この対応を理解することで、移植作業をスムーズに進められます。</p>
-<h3><a class="anchor" id="autotoc_md44"></a>
+<h3><a class="anchor" id="autotoc_md79"></a>
 main.cppとQtウィジェットの関数対応</h3>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -105,17 +105,17 @@ main.cppとQtウィジェットの関数対応</h3>
 <td class="markdownTableBodyLeft"><code>mouse()</code>, <code>mouseDrag()</code>   </td><td class="markdownTableBodyLeft"><code>mousePressEvent()</code>, <code>mouseMoveEvent()</code>   </td><td class="markdownTableBodyLeft">マウス入力の処理。   </td></tr>
 </table>
 <hr  />
-<h3><a class="anchor" id="autotoc_md46"></a>
+<h3><a class="anchor" id="autotoc_md81"></a>
 解説</h3>
-<h4><a class="anchor" id="autotoc_md47"></a>
+<h4><a class="anchor" id="autotoc_md82"></a>
 <code>display()</code> → <code>paintGL()</code></h4>
 <p><code>paintGL()</code>が、GLUTの<code>display()</code>に相当するメインの描画関数です。シーン内のオブジェクト（座標軸、立方体）を描画し、最後に<code><a class="el" href="drawfilm_8cpp_a443204766d01c1b7114034c955991bc8.html#a443204766d01c1b7114034c955991bc8" title="フィルムバッファをスクリーンに描画する関数">drawFilm()</a></code>でレイトレーシング結果のテクスチャを描画する、という流れは同じです。</p>
 <hr  />
-<h4><a class="anchor" id="autotoc_md49"></a>
+<h4><a class="anchor" id="autotoc_md84"></a>
 <code>resize()</code> → <code>resizeGL()</code></h4>
 <p>すでに行ったフィルムテクスチャのサイズ調整のように、ウィンドウサイズが変わった際の処理は<code>resizeGL()</code>に記述します。これは<code>resize()</code>の役割と完全に一致します。</p>
 <hr  />
-<h4><a class="anchor" id="autotoc_md51"></a>
+<h4><a class="anchor" id="autotoc_md86"></a>
 <code>idle()</code> → <code>QTimer</code> + カスタムスロット</h4>
 <p>これが最も重要な違いです。</p>
 <p>GLUTの<code>idle()</code>関数は、イベントがない時に常に呼ばれ続けるため、CPUを消費しながらバックグラウンドで計算を行うのに使われていました。しかし、同じことをQtのメインスレッドで行うと、**GUIが応答しなくなりフリーズします**。</p>
@@ -137,10 +137,10 @@ main.cppとQtウィジェットの関数対応</h3>
 </li>
 </ol>
 <p>このように<code>QTimer</code>を使うことで、GUIの応答性を保ちながら、バックグラウンドでレイトレーシングの計算を継続的に実行できます。</p>
-<h1><a class="anchor" id="autotoc_md52"></a>
+<h1><a class="anchor" id="autotoc_md87"></a>
 First Level Heading</h1>
 <p>Paragraph.</p>
-<h2><a class="anchor" id="autotoc_md53"></a>
+<h2><a class="anchor" id="autotoc_md88"></a>
 Second Level Heading</h2>
 <p>Paragraph.</p>
 <ul>
@@ -155,7 +155,7 @@ Second Level Heading</h2>
 <li>ordered</li>
 <li>next ordered</li>
 </ol>
-<h3><a class="anchor" id="autotoc_md54"></a>
+<h3><a class="anchor" id="autotoc_md89"></a>
 Third Level Heading</h3>
 <p>Some <em>italic</em> and <b>bold</b> text and <code>inline code</code>.</p>
 <p>An empty line starts a new paragraph.</p>
@@ -169,10 +169,10 @@ four spaces at the front.
 <p>&zwj;A blockquote starts with &gt;</p>
 <p>and has the same paragraph rules as normal text. </p>
 </blockquote>
-<h1><a class="anchor" id="autotoc_md56"></a>
+<h1><a class="anchor" id="autotoc_md91"></a>
 First Level Heading in Alternate Style</h1>
 <p>Paragraph.</p>
-<h2><a class="anchor" id="autotoc_md57"></a>
+<h2><a class="anchor" id="autotoc_md92"></a>
 Second Level Heading in Alternate Style</h2>
 <p>Paragraph. </p>
 </div></div><!-- contents -->

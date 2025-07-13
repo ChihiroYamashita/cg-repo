@@ -108,15 +108,7 @@ protected slots:
 
 
     //Obj名
-    const std::string m_objFileName = "sphere.obj";
-
-
-
-
-
-
-
-
+    const std::string m_objFileName = "box2.obj";
 
 
 

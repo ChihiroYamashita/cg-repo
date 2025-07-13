@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['さらに学びたい方向け_0',['✳️ さらに学びたい方向け',['../md__doxygen_2open_g_l__basis.html#autotoc_md305',1,'']]]
+  ['これは何？_0',['これは何？',['../additional_inf_1.html#autotoc_md107',1,'']]]
 ];

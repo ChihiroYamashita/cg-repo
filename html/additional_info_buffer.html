@@ -89,12 +89,12 @@ $(function(){ initResizable(false); });
 <div class="contents">
 <div class="textblock"><p>**フィルムバッファ**は、レンダリングエンジンやグラフィックスプログラムで使用されるデータ構造の一つで、通常は以下の役割を果たします。</p>
 <hr  />
-<h3><a class="anchor" id="autotoc_md110"></a>
+<h3><a class="anchor" id="autotoc_md145"></a>
 <b>フィルムバッファの役割</b></h3>
 <p>フィルムバッファは、**最終的な画面出力（画像）を一時的に保持するメモリ領域**として機能します。これは、映画のフィルムに例えられることが多く、レンダリングされたピクセルの色データを保持します。</p>
 <hr  />
 <hr  />
-<h2><a class="anchor" id="autotoc_md113"></a>
+<h2><a class="anchor" id="autotoc_md148"></a>
 <b>どうやって色を塗る？</b></h2>
 <p>色を塗る仕組みはこうなっています：</p>
 <ol type="1">
@@ -110,7 +110,7 @@ $(function(){ initResizable(false); });
 </li>
 <li><b>フィルムバッファ</b>:<ul>
 <li>最終的に表示される絵。各ピクセルの色は、次のように計算します：<ul>
-<li><picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt=" \text{最終的な色} = \frac{\text{色の合計}}{\text{計算回数}} " src="form_1.png"/></picture></li>
+<li><picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt=" \text{最終的な色} = \frac{\text{色の合計}}{\text{計算回数}} " src="form_6.png"/></picture></li>
 <li>この計算で「色の平均」を取ります。 <div class="fragment"><div class="line">g_FilmBuffer</div>
 </div><!-- fragment --></li>
 </ul>
@@ -124,37 +124,37 @@ $(function(){ initResizable(false); });
 <li><b><code>R</code></b>: 赤（Red）成分</li>
 <li><b><code>G</code></b>: 緑（Green）成分 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md114"></a>
+<h2><a class="anchor" id="autotoc_md149"></a>
 - <b><code>B</code></b>: 青（Blue）成分</h2>
-<h2><a class="anchor" id="autotoc_md115"></a>
+<h2><a class="anchor" id="autotoc_md150"></a>
 <b>具体的な数式で説明</b></h2>
 <p>フィルムバッファのピクセルごとの色は、次の計算で求めます：</p>
-<h3><a class="anchor" id="autotoc_md116"></a>
+<h3><a class="anchor" id="autotoc_md151"></a>
 <b>1. 色を計算する（ピクセルごとの計算）</b></h3>
 <p>もしそのピクセルに積み上げた色の回数（カウント）が0でなければ：</p>
 <p class="formulaDsp">
-<picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
 \text{ピクセルの色} = \frac{\text{アキュムレーションの合計}}{\text{カウント}}
-\]" src="form_2.png"/></picture>
+\]" src="form_7.png"/></picture>
 </p>
 <p>例えば：</p><ul>
-<li>アキュムレーション（合計された色）: <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt=" (255, 128, 64) " src="form_3.png"/></picture></li>
-<li>カウント（計算した回数）: <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt=" 4 " src="form_4.png"/></picture></li>
+<li>アキュムレーション（合計された色）: <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt=" (255, 128, 64) " src="form_8.png"/></picture></li>
+<li>カウント（計算した回数）: <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt=" 4 " src="form_9.png"/></picture></li>
 </ul>
 <p>計算すると：   </p><p class="formulaDsp">
-<picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
 \text{ピクセルの色} = \left( \frac{255}{4}, \frac{128}{4}, \frac{64}{4} \right) = (63.75, 32.0, 16.0)
-\]" src="form_5.png"/></picture>
+\]" src="form_10.png"/></picture>
 </p>
 <hr  />
-<h3><a class="anchor" id="autotoc_md118"></a>
+<h3><a class="anchor" id="autotoc_md153"></a>
 <b>2. もしカウントが0だったら？</b></h3>
 <p>計算回数が0のピクセルは「まだ何も計算していない」状態なので、黒色（( (0, 0, 0) )）にします。</p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md120"></a>
+<h2><a class="anchor" id="autotoc_md155"></a>
 <b>コードの意味をやさしく解説</b></h2>
 <p>コードを分けて説明します：</p>
-<h3><a class="anchor" id="autotoc_md121"></a>
+<h3><a class="anchor" id="autotoc_md156"></a>
 <b>1. 色の平均を計算</b></h3>
 <p>以下の部分で、フィルムバッファに平均化された色を保存しています：</p>
 <div class="fragment"><div class="line"><span class="keywordflow">if</span> (g_CountBuffer[i] &gt; 0) {</div>
@@ -171,7 +171,7 @@ $(function(){ initResizable(false); });
 </li>
 </ul>
 <hr  />
-<h3><a class="anchor" id="autotoc_md123"></a>
+<h3><a class="anchor" id="autotoc_md158"></a>
 <b>2. まだ何も計算していない場合（黒色にする）</b></h3>
 <p>以下の部分で、計算されていないピクセルを黒にしています：</p>
 <div class="fragment"><div class="line"><span class="keywordflow">else</span> {</div>
@@ -186,7 +186,7 @@ $(function(){ initResizable(false); });
 </li>
 </ul>
 <hr  />
-<h3><a class="anchor" id="autotoc_md125"></a>
+<h3><a class="anchor" id="autotoc_md160"></a>
 <b>3. テクスチャに送る</b></h3>
 <p>以下の部分で、計算したフィルムバッファを画面に表示するために GPU に送信します：</p>
 <div class="fragment"><div class="line">glBindTexture(GL_TEXTURE_2D, g_FilmTexture);</div>
@@ -201,7 +201,7 @@ $(function(){ initResizable(false); });
 <hr  />
 <p>インデックスを3倍している理由は、フィルムバッファやアキュムレーションバッファが**1次元配列であり、RGBの3つの要素を連続して格納している**ためです。</p>
 <hr  />
-<h3><a class="anchor" id="autotoc_md128"></a>
+<h3><a class="anchor" id="autotoc_md163"></a>
 <b>1. 配列構造のイメージ</b></h3>
 <p>バッファ（<code>g_FilmBuffer</code> や <code>g_AccumulationBuffer</code>）は、以下のように**1次元配列**として定義されています。各ピクセルの RGB データが連続して格納されています：</p>
 <div class="fragment"><div class="line">[R, G, B, R, G, B, R, G, B, ...]</div>
@@ -212,14 +212,14 @@ $(function(){ initResizable(false); });
 </ul>
 <p>つまり、1つのピクセルに対応するデータが <b>3つの要素（RGB）</b> に分かれており、次のピクセルのデータはその次のインデックスから始まります。</p>
 <hr  />
-<h3><a class="anchor" id="autotoc_md130"></a>
+<h3><a class="anchor" id="autotoc_md165"></a>
 <b>2. インデックス計算</b></h3>
 <p>例えば、ピクセル ( i ) のデータにアクセスする場合：</p><ul>
 <li><b>赤成分（R）</b>: 配列のインデックスは ( i \times 3 )</li>
 <li><b>緑成分（G）</b>: 配列のインデックスは ( i \times 3 + 1 )</li>
 <li><b>青成分（B）</b>: 配列のインデックスは ( i \times 3 + 2 )</li>
 </ul>
-<h4><a class="anchor" id="autotoc_md131"></a>
+<h4><a class="anchor" id="autotoc_md166"></a>
 例：</h4>
 <p>配列の構造をイメージすると次のようになります：</p>
 <table class="markdownTable">
@@ -245,18 +245,18 @@ $(function(){ initResizable(false); });
 <td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">8   </td><td class="markdownTableBodyNone">B (青)   </td></tr>
 </table>
 <hr  />
-<h3><a class="anchor" id="autotoc_md133"></a>
+<h3><a class="anchor" id="autotoc_md168"></a>
 <b>3. インデックス計算の適用</b></h3>
 <p>次のようにインデックスを計算しています： </p><div class="fragment"><div class="line">g_FilmBuffer[i * 3]     <span class="comment">// ピクセル i の赤成分</span></div>
 <div class="line">g_FilmBuffer[i * 3 + 1] <span class="comment">// ピクセル i の緑成分</span></div>
 <div class="line">g_FilmBuffer[i * 3 + 2] <span class="comment">// ピクセル i の青成分</span></div>
-</div><!-- fragment --><h4><a class="anchor" id="autotoc_md134"></a>
+</div><!-- fragment --><h4><a class="anchor" id="autotoc_md169"></a>
 実際のコード</h4>
 <div class="fragment"><div class="line">g_FilmBuffer[i*3] = g_AccumulationBuffer[i*3] / g_CountBuffer[i];       <span class="comment">// 赤成分</span></div>
 <div class="line">g_FilmBuffer[i*3+1] = g_AccumulationBuffer[i*3+1] / g_CountBuffer[i];   <span class="comment">// 緑成分</span></div>
 <div class="line">g_FilmBuffer[i*3+2] = g_AccumulationBuffer[i*3+2] / g_CountBuffer[i];   <span class="comment">// 青成分</span></div>
 </div><!-- fragment --><hr  />
-<h3><a class="anchor" id="autotoc_md136"></a>
+<h3><a class="anchor" id="autotoc_md171"></a>
 <b>4. なぜ1次元配列を使うのか？</b></h3>
 <p>1次元配列を使う理由は、**メモリ効率**や**アクセスの簡便さ**を考慮した設計が一般的だからです。</p>
 <ul>
@@ -268,38 +268,38 @@ $(function(){ initResizable(false); });
 </li>
 </ul>
 <hr  />
-<h3><a class="anchor" id="autotoc_md138"></a>
+<h3><a class="anchor" id="autotoc_md173"></a>
 <b>5. 数式でまとめる</b></h3>
-<p>ピクセル番号 <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt=" i " src="form_6.png"/></picture> の <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt=" R, G, B " src="form_7.png"/></picture> 成分に対応するインデックスは次のようになります：</p>
+<p>ピクセル番号 <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt=" i " src="form_11.png"/></picture> の <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt=" R, G, B " src="form_12.png"/></picture> 成分に対応するインデックスは次のようになります：</p>
 <ul>
 <li>赤成分（R）:   <p class="formulaDsp">
-<picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
   \text{インデックス} = i \times 3
-  \]" src="form_8.png"/></picture>
+  \]" src="form_13.png"/></picture>
 </p>
 </li>
 <li>緑成分（G）:   <p class="formulaDsp">
-<picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
   \text{インデックス} = i \times 3 + 1
-  \]" src="form_9.png"/></picture>
+  \]" src="form_14.png"/></picture>
 </p>
 </li>
 <li>青成分（B）:   <p class="formulaDsp">
-<picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
   \text{インデックス} = i \times 3 + 2
-  \]" src="form_10.png"/></picture>
+  \]" src="form_15.png"/></picture>
 </p>
 </li>
 </ul>
 <hr  />
-<h3><a class="anchor" id="autotoc_md140"></a>
+<h3><a class="anchor" id="autotoc_md175"></a>
 <b>まとめ</b></h3>
 <ul>
-<li>配列の構造が <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt=" [R, G, B, R, G, B, \dots] " src="form_11.png"/></picture> のようにRGBが連続して格納されているため、インデックスを3倍しています。</li>
+<li>配列の構造が <picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt=" [R, G, B, R, G, B, \dots] " src="form_16.png"/></picture> のようにRGBが連続して格納されているため、インデックスを3倍しています。</li>
 <li>各ピクセルの R, G, B 成分にアクセスするために、次のようにインデックスを計算しています：<ul>
-<li>赤: <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt=" i \times 3 " src="form_12.png"/></picture></li>
-<li>緑: <picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt=" i \times 3 + 1 " src="form_13.png"/></picture></li>
-<li>青: <picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt=" i \times 3 + 2 " src="form_14.png"/></picture></li>
+<li>赤: <picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt=" i \times 3 " src="form_17.png"/></picture></li>
+<li>緑: <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt=" i \times 3 + 1 " src="form_18.png"/></picture></li>
+<li>青: <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt=" i \times 3 + 2 " src="form_19.png"/></picture></li>
 </ul>
 </li>
 </ul>

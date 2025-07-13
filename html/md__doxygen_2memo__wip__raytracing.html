@@ -89,22 +89,22 @@ $(function(){ initResizable(false); });
 <div class="contents">
 <div class="textblock"><p>全ピクセルに対してレイを発射し、法線色をフィルムバッファに記録 <br  />
 </p>
-<p><a class="anchor" id="autotoc_md239"></a></p>
+<p><a class="anchor" id="autotoc_md274"></a></p>
 <p>このドキュメントは、MyOpenGLWidget_cameraベースで段階的にレイトレーシング機能を移植していく際の設計方針と、クラス・関数・ファイル構成を整理したものです。</p>
 <hr  />
 <hr  />
 <p>はい、可能です。以下のようにすべての関数に Doxygen の <code>@ref</code> リンクを埋め込んだ形式に書き換えました：</p>
 <hr  />
-<h1><a class="anchor" id="autotoc_md243"></a>
+<h1><a class="anchor" id="autotoc_md278"></a>
 ✅ 現在の移植状況（関数・構造体）</h1>
-<h2><a class="anchor" id="autotoc_md244"></a>
+<h2><a class="anchor" id="autotoc_md279"></a>
 🎨 表示・描画関連</h2>
 <ul>
 <li>✅ drawFilm() によるフィルム表示機能 → 完了</li>
 <li>✅ <a class="el" href="class_my_open_g_l_widget__camera_a97469860ecb6dfc1c784c5797854bc2f.html#a97469860ecb6dfc1c784c5797854bc2f">paintGL()</a> → Qt側の描画呼び出しを確認・対応済み</li>
 <li>✅ <a class="el" href="class_my_open_g_l_widget__camera_a793d75fe6991830c9cc4a54e393c870a.html#a793d75fe6991830c9cc4a54e393c870a">updateRayTracing()</a> → 全ピクセル一括更新による可視化テスト完了</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md245"></a>
+<h2><a class="anchor" id="autotoc_md280"></a>
 📡 レイ生成・交差関連</h2>
 <ul>
 <li>✅ <a class="el" href="class_camera_a20a6e0f56d6531121c0ef4ee8a71a71c.html#a20a6e0f56d6531121c0ef4ee8a71a71c">screenView()</a>（Cameraクラス）→ ピクセル座標からレイ生成済み</li>
@@ -112,13 +112,13 @@ $(function(){ initResizable(false); });
 <li>✅ meshTriangleIntersect() → 移植済み</li>
 <li>✅ intersectTriangle() → 移植済み</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md246"></a>
+<h2><a class="anchor" id="autotoc_md281"></a>
 🧭 法線・色処理</h2>
 <ul>
 <li>✅ <a class="el" href="class_my_open_g_l_widget__camera_a99f7ad86efe9c9ea0c7e3b36b6768022.html#a99f7ad86efe9c9ea0c7e3b36b6768022">debug\_computeNormalColor()</a>（法線を色で可視化） → 実装済み</li>
 <li>✅ <a class="el" href="_intersection_8cpp_aca412d913682c6dfd8cd4d63a50a8a21.html#aca412d913682c6dfd8cd4d63a50a8a21">computeRayHitNormal()</a>（交差点での法線補間） → 実装済み</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md247"></a>
+<h2><a class="anchor" id="autotoc_md282"></a>
 🧮 フィルムバッファ関連（FilmBuffer）</h2>
 <ul>
 <li>✅ <a class="el" href="class_film_buffer_ab223f9d1044dc52fffc911bc4c95fc98.html#ab223f9d1044dc52fffc911bc4c95fc98">init()</a> → バッファ（積算・カウント・平均）をサイズに応じて初期化</li>
@@ -127,7 +127,7 @@ $(function(){ initResizable(false); });
 <li>✅ <a class="el" href="class_film_buffer_aa69ac45360df7c2a58e0fb10eb1eb789.html#aa69ac45360df7c2a58e0fb10eb1eb789">getFilmBufferPtr()</a> → 平均化バッファ先頭ポインタをOpenGL転送用に取得</li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md249"></a>
+<h2><a class="anchor" id="autotoc_md284"></a>
 📦 使用構造体・クラス</h2>
 <ul>
 <li>✅ <a class="el" href="struct_ray.html">Ray</a> → レイの定義構造体（原点、方向、交差履歴含む）</li>
@@ -139,30 +139,30 @@ $(function(){ initResizable(false); });
 </ul>
 <hr  />
 <hr  />
- <h1><a class="anchor" id="autotoc_md252"></a>
+ <h1><a class="anchor" id="autotoc_md287"></a>
 全体フロー</h1>
 <div class="plantumlgraph">
-<img src="inline_umlgraph_27.png" />
+<img src="inline_umlgraph_31.png" />
 </div>
 <hr  />
 <div class="plantumlgraph">
-<img src="inline_umlgraph_28.png" />
+<img src="inline_umlgraph_32.png" />
 </div>
  <hr  />
 <hr  />
- <h1><a class="anchor" id="autotoc_md256"></a>
+ <h1><a class="anchor" id="autotoc_md291"></a>
 🔧 初期化処理</h1>
 <p><code><a class="el" href="class_my_open_g_l_widget__camera.html">MyOpenGLWidget_camera</a></code> クラスの**コンストラクタ**では、主に以下の初期化処理が行われています。</p>
 <hr  />
 <div class="fragment"><div class="line"><a class="code hl_function" href="class_my_open_g_l_widget__camera_af05302e50ef2aa2f18cde38ad5720ce9.html#af05302e50ef2aa2f18cde38ad5720ce9">MyOpenGLWidget_camera::MyOpenGLWidget_camera</a>(QWidget* parent)</div>
 <div class="line">    : <a class="code hl_class" href="class_my_open_g_l_widget.html">MyOpenGLWidget</a>(parent) {</div>
-<div class="ttc" id="aclass_my_open_g_l_widget__camera_af05302e50ef2aa2f18cde38ad5720ce9_html_af05302e50ef2aa2f18cde38ad5720ce9"><div class="ttname"><a href="class_my_open_g_l_widget__camera_af05302e50ef2aa2f18cde38ad5720ce9.html#af05302e50ef2aa2f18cde38ad5720ce9">MyOpenGLWidget_camera::MyOpenGLWidget_camera</a></div><div class="ttdeci">MyOpenGLWidget_camera(QWidget *parent=nullptr)</div><div class="ttdef"><b>Definition</b> myopenglwidget_camera.cpp:13</div></div>
+<div class="ttc" id="aclass_my_open_g_l_widget__camera_af05302e50ef2aa2f18cde38ad5720ce9_html_af05302e50ef2aa2f18cde38ad5720ce9"><div class="ttname"><a href="class_my_open_g_l_widget__camera_af05302e50ef2aa2f18cde38ad5720ce9.html#af05302e50ef2aa2f18cde38ad5720ce9">MyOpenGLWidget_camera::MyOpenGLWidget_camera</a></div><div class="ttdeci">MyOpenGLWidget_camera(QWidget *parent=nullptr)</div><div class="ttdef"><b>Definition</b> myopenglwidget_camera.cpp:14</div></div>
 <div class="ttc" id="aclass_my_open_g_l_widget_html"><div class="ttname"><a href="class_my_open_g_l_widget.html">MyOpenGLWidget</a></div><div class="ttdef"><b>Definition</b> myopenglwidget.h:15</div></div>
 </div><!-- fragment --><p> 以下は、**Markdown（md）ファイル用の書式**で、コンストラクタ内の処理を「説明 ⇄ 対応するコード」を交互に配置したスタイルです。GitHubなどのMarkdownビューアでも見やすく表示されます。</p>
 <hr  />
-<h1><a class="anchor" id="autotoc_md259"></a>
+<h1><a class="anchor" id="autotoc_md294"></a>
 🔧 コンストラクタの処理内容（やっていること）</h1>
-<h2><a class="anchor" id="autotoc_md260"></a>
+<h2><a class="anchor" id="autotoc_md295"></a>
 ① モデル（OBJファイル）を読み込む</h2>
 <div class="fragment"><div class="line"><span class="keywordflow">if</span> (<a class="code hl_function" href="_tri_mesh_8cpp_a5d68f7db28b7475a94bf75add003c051.html#a5d68f7db28b7475a94bf75add003c051">loadObj</a>(m_objFileName, g_Obj)) {</div>
 <div class="line">    qDebug() &lt;&lt; <span class="stringliteral">&quot;sphere.obj loaded successfully.&quot;</span>;</div>
@@ -174,66 +174,66 @@ $(function(){ initResizable(false); });
 </div><!-- fragment --><blockquote class="doxtable">
 <p>&zwj;<code>m_objFileName</code> で指定された3Dモデルを読み込み、グローバル変数 <code>g_Obj</code> に格納します。 </p>
 </blockquote>
-<h1><a class="anchor" id="autotoc_md261"></a>
+<h1><a class="anchor" id="autotoc_md296"></a>
 </h1>
-<h2><a class="anchor" id="autotoc_md262"></a>
+<h2><a class="anchor" id="autotoc_md297"></a>
 ② レンダリング不要フラグを設定</h2>
 <div class="fragment"><div class="line">m_isDirty = <span class="keyword">false</span>; <span class="comment">// ★ 最初は計算しない</span></div>
 </div><!-- fragment --><blockquote class="doxtable">
 <p>&zwj;最初は描画処理をスキップするため、<code>m_isDirty</code> を <code>false</code> にします。 </p>
 </blockquote>
-<h1><a class="anchor" id="autotoc_md263"></a>
+<h1><a class="anchor" id="autotoc_md298"></a>
 </h1>
-<h2><a class="anchor" id="autotoc_md264"></a>
+<h2><a class="anchor" id="autotoc_md299"></a>
 ③ レイトレ用ピクセル位置の初期化</h2>
 <div class="fragment"><div class="line">m_progress_i = 0;</div>
 <div class="line">m_progress_j = 0;</div>
 </div><!-- fragment --><blockquote class="doxtable">
 <p>&zwj;次にレンダリングするピクセル座標を <code>(0, 0)</code> に初期化します。 </p>
 </blockquote>
-<h1><a class="anchor" id="autotoc_md265"></a>
+<h1><a class="anchor" id="autotoc_md300"></a>
 </h1>
-<h2><a class="anchor" id="autotoc_md266"></a>
+<h2><a class="anchor" id="autotoc_md301"></a>
 ④ タイマーを使って非同期レンダリング処理を登録</h2>
 <div class="fragment"><div class="line">m_timer = <span class="keyword">new</span> QTimer(<span class="keyword">this</span>);</div>
 <div class="line">connect(m_timer, &amp;QTimer::timeout, <span class="keyword">this</span>, &amp;<a class="code hl_slot" href="class_my_open_g_l_widget__camera_a793d75fe6991830c9cc4a54e393c870a.html#a793d75fe6991830c9cc4a54e393c870a">MyOpenGLWidget_camera::updateRayTracing</a>);</div>
 <div class="line">m_timer-&gt;start(1); <span class="comment">// ほぼ最速で実行</span></div>
-<div class="ttc" id="aclass_my_open_g_l_widget__camera_a793d75fe6991830c9cc4a54e393c870a_html_a793d75fe6991830c9cc4a54e393c870a"><div class="ttname"><a href="class_my_open_g_l_widget__camera_a793d75fe6991830c9cc4a54e393c870a.html#a793d75fe6991830c9cc4a54e393c870a">MyOpenGLWidget_camera::updateRayTracing</a></div><div class="ttdeci">void updateRayTracing()</div><div class="ttdoc">レイトレーシングを1フレーム分進める 詳細は updateRayTracing() を参照。</div><div class="ttdef"><b>Definition</b> myopenglwidget_camera.cpp:299</div></div>
-</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md267"></a>
+<div class="ttc" id="aclass_my_open_g_l_widget__camera_a793d75fe6991830c9cc4a54e393c870a_html_a793d75fe6991830c9cc4a54e393c870a"><div class="ttname"><a href="class_my_open_g_l_widget__camera_a793d75fe6991830c9cc4a54e393c870a.html#a793d75fe6991830c9cc4a54e393c870a">MyOpenGLWidget_camera::updateRayTracing</a></div><div class="ttdeci">void updateRayTracing()</div><div class="ttdoc">レイトレーシングを1フレーム分進める 詳細は updateRayTracing() を参照。</div><div class="ttdef"><b>Definition</b> myopenglwidget_camera.cpp:308</div></div>
+</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md302"></a>
 connect関数；<code>QTimer</code> が一定間隔で時間切れ（timeout）になるたびに</h2>
-<h2><a class="anchor" id="autotoc_md268"></a>
+<h2><a class="anchor" id="autotoc_md303"></a>
 <code>MyOpenGLWidget_camera::updateRayTracing()</code> 関数を自動的に呼び出す</h2>
 <blockquote class="doxtable">
 <p>&zwj;<code>QTimer</code> によって 1ミリ秒ごとに <code>updateRayTracing()</code> が呼ばれ、滑らかに描画が進みます。 </p>
 </blockquote>
-<h1><a class="anchor" id="autotoc_md269"></a>
+<h1><a class="anchor" id="autotoc_md304"></a>
 </h1>
-<h2><a class="anchor" id="autotoc_md270"></a>
+<h2><a class="anchor" id="autotoc_md305"></a>
 ⑤ エリアライトの初期化</h2>
 <div class="fragment"><div class="line"><a class="code hl_function" href="_light_8cpp_a918c050bf0089f79bcfbd3768e6f10fd.html#a918c050bf0089f79bcfbd3768e6f10fd">initAreaLights</a>(g_AreaLights);</div>
 <div class="ttc" id="a_light_8cpp_a918c050bf0089f79bcfbd3768e6f10fd_html_a918c050bf0089f79bcfbd3768e6f10fd"><div class="ttname"><a href="_light_8cpp_a918c050bf0089f79bcfbd3768e6f10fd.html#a918c050bf0089f79bcfbd3768e6f10fd">initAreaLights</a></div><div class="ttdeci">void initAreaLights(std::vector&lt; AreaLight &gt; &amp;lights)</div><div class="ttdef"><b>Definition</b> Light.cpp:11</div></div>
 </div><!-- fragment --><blockquote class="doxtable">
 <p>&zwj;グローバル変数 <code>g_AreaLights</code> にライトを追加し、ライティング処理を有効にします。 </p>
 </blockquote>
-<h1><a class="anchor" id="autotoc_md271"></a>
+<h1><a class="anchor" id="autotoc_md306"></a>
 </h1>
 <p>必要であれば、Doxygen用のスタイルや、表形式に戻したバージョンも用意できます！</p>
 <hr  />
- <h1><a class="anchor" id="autotoc_md273"></a>
+ <h1><a class="anchor" id="autotoc_md308"></a>
 🔧 関数仕様と目的</h1>
-<h2><a class="anchor" id="autotoc_md274"></a>
+<h2><a class="anchor" id="autotoc_md309"></a>
 <code>MyOpenGLWidget_camera::updateRayTracing()</code></h2>
 <dl class="section see"><dt>参照</dt><dd>debug_computeNormalColor</dd></dl>
 <div class="fragment"><div class="line">Eigen::Vector3d color = debug_computeNormalColor(ray);</div>
 </div><!-- fragment --><hr  />
-<h2><a class="anchor" id="autotoc_md276"></a>
+<h2><a class="anchor" id="autotoc_md311"></a>
 <code>MyOpenGLWidget_camera::debug_computeNormalColor(const Ray&amp; ray)</code></h2>
 <p>オブジェクトとの交差点の法線を色として返す</p>
 <div class="fragment"><div class="line"><span class="keywordflow">return</span> Eigen::Vector3d(normal.x() * 0.5 + 0.5, </div>
 <div class="line">                       normal.y() * 0.5 + 0.5, </div>
 <div class="line">                       normal.z() * 0.5 + 0.5);</div>
 </div><!-- fragment --><hr  />
-<h1><a class="anchor" id="autotoc_md278"></a>
+<h1><a class="anchor" id="autotoc_md313"></a>
 🎯 UML: paintGLまわりの初期化と描画の流れ</h1>
 <p><br  />
  MyOpenGLWidget_cameraでは、initializeGL(), paintGL(), resizeGL() のみがOpenGL描画に関与しています。</p>
@@ -255,13 +255,13 @@ connect関数；<code>QTimer</code> が一定間隔で時間切れ（timeout）�
 <div class="line">│   └──────────────┘                       │</div>
 <div class="line">└─────────────────────────────────────────┘</div>
 </div><!-- fragment --><hr  />
-<h1><a class="anchor" id="autotoc_md280"></a>
+<h1><a class="anchor" id="autotoc_md315"></a>
 🌐 PlantUML: 初期化・描画シーケンス</h1>
 <div class="plantumlgraph">
-<img src="inline_umlgraph_29.png" />
+<img src="inline_umlgraph_33.png" />
 </div>
 <hr  />
-<h1><a class="anchor" id="autotoc_md282"></a>
+<h1><a class="anchor" id="autotoc_md317"></a>
 📁 推奨ファイル構成</h1>
 <div class="fragment"><div class="line">sources/</div>
 <div class="line">│</div>
@@ -290,7 +290,7 @@ connect関数；<code>QTimer</code> が一定間隔で時間切れ（timeout）�
 <div class="line">│</div>
 <div class="line">└── main.cpp</div>
 </div><!-- fragment --><hr  />
-<h1><a class="anchor" id="autotoc_md284"></a>
+<h1><a class="anchor" id="autotoc_md319"></a>
 📝 次のステップ</h1>
 <ul class="check">
 <li class="unchecked"><code><a class="el" href="_intersection_8cpp_aca412d913682c6dfd8cd4d63a50a8a21.html#aca412d913682c6dfd8cd4d63a50a8a21" title="レイと交差した点における補間された法線ベクトルを計算する関数">computeRayHitNormal()</a></code> の正確な法線補間を実装</li>
@@ -299,7 +299,7 @@ connect関数；<code>QTimer</code> が一定間隔で時間切れ（timeout）�
 <li class="unchecked"><code><a class="el" href="struct_area_light.html">AreaLight</a></code> の交差を復元（必要に応じて）</li>
 </ul>
 <ul class="check">
-<li class="unchecked"><code>computeShading()</code> の実装と <code>integrators/</code> への移動</li>
+<li class="unchecked"><code><a class="el" href="_path_tracer_8cpp_a4b548eacdb1d58725dda4955727d4abc.html#a4b548eacdb1d58725dda4955727d4abc" title="レイのシェーディング（光の寄与）を計算する関数">computeShading()</a></code> の実装と <code>integrators/</code> への移動</li>
 </ul>
 <ul class="check">
 <li class="unchecked"><code>updateRayTracing()</code> を分割描画に改良（タイマで少しずつ） </li>

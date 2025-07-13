@@ -1,12 +1,12 @@
 var indexSectionsWithContent =
 {
-  0: "123456789:_abcdefghijklmopqrstuvwxyz~→①②③④⑤✅✨✳おがこさすでとどなにのはまもよわアイエオカキクコサシスタテバビフプポメモリレ一三主今使例備全具再処初動各図実対座引役投指推描数普更概次正法注現用移積結背色蓄行表裏補視解配関青頂）🌐🌟🎨🎯💡📁📂📊📌📝📡📦🔁🔄🔍🔧🔵🔹🖥🗺🧠🧪🧭🧮🧱",
+  0: "123456789:_abcdefghijklmnopqrstuvwxyz~→①②③④⑤✅✨✳おがこさすでとどなにのはまもよわアイエオカキクコサシスタテバビフプポマメモラリレ一三主二交今使例備光入全具再処初判動反各図実対屈座引役投指接推描数新普更概次正法注現用直移積結背色蓄行表裏補視解配間関青頂）🌐🌟🎨🎯💡📁📂📊📌📝📡📦🔁🔄🔍🔧🔵🔹🖥🗺🧠🧪🧭🧮🧱",
   1: "acfijkmortv",
   2: "u",
-  3: "acdfgijklmorstu移",
+  3: "acdfgijklmoprstu移",
   4: "_acdefgijklmoprstuwz~",
   5: "_abcdefghiklmopstuvwxyz",
-  6: "_e",
+  6: "_elmntu",
   7: "dfhlmoptuシフプモレ全座用頂🌟🧪"
 };
 

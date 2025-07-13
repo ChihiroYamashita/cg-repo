@@ -1,0 +1,156 @@
+\doxysection{sources/pass\+\_\+tracing/samplers/random.c ファイル}
+\hypertarget{random_8c}{}\label{random_8c}\index{sources/pass\_tracing/samplers/random.c@{sources/pass\_tracing/samplers/random.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include "{}random.\+h"{}}\newline
+random.\+c の依存先関係図\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{random_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{マクロ定義}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{random_8c_a0240ac851181b84ac374872dc5434ee4_a0240ac851181b84ac374872dc5434ee4}{N}}~624
+\item 
+\#define \mbox{\hyperlink{random_8c_a52037c938e3c1b126c6277da5ca689d0_a52037c938e3c1b126c6277da5ca689d0}{M}}~397
+\item 
+\#define \mbox{\hyperlink{random_8c_a376c3581bae3c2367fc9ce694e5a8949_a376c3581bae3c2367fc9ce694e5a8949}{MATRIX\+\_\+A}}~0x9908b0df   /\texorpdfstring{$\ast$}{*} constant vector a \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{random_8c_a39bc458849360f8f371b54c4365d397f_a39bc458849360f8f371b54c4365d397f}{UPPER\+\_\+\+MASK}}~0x80000000 /\texorpdfstring{$\ast$}{*} most significant w-\/r bits \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{random_8c_a4ddd8cab3564b7a86a4b0e52ba08f70e_a4ddd8cab3564b7a86a4b0e52ba08f70e}{LOWER\+\_\+\+MASK}}~0x7fffffff /\texorpdfstring{$\ast$}{*} least significant r bits \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{random_8c_ad823db99ec38ec810124406bd3dfeeae_ad823db99ec38ec810124406bd3dfeeae}{TEMPERING\+\_\+\+MASK\+\_\+B}}~0x9d2c5680
+\item 
+\#define \mbox{\hyperlink{random_8c_ae1c7a72f80707458249c99a6f37e7d3e_ae1c7a72f80707458249c99a6f37e7d3e}{TEMPERING\+\_\+\+MASK\+\_\+C}}~0xefc60000
+\item 
+\#define \mbox{\hyperlink{random_8c_a238852cd6380d77bd700e95d0a7d90c9_a238852cd6380d77bd700e95d0a7d90c9}{TEMPERING\+\_\+\+SHIFT\+\_\+U}}(y)
+\item 
+\#define \mbox{\hyperlink{random_8c_adce59eadb4013bb06a059dedf69c282d_adce59eadb4013bb06a059dedf69c282d}{TEMPERING\+\_\+\+SHIFT\+\_\+S}}(y)
+\item 
+\#define \mbox{\hyperlink{random_8c_a0a2b0d0fa7a7c8ce1bbc52a67f26f8c3_a0a2b0d0fa7a7c8ce1bbc52a67f26f8c3}{TEMPERING\+\_\+\+SHIFT\+\_\+T}}(y)
+\item 
+\#define \mbox{\hyperlink{random_8c_a15f821dd6f1a65b3ecf672718aa6273c_a15f821dd6f1a65b3ecf672718aa6273c}{TEMPERING\+\_\+\+SHIFT\+\_\+L}}(y)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{random_8c_a7b57b363872392097eda192f0e1e264e_a7b57b363872392097eda192f0e1e264e}{seed\+MT}} (uint32\+\_\+t seed)
+\item 
+float \mbox{\hyperlink{random_8c_ac230f0a5738783a329d724e45cda3c26_ac230f0a5738783a329d724e45cda3c26}{random\+MT}} ()
+\item 
+uint32\+\_\+t \mbox{\hyperlink{random_8c_ab176de8bfdff945f330ccedb0b85708b_ab176de8bfdff945f330ccedb0b85708b}{random\+MT\+\_\+i}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{マクロ定義詳解}
+\Hypertarget{random_8c_a4ddd8cab3564b7a86a4b0e52ba08f70e_a4ddd8cab3564b7a86a4b0e52ba08f70e}\index{random.c@{random.c}!LOWER\_MASK@{LOWER\_MASK}}
+\index{LOWER\_MASK@{LOWER\_MASK}!random.c@{random.c}}
+\doxysubsubsection{\texorpdfstring{LOWER\_MASK}{LOWER\_MASK}}
+{\footnotesize\ttfamily \label{random_8c_a4ddd8cab3564b7a86a4b0e52ba08f70e_a4ddd8cab3564b7a86a4b0e52ba08f70e} 
+\#define LOWER\+\_\+\+MASK~0x7fffffff /\texorpdfstring{$\ast$}{*} least significant r bits \texorpdfstring{$\ast$}{*}/}
+
+\Hypertarget{random_8c_a52037c938e3c1b126c6277da5ca689d0_a52037c938e3c1b126c6277da5ca689d0}\index{random.c@{random.c}!M@{M}}
+\index{M@{M}!random.c@{random.c}}
+\doxysubsubsection{\texorpdfstring{M}{M}}
+{\footnotesize\ttfamily \label{random_8c_a52037c938e3c1b126c6277da5ca689d0_a52037c938e3c1b126c6277da5ca689d0} 
+\#define M~397}
+
+\Hypertarget{random_8c_a376c3581bae3c2367fc9ce694e5a8949_a376c3581bae3c2367fc9ce694e5a8949}\index{random.c@{random.c}!MATRIX\_A@{MATRIX\_A}}
+\index{MATRIX\_A@{MATRIX\_A}!random.c@{random.c}}
+\doxysubsubsection{\texorpdfstring{MATRIX\_A}{MATRIX\_A}}
+{\footnotesize\ttfamily \label{random_8c_a376c3581bae3c2367fc9ce694e5a8949_a376c3581bae3c2367fc9ce694e5a8949} 
+\#define MATRIX\+\_\+A~0x9908b0df   /\texorpdfstring{$\ast$}{*} constant vector a \texorpdfstring{$\ast$}{*}/}
+
+\Hypertarget{random_8c_a0240ac851181b84ac374872dc5434ee4_a0240ac851181b84ac374872dc5434ee4}\index{random.c@{random.c}!N@{N}}
+\index{N@{N}!random.c@{random.c}}
+\doxysubsubsection{\texorpdfstring{N}{N}}
+{\footnotesize\ttfamily \label{random_8c_a0240ac851181b84ac374872dc5434ee4_a0240ac851181b84ac374872dc5434ee4} 
+\#define N~624}
+
+\Hypertarget{random_8c_ad823db99ec38ec810124406bd3dfeeae_ad823db99ec38ec810124406bd3dfeeae}\index{random.c@{random.c}!TEMPERING\_MASK\_B@{TEMPERING\_MASK\_B}}
+\index{TEMPERING\_MASK\_B@{TEMPERING\_MASK\_B}!random.c@{random.c}}
+\doxysubsubsection{\texorpdfstring{TEMPERING\_MASK\_B}{TEMPERING\_MASK\_B}}
+{\footnotesize\ttfamily \label{random_8c_ad823db99ec38ec810124406bd3dfeeae_ad823db99ec38ec810124406bd3dfeeae} 
+\#define TEMPERING\+\_\+\+MASK\+\_\+B~0x9d2c5680}
+
+\Hypertarget{random_8c_ae1c7a72f80707458249c99a6f37e7d3e_ae1c7a72f80707458249c99a6f37e7d3e}\index{random.c@{random.c}!TEMPERING\_MASK\_C@{TEMPERING\_MASK\_C}}
+\index{TEMPERING\_MASK\_C@{TEMPERING\_MASK\_C}!random.c@{random.c}}
+\doxysubsubsection{\texorpdfstring{TEMPERING\_MASK\_C}{TEMPERING\_MASK\_C}}
+{\footnotesize\ttfamily \label{random_8c_ae1c7a72f80707458249c99a6f37e7d3e_ae1c7a72f80707458249c99a6f37e7d3e} 
+\#define TEMPERING\+\_\+\+MASK\+\_\+C~0xefc60000}
+
+\Hypertarget{random_8c_a15f821dd6f1a65b3ecf672718aa6273c_a15f821dd6f1a65b3ecf672718aa6273c}\index{random.c@{random.c}!TEMPERING\_SHIFT\_L@{TEMPERING\_SHIFT\_L}}
+\index{TEMPERING\_SHIFT\_L@{TEMPERING\_SHIFT\_L}!random.c@{random.c}}
+\doxysubsubsection{\texorpdfstring{TEMPERING\_SHIFT\_L}{TEMPERING\_SHIFT\_L}}
+{\footnotesize\ttfamily \label{random_8c_a15f821dd6f1a65b3ecf672718aa6273c_a15f821dd6f1a65b3ecf672718aa6273c} 
+\#define TEMPERING\+\_\+\+SHIFT\+\_\+L(\begin{DoxyParamCaption}\item[{}]{y}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(y\ >>\ 18)}
+
+\end{DoxyCode}
+\Hypertarget{random_8c_adce59eadb4013bb06a059dedf69c282d_adce59eadb4013bb06a059dedf69c282d}\index{random.c@{random.c}!TEMPERING\_SHIFT\_S@{TEMPERING\_SHIFT\_S}}
+\index{TEMPERING\_SHIFT\_S@{TEMPERING\_SHIFT\_S}!random.c@{random.c}}
+\doxysubsubsection{\texorpdfstring{TEMPERING\_SHIFT\_S}{TEMPERING\_SHIFT\_S}}
+{\footnotesize\ttfamily \label{random_8c_adce59eadb4013bb06a059dedf69c282d_adce59eadb4013bb06a059dedf69c282d} 
+\#define TEMPERING\+\_\+\+SHIFT\+\_\+S(\begin{DoxyParamCaption}\item[{}]{y}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(y\ <<\ 7)}
+
+\end{DoxyCode}
+\Hypertarget{random_8c_a0a2b0d0fa7a7c8ce1bbc52a67f26f8c3_a0a2b0d0fa7a7c8ce1bbc52a67f26f8c3}\index{random.c@{random.c}!TEMPERING\_SHIFT\_T@{TEMPERING\_SHIFT\_T}}
+\index{TEMPERING\_SHIFT\_T@{TEMPERING\_SHIFT\_T}!random.c@{random.c}}
+\doxysubsubsection{\texorpdfstring{TEMPERING\_SHIFT\_T}{TEMPERING\_SHIFT\_T}}
+{\footnotesize\ttfamily \label{random_8c_a0a2b0d0fa7a7c8ce1bbc52a67f26f8c3_a0a2b0d0fa7a7c8ce1bbc52a67f26f8c3} 
+\#define TEMPERING\+\_\+\+SHIFT\+\_\+T(\begin{DoxyParamCaption}\item[{}]{y}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(y\ <<\ 15)}
+
+\end{DoxyCode}
+\Hypertarget{random_8c_a238852cd6380d77bd700e95d0a7d90c9_a238852cd6380d77bd700e95d0a7d90c9}\index{random.c@{random.c}!TEMPERING\_SHIFT\_U@{TEMPERING\_SHIFT\_U}}
+\index{TEMPERING\_SHIFT\_U@{TEMPERING\_SHIFT\_U}!random.c@{random.c}}
+\doxysubsubsection{\texorpdfstring{TEMPERING\_SHIFT\_U}{TEMPERING\_SHIFT\_U}}
+{\footnotesize\ttfamily \label{random_8c_a238852cd6380d77bd700e95d0a7d90c9_a238852cd6380d77bd700e95d0a7d90c9} 
+\#define TEMPERING\+\_\+\+SHIFT\+\_\+U(\begin{DoxyParamCaption}\item[{}]{y}{}\end{DoxyParamCaption})}
+
+{\bfseries 値\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(y\ >>\ 11)}
+
+\end{DoxyCode}
+\Hypertarget{random_8c_a39bc458849360f8f371b54c4365d397f_a39bc458849360f8f371b54c4365d397f}\index{random.c@{random.c}!UPPER\_MASK@{UPPER\_MASK}}
+\index{UPPER\_MASK@{UPPER\_MASK}!random.c@{random.c}}
+\doxysubsubsection{\texorpdfstring{UPPER\_MASK}{UPPER\_MASK}}
+{\footnotesize\ttfamily \label{random_8c_a39bc458849360f8f371b54c4365d397f_a39bc458849360f8f371b54c4365d397f} 
+\#define UPPER\+\_\+\+MASK~0x80000000 /\texorpdfstring{$\ast$}{*} most significant w-\/r bits \texorpdfstring{$\ast$}{*}/}
+
+
+
+\doxysubsection{関数詳解}
+\Hypertarget{random_8c_ac230f0a5738783a329d724e45cda3c26_ac230f0a5738783a329d724e45cda3c26}\index{random.c@{random.c}!randomMT@{randomMT}}
+\index{randomMT@{randomMT}!random.c@{random.c}}
+\doxysubsubsection{\texorpdfstring{randomMT()}{randomMT()}}
+{\footnotesize\ttfamily \label{random_8c_ac230f0a5738783a329d724e45cda3c26_ac230f0a5738783a329d724e45cda3c26} 
+float random\+MT (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{random_8c_ab176de8bfdff945f330ccedb0b85708b_ab176de8bfdff945f330ccedb0b85708b}\index{random.c@{random.c}!randomMT\_i@{randomMT\_i}}
+\index{randomMT\_i@{randomMT\_i}!random.c@{random.c}}
+\doxysubsubsection{\texorpdfstring{randomMT\_i()}{randomMT\_i()}}
+{\footnotesize\ttfamily \label{random_8c_ab176de8bfdff945f330ccedb0b85708b_ab176de8bfdff945f330ccedb0b85708b} 
+uint32\+\_\+t random\+MT\+\_\+i (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{random_8c_a7b57b363872392097eda192f0e1e264e_a7b57b363872392097eda192f0e1e264e}\index{random.c@{random.c}!seedMT@{seedMT}}
+\index{seedMT@{seedMT}!random.c@{random.c}}
+\doxysubsubsection{\texorpdfstring{seedMT()}{seedMT()}}
+{\footnotesize\ttfamily \label{random_8c_a7b57b363872392097eda192f0e1e264e_a7b57b363872392097eda192f0e1e264e} 
+void seed\+MT (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{seed}{}\end{DoxyParamCaption})}
+

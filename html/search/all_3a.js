@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['まだ何も計算していない場合（黒色にする）_20strong_0',['&lt;strong&gt;2. まだ何も計算していない場合（黒色にする）&lt;/strong&gt;',['../additional_info_buffer.html#autotoc_md123',1,'']]],
-  ['まとめ_1',['まとめ',['../additional_inf_1.html#autotoc_md89',1,'']]],
-  ['まとめ_20strong_2',['まとめ strong',['../additional_info_buffer.html#autotoc_md140',1,'&lt;strong&gt;まとめ&lt;/strong&gt;'],['../additional_info_coding.html#autotoc_md157',1,'&lt;strong&gt;まとめ&lt;/strong&gt;']]]
+  ['はじめに_0',['はじめに',['../md__doxygen_2about__convertions.html#autotoc_md99',1,'はじめに'],['../md__doxygen_2_open_g_l__func.html#autotoc_md343',1,'はじめに']]],
+  ['は何？_1',['3. &lt;tt&gt;Eigen::aligned_allocator\&lt;Eigen::Vector3d\&gt;&lt;/tt&gt; は何？',['../additional_inf_1.html#autotoc_md113',1,'']]]
 ];
