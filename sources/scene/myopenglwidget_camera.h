@@ -41,12 +41,15 @@ protected:
     void resetRendering();
     //レイトレ用Qtimer
     QTimer *m_timer; // タイマーのポインタ
+    QElapsedTimer m_renderTimer; // ★★★ 計測用のタイマーを追加 ★★★
 
 
     // ★★★ 追加：レンダリングの進捗と状態を管理する変数 ★★★
     bool m_isDirty;     // 再レンダリングが必要かどうかのフラグ
     int m_progress_i;   // 次に計算するピクセルの横位置(i)
     int m_progress_j;   // 次に計算するピクセルの縦位置(j)
+
+
 
 private:
     Camera g_Camera2;

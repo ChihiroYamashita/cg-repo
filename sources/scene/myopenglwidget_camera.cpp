@@ -26,7 +26,7 @@ MyOpenGLWidget_camera::MyOpenGLWidget_camera(QWidget* parent)
         m_progress_j = 0;
 
 
-        m_targetSamplesPerPixel = 10; // 目標サンプル数を設定 (UIなどで変更可能にすると良い)
+        m_targetSamplesPerPixel = 16; // 目標サンプル数を設定 (UIなどで変更可能にすると良い)
         m_currentSampleCount = 0;//今のサンプル数
 
 
@@ -311,11 +311,12 @@ void MyOpenGLWidget_camera::updateRayTracing()
     // ★ 再レンダリングが不要な場合は、スキップ（何もしない）
     //if m_isDirty is false,quit
     if (!m_isDirty) {
+
         return;
     }
 
     // ★ 1フレームで処理するピクセル数（パフォーマンスと滑らかさのバランス）
-    const int pixelsPerFrame = 20000;
+    const int pixelsPerFrame = 2000;
 
     // ★ width分だけあるピクセルの内pixelsPerFrame 分だけピクセルごとにレイを飛ばす
     for (int k = 0; k < pixelsPerFrame; ++k) {
@@ -323,7 +324,13 @@ void MyOpenGLWidget_camera::updateRayTracing()
         // ★ 各ピクセルがサンプル数までレンダリングが完了しているか、毎ピクセルチェックする
         if (m_currentSampleCount >= m_targetSamplesPerPixel) {
             m_isDirty = false; // 目標に達したらレンダリングを停止
+            qint64 elapsed_ms = m_renderTimer.elapsed(); // 経過時間をミリ秒で取得
+            float elapsed_s = elapsed_ms / 1000.0f;     // 秒に変換
+
             qDebug() << "Rendering finished. (" << m_currentSampleCount << " samples)";
+            qDebug() << "Total time:" << elapsed_s << "seconds.";
+
+
             break; // このフレームの処理を中断
         }
 
@@ -514,4 +521,6 @@ void MyOpenGLWidget_camera::resetRendering()
         glBindTexture(GL_TEXTURE_2D, 0);
         doneCurrent();
     }
+    m_renderTimer.start(); // ★★★ レンダリング開始と同時にタイマーをスタート ★★★
+    qDebug() << "Rendering started...";
 }
