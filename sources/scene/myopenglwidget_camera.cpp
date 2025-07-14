@@ -20,6 +20,7 @@ MyOpenGLWidget_camera::MyOpenGLWidget_camera(QWidget* parent)
         qDebug() << "sphere.obj loaded successfully.";
 
 
+
         // レンダリング状態を初期化
         m_isDirty = false; // ★ 最初は計算しない
         m_progress_i = 0;
@@ -32,6 +33,7 @@ MyOpenGLWidget_camera::MyOpenGLWidget_camera(QWidget* parent)
         // ★★★ 新しいシグナルとスロットを接続 ★★★
         // 別スレッドからの描画更新依頼を安全に受け取る
         connect(this, &MyOpenGLWidget_camera::renderingProgressUpdated, this, &MyOpenGLWidget_camera::onRenderingProgressUpdated);
+
 
 
         // ▼▼▼ 従来のタイマー設定は全て削除 ▼▼▼

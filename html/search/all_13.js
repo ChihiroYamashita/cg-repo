@@ -28,5 +28,6 @@ var searchData=
   ['interpolator_2eh_25',['interpolator.h',['../interpolator_8h.html',1,'']]],
   ['intersection_2ecpp_26',['Intersection.cpp',['../_intersection_8cpp.html',1,'']]],
   ['intersection_2eh_27',['Intersection.h',['../_intersection_8h.html',1,'']]],
-  ['isfront_28',['isFront',['../struct_ray_hit_ac19cbe82d1b38466b5e1cb930b2d0313.html#ac19cbe82d1b38466b5e1cb930b2d0313',1,'RayHit']]]
+  ['isfront_28',['isFront',['../struct_ray_hit_ac19cbe82d1b38466b5e1cb930b2d0313.html#ac19cbe82d1b38466b5e1cb930b2d0313',1,'RayHit']]],
+  ['istoon_29',['isToon',['../struct_material_a2b1b423f9d8b49af368e83e3864a2a38.html#a2b1b423f9d8b49af368e83e3864a2a38',1,'Material']]]
 ];

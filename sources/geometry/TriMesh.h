@@ -75,6 +75,7 @@
  * material.eta = 1.5; // ガラスの屈折率
  * ```
  */
+
 struct Material
 {
   GLuint texture;
@@ -82,6 +83,22 @@ struct Material
   Eigen::Vector3d ks;
   Eigen::Vector3d kt;
   double eta;
+  // ▼▼▼ 以下を追加 ▼▼▼
+  bool isToon;      // トゥーンシェーディングが有効か    // リットカラー (Lit Color)
+  Eigen::Vector3d C_lit;
+  Eigen::Vector3d C_shadow; // シャドウカラー (Shadow Color)
+  double tau;       // 明暗を分ける閾値 (τ)
+
+
+
+  //▲▲▲▲▲▲▲▲
+  Material()
+      : kd(0.0,0.0,0.0),ks(0.0,0.0,0.0),kt(0.0,0.0,0.0),eta(1.0),texture(0),isToon(false),
+      C_lit(1.0,1.0,1.0),C_shadow(0.2,0.2,0.2),tau(0.5)
+  {}
+
+
+
 };
 
 /**

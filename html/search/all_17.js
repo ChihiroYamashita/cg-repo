@@ -35,7 +35,7 @@ var searchData=
   ['mainwindow_32',['MainWindow',['../class_main_window.html',1,'MainWindow'],['../class_main_window_a996c5a2b6f77944776856f08ec30858d.html#a996c5a2b6f77944776856f08ec30858d',1,'MainWindow::MainWindow()']]],
   ['mainwindow_2ecpp_33',['mainwindow.cpp',['../mainwindow_8cpp.html',1,'']]],
   ['mainwindow_2eh_34',['mainwindow.h',['../mainwindow_8h.html',1,'']]],
-  ['material_35',['Material',['../struct_material.html',1,'']]],
+  ['material_35',['Material',['../struct_material.html',1,'Material'],['../struct_material_a137e987401b63eb7c6c27c3e38bc74b5.html#a137e987401b63eb7c6c27c3e38bc74b5',1,'Material::Material()']]],
   ['material_36',['material',['../struct_tri_mesh_ad2ecbdbf348dc50a3829f5c0530164db.html#ad2ecbdbf348dc50a3829f5c0530164db',1,'TriMesh']]],
   ['material_5fid_37',['material_id',['../struct_internal_triangles_a982ab00f65a5c38637a4fc2a063d0422.html#a982ab00f65a5c38637a4fc2a063d0422',1,'InternalTriangles']]],
   ['material_5fname_38',['material_name',['../struct_internal_triangles_a62a2cf53d0387d980aedd166e9c68834.html#a62a2cf53d0387d980aedd166e9c68834',1,'InternalTriangles::material_name'],['../struct_internal_material_a525f8b9ce338cda22303df7d1cbc5d50.html#a525f8b9ce338cda22303df7d1cbc5d50',1,'InternalMaterial::material_name']]],

@@ -172,9 +172,29 @@ Eigen::Vector3d computeDirectLighting( const std::vector<AreaLight>& in_AreaLigh
         rayTracing( in_Object, in_AreaLights, ray, rh );
         if( rh.mesh_idx < 0 && rh.primitive_idx == i )
         {
-            // diffuse
-            const double cos_theta = std::max<double>( 0.0, w_L.dot( in_n ) );
-            direct_light_contribution += area * in_AreaLights[i].color.cwiseProduct( in_Material.kd ) * in_AreaLights[i].intensity * cos_theta * cosT_l / ( M_PI * dist * dist );
+            // ▼▼▼ ここから変更 ▼▼▼
+            if (in_Material.isToon) {
+                // --- Toon Shading Logic ---
+                const double cos_theta = w_L.dot(in_n); // ω ⋅ n
+                Eigen::Vector3d toon_color;
+
+                if (cos_theta >= in_Material.tau) {
+                    toon_color = in_Material.C_lit;
+                } else {
+                    toon_color = in_Material.C_shadow;
+                }
+
+                // レンダリング方程式に基づき、ライトの明るさと幾何学項を乗算する
+                // ここではBRDFの代わりに toon_color を使う
+                direct_light_contribution +=
+                    area * in_AreaLights[i].intensity * toon_color.cwiseProduct(in_AreaLights[i].color) * cosT_l / (M_PI * dist * dist);
+
+            } else {
+                // --- Original PBR Logic ---
+                const double cos_theta = std::max<double>( 0.0, w_L.dot( in_n ) );
+                direct_light_contribution += area * in_AreaLights[i].color.cwiseProduct( in_Material.kd ) * in_AreaLights[i].intensity * cos_theta * cosT_l / ( M_PI * dist * dist );
+            }
+            // ▲▲▲ ここまで変更 ▲▲▲
         }
     }
 
@@ -340,8 +360,9 @@ Eigen::Vector3d computeShading( const Ray& in_Ray, const RayHit& in_RayHit, cons
     // 2. 交差点と法線を計算
     const Eigen::Vector3d x = in_Ray.o + in_RayHit.t * in_Ray.d;
     const Eigen::Vector3d n = computeRayHitNormal( in_Object, in_RayHit );
-
     Eigen::Vector3d I = Eigen::Vector3d::Zero();
+
+
 
     //デバッグ
     /*
